@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
+
+<hook>
+	<portal-properties>
+		portal.properties
+	</portal-properties>
+	<language-properties>content/Language_es.properties</language-properties>
+	<custom-jsp-dir>
+		/WEB-INF/jsp
+	</custom-jsp-dir>
+	<struts-action>
+		<struts-action-path>/login/linkedinsignin</struts-action-path>
+		<struts-action-impl>com.hitss.rec.hook.linkedin.action.LinkedInSignInAction</struts-action-impl>
+	</struts-action>
+</hook>

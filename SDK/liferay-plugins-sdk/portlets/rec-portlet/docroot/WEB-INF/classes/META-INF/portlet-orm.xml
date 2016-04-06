@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.avanceEstadoSolicitudReclutamientoModelImpl">
+		<attributes>
+			<id name="AESR_ID" />
+			<basic name="AESR_ESTADO" />
+			<basic name="AESR_ACTIVO" />
+			<basic name="AESR_USUARIO_CREA" />
+			<basic name="AESR_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="AESR_USUARIO_MODIFICA" />
+			<basic name="AESR_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.cartillaReclutamientoModelImpl">
+		<attributes>
+			<id name="CR_ID" />
+			<basic name="CR_ESTADO" />
+			<basic name="CR_ACTIVO" />
+			<basic name="CR_USUARIO_CREA" />
+			<basic name="CR_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="CR_USUARIO_MODIFICA" />
+			<basic name="CR_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.ContratoModelImpl">
+		<attributes>
+			<id name="CT_ID" />
+			<basic name="CT_ESTADO" />
+			<basic name="CT_ACTIVO" />
+			<basic name="CT_USUARIO_CREA" />
+			<basic name="CT_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="CT_USUARIO_MODIFICA" />
+			<basic name="CT_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.curriculumVitaeModelImpl">
+		<attributes>
+			<id name="CV_ID" />
+			<basic name="CV_ESTADO" />
+			<basic name="CV_ACTIVO" />
+			<basic name="CV_USUARIO_CREA" />
+			<basic name="CV_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="CV_USUARIO_MODIFICA" />
+			<basic name="CV_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.EvaluacionReclutamientoModelImpl">
+		<attributes>
+			<id name="ER_ID" />
+			<basic name="ER_ESTADO" />
+			<basic name="ER_ACTIVO" />
+			<basic name="ER_USUARIO_CREA" />
+			<basic name="ER_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="ER_USUARIO_MODIFICA" />
+			<basic name="ER_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.fichaIngresoModelImpl">
+		<attributes>
+			<id name="FI_ID" />
+			<basic name="FI_ESTADO" />
+			<basic name="FI_ACTIVO" />
+			<basic name="FI_USUARIO_CREA" />
+			<basic name="FI_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="FI_USUARIO_MODIFICA" />
+			<basic name="FI_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.FooModelImpl">
+		<attributes>
+			<id name="fooId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="field1" />
+			<basic name="field2" />
+			<basic name="field3" />
+			<basic name="field4">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="field5" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.nueveCuadrantesModelImpl">
+		<attributes>
+			<id name="NC_ID" />
+			<basic name="REQ_ESTADO" />
+			<basic name="REQ_ACTIVO" />
+			<basic name="SR_USUARIO_CREA" />
+			<basic name="SR_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="SR_USUARIO_MODIFICA" />
+			<basic name="SR_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.puestosLaboralesModelImpl">
+		<attributes>
+			<id name="PL_ID" />
+			<basic name="PL_PUESTO" />
+			<basic name="PL_ESTADO" />
+			<basic name="PL_ACTIVO" />
+			<basic name="PL_USUARIO_CREA" />
+			<basic name="PL_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="PL_USUARIO_MODIFICA" />
+			<basic name="PL_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.requerimientoPersonalModelImpl">
+		<attributes>
+			<id name="REQ_ID" />
+			<basic name="REQ_ESTADO" />
+			<basic name="REQ_ACTIVO" />
+			<basic name="REQ_USUARIO_CREA" />
+			<basic name="REQ_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="REQ_USUARIO_MODIFICA" />
+			<basic name="REQ_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.rec.hitss.layer.model.impl.solicitudReclutamientoModelImpl">
+		<attributes>
+			<id name="SR_ID" />
+			<basic name="SR_PL_ID" />
+			<basic name="SR_ESTADO" />
+			<basic name="SR_ACTIVO" />
+			<basic name="SR_USUARIO_CREA" />
+			<basic name="SR_FECHA_CREA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="SR_USUARIO_MODIFICA" />
+			<basic name="SR_FECHA_MODIFICA">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.rec.hitss.layer.model.impl.avanceEstadoSolicitudReclutamientoImpl" name="avanceEstadoSolicitudReclutamiento">
+		<table name="AVANCE_ESTADO_SOLICITUD_RECLUTAMIENTO" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.cartillaReclutamientoImpl" name="cartillaReclutamiento">
+		<table name="cartilla_reclutamiento" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.ContratoImpl" name="Contrato">
+		<table name="CONTRATO" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.curriculumVitaeImpl" name="curriculumVitae">
+		<table name="CURRICULUM_VITAE" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.EvaluacionReclutamientoImpl" name="EvaluacionReclutamiento">
+		<table name="EVALUACION_RECLUTAMIENTO" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.fichaIngresoImpl" name="fichaIngreso">
+		<table name="FICHA_INGRESO" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.FooImpl" name="Foo">
+		<table name="rec_foo" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.nueveCuadrantesImpl" name="nueveCuadrantes">
+		<table name="NUEVE_CUADRANTES" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.puestosLaboralesImpl" name="puestosLaborales">
+		<table name="PUESTOS_LABORALES" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.requerimientoPersonalImpl" name="requerimientoPersonal">
+		<table name="REQUERIMIENTO_PERSONAL" />
+		<attributes />
+	</entity>
+	<entity class="com.rec.hitss.layer.model.impl.solicitudReclutamientoImpl" name="solicitudReclutamiento">
+		<table name="SOLICITUD_RECLUTAMIENTO" />
+		<attributes />
+	</entity>
+</entity-mappings>
