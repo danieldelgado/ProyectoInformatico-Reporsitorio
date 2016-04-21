@@ -1,0 +1,727 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.rec.hitss.layer.model;
+
+import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.impl.BaseModelImpl;
+
+import com.rec.hitss.layer.service.ClpSerializer;
+import com.rec.hitss.layer.service.ExperienciaLocalServiceUtil;
+
+import java.io.Serializable;
+
+import java.lang.reflect.Method;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author Crossfire
+ */
+public class ExperienciaClp extends BaseModelImpl<Experiencia>
+	implements Experiencia {
+	public ExperienciaClp() {
+	}
+
+	@Override
+	public Class<?> getModelClass() {
+		return Experiencia.class;
+	}
+
+	@Override
+	public String getModelClassName() {
+		return Experiencia.class.getName();
+	}
+
+	@Override
+	public long getPrimaryKey() {
+		return _estudioId;
+	}
+
+	@Override
+	public void setPrimaryKey(long primaryKey) {
+		setEstudioId(primaryKey);
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _estudioId;
+	}
+
+	@Override
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("estudioId", getEstudioId());
+		attributes.put("descripcion", getDescripcion());
+		attributes.put("nivel", getNivel());
+		attributes.put("empresa", getEmpresa());
+		attributes.put("proyecto", getProyecto());
+		attributes.put("fechaInicio", getFechaInicio());
+		attributes.put("fechaFin", getFechaFin());
+		attributes.put("usuarioHitssId", getUsuarioHitssId());
+		attributes.put("activo", getActivo());
+		attributes.put("usuariocrea", getUsuariocrea());
+		attributes.put("fechacrea", getFechacrea());
+		attributes.put("usuariomodifica", getUsuariomodifica());
+		attributes.put("fechacreamodifica", getFechacreamodifica());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long estudioId = (Long)attributes.get("estudioId");
+
+		if (estudioId != null) {
+			setEstudioId(estudioId);
+		}
+
+		String descripcion = (String)attributes.get("descripcion");
+
+		if (descripcion != null) {
+			setDescripcion(descripcion);
+		}
+
+		Long nivel = (Long)attributes.get("nivel");
+
+		if (nivel != null) {
+			setNivel(nivel);
+		}
+
+		String empresa = (String)attributes.get("empresa");
+
+		if (empresa != null) {
+			setEmpresa(empresa);
+		}
+
+		String proyecto = (String)attributes.get("proyecto");
+
+		if (proyecto != null) {
+			setProyecto(proyecto);
+		}
+
+		Date fechaInicio = (Date)attributes.get("fechaInicio");
+
+		if (fechaInicio != null) {
+			setFechaInicio(fechaInicio);
+		}
+
+		Date fechaFin = (Date)attributes.get("fechaFin");
+
+		if (fechaFin != null) {
+			setFechaFin(fechaFin);
+		}
+
+		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
+
+		if (usuarioHitssId != null) {
+			setUsuarioHitssId(usuarioHitssId);
+		}
+
+		Boolean activo = (Boolean)attributes.get("activo");
+
+		if (activo != null) {
+			setActivo(activo);
+		}
+
+		Long usuariocrea = (Long)attributes.get("usuariocrea");
+
+		if (usuariocrea != null) {
+			setUsuariocrea(usuariocrea);
+		}
+
+		Date fechacrea = (Date)attributes.get("fechacrea");
+
+		if (fechacrea != null) {
+			setFechacrea(fechacrea);
+		}
+
+		Long usuariomodifica = (Long)attributes.get("usuariomodifica");
+
+		if (usuariomodifica != null) {
+			setUsuariomodifica(usuariomodifica);
+		}
+
+		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+
+		if (fechacreamodifica != null) {
+			setFechacreamodifica(fechacreamodifica);
+		}
+	}
+
+	@Override
+	public long getEstudioId() {
+		return _estudioId;
+	}
+
+	@Override
+	public void setEstudioId(long estudioId) {
+		_estudioId = estudioId;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEstudioId", long.class);
+
+				method.invoke(_experienciaRemoteModel, estudioId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getDescripcion() {
+		return _descripcion;
+	}
+
+	@Override
+	public void setDescripcion(String descripcion) {
+		_descripcion = descripcion;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescripcion", String.class);
+
+				method.invoke(_experienciaRemoteModel, descripcion);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getNivel() {
+		return _nivel;
+	}
+
+	@Override
+	public void setNivel(long nivel) {
+		_nivel = nivel;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setNivel", long.class);
+
+				method.invoke(_experienciaRemoteModel, nivel);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getEmpresa() {
+		return _empresa;
+	}
+
+	@Override
+	public void setEmpresa(String empresa) {
+		_empresa = empresa;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEmpresa", String.class);
+
+				method.invoke(_experienciaRemoteModel, empresa);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getProyecto() {
+		return _proyecto;
+	}
+
+	@Override
+	public void setProyecto(String proyecto) {
+		_proyecto = proyecto;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setProyecto", String.class);
+
+				method.invoke(_experienciaRemoteModel, proyecto);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public Date getFechaInicio() {
+		return _fechaInicio;
+	}
+
+	@Override
+	public void setFechaInicio(Date fechaInicio) {
+		_fechaInicio = fechaInicio;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFechaInicio", Date.class);
+
+				method.invoke(_experienciaRemoteModel, fechaInicio);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public Date getFechaFin() {
+		return _fechaFin;
+	}
+
+	@Override
+	public void setFechaFin(Date fechaFin) {
+		_fechaFin = fechaFin;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFechaFin", Date.class);
+
+				method.invoke(_experienciaRemoteModel, fechaFin);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getUsuarioHitssId() {
+		return _usuarioHitssId;
+	}
+
+	@Override
+	public void setUsuarioHitssId(long usuarioHitssId) {
+		_usuarioHitssId = usuarioHitssId;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUsuarioHitssId", long.class);
+
+				method.invoke(_experienciaRemoteModel, usuarioHitssId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public boolean getActivo() {
+		return _activo;
+	}
+
+	@Override
+	public boolean isActivo() {
+		return _activo;
+	}
+
+	@Override
+	public void setActivo(boolean activo) {
+		_activo = activo;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setActivo", boolean.class);
+
+				method.invoke(_experienciaRemoteModel, activo);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getUsuariocrea() {
+		return _usuariocrea;
+	}
+
+	@Override
+	public void setUsuariocrea(long usuariocrea) {
+		_usuariocrea = usuariocrea;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUsuariocrea", long.class);
+
+				method.invoke(_experienciaRemoteModel, usuariocrea);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public Date getFechacrea() {
+		return _fechacrea;
+	}
+
+	@Override
+	public void setFechacrea(Date fechacrea) {
+		_fechacrea = fechacrea;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFechacrea", Date.class);
+
+				method.invoke(_experienciaRemoteModel, fechacrea);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getUsuariomodifica() {
+		return _usuariomodifica;
+	}
+
+	@Override
+	public void setUsuariomodifica(long usuariomodifica) {
+		_usuariomodifica = usuariomodifica;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUsuariomodifica", long.class);
+
+				method.invoke(_experienciaRemoteModel, usuariomodifica);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public Date getFechacreamodifica() {
+		return _fechacreamodifica;
+	}
+
+	@Override
+	public void setFechacreamodifica(Date fechacreamodifica) {
+		_fechacreamodifica = fechacreamodifica;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFechacreamodifica",
+						Date.class);
+
+				method.invoke(_experienciaRemoteModel, fechacreamodifica);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	public BaseModel<?> getExperienciaRemoteModel() {
+		return _experienciaRemoteModel;
+	}
+
+	public void setExperienciaRemoteModel(BaseModel<?> experienciaRemoteModel) {
+		_experienciaRemoteModel = experienciaRemoteModel;
+	}
+
+	public Object invokeOnRemoteModel(String methodName,
+		Class<?>[] parameterTypes, Object[] parameterValues)
+		throws Exception {
+		Object[] remoteParameterValues = new Object[parameterValues.length];
+
+		for (int i = 0; i < parameterValues.length; i++) {
+			if (parameterValues[i] != null) {
+				remoteParameterValues[i] = ClpSerializer.translateInput(parameterValues[i]);
+			}
+		}
+
+		Class<?> remoteModelClass = _experienciaRemoteModel.getClass();
+
+		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
+
+		Class<?>[] remoteParameterTypes = new Class[parameterTypes.length];
+
+		for (int i = 0; i < parameterTypes.length; i++) {
+			if (parameterTypes[i].isPrimitive()) {
+				remoteParameterTypes[i] = parameterTypes[i];
+			}
+			else {
+				String parameterTypeName = parameterTypes[i].getName();
+
+				remoteParameterTypes[i] = remoteModelClassLoader.loadClass(parameterTypeName);
+			}
+		}
+
+		Method method = remoteModelClass.getMethod(methodName,
+				remoteParameterTypes);
+
+		Object returnValue = method.invoke(_experienciaRemoteModel,
+				remoteParameterValues);
+
+		if (returnValue != null) {
+			returnValue = ClpSerializer.translateOutput(returnValue);
+		}
+
+		return returnValue;
+	}
+
+	@Override
+	public void persist() throws SystemException {
+		if (this.isNew()) {
+			ExperienciaLocalServiceUtil.addExperiencia(this);
+		}
+		else {
+			ExperienciaLocalServiceUtil.updateExperiencia(this);
+		}
+	}
+
+	@Override
+	public Experiencia toEscapedModel() {
+		return (Experiencia)ProxyUtil.newProxyInstance(Experiencia.class.getClassLoader(),
+			new Class[] { Experiencia.class }, new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public Object clone() {
+		ExperienciaClp clone = new ExperienciaClp();
+
+		clone.setEstudioId(getEstudioId());
+		clone.setDescripcion(getDescripcion());
+		clone.setNivel(getNivel());
+		clone.setEmpresa(getEmpresa());
+		clone.setProyecto(getProyecto());
+		clone.setFechaInicio(getFechaInicio());
+		clone.setFechaFin(getFechaFin());
+		clone.setUsuarioHitssId(getUsuarioHitssId());
+		clone.setActivo(getActivo());
+		clone.setUsuariocrea(getUsuariocrea());
+		clone.setFechacrea(getFechacrea());
+		clone.setUsuariomodifica(getUsuariomodifica());
+		clone.setFechacreamodifica(getFechacreamodifica());
+
+		return clone;
+	}
+
+	@Override
+	public int compareTo(Experiencia experiencia) {
+		int value = 0;
+
+		value = DateUtil.compareTo(getFechacrea(), experiencia.getFechacrea());
+
+		if (value != 0) {
+			return value;
+		}
+
+		return 0;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof ExperienciaClp)) {
+			return false;
+		}
+
+		ExperienciaClp experiencia = (ExperienciaClp)obj;
+
+		long primaryKey = experiencia.getPrimaryKey();
+
+		if (getPrimaryKey() == primaryKey) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
+	@Override
+	public int hashCode() {
+		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler(27);
+
+		sb.append("{estudioId=");
+		sb.append(getEstudioId());
+		sb.append(", descripcion=");
+		sb.append(getDescripcion());
+		sb.append(", nivel=");
+		sb.append(getNivel());
+		sb.append(", empresa=");
+		sb.append(getEmpresa());
+		sb.append(", proyecto=");
+		sb.append(getProyecto());
+		sb.append(", fechaInicio=");
+		sb.append(getFechaInicio());
+		sb.append(", fechaFin=");
+		sb.append(getFechaFin());
+		sb.append(", usuarioHitssId=");
+		sb.append(getUsuarioHitssId());
+		sb.append(", activo=");
+		sb.append(getActivo());
+		sb.append(", usuariocrea=");
+		sb.append(getUsuariocrea());
+		sb.append(", fechacrea=");
+		sb.append(getFechacrea());
+		sb.append(", usuariomodifica=");
+		sb.append(getUsuariomodifica());
+		sb.append(", fechacreamodifica=");
+		sb.append(getFechacreamodifica());
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@Override
+	public String toXmlString() {
+		StringBundler sb = new StringBundler(43);
+
+		sb.append("<model><model-name>");
+		sb.append("com.rec.hitss.layer.model.Experiencia");
+		sb.append("</model-name>");
+
+		sb.append(
+			"<column><column-name>estudioId</column-name><column-value><![CDATA[");
+		sb.append(getEstudioId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
+		sb.append(getDescripcion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>nivel</column-name><column-value><![CDATA[");
+		sb.append(getNivel());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>empresa</column-name><column-value><![CDATA[");
+		sb.append(getEmpresa());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>proyecto</column-name><column-value><![CDATA[");
+		sb.append(getProyecto());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechaInicio</column-name><column-value><![CDATA[");
+		sb.append(getFechaInicio());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechaFin</column-name><column-value><![CDATA[");
+		sb.append(getFechaFin());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioHitssId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>activo</column-name><column-value><![CDATA[");
+		sb.append(getActivo());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>usuariocrea</column-name><column-value><![CDATA[");
+		sb.append(getUsuariocrea());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechacrea</column-name><column-value><![CDATA[");
+		sb.append(getFechacrea());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>usuariomodifica</column-name><column-value><![CDATA[");
+		sb.append(getUsuariomodifica());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechacreamodifica());
+		sb.append("]]></column-value></column>");
+
+		sb.append("</model>");
+
+		return sb.toString();
+	}
+
+	private long _estudioId;
+	private String _descripcion;
+	private long _nivel;
+	private String _empresa;
+	private String _proyecto;
+	private Date _fechaInicio;
+	private Date _fechaFin;
+	private long _usuarioHitssId;
+	private boolean _activo;
+	private long _usuariocrea;
+	private Date _fechacrea;
+	private long _usuariomodifica;
+	private Date _fechacreamodifica;
+	private BaseModel<?> _experienciaRemoteModel;
+	private Class<?> _clpSerializerClass = com.rec.hitss.layer.service.ClpSerializer.class;
+}

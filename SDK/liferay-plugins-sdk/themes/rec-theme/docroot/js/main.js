@@ -1,22 +1,36 @@
 AUI().ready(
-	'liferay-hudcrumbs', 'liferay-navigation-interaction', 'liferay-sign-in-modal',
+	'liferay-sign-in-modal',
 	function(A) {
+		var Lang = A.Lang;
+
+		var BODY = A.getBody();
+
+		var WIN = A.getWin();
+
 		var navigation = A.one('#navigation');
 
 		if (navigation) {
 			navigation.plug(Liferay.NavigationInteraction);
 		}
 
-		var siteBreadcrumbs = A.one('#breadcrumbs');
-
-		if (siteBreadcrumbs) {
-			siteBreadcrumbs.plug(A.Hudcrumbs);
-		}
-
-		var signIn = A.one('li.sign-in a');
+		var signIn = A.one('.sign-in');
 
 		if (signIn && signIn.getData('redirect') !== 'true') {
 			signIn.plug(Liferay.SignInModal);
 		}
+
+		A.one('.navigation-menu').on(
+			'click',
+			function() {
+				BODY.toggleClass('opened');
+			}
+		);
+
+		A.one('.back-nav').on(
+			'click',
+			function() {
+				BODY.toggleClass('opened');
+			}
+		);
 	}
 );

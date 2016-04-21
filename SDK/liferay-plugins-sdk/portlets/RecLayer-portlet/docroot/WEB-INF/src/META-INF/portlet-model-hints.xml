@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.rec.hitss.layer.model.Actividades">
+		<field name="actividadesId" type="long" />
+		<field name="cronogramaEvaluacionPersonalId" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+		<field name="fechaInicioEvaluacion" type="Date" />
+		<field name="fechaFinEvaluacion" type="Date" />
+		<field name="descripcion" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.ActividadPlan">
+		<field name="actividadPlanId" type="long" />
+		<field name="planAccionId" type="long" />
+		<field name="duracion" type="int" />
+		<field name="actividad" type="String" />
+		<field name="cumplio" type="boolean" />
+		<field name="observacion" type="String" />
+		<field name="evidencia" type="String" />
+		<field name="objetivo" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Certificado">
+		<field name="certificadoId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="empresa" type="String" />
+		<field name="cargo" type="String" />
+		<field name="usuarioHitssId" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Conocimiento">
+		<field name="conocimientoId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="etiquetaId" type="long" />
+		<field name="nivel" type="String" />
+		<field name="herramiento" type="String" />
+		<field name="implementacion" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+		<field name="usuarioHitssId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Contrato">
+		<field name="contratoId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="fechaEmitida" type="Date" />
+		<field name="Titulo" type="boolean" />
+		<field name="Motivo" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+		<field name="usuarioHitssId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.CriteriosEvaluacion">
+		<field name="criteriosEvaluacionId" type="long" />
+		<field name="nombre" type="String" />
+		<field name="nivelCriterio" type="String" />
+		<field name="observacion" type="String" />
+		<field name="parametroPadreId" type="long" />
+		<field name="evaluacionId" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.CronogramaEvaluacionPersonal">
+		<field name="cronogramaEvaluacionPersonalId" type="long" />
+		<field name="solicitudEvaluacionDesempenoId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="estado" type="String" />
+		<field name="observacion" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Entrevista">
+		<field name="entrevistaId" type="long" />
+		<field name="usuarioHitssId" type="long" />
+		<field name="observacion" type="String" />
+		<field name="asistio" type="boolean" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Estudio">
+		<field name="estudioId" type="long" />
+		<field name="nombre" type="String" />
+		<field name="logro" type="String" />
+		<field name="fechaInicio" type="Date" />
+		<field name="fechaFino" type="Date" />
+		<field name="nivel" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+		<field name="usuarioHitssId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Etiqueta">
+		<field name="etiquetaId" type="long" />
+		<field name="tagId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Evaluacion">
+		<field name="evaluacionId" type="long" />
+		<field name="tiempoMinuto" type="long" />
+		<field name="enfoque" type="long" />
+		<field name="puestoEvaluacion" type="long" />
+		<field name="tiempoPuesto" type="long" />
+		<field name="TipoEvaluacion" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.EvaluacionPregunta">
+		<field name="evaluacionPreguntaId" type="long" />
+		<field name="preguntaId" type="long" />
+		<field name="evaluacionId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="nivel" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Experiencia">
+		<field name="estudioId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="nivel" type="long" />
+		<field name="empresa" type="String" />
+		<field name="proyecto" type="String" />
+		<field name="fechaInicio" type="Date" />
+		<field name="fechaFin" type="Date" />
+		<field name="usuarioHitssId" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Funcion">
+		<field name="funcionId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="exigible" type="boolean" />
+		<field name="etiquetaId" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.FuncionRequerimiento">
+		<field name="funcionId" type="long" />
+		<field name="requerimientoRecursoId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.FuncionUsuario">
+		<field name="funcionId" type="long" />
+		<field name="usuarioHitssId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.InformeRetroalimentacion">
+		<field name="informeRetroalimentacionId" type="long" />
+		<field name="planAccionId" type="long" />
+		<field name="responsable" type="String" />
+		<field name="fechaEmision" type="String" />
+		<field name="titulo" type="String" />
+		<field name="integrante" type="String" />
+		<field name="descripcion" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Parametro">
+		<field name="parametroId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="llave" type="String" />
+		<field name="valor" type="String" />
+		<field name="parametroPadreId" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.PlanAccion">
+		<field name="planAccionId" type="long" />
+		<field name="actividadesId" type="long" />
+		<field name="responsable" type="String" />
+		<field name="fechaEmitida" type="Date" />
+		<field name="fechaProgramada" type="Date" />
+		<field name="aprobadorColaborador" type="boolean" />
+		<field name="aprobadorLideres" type="boolean" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Pregunta">
+		<field name="preguntaId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.PrioridadEquipos">
+		<field name="prioridadEquiposId" type="long" />
+		<field name="solicitudEvaluacionDesempenoId" type="long" />
+		<field name="responsable" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Puesto">
+		<field name="puestoId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="fechaContrato" type="Date" />
+		<field name="fechaEvaluacionPsicologica" type="Date" />
+		<field name="fechaEvalucionTecnica" type="Date" />
+		<field name="fechaEntrevistaGerenteArea" type="Date" />
+		<field name="fechaEvaluacionRRHH" type="Date" />
+		<field name="fechaPostulacion" type="Date" />
+		<field name="seleccionado" type="boolean" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+		<field name="requerimientoRecursoId" type="long" />
+		<field name="usuarioHitssId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Referencia">
+		<field name="referenciaId" type="long" />
+		<field name="empresa" type="String" />
+		<field name="telefono" type="String" />
+		<field name="responsable" type="String" />
+		<field name="motivo" type="String" />
+		<field name="usuarioHitssId" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.RequerimientoRecurso">
+		<field name="requerimientoRecursoId" type="long" />
+		<field name="especialidad" type="String" />
+		<field name="meta" type="String" />
+		<field name="prioridad" type="long" />
+		<field name="motivo" type="String" />
+		<field name="fechaSolicitada" type="Date" />
+		<field name="fechaMetaIngreso" type="String" />
+		<field name="estado" type="String" />
+		<field name="modalidad" type="long" />
+		<field name="lugarTrabajo" type="String" />
+		<field name="observacion" type="String" />
+		<field name="proyecto" type="String" />
+		<field name="requiereequipotenico" type="boolean" />
+		<field name="reemplazo" type="boolean" />
+		<field name="revisado" type="boolean" />
+		<field name="aprobadoFichaIngresoCapitalHumano" type="boolean" />
+		<field name="observacionFichaIngresoCapitalHumano" type="String" />
+		<field name="aprobadoFichaIngresoOperaciones" type="boolean" />
+		<field name="observacionFichaIngresoOperaciones" type="String" />
+		<field name="tipoReclutamiento" type="long" />
+		<field name="solicitudRequerimientoPersonalId" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Requisito">
+		<field name="requisitoId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="nivel" type="long" />
+		<field name="exigible" type="boolean" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+		<field name="solicitudRequerimientoPersonalId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.Respuesta">
+		<field name="respuestaId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="correcta" type="boolean" />
+		<field name="preguntaId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.ResultadoEvaluacion">
+		<field name="resultadoEvaluacionId" type="long" />
+		<field name="respuestaSelccionada" type="long" />
+		<field name="habilidadCumplida" type="boolean" />
+		<field name="evaluacionId" type="long" />
+		<field name="usuarioHitssId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.SolicitudEvaluacionDesempeno">
+		<field name="solicitudEvaluacionDesempenoId" type="long" />
+		<field name="descripcion" type="String" />
+		<field name="fechaIncioEvaluacion" type="Date" />
+		<field name="estado" type="String" />
+		<field name="motivo" type="String" />
+		<field name="observacion" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.SolicitudRequerimientoPersonal">
+		<field name="solicitudRequerimientoPersonalId" type="long" />
+		<field name="estado" type="String" />
+		<field name="puesto" type="String" />
+		<field name="areaSolicitante" type="long" />
+		<field name="cantidadRecursos" type="long" />
+		<field name="fechaLimite" type="Date" />
+		<field name="cargo" type="String" />
+		<field name="tiempoContrato" type="long" />
+		<field name="tipoNegocio" type="long" />
+		<field name="presupuestoMaximo" type="long" />
+		<field name="presupuestoMinimo" type="long" />
+		<field name="cliente" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
+	</model>
+	<model name="com.rec.hitss.layer.model.UsuarioGrupo">
+		<field name="userGroupId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="prioridadEquiposId" type="long" />
+	</model>
+	<model name="com.rec.hitss.layer.model.UsuarioHitss">
+		<field name="usuarioHitssId" type="long" />
+		<field name="userId" type="String" />
+		<field name="userUuId" type="String" />
+		<field name="actividadPlanId" type="long" />
+	</model>
+</model-hints>

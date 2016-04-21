@@ -5,6 +5,9 @@
         <dependent-module archiveName="rec-portlet-service.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/rec-portlet/docroot/WEB-INF/lib/rec-portlet-service.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="RecLayer-portlet-service.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/RecLayer-portlet/docroot/WEB-INF/lib/RecLayer-portlet-service.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="rec-hook"/>
         <property name="java-output-path" value="/rec-hook/docroot/WEB-INF/classes"/>
     </wb-module>

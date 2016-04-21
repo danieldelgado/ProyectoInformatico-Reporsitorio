@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="com.rec.hitss.layer">
+	<author>Crossfire</author>
+	<namespace>rec</namespace>
+
+
+
+	<entity name="SolicitudRequerimientoPersonal" table="SolicitudRequerimientoPersonal"
+		local-service="true" remote-service="false">
+
+		<column name="solicitudRequerimientoPersonalId" type="long"
+			primary="true" />
+		<column name="estado" type="String" />
+		<column name="puesto" type="String" />
+		<column name="areaSolicitante" type="long" />
+		<column name="cantidadRecursos" type="long" />
+		<column name="fechaLimite" type="Date" />
+		<column name="cargo" type="String" />
+		<column name="tiempoContrato" type="long" />
+
+		<column name="tipoNegocio" type="long" />
+		<column name="presupuestoMaximo" type="long" />
+		<column name="presupuestoMinimo" type="long" />
+		<column name="cliente" type="long" />
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+	<entity name="Requisito" table="Requisito" local-service="true"
+		remote-service="false">
+
+		<column name="requisitoId" type="long" primary="true" />
+
+
+		<column name="descripcion" type="String" />
+		<column name="nivel" type="long" />
+		<column name="exigible" type="boolean" />
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+		<column name="solicitudRequerimientoPersonalId" type="long"></column>
+
+		
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+	<entity name="RequerimientoRecurso" table="RequerimientoRecurso"
+		local-service="true" remote-service="false">
+
+		<column name="requerimientoRecursoId" type="long" primary="true" />
+
+
+		<column name="especialidad" type="String" />
+		<column name="meta" type="String" />
+		<column name="prioridad" type="long" />
+		<column name="motivo" type="String" />
+		<column name="fechaSolicitada" type="Date" />
+		<column name="fechaMetaIngreso" type="String" />
+		<column name="estado" type="String" />
+		<column name="modalidad" type="long" />
+		<column name="lugarTrabajo" type="String" />
+		<column name="observacion" type="String" />
+		<column name="proyecto" type="String" />
+		<column name="requiereequipotenico" type="boolean" />
+		<column name="reemplazo" type="boolean" />
+		<column name="revisado" type="boolean" />
+		<column name="aprobadoFichaIngresoCapitalHumano" type="boolean" />
+		<column name="observacionFichaIngresoCapitalHumano" type="String" />
+		<column name="aprobadoFichaIngresoOperaciones" type="boolean" />
+		<column name="observacionFichaIngresoOperaciones" type="String" />
+		<column name="tipoReclutamiento" type="long" />
+		<column name="solicitudRequerimientoPersonalId" type="long"></column>
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+		<finder return-type="RequerimientoRecurso" name="RequerimientoUnique" unique="true">
+        	<finder-column name="solicitudRequerimientoPersonalId"></finder-column>
+        </finder>
+
+	</entity>
+
+
+
+	<entity name="FuncionRequerimiento" table="FuncionRequerimiento"
+		local-service="true" remote-service="true">
+		<column name="funcionId" type="long" primary="true"></column>
+		<column name="requerimientoRecursoId" type="long"></column>
+
+	</entity>
+
+	<entity name="Puesto" table="Puesto" local-service="true"
+		remote-service="true">
+		<column name="puestoId" type="long" primary="true" />
+
+
+		<column name="descripcion" type="String" />
+		<column name="fechaContrato" type="Date" />
+		<column name="fechaEvaluacionPsicologica" type="Date" />
+		<column name="fechaEvalucionTecnica" type="Date" />
+		<column name="fechaEntrevistaGerenteArea" type="Date" />
+		<column name="fechaEvaluacionRRHH" type="Date" />
+		<column name="fechaPostulacion" type="Date" />
+		<column name="seleccionado" type="boolean" />
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+		<column name="requerimientoRecursoId" type="long"></column>
+		<column name="usuarioHitssId" type="long"></column>
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+		<finder return-type="Collection" name="RequerimientoRecurso" >
+        	<finder-column name="requerimientoRecursoId"></finder-column>
+        </finder>
+
+	</entity>
+
+
+
+	<entity name="UsuarioHitss" table="UsuarioHitss" local-service="true"
+		remote-service="true">
+		<column name="usuarioHitssId" type="long" primary="true" />
+		<column name="userId" type="String" />
+		<column name="userUuId" type="String" />
+		<column name="actividadPlanId" type="long"></column>
+	</entity>
+
+
+
+	<entity name="Contrato" table="Contrato" local-service="true"
+		remote-service="true">
+		<column name="contratoId" type="long" primary="true" />
+
+		<column name="descripcion" type="String" />
+		<column name="fechaEmitida" type="Date" />
+		<column name="Titulo" type="boolean" />
+		<column name="Motivo" type="String" />
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+		<column name="usuarioHitssId" type="long"></column>
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+
+	<entity name="Estudio" table="Estudio" local-service="true"
+		remote-service="true">
+		<column name="estudioId" type="long" primary="true" />
+
+		<column name="nombre" type="String" />
+		<column name="logro" type="String" />
+		<column name="fechaInicio" type="Date" />
+		<column name="fechaFino" type="Date" />
+		<column name="nivel" type="long" />
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+		<column name="usuarioHitssId" type="long"></column>
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+
+	<entity name="Experiencia" table="Experiencia" local-service="true"
+		remote-service="true">
+		<column name="estudioId" type="long" primary="true" />
+
+		<column name="descripcion" type="String" />
+		<column name="nivel" type="long" />
+		<column name="empresa" type="String" />
+		<column name="proyecto" type="String" />
+		<column name="fechaInicio" type="Date" />
+		<column name="fechaFin" type="Date" />
+		<column name="usuarioHitssId" type="long"></column>
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+
+
+
+	<entity name="Certificado" table="Certificado" local-service="true"
+		remote-service="true">
+		<column name="certificadoId" type="long" primary="true" />
+		<column name="descripcion" type="String" />
+		<column name="empresa" type="String" />
+		<column name="cargo" type="String" />
+		<column name="usuarioHitssId" type="long"></column>
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+	<entity name="Conocimiento" table="Conocimiento" local-service="true"
+		remote-service="true">
+		<column name="conocimientoId" type="long" primary="true" />
+		<column name="descripcion" type="String" />
+
+		<column name="etiquetaId" type="long"></column>
+		<column name="nivel" type="String" />
+		<column name="herramiento" type="String" />
+		<column name="implementacion" type="String" />
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+		<column name="usuarioHitssId" type="long"></column>
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+
+	<entity name="Referencia" table="Referencia" local-service="true"
+		remote-service="true">
+		<column name="referenciaId" type="long" primary="true" />
+		<column name="empresa" type="String" />
+		<column name="telefono" type="String"></column>
+		<column name="responsable" type="String" />
+		<column name="motivo" type="String" />
+		<column name="usuarioHitssId" type="long"></column>
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+
+	<entity name="FuncionUsuario" table="FuncionUsuario"
+		local-service="true" remote-service="true">
+		<column name="funcionId" type="long" primary="true"></column>
+		<column name="usuarioHitssId" type="long"></column>
+
+	</entity>
+
+
+
+	<entity name="Funcion" table="Funcion" local-service="true"
+		remote-service="true">
+		<column name="funcionId" type="long" primary="true" />
+		<column name="descripcion" type="String" />
+		<column name="exigible" type="boolean" />
+		<column name="etiquetaId" type="long"></column>
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+	<entity name="Etiqueta" table="Etiqueta" local-service="true"
+		remote-service="true">
+		<column name="etiquetaId" type="long" primary="true" />
+		<column name="tagId" type="long" />
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+	</entity>
+
+	<entity name="ResultadoEvaluacion" table="ResultadoEvaluacion"
+		local-service="true" remote-service="true">
+		<column name="resultadoEvaluacionId" type="long" primary="true" />
+		<column name="respuestaSelccionada" type="long" />
+		<column name="habilidadCumplida" type="boolean" />
+		<column name="evaluacionId" type="long"></column>
+		<column name="usuarioHitssId" type="long"></column>
+	</entity>
+
+	<entity name="Evaluacion" table="Evaluacion" local-service="true"
+		remote-service="true">
+		<column name="evaluacionId" type="long" primary="true" />
+		<column name="tiempoMinuto" type="long" />
+		<column name="enfoque" type="long" />
+		<column name="puestoEvaluacion" type="long" />
+		<column name="tiempoPuesto" type="long" />
+		<column name="TipoEvaluacion" type="long" />
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+
+	</entity>
+
+	<entity name="EvaluacionPregunta" table="EvaluacionPregunta"
+		local-service="true" remote-service="true">
+
+		<column name="evaluacionPreguntaId" type="long" primary="true" />
+		<column name="preguntaId" type="long"></column>
+		<column name="evaluacionId" type="long"></column>
+
+		<column name="descripcion" type="String" />
+		<column name="nivel" type="long" />
+
+	</entity>
+
+	<entity name="Pregunta" table="Pregunta" local-service="true"
+		remote-service="true">
+		<column name="preguntaId" type="long" primary="true" />
+		<column name="descripcion" type="String" />
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+	<entity name="Respuesta" table="Respuesta" local-service="true"
+		remote-service="true">
+		<column name="respuestaId" type="long" primary="true" />
+		<column name="descripcion" type="String" />
+		<column name="correcta" type="boolean" />
+		<column name="preguntaId" type="long"></column>
+	</entity>
+
+	<entity name="Entrevista" table="Entrevista" local-service="true"
+		remote-service="true">
+		<column name="entrevistaId" type="long" primary="true" />
+		<column name="usuarioHitssId" type="long"></column>
+		<column name="observacion" type="String" />
+		<column name="asistio" type="boolean" />
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+	</entity>
+
+	<entity name="Parametro" table="Parametro" local-service="true"
+		remote-service="true">
+		<column name="parametroId" type="long" primary="true" />
+
+		<column name="descripcion" type="String" />
+		<column name="llave" type="String" />
+		<column name="valor" type="String" />
+		<column name="parametroPadreId" type="long"></column>
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+	</entity>
+
+
+	<entity name="CriteriosEvaluacion" table="CriteriosEvaluacion"
+		local-service="true" remote-service="true">
+
+		<column name="criteriosEvaluacionId" type="long" primary="true" />
+
+		<column name="nombre" type="String" />
+		<column name="nivelCriterio" type="String" />
+		<column name="observacion" type="String" />
+		<column name="parametroPadreId" type="long"></column>
+		<column name="evaluacionId" type="long"></column>
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+
+	<entity name="SolicitudEvaluacionDesempeno" table="SolicitudEvaluacionDesempeno"
+		local-service="true" remote-service="true">
+
+		<column name="solicitudEvaluacionDesempenoId" type="long"		primary="true" />
+		<column name="descripcion" type="String" />
+		<column name="fechaIncioEvaluacion" type="Date" />
+		<column name="estado" type="String" />
+		<column name="motivo" type="String" />
+		<column name="observacion" type="String" />
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+	</entity>
+
+
+
+	
+	<entity name="CronogramaEvaluacionPersonal" table="CronogramaEvaluacionPersonal"
+		local-service="true" remote-service="true">
+
+		<column name="cronogramaEvaluacionPersonalId" type="long"
+			primary="true" />
+		<column name="solicitudEvaluacionDesempenoId" type="long"></column>
+		<column name="descripcion" type="String" />
+		<column name="estado" type="String" />
+		<column name="observacion" type="String" />
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+	<entity name="PrioridadEquipos" table="PrioridadEquipos"
+		local-service="true" remote-service="true">
+
+		<column name="prioridadEquiposId" type="long" primary="true" />
+		<column name="solicitudEvaluacionDesempenoId" type="long"></column>
+		<column name="responsable" type="long"></column>
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+	<entity name="UsuarioGrupo" table="UsuarioGrupo" local-service="true"
+		remote-service="true">
+
+		<column name="userGroupId" type="long" primary="true"  />
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+		<column name="prioridadEquiposId" type="long"></column>
+
+	</entity>
+
+
+	<entity name="Actividades" table="Actividades" local-service="true"
+		remote-service="true">
+
+		<column name="actividadesId" type="long" primary="true" />
+		<column name="cronogramaEvaluacionPersonalId" type="long"></column>
+		<column name="fechacreamodifica" type="Date" />
+		<column name="fechaInicioEvaluacion" type="Date"></column>
+		<column name="fechaFinEvaluacion" type="Date"></column>
+		<column name="descripcion" type="String"></column>
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+	<entity name="PlanAccion" table="PlanAccion" local-service="true"
+		remote-service="true">
+
+		<column name="planAccionId" type="long" primary="true" />
+		<column name="actividadesId" type="long"></column>
+		<column name="responsable" type="String"></column>
+		<column name="fechaEmitida" type="Date"></column>
+		<column name="fechaProgramada" type="Date"></column>
+		<column name="aprobadorColaborador" type="boolean"></column>
+		<column name="aprobadorLideres" type="boolean"></column>
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+	<entity name="ActividadPlan" table="ActividadPlan"
+		local-service="true" remote-service="true">
+
+		<column name="actividadPlanId" type="long" primary="true" />
+		<column name="planAccionId" type="long"></column>
+		<column name="duracion" type="int"></column>
+		<column name="actividad" type="String"></column>
+		<column name="cumplio" type="boolean"></column>
+		<column name="observacion" type="String"></column>
+		<column name="evidencia" type="String"></column>
+		<column name="objetivo" type="String"></column>
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+
+	<entity name="InformeRetroalimentacion" table="InformeRetroalimentacion"
+		local-service="true" remote-service="true">
+
+		<column name="informeRetroalimentacionId" type="long" primary="true" />
+		<column name="planAccionId" type="long"></column>
+		<column name="responsable" type="String"></column>
+		<column name="fechaEmision" type="String"></column>
+		<column name="titulo" type="String"></column>
+		<column name="integrante" type="String"></column>
+		<column name="descripcion" type="String"></column>
+		
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechacreamodifica" type="Date" />
+		
+		<order by="asc">
+			<order-column name="fechacrea" />
+		</order>
+
+	</entity>
+
+
+	
+	
+	
+
+
+
+
+</service-builder>
