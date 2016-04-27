@@ -48,14 +48,15 @@ public class ActualizarSolicitudReclutamientoServiceImp implements ActualizarSol
 
 	@Override
 	public int guardarSolicitudReclutamiento(SolicitudRequerimientoBean solicitudRequerimiento, User user) {
-		
+
+		_log.debug("guardarSolicitudReclutamiento:");
 		
 		try {
 						
 			SolicitudRequerimiento sRequerimiento = null;
 			
 			if(Validator.isNotNull(solicitudRequerimiento.getSolicitudRequerimientoId())){
-
+				_log.debug("actualizar:");
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudRequerimiento.getSolicitudRequerimientoId());
 				sRequerimiento.setNew(false);
 				sRequerimiento.setPuestoId(solicitudRequerimiento.getPuestoId());
@@ -78,7 +79,9 @@ public class ActualizarSolicitudReclutamientoServiceImp implements ActualizarSol
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sRequerimiento);
 				
 			}else{
+				_log.debug("nuevo:");
 				Long id = CounterLocalServiceUtil.increment(SolicitudRequerimiento.class.getName());
+				_log.debug("id:"+id);
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.createSolicitudRequerimiento(id);
 				sRequerimiento.setNew(true);
 				sRequerimiento.setPuestoId(solicitudRequerimiento.getPuestoId());
@@ -100,14 +103,16 @@ public class ActualizarSolicitudReclutamientoServiceImp implements ActualizarSol
 				sRequerimiento.setUsuariomodifica(user.getUserId());
 				sRequerimiento.setFechacreamodifica(new Date());
 				
-				
+				_log.debug("antes d");
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.addSolicitudRequerimiento(sRequerimiento);
-				
+
+				_log.debug("despues d");
+				_log.debug(sRequerimiento.getSolicitudRequerimientoId());
 				
 			}
 						
 		} catch (SystemException | PortalException e) {
-			e.printStackTrace();
+			_log.error("Error al guardar "+ e.getMessage(),e);
 		}
 		
 		return 0;

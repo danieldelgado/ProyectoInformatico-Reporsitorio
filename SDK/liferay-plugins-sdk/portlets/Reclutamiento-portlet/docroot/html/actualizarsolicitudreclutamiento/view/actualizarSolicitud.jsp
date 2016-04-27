@@ -219,7 +219,11 @@
 					},
 					on : {
 						selectionChange : function(event) {
-							A.one("#<portlet:namespace />fechaLimiteVal").set('value', event.newSelection);
+							var d = new Date(event.newSelection);
+							var day = d.getDate();
+							var monthIndex = d.getMonth();
+							var year = d.getFullYear();
+							A.one("#<portlet:namespace />fechaLimiteVal").set('value', day+"/"+(monthIndex+1)+"/"+year);
 						}
 					}
 				});

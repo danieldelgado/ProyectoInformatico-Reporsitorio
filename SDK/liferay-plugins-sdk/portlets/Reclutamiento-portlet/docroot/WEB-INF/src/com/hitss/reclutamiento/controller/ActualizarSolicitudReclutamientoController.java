@@ -73,21 +73,33 @@ public class ActualizarSolicitudReclutamientoController {
 		SimpleDateFormat sdf =  new SimpleDateFormat("dd/MM/yyyy");
 		
 		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
+		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
 		Long puestoId = ParamUtil.getLong(resourceRequest, "puestoId");
+		_log.debug("puestoId:" + puestoId);
 		int cantidadRecursos = ParamUtil.getInteger(resourceRequest, "cantidadRecursos");
+		_log.debug("cantidadRecursos:" + cantidadRecursos);
 		Long areaSolicitanteId = ParamUtil.getLong(resourceRequest, "areaSolicitanteId");
+		_log.debug("areaSolicitanteId:" + areaSolicitanteId);
 		Date fechaLimiteVal = ParamUtil.getDate(resourceRequest, "fechaLimiteVal",sdf);
+		_log.debug("fechaLimiteVal:" + fechaLimiteVal);
 		long presupuestoMinimo = ParamUtil.getLong(resourceRequest, "presupuestoMinimo");
+		_log.debug("presupuestoMinimo:" + presupuestoMinimo);
 		int responsable = ParamUtil.getInteger(resourceRequest, "responsable");
+		_log.debug("responsable:" + responsable);
 		int tiempoContrato = ParamUtil.getInteger(resourceRequest, "tiempoContrato");
+		_log.debug("tiempoContrato:" + tiempoContrato);
 		int tipoNegocio = ParamUtil.getInteger(resourceRequest, "tipoNegocio");
+		_log.debug("tipoNegocio:" + tipoNegocio);
 		int cliente = ParamUtil.getInteger(resourceRequest, "cliente");
+		_log.debug("cliente:" + cliente);
 		long presupuestoMaximo = ParamUtil.getLong(resourceRequest, "presupuestoMaximo");
+		_log.debug("presupuestoMaximo:" + presupuestoMaximo);
 		
 		SolicitudRequerimientoBean solicitudRequerimiento = new SolicitudRequerimientoBean();
 		solicitudRequerimiento.setSolicitudRequerimientoId(solicitudRequerimientoId);
 		solicitudRequerimiento.setPuestoId(puestoId);
 		solicitudRequerimiento.setCantidadRecursos(cantidadRecursos);
+		solicitudRequerimiento.setTipoNegocio(tipoNegocio);
 		solicitudRequerimiento.setAreaSolicitante(areaSolicitanteId);
 		solicitudRequerimiento.setFechaLimite(fechaLimiteVal);
 		solicitudRequerimiento.setPresupuestoMinimo(presupuestoMinimo);

@@ -3,6 +3,7 @@
 -- Host: 172.16.106.129    Database: rechitssportal
 -- ------------------------------------------------------
 -- Server version	5.1.40-community
+use rechitssportal;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
