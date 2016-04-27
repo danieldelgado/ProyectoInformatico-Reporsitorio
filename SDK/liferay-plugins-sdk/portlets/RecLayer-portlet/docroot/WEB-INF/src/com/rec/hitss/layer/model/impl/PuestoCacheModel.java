@@ -37,26 +37,14 @@ import java.util.Date;
 public class PuestoCacheModel implements CacheModel<Puesto>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{puestoId=");
 		sb.append(puestoId);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
-		sb.append(", fechaContrato=");
-		sb.append(fechaContrato);
-		sb.append(", fechaEvaluacionPsicologica=");
-		sb.append(fechaEvaluacionPsicologica);
-		sb.append(", fechaEvalucionTecnica=");
-		sb.append(fechaEvalucionTecnica);
-		sb.append(", fechaEntrevistaGerenteArea=");
-		sb.append(fechaEntrevistaGerenteArea);
-		sb.append(", fechaEvaluacionRRHH=");
-		sb.append(fechaEvaluacionRRHH);
-		sb.append(", fechaPostulacion=");
-		sb.append(fechaPostulacion);
-		sb.append(", seleccionado=");
-		sb.append(seleccionado);
+		sb.append(", categoria=");
+		sb.append(categoria);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -67,10 +55,6 @@ public class PuestoCacheModel implements CacheModel<Puesto>, Externalizable {
 		sb.append(usuariomodifica);
 		sb.append(", fechacreamodifica=");
 		sb.append(fechacreamodifica);
-		sb.append(", requerimientoRecursoId=");
-		sb.append(requerimientoRecursoId);
-		sb.append(", usuarioHitssId=");
-		sb.append(usuarioHitssId);
 		sb.append("}");
 
 		return sb.toString();
@@ -89,51 +73,7 @@ public class PuestoCacheModel implements CacheModel<Puesto>, Externalizable {
 			puestoImpl.setDescripcion(descripcion);
 		}
 
-		if (fechaContrato == Long.MIN_VALUE) {
-			puestoImpl.setFechaContrato(null);
-		}
-		else {
-			puestoImpl.setFechaContrato(new Date(fechaContrato));
-		}
-
-		if (fechaEvaluacionPsicologica == Long.MIN_VALUE) {
-			puestoImpl.setFechaEvaluacionPsicologica(null);
-		}
-		else {
-			puestoImpl.setFechaEvaluacionPsicologica(new Date(
-					fechaEvaluacionPsicologica));
-		}
-
-		if (fechaEvalucionTecnica == Long.MIN_VALUE) {
-			puestoImpl.setFechaEvalucionTecnica(null);
-		}
-		else {
-			puestoImpl.setFechaEvalucionTecnica(new Date(fechaEvalucionTecnica));
-		}
-
-		if (fechaEntrevistaGerenteArea == Long.MIN_VALUE) {
-			puestoImpl.setFechaEntrevistaGerenteArea(null);
-		}
-		else {
-			puestoImpl.setFechaEntrevistaGerenteArea(new Date(
-					fechaEntrevistaGerenteArea));
-		}
-
-		if (fechaEvaluacionRRHH == Long.MIN_VALUE) {
-			puestoImpl.setFechaEvaluacionRRHH(null);
-		}
-		else {
-			puestoImpl.setFechaEvaluacionRRHH(new Date(fechaEvaluacionRRHH));
-		}
-
-		if (fechaPostulacion == Long.MIN_VALUE) {
-			puestoImpl.setFechaPostulacion(null);
-		}
-		else {
-			puestoImpl.setFechaPostulacion(new Date(fechaPostulacion));
-		}
-
-		puestoImpl.setSeleccionado(seleccionado);
+		puestoImpl.setCategoria(categoria);
 		puestoImpl.setActivo(activo);
 		puestoImpl.setUsuariocrea(usuariocrea);
 
@@ -153,9 +93,6 @@ public class PuestoCacheModel implements CacheModel<Puesto>, Externalizable {
 			puestoImpl.setFechacreamodifica(new Date(fechacreamodifica));
 		}
 
-		puestoImpl.setRequerimientoRecursoId(requerimientoRecursoId);
-		puestoImpl.setUsuarioHitssId(usuarioHitssId);
-
 		puestoImpl.resetOriginalValues();
 
 		return puestoImpl;
@@ -165,20 +102,12 @@ public class PuestoCacheModel implements CacheModel<Puesto>, Externalizable {
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		puestoId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
-		fechaContrato = objectInput.readLong();
-		fechaEvaluacionPsicologica = objectInput.readLong();
-		fechaEvalucionTecnica = objectInput.readLong();
-		fechaEntrevistaGerenteArea = objectInput.readLong();
-		fechaEvaluacionRRHH = objectInput.readLong();
-		fechaPostulacion = objectInput.readLong();
-		seleccionado = objectInput.readBoolean();
+		categoria = objectInput.readLong();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
 		fechacreamodifica = objectInput.readLong();
-		requerimientoRecursoId = objectInput.readLong();
-		usuarioHitssId = objectInput.readLong();
 	}
 
 	@Override
@@ -193,36 +122,20 @@ public class PuestoCacheModel implements CacheModel<Puesto>, Externalizable {
 			objectOutput.writeUTF(descripcion);
 		}
 
-		objectOutput.writeLong(fechaContrato);
-		objectOutput.writeLong(fechaEvaluacionPsicologica);
-		objectOutput.writeLong(fechaEvalucionTecnica);
-		objectOutput.writeLong(fechaEntrevistaGerenteArea);
-		objectOutput.writeLong(fechaEvaluacionRRHH);
-		objectOutput.writeLong(fechaPostulacion);
-		objectOutput.writeBoolean(seleccionado);
+		objectOutput.writeLong(categoria);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
 		objectOutput.writeLong(fechacreamodifica);
-		objectOutput.writeLong(requerimientoRecursoId);
-		objectOutput.writeLong(usuarioHitssId);
 	}
 
 	public long puestoId;
 	public String descripcion;
-	public long fechaContrato;
-	public long fechaEvaluacionPsicologica;
-	public long fechaEvalucionTecnica;
-	public long fechaEntrevistaGerenteArea;
-	public long fechaEvaluacionRRHH;
-	public long fechaPostulacion;
-	public boolean seleccionado;
+	public long categoria;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
 	public long fechacreamodifica;
-	public long requerimientoRecursoId;
-	public long usuarioHitssId;
 }

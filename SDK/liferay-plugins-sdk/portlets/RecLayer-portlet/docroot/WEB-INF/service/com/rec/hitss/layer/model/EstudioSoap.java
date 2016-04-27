@@ -32,17 +32,14 @@ public class EstudioSoap implements Serializable {
 		EstudioSoap soapModel = new EstudioSoap();
 
 		soapModel.setEstudioId(model.getEstudioId());
+		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setNombre(model.getNombre());
-		soapModel.setLogro(model.getLogro());
-		soapModel.setFechaInicio(model.getFechaInicio());
-		soapModel.setFechaFino(model.getFechaFino());
 		soapModel.setNivel(model.getNivel());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
 		soapModel.setUsuariomodifica(model.getUsuariomodifica());
 		soapModel.setFechacreamodifica(model.getFechacreamodifica());
-		soapModel.setUsuarioHitssId(model.getUsuarioHitssId());
 
 		return soapModel;
 	}
@@ -103,36 +100,20 @@ public class EstudioSoap implements Serializable {
 		_estudioId = estudioId;
 	}
 
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+	}
+
 	public String getNombre() {
 		return _nombre;
 	}
 
 	public void setNombre(String nombre) {
 		_nombre = nombre;
-	}
-
-	public String getLogro() {
-		return _logro;
-	}
-
-	public void setLogro(String logro) {
-		_logro = logro;
-	}
-
-	public Date getFechaInicio() {
-		return _fechaInicio;
-	}
-
-	public void setFechaInicio(Date fechaInicio) {
-		_fechaInicio = fechaInicio;
-	}
-
-	public Date getFechaFino() {
-		return _fechaFino;
-	}
-
-	public void setFechaFino(Date fechaFino) {
-		_fechaFino = fechaFino;
 	}
 
 	public long getNivel() {
@@ -187,24 +168,13 @@ public class EstudioSoap implements Serializable {
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-	}
-
 	private long _estudioId;
+	private long _usuarioId;
 	private String _nombre;
-	private String _logro;
-	private Date _fechaInicio;
-	private Date _fechaFino;
 	private long _nivel;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _usuarioHitssId;
 }

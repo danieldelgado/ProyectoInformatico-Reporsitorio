@@ -50,11 +50,11 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("referenciaId", getReferenciaId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("empresa", getEmpresa());
 		attributes.put("telefono", getTelefono());
 		attributes.put("responsable", getResponsable());
 		attributes.put("motivo", getMotivo());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -70,6 +70,12 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 
 		if (referenciaId != null) {
 			setReferenciaId(referenciaId);
+		}
+
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
 		}
 
 		String empresa = (String)attributes.get("empresa");
@@ -94,12 +100,6 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 
 		if (motivo != null) {
 			setMotivo(motivo);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -139,7 +139,7 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 	* @return the primary key of this referencia
 	*/
 	@Override
-	public long getPrimaryKey() {
+	public com.rec.hitss.layer.service.persistence.ReferenciaPK getPrimaryKey() {
 		return _referencia.getPrimaryKey();
 	}
 
@@ -149,7 +149,8 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 	* @param primaryKey the primary key of this referencia
 	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(
+		com.rec.hitss.layer.service.persistence.ReferenciaPK primaryKey) {
 		_referencia.setPrimaryKey(primaryKey);
 	}
 
@@ -171,6 +172,26 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 	@Override
 	public void setReferenciaId(long referenciaId) {
 		_referencia.setReferenciaId(referenciaId);
+	}
+
+	/**
+	* Returns the usuario ID of this referencia.
+	*
+	* @return the usuario ID of this referencia
+	*/
+	@Override
+	public long getUsuarioId() {
+		return _referencia.getUsuarioId();
+	}
+
+	/**
+	* Sets the usuario ID of this referencia.
+	*
+	* @param usuarioId the usuario ID of this referencia
+	*/
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_referencia.setUsuarioId(usuarioId);
 	}
 
 	/**
@@ -251,26 +272,6 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 	@Override
 	public void setMotivo(java.lang.String motivo) {
 		_referencia.setMotivo(motivo);
-	}
-
-	/**
-	* Returns the usuario hitss ID of this referencia.
-	*
-	* @return the usuario hitss ID of this referencia
-	*/
-	@Override
-	public long getUsuarioHitssId() {
-		return _referencia.getUsuarioHitssId();
-	}
-
-	/**
-	* Sets the usuario hitss ID of this referencia.
-	*
-	* @param usuarioHitssId the usuario hitss ID of this referencia
-	*/
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_referencia.setUsuarioHitssId(usuarioHitssId);
 	}
 
 	/**

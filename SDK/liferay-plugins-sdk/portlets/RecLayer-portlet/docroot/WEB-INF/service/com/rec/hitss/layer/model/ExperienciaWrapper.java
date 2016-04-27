@@ -50,14 +50,13 @@ public class ExperienciaWrapper implements Experiencia,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("estudioId", getEstudioId());
+		attributes.put("experienciaId", getExperienciaId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("nivel", getNivel());
 		attributes.put("empresa", getEmpresa());
 		attributes.put("proyecto", getProyecto());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -69,22 +68,22 @@ public class ExperienciaWrapper implements Experiencia,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long estudioId = (Long)attributes.get("estudioId");
+		Long experienciaId = (Long)attributes.get("experienciaId");
 
-		if (estudioId != null) {
-			setEstudioId(estudioId);
+		if (experienciaId != null) {
+			setExperienciaId(experienciaId);
+		}
+
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
-		}
-
-		Long nivel = (Long)attributes.get("nivel");
-
-		if (nivel != null) {
-			setNivel(nivel);
 		}
 
 		String empresa = (String)attributes.get("empresa");
@@ -109,12 +108,6 @@ public class ExperienciaWrapper implements Experiencia,
 
 		if (fechaFin != null) {
 			setFechaFin(fechaFin);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -169,23 +162,43 @@ public class ExperienciaWrapper implements Experiencia,
 	}
 
 	/**
-	* Returns the estudio ID of this experiencia.
+	* Returns the experiencia ID of this experiencia.
 	*
-	* @return the estudio ID of this experiencia
+	* @return the experiencia ID of this experiencia
 	*/
 	@Override
-	public long getEstudioId() {
-		return _experiencia.getEstudioId();
+	public long getExperienciaId() {
+		return _experiencia.getExperienciaId();
 	}
 
 	/**
-	* Sets the estudio ID of this experiencia.
+	* Sets the experiencia ID of this experiencia.
 	*
-	* @param estudioId the estudio ID of this experiencia
+	* @param experienciaId the experiencia ID of this experiencia
 	*/
 	@Override
-	public void setEstudioId(long estudioId) {
-		_experiencia.setEstudioId(estudioId);
+	public void setExperienciaId(long experienciaId) {
+		_experiencia.setExperienciaId(experienciaId);
+	}
+
+	/**
+	* Returns the usuario ID of this experiencia.
+	*
+	* @return the usuario ID of this experiencia
+	*/
+	@Override
+	public long getUsuarioId() {
+		return _experiencia.getUsuarioId();
+	}
+
+	/**
+	* Sets the usuario ID of this experiencia.
+	*
+	* @param usuarioId the usuario ID of this experiencia
+	*/
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_experiencia.setUsuarioId(usuarioId);
 	}
 
 	/**
@@ -206,26 +219,6 @@ public class ExperienciaWrapper implements Experiencia,
 	@Override
 	public void setDescripcion(java.lang.String descripcion) {
 		_experiencia.setDescripcion(descripcion);
-	}
-
-	/**
-	* Returns the nivel of this experiencia.
-	*
-	* @return the nivel of this experiencia
-	*/
-	@Override
-	public long getNivel() {
-		return _experiencia.getNivel();
-	}
-
-	/**
-	* Sets the nivel of this experiencia.
-	*
-	* @param nivel the nivel of this experiencia
-	*/
-	@Override
-	public void setNivel(long nivel) {
-		_experiencia.setNivel(nivel);
 	}
 
 	/**
@@ -306,26 +299,6 @@ public class ExperienciaWrapper implements Experiencia,
 	@Override
 	public void setFechaFin(java.util.Date fechaFin) {
 		_experiencia.setFechaFin(fechaFin);
-	}
-
-	/**
-	* Returns the usuario hitss ID of this experiencia.
-	*
-	* @return the usuario hitss ID of this experiencia
-	*/
-	@Override
-	public long getUsuarioHitssId() {
-		return _experiencia.getUsuarioHitssId();
-	}
-
-	/**
-	* Sets the usuario hitss ID of this experiencia.
-	*
-	* @param usuarioHitssId the usuario hitss ID of this experiencia
-	*/
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_experiencia.setUsuarioHitssId(usuarioHitssId);
 	}
 
 	/**

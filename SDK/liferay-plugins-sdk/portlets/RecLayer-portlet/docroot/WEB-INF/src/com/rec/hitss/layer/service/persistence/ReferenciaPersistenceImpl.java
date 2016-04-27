@@ -167,15 +167,15 @@ public class ReferenciaPersistenceImpl extends BasePersistenceImpl<Referencia>
 	/**
 	 * Creates a new referencia with the primary key. Does not add the referencia to the database.
 	 *
-	 * @param referenciaId the primary key for the new referencia
+	 * @param referenciaPK the primary key for the new referencia
 	 * @return the new referencia
 	 */
 	@Override
-	public Referencia create(long referenciaId) {
+	public Referencia create(ReferenciaPK referenciaPK) {
 		Referencia referencia = new ReferenciaImpl();
 
 		referencia.setNew(true);
-		referencia.setPrimaryKey(referenciaId);
+		referencia.setPrimaryKey(referenciaPK);
 
 		return referencia;
 	}
@@ -183,15 +183,15 @@ public class ReferenciaPersistenceImpl extends BasePersistenceImpl<Referencia>
 	/**
 	 * Removes the referencia with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param referenciaId the primary key of the referencia
+	 * @param referenciaPK the primary key of the referencia
 	 * @return the referencia that was removed
 	 * @throws com.rec.hitss.layer.NoSuchReferenciaException if a referencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Referencia remove(long referenciaId)
+	public Referencia remove(ReferenciaPK referenciaPK)
 		throws NoSuchReferenciaException, SystemException {
-		return remove((Serializable)referenciaId);
+		return remove((Serializable)referenciaPK);
 	}
 
 	/**
@@ -320,11 +320,11 @@ public class ReferenciaPersistenceImpl extends BasePersistenceImpl<Referencia>
 		referenciaImpl.setPrimaryKey(referencia.getPrimaryKey());
 
 		referenciaImpl.setReferenciaId(referencia.getReferenciaId());
+		referenciaImpl.setUsuarioId(referencia.getUsuarioId());
 		referenciaImpl.setEmpresa(referencia.getEmpresa());
 		referenciaImpl.setTelefono(referencia.getTelefono());
 		referenciaImpl.setResponsable(referencia.getResponsable());
 		referenciaImpl.setMotivo(referencia.getMotivo());
-		referenciaImpl.setUsuarioHitssId(referencia.getUsuarioHitssId());
 		referenciaImpl.setActivo(referencia.isActivo());
 		referenciaImpl.setUsuariocrea(referencia.getUsuariocrea());
 		referenciaImpl.setFechacrea(referencia.getFechacrea());
@@ -362,15 +362,15 @@ public class ReferenciaPersistenceImpl extends BasePersistenceImpl<Referencia>
 	/**
 	 * Returns the referencia with the primary key or throws a {@link com.rec.hitss.layer.NoSuchReferenciaException} if it could not be found.
 	 *
-	 * @param referenciaId the primary key of the referencia
+	 * @param referenciaPK the primary key of the referencia
 	 * @return the referencia
 	 * @throws com.rec.hitss.layer.NoSuchReferenciaException if a referencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Referencia findByPrimaryKey(long referenciaId)
+	public Referencia findByPrimaryKey(ReferenciaPK referenciaPK)
 		throws NoSuchReferenciaException, SystemException {
-		return findByPrimaryKey((Serializable)referenciaId);
+		return findByPrimaryKey((Serializable)referenciaPK);
 	}
 
 	/**
@@ -424,14 +424,14 @@ public class ReferenciaPersistenceImpl extends BasePersistenceImpl<Referencia>
 	/**
 	 * Returns the referencia with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param referenciaId the primary key of the referencia
+	 * @param referenciaPK the primary key of the referencia
 	 * @return the referencia, or <code>null</code> if a referencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Referencia fetchByPrimaryKey(long referenciaId)
+	public Referencia fetchByPrimaryKey(ReferenciaPK referenciaPK)
 		throws SystemException {
-		return fetchByPrimaryKey((Serializable)referenciaId);
+		return fetchByPrimaryKey((Serializable)referenciaPK);
 	}
 
 	/**

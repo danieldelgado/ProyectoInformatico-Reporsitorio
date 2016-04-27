@@ -318,16 +318,15 @@ public class ContratoPersistenceImpl extends BasePersistenceImpl<Contrato>
 		contratoImpl.setPrimaryKey(contrato.getPrimaryKey());
 
 		contratoImpl.setContratoId(contrato.getContratoId());
-		contratoImpl.setDescripcion(contrato.getDescripcion());
-		contratoImpl.setFechaEmitida(contrato.getFechaEmitida());
-		contratoImpl.setTitulo(contrato.isTitulo());
+		contratoImpl.setUsuarioId(contrato.getUsuarioId());
 		contratoImpl.setMotivo(contrato.getMotivo());
+		contratoImpl.setDescripcion(contrato.getDescripcion());
+		contratoImpl.setTitulo(contrato.getTitulo());
 		contratoImpl.setActivo(contrato.isActivo());
 		contratoImpl.setUsuariocrea(contrato.getUsuariocrea());
 		contratoImpl.setFechacrea(contrato.getFechacrea());
 		contratoImpl.setUsuariomodifica(contrato.getUsuariomodifica());
 		contratoImpl.setFechacreamodifica(contrato.getFechacreamodifica());
-		contratoImpl.setUsuarioHitssId(contrato.getUsuarioHitssId());
 
 		return contratoImpl;
 	}

@@ -24,37 +24,25 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.rec.hitss.layer.model.ResultadoEvaluacion;
 import com.rec.hitss.layer.service.ResultadoEvaluacionService;
-import com.rec.hitss.layer.service.persistence.ActividadPlanPersistence;
-import com.rec.hitss.layer.service.persistence.ActividadesPersistence;
-import com.rec.hitss.layer.service.persistence.CertificadoPersistence;
-import com.rec.hitss.layer.service.persistence.ConocimientoPersistence;
 import com.rec.hitss.layer.service.persistence.ContratoPersistence;
-import com.rec.hitss.layer.service.persistence.CriteriosEvaluacionPersistence;
-import com.rec.hitss.layer.service.persistence.CronogramaEvaluacionPersonalPersistence;
-import com.rec.hitss.layer.service.persistence.EntrevistaPersistence;
 import com.rec.hitss.layer.service.persistence.EstudioPersistence;
-import com.rec.hitss.layer.service.persistence.EtiquetaPersistence;
+import com.rec.hitss.layer.service.persistence.EtiquetaRelacionadaPersistence;
 import com.rec.hitss.layer.service.persistence.EvaluacionPersistence;
 import com.rec.hitss.layer.service.persistence.EvaluacionPreguntaPersistence;
 import com.rec.hitss.layer.service.persistence.ExperienciaPersistence;
+import com.rec.hitss.layer.service.persistence.FasePostulacionPersistence;
 import com.rec.hitss.layer.service.persistence.FuncionPersistence;
-import com.rec.hitss.layer.service.persistence.FuncionRequerimientoPersistence;
-import com.rec.hitss.layer.service.persistence.FuncionUsuarioPersistence;
-import com.rec.hitss.layer.service.persistence.InformeRetroalimentacionPersistence;
-import com.rec.hitss.layer.service.persistence.ParametroPersistence;
-import com.rec.hitss.layer.service.persistence.PlanAccionPersistence;
+import com.rec.hitss.layer.service.persistence.PostulacionPersistence;
 import com.rec.hitss.layer.service.persistence.PreguntaPersistence;
-import com.rec.hitss.layer.service.persistence.PrioridadEquiposPersistence;
 import com.rec.hitss.layer.service.persistence.PuestoPersistence;
 import com.rec.hitss.layer.service.persistence.ReferenciaPersistence;
-import com.rec.hitss.layer.service.persistence.RequerimientoRecursoPersistence;
 import com.rec.hitss.layer.service.persistence.RequisitoPersistence;
 import com.rec.hitss.layer.service.persistence.RespuestaPersistence;
 import com.rec.hitss.layer.service.persistence.ResultadoEvaluacionPersistence;
-import com.rec.hitss.layer.service.persistence.SolicitudEvaluacionDesempenoPersistence;
-import com.rec.hitss.layer.service.persistence.SolicitudRequerimientoPersonalPersistence;
-import com.rec.hitss.layer.service.persistence.UsuarioGrupoPersistence;
-import com.rec.hitss.layer.service.persistence.UsuarioHitssPersistence;
+import com.rec.hitss.layer.service.persistence.SolicitudRequerimientoPersistence;
+import com.rec.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistence;
+import com.rec.hitss.layer.service.persistence.UsuarioPersistence;
+import com.rec.hitss.layer.service.persistence.UsuarioRequisitoPersistence;
 
 import javax.sql.DataSource;
 
@@ -77,234 +65,6 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * Never modify or reference this class directly. Always use {@link com.rec.hitss.layer.service.ResultadoEvaluacionServiceUtil} to access the resultado evaluacion remote service.
 	 */
-
-	/**
-	 * Returns the actividades local service.
-	 *
-	 * @return the actividades local service
-	 */
-	public com.rec.hitss.layer.service.ActividadesLocalService getActividadesLocalService() {
-		return actividadesLocalService;
-	}
-
-	/**
-	 * Sets the actividades local service.
-	 *
-	 * @param actividadesLocalService the actividades local service
-	 */
-	public void setActividadesLocalService(
-		com.rec.hitss.layer.service.ActividadesLocalService actividadesLocalService) {
-		this.actividadesLocalService = actividadesLocalService;
-	}
-
-	/**
-	 * Returns the actividades remote service.
-	 *
-	 * @return the actividades remote service
-	 */
-	public com.rec.hitss.layer.service.ActividadesService getActividadesService() {
-		return actividadesService;
-	}
-
-	/**
-	 * Sets the actividades remote service.
-	 *
-	 * @param actividadesService the actividades remote service
-	 */
-	public void setActividadesService(
-		com.rec.hitss.layer.service.ActividadesService actividadesService) {
-		this.actividadesService = actividadesService;
-	}
-
-	/**
-	 * Returns the actividades persistence.
-	 *
-	 * @return the actividades persistence
-	 */
-	public ActividadesPersistence getActividadesPersistence() {
-		return actividadesPersistence;
-	}
-
-	/**
-	 * Sets the actividades persistence.
-	 *
-	 * @param actividadesPersistence the actividades persistence
-	 */
-	public void setActividadesPersistence(
-		ActividadesPersistence actividadesPersistence) {
-		this.actividadesPersistence = actividadesPersistence;
-	}
-
-	/**
-	 * Returns the actividad plan local service.
-	 *
-	 * @return the actividad plan local service
-	 */
-	public com.rec.hitss.layer.service.ActividadPlanLocalService getActividadPlanLocalService() {
-		return actividadPlanLocalService;
-	}
-
-	/**
-	 * Sets the actividad plan local service.
-	 *
-	 * @param actividadPlanLocalService the actividad plan local service
-	 */
-	public void setActividadPlanLocalService(
-		com.rec.hitss.layer.service.ActividadPlanLocalService actividadPlanLocalService) {
-		this.actividadPlanLocalService = actividadPlanLocalService;
-	}
-
-	/**
-	 * Returns the actividad plan remote service.
-	 *
-	 * @return the actividad plan remote service
-	 */
-	public com.rec.hitss.layer.service.ActividadPlanService getActividadPlanService() {
-		return actividadPlanService;
-	}
-
-	/**
-	 * Sets the actividad plan remote service.
-	 *
-	 * @param actividadPlanService the actividad plan remote service
-	 */
-	public void setActividadPlanService(
-		com.rec.hitss.layer.service.ActividadPlanService actividadPlanService) {
-		this.actividadPlanService = actividadPlanService;
-	}
-
-	/**
-	 * Returns the actividad plan persistence.
-	 *
-	 * @return the actividad plan persistence
-	 */
-	public ActividadPlanPersistence getActividadPlanPersistence() {
-		return actividadPlanPersistence;
-	}
-
-	/**
-	 * Sets the actividad plan persistence.
-	 *
-	 * @param actividadPlanPersistence the actividad plan persistence
-	 */
-	public void setActividadPlanPersistence(
-		ActividadPlanPersistence actividadPlanPersistence) {
-		this.actividadPlanPersistence = actividadPlanPersistence;
-	}
-
-	/**
-	 * Returns the certificado local service.
-	 *
-	 * @return the certificado local service
-	 */
-	public com.rec.hitss.layer.service.CertificadoLocalService getCertificadoLocalService() {
-		return certificadoLocalService;
-	}
-
-	/**
-	 * Sets the certificado local service.
-	 *
-	 * @param certificadoLocalService the certificado local service
-	 */
-	public void setCertificadoLocalService(
-		com.rec.hitss.layer.service.CertificadoLocalService certificadoLocalService) {
-		this.certificadoLocalService = certificadoLocalService;
-	}
-
-	/**
-	 * Returns the certificado remote service.
-	 *
-	 * @return the certificado remote service
-	 */
-	public com.rec.hitss.layer.service.CertificadoService getCertificadoService() {
-		return certificadoService;
-	}
-
-	/**
-	 * Sets the certificado remote service.
-	 *
-	 * @param certificadoService the certificado remote service
-	 */
-	public void setCertificadoService(
-		com.rec.hitss.layer.service.CertificadoService certificadoService) {
-		this.certificadoService = certificadoService;
-	}
-
-	/**
-	 * Returns the certificado persistence.
-	 *
-	 * @return the certificado persistence
-	 */
-	public CertificadoPersistence getCertificadoPersistence() {
-		return certificadoPersistence;
-	}
-
-	/**
-	 * Sets the certificado persistence.
-	 *
-	 * @param certificadoPersistence the certificado persistence
-	 */
-	public void setCertificadoPersistence(
-		CertificadoPersistence certificadoPersistence) {
-		this.certificadoPersistence = certificadoPersistence;
-	}
-
-	/**
-	 * Returns the conocimiento local service.
-	 *
-	 * @return the conocimiento local service
-	 */
-	public com.rec.hitss.layer.service.ConocimientoLocalService getConocimientoLocalService() {
-		return conocimientoLocalService;
-	}
-
-	/**
-	 * Sets the conocimiento local service.
-	 *
-	 * @param conocimientoLocalService the conocimiento local service
-	 */
-	public void setConocimientoLocalService(
-		com.rec.hitss.layer.service.ConocimientoLocalService conocimientoLocalService) {
-		this.conocimientoLocalService = conocimientoLocalService;
-	}
-
-	/**
-	 * Returns the conocimiento remote service.
-	 *
-	 * @return the conocimiento remote service
-	 */
-	public com.rec.hitss.layer.service.ConocimientoService getConocimientoService() {
-		return conocimientoService;
-	}
-
-	/**
-	 * Sets the conocimiento remote service.
-	 *
-	 * @param conocimientoService the conocimiento remote service
-	 */
-	public void setConocimientoService(
-		com.rec.hitss.layer.service.ConocimientoService conocimientoService) {
-		this.conocimientoService = conocimientoService;
-	}
-
-	/**
-	 * Returns the conocimiento persistence.
-	 *
-	 * @return the conocimiento persistence
-	 */
-	public ConocimientoPersistence getConocimientoPersistence() {
-		return conocimientoPersistence;
-	}
-
-	/**
-	 * Sets the conocimiento persistence.
-	 *
-	 * @param conocimientoPersistence the conocimiento persistence
-	 */
-	public void setConocimientoPersistence(
-		ConocimientoPersistence conocimientoPersistence) {
-		this.conocimientoPersistence = conocimientoPersistence;
-	}
 
 	/**
 	 * Returns the contrato local service.
@@ -360,177 +120,6 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setContratoPersistence(ContratoPersistence contratoPersistence) {
 		this.contratoPersistence = contratoPersistence;
-	}
-
-	/**
-	 * Returns the criterios evaluacion local service.
-	 *
-	 * @return the criterios evaluacion local service
-	 */
-	public com.rec.hitss.layer.service.CriteriosEvaluacionLocalService getCriteriosEvaluacionLocalService() {
-		return criteriosEvaluacionLocalService;
-	}
-
-	/**
-	 * Sets the criterios evaluacion local service.
-	 *
-	 * @param criteriosEvaluacionLocalService the criterios evaluacion local service
-	 */
-	public void setCriteriosEvaluacionLocalService(
-		com.rec.hitss.layer.service.CriteriosEvaluacionLocalService criteriosEvaluacionLocalService) {
-		this.criteriosEvaluacionLocalService = criteriosEvaluacionLocalService;
-	}
-
-	/**
-	 * Returns the criterios evaluacion remote service.
-	 *
-	 * @return the criterios evaluacion remote service
-	 */
-	public com.rec.hitss.layer.service.CriteriosEvaluacionService getCriteriosEvaluacionService() {
-		return criteriosEvaluacionService;
-	}
-
-	/**
-	 * Sets the criterios evaluacion remote service.
-	 *
-	 * @param criteriosEvaluacionService the criterios evaluacion remote service
-	 */
-	public void setCriteriosEvaluacionService(
-		com.rec.hitss.layer.service.CriteriosEvaluacionService criteriosEvaluacionService) {
-		this.criteriosEvaluacionService = criteriosEvaluacionService;
-	}
-
-	/**
-	 * Returns the criterios evaluacion persistence.
-	 *
-	 * @return the criterios evaluacion persistence
-	 */
-	public CriteriosEvaluacionPersistence getCriteriosEvaluacionPersistence() {
-		return criteriosEvaluacionPersistence;
-	}
-
-	/**
-	 * Sets the criterios evaluacion persistence.
-	 *
-	 * @param criteriosEvaluacionPersistence the criterios evaluacion persistence
-	 */
-	public void setCriteriosEvaluacionPersistence(
-		CriteriosEvaluacionPersistence criteriosEvaluacionPersistence) {
-		this.criteriosEvaluacionPersistence = criteriosEvaluacionPersistence;
-	}
-
-	/**
-	 * Returns the cronograma evaluacion personal local service.
-	 *
-	 * @return the cronograma evaluacion personal local service
-	 */
-	public com.rec.hitss.layer.service.CronogramaEvaluacionPersonalLocalService getCronogramaEvaluacionPersonalLocalService() {
-		return cronogramaEvaluacionPersonalLocalService;
-	}
-
-	/**
-	 * Sets the cronograma evaluacion personal local service.
-	 *
-	 * @param cronogramaEvaluacionPersonalLocalService the cronograma evaluacion personal local service
-	 */
-	public void setCronogramaEvaluacionPersonalLocalService(
-		com.rec.hitss.layer.service.CronogramaEvaluacionPersonalLocalService cronogramaEvaluacionPersonalLocalService) {
-		this.cronogramaEvaluacionPersonalLocalService = cronogramaEvaluacionPersonalLocalService;
-	}
-
-	/**
-	 * Returns the cronograma evaluacion personal remote service.
-	 *
-	 * @return the cronograma evaluacion personal remote service
-	 */
-	public com.rec.hitss.layer.service.CronogramaEvaluacionPersonalService getCronogramaEvaluacionPersonalService() {
-		return cronogramaEvaluacionPersonalService;
-	}
-
-	/**
-	 * Sets the cronograma evaluacion personal remote service.
-	 *
-	 * @param cronogramaEvaluacionPersonalService the cronograma evaluacion personal remote service
-	 */
-	public void setCronogramaEvaluacionPersonalService(
-		com.rec.hitss.layer.service.CronogramaEvaluacionPersonalService cronogramaEvaluacionPersonalService) {
-		this.cronogramaEvaluacionPersonalService = cronogramaEvaluacionPersonalService;
-	}
-
-	/**
-	 * Returns the cronograma evaluacion personal persistence.
-	 *
-	 * @return the cronograma evaluacion personal persistence
-	 */
-	public CronogramaEvaluacionPersonalPersistence getCronogramaEvaluacionPersonalPersistence() {
-		return cronogramaEvaluacionPersonalPersistence;
-	}
-
-	/**
-	 * Sets the cronograma evaluacion personal persistence.
-	 *
-	 * @param cronogramaEvaluacionPersonalPersistence the cronograma evaluacion personal persistence
-	 */
-	public void setCronogramaEvaluacionPersonalPersistence(
-		CronogramaEvaluacionPersonalPersistence cronogramaEvaluacionPersonalPersistence) {
-		this.cronogramaEvaluacionPersonalPersistence = cronogramaEvaluacionPersonalPersistence;
-	}
-
-	/**
-	 * Returns the entrevista local service.
-	 *
-	 * @return the entrevista local service
-	 */
-	public com.rec.hitss.layer.service.EntrevistaLocalService getEntrevistaLocalService() {
-		return entrevistaLocalService;
-	}
-
-	/**
-	 * Sets the entrevista local service.
-	 *
-	 * @param entrevistaLocalService the entrevista local service
-	 */
-	public void setEntrevistaLocalService(
-		com.rec.hitss.layer.service.EntrevistaLocalService entrevistaLocalService) {
-		this.entrevistaLocalService = entrevistaLocalService;
-	}
-
-	/**
-	 * Returns the entrevista remote service.
-	 *
-	 * @return the entrevista remote service
-	 */
-	public com.rec.hitss.layer.service.EntrevistaService getEntrevistaService() {
-		return entrevistaService;
-	}
-
-	/**
-	 * Sets the entrevista remote service.
-	 *
-	 * @param entrevistaService the entrevista remote service
-	 */
-	public void setEntrevistaService(
-		com.rec.hitss.layer.service.EntrevistaService entrevistaService) {
-		this.entrevistaService = entrevistaService;
-	}
-
-	/**
-	 * Returns the entrevista persistence.
-	 *
-	 * @return the entrevista persistence
-	 */
-	public EntrevistaPersistence getEntrevistaPersistence() {
-		return entrevistaPersistence;
-	}
-
-	/**
-	 * Sets the entrevista persistence.
-	 *
-	 * @param entrevistaPersistence the entrevista persistence
-	 */
-	public void setEntrevistaPersistence(
-		EntrevistaPersistence entrevistaPersistence) {
-		this.entrevistaPersistence = entrevistaPersistence;
 	}
 
 	/**
@@ -590,59 +179,60 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the etiqueta local service.
+	 * Returns the etiqueta relacionada local service.
 	 *
-	 * @return the etiqueta local service
+	 * @return the etiqueta relacionada local service
 	 */
-	public com.rec.hitss.layer.service.EtiquetaLocalService getEtiquetaLocalService() {
-		return etiquetaLocalService;
+	public com.rec.hitss.layer.service.EtiquetaRelacionadaLocalService getEtiquetaRelacionadaLocalService() {
+		return etiquetaRelacionadaLocalService;
 	}
 
 	/**
-	 * Sets the etiqueta local service.
+	 * Sets the etiqueta relacionada local service.
 	 *
-	 * @param etiquetaLocalService the etiqueta local service
+	 * @param etiquetaRelacionadaLocalService the etiqueta relacionada local service
 	 */
-	public void setEtiquetaLocalService(
-		com.rec.hitss.layer.service.EtiquetaLocalService etiquetaLocalService) {
-		this.etiquetaLocalService = etiquetaLocalService;
+	public void setEtiquetaRelacionadaLocalService(
+		com.rec.hitss.layer.service.EtiquetaRelacionadaLocalService etiquetaRelacionadaLocalService) {
+		this.etiquetaRelacionadaLocalService = etiquetaRelacionadaLocalService;
 	}
 
 	/**
-	 * Returns the etiqueta remote service.
+	 * Returns the etiqueta relacionada remote service.
 	 *
-	 * @return the etiqueta remote service
+	 * @return the etiqueta relacionada remote service
 	 */
-	public com.rec.hitss.layer.service.EtiquetaService getEtiquetaService() {
-		return etiquetaService;
+	public com.rec.hitss.layer.service.EtiquetaRelacionadaService getEtiquetaRelacionadaService() {
+		return etiquetaRelacionadaService;
 	}
 
 	/**
-	 * Sets the etiqueta remote service.
+	 * Sets the etiqueta relacionada remote service.
 	 *
-	 * @param etiquetaService the etiqueta remote service
+	 * @param etiquetaRelacionadaService the etiqueta relacionada remote service
 	 */
-	public void setEtiquetaService(
-		com.rec.hitss.layer.service.EtiquetaService etiquetaService) {
-		this.etiquetaService = etiquetaService;
+	public void setEtiquetaRelacionadaService(
+		com.rec.hitss.layer.service.EtiquetaRelacionadaService etiquetaRelacionadaService) {
+		this.etiquetaRelacionadaService = etiquetaRelacionadaService;
 	}
 
 	/**
-	 * Returns the etiqueta persistence.
+	 * Returns the etiqueta relacionada persistence.
 	 *
-	 * @return the etiqueta persistence
+	 * @return the etiqueta relacionada persistence
 	 */
-	public EtiquetaPersistence getEtiquetaPersistence() {
-		return etiquetaPersistence;
+	public EtiquetaRelacionadaPersistence getEtiquetaRelacionadaPersistence() {
+		return etiquetaRelacionadaPersistence;
 	}
 
 	/**
-	 * Sets the etiqueta persistence.
+	 * Sets the etiqueta relacionada persistence.
 	 *
-	 * @param etiquetaPersistence the etiqueta persistence
+	 * @param etiquetaRelacionadaPersistence the etiqueta relacionada persistence
 	 */
-	public void setEtiquetaPersistence(EtiquetaPersistence etiquetaPersistence) {
-		this.etiquetaPersistence = etiquetaPersistence;
+	public void setEtiquetaRelacionadaPersistence(
+		EtiquetaRelacionadaPersistence etiquetaRelacionadaPersistence) {
+		this.etiquetaRelacionadaPersistence = etiquetaRelacionadaPersistence;
 	}
 
 	/**
@@ -817,6 +407,63 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the fase postulacion local service.
+	 *
+	 * @return the fase postulacion local service
+	 */
+	public com.rec.hitss.layer.service.FasePostulacionLocalService getFasePostulacionLocalService() {
+		return fasePostulacionLocalService;
+	}
+
+	/**
+	 * Sets the fase postulacion local service.
+	 *
+	 * @param fasePostulacionLocalService the fase postulacion local service
+	 */
+	public void setFasePostulacionLocalService(
+		com.rec.hitss.layer.service.FasePostulacionLocalService fasePostulacionLocalService) {
+		this.fasePostulacionLocalService = fasePostulacionLocalService;
+	}
+
+	/**
+	 * Returns the fase postulacion remote service.
+	 *
+	 * @return the fase postulacion remote service
+	 */
+	public com.rec.hitss.layer.service.FasePostulacionService getFasePostulacionService() {
+		return fasePostulacionService;
+	}
+
+	/**
+	 * Sets the fase postulacion remote service.
+	 *
+	 * @param fasePostulacionService the fase postulacion remote service
+	 */
+	public void setFasePostulacionService(
+		com.rec.hitss.layer.service.FasePostulacionService fasePostulacionService) {
+		this.fasePostulacionService = fasePostulacionService;
+	}
+
+	/**
+	 * Returns the fase postulacion persistence.
+	 *
+	 * @return the fase postulacion persistence
+	 */
+	public FasePostulacionPersistence getFasePostulacionPersistence() {
+		return fasePostulacionPersistence;
+	}
+
+	/**
+	 * Sets the fase postulacion persistence.
+	 *
+	 * @param fasePostulacionPersistence the fase postulacion persistence
+	 */
+	public void setFasePostulacionPersistence(
+		FasePostulacionPersistence fasePostulacionPersistence) {
+		this.fasePostulacionPersistence = fasePostulacionPersistence;
+	}
+
+	/**
 	 * Returns the funcion local service.
 	 *
 	 * @return the funcion local service
@@ -873,288 +520,60 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the funcion requerimiento local service.
+	 * Returns the postulacion local service.
 	 *
-	 * @return the funcion requerimiento local service
+	 * @return the postulacion local service
 	 */
-	public com.rec.hitss.layer.service.FuncionRequerimientoLocalService getFuncionRequerimientoLocalService() {
-		return funcionRequerimientoLocalService;
+	public com.rec.hitss.layer.service.PostulacionLocalService getPostulacionLocalService() {
+		return postulacionLocalService;
 	}
 
 	/**
-	 * Sets the funcion requerimiento local service.
+	 * Sets the postulacion local service.
 	 *
-	 * @param funcionRequerimientoLocalService the funcion requerimiento local service
+	 * @param postulacionLocalService the postulacion local service
 	 */
-	public void setFuncionRequerimientoLocalService(
-		com.rec.hitss.layer.service.FuncionRequerimientoLocalService funcionRequerimientoLocalService) {
-		this.funcionRequerimientoLocalService = funcionRequerimientoLocalService;
+	public void setPostulacionLocalService(
+		com.rec.hitss.layer.service.PostulacionLocalService postulacionLocalService) {
+		this.postulacionLocalService = postulacionLocalService;
 	}
 
 	/**
-	 * Returns the funcion requerimiento remote service.
+	 * Returns the postulacion remote service.
 	 *
-	 * @return the funcion requerimiento remote service
+	 * @return the postulacion remote service
 	 */
-	public com.rec.hitss.layer.service.FuncionRequerimientoService getFuncionRequerimientoService() {
-		return funcionRequerimientoService;
+	public com.rec.hitss.layer.service.PostulacionService getPostulacionService() {
+		return postulacionService;
 	}
 
 	/**
-	 * Sets the funcion requerimiento remote service.
+	 * Sets the postulacion remote service.
 	 *
-	 * @param funcionRequerimientoService the funcion requerimiento remote service
+	 * @param postulacionService the postulacion remote service
 	 */
-	public void setFuncionRequerimientoService(
-		com.rec.hitss.layer.service.FuncionRequerimientoService funcionRequerimientoService) {
-		this.funcionRequerimientoService = funcionRequerimientoService;
+	public void setPostulacionService(
+		com.rec.hitss.layer.service.PostulacionService postulacionService) {
+		this.postulacionService = postulacionService;
 	}
 
 	/**
-	 * Returns the funcion requerimiento persistence.
+	 * Returns the postulacion persistence.
 	 *
-	 * @return the funcion requerimiento persistence
+	 * @return the postulacion persistence
 	 */
-	public FuncionRequerimientoPersistence getFuncionRequerimientoPersistence() {
-		return funcionRequerimientoPersistence;
+	public PostulacionPersistence getPostulacionPersistence() {
+		return postulacionPersistence;
 	}
 
 	/**
-	 * Sets the funcion requerimiento persistence.
+	 * Sets the postulacion persistence.
 	 *
-	 * @param funcionRequerimientoPersistence the funcion requerimiento persistence
+	 * @param postulacionPersistence the postulacion persistence
 	 */
-	public void setFuncionRequerimientoPersistence(
-		FuncionRequerimientoPersistence funcionRequerimientoPersistence) {
-		this.funcionRequerimientoPersistence = funcionRequerimientoPersistence;
-	}
-
-	/**
-	 * Returns the funcion usuario local service.
-	 *
-	 * @return the funcion usuario local service
-	 */
-	public com.rec.hitss.layer.service.FuncionUsuarioLocalService getFuncionUsuarioLocalService() {
-		return funcionUsuarioLocalService;
-	}
-
-	/**
-	 * Sets the funcion usuario local service.
-	 *
-	 * @param funcionUsuarioLocalService the funcion usuario local service
-	 */
-	public void setFuncionUsuarioLocalService(
-		com.rec.hitss.layer.service.FuncionUsuarioLocalService funcionUsuarioLocalService) {
-		this.funcionUsuarioLocalService = funcionUsuarioLocalService;
-	}
-
-	/**
-	 * Returns the funcion usuario remote service.
-	 *
-	 * @return the funcion usuario remote service
-	 */
-	public com.rec.hitss.layer.service.FuncionUsuarioService getFuncionUsuarioService() {
-		return funcionUsuarioService;
-	}
-
-	/**
-	 * Sets the funcion usuario remote service.
-	 *
-	 * @param funcionUsuarioService the funcion usuario remote service
-	 */
-	public void setFuncionUsuarioService(
-		com.rec.hitss.layer.service.FuncionUsuarioService funcionUsuarioService) {
-		this.funcionUsuarioService = funcionUsuarioService;
-	}
-
-	/**
-	 * Returns the funcion usuario persistence.
-	 *
-	 * @return the funcion usuario persistence
-	 */
-	public FuncionUsuarioPersistence getFuncionUsuarioPersistence() {
-		return funcionUsuarioPersistence;
-	}
-
-	/**
-	 * Sets the funcion usuario persistence.
-	 *
-	 * @param funcionUsuarioPersistence the funcion usuario persistence
-	 */
-	public void setFuncionUsuarioPersistence(
-		FuncionUsuarioPersistence funcionUsuarioPersistence) {
-		this.funcionUsuarioPersistence = funcionUsuarioPersistence;
-	}
-
-	/**
-	 * Returns the informe retroalimentacion local service.
-	 *
-	 * @return the informe retroalimentacion local service
-	 */
-	public com.rec.hitss.layer.service.InformeRetroalimentacionLocalService getInformeRetroalimentacionLocalService() {
-		return informeRetroalimentacionLocalService;
-	}
-
-	/**
-	 * Sets the informe retroalimentacion local service.
-	 *
-	 * @param informeRetroalimentacionLocalService the informe retroalimentacion local service
-	 */
-	public void setInformeRetroalimentacionLocalService(
-		com.rec.hitss.layer.service.InformeRetroalimentacionLocalService informeRetroalimentacionLocalService) {
-		this.informeRetroalimentacionLocalService = informeRetroalimentacionLocalService;
-	}
-
-	/**
-	 * Returns the informe retroalimentacion remote service.
-	 *
-	 * @return the informe retroalimentacion remote service
-	 */
-	public com.rec.hitss.layer.service.InformeRetroalimentacionService getInformeRetroalimentacionService() {
-		return informeRetroalimentacionService;
-	}
-
-	/**
-	 * Sets the informe retroalimentacion remote service.
-	 *
-	 * @param informeRetroalimentacionService the informe retroalimentacion remote service
-	 */
-	public void setInformeRetroalimentacionService(
-		com.rec.hitss.layer.service.InformeRetroalimentacionService informeRetroalimentacionService) {
-		this.informeRetroalimentacionService = informeRetroalimentacionService;
-	}
-
-	/**
-	 * Returns the informe retroalimentacion persistence.
-	 *
-	 * @return the informe retroalimentacion persistence
-	 */
-	public InformeRetroalimentacionPersistence getInformeRetroalimentacionPersistence() {
-		return informeRetroalimentacionPersistence;
-	}
-
-	/**
-	 * Sets the informe retroalimentacion persistence.
-	 *
-	 * @param informeRetroalimentacionPersistence the informe retroalimentacion persistence
-	 */
-	public void setInformeRetroalimentacionPersistence(
-		InformeRetroalimentacionPersistence informeRetroalimentacionPersistence) {
-		this.informeRetroalimentacionPersistence = informeRetroalimentacionPersistence;
-	}
-
-	/**
-	 * Returns the parametro local service.
-	 *
-	 * @return the parametro local service
-	 */
-	public com.rec.hitss.layer.service.ParametroLocalService getParametroLocalService() {
-		return parametroLocalService;
-	}
-
-	/**
-	 * Sets the parametro local service.
-	 *
-	 * @param parametroLocalService the parametro local service
-	 */
-	public void setParametroLocalService(
-		com.rec.hitss.layer.service.ParametroLocalService parametroLocalService) {
-		this.parametroLocalService = parametroLocalService;
-	}
-
-	/**
-	 * Returns the parametro remote service.
-	 *
-	 * @return the parametro remote service
-	 */
-	public com.rec.hitss.layer.service.ParametroService getParametroService() {
-		return parametroService;
-	}
-
-	/**
-	 * Sets the parametro remote service.
-	 *
-	 * @param parametroService the parametro remote service
-	 */
-	public void setParametroService(
-		com.rec.hitss.layer.service.ParametroService parametroService) {
-		this.parametroService = parametroService;
-	}
-
-	/**
-	 * Returns the parametro persistence.
-	 *
-	 * @return the parametro persistence
-	 */
-	public ParametroPersistence getParametroPersistence() {
-		return parametroPersistence;
-	}
-
-	/**
-	 * Sets the parametro persistence.
-	 *
-	 * @param parametroPersistence the parametro persistence
-	 */
-	public void setParametroPersistence(
-		ParametroPersistence parametroPersistence) {
-		this.parametroPersistence = parametroPersistence;
-	}
-
-	/**
-	 * Returns the plan accion local service.
-	 *
-	 * @return the plan accion local service
-	 */
-	public com.rec.hitss.layer.service.PlanAccionLocalService getPlanAccionLocalService() {
-		return planAccionLocalService;
-	}
-
-	/**
-	 * Sets the plan accion local service.
-	 *
-	 * @param planAccionLocalService the plan accion local service
-	 */
-	public void setPlanAccionLocalService(
-		com.rec.hitss.layer.service.PlanAccionLocalService planAccionLocalService) {
-		this.planAccionLocalService = planAccionLocalService;
-	}
-
-	/**
-	 * Returns the plan accion remote service.
-	 *
-	 * @return the plan accion remote service
-	 */
-	public com.rec.hitss.layer.service.PlanAccionService getPlanAccionService() {
-		return planAccionService;
-	}
-
-	/**
-	 * Sets the plan accion remote service.
-	 *
-	 * @param planAccionService the plan accion remote service
-	 */
-	public void setPlanAccionService(
-		com.rec.hitss.layer.service.PlanAccionService planAccionService) {
-		this.planAccionService = planAccionService;
-	}
-
-	/**
-	 * Returns the plan accion persistence.
-	 *
-	 * @return the plan accion persistence
-	 */
-	public PlanAccionPersistence getPlanAccionPersistence() {
-		return planAccionPersistence;
-	}
-
-	/**
-	 * Sets the plan accion persistence.
-	 *
-	 * @param planAccionPersistence the plan accion persistence
-	 */
-	public void setPlanAccionPersistence(
-		PlanAccionPersistence planAccionPersistence) {
-		this.planAccionPersistence = planAccionPersistence;
+	public void setPostulacionPersistence(
+		PostulacionPersistence postulacionPersistence) {
+		this.postulacionPersistence = postulacionPersistence;
 	}
 
 	/**
@@ -1211,63 +630,6 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setPreguntaPersistence(PreguntaPersistence preguntaPersistence) {
 		this.preguntaPersistence = preguntaPersistence;
-	}
-
-	/**
-	 * Returns the prioridad equipos local service.
-	 *
-	 * @return the prioridad equipos local service
-	 */
-	public com.rec.hitss.layer.service.PrioridadEquiposLocalService getPrioridadEquiposLocalService() {
-		return prioridadEquiposLocalService;
-	}
-
-	/**
-	 * Sets the prioridad equipos local service.
-	 *
-	 * @param prioridadEquiposLocalService the prioridad equipos local service
-	 */
-	public void setPrioridadEquiposLocalService(
-		com.rec.hitss.layer.service.PrioridadEquiposLocalService prioridadEquiposLocalService) {
-		this.prioridadEquiposLocalService = prioridadEquiposLocalService;
-	}
-
-	/**
-	 * Returns the prioridad equipos remote service.
-	 *
-	 * @return the prioridad equipos remote service
-	 */
-	public com.rec.hitss.layer.service.PrioridadEquiposService getPrioridadEquiposService() {
-		return prioridadEquiposService;
-	}
-
-	/**
-	 * Sets the prioridad equipos remote service.
-	 *
-	 * @param prioridadEquiposService the prioridad equipos remote service
-	 */
-	public void setPrioridadEquiposService(
-		com.rec.hitss.layer.service.PrioridadEquiposService prioridadEquiposService) {
-		this.prioridadEquiposService = prioridadEquiposService;
-	}
-
-	/**
-	 * Returns the prioridad equipos persistence.
-	 *
-	 * @return the prioridad equipos persistence
-	 */
-	public PrioridadEquiposPersistence getPrioridadEquiposPersistence() {
-		return prioridadEquiposPersistence;
-	}
-
-	/**
-	 * Sets the prioridad equipos persistence.
-	 *
-	 * @param prioridadEquiposPersistence the prioridad equipos persistence
-	 */
-	public void setPrioridadEquiposPersistence(
-		PrioridadEquiposPersistence prioridadEquiposPersistence) {
-		this.prioridadEquiposPersistence = prioridadEquiposPersistence;
 	}
 
 	/**
@@ -1384,44 +746,6 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the requerimiento recurso local service.
-	 *
-	 * @return the requerimiento recurso local service
-	 */
-	public com.rec.hitss.layer.service.RequerimientoRecursoLocalService getRequerimientoRecursoLocalService() {
-		return requerimientoRecursoLocalService;
-	}
-
-	/**
-	 * Sets the requerimiento recurso local service.
-	 *
-	 * @param requerimientoRecursoLocalService the requerimiento recurso local service
-	 */
-	public void setRequerimientoRecursoLocalService(
-		com.rec.hitss.layer.service.RequerimientoRecursoLocalService requerimientoRecursoLocalService) {
-		this.requerimientoRecursoLocalService = requerimientoRecursoLocalService;
-	}
-
-	/**
-	 * Returns the requerimiento recurso persistence.
-	 *
-	 * @return the requerimiento recurso persistence
-	 */
-	public RequerimientoRecursoPersistence getRequerimientoRecursoPersistence() {
-		return requerimientoRecursoPersistence;
-	}
-
-	/**
-	 * Sets the requerimiento recurso persistence.
-	 *
-	 * @param requerimientoRecursoPersistence the requerimiento recurso persistence
-	 */
-	public void setRequerimientoRecursoPersistence(
-		RequerimientoRecursoPersistence requerimientoRecursoPersistence) {
-		this.requerimientoRecursoPersistence = requerimientoRecursoPersistence;
-	}
-
-	/**
 	 * Returns the requisito local service.
 	 *
 	 * @return the requisito local service
@@ -1438,6 +762,25 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	public void setRequisitoLocalService(
 		com.rec.hitss.layer.service.RequisitoLocalService requisitoLocalService) {
 		this.requisitoLocalService = requisitoLocalService;
+	}
+
+	/**
+	 * Returns the requisito remote service.
+	 *
+	 * @return the requisito remote service
+	 */
+	public com.rec.hitss.layer.service.RequisitoService getRequisitoService() {
+		return requisitoService;
+	}
+
+	/**
+	 * Sets the requisito remote service.
+	 *
+	 * @param requisitoService the requisito remote service
+	 */
+	public void setRequisitoService(
+		com.rec.hitss.layer.service.RequisitoService requisitoService) {
+		this.requisitoService = requisitoService;
 	}
 
 	/**
@@ -1574,212 +917,230 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the solicitud evaluacion desempeno local service.
+	 * Returns the solicitud requerimiento local service.
 	 *
-	 * @return the solicitud evaluacion desempeno local service
+	 * @return the solicitud requerimiento local service
 	 */
-	public com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoLocalService getSolicitudEvaluacionDesempenoLocalService() {
-		return solicitudEvaluacionDesempenoLocalService;
+	public com.rec.hitss.layer.service.SolicitudRequerimientoLocalService getSolicitudRequerimientoLocalService() {
+		return solicitudRequerimientoLocalService;
 	}
 
 	/**
-	 * Sets the solicitud evaluacion desempeno local service.
+	 * Sets the solicitud requerimiento local service.
 	 *
-	 * @param solicitudEvaluacionDesempenoLocalService the solicitud evaluacion desempeno local service
+	 * @param solicitudRequerimientoLocalService the solicitud requerimiento local service
 	 */
-	public void setSolicitudEvaluacionDesempenoLocalService(
-		com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoLocalService solicitudEvaluacionDesempenoLocalService) {
-		this.solicitudEvaluacionDesempenoLocalService = solicitudEvaluacionDesempenoLocalService;
+	public void setSolicitudRequerimientoLocalService(
+		com.rec.hitss.layer.service.SolicitudRequerimientoLocalService solicitudRequerimientoLocalService) {
+		this.solicitudRequerimientoLocalService = solicitudRequerimientoLocalService;
 	}
 
 	/**
-	 * Returns the solicitud evaluacion desempeno remote service.
+	 * Returns the solicitud requerimiento remote service.
 	 *
-	 * @return the solicitud evaluacion desempeno remote service
+	 * @return the solicitud requerimiento remote service
 	 */
-	public com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoService getSolicitudEvaluacionDesempenoService() {
-		return solicitudEvaluacionDesempenoService;
+	public com.rec.hitss.layer.service.SolicitudRequerimientoService getSolicitudRequerimientoService() {
+		return solicitudRequerimientoService;
 	}
 
 	/**
-	 * Sets the solicitud evaluacion desempeno remote service.
+	 * Sets the solicitud requerimiento remote service.
 	 *
-	 * @param solicitudEvaluacionDesempenoService the solicitud evaluacion desempeno remote service
+	 * @param solicitudRequerimientoService the solicitud requerimiento remote service
 	 */
-	public void setSolicitudEvaluacionDesempenoService(
-		com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoService solicitudEvaluacionDesempenoService) {
-		this.solicitudEvaluacionDesempenoService = solicitudEvaluacionDesempenoService;
+	public void setSolicitudRequerimientoService(
+		com.rec.hitss.layer.service.SolicitudRequerimientoService solicitudRequerimientoService) {
+		this.solicitudRequerimientoService = solicitudRequerimientoService;
 	}
 
 	/**
-	 * Returns the solicitud evaluacion desempeno persistence.
+	 * Returns the solicitud requerimiento persistence.
 	 *
-	 * @return the solicitud evaluacion desempeno persistence
+	 * @return the solicitud requerimiento persistence
 	 */
-	public SolicitudEvaluacionDesempenoPersistence getSolicitudEvaluacionDesempenoPersistence() {
-		return solicitudEvaluacionDesempenoPersistence;
+	public SolicitudRequerimientoPersistence getSolicitudRequerimientoPersistence() {
+		return solicitudRequerimientoPersistence;
 	}
 
 	/**
-	 * Sets the solicitud evaluacion desempeno persistence.
+	 * Sets the solicitud requerimiento persistence.
 	 *
-	 * @param solicitudEvaluacionDesempenoPersistence the solicitud evaluacion desempeno persistence
+	 * @param solicitudRequerimientoPersistence the solicitud requerimiento persistence
 	 */
-	public void setSolicitudEvaluacionDesempenoPersistence(
-		SolicitudEvaluacionDesempenoPersistence solicitudEvaluacionDesempenoPersistence) {
-		this.solicitudEvaluacionDesempenoPersistence = solicitudEvaluacionDesempenoPersistence;
+	public void setSolicitudRequerimientoPersistence(
+		SolicitudRequerimientoPersistence solicitudRequerimientoPersistence) {
+		this.solicitudRequerimientoPersistence = solicitudRequerimientoPersistence;
 	}
 
 	/**
-	 * Returns the solicitud requerimiento personal local service.
+	 * Returns the solicitud requerimiento requisito local service.
 	 *
-	 * @return the solicitud requerimiento personal local service
+	 * @return the solicitud requerimiento requisito local service
 	 */
-	public com.rec.hitss.layer.service.SolicitudRequerimientoPersonalLocalService getSolicitudRequerimientoPersonalLocalService() {
-		return solicitudRequerimientoPersonalLocalService;
+	public com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService getSolicitudRequerimientoRequisitoLocalService() {
+		return solicitudRequerimientoRequisitoLocalService;
 	}
 
 	/**
-	 * Sets the solicitud requerimiento personal local service.
+	 * Sets the solicitud requerimiento requisito local service.
 	 *
-	 * @param solicitudRequerimientoPersonalLocalService the solicitud requerimiento personal local service
+	 * @param solicitudRequerimientoRequisitoLocalService the solicitud requerimiento requisito local service
 	 */
-	public void setSolicitudRequerimientoPersonalLocalService(
-		com.rec.hitss.layer.service.SolicitudRequerimientoPersonalLocalService solicitudRequerimientoPersonalLocalService) {
-		this.solicitudRequerimientoPersonalLocalService = solicitudRequerimientoPersonalLocalService;
+	public void setSolicitudRequerimientoRequisitoLocalService(
+		com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService solicitudRequerimientoRequisitoLocalService) {
+		this.solicitudRequerimientoRequisitoLocalService = solicitudRequerimientoRequisitoLocalService;
 	}
 
 	/**
-	 * Returns the solicitud requerimiento personal persistence.
+	 * Returns the solicitud requerimiento requisito remote service.
 	 *
-	 * @return the solicitud requerimiento personal persistence
+	 * @return the solicitud requerimiento requisito remote service
 	 */
-	public SolicitudRequerimientoPersonalPersistence getSolicitudRequerimientoPersonalPersistence() {
-		return solicitudRequerimientoPersonalPersistence;
+	public com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoService getSolicitudRequerimientoRequisitoService() {
+		return solicitudRequerimientoRequisitoService;
 	}
 
 	/**
-	 * Sets the solicitud requerimiento personal persistence.
+	 * Sets the solicitud requerimiento requisito remote service.
 	 *
-	 * @param solicitudRequerimientoPersonalPersistence the solicitud requerimiento personal persistence
+	 * @param solicitudRequerimientoRequisitoService the solicitud requerimiento requisito remote service
 	 */
-	public void setSolicitudRequerimientoPersonalPersistence(
-		SolicitudRequerimientoPersonalPersistence solicitudRequerimientoPersonalPersistence) {
-		this.solicitudRequerimientoPersonalPersistence = solicitudRequerimientoPersonalPersistence;
+	public void setSolicitudRequerimientoRequisitoService(
+		com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoService solicitudRequerimientoRequisitoService) {
+		this.solicitudRequerimientoRequisitoService = solicitudRequerimientoRequisitoService;
 	}
 
 	/**
-	 * Returns the usuario grupo local service.
+	 * Returns the solicitud requerimiento requisito persistence.
 	 *
-	 * @return the usuario grupo local service
+	 * @return the solicitud requerimiento requisito persistence
 	 */
-	public com.rec.hitss.layer.service.UsuarioGrupoLocalService getUsuarioGrupoLocalService() {
-		return usuarioGrupoLocalService;
+	public SolicitudRequerimientoRequisitoPersistence getSolicitudRequerimientoRequisitoPersistence() {
+		return solicitudRequerimientoRequisitoPersistence;
 	}
 
 	/**
-	 * Sets the usuario grupo local service.
+	 * Sets the solicitud requerimiento requisito persistence.
 	 *
-	 * @param usuarioGrupoLocalService the usuario grupo local service
+	 * @param solicitudRequerimientoRequisitoPersistence the solicitud requerimiento requisito persistence
 	 */
-	public void setUsuarioGrupoLocalService(
-		com.rec.hitss.layer.service.UsuarioGrupoLocalService usuarioGrupoLocalService) {
-		this.usuarioGrupoLocalService = usuarioGrupoLocalService;
+	public void setSolicitudRequerimientoRequisitoPersistence(
+		SolicitudRequerimientoRequisitoPersistence solicitudRequerimientoRequisitoPersistence) {
+		this.solicitudRequerimientoRequisitoPersistence = solicitudRequerimientoRequisitoPersistence;
 	}
 
 	/**
-	 * Returns the usuario grupo remote service.
+	 * Returns the usuario local service.
 	 *
-	 * @return the usuario grupo remote service
+	 * @return the usuario local service
 	 */
-	public com.rec.hitss.layer.service.UsuarioGrupoService getUsuarioGrupoService() {
-		return usuarioGrupoService;
+	public com.rec.hitss.layer.service.UsuarioLocalService getUsuarioLocalService() {
+		return usuarioLocalService;
 	}
 
 	/**
-	 * Sets the usuario grupo remote service.
+	 * Sets the usuario local service.
 	 *
-	 * @param usuarioGrupoService the usuario grupo remote service
+	 * @param usuarioLocalService the usuario local service
 	 */
-	public void setUsuarioGrupoService(
-		com.rec.hitss.layer.service.UsuarioGrupoService usuarioGrupoService) {
-		this.usuarioGrupoService = usuarioGrupoService;
+	public void setUsuarioLocalService(
+		com.rec.hitss.layer.service.UsuarioLocalService usuarioLocalService) {
+		this.usuarioLocalService = usuarioLocalService;
 	}
 
 	/**
-	 * Returns the usuario grupo persistence.
+	 * Returns the usuario remote service.
 	 *
-	 * @return the usuario grupo persistence
+	 * @return the usuario remote service
 	 */
-	public UsuarioGrupoPersistence getUsuarioGrupoPersistence() {
-		return usuarioGrupoPersistence;
+	public com.rec.hitss.layer.service.UsuarioService getUsuarioService() {
+		return usuarioService;
 	}
 
 	/**
-	 * Sets the usuario grupo persistence.
+	 * Sets the usuario remote service.
 	 *
-	 * @param usuarioGrupoPersistence the usuario grupo persistence
+	 * @param usuarioService the usuario remote service
 	 */
-	public void setUsuarioGrupoPersistence(
-		UsuarioGrupoPersistence usuarioGrupoPersistence) {
-		this.usuarioGrupoPersistence = usuarioGrupoPersistence;
+	public void setUsuarioService(
+		com.rec.hitss.layer.service.UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
 	}
 
 	/**
-	 * Returns the usuario hitss local service.
+	 * Returns the usuario persistence.
 	 *
-	 * @return the usuario hitss local service
+	 * @return the usuario persistence
 	 */
-	public com.rec.hitss.layer.service.UsuarioHitssLocalService getUsuarioHitssLocalService() {
-		return usuarioHitssLocalService;
+	public UsuarioPersistence getUsuarioPersistence() {
+		return usuarioPersistence;
 	}
 
 	/**
-	 * Sets the usuario hitss local service.
+	 * Sets the usuario persistence.
 	 *
-	 * @param usuarioHitssLocalService the usuario hitss local service
+	 * @param usuarioPersistence the usuario persistence
 	 */
-	public void setUsuarioHitssLocalService(
-		com.rec.hitss.layer.service.UsuarioHitssLocalService usuarioHitssLocalService) {
-		this.usuarioHitssLocalService = usuarioHitssLocalService;
+	public void setUsuarioPersistence(UsuarioPersistence usuarioPersistence) {
+		this.usuarioPersistence = usuarioPersistence;
 	}
 
 	/**
-	 * Returns the usuario hitss remote service.
+	 * Returns the usuario requisito local service.
 	 *
-	 * @return the usuario hitss remote service
+	 * @return the usuario requisito local service
 	 */
-	public com.rec.hitss.layer.service.UsuarioHitssService getUsuarioHitssService() {
-		return usuarioHitssService;
+	public com.rec.hitss.layer.service.UsuarioRequisitoLocalService getUsuarioRequisitoLocalService() {
+		return usuarioRequisitoLocalService;
 	}
 
 	/**
-	 * Sets the usuario hitss remote service.
+	 * Sets the usuario requisito local service.
 	 *
-	 * @param usuarioHitssService the usuario hitss remote service
+	 * @param usuarioRequisitoLocalService the usuario requisito local service
 	 */
-	public void setUsuarioHitssService(
-		com.rec.hitss.layer.service.UsuarioHitssService usuarioHitssService) {
-		this.usuarioHitssService = usuarioHitssService;
+	public void setUsuarioRequisitoLocalService(
+		com.rec.hitss.layer.service.UsuarioRequisitoLocalService usuarioRequisitoLocalService) {
+		this.usuarioRequisitoLocalService = usuarioRequisitoLocalService;
 	}
 
 	/**
-	 * Returns the usuario hitss persistence.
+	 * Returns the usuario requisito remote service.
 	 *
-	 * @return the usuario hitss persistence
+	 * @return the usuario requisito remote service
 	 */
-	public UsuarioHitssPersistence getUsuarioHitssPersistence() {
-		return usuarioHitssPersistence;
+	public com.rec.hitss.layer.service.UsuarioRequisitoService getUsuarioRequisitoService() {
+		return usuarioRequisitoService;
 	}
 
 	/**
-	 * Sets the usuario hitss persistence.
+	 * Sets the usuario requisito remote service.
 	 *
-	 * @param usuarioHitssPersistence the usuario hitss persistence
+	 * @param usuarioRequisitoService the usuario requisito remote service
 	 */
-	public void setUsuarioHitssPersistence(
-		UsuarioHitssPersistence usuarioHitssPersistence) {
-		this.usuarioHitssPersistence = usuarioHitssPersistence;
+	public void setUsuarioRequisitoService(
+		com.rec.hitss.layer.service.UsuarioRequisitoService usuarioRequisitoService) {
+		this.usuarioRequisitoService = usuarioRequisitoService;
+	}
+
+	/**
+	 * Returns the usuario requisito persistence.
+	 *
+	 * @return the usuario requisito persistence
+	 */
+	public UsuarioRequisitoPersistence getUsuarioRequisitoPersistence() {
+		return usuarioRequisitoPersistence;
+	}
+
+	/**
+	 * Sets the usuario requisito persistence.
+	 *
+	 * @param usuarioRequisitoPersistence the usuario requisito persistence
+	 */
+	public void setUsuarioRequisitoPersistence(
+		UsuarioRequisitoPersistence usuarioRequisitoPersistence) {
+		this.usuarioRequisitoPersistence = usuarioRequisitoPersistence;
 	}
 
 	/**
@@ -1953,66 +1314,24 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.rec.hitss.layer.service.ActividadesLocalService.class)
-	protected com.rec.hitss.layer.service.ActividadesLocalService actividadesLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.ActividadesService.class)
-	protected com.rec.hitss.layer.service.ActividadesService actividadesService;
-	@BeanReference(type = ActividadesPersistence.class)
-	protected ActividadesPersistence actividadesPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.ActividadPlanLocalService.class)
-	protected com.rec.hitss.layer.service.ActividadPlanLocalService actividadPlanLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.ActividadPlanService.class)
-	protected com.rec.hitss.layer.service.ActividadPlanService actividadPlanService;
-	@BeanReference(type = ActividadPlanPersistence.class)
-	protected ActividadPlanPersistence actividadPlanPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.CertificadoLocalService.class)
-	protected com.rec.hitss.layer.service.CertificadoLocalService certificadoLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.CertificadoService.class)
-	protected com.rec.hitss.layer.service.CertificadoService certificadoService;
-	@BeanReference(type = CertificadoPersistence.class)
-	protected CertificadoPersistence certificadoPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.ConocimientoLocalService.class)
-	protected com.rec.hitss.layer.service.ConocimientoLocalService conocimientoLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.ConocimientoService.class)
-	protected com.rec.hitss.layer.service.ConocimientoService conocimientoService;
-	@BeanReference(type = ConocimientoPersistence.class)
-	protected ConocimientoPersistence conocimientoPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.ContratoLocalService.class)
 	protected com.rec.hitss.layer.service.ContratoLocalService contratoLocalService;
 	@BeanReference(type = com.rec.hitss.layer.service.ContratoService.class)
 	protected com.rec.hitss.layer.service.ContratoService contratoService;
 	@BeanReference(type = ContratoPersistence.class)
 	protected ContratoPersistence contratoPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.CriteriosEvaluacionLocalService.class)
-	protected com.rec.hitss.layer.service.CriteriosEvaluacionLocalService criteriosEvaluacionLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.CriteriosEvaluacionService.class)
-	protected com.rec.hitss.layer.service.CriteriosEvaluacionService criteriosEvaluacionService;
-	@BeanReference(type = CriteriosEvaluacionPersistence.class)
-	protected CriteriosEvaluacionPersistence criteriosEvaluacionPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.CronogramaEvaluacionPersonalLocalService.class)
-	protected com.rec.hitss.layer.service.CronogramaEvaluacionPersonalLocalService cronogramaEvaluacionPersonalLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.CronogramaEvaluacionPersonalService.class)
-	protected com.rec.hitss.layer.service.CronogramaEvaluacionPersonalService cronogramaEvaluacionPersonalService;
-	@BeanReference(type = CronogramaEvaluacionPersonalPersistence.class)
-	protected CronogramaEvaluacionPersonalPersistence cronogramaEvaluacionPersonalPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.EntrevistaLocalService.class)
-	protected com.rec.hitss.layer.service.EntrevistaLocalService entrevistaLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.EntrevistaService.class)
-	protected com.rec.hitss.layer.service.EntrevistaService entrevistaService;
-	@BeanReference(type = EntrevistaPersistence.class)
-	protected EntrevistaPersistence entrevistaPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.EstudioLocalService.class)
 	protected com.rec.hitss.layer.service.EstudioLocalService estudioLocalService;
 	@BeanReference(type = com.rec.hitss.layer.service.EstudioService.class)
 	protected com.rec.hitss.layer.service.EstudioService estudioService;
 	@BeanReference(type = EstudioPersistence.class)
 	protected EstudioPersistence estudioPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.EtiquetaLocalService.class)
-	protected com.rec.hitss.layer.service.EtiquetaLocalService etiquetaLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.EtiquetaService.class)
-	protected com.rec.hitss.layer.service.EtiquetaService etiquetaService;
-	@BeanReference(type = EtiquetaPersistence.class)
-	protected EtiquetaPersistence etiquetaPersistence;
+	@BeanReference(type = com.rec.hitss.layer.service.EtiquetaRelacionadaLocalService.class)
+	protected com.rec.hitss.layer.service.EtiquetaRelacionadaLocalService etiquetaRelacionadaLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.EtiquetaRelacionadaService.class)
+	protected com.rec.hitss.layer.service.EtiquetaRelacionadaService etiquetaRelacionadaService;
+	@BeanReference(type = EtiquetaRelacionadaPersistence.class)
+	protected EtiquetaRelacionadaPersistence etiquetaRelacionadaPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.EvaluacionLocalService.class)
 	protected com.rec.hitss.layer.service.EvaluacionLocalService evaluacionLocalService;
 	@BeanReference(type = com.rec.hitss.layer.service.EvaluacionService.class)
@@ -2031,54 +1350,30 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	protected com.rec.hitss.layer.service.ExperienciaService experienciaService;
 	@BeanReference(type = ExperienciaPersistence.class)
 	protected ExperienciaPersistence experienciaPersistence;
+	@BeanReference(type = com.rec.hitss.layer.service.FasePostulacionLocalService.class)
+	protected com.rec.hitss.layer.service.FasePostulacionLocalService fasePostulacionLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.FasePostulacionService.class)
+	protected com.rec.hitss.layer.service.FasePostulacionService fasePostulacionService;
+	@BeanReference(type = FasePostulacionPersistence.class)
+	protected FasePostulacionPersistence fasePostulacionPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.FuncionLocalService.class)
 	protected com.rec.hitss.layer.service.FuncionLocalService funcionLocalService;
 	@BeanReference(type = com.rec.hitss.layer.service.FuncionService.class)
 	protected com.rec.hitss.layer.service.FuncionService funcionService;
 	@BeanReference(type = FuncionPersistence.class)
 	protected FuncionPersistence funcionPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.FuncionRequerimientoLocalService.class)
-	protected com.rec.hitss.layer.service.FuncionRequerimientoLocalService funcionRequerimientoLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.FuncionRequerimientoService.class)
-	protected com.rec.hitss.layer.service.FuncionRequerimientoService funcionRequerimientoService;
-	@BeanReference(type = FuncionRequerimientoPersistence.class)
-	protected FuncionRequerimientoPersistence funcionRequerimientoPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.FuncionUsuarioLocalService.class)
-	protected com.rec.hitss.layer.service.FuncionUsuarioLocalService funcionUsuarioLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.FuncionUsuarioService.class)
-	protected com.rec.hitss.layer.service.FuncionUsuarioService funcionUsuarioService;
-	@BeanReference(type = FuncionUsuarioPersistence.class)
-	protected FuncionUsuarioPersistence funcionUsuarioPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.InformeRetroalimentacionLocalService.class)
-	protected com.rec.hitss.layer.service.InformeRetroalimentacionLocalService informeRetroalimentacionLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.InformeRetroalimentacionService.class)
-	protected com.rec.hitss.layer.service.InformeRetroalimentacionService informeRetroalimentacionService;
-	@BeanReference(type = InformeRetroalimentacionPersistence.class)
-	protected InformeRetroalimentacionPersistence informeRetroalimentacionPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.ParametroLocalService.class)
-	protected com.rec.hitss.layer.service.ParametroLocalService parametroLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.ParametroService.class)
-	protected com.rec.hitss.layer.service.ParametroService parametroService;
-	@BeanReference(type = ParametroPersistence.class)
-	protected ParametroPersistence parametroPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.PlanAccionLocalService.class)
-	protected com.rec.hitss.layer.service.PlanAccionLocalService planAccionLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.PlanAccionService.class)
-	protected com.rec.hitss.layer.service.PlanAccionService planAccionService;
-	@BeanReference(type = PlanAccionPersistence.class)
-	protected PlanAccionPersistence planAccionPersistence;
+	@BeanReference(type = com.rec.hitss.layer.service.PostulacionLocalService.class)
+	protected com.rec.hitss.layer.service.PostulacionLocalService postulacionLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.PostulacionService.class)
+	protected com.rec.hitss.layer.service.PostulacionService postulacionService;
+	@BeanReference(type = PostulacionPersistence.class)
+	protected PostulacionPersistence postulacionPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.PreguntaLocalService.class)
 	protected com.rec.hitss.layer.service.PreguntaLocalService preguntaLocalService;
 	@BeanReference(type = com.rec.hitss.layer.service.PreguntaService.class)
 	protected com.rec.hitss.layer.service.PreguntaService preguntaService;
 	@BeanReference(type = PreguntaPersistence.class)
 	protected PreguntaPersistence preguntaPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.PrioridadEquiposLocalService.class)
-	protected com.rec.hitss.layer.service.PrioridadEquiposLocalService prioridadEquiposLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.PrioridadEquiposService.class)
-	protected com.rec.hitss.layer.service.PrioridadEquiposService prioridadEquiposService;
-	@BeanReference(type = PrioridadEquiposPersistence.class)
-	protected PrioridadEquiposPersistence prioridadEquiposPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.PuestoLocalService.class)
 	protected com.rec.hitss.layer.service.PuestoLocalService puestoLocalService;
 	@BeanReference(type = com.rec.hitss.layer.service.PuestoService.class)
@@ -2091,12 +1386,10 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	protected com.rec.hitss.layer.service.ReferenciaService referenciaService;
 	@BeanReference(type = ReferenciaPersistence.class)
 	protected ReferenciaPersistence referenciaPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.RequerimientoRecursoLocalService.class)
-	protected com.rec.hitss.layer.service.RequerimientoRecursoLocalService requerimientoRecursoLocalService;
-	@BeanReference(type = RequerimientoRecursoPersistence.class)
-	protected RequerimientoRecursoPersistence requerimientoRecursoPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.RequisitoLocalService.class)
 	protected com.rec.hitss.layer.service.RequisitoLocalService requisitoLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.RequisitoService.class)
+	protected com.rec.hitss.layer.service.RequisitoService requisitoService;
 	@BeanReference(type = RequisitoPersistence.class)
 	protected RequisitoPersistence requisitoPersistence;
 	@BeanReference(type = com.rec.hitss.layer.service.RespuestaLocalService.class)
@@ -2111,28 +1404,30 @@ public abstract class ResultadoEvaluacionServiceBaseImpl extends BaseServiceImpl
 	protected com.rec.hitss.layer.service.ResultadoEvaluacionService resultadoEvaluacionService;
 	@BeanReference(type = ResultadoEvaluacionPersistence.class)
 	protected ResultadoEvaluacionPersistence resultadoEvaluacionPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoLocalService.class)
-	protected com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoLocalService solicitudEvaluacionDesempenoLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoService.class)
-	protected com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoService solicitudEvaluacionDesempenoService;
-	@BeanReference(type = SolicitudEvaluacionDesempenoPersistence.class)
-	protected SolicitudEvaluacionDesempenoPersistence solicitudEvaluacionDesempenoPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.SolicitudRequerimientoPersonalLocalService.class)
-	protected com.rec.hitss.layer.service.SolicitudRequerimientoPersonalLocalService solicitudRequerimientoPersonalLocalService;
-	@BeanReference(type = SolicitudRequerimientoPersonalPersistence.class)
-	protected SolicitudRequerimientoPersonalPersistence solicitudRequerimientoPersonalPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.UsuarioGrupoLocalService.class)
-	protected com.rec.hitss.layer.service.UsuarioGrupoLocalService usuarioGrupoLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.UsuarioGrupoService.class)
-	protected com.rec.hitss.layer.service.UsuarioGrupoService usuarioGrupoService;
-	@BeanReference(type = UsuarioGrupoPersistence.class)
-	protected UsuarioGrupoPersistence usuarioGrupoPersistence;
-	@BeanReference(type = com.rec.hitss.layer.service.UsuarioHitssLocalService.class)
-	protected com.rec.hitss.layer.service.UsuarioHitssLocalService usuarioHitssLocalService;
-	@BeanReference(type = com.rec.hitss.layer.service.UsuarioHitssService.class)
-	protected com.rec.hitss.layer.service.UsuarioHitssService usuarioHitssService;
-	@BeanReference(type = UsuarioHitssPersistence.class)
-	protected UsuarioHitssPersistence usuarioHitssPersistence;
+	@BeanReference(type = com.rec.hitss.layer.service.SolicitudRequerimientoLocalService.class)
+	protected com.rec.hitss.layer.service.SolicitudRequerimientoLocalService solicitudRequerimientoLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.SolicitudRequerimientoService.class)
+	protected com.rec.hitss.layer.service.SolicitudRequerimientoService solicitudRequerimientoService;
+	@BeanReference(type = SolicitudRequerimientoPersistence.class)
+	protected SolicitudRequerimientoPersistence solicitudRequerimientoPersistence;
+	@BeanReference(type = com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService.class)
+	protected com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService solicitudRequerimientoRequisitoLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoService.class)
+	protected com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoService solicitudRequerimientoRequisitoService;
+	@BeanReference(type = SolicitudRequerimientoRequisitoPersistence.class)
+	protected SolicitudRequerimientoRequisitoPersistence solicitudRequerimientoRequisitoPersistence;
+	@BeanReference(type = com.rec.hitss.layer.service.UsuarioLocalService.class)
+	protected com.rec.hitss.layer.service.UsuarioLocalService usuarioLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.UsuarioService.class)
+	protected com.rec.hitss.layer.service.UsuarioService usuarioService;
+	@BeanReference(type = UsuarioPersistence.class)
+	protected UsuarioPersistence usuarioPersistence;
+	@BeanReference(type = com.rec.hitss.layer.service.UsuarioRequisitoLocalService.class)
+	protected com.rec.hitss.layer.service.UsuarioRequisitoLocalService usuarioRequisitoLocalService;
+	@BeanReference(type = com.rec.hitss.layer.service.UsuarioRequisitoService.class)
+	protected com.rec.hitss.layer.service.UsuarioRequisitoService usuarioRequisitoService;
+	@BeanReference(type = UsuarioRequisitoPersistence.class)
+	protected UsuarioRequisitoPersistence usuarioRequisitoPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)

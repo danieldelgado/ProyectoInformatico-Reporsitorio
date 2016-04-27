@@ -74,6 +74,35 @@ public interface ContratoModel extends BaseModel<Contrato> {
 	public void setContratoId(long contratoId);
 
 	/**
+	 * Returns the usuario ID of this contrato.
+	 *
+	 * @return the usuario ID of this contrato
+	 */
+	public long getUsuarioId();
+
+	/**
+	 * Sets the usuario ID of this contrato.
+	 *
+	 * @param usuarioId the usuario ID of this contrato
+	 */
+	public void setUsuarioId(long usuarioId);
+
+	/**
+	 * Returns the motivo of this contrato.
+	 *
+	 * @return the motivo of this contrato
+	 */
+	@AutoEscape
+	public String getMotivo();
+
+	/**
+	 * Sets the motivo of this contrato.
+	 *
+	 * @param motivo the motivo of this contrato
+	 */
+	public void setMotivo(String motivo);
+
+	/**
 	 * Returns the descripcion of this contrato.
 	 *
 	 * @return the descripcion of this contrato
@@ -89,54 +118,19 @@ public interface ContratoModel extends BaseModel<Contrato> {
 	public void setDescripcion(String descripcion);
 
 	/**
-	 * Returns the fecha emitida of this contrato.
-	 *
-	 * @return the fecha emitida of this contrato
-	 */
-	public Date getFechaEmitida();
-
-	/**
-	 * Sets the fecha emitida of this contrato.
-	 *
-	 * @param fechaEmitida the fecha emitida of this contrato
-	 */
-	public void setFechaEmitida(Date fechaEmitida);
-
-	/**
 	 * Returns the titulo of this contrato.
 	 *
 	 * @return the titulo of this contrato
 	 */
-	public boolean getTitulo();
-
-	/**
-	 * Returns <code>true</code> if this contrato is titulo.
-	 *
-	 * @return <code>true</code> if this contrato is titulo; <code>false</code> otherwise
-	 */
-	public boolean isTitulo();
-
-	/**
-	 * Sets whether this contrato is titulo.
-	 *
-	 * @param Titulo the titulo of this contrato
-	 */
-	public void setTitulo(boolean Titulo);
-
-	/**
-	 * Returns the motivo of this contrato.
-	 *
-	 * @return the motivo of this contrato
-	 */
 	@AutoEscape
-	public String getMotivo();
+	public String getTitulo();
 
 	/**
-	 * Sets the motivo of this contrato.
+	 * Sets the titulo of this contrato.
 	 *
-	 * @param Motivo the motivo of this contrato
+	 * @param titulo the titulo of this contrato
 	 */
-	public void setMotivo(String Motivo);
+	public void setTitulo(String titulo);
 
 	/**
 	 * Returns the activo of this contrato.
@@ -214,20 +208,6 @@ public interface ContratoModel extends BaseModel<Contrato> {
 	 * @param fechacreamodifica the fechacreamodifica of this contrato
 	 */
 	public void setFechacreamodifica(Date fechacreamodifica);
-
-	/**
-	 * Returns the usuario hitss ID of this contrato.
-	 *
-	 * @return the usuario hitss ID of this contrato
-	 */
-	public long getUsuarioHitssId();
-
-	/**
-	 * Sets the usuario hitss ID of this contrato.
-	 *
-	 * @param usuarioHitssId the usuario hitss ID of this contrato
-	 */
-	public void setUsuarioHitssId(long usuarioHitssId);
 
 	@Override
 	public boolean isNew();

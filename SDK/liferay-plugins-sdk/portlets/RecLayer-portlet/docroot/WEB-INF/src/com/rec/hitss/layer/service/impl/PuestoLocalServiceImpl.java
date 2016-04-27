@@ -14,11 +14,11 @@
 
 package com.rec.hitss.layer.service.impl;
 
-import java.text.ParseException;
 import java.util.List;
 
 import com.liferay.portal.kernel.exception.SystemException;
-import com.rec.hitss.layer.NoSuchRequerimientoRecursoException;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.util.PortalUtil;
 import com.rec.hitss.layer.model.Puesto;
 import com.rec.hitss.layer.service.base.PuestoLocalServiceBaseImpl;
 import com.rec.hitss.layer.service.persistence.PuestoUtil;
@@ -43,8 +43,11 @@ public class PuestoLocalServiceImpl extends PuestoLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.PuestoLocalServiceUtil} to access the puesto local service.
 	 */
-	public 	List<Puesto> findByRequerimientoRecurso(Long  requerimientoRecursoId) throws ParseException, SystemException, NoSuchRequerimientoRecursoException{		
-		return PuestoUtil.findByRequerimientoRecurso(requerimientoRecursoId);
+	
+	public List<Puesto> findByfiltroDescripcion(String descripcion) throws SystemException{
+		return PuestoUtil.findByfiltroDescripcion( StringPool.PERCENT  + descripcion + StringPool.PERCENT );
 	}
+	
+	
 	
 }

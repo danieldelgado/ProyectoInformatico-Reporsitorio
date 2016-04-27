@@ -106,13 +106,13 @@ public class ResultadoEvaluacionLocalServiceClpInvoker {
 				"com.rec.hitss.layer.model.ResultadoEvaluacion"
 			};
 
-		_methodName208 = "getBeanIdentifier";
+		_methodName142 = "getBeanIdentifier";
 
-		_methodParameterTypes208 = new String[] {  };
+		_methodParameterTypes142 = new String[] {  };
 
-		_methodName209 = "setBeanIdentifier";
+		_methodName143 = "setBeanIdentifier";
 
-		_methodParameterTypes209 = new String[] { "java.lang.String" };
+		_methodParameterTypes143 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -204,13 +204,13 @@ public class ResultadoEvaluacionLocalServiceClpInvoker {
 			return ResultadoEvaluacionLocalServiceUtil.updateResultadoEvaluacion((com.rec.hitss.layer.model.ResultadoEvaluacion)arguments[0]);
 		}
 
-		if (_methodName208.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes208, parameterTypes)) {
+		if (_methodName142.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes142, parameterTypes)) {
 			return ResultadoEvaluacionLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName209.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes209, parameterTypes)) {
+		if (_methodName143.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes143, parameterTypes)) {
 			ResultadoEvaluacionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -251,8 +251,8 @@ public class ResultadoEvaluacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName208;
-	private String[] _methodParameterTypes208;
-	private String _methodName209;
-	private String[] _methodParameterTypes209;
+	private String _methodName142;
+	private String[] _methodParameterTypes142;
+	private String _methodName143;
+	private String[] _methodParameterTypes143;
 }

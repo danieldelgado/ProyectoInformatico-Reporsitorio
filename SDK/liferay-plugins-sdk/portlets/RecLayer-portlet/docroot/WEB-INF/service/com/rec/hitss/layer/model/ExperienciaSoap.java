@@ -31,14 +31,13 @@ public class ExperienciaSoap implements Serializable {
 	public static ExperienciaSoap toSoapModel(Experiencia model) {
 		ExperienciaSoap soapModel = new ExperienciaSoap();
 
-		soapModel.setEstudioId(model.getEstudioId());
+		soapModel.setExperienciaId(model.getExperienciaId());
+		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setDescripcion(model.getDescripcion());
-		soapModel.setNivel(model.getNivel());
 		soapModel.setEmpresa(model.getEmpresa());
 		soapModel.setProyecto(model.getProyecto());
 		soapModel.setFechaInicio(model.getFechaInicio());
 		soapModel.setFechaFin(model.getFechaFin());
-		soapModel.setUsuarioHitssId(model.getUsuarioHitssId());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -89,19 +88,27 @@ public class ExperienciaSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _estudioId;
+		return _experienciaId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setEstudioId(pk);
+		setExperienciaId(pk);
 	}
 
-	public long getEstudioId() {
-		return _estudioId;
+	public long getExperienciaId() {
+		return _experienciaId;
 	}
 
-	public void setEstudioId(long estudioId) {
-		_estudioId = estudioId;
+	public void setExperienciaId(long experienciaId) {
+		_experienciaId = experienciaId;
+	}
+
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
 	}
 
 	public String getDescripcion() {
@@ -110,14 +117,6 @@ public class ExperienciaSoap implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		_descripcion = descripcion;
-	}
-
-	public long getNivel() {
-		return _nivel;
-	}
-
-	public void setNivel(long nivel) {
-		_nivel = nivel;
 	}
 
 	public String getEmpresa() {
@@ -150,14 +149,6 @@ public class ExperienciaSoap implements Serializable {
 
 	public void setFechaFin(Date fechaFin) {
 		_fechaFin = fechaFin;
-	}
-
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
 	}
 
 	public boolean getActivo() {
@@ -204,14 +195,13 @@ public class ExperienciaSoap implements Serializable {
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	private long _estudioId;
+	private long _experienciaId;
+	private long _usuarioId;
 	private String _descripcion;
-	private long _nivel;
 	private String _empresa;
 	private String _proyecto;
 	private Date _fechaInicio;
 	private Date _fechaFin;
-	private long _usuarioHitssId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

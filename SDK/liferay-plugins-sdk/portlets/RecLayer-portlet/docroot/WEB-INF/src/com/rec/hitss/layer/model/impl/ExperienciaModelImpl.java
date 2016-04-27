@@ -65,24 +65,23 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	 */
 	public static final String TABLE_NAME = "Experiencia";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "estudioId", Types.BIGINT },
+			{ "experienciaId", Types.BIGINT },
+			{ "usuarioId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
-			{ "nivel", Types.BIGINT },
 			{ "empresa", Types.VARCHAR },
 			{ "proyecto", Types.VARCHAR },
 			{ "fechaInicio", Types.TIMESTAMP },
 			{ "fechaFin", Types.TIMESTAMP },
-			{ "usuarioHitssId", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Experiencia (estudioId LONG not null primary key,descripcion VARCHAR(75) null,nivel LONG,empresa VARCHAR(75) null,proyecto VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,usuarioHitssId LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Experiencia (experienciaId LONG not null primary key,usuarioId LONG,descripcion VARCHAR(75) null,empresa VARCHAR(75) null,proyecto VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Experiencia";
-	public static final String ORDER_BY_JPQL = " ORDER BY experiencia.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Experiencia.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY experiencia.fechacreamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Experiencia.fechacreamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -107,14 +106,13 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 		Experiencia model = new ExperienciaImpl();
 
-		model.setEstudioId(soapModel.getEstudioId());
+		model.setExperienciaId(soapModel.getExperienciaId());
+		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setDescripcion(soapModel.getDescripcion());
-		model.setNivel(soapModel.getNivel());
 		model.setEmpresa(soapModel.getEmpresa());
 		model.setProyecto(soapModel.getProyecto());
 		model.setFechaInicio(soapModel.getFechaInicio());
 		model.setFechaFin(soapModel.getFechaFin());
-		model.setUsuarioHitssId(soapModel.getUsuarioHitssId());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -152,17 +150,17 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public long getPrimaryKey() {
-		return _estudioId;
+		return _experienciaId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setEstudioId(primaryKey);
+		setExperienciaId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _estudioId;
+		return _experienciaId;
 	}
 
 	@Override
@@ -184,14 +182,13 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("estudioId", getEstudioId());
+		attributes.put("experienciaId", getExperienciaId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("nivel", getNivel());
 		attributes.put("empresa", getEmpresa());
 		attributes.put("proyecto", getProyecto());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -203,22 +200,22 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long estudioId = (Long)attributes.get("estudioId");
+		Long experienciaId = (Long)attributes.get("experienciaId");
 
-		if (estudioId != null) {
-			setEstudioId(estudioId);
+		if (experienciaId != null) {
+			setExperienciaId(experienciaId);
+		}
+
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
-		}
-
-		Long nivel = (Long)attributes.get("nivel");
-
-		if (nivel != null) {
-			setNivel(nivel);
 		}
 
 		String empresa = (String)attributes.get("empresa");
@@ -243,12 +240,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 		if (fechaFin != null) {
 			setFechaFin(fechaFin);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -284,13 +275,24 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@JSON
 	@Override
-	public long getEstudioId() {
-		return _estudioId;
+	public long getExperienciaId() {
+		return _experienciaId;
 	}
 
 	@Override
-	public void setEstudioId(long estudioId) {
-		_estudioId = estudioId;
+	public void setExperienciaId(long experienciaId) {
+		_experienciaId = experienciaId;
+	}
+
+	@JSON
+	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
 	}
 
 	@JSON
@@ -307,17 +309,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	@Override
 	public void setDescripcion(String descripcion) {
 		_descripcion = descripcion;
-	}
-
-	@JSON
-	@Override
-	public long getNivel() {
-		return _nivel;
-	}
-
-	@Override
-	public void setNivel(long nivel) {
-		_nivel = nivel;
 	}
 
 	@JSON
@@ -372,17 +363,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	@Override
 	public void setFechaFin(Date fechaFin) {
 		_fechaFin = fechaFin;
-	}
-
-	@JSON
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
 	}
 
 	@JSON
@@ -472,14 +452,13 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	public Object clone() {
 		ExperienciaImpl experienciaImpl = new ExperienciaImpl();
 
-		experienciaImpl.setEstudioId(getEstudioId());
+		experienciaImpl.setExperienciaId(getExperienciaId());
+		experienciaImpl.setUsuarioId(getUsuarioId());
 		experienciaImpl.setDescripcion(getDescripcion());
-		experienciaImpl.setNivel(getNivel());
 		experienciaImpl.setEmpresa(getEmpresa());
 		experienciaImpl.setProyecto(getProyecto());
 		experienciaImpl.setFechaInicio(getFechaInicio());
 		experienciaImpl.setFechaFin(getFechaFin());
-		experienciaImpl.setUsuarioHitssId(getUsuarioHitssId());
 		experienciaImpl.setActivo(getActivo());
 		experienciaImpl.setUsuariocrea(getUsuariocrea());
 		experienciaImpl.setFechacrea(getFechacrea());
@@ -495,7 +474,8 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	public int compareTo(Experiencia experiencia) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), experiencia.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				experiencia.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -539,7 +519,9 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	public CacheModel<Experiencia> toCacheModel() {
 		ExperienciaCacheModel experienciaCacheModel = new ExperienciaCacheModel();
 
-		experienciaCacheModel.estudioId = getEstudioId();
+		experienciaCacheModel.experienciaId = getExperienciaId();
+
+		experienciaCacheModel.usuarioId = getUsuarioId();
 
 		experienciaCacheModel.descripcion = getDescripcion();
 
@@ -548,8 +530,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		if ((descripcion != null) && (descripcion.length() == 0)) {
 			experienciaCacheModel.descripcion = null;
 		}
-
-		experienciaCacheModel.nivel = getNivel();
 
 		experienciaCacheModel.empresa = getEmpresa();
 
@@ -585,8 +565,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 			experienciaCacheModel.fechaFin = Long.MIN_VALUE;
 		}
 
-		experienciaCacheModel.usuarioHitssId = getUsuarioHitssId();
-
 		experienciaCacheModel.activo = getActivo();
 
 		experienciaCacheModel.usuariocrea = getUsuariocrea();
@@ -616,14 +594,14 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
-		sb.append("{estudioId=");
-		sb.append(getEstudioId());
+		sb.append("{experienciaId=");
+		sb.append(getExperienciaId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
-		sb.append(", nivel=");
-		sb.append(getNivel());
 		sb.append(", empresa=");
 		sb.append(getEmpresa());
 		sb.append(", proyecto=");
@@ -632,8 +610,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		sb.append(getFechaInicio());
 		sb.append(", fechaFin=");
 		sb.append(getFechaFin());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -651,23 +627,23 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Experiencia");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>estudioId</column-name><column-value><![CDATA[");
-		sb.append(getEstudioId());
+			"<column><column-name>experienciaId</column-name><column-value><![CDATA[");
+		sb.append(getExperienciaId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
 		sb.append(getDescripcion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>nivel</column-name><column-value><![CDATA[");
-		sb.append(getNivel());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>empresa</column-name><column-value><![CDATA[");
@@ -684,10 +660,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		sb.append(
 			"<column><column-name>fechaFin</column-name><column-value><![CDATA[");
 		sb.append(getFechaFin());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -719,14 +691,13 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			Experiencia.class
 		};
-	private long _estudioId;
+	private long _experienciaId;
+	private long _usuarioId;
 	private String _descripcion;
-	private long _nivel;
 	private String _empresa;
 	private String _proyecto;
 	private Date _fechaInicio;
 	private Date _fechaFin;
-	private long _usuarioHitssId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

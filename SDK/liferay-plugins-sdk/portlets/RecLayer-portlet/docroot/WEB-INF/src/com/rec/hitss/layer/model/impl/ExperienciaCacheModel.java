@@ -38,14 +38,14 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(25);
 
-		sb.append("{estudioId=");
-		sb.append(estudioId);
+		sb.append("{experienciaId=");
+		sb.append(experienciaId);
+		sb.append(", usuarioId=");
+		sb.append(usuarioId);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
-		sb.append(", nivel=");
-		sb.append(nivel);
 		sb.append(", empresa=");
 		sb.append(empresa);
 		sb.append(", proyecto=");
@@ -54,8 +54,6 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 		sb.append(fechaInicio);
 		sb.append(", fechaFin=");
 		sb.append(fechaFin);
-		sb.append(", usuarioHitssId=");
-		sb.append(usuarioHitssId);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -75,7 +73,8 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 	public Experiencia toEntityModel() {
 		ExperienciaImpl experienciaImpl = new ExperienciaImpl();
 
-		experienciaImpl.setEstudioId(estudioId);
+		experienciaImpl.setExperienciaId(experienciaId);
+		experienciaImpl.setUsuarioId(usuarioId);
 
 		if (descripcion == null) {
 			experienciaImpl.setDescripcion(StringPool.BLANK);
@@ -83,8 +82,6 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 		else {
 			experienciaImpl.setDescripcion(descripcion);
 		}
-
-		experienciaImpl.setNivel(nivel);
 
 		if (empresa == null) {
 			experienciaImpl.setEmpresa(StringPool.BLANK);
@@ -114,7 +111,6 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 			experienciaImpl.setFechaFin(new Date(fechaFin));
 		}
 
-		experienciaImpl.setUsuarioHitssId(usuarioHitssId);
 		experienciaImpl.setActivo(activo);
 		experienciaImpl.setUsuariocrea(usuariocrea);
 
@@ -141,14 +137,13 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		estudioId = objectInput.readLong();
+		experienciaId = objectInput.readLong();
+		usuarioId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
-		nivel = objectInput.readLong();
 		empresa = objectInput.readUTF();
 		proyecto = objectInput.readUTF();
 		fechaInicio = objectInput.readLong();
 		fechaFin = objectInput.readLong();
-		usuarioHitssId = objectInput.readLong();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -159,7 +154,8 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(estudioId);
+		objectOutput.writeLong(experienciaId);
+		objectOutput.writeLong(usuarioId);
 
 		if (descripcion == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -167,8 +163,6 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 		else {
 			objectOutput.writeUTF(descripcion);
 		}
-
-		objectOutput.writeLong(nivel);
 
 		if (empresa == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -186,7 +180,6 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 
 		objectOutput.writeLong(fechaInicio);
 		objectOutput.writeLong(fechaFin);
-		objectOutput.writeLong(usuarioHitssId);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -194,14 +187,13 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 		objectOutput.writeLong(fechacreamodifica);
 	}
 
-	public long estudioId;
+	public long experienciaId;
+	public long usuarioId;
 	public String descripcion;
-	public long nivel;
 	public String empresa;
 	public String proyecto;
 	public long fechaInicio;
 	public long fechaFin;
-	public long usuarioHitssId;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

@@ -78,13 +78,13 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("nivel", getNivel());
 		attributes.put("exigible", getExigible());
+		attributes.put("herramienta", getHerramienta());
+		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("solicitudRequerimientoPersonalId",
-			getSolicitudRequerimientoPersonalId());
 
 		return attributes;
 	}
@@ -115,6 +115,18 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 			setExigible(exigible);
 		}
 
+		Long herramienta = (Long)attributes.get("herramienta");
+
+		if (herramienta != null) {
+			setHerramienta(herramienta);
+		}
+
+		Long tipoRequisito = (Long)attributes.get("tipoRequisito");
+
+		if (tipoRequisito != null) {
+			setTipoRequisito(tipoRequisito);
+		}
+
 		Boolean activo = (Boolean)attributes.get("activo");
 
 		if (activo != null) {
@@ -143,13 +155,6 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
-		}
-
-		Long solicitudRequerimientoPersonalId = (Long)attributes.get(
-				"solicitudRequerimientoPersonalId");
-
-		if (solicitudRequerimientoPersonalId != null) {
-			setSolicitudRequerimientoPersonalId(solicitudRequerimientoPersonalId);
 		}
 	}
 
@@ -243,6 +248,52 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 				Method method = clazz.getMethod("setExigible", boolean.class);
 
 				method.invoke(_requisitoRemoteModel, exigible);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getHerramienta() {
+		return _herramienta;
+	}
+
+	@Override
+	public void setHerramienta(long herramienta) {
+		_herramienta = herramienta;
+
+		if (_requisitoRemoteModel != null) {
+			try {
+				Class<?> clazz = _requisitoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setHerramienta", long.class);
+
+				method.invoke(_requisitoRemoteModel, herramienta);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getTipoRequisito() {
+		return _tipoRequisito;
+	}
+
+	@Override
+	public void setTipoRequisito(long tipoRequisito) {
+		_tipoRequisito = tipoRequisito;
+
+		if (_requisitoRemoteModel != null) {
+			try {
+				Class<?> clazz = _requisitoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTipoRequisito", long.class);
+
+				method.invoke(_requisitoRemoteModel, tipoRequisito);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -371,32 +422,6 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 		}
 	}
 
-	@Override
-	public long getSolicitudRequerimientoPersonalId() {
-		return _solicitudRequerimientoPersonalId;
-	}
-
-	@Override
-	public void setSolicitudRequerimientoPersonalId(
-		long solicitudRequerimientoPersonalId) {
-		_solicitudRequerimientoPersonalId = solicitudRequerimientoPersonalId;
-
-		if (_requisitoRemoteModel != null) {
-			try {
-				Class<?> clazz = _requisitoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setSolicitudRequerimientoPersonalId",
-						long.class);
-
-				method.invoke(_requisitoRemoteModel,
-					solicitudRequerimientoPersonalId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
 	public BaseModel<?> getRequisitoRemoteModel() {
 		return _requisitoRemoteModel;
 	}
@@ -470,12 +495,13 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 		clone.setDescripcion(getDescripcion());
 		clone.setNivel(getNivel());
 		clone.setExigible(getExigible());
+		clone.setHerramienta(getHerramienta());
+		clone.setTipoRequisito(getTipoRequisito());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
 		clone.setFechacreamodifica(getFechacreamodifica());
-		clone.setSolicitudRequerimientoPersonalId(getSolicitudRequerimientoPersonalId());
 
 		return clone;
 	}
@@ -484,7 +510,8 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 	public int compareTo(Requisito requisito) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), requisito.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				requisito.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -526,7 +553,7 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{requisitoId=");
 		sb.append(getRequisitoId());
@@ -536,6 +563,10 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 		sb.append(getNivel());
 		sb.append(", exigible=");
 		sb.append(getExigible());
+		sb.append(", herramienta=");
+		sb.append(getHerramienta());
+		sb.append(", tipoRequisito=");
+		sb.append(getTipoRequisito());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -546,8 +577,6 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", solicitudRequerimientoPersonalId=");
-		sb.append(getSolicitudRequerimientoPersonalId());
 		sb.append("}");
 
 		return sb.toString();
@@ -555,7 +584,7 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Requisito");
@@ -578,6 +607,14 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 		sb.append(getExigible());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>herramienta</column-name><column-value><![CDATA[");
+		sb.append(getHerramienta());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>tipoRequisito</column-name><column-value><![CDATA[");
+		sb.append(getTipoRequisito());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
 		sb.append(getActivo());
 		sb.append("]]></column-value></column>");
@@ -597,10 +634,6 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>solicitudRequerimientoPersonalId</column-name><column-value><![CDATA[");
-		sb.append(getSolicitudRequerimientoPersonalId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -611,12 +644,13 @@ public class RequisitoClp extends BaseModelImpl<Requisito> implements Requisito 
 	private String _descripcion;
 	private long _nivel;
 	private boolean _exigible;
+	private long _herramienta;
+	private long _tipoRequisito;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _solicitudRequerimientoPersonalId;
 	private BaseModel<?> _requisitoRemoteModel;
 	private Class<?> _clpSerializerClass = com.rec.hitss.layer.service.ClpSerializer.class;
 }

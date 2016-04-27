@@ -55,27 +55,27 @@ public class ExperienciaLocalServiceUtil {
 	/**
 	* Creates a new experiencia with the primary key. Does not add the experiencia to the database.
 	*
-	* @param estudioId the primary key for the new experiencia
+	* @param experienciaId the primary key for the new experiencia
 	* @return the new experiencia
 	*/
 	public static com.rec.hitss.layer.model.Experiencia createExperiencia(
-		long estudioId) {
-		return getService().createExperiencia(estudioId);
+		long experienciaId) {
+		return getService().createExperiencia(experienciaId);
 	}
 
 	/**
 	* Deletes the experiencia with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia that was removed
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Experiencia deleteExperiencia(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteExperiencia(estudioId);
+		return getService().deleteExperiencia(experienciaId);
 	}
 
 	/**
@@ -182,24 +182,24 @@ public class ExperienciaLocalServiceUtil {
 	}
 
 	public static com.rec.hitss.layer.model.Experiencia fetchExperiencia(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchExperiencia(estudioId);
+		return getService().fetchExperiencia(experienciaId);
 	}
 
 	/**
 	* Returns the experiencia with the primary key.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Experiencia getExperiencia(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getExperiencia(estudioId);
+		return getService().getExperiencia(experienciaId);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

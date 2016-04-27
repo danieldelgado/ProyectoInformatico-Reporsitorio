@@ -32,6 +32,6 @@ public abstract class ReferenciaActionableDynamicQuery
 
 		setClassLoader(com.rec.hitss.layer.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("referenciaId");
+		setPrimaryKeyPropertyName("primaryKey.referenciaId");
 	}
 }

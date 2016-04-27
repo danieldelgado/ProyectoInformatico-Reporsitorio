@@ -33,11 +33,15 @@ public class ReferenciaLocalServiceClp implements ReferenciaLocalService {
 
 		_methodName1 = "createReferencia";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName2 = "deleteReferencia";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName3 = "deleteReferencia";
 
@@ -83,11 +87,15 @@ public class ReferenciaLocalServiceClp implements ReferenciaLocalService {
 
 		_methodName10 = "fetchReferencia";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName11 = "getReferencia";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -148,12 +156,13 @@ public class ReferenciaLocalServiceClp implements ReferenciaLocalService {
 
 	@Override
 	public com.rec.hitss.layer.model.Referencia createReferencia(
-		long referenciaId) {
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { referenciaId });
+					_methodParameterTypes1,
+					new Object[] { ClpSerializer.translateInput(referenciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -172,14 +181,15 @@ public class ReferenciaLocalServiceClp implements ReferenciaLocalService {
 
 	@Override
 	public com.rec.hitss.layer.model.Referencia deleteReferencia(
-		long referenciaId)
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { referenciaId });
+					_methodParameterTypes2,
+					new Object[] { ClpSerializer.translateInput(referenciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -433,13 +443,14 @@ public class ReferenciaLocalServiceClp implements ReferenciaLocalService {
 
 	@Override
 	public com.rec.hitss.layer.model.Referencia fetchReferencia(
-		long referenciaId)
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { referenciaId });
+					_methodParameterTypes10,
+					new Object[] { ClpSerializer.translateInput(referenciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -461,14 +472,16 @@ public class ReferenciaLocalServiceClp implements ReferenciaLocalService {
 	}
 
 	@Override
-	public com.rec.hitss.layer.model.Referencia getReferencia(long referenciaId)
+	public com.rec.hitss.layer.model.Referencia getReferencia(
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { referenciaId });
+					_methodParameterTypes11,
+					new Object[] { ClpSerializer.translateInput(referenciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

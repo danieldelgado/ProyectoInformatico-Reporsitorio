@@ -33,20 +33,12 @@ public class PuestoSoap implements Serializable {
 
 		soapModel.setPuestoId(model.getPuestoId());
 		soapModel.setDescripcion(model.getDescripcion());
-		soapModel.setFechaContrato(model.getFechaContrato());
-		soapModel.setFechaEvaluacionPsicologica(model.getFechaEvaluacionPsicologica());
-		soapModel.setFechaEvalucionTecnica(model.getFechaEvalucionTecnica());
-		soapModel.setFechaEntrevistaGerenteArea(model.getFechaEntrevistaGerenteArea());
-		soapModel.setFechaEvaluacionRRHH(model.getFechaEvaluacionRRHH());
-		soapModel.setFechaPostulacion(model.getFechaPostulacion());
-		soapModel.setSeleccionado(model.getSeleccionado());
+		soapModel.setCategoria(model.getCategoria());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
 		soapModel.setUsuariomodifica(model.getUsuariomodifica());
 		soapModel.setFechacreamodifica(model.getFechacreamodifica());
-		soapModel.setRequerimientoRecursoId(model.getRequerimientoRecursoId());
-		soapModel.setUsuarioHitssId(model.getUsuarioHitssId());
 
 		return soapModel;
 	}
@@ -115,64 +107,12 @@ public class PuestoSoap implements Serializable {
 		_descripcion = descripcion;
 	}
 
-	public Date getFechaContrato() {
-		return _fechaContrato;
+	public long getCategoria() {
+		return _categoria;
 	}
 
-	public void setFechaContrato(Date fechaContrato) {
-		_fechaContrato = fechaContrato;
-	}
-
-	public Date getFechaEvaluacionPsicologica() {
-		return _fechaEvaluacionPsicologica;
-	}
-
-	public void setFechaEvaluacionPsicologica(Date fechaEvaluacionPsicologica) {
-		_fechaEvaluacionPsicologica = fechaEvaluacionPsicologica;
-	}
-
-	public Date getFechaEvalucionTecnica() {
-		return _fechaEvalucionTecnica;
-	}
-
-	public void setFechaEvalucionTecnica(Date fechaEvalucionTecnica) {
-		_fechaEvalucionTecnica = fechaEvalucionTecnica;
-	}
-
-	public Date getFechaEntrevistaGerenteArea() {
-		return _fechaEntrevistaGerenteArea;
-	}
-
-	public void setFechaEntrevistaGerenteArea(Date fechaEntrevistaGerenteArea) {
-		_fechaEntrevistaGerenteArea = fechaEntrevistaGerenteArea;
-	}
-
-	public Date getFechaEvaluacionRRHH() {
-		return _fechaEvaluacionRRHH;
-	}
-
-	public void setFechaEvaluacionRRHH(Date fechaEvaluacionRRHH) {
-		_fechaEvaluacionRRHH = fechaEvaluacionRRHH;
-	}
-
-	public Date getFechaPostulacion() {
-		return _fechaPostulacion;
-	}
-
-	public void setFechaPostulacion(Date fechaPostulacion) {
-		_fechaPostulacion = fechaPostulacion;
-	}
-
-	public boolean getSeleccionado() {
-		return _seleccionado;
-	}
-
-	public boolean isSeleccionado() {
-		return _seleccionado;
-	}
-
-	public void setSeleccionado(boolean seleccionado) {
-		_seleccionado = seleccionado;
+	public void setCategoria(long categoria) {
+		_categoria = categoria;
 	}
 
 	public boolean getActivo() {
@@ -219,36 +159,12 @@ public class PuestoSoap implements Serializable {
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	public long getRequerimientoRecursoId() {
-		return _requerimientoRecursoId;
-	}
-
-	public void setRequerimientoRecursoId(long requerimientoRecursoId) {
-		_requerimientoRecursoId = requerimientoRecursoId;
-	}
-
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-	}
-
 	private long _puestoId;
 	private String _descripcion;
-	private Date _fechaContrato;
-	private Date _fechaEvaluacionPsicologica;
-	private Date _fechaEvalucionTecnica;
-	private Date _fechaEntrevistaGerenteArea;
-	private Date _fechaEvaluacionRRHH;
-	private Date _fechaPostulacion;
-	private boolean _seleccionado;
+	private long _categoria;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _requerimientoRecursoId;
-	private long _usuarioHitssId;
 }

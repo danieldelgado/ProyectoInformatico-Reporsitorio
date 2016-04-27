@@ -89,109 +89,18 @@ public interface PuestoModel extends BaseModel<Puesto> {
 	public void setDescripcion(String descripcion);
 
 	/**
-	 * Returns the fecha contrato of this puesto.
+	 * Returns the categoria of this puesto.
 	 *
-	 * @return the fecha contrato of this puesto
+	 * @return the categoria of this puesto
 	 */
-	public Date getFechaContrato();
+	public long getCategoria();
 
 	/**
-	 * Sets the fecha contrato of this puesto.
+	 * Sets the categoria of this puesto.
 	 *
-	 * @param fechaContrato the fecha contrato of this puesto
+	 * @param categoria the categoria of this puesto
 	 */
-	public void setFechaContrato(Date fechaContrato);
-
-	/**
-	 * Returns the fecha evaluacion psicologica of this puesto.
-	 *
-	 * @return the fecha evaluacion psicologica of this puesto
-	 */
-	public Date getFechaEvaluacionPsicologica();
-
-	/**
-	 * Sets the fecha evaluacion psicologica of this puesto.
-	 *
-	 * @param fechaEvaluacionPsicologica the fecha evaluacion psicologica of this puesto
-	 */
-	public void setFechaEvaluacionPsicologica(Date fechaEvaluacionPsicologica);
-
-	/**
-	 * Returns the fecha evalucion tecnica of this puesto.
-	 *
-	 * @return the fecha evalucion tecnica of this puesto
-	 */
-	public Date getFechaEvalucionTecnica();
-
-	/**
-	 * Sets the fecha evalucion tecnica of this puesto.
-	 *
-	 * @param fechaEvalucionTecnica the fecha evalucion tecnica of this puesto
-	 */
-	public void setFechaEvalucionTecnica(Date fechaEvalucionTecnica);
-
-	/**
-	 * Returns the fecha entrevista gerente area of this puesto.
-	 *
-	 * @return the fecha entrevista gerente area of this puesto
-	 */
-	public Date getFechaEntrevistaGerenteArea();
-
-	/**
-	 * Sets the fecha entrevista gerente area of this puesto.
-	 *
-	 * @param fechaEntrevistaGerenteArea the fecha entrevista gerente area of this puesto
-	 */
-	public void setFechaEntrevistaGerenteArea(Date fechaEntrevistaGerenteArea);
-
-	/**
-	 * Returns the fecha evaluacion r r h h of this puesto.
-	 *
-	 * @return the fecha evaluacion r r h h of this puesto
-	 */
-	public Date getFechaEvaluacionRRHH();
-
-	/**
-	 * Sets the fecha evaluacion r r h h of this puesto.
-	 *
-	 * @param fechaEvaluacionRRHH the fecha evaluacion r r h h of this puesto
-	 */
-	public void setFechaEvaluacionRRHH(Date fechaEvaluacionRRHH);
-
-	/**
-	 * Returns the fecha postulacion of this puesto.
-	 *
-	 * @return the fecha postulacion of this puesto
-	 */
-	public Date getFechaPostulacion();
-
-	/**
-	 * Sets the fecha postulacion of this puesto.
-	 *
-	 * @param fechaPostulacion the fecha postulacion of this puesto
-	 */
-	public void setFechaPostulacion(Date fechaPostulacion);
-
-	/**
-	 * Returns the seleccionado of this puesto.
-	 *
-	 * @return the seleccionado of this puesto
-	 */
-	public boolean getSeleccionado();
-
-	/**
-	 * Returns <code>true</code> if this puesto is seleccionado.
-	 *
-	 * @return <code>true</code> if this puesto is seleccionado; <code>false</code> otherwise
-	 */
-	public boolean isSeleccionado();
-
-	/**
-	 * Sets whether this puesto is seleccionado.
-	 *
-	 * @param seleccionado the seleccionado of this puesto
-	 */
-	public void setSeleccionado(boolean seleccionado);
+	public void setCategoria(long categoria);
 
 	/**
 	 * Returns the activo of this puesto.
@@ -269,34 +178,6 @@ public interface PuestoModel extends BaseModel<Puesto> {
 	 * @param fechacreamodifica the fechacreamodifica of this puesto
 	 */
 	public void setFechacreamodifica(Date fechacreamodifica);
-
-	/**
-	 * Returns the requerimiento recurso ID of this puesto.
-	 *
-	 * @return the requerimiento recurso ID of this puesto
-	 */
-	public long getRequerimientoRecursoId();
-
-	/**
-	 * Sets the requerimiento recurso ID of this puesto.
-	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID of this puesto
-	 */
-	public void setRequerimientoRecursoId(long requerimientoRecursoId);
-
-	/**
-	 * Returns the usuario hitss ID of this puesto.
-	 *
-	 * @return the usuario hitss ID of this puesto
-	 */
-	public long getUsuarioHitssId();
-
-	/**
-	 * Sets the usuario hitss ID of this puesto.
-	 *
-	 * @param usuarioHitssId the usuario hitss ID of this puesto
-	 */
-	public void setUsuarioHitssId(long usuarioHitssId);
 
 	@Override
 	public boolean isNew();

@@ -21,9 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.rec.hitss.layer.service.http.RequisitoServiceSoap}.
  *
  * @author Crossfire
+ * @see com.rec.hitss.layer.service.http.RequisitoServiceSoap
  * @generated
  */
 public class RequisitoSoap implements Serializable {
@@ -34,12 +35,13 @@ public class RequisitoSoap implements Serializable {
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setNivel(model.getNivel());
 		soapModel.setExigible(model.getExigible());
+		soapModel.setHerramienta(model.getHerramienta());
+		soapModel.setTipoRequisito(model.getTipoRequisito());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
 		soapModel.setUsuariomodifica(model.getUsuariomodifica());
 		soapModel.setFechacreamodifica(model.getFechacreamodifica());
-		soapModel.setSolicitudRequerimientoPersonalId(model.getSolicitudRequerimientoPersonalId());
 
 		return soapModel;
 	}
@@ -128,6 +130,22 @@ public class RequisitoSoap implements Serializable {
 		_exigible = exigible;
 	}
 
+	public long getHerramienta() {
+		return _herramienta;
+	}
+
+	public void setHerramienta(long herramienta) {
+		_herramienta = herramienta;
+	}
+
+	public long getTipoRequisito() {
+		return _tipoRequisito;
+	}
+
+	public void setTipoRequisito(long tipoRequisito) {
+		_tipoRequisito = tipoRequisito;
+	}
+
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -172,23 +190,15 @@ public class RequisitoSoap implements Serializable {
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	public long getSolicitudRequerimientoPersonalId() {
-		return _solicitudRequerimientoPersonalId;
-	}
-
-	public void setSolicitudRequerimientoPersonalId(
-		long solicitudRequerimientoPersonalId) {
-		_solicitudRequerimientoPersonalId = solicitudRequerimientoPersonalId;
-	}
-
 	private long _requisitoId;
 	private String _descripcion;
 	private long _nivel;
 	private boolean _exigible;
+	private long _herramienta;
+	private long _tipoRequisito;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _solicitudRequerimientoPersonalId;
 }

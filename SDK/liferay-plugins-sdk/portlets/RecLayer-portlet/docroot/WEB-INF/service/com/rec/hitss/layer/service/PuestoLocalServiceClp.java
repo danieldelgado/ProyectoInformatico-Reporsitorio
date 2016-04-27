@@ -110,9 +110,9 @@ public class PuestoLocalServiceClp implements PuestoLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "findByRequerimientoRecurso";
+		_methodName19 = "findByfiltroDescripcion";
 
-		_methodParameterTypes19 = new String[] { "java.lang.Long" };
+		_methodParameterTypes19 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -662,33 +662,21 @@ public class PuestoLocalServiceClp implements PuestoLocalService {
 	}
 
 	@Override
-	public java.util.List<com.rec.hitss.layer.model.Puesto> findByRequerimientoRecurso(
-		java.lang.Long requerimientoRecursoId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.rec.hitss.layer.NoSuchRequerimientoRecursoException,
-			java.text.ParseException {
+	public java.util.List<com.rec.hitss.layer.model.Puesto> findByfiltroDescripcion(
+		java.lang.String descripcion)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName19,
 					_methodParameterTypes19,
-					new Object[] {
-						ClpSerializer.translateInput(requerimientoRecursoId)
-					});
+					new Object[] { ClpSerializer.translateInput(descripcion) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof com.rec.hitss.layer.NoSuchRequerimientoRecursoException) {
-				throw (com.rec.hitss.layer.NoSuchRequerimientoRecursoException)t;
-			}
-
-			if (t instanceof java.text.ParseException) {
-				throw (java.text.ParseException)t;
 			}
 
 			if (t instanceof RuntimeException) {

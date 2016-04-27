@@ -38,7 +38,7 @@ public class RequisitoCacheModel implements CacheModel<Requisito>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{requisitoId=");
 		sb.append(requisitoId);
@@ -48,6 +48,10 @@ public class RequisitoCacheModel implements CacheModel<Requisito>,
 		sb.append(nivel);
 		sb.append(", exigible=");
 		sb.append(exigible);
+		sb.append(", herramienta=");
+		sb.append(herramienta);
+		sb.append(", tipoRequisito=");
+		sb.append(tipoRequisito);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -58,8 +62,6 @@ public class RequisitoCacheModel implements CacheModel<Requisito>,
 		sb.append(usuariomodifica);
 		sb.append(", fechacreamodifica=");
 		sb.append(fechacreamodifica);
-		sb.append(", solicitudRequerimientoPersonalId=");
-		sb.append(solicitudRequerimientoPersonalId);
 		sb.append("}");
 
 		return sb.toString();
@@ -80,6 +82,8 @@ public class RequisitoCacheModel implements CacheModel<Requisito>,
 
 		requisitoImpl.setNivel(nivel);
 		requisitoImpl.setExigible(exigible);
+		requisitoImpl.setHerramienta(herramienta);
+		requisitoImpl.setTipoRequisito(tipoRequisito);
 		requisitoImpl.setActivo(activo);
 		requisitoImpl.setUsuariocrea(usuariocrea);
 
@@ -99,8 +103,6 @@ public class RequisitoCacheModel implements CacheModel<Requisito>,
 			requisitoImpl.setFechacreamodifica(new Date(fechacreamodifica));
 		}
 
-		requisitoImpl.setSolicitudRequerimientoPersonalId(solicitudRequerimientoPersonalId);
-
 		requisitoImpl.resetOriginalValues();
 
 		return requisitoImpl;
@@ -112,12 +114,13 @@ public class RequisitoCacheModel implements CacheModel<Requisito>,
 		descripcion = objectInput.readUTF();
 		nivel = objectInput.readLong();
 		exigible = objectInput.readBoolean();
+		herramienta = objectInput.readLong();
+		tipoRequisito = objectInput.readLong();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
 		fechacreamodifica = objectInput.readLong();
-		solicitudRequerimientoPersonalId = objectInput.readLong();
 	}
 
 	@Override
@@ -134,22 +137,24 @@ public class RequisitoCacheModel implements CacheModel<Requisito>,
 
 		objectOutput.writeLong(nivel);
 		objectOutput.writeBoolean(exigible);
+		objectOutput.writeLong(herramienta);
+		objectOutput.writeLong(tipoRequisito);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
 		objectOutput.writeLong(fechacreamodifica);
-		objectOutput.writeLong(solicitudRequerimientoPersonalId);
 	}
 
 	public long requisitoId;
 	public String descripcion;
 	public long nivel;
 	public boolean exigible;
+	public long herramienta;
+	public long tipoRequisito;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
 	public long fechacreamodifica;
-	public long solicitudRequerimientoPersonalId;
 }

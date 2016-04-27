@@ -15,6 +15,7 @@
 package com.rec.hitss.layer.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -29,13 +30,16 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.rec.hitss.layer.model.Requisito;
 import com.rec.hitss.layer.model.RequisitoModel;
+import com.rec.hitss.layer.model.RequisitoSoap;
 
 import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -51,6 +55,7 @@ import java.util.Map;
  * @see com.rec.hitss.layer.model.RequisitoModel
  * @generated
  */
+@JSON(strict = true)
 public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 	implements RequisitoModel {
 	/*
@@ -64,17 +69,18 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 			{ "descripcion", Types.VARCHAR },
 			{ "nivel", Types.BIGINT },
 			{ "exigible", Types.BOOLEAN },
+			{ "herramienta", Types.BIGINT },
+			{ "tipoRequisito", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP },
-			{ "solicitudRequerimientoPersonalId", Types.BIGINT }
+			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Requisito (requisitoId LONG not null primary key,descripcion VARCHAR(75) null,nivel LONG,exigible BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,solicitudRequerimientoPersonalId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Requisito (requisitoId LONG not null primary key,descripcion VARCHAR(75) null,nivel LONG,exigible BOOLEAN,herramienta LONG,tipoRequisito LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Requisito";
-	public static final String ORDER_BY_JPQL = " ORDER BY requisito.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Requisito.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY requisito.fechacreamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Requisito.fechacreamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -84,7 +90,60 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.rec.hitss.layer.model.Requisito"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.rec.hitss.layer.model.Requisito"),
+			true);
+	public static long DESCRIPCION_COLUMN_BITMASK = 1L;
+	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 2L;
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static Requisito toModel(RequisitoSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
+		Requisito model = new RequisitoImpl();
+
+		model.setRequisitoId(soapModel.getRequisitoId());
+		model.setDescripcion(soapModel.getDescripcion());
+		model.setNivel(soapModel.getNivel());
+		model.setExigible(soapModel.getExigible());
+		model.setHerramienta(soapModel.getHerramienta());
+		model.setTipoRequisito(soapModel.getTipoRequisito());
+		model.setActivo(soapModel.getActivo());
+		model.setUsuariocrea(soapModel.getUsuariocrea());
+		model.setFechacrea(soapModel.getFechacrea());
+		model.setUsuariomodifica(soapModel.getUsuariomodifica());
+		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<Requisito> toModels(RequisitoSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
+		List<Requisito> models = new ArrayList<Requisito>(soapModels.length);
+
+		for (RequisitoSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.rec.hitss.layer.model.Requisito"));
 
@@ -129,13 +188,13 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("nivel", getNivel());
 		attributes.put("exigible", getExigible());
+		attributes.put("herramienta", getHerramienta());
+		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("solicitudRequerimientoPersonalId",
-			getSolicitudRequerimientoPersonalId());
 
 		return attributes;
 	}
@@ -164,6 +223,18 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 
 		if (exigible != null) {
 			setExigible(exigible);
+		}
+
+		Long herramienta = (Long)attributes.get("herramienta");
+
+		if (herramienta != null) {
+			setHerramienta(herramienta);
+		}
+
+		Long tipoRequisito = (Long)attributes.get("tipoRequisito");
+
+		if (tipoRequisito != null) {
+			setTipoRequisito(tipoRequisito);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -195,15 +266,9 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
 		}
-
-		Long solicitudRequerimientoPersonalId = (Long)attributes.get(
-				"solicitudRequerimientoPersonalId");
-
-		if (solicitudRequerimientoPersonalId != null) {
-			setSolicitudRequerimientoPersonalId(solicitudRequerimientoPersonalId);
-		}
 	}
 
+	@JSON
 	@Override
 	public long getRequisitoId() {
 		return _requisitoId;
@@ -214,6 +279,7 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		_requisitoId = requisitoId;
 	}
 
+	@JSON
 	@Override
 	public String getDescripcion() {
 		if (_descripcion == null) {
@@ -226,9 +292,20 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 
 	@Override
 	public void setDescripcion(String descripcion) {
+		_columnBitmask |= DESCRIPCION_COLUMN_BITMASK;
+
+		if (_originalDescripcion == null) {
+			_originalDescripcion = _descripcion;
+		}
+
 		_descripcion = descripcion;
 	}
 
+	public String getOriginalDescripcion() {
+		return GetterUtil.getString(_originalDescripcion);
+	}
+
+	@JSON
 	@Override
 	public long getNivel() {
 		return _nivel;
@@ -239,6 +316,7 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		_nivel = nivel;
 	}
 
+	@JSON
 	@Override
 	public boolean getExigible() {
 		return _exigible;
@@ -254,6 +332,29 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		_exigible = exigible;
 	}
 
+	@JSON
+	@Override
+	public long getHerramienta() {
+		return _herramienta;
+	}
+
+	@Override
+	public void setHerramienta(long herramienta) {
+		_herramienta = herramienta;
+	}
+
+	@JSON
+	@Override
+	public long getTipoRequisito() {
+		return _tipoRequisito;
+	}
+
+	@Override
+	public void setTipoRequisito(long tipoRequisito) {
+		_tipoRequisito = tipoRequisito;
+	}
+
+	@JSON
 	@Override
 	public boolean getActivo() {
 		return _activo;
@@ -269,6 +370,7 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		_activo = activo;
 	}
 
+	@JSON
 	@Override
 	public long getUsuariocrea() {
 		return _usuariocrea;
@@ -279,6 +381,7 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		_usuariocrea = usuariocrea;
 	}
 
+	@JSON
 	@Override
 	public Date getFechacrea() {
 		return _fechacrea;
@@ -289,6 +392,7 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		_fechacrea = fechacrea;
 	}
 
+	@JSON
 	@Override
 	public long getUsuariomodifica() {
 		return _usuariomodifica;
@@ -299,6 +403,7 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		_usuariomodifica = usuariomodifica;
 	}
 
+	@JSON
 	@Override
 	public Date getFechacreamodifica() {
 		return _fechacreamodifica;
@@ -306,18 +411,13 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 
 	@Override
 	public void setFechacreamodifica(Date fechacreamodifica) {
+		_columnBitmask = -1L;
+
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	@Override
-	public long getSolicitudRequerimientoPersonalId() {
-		return _solicitudRequerimientoPersonalId;
-	}
-
-	@Override
-	public void setSolicitudRequerimientoPersonalId(
-		long solicitudRequerimientoPersonalId) {
-		_solicitudRequerimientoPersonalId = solicitudRequerimientoPersonalId;
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -351,12 +451,13 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		requisitoImpl.setDescripcion(getDescripcion());
 		requisitoImpl.setNivel(getNivel());
 		requisitoImpl.setExigible(getExigible());
+		requisitoImpl.setHerramienta(getHerramienta());
+		requisitoImpl.setTipoRequisito(getTipoRequisito());
 		requisitoImpl.setActivo(getActivo());
 		requisitoImpl.setUsuariocrea(getUsuariocrea());
 		requisitoImpl.setFechacrea(getFechacrea());
 		requisitoImpl.setUsuariomodifica(getUsuariomodifica());
 		requisitoImpl.setFechacreamodifica(getFechacreamodifica());
-		requisitoImpl.setSolicitudRequerimientoPersonalId(getSolicitudRequerimientoPersonalId());
 
 		requisitoImpl.resetOriginalValues();
 
@@ -367,7 +468,8 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 	public int compareTo(Requisito requisito) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), requisito.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				requisito.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -405,6 +507,11 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 
 	@Override
 	public void resetOriginalValues() {
+		RequisitoModelImpl requisitoModelImpl = this;
+
+		requisitoModelImpl._originalDescripcion = requisitoModelImpl._descripcion;
+
+		requisitoModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -424,6 +531,10 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		requisitoCacheModel.nivel = getNivel();
 
 		requisitoCacheModel.exigible = getExigible();
+
+		requisitoCacheModel.herramienta = getHerramienta();
+
+		requisitoCacheModel.tipoRequisito = getTipoRequisito();
 
 		requisitoCacheModel.activo = getActivo();
 
@@ -449,14 +560,12 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 			requisitoCacheModel.fechacreamodifica = Long.MIN_VALUE;
 		}
 
-		requisitoCacheModel.solicitudRequerimientoPersonalId = getSolicitudRequerimientoPersonalId();
-
 		return requisitoCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{requisitoId=");
 		sb.append(getRequisitoId());
@@ -466,6 +575,10 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		sb.append(getNivel());
 		sb.append(", exigible=");
 		sb.append(getExigible());
+		sb.append(", herramienta=");
+		sb.append(getHerramienta());
+		sb.append(", tipoRequisito=");
+		sb.append(getTipoRequisito());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -476,8 +589,6 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", solicitudRequerimientoPersonalId=");
-		sb.append(getSolicitudRequerimientoPersonalId());
 		sb.append("}");
 
 		return sb.toString();
@@ -485,7 +596,7 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Requisito");
@@ -508,6 +619,14 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		sb.append(getExigible());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>herramienta</column-name><column-value><![CDATA[");
+		sb.append(getHerramienta());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>tipoRequisito</column-name><column-value><![CDATA[");
+		sb.append(getTipoRequisito());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
 		sb.append(getActivo());
 		sb.append("]]></column-value></column>");
@@ -527,10 +646,6 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>solicitudRequerimientoPersonalId</column-name><column-value><![CDATA[");
-		sb.append(getSolicitudRequerimientoPersonalId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -543,13 +658,16 @@ public class RequisitoModelImpl extends BaseModelImpl<Requisito>
 		};
 	private long _requisitoId;
 	private String _descripcion;
+	private String _originalDescripcion;
 	private long _nivel;
 	private boolean _exigible;
+	private long _herramienta;
+	private long _tipoRequisito;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _solicitudRequerimientoPersonalId;
+	private long _columnBitmask;
 	private Requisito _escapedModel;
 }

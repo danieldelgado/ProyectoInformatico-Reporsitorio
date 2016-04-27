@@ -89,6 +89,20 @@ public interface FuncionModel extends BaseModel<Funcion> {
 	public void setDescripcion(String descripcion);
 
 	/**
+	 * Returns the etiqueta of this funcion.
+	 *
+	 * @return the etiqueta of this funcion
+	 */
+	public long getEtiqueta();
+
+	/**
+	 * Sets the etiqueta of this funcion.
+	 *
+	 * @param etiqueta the etiqueta of this funcion
+	 */
+	public void setEtiqueta(long etiqueta);
+
+	/**
 	 * Returns the exigible of this funcion.
 	 *
 	 * @return the exigible of this funcion
@@ -108,20 +122,6 @@ public interface FuncionModel extends BaseModel<Funcion> {
 	 * @param exigible the exigible of this funcion
 	 */
 	public void setExigible(boolean exigible);
-
-	/**
-	 * Returns the etiqueta ID of this funcion.
-	 *
-	 * @return the etiqueta ID of this funcion
-	 */
-	public long getEtiquetaId();
-
-	/**
-	 * Sets the etiqueta ID of this funcion.
-	 *
-	 * @param etiquetaId the etiqueta ID of this funcion
-	 */
-	public void setEtiquetaId(long etiquetaId);
 
 	/**
 	 * Returns the activo of this funcion.

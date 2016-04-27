@@ -51,8 +51,8 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 
 		attributes.put("funcionId", getFuncionId());
 		attributes.put("descripcion", getDescripcion());
+		attributes.put("etiqueta", getEtiqueta());
 		attributes.put("exigible", getExigible());
-		attributes.put("etiquetaId", getEtiquetaId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -76,16 +76,16 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 			setDescripcion(descripcion);
 		}
 
+		Long etiqueta = (Long)attributes.get("etiqueta");
+
+		if (etiqueta != null) {
+			setEtiqueta(etiqueta);
+		}
+
 		Boolean exigible = (Boolean)attributes.get("exigible");
 
 		if (exigible != null) {
 			setExigible(exigible);
-		}
-
-		Long etiquetaId = (Long)attributes.get("etiquetaId");
-
-		if (etiquetaId != null) {
-			setEtiquetaId(etiquetaId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -180,6 +180,26 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 	}
 
 	/**
+	* Returns the etiqueta of this funcion.
+	*
+	* @return the etiqueta of this funcion
+	*/
+	@Override
+	public long getEtiqueta() {
+		return _funcion.getEtiqueta();
+	}
+
+	/**
+	* Sets the etiqueta of this funcion.
+	*
+	* @param etiqueta the etiqueta of this funcion
+	*/
+	@Override
+	public void setEtiqueta(long etiqueta) {
+		_funcion.setEtiqueta(etiqueta);
+	}
+
+	/**
 	* Returns the exigible of this funcion.
 	*
 	* @return the exigible of this funcion
@@ -207,26 +227,6 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 	@Override
 	public void setExigible(boolean exigible) {
 		_funcion.setExigible(exigible);
-	}
-
-	/**
-	* Returns the etiqueta ID of this funcion.
-	*
-	* @return the etiqueta ID of this funcion
-	*/
-	@Override
-	public long getEtiquetaId() {
-		return _funcion.getEtiquetaId();
-	}
-
-	/**
-	* Sets the etiqueta ID of this funcion.
-	*
-	* @param etiquetaId the etiqueta ID of this funcion
-	*/
-	@Override
-	public void setEtiquetaId(long etiquetaId) {
-		_funcion.setEtiquetaId(etiquetaId);
 	}
 
 	/**

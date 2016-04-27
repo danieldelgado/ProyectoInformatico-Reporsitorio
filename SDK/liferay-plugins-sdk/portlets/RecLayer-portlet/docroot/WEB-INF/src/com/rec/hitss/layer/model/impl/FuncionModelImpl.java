@@ -67,18 +67,18 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "funcionId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
+			{ "etiqueta", Types.BIGINT },
 			{ "exigible", Types.BOOLEAN },
-			{ "etiquetaId", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Funcion (funcionId LONG not null primary key,descripcion VARCHAR(75) null,exigible BOOLEAN,etiquetaId LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Funcion (funcionId LONG not null primary key,descripcion VARCHAR(75) null,etiqueta LONG,exigible BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Funcion";
-	public static final String ORDER_BY_JPQL = " ORDER BY funcion.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Funcion.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY funcion.fechacreamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Funcion.fechacreamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -88,7 +88,11 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.rec.hitss.layer.model.Funcion"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.rec.hitss.layer.model.Funcion"),
+			true);
+	public static long DESCRIPCION_COLUMN_BITMASK = 1L;
+	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -105,8 +109,8 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 		model.setFuncionId(soapModel.getFuncionId());
 		model.setDescripcion(soapModel.getDescripcion());
+		model.setEtiqueta(soapModel.getEtiqueta());
 		model.setExigible(soapModel.getExigible());
-		model.setEtiquetaId(soapModel.getEtiquetaId());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -136,6 +140,19 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 		return models;
 	}
 
+	public static final String MAPPING_TABLE_REC_SOLICITUDREQUERIMIENTOFUNCION_NAME =
+		"rec_SolicitudRequerimientoFuncion";
+	public static final Object[][] MAPPING_TABLE_REC_SOLICITUDREQUERIMIENTOFUNCION_COLUMNS =
+		{
+			{ "funcionId", Types.BIGINT },
+			{ "solicitudRequerimientoId", Types.BIGINT }
+		};
+	public static final String MAPPING_TABLE_REC_SOLICITUDREQUERIMIENTOFUNCION_SQL_CREATE =
+		"create table rec_SolicitudRequerimientoFuncion (funcionId LONG not null,solicitudRequerimientoId LONG not null,primary key (funcionId, solicitudRequerimientoId))";
+	public static final boolean FINDER_CACHE_ENABLED_REC_SOLICITUDREQUERIMIENTOFUNCION =
+		GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.finder.cache.enabled.rec_SolicitudRequerimientoFuncion"),
+			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.rec.hitss.layer.model.Funcion"));
 
@@ -178,8 +195,8 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 		attributes.put("funcionId", getFuncionId());
 		attributes.put("descripcion", getDescripcion());
+		attributes.put("etiqueta", getEtiqueta());
 		attributes.put("exigible", getExigible());
-		attributes.put("etiquetaId", getEtiquetaId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -203,16 +220,16 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 			setDescripcion(descripcion);
 		}
 
+		Long etiqueta = (Long)attributes.get("etiqueta");
+
+		if (etiqueta != null) {
+			setEtiqueta(etiqueta);
+		}
+
 		Boolean exigible = (Boolean)attributes.get("exigible");
 
 		if (exigible != null) {
 			setExigible(exigible);
-		}
-
-		Long etiquetaId = (Long)attributes.get("etiquetaId");
-
-		if (etiquetaId != null) {
-			setEtiquetaId(etiquetaId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -270,7 +287,28 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 	@Override
 	public void setDescripcion(String descripcion) {
+		_columnBitmask |= DESCRIPCION_COLUMN_BITMASK;
+
+		if (_originalDescripcion == null) {
+			_originalDescripcion = _descripcion;
+		}
+
 		_descripcion = descripcion;
+	}
+
+	public String getOriginalDescripcion() {
+		return GetterUtil.getString(_originalDescripcion);
+	}
+
+	@JSON
+	@Override
+	public long getEtiqueta() {
+		return _etiqueta;
+	}
+
+	@Override
+	public void setEtiqueta(long etiqueta) {
+		_etiqueta = etiqueta;
 	}
 
 	@JSON
@@ -287,17 +325,6 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 	@Override
 	public void setExigible(boolean exigible) {
 		_exigible = exigible;
-	}
-
-	@JSON
-	@Override
-	public long getEtiquetaId() {
-		return _etiquetaId;
-	}
-
-	@Override
-	public void setEtiquetaId(long etiquetaId) {
-		_etiquetaId = etiquetaId;
 	}
 
 	@JSON
@@ -357,7 +384,13 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 	@Override
 	public void setFechacreamodifica(Date fechacreamodifica) {
+		_columnBitmask = -1L;
+
 		_fechacreamodifica = fechacreamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -389,8 +422,8 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 		funcionImpl.setFuncionId(getFuncionId());
 		funcionImpl.setDescripcion(getDescripcion());
+		funcionImpl.setEtiqueta(getEtiqueta());
 		funcionImpl.setExigible(getExigible());
-		funcionImpl.setEtiquetaId(getEtiquetaId());
 		funcionImpl.setActivo(getActivo());
 		funcionImpl.setUsuariocrea(getUsuariocrea());
 		funcionImpl.setFechacrea(getFechacrea());
@@ -406,7 +439,8 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 	public int compareTo(Funcion funcion) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), funcion.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				funcion.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -444,6 +478,11 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 	@Override
 	public void resetOriginalValues() {
+		FuncionModelImpl funcionModelImpl = this;
+
+		funcionModelImpl._originalDescripcion = funcionModelImpl._descripcion;
+
+		funcionModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -460,9 +499,9 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 			funcionCacheModel.descripcion = null;
 		}
 
-		funcionCacheModel.exigible = getExigible();
+		funcionCacheModel.etiqueta = getEtiqueta();
 
-		funcionCacheModel.etiquetaId = getEtiquetaId();
+		funcionCacheModel.exigible = getExigible();
 
 		funcionCacheModel.activo = getActivo();
 
@@ -499,10 +538,10 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 		sb.append(getFuncionId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
+		sb.append(", etiqueta=");
+		sb.append(getEtiqueta());
 		sb.append(", exigible=");
 		sb.append(getExigible());
-		sb.append(", etiquetaId=");
-		sb.append(getEtiquetaId());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -535,12 +574,12 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>exigible</column-name><column-value><![CDATA[");
-		sb.append(getExigible());
+			"<column><column-name>etiqueta</column-name><column-value><![CDATA[");
+		sb.append(getEtiqueta());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>etiquetaId</column-name><column-value><![CDATA[");
-		sb.append(getEtiquetaId());
+			"<column><column-name>exigible</column-name><column-value><![CDATA[");
+		sb.append(getExigible());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -574,12 +613,14 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 		};
 	private long _funcionId;
 	private String _descripcion;
+	private String _originalDescripcion;
+	private long _etiqueta;
 	private boolean _exigible;
-	private long _etiquetaId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
+	private long _columnBitmask;
 	private Funcion _escapedModel;
 }

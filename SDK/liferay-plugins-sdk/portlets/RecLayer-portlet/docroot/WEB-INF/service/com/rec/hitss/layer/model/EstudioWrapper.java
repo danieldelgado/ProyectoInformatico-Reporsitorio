@@ -50,17 +50,14 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("estudioId", getEstudioId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("nombre", getNombre());
-		attributes.put("logro", getLogro());
-		attributes.put("fechaInicio", getFechaInicio());
-		attributes.put("fechaFino", getFechaFino());
 		attributes.put("nivel", getNivel());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -73,28 +70,16 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 			setEstudioId(estudioId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
 		String nombre = (String)attributes.get("nombre");
 
 		if (nombre != null) {
 			setNombre(nombre);
-		}
-
-		String logro = (String)attributes.get("logro");
-
-		if (logro != null) {
-			setLogro(logro);
-		}
-
-		Date fechaInicio = (Date)attributes.get("fechaInicio");
-
-		if (fechaInicio != null) {
-			setFechaInicio(fechaInicio);
-		}
-
-		Date fechaFino = (Date)attributes.get("fechaFino");
-
-		if (fechaFino != null) {
-			setFechaFino(fechaFino);
 		}
 
 		Long nivel = (Long)attributes.get("nivel");
@@ -131,12 +116,6 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 	}
 
@@ -181,6 +160,26 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 	}
 
 	/**
+	* Returns the usuario ID of this estudio.
+	*
+	* @return the usuario ID of this estudio
+	*/
+	@Override
+	public long getUsuarioId() {
+		return _estudio.getUsuarioId();
+	}
+
+	/**
+	* Sets the usuario ID of this estudio.
+	*
+	* @param usuarioId the usuario ID of this estudio
+	*/
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_estudio.setUsuarioId(usuarioId);
+	}
+
+	/**
 	* Returns the nombre of this estudio.
 	*
 	* @return the nombre of this estudio
@@ -198,66 +197,6 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 	@Override
 	public void setNombre(java.lang.String nombre) {
 		_estudio.setNombre(nombre);
-	}
-
-	/**
-	* Returns the logro of this estudio.
-	*
-	* @return the logro of this estudio
-	*/
-	@Override
-	public java.lang.String getLogro() {
-		return _estudio.getLogro();
-	}
-
-	/**
-	* Sets the logro of this estudio.
-	*
-	* @param logro the logro of this estudio
-	*/
-	@Override
-	public void setLogro(java.lang.String logro) {
-		_estudio.setLogro(logro);
-	}
-
-	/**
-	* Returns the fecha inicio of this estudio.
-	*
-	* @return the fecha inicio of this estudio
-	*/
-	@Override
-	public java.util.Date getFechaInicio() {
-		return _estudio.getFechaInicio();
-	}
-
-	/**
-	* Sets the fecha inicio of this estudio.
-	*
-	* @param fechaInicio the fecha inicio of this estudio
-	*/
-	@Override
-	public void setFechaInicio(java.util.Date fechaInicio) {
-		_estudio.setFechaInicio(fechaInicio);
-	}
-
-	/**
-	* Returns the fecha fino of this estudio.
-	*
-	* @return the fecha fino of this estudio
-	*/
-	@Override
-	public java.util.Date getFechaFino() {
-		return _estudio.getFechaFino();
-	}
-
-	/**
-	* Sets the fecha fino of this estudio.
-	*
-	* @param fechaFino the fecha fino of this estudio
-	*/
-	@Override
-	public void setFechaFino(java.util.Date fechaFino) {
-		_estudio.setFechaFino(fechaFino);
 	}
 
 	/**
@@ -388,26 +327,6 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 	@Override
 	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
 		_estudio.setFechacreamodifica(fechacreamodifica);
-	}
-
-	/**
-	* Returns the usuario hitss ID of this estudio.
-	*
-	* @return the usuario hitss ID of this estudio
-	*/
-	@Override
-	public long getUsuarioHitssId() {
-		return _estudio.getUsuarioHitssId();
-	}
-
-	/**
-	* Sets the usuario hitss ID of this estudio.
-	*
-	* @param usuarioHitssId the usuario hitss ID of this estudio
-	*/
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_estudio.setUsuarioHitssId(usuarioHitssId);
 	}
 
 	@Override

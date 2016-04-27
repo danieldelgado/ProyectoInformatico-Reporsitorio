@@ -74,6 +74,20 @@ public interface EstudioModel extends BaseModel<Estudio> {
 	public void setEstudioId(long estudioId);
 
 	/**
+	 * Returns the usuario ID of this estudio.
+	 *
+	 * @return the usuario ID of this estudio
+	 */
+	public long getUsuarioId();
+
+	/**
+	 * Sets the usuario ID of this estudio.
+	 *
+	 * @param usuarioId the usuario ID of this estudio
+	 */
+	public void setUsuarioId(long usuarioId);
+
+	/**
 	 * Returns the nombre of this estudio.
 	 *
 	 * @return the nombre of this estudio
@@ -87,49 +101,6 @@ public interface EstudioModel extends BaseModel<Estudio> {
 	 * @param nombre the nombre of this estudio
 	 */
 	public void setNombre(String nombre);
-
-	/**
-	 * Returns the logro of this estudio.
-	 *
-	 * @return the logro of this estudio
-	 */
-	@AutoEscape
-	public String getLogro();
-
-	/**
-	 * Sets the logro of this estudio.
-	 *
-	 * @param logro the logro of this estudio
-	 */
-	public void setLogro(String logro);
-
-	/**
-	 * Returns the fecha inicio of this estudio.
-	 *
-	 * @return the fecha inicio of this estudio
-	 */
-	public Date getFechaInicio();
-
-	/**
-	 * Sets the fecha inicio of this estudio.
-	 *
-	 * @param fechaInicio the fecha inicio of this estudio
-	 */
-	public void setFechaInicio(Date fechaInicio);
-
-	/**
-	 * Returns the fecha fino of this estudio.
-	 *
-	 * @return the fecha fino of this estudio
-	 */
-	public Date getFechaFino();
-
-	/**
-	 * Sets the fecha fino of this estudio.
-	 *
-	 * @param fechaFino the fecha fino of this estudio
-	 */
-	public void setFechaFino(Date fechaFino);
 
 	/**
 	 * Returns the nivel of this estudio.
@@ -221,20 +192,6 @@ public interface EstudioModel extends BaseModel<Estudio> {
 	 * @param fechacreamodifica the fechacreamodifica of this estudio
 	 */
 	public void setFechacreamodifica(Date fechacreamodifica);
-
-	/**
-	 * Returns the usuario hitss ID of this estudio.
-	 *
-	 * @return the usuario hitss ID of this estudio
-	 */
-	public long getUsuarioHitssId();
-
-	/**
-	 * Sets the usuario hitss ID of this estudio.
-	 *
-	 * @param usuarioHitssId the usuario hitss ID of this estudio
-	 */
-	public void setUsuarioHitssId(long usuarioHitssId);
 
 	@Override
 	public boolean isNew();

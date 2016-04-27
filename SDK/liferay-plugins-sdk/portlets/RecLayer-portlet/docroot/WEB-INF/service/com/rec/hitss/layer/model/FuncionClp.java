@@ -76,8 +76,8 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 		attributes.put("funcionId", getFuncionId());
 		attributes.put("descripcion", getDescripcion());
+		attributes.put("etiqueta", getEtiqueta());
 		attributes.put("exigible", getExigible());
-		attributes.put("etiquetaId", getEtiquetaId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -101,16 +101,16 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 			setDescripcion(descripcion);
 		}
 
+		Long etiqueta = (Long)attributes.get("etiqueta");
+
+		if (etiqueta != null) {
+			setEtiqueta(etiqueta);
+		}
+
 		Boolean exigible = (Boolean)attributes.get("exigible");
 
 		if (exigible != null) {
 			setExigible(exigible);
-		}
-
-		Long etiquetaId = (Long)attributes.get("etiquetaId");
-
-		if (etiquetaId != null) {
-			setEtiquetaId(etiquetaId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -191,6 +191,29 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 	}
 
 	@Override
+	public long getEtiqueta() {
+		return _etiqueta;
+	}
+
+	@Override
+	public void setEtiqueta(long etiqueta) {
+		_etiqueta = etiqueta;
+
+		if (_funcionRemoteModel != null) {
+			try {
+				Class<?> clazz = _funcionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setEtiqueta", long.class);
+
+				method.invoke(_funcionRemoteModel, etiqueta);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public boolean getExigible() {
 		return _exigible;
 	}
@@ -211,29 +234,6 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 				Method method = clazz.getMethod("setExigible", boolean.class);
 
 				method.invoke(_funcionRemoteModel, exigible);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getEtiquetaId() {
-		return _etiquetaId;
-	}
-
-	@Override
-	public void setEtiquetaId(long etiquetaId) {
-		_etiquetaId = etiquetaId;
-
-		if (_funcionRemoteModel != null) {
-			try {
-				Class<?> clazz = _funcionRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setEtiquetaId", long.class);
-
-				method.invoke(_funcionRemoteModel, etiquetaId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -433,8 +433,8 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 		clone.setFuncionId(getFuncionId());
 		clone.setDescripcion(getDescripcion());
+		clone.setEtiqueta(getEtiqueta());
 		clone.setExigible(getExigible());
-		clone.setEtiquetaId(getEtiquetaId());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -448,7 +448,8 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 	public int compareTo(Funcion funcion) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), funcion.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				funcion.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -496,10 +497,10 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 		sb.append(getFuncionId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
+		sb.append(", etiqueta=");
+		sb.append(getEtiqueta());
 		sb.append(", exigible=");
 		sb.append(getExigible());
-		sb.append(", etiquetaId=");
-		sb.append(getEtiquetaId());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -532,12 +533,12 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>exigible</column-name><column-value><![CDATA[");
-		sb.append(getExigible());
+			"<column><column-name>etiqueta</column-name><column-value><![CDATA[");
+		sb.append(getEtiqueta());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>etiquetaId</column-name><column-value><![CDATA[");
-		sb.append(getEtiquetaId());
+			"<column><column-name>exigible</column-name><column-value><![CDATA[");
+		sb.append(getExigible());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -567,8 +568,8 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 	private long _funcionId;
 	private String _descripcion;
+	private long _etiqueta;
 	private boolean _exigible;
-	private long _etiquetaId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

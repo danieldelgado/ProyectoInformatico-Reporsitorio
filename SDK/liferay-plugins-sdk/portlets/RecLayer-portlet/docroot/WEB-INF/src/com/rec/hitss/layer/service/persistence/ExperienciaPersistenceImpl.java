@@ -167,15 +167,15 @@ public class ExperienciaPersistenceImpl extends BasePersistenceImpl<Experiencia>
 	/**
 	 * Creates a new experiencia with the primary key. Does not add the experiencia to the database.
 	 *
-	 * @param estudioId the primary key for the new experiencia
+	 * @param experienciaId the primary key for the new experiencia
 	 * @return the new experiencia
 	 */
 	@Override
-	public Experiencia create(long estudioId) {
+	public Experiencia create(long experienciaId) {
 		Experiencia experiencia = new ExperienciaImpl();
 
 		experiencia.setNew(true);
-		experiencia.setPrimaryKey(estudioId);
+		experiencia.setPrimaryKey(experienciaId);
 
 		return experiencia;
 	}
@@ -183,15 +183,15 @@ public class ExperienciaPersistenceImpl extends BasePersistenceImpl<Experiencia>
 	/**
 	 * Removes the experiencia with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param estudioId the primary key of the experiencia
+	 * @param experienciaId the primary key of the experiencia
 	 * @return the experiencia that was removed
 	 * @throws com.rec.hitss.layer.NoSuchExperienciaException if a experiencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Experiencia remove(long estudioId)
+	public Experiencia remove(long experienciaId)
 		throws NoSuchExperienciaException, SystemException {
-		return remove((Serializable)estudioId);
+		return remove((Serializable)experienciaId);
 	}
 
 	/**
@@ -319,14 +319,13 @@ public class ExperienciaPersistenceImpl extends BasePersistenceImpl<Experiencia>
 		experienciaImpl.setNew(experiencia.isNew());
 		experienciaImpl.setPrimaryKey(experiencia.getPrimaryKey());
 
-		experienciaImpl.setEstudioId(experiencia.getEstudioId());
+		experienciaImpl.setExperienciaId(experiencia.getExperienciaId());
+		experienciaImpl.setUsuarioId(experiencia.getUsuarioId());
 		experienciaImpl.setDescripcion(experiencia.getDescripcion());
-		experienciaImpl.setNivel(experiencia.getNivel());
 		experienciaImpl.setEmpresa(experiencia.getEmpresa());
 		experienciaImpl.setProyecto(experiencia.getProyecto());
 		experienciaImpl.setFechaInicio(experiencia.getFechaInicio());
 		experienciaImpl.setFechaFin(experiencia.getFechaFin());
-		experienciaImpl.setUsuarioHitssId(experiencia.getUsuarioHitssId());
 		experienciaImpl.setActivo(experiencia.isActivo());
 		experienciaImpl.setUsuariocrea(experiencia.getUsuariocrea());
 		experienciaImpl.setFechacrea(experiencia.getFechacrea());
@@ -364,15 +363,15 @@ public class ExperienciaPersistenceImpl extends BasePersistenceImpl<Experiencia>
 	/**
 	 * Returns the experiencia with the primary key or throws a {@link com.rec.hitss.layer.NoSuchExperienciaException} if it could not be found.
 	 *
-	 * @param estudioId the primary key of the experiencia
+	 * @param experienciaId the primary key of the experiencia
 	 * @return the experiencia
 	 * @throws com.rec.hitss.layer.NoSuchExperienciaException if a experiencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Experiencia findByPrimaryKey(long estudioId)
+	public Experiencia findByPrimaryKey(long experienciaId)
 		throws NoSuchExperienciaException, SystemException {
-		return findByPrimaryKey((Serializable)estudioId);
+		return findByPrimaryKey((Serializable)experienciaId);
 	}
 
 	/**
@@ -426,14 +425,14 @@ public class ExperienciaPersistenceImpl extends BasePersistenceImpl<Experiencia>
 	/**
 	 * Returns the experiencia with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param estudioId the primary key of the experiencia
+	 * @param experienciaId the primary key of the experiencia
 	 * @return the experiencia, or <code>null</code> if a experiencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Experiencia fetchByPrimaryKey(long estudioId)
+	public Experiencia fetchByPrimaryKey(long experienciaId)
 		throws SystemException {
-		return fetchByPrimaryKey((Serializable)estudioId);
+		return fetchByPrimaryKey((Serializable)experienciaId);
 	}
 
 	/**

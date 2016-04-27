@@ -114,3 +114,6 @@
   .aui #navigation {
     display: block; } }
 
+.aui .table thead tr.cabecera > th {
+  background-color: #4AAECC; }
+

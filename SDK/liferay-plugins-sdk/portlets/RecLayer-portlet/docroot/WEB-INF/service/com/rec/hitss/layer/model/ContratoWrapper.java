@@ -50,16 +50,15 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("contratoId", getContratoId());
+		attributes.put("usuarioId", getUsuarioId());
+		attributes.put("motivo", getMotivo());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("fechaEmitida", getFechaEmitida());
-		attributes.put("Titulo", getTitulo());
-		attributes.put("Motivo", getMotivo());
+		attributes.put("titulo", getTitulo());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -72,28 +71,28 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 			setContratoId(contratoId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
+		String motivo = (String)attributes.get("motivo");
+
+		if (motivo != null) {
+			setMotivo(motivo);
+		}
+
 		String descripcion = (String)attributes.get("descripcion");
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
 		}
 
-		Date fechaEmitida = (Date)attributes.get("fechaEmitida");
+		String titulo = (String)attributes.get("titulo");
 
-		if (fechaEmitida != null) {
-			setFechaEmitida(fechaEmitida);
-		}
-
-		Boolean Titulo = (Boolean)attributes.get("Titulo");
-
-		if (Titulo != null) {
-			setTitulo(Titulo);
-		}
-
-		String Motivo = (String)attributes.get("Motivo");
-
-		if (Motivo != null) {
-			setMotivo(Motivo);
+		if (titulo != null) {
+			setTitulo(titulo);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -124,12 +123,6 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 	}
 
@@ -174,6 +167,46 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 	}
 
 	/**
+	* Returns the usuario ID of this contrato.
+	*
+	* @return the usuario ID of this contrato
+	*/
+	@Override
+	public long getUsuarioId() {
+		return _contrato.getUsuarioId();
+	}
+
+	/**
+	* Sets the usuario ID of this contrato.
+	*
+	* @param usuarioId the usuario ID of this contrato
+	*/
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_contrato.setUsuarioId(usuarioId);
+	}
+
+	/**
+	* Returns the motivo of this contrato.
+	*
+	* @return the motivo of this contrato
+	*/
+	@Override
+	public java.lang.String getMotivo() {
+		return _contrato.getMotivo();
+	}
+
+	/**
+	* Sets the motivo of this contrato.
+	*
+	* @param motivo the motivo of this contrato
+	*/
+	@Override
+	public void setMotivo(java.lang.String motivo) {
+		_contrato.setMotivo(motivo);
+	}
+
+	/**
 	* Returns the descripcion of this contrato.
 	*
 	* @return the descripcion of this contrato
@@ -194,73 +227,23 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 	}
 
 	/**
-	* Returns the fecha emitida of this contrato.
-	*
-	* @return the fecha emitida of this contrato
-	*/
-	@Override
-	public java.util.Date getFechaEmitida() {
-		return _contrato.getFechaEmitida();
-	}
-
-	/**
-	* Sets the fecha emitida of this contrato.
-	*
-	* @param fechaEmitida the fecha emitida of this contrato
-	*/
-	@Override
-	public void setFechaEmitida(java.util.Date fechaEmitida) {
-		_contrato.setFechaEmitida(fechaEmitida);
-	}
-
-	/**
 	* Returns the titulo of this contrato.
 	*
 	* @return the titulo of this contrato
 	*/
 	@Override
-	public boolean getTitulo() {
+	public java.lang.String getTitulo() {
 		return _contrato.getTitulo();
 	}
 
 	/**
-	* Returns <code>true</code> if this contrato is titulo.
+	* Sets the titulo of this contrato.
 	*
-	* @return <code>true</code> if this contrato is titulo; <code>false</code> otherwise
+	* @param titulo the titulo of this contrato
 	*/
 	@Override
-	public boolean isTitulo() {
-		return _contrato.isTitulo();
-	}
-
-	/**
-	* Sets whether this contrato is titulo.
-	*
-	* @param Titulo the titulo of this contrato
-	*/
-	@Override
-	public void setTitulo(boolean Titulo) {
-		_contrato.setTitulo(Titulo);
-	}
-
-	/**
-	* Returns the motivo of this contrato.
-	*
-	* @return the motivo of this contrato
-	*/
-	@Override
-	public java.lang.String getMotivo() {
-		return _contrato.getMotivo();
-	}
-
-	/**
-	* Sets the motivo of this contrato.
-	*
-	* @param Motivo the motivo of this contrato
-	*/
-	@Override
-	public void setMotivo(java.lang.String Motivo) {
-		_contrato.setMotivo(Motivo);
+	public void setTitulo(java.lang.String titulo) {
+		_contrato.setTitulo(titulo);
 	}
 
 	/**
@@ -371,26 +354,6 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 	@Override
 	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
 		_contrato.setFechacreamodifica(fechacreamodifica);
-	}
-
-	/**
-	* Returns the usuario hitss ID of this contrato.
-	*
-	* @return the usuario hitss ID of this contrato
-	*/
-	@Override
-	public long getUsuarioHitssId() {
-		return _contrato.getUsuarioHitssId();
-	}
-
-	/**
-	* Sets the usuario hitss ID of this contrato.
-	*
-	* @param usuarioHitssId the usuario hitss ID of this contrato
-	*/
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_contrato.setUsuarioHitssId(usuarioHitssId);
 	}
 
 	@Override

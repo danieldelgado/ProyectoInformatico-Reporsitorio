@@ -32,16 +32,15 @@ public class ContratoSoap implements Serializable {
 		ContratoSoap soapModel = new ContratoSoap();
 
 		soapModel.setContratoId(model.getContratoId());
-		soapModel.setDescripcion(model.getDescripcion());
-		soapModel.setFechaEmitida(model.getFechaEmitida());
-		soapModel.setTitulo(model.getTitulo());
+		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setMotivo(model.getMotivo());
+		soapModel.setDescripcion(model.getDescripcion());
+		soapModel.setTitulo(model.getTitulo());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
 		soapModel.setUsuariomodifica(model.getUsuariomodifica());
 		soapModel.setFechacreamodifica(model.getFechacreamodifica());
-		soapModel.setUsuarioHitssId(model.getUsuarioHitssId());
 
 		return soapModel;
 	}
@@ -102,6 +101,22 @@ public class ContratoSoap implements Serializable {
 		_contratoId = contratoId;
 	}
 
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+	}
+
+	public String getMotivo() {
+		return _motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		_motivo = motivo;
+	}
+
 	public String getDescripcion() {
 		return _descripcion;
 	}
@@ -110,32 +125,12 @@ public class ContratoSoap implements Serializable {
 		_descripcion = descripcion;
 	}
 
-	public Date getFechaEmitida() {
-		return _fechaEmitida;
+	public String getTitulo() {
+		return _titulo;
 	}
 
-	public void setFechaEmitida(Date fechaEmitida) {
-		_fechaEmitida = fechaEmitida;
-	}
-
-	public boolean getTitulo() {
-		return _Titulo;
-	}
-
-	public boolean isTitulo() {
-		return _Titulo;
-	}
-
-	public void setTitulo(boolean Titulo) {
-		_Titulo = Titulo;
-	}
-
-	public String getMotivo() {
-		return _Motivo;
-	}
-
-	public void setMotivo(String Motivo) {
-		_Motivo = Motivo;
+	public void setTitulo(String titulo) {
+		_titulo = titulo;
 	}
 
 	public boolean getActivo() {
@@ -182,23 +177,14 @@ public class ContratoSoap implements Serializable {
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-	}
-
 	private long _contratoId;
+	private long _usuarioId;
+	private String _motivo;
 	private String _descripcion;
-	private Date _fechaEmitida;
-	private boolean _Titulo;
-	private String _Motivo;
+	private String _titulo;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _usuarioHitssId;
 }

@@ -67,25 +67,17 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "puestoId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
-			{ "fechaContrato", Types.TIMESTAMP },
-			{ "fechaEvaluacionPsicologica", Types.TIMESTAMP },
-			{ "fechaEvalucionTecnica", Types.TIMESTAMP },
-			{ "fechaEntrevistaGerenteArea", Types.TIMESTAMP },
-			{ "fechaEvaluacionRRHH", Types.TIMESTAMP },
-			{ "fechaPostulacion", Types.TIMESTAMP },
-			{ "seleccionado", Types.BOOLEAN },
+			{ "categoria", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP },
-			{ "requerimientoRecursoId", Types.BIGINT },
-			{ "usuarioHitssId", Types.BIGINT }
+			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Puesto (puestoId LONG not null primary key,descripcion VARCHAR(75) null,fechaContrato DATE null,fechaEvaluacionPsicologica DATE null,fechaEvalucionTecnica DATE null,fechaEntrevistaGerenteArea DATE null,fechaEvaluacionRRHH DATE null,fechaPostulacion DATE null,seleccionado BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,requerimientoRecursoId LONG,usuarioHitssId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Puesto (puestoId LONG not null primary key,descripcion VARCHAR(75) null,categoria LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Puesto";
-	public static final String ORDER_BY_JPQL = " ORDER BY puesto.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Puesto.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY puesto.fechacreamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Puesto.fechacreamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -98,8 +90,8 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.rec.hitss.layer.model.Puesto"),
 			true);
-	public static long REQUERIMIENTORECURSOID_COLUMN_BITMASK = 1L;
-	public static long FECHACREA_COLUMN_BITMASK = 2L;
+	public static long DESCRIPCION_COLUMN_BITMASK = 1L;
+	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -116,20 +108,12 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 
 		model.setPuestoId(soapModel.getPuestoId());
 		model.setDescripcion(soapModel.getDescripcion());
-		model.setFechaContrato(soapModel.getFechaContrato());
-		model.setFechaEvaluacionPsicologica(soapModel.getFechaEvaluacionPsicologica());
-		model.setFechaEvalucionTecnica(soapModel.getFechaEvalucionTecnica());
-		model.setFechaEntrevistaGerenteArea(soapModel.getFechaEntrevistaGerenteArea());
-		model.setFechaEvaluacionRRHH(soapModel.getFechaEvaluacionRRHH());
-		model.setFechaPostulacion(soapModel.getFechaPostulacion());
-		model.setSeleccionado(soapModel.getSeleccionado());
+		model.setCategoria(soapModel.getCategoria());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
 		model.setFechacreamodifica(soapModel.getFechacreamodifica());
-		model.setRequerimientoRecursoId(soapModel.getRequerimientoRecursoId());
-		model.setUsuarioHitssId(soapModel.getUsuarioHitssId());
 
 		return model;
 	}
@@ -196,22 +180,12 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 
 		attributes.put("puestoId", getPuestoId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("fechaContrato", getFechaContrato());
-		attributes.put("fechaEvaluacionPsicologica",
-			getFechaEvaluacionPsicologica());
-		attributes.put("fechaEvalucionTecnica", getFechaEvalucionTecnica());
-		attributes.put("fechaEntrevistaGerenteArea",
-			getFechaEntrevistaGerenteArea());
-		attributes.put("fechaEvaluacionRRHH", getFechaEvaluacionRRHH());
-		attributes.put("fechaPostulacion", getFechaPostulacion());
-		attributes.put("seleccionado", getSeleccionado());
+		attributes.put("categoria", getCategoria());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("requerimientoRecursoId", getRequerimientoRecursoId());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -230,49 +204,10 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 			setDescripcion(descripcion);
 		}
 
-		Date fechaContrato = (Date)attributes.get("fechaContrato");
+		Long categoria = (Long)attributes.get("categoria");
 
-		if (fechaContrato != null) {
-			setFechaContrato(fechaContrato);
-		}
-
-		Date fechaEvaluacionPsicologica = (Date)attributes.get(
-				"fechaEvaluacionPsicologica");
-
-		if (fechaEvaluacionPsicologica != null) {
-			setFechaEvaluacionPsicologica(fechaEvaluacionPsicologica);
-		}
-
-		Date fechaEvalucionTecnica = (Date)attributes.get(
-				"fechaEvalucionTecnica");
-
-		if (fechaEvalucionTecnica != null) {
-			setFechaEvalucionTecnica(fechaEvalucionTecnica);
-		}
-
-		Date fechaEntrevistaGerenteArea = (Date)attributes.get(
-				"fechaEntrevistaGerenteArea");
-
-		if (fechaEntrevistaGerenteArea != null) {
-			setFechaEntrevistaGerenteArea(fechaEntrevistaGerenteArea);
-		}
-
-		Date fechaEvaluacionRRHH = (Date)attributes.get("fechaEvaluacionRRHH");
-
-		if (fechaEvaluacionRRHH != null) {
-			setFechaEvaluacionRRHH(fechaEvaluacionRRHH);
-		}
-
-		Date fechaPostulacion = (Date)attributes.get("fechaPostulacion");
-
-		if (fechaPostulacion != null) {
-			setFechaPostulacion(fechaPostulacion);
-		}
-
-		Boolean seleccionado = (Boolean)attributes.get("seleccionado");
-
-		if (seleccionado != null) {
-			setSeleccionado(seleccionado);
+		if (categoria != null) {
+			setCategoria(categoria);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -304,19 +239,6 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
 		}
-
-		Long requerimientoRecursoId = (Long)attributes.get(
-				"requerimientoRecursoId");
-
-		if (requerimientoRecursoId != null) {
-			setRequerimientoRecursoId(requerimientoRecursoId);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
-		}
 	}
 
 	@JSON
@@ -343,89 +265,28 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 
 	@Override
 	public void setDescripcion(String descripcion) {
+		_columnBitmask |= DESCRIPCION_COLUMN_BITMASK;
+
+		if (_originalDescripcion == null) {
+			_originalDescripcion = _descripcion;
+		}
+
 		_descripcion = descripcion;
 	}
 
-	@JSON
-	@Override
-	public Date getFechaContrato() {
-		return _fechaContrato;
-	}
-
-	@Override
-	public void setFechaContrato(Date fechaContrato) {
-		_fechaContrato = fechaContrato;
+	public String getOriginalDescripcion() {
+		return GetterUtil.getString(_originalDescripcion);
 	}
 
 	@JSON
 	@Override
-	public Date getFechaEvaluacionPsicologica() {
-		return _fechaEvaluacionPsicologica;
+	public long getCategoria() {
+		return _categoria;
 	}
 
 	@Override
-	public void setFechaEvaluacionPsicologica(Date fechaEvaluacionPsicologica) {
-		_fechaEvaluacionPsicologica = fechaEvaluacionPsicologica;
-	}
-
-	@JSON
-	@Override
-	public Date getFechaEvalucionTecnica() {
-		return _fechaEvalucionTecnica;
-	}
-
-	@Override
-	public void setFechaEvalucionTecnica(Date fechaEvalucionTecnica) {
-		_fechaEvalucionTecnica = fechaEvalucionTecnica;
-	}
-
-	@JSON
-	@Override
-	public Date getFechaEntrevistaGerenteArea() {
-		return _fechaEntrevistaGerenteArea;
-	}
-
-	@Override
-	public void setFechaEntrevistaGerenteArea(Date fechaEntrevistaGerenteArea) {
-		_fechaEntrevistaGerenteArea = fechaEntrevistaGerenteArea;
-	}
-
-	@JSON
-	@Override
-	public Date getFechaEvaluacionRRHH() {
-		return _fechaEvaluacionRRHH;
-	}
-
-	@Override
-	public void setFechaEvaluacionRRHH(Date fechaEvaluacionRRHH) {
-		_fechaEvaluacionRRHH = fechaEvaluacionRRHH;
-	}
-
-	@JSON
-	@Override
-	public Date getFechaPostulacion() {
-		return _fechaPostulacion;
-	}
-
-	@Override
-	public void setFechaPostulacion(Date fechaPostulacion) {
-		_fechaPostulacion = fechaPostulacion;
-	}
-
-	@JSON
-	@Override
-	public boolean getSeleccionado() {
-		return _seleccionado;
-	}
-
-	@Override
-	public boolean isSeleccionado() {
-		return _seleccionado;
-	}
-
-	@Override
-	public void setSeleccionado(boolean seleccionado) {
-		_seleccionado = seleccionado;
+	public void setCategoria(long categoria) {
+		_categoria = categoria;
 	}
 
 	@JSON
@@ -463,8 +324,6 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 
 	@Override
 	public void setFechacrea(Date fechacrea) {
-		_columnBitmask = -1L;
-
 		_fechacrea = fechacrea;
 	}
 
@@ -487,41 +346,9 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 
 	@Override
 	public void setFechacreamodifica(Date fechacreamodifica) {
+		_columnBitmask = -1L;
+
 		_fechacreamodifica = fechacreamodifica;
-	}
-
-	@JSON
-	@Override
-	public long getRequerimientoRecursoId() {
-		return _requerimientoRecursoId;
-	}
-
-	@Override
-	public void setRequerimientoRecursoId(long requerimientoRecursoId) {
-		_columnBitmask |= REQUERIMIENTORECURSOID_COLUMN_BITMASK;
-
-		if (!_setOriginalRequerimientoRecursoId) {
-			_setOriginalRequerimientoRecursoId = true;
-
-			_originalRequerimientoRecursoId = _requerimientoRecursoId;
-		}
-
-		_requerimientoRecursoId = requerimientoRecursoId;
-	}
-
-	public long getOriginalRequerimientoRecursoId() {
-		return _originalRequerimientoRecursoId;
-	}
-
-	@JSON
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
 	}
 
 	public long getColumnBitmask() {
@@ -557,20 +384,12 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 
 		puestoImpl.setPuestoId(getPuestoId());
 		puestoImpl.setDescripcion(getDescripcion());
-		puestoImpl.setFechaContrato(getFechaContrato());
-		puestoImpl.setFechaEvaluacionPsicologica(getFechaEvaluacionPsicologica());
-		puestoImpl.setFechaEvalucionTecnica(getFechaEvalucionTecnica());
-		puestoImpl.setFechaEntrevistaGerenteArea(getFechaEntrevistaGerenteArea());
-		puestoImpl.setFechaEvaluacionRRHH(getFechaEvaluacionRRHH());
-		puestoImpl.setFechaPostulacion(getFechaPostulacion());
-		puestoImpl.setSeleccionado(getSeleccionado());
+		puestoImpl.setCategoria(getCategoria());
 		puestoImpl.setActivo(getActivo());
 		puestoImpl.setUsuariocrea(getUsuariocrea());
 		puestoImpl.setFechacrea(getFechacrea());
 		puestoImpl.setUsuariomodifica(getUsuariomodifica());
 		puestoImpl.setFechacreamodifica(getFechacreamodifica());
-		puestoImpl.setRequerimientoRecursoId(getRequerimientoRecursoId());
-		puestoImpl.setUsuarioHitssId(getUsuarioHitssId());
 
 		puestoImpl.resetOriginalValues();
 
@@ -581,7 +400,8 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 	public int compareTo(Puesto puesto) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), puesto.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				puesto.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -621,9 +441,7 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 	public void resetOriginalValues() {
 		PuestoModelImpl puestoModelImpl = this;
 
-		puestoModelImpl._originalRequerimientoRecursoId = puestoModelImpl._requerimientoRecursoId;
-
-		puestoModelImpl._setOriginalRequerimientoRecursoId = false;
+		puestoModelImpl._originalDescripcion = puestoModelImpl._descripcion;
 
 		puestoModelImpl._columnBitmask = 0;
 	}
@@ -642,61 +460,7 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 			puestoCacheModel.descripcion = null;
 		}
 
-		Date fechaContrato = getFechaContrato();
-
-		if (fechaContrato != null) {
-			puestoCacheModel.fechaContrato = fechaContrato.getTime();
-		}
-		else {
-			puestoCacheModel.fechaContrato = Long.MIN_VALUE;
-		}
-
-		Date fechaEvaluacionPsicologica = getFechaEvaluacionPsicologica();
-
-		if (fechaEvaluacionPsicologica != null) {
-			puestoCacheModel.fechaEvaluacionPsicologica = fechaEvaluacionPsicologica.getTime();
-		}
-		else {
-			puestoCacheModel.fechaEvaluacionPsicologica = Long.MIN_VALUE;
-		}
-
-		Date fechaEvalucionTecnica = getFechaEvalucionTecnica();
-
-		if (fechaEvalucionTecnica != null) {
-			puestoCacheModel.fechaEvalucionTecnica = fechaEvalucionTecnica.getTime();
-		}
-		else {
-			puestoCacheModel.fechaEvalucionTecnica = Long.MIN_VALUE;
-		}
-
-		Date fechaEntrevistaGerenteArea = getFechaEntrevistaGerenteArea();
-
-		if (fechaEntrevistaGerenteArea != null) {
-			puestoCacheModel.fechaEntrevistaGerenteArea = fechaEntrevistaGerenteArea.getTime();
-		}
-		else {
-			puestoCacheModel.fechaEntrevistaGerenteArea = Long.MIN_VALUE;
-		}
-
-		Date fechaEvaluacionRRHH = getFechaEvaluacionRRHH();
-
-		if (fechaEvaluacionRRHH != null) {
-			puestoCacheModel.fechaEvaluacionRRHH = fechaEvaluacionRRHH.getTime();
-		}
-		else {
-			puestoCacheModel.fechaEvaluacionRRHH = Long.MIN_VALUE;
-		}
-
-		Date fechaPostulacion = getFechaPostulacion();
-
-		if (fechaPostulacion != null) {
-			puestoCacheModel.fechaPostulacion = fechaPostulacion.getTime();
-		}
-		else {
-			puestoCacheModel.fechaPostulacion = Long.MIN_VALUE;
-		}
-
-		puestoCacheModel.seleccionado = getSeleccionado();
+		puestoCacheModel.categoria = getCategoria();
 
 		puestoCacheModel.activo = getActivo();
 
@@ -722,35 +486,19 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 			puestoCacheModel.fechacreamodifica = Long.MIN_VALUE;
 		}
 
-		puestoCacheModel.requerimientoRecursoId = getRequerimientoRecursoId();
-
-		puestoCacheModel.usuarioHitssId = getUsuarioHitssId();
-
 		return puestoCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{puestoId=");
 		sb.append(getPuestoId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
-		sb.append(", fechaContrato=");
-		sb.append(getFechaContrato());
-		sb.append(", fechaEvaluacionPsicologica=");
-		sb.append(getFechaEvaluacionPsicologica());
-		sb.append(", fechaEvalucionTecnica=");
-		sb.append(getFechaEvalucionTecnica());
-		sb.append(", fechaEntrevistaGerenteArea=");
-		sb.append(getFechaEntrevistaGerenteArea());
-		sb.append(", fechaEvaluacionRRHH=");
-		sb.append(getFechaEvaluacionRRHH());
-		sb.append(", fechaPostulacion=");
-		sb.append(getFechaPostulacion());
-		sb.append(", seleccionado=");
-		sb.append(getSeleccionado());
+		sb.append(", categoria=");
+		sb.append(getCategoria());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -761,10 +509,6 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", requerimientoRecursoId=");
-		sb.append(getRequerimientoRecursoId());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append("}");
 
 		return sb.toString();
@@ -772,7 +516,7 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Puesto");
@@ -787,32 +531,8 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechaContrato</column-name><column-value><![CDATA[");
-		sb.append(getFechaContrato());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEvaluacionPsicologica</column-name><column-value><![CDATA[");
-		sb.append(getFechaEvaluacionPsicologica());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEvalucionTecnica</column-name><column-value><![CDATA[");
-		sb.append(getFechaEvalucionTecnica());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEntrevistaGerenteArea</column-name><column-value><![CDATA[");
-		sb.append(getFechaEntrevistaGerenteArea());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEvaluacionRRHH</column-name><column-value><![CDATA[");
-		sb.append(getFechaEvaluacionRRHH());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaPostulacion</column-name><column-value><![CDATA[");
-		sb.append(getFechaPostulacion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>seleccionado</column-name><column-value><![CDATA[");
-		sb.append(getSeleccionado());
+			"<column><column-name>categoria</column-name><column-value><![CDATA[");
+		sb.append(getCategoria());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -834,14 +554,6 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>requerimientoRecursoId</column-name><column-value><![CDATA[");
-		sb.append(getRequerimientoRecursoId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -852,22 +564,13 @@ public class PuestoModelImpl extends BaseModelImpl<Puesto>
 	private static Class<?>[] _escapedModelInterfaces = new Class[] { Puesto.class };
 	private long _puestoId;
 	private String _descripcion;
-	private Date _fechaContrato;
-	private Date _fechaEvaluacionPsicologica;
-	private Date _fechaEvalucionTecnica;
-	private Date _fechaEntrevistaGerenteArea;
-	private Date _fechaEvaluacionRRHH;
-	private Date _fechaPostulacion;
-	private boolean _seleccionado;
+	private String _originalDescripcion;
+	private long _categoria;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _requerimientoRecursoId;
-	private long _originalRequerimientoRecursoId;
-	private boolean _setOriginalRequerimientoRecursoId;
-	private long _usuarioHitssId;
 	private long _columnBitmask;
 	private Puesto _escapedModel;
 }

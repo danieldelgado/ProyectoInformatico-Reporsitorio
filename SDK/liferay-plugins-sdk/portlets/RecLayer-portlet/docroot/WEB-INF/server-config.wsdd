@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<globalConfiguration>
+		<parameter name="adminPassword" value="admin" />
+		<parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl" />
+		<parameter name="sendXsiTypes" value="true" />
+		<parameter name="sendMultiRefs" value="true" />
+		<parameter name="sendXMLDeclaration" value="true" />
+		<parameter name="axis.sendMinimizedElements" value="true" />
+		<requestFlow>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="session" />
+			</handler>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="request" />
+				<parameter name="extension" value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+	<transport name="local">
+		<responseFlow>
+			<handler type="LocalResponder" />
+		</responseFlow>
+	</transport>
+	<service name="Plugin_rec_ContratoService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.ContratoServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ContratoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="ContratoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_ContratoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_EstudioService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.EstudioServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="EstudioServiceSoap" />
+		<parameter name="wsdlServiceElement" value="EstudioServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_EstudioService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_EtiquetaRelacionadaService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.EtiquetaRelacionadaServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="EtiquetaRelacionadaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="EtiquetaRelacionadaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_EtiquetaRelacionadaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_EvaluacionPreguntaService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.EvaluacionPreguntaServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="EvaluacionPreguntaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="EvaluacionPreguntaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_EvaluacionPreguntaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_EvaluacionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.EvaluacionServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="EvaluacionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="EvaluacionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_EvaluacionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_ExperienciaService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.ExperienciaServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ExperienciaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="ExperienciaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_ExperienciaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_FasePostulacionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.FasePostulacionServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="FasePostulacionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="FasePostulacionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_FasePostulacionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_FuncionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.FuncionServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="FuncionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="FuncionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_FuncionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_PostulacionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.PostulacionServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="PostulacionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="PostulacionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_PostulacionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_PreguntaService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.PreguntaServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="PreguntaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="PreguntaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_PreguntaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_PuestoService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.PuestoServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="PuestoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="PuestoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_PuestoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_ReferenciaService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.ReferenciaServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ReferenciaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="ReferenciaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_ReferenciaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_RequisitoService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.RequisitoServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="RequisitoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="RequisitoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_RequisitoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_RespuestaService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.RespuestaServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="RespuestaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="RespuestaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_RespuestaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_ResultadoEvaluacionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.ResultadoEvaluacionServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ResultadoEvaluacionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="ResultadoEvaluacionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_ResultadoEvaluacionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_SolicitudRequerimientoRequisitoService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.SolicitudRequerimientoRequisitoServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="SolicitudRequerimientoRequisitoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="SolicitudRequerimientoRequisitoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_SolicitudRequerimientoRequisitoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_SolicitudRequerimientoService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.SolicitudRequerimientoServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="SolicitudRequerimientoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="SolicitudRequerimientoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_SolicitudRequerimientoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_UsuarioRequisitoService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.UsuarioRequisitoServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="UsuarioRequisitoServiceSoap" />
+		<parameter name="wsdlServiceElement" value="UsuarioRequisitoServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_UsuarioRequisitoService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+	<service name="Plugin_rec_UsuarioService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.rec.hitss.layer.service.http.UsuarioServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="UsuarioServiceSoap" />
+		<parameter name="wsdlServiceElement" value="UsuarioServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_rec_UsuarioService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.layer.hitss.rec.com" />
+	</service>
+</deployment>

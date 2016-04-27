@@ -3073,3 +3073,6 @@ body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
   .aui #navigation {
     display: block; } }
 
+.aui .table thead tr.cabecera > th {
+  background-color: #4AAECC; }
+

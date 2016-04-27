@@ -17,66 +17,45 @@ package com.rec.hitss.layer.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
-import com.rec.hitss.layer.service.ActividadPlanLocalServiceUtil;
-import com.rec.hitss.layer.service.ActividadPlanServiceUtil;
-import com.rec.hitss.layer.service.ActividadesLocalServiceUtil;
-import com.rec.hitss.layer.service.ActividadesServiceUtil;
-import com.rec.hitss.layer.service.CertificadoLocalServiceUtil;
-import com.rec.hitss.layer.service.CertificadoServiceUtil;
 import com.rec.hitss.layer.service.ClpSerializer;
-import com.rec.hitss.layer.service.ConocimientoLocalServiceUtil;
-import com.rec.hitss.layer.service.ConocimientoServiceUtil;
 import com.rec.hitss.layer.service.ContratoLocalServiceUtil;
 import com.rec.hitss.layer.service.ContratoServiceUtil;
-import com.rec.hitss.layer.service.CriteriosEvaluacionLocalServiceUtil;
-import com.rec.hitss.layer.service.CriteriosEvaluacionServiceUtil;
-import com.rec.hitss.layer.service.CronogramaEvaluacionPersonalLocalServiceUtil;
-import com.rec.hitss.layer.service.CronogramaEvaluacionPersonalServiceUtil;
-import com.rec.hitss.layer.service.EntrevistaLocalServiceUtil;
-import com.rec.hitss.layer.service.EntrevistaServiceUtil;
 import com.rec.hitss.layer.service.EstudioLocalServiceUtil;
 import com.rec.hitss.layer.service.EstudioServiceUtil;
-import com.rec.hitss.layer.service.EtiquetaLocalServiceUtil;
-import com.rec.hitss.layer.service.EtiquetaServiceUtil;
+import com.rec.hitss.layer.service.EtiquetaRelacionadaLocalServiceUtil;
+import com.rec.hitss.layer.service.EtiquetaRelacionadaServiceUtil;
 import com.rec.hitss.layer.service.EvaluacionLocalServiceUtil;
 import com.rec.hitss.layer.service.EvaluacionPreguntaLocalServiceUtil;
 import com.rec.hitss.layer.service.EvaluacionPreguntaServiceUtil;
 import com.rec.hitss.layer.service.EvaluacionServiceUtil;
 import com.rec.hitss.layer.service.ExperienciaLocalServiceUtil;
 import com.rec.hitss.layer.service.ExperienciaServiceUtil;
+import com.rec.hitss.layer.service.FasePostulacionLocalServiceUtil;
+import com.rec.hitss.layer.service.FasePostulacionServiceUtil;
 import com.rec.hitss.layer.service.FuncionLocalServiceUtil;
-import com.rec.hitss.layer.service.FuncionRequerimientoLocalServiceUtil;
-import com.rec.hitss.layer.service.FuncionRequerimientoServiceUtil;
 import com.rec.hitss.layer.service.FuncionServiceUtil;
-import com.rec.hitss.layer.service.FuncionUsuarioLocalServiceUtil;
-import com.rec.hitss.layer.service.FuncionUsuarioServiceUtil;
-import com.rec.hitss.layer.service.InformeRetroalimentacionLocalServiceUtil;
-import com.rec.hitss.layer.service.InformeRetroalimentacionServiceUtil;
-import com.rec.hitss.layer.service.ParametroLocalServiceUtil;
-import com.rec.hitss.layer.service.ParametroServiceUtil;
-import com.rec.hitss.layer.service.PlanAccionLocalServiceUtil;
-import com.rec.hitss.layer.service.PlanAccionServiceUtil;
+import com.rec.hitss.layer.service.PostulacionLocalServiceUtil;
+import com.rec.hitss.layer.service.PostulacionServiceUtil;
 import com.rec.hitss.layer.service.PreguntaLocalServiceUtil;
 import com.rec.hitss.layer.service.PreguntaServiceUtil;
-import com.rec.hitss.layer.service.PrioridadEquiposLocalServiceUtil;
-import com.rec.hitss.layer.service.PrioridadEquiposServiceUtil;
 import com.rec.hitss.layer.service.PuestoLocalServiceUtil;
 import com.rec.hitss.layer.service.PuestoServiceUtil;
 import com.rec.hitss.layer.service.ReferenciaLocalServiceUtil;
 import com.rec.hitss.layer.service.ReferenciaServiceUtil;
-import com.rec.hitss.layer.service.RequerimientoRecursoLocalServiceUtil;
 import com.rec.hitss.layer.service.RequisitoLocalServiceUtil;
+import com.rec.hitss.layer.service.RequisitoServiceUtil;
 import com.rec.hitss.layer.service.RespuestaLocalServiceUtil;
 import com.rec.hitss.layer.service.RespuestaServiceUtil;
 import com.rec.hitss.layer.service.ResultadoEvaluacionLocalServiceUtil;
 import com.rec.hitss.layer.service.ResultadoEvaluacionServiceUtil;
-import com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoLocalServiceUtil;
-import com.rec.hitss.layer.service.SolicitudEvaluacionDesempenoServiceUtil;
-import com.rec.hitss.layer.service.SolicitudRequerimientoPersonalLocalServiceUtil;
-import com.rec.hitss.layer.service.UsuarioGrupoLocalServiceUtil;
-import com.rec.hitss.layer.service.UsuarioGrupoServiceUtil;
-import com.rec.hitss.layer.service.UsuarioHitssLocalServiceUtil;
-import com.rec.hitss.layer.service.UsuarioHitssServiceUtil;
+import com.rec.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
+import com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoLocalServiceUtil;
+import com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoServiceUtil;
+import com.rec.hitss.layer.service.SolicitudRequerimientoServiceUtil;
+import com.rec.hitss.layer.service.UsuarioLocalServiceUtil;
+import com.rec.hitss.layer.service.UsuarioRequisitoLocalServiceUtil;
+import com.rec.hitss.layer.service.UsuarioRequisitoServiceUtil;
+import com.rec.hitss.layer.service.UsuarioServiceUtil;
 
 /**
  * @author Crossfire
@@ -93,36 +72,15 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
-			ActividadesLocalServiceUtil.clearService();
-
-			ActividadesServiceUtil.clearService();
-			ActividadPlanLocalServiceUtil.clearService();
-
-			ActividadPlanServiceUtil.clearService();
-			CertificadoLocalServiceUtil.clearService();
-
-			CertificadoServiceUtil.clearService();
-			ConocimientoLocalServiceUtil.clearService();
-
-			ConocimientoServiceUtil.clearService();
 			ContratoLocalServiceUtil.clearService();
 
 			ContratoServiceUtil.clearService();
-			CriteriosEvaluacionLocalServiceUtil.clearService();
-
-			CriteriosEvaluacionServiceUtil.clearService();
-			CronogramaEvaluacionPersonalLocalServiceUtil.clearService();
-
-			CronogramaEvaluacionPersonalServiceUtil.clearService();
-			EntrevistaLocalServiceUtil.clearService();
-
-			EntrevistaServiceUtil.clearService();
 			EstudioLocalServiceUtil.clearService();
 
 			EstudioServiceUtil.clearService();
-			EtiquetaLocalServiceUtil.clearService();
+			EtiquetaRelacionadaLocalServiceUtil.clearService();
 
-			EtiquetaServiceUtil.clearService();
+			EtiquetaRelacionadaServiceUtil.clearService();
 			EvaluacionLocalServiceUtil.clearService();
 
 			EvaluacionServiceUtil.clearService();
@@ -132,57 +90,45 @@ public class ClpMessageListener extends BaseMessageListener {
 			ExperienciaLocalServiceUtil.clearService();
 
 			ExperienciaServiceUtil.clearService();
+			FasePostulacionLocalServiceUtil.clearService();
+
+			FasePostulacionServiceUtil.clearService();
 			FuncionLocalServiceUtil.clearService();
 
 			FuncionServiceUtil.clearService();
-			FuncionRequerimientoLocalServiceUtil.clearService();
+			PostulacionLocalServiceUtil.clearService();
 
-			FuncionRequerimientoServiceUtil.clearService();
-			FuncionUsuarioLocalServiceUtil.clearService();
-
-			FuncionUsuarioServiceUtil.clearService();
-			InformeRetroalimentacionLocalServiceUtil.clearService();
-
-			InformeRetroalimentacionServiceUtil.clearService();
-			ParametroLocalServiceUtil.clearService();
-
-			ParametroServiceUtil.clearService();
-			PlanAccionLocalServiceUtil.clearService();
-
-			PlanAccionServiceUtil.clearService();
+			PostulacionServiceUtil.clearService();
 			PreguntaLocalServiceUtil.clearService();
 
 			PreguntaServiceUtil.clearService();
-			PrioridadEquiposLocalServiceUtil.clearService();
-
-			PrioridadEquiposServiceUtil.clearService();
 			PuestoLocalServiceUtil.clearService();
 
 			PuestoServiceUtil.clearService();
 			ReferenciaLocalServiceUtil.clearService();
 
 			ReferenciaServiceUtil.clearService();
-			RequerimientoRecursoLocalServiceUtil.clearService();
-
 			RequisitoLocalServiceUtil.clearService();
 
+			RequisitoServiceUtil.clearService();
 			RespuestaLocalServiceUtil.clearService();
 
 			RespuestaServiceUtil.clearService();
 			ResultadoEvaluacionLocalServiceUtil.clearService();
 
 			ResultadoEvaluacionServiceUtil.clearService();
-			SolicitudEvaluacionDesempenoLocalServiceUtil.clearService();
+			SolicitudRequerimientoLocalServiceUtil.clearService();
 
-			SolicitudEvaluacionDesempenoServiceUtil.clearService();
-			SolicitudRequerimientoPersonalLocalServiceUtil.clearService();
+			SolicitudRequerimientoServiceUtil.clearService();
+			SolicitudRequerimientoRequisitoLocalServiceUtil.clearService();
 
-			UsuarioGrupoLocalServiceUtil.clearService();
+			SolicitudRequerimientoRequisitoServiceUtil.clearService();
+			UsuarioLocalServiceUtil.clearService();
 
-			UsuarioGrupoServiceUtil.clearService();
-			UsuarioHitssLocalServiceUtil.clearService();
+			UsuarioServiceUtil.clearService();
+			UsuarioRequisitoLocalServiceUtil.clearService();
 
-			UsuarioHitssServiceUtil.clearService();
+			UsuarioRequisitoServiceUtil.clearService();
 		}
 	}
 }

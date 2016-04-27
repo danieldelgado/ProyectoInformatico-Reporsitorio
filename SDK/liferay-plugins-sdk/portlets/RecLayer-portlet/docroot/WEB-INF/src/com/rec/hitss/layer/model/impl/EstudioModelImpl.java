@@ -66,22 +66,19 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	public static final String TABLE_NAME = "Estudio";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "estudioId", Types.BIGINT },
+			{ "usuarioId", Types.BIGINT },
 			{ "nombre", Types.VARCHAR },
-			{ "logro", Types.VARCHAR },
-			{ "fechaInicio", Types.TIMESTAMP },
-			{ "fechaFino", Types.TIMESTAMP },
 			{ "nivel", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP },
-			{ "usuarioHitssId", Types.BIGINT }
+			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Estudio (estudioId LONG not null primary key,nombre VARCHAR(75) null,logro VARCHAR(75) null,fechaInicio DATE null,fechaFino DATE null,nivel LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,usuarioHitssId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Estudio (estudioId LONG not null primary key,usuarioId LONG,nombre VARCHAR(75) null,nivel LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Estudio";
-	public static final String ORDER_BY_JPQL = " ORDER BY estudio.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Estudio.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY estudio.fechacreamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Estudio.fechacreamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -107,17 +104,14 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		Estudio model = new EstudioImpl();
 
 		model.setEstudioId(soapModel.getEstudioId());
+		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setNombre(soapModel.getNombre());
-		model.setLogro(soapModel.getLogro());
-		model.setFechaInicio(soapModel.getFechaInicio());
-		model.setFechaFino(soapModel.getFechaFino());
 		model.setNivel(soapModel.getNivel());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
 		model.setFechacreamodifica(soapModel.getFechacreamodifica());
-		model.setUsuarioHitssId(soapModel.getUsuarioHitssId());
 
 		return model;
 	}
@@ -183,17 +177,14 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("estudioId", getEstudioId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("nombre", getNombre());
-		attributes.put("logro", getLogro());
-		attributes.put("fechaInicio", getFechaInicio());
-		attributes.put("fechaFino", getFechaFino());
 		attributes.put("nivel", getNivel());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -206,28 +197,16 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			setEstudioId(estudioId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
 		String nombre = (String)attributes.get("nombre");
 
 		if (nombre != null) {
 			setNombre(nombre);
-		}
-
-		String logro = (String)attributes.get("logro");
-
-		if (logro != null) {
-			setLogro(logro);
-		}
-
-		Date fechaInicio = (Date)attributes.get("fechaInicio");
-
-		if (fechaInicio != null) {
-			setFechaInicio(fechaInicio);
-		}
-
-		Date fechaFino = (Date)attributes.get("fechaFino");
-
-		if (fechaFino != null) {
-			setFechaFino(fechaFino);
 		}
 
 		Long nivel = (Long)attributes.get("nivel");
@@ -265,12 +244,6 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
 		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
-		}
 	}
 
 	@JSON
@@ -282,6 +255,17 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	@Override
 	public void setEstudioId(long estudioId) {
 		_estudioId = estudioId;
+	}
+
+	@JSON
+	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
 	}
 
 	@JSON
@@ -298,44 +282,6 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	@Override
 	public void setNombre(String nombre) {
 		_nombre = nombre;
-	}
-
-	@JSON
-	@Override
-	public String getLogro() {
-		if (_logro == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _logro;
-		}
-	}
-
-	@Override
-	public void setLogro(String logro) {
-		_logro = logro;
-	}
-
-	@JSON
-	@Override
-	public Date getFechaInicio() {
-		return _fechaInicio;
-	}
-
-	@Override
-	public void setFechaInicio(Date fechaInicio) {
-		_fechaInicio = fechaInicio;
-	}
-
-	@JSON
-	@Override
-	public Date getFechaFino() {
-		return _fechaFino;
-	}
-
-	@Override
-	public void setFechaFino(Date fechaFino) {
-		_fechaFino = fechaFino;
 	}
 
 	@JSON
@@ -409,17 +355,6 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	@JSON
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-	}
-
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -448,17 +383,14 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		EstudioImpl estudioImpl = new EstudioImpl();
 
 		estudioImpl.setEstudioId(getEstudioId());
+		estudioImpl.setUsuarioId(getUsuarioId());
 		estudioImpl.setNombre(getNombre());
-		estudioImpl.setLogro(getLogro());
-		estudioImpl.setFechaInicio(getFechaInicio());
-		estudioImpl.setFechaFino(getFechaFino());
 		estudioImpl.setNivel(getNivel());
 		estudioImpl.setActivo(getActivo());
 		estudioImpl.setUsuariocrea(getUsuariocrea());
 		estudioImpl.setFechacrea(getFechacrea());
 		estudioImpl.setUsuariomodifica(getUsuariomodifica());
 		estudioImpl.setFechacreamodifica(getFechacreamodifica());
-		estudioImpl.setUsuarioHitssId(getUsuarioHitssId());
 
 		estudioImpl.resetOriginalValues();
 
@@ -469,7 +401,8 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	public int compareTo(Estudio estudio) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), estudio.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				estudio.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -515,38 +448,14 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 
 		estudioCacheModel.estudioId = getEstudioId();
 
+		estudioCacheModel.usuarioId = getUsuarioId();
+
 		estudioCacheModel.nombre = getNombre();
 
 		String nombre = estudioCacheModel.nombre;
 
 		if ((nombre != null) && (nombre.length() == 0)) {
 			estudioCacheModel.nombre = null;
-		}
-
-		estudioCacheModel.logro = getLogro();
-
-		String logro = estudioCacheModel.logro;
-
-		if ((logro != null) && (logro.length() == 0)) {
-			estudioCacheModel.logro = null;
-		}
-
-		Date fechaInicio = getFechaInicio();
-
-		if (fechaInicio != null) {
-			estudioCacheModel.fechaInicio = fechaInicio.getTime();
-		}
-		else {
-			estudioCacheModel.fechaInicio = Long.MIN_VALUE;
-		}
-
-		Date fechaFino = getFechaFino();
-
-		if (fechaFino != null) {
-			estudioCacheModel.fechaFino = fechaFino.getTime();
-		}
-		else {
-			estudioCacheModel.fechaFino = Long.MIN_VALUE;
 		}
 
 		estudioCacheModel.nivel = getNivel();
@@ -575,25 +484,19 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			estudioCacheModel.fechacreamodifica = Long.MIN_VALUE;
 		}
 
-		estudioCacheModel.usuarioHitssId = getUsuarioHitssId();
-
 		return estudioCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{estudioId=");
 		sb.append(getEstudioId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
 		sb.append(", nombre=");
 		sb.append(getNombre());
-		sb.append(", logro=");
-		sb.append(getLogro());
-		sb.append(", fechaInicio=");
-		sb.append(getFechaInicio());
-		sb.append(", fechaFino=");
-		sb.append(getFechaFino());
 		sb.append(", nivel=");
 		sb.append(getNivel());
 		sb.append(", activo=");
@@ -606,8 +509,6 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append("}");
 
 		return sb.toString();
@@ -615,7 +516,7 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Estudio");
@@ -626,20 +527,12 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		sb.append(getEstudioId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>nombre</column-name><column-value><![CDATA[");
 		sb.append(getNombre());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>logro</column-name><column-value><![CDATA[");
-		sb.append(getLogro());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaInicio</column-name><column-value><![CDATA[");
-		sb.append(getFechaInicio());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaFino</column-name><column-value><![CDATA[");
-		sb.append(getFechaFino());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>nivel</column-name><column-value><![CDATA[");
@@ -665,10 +558,6 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -680,16 +569,13 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			Estudio.class
 		};
 	private long _estudioId;
+	private long _usuarioId;
 	private String _nombre;
-	private String _logro;
-	private Date _fechaInicio;
-	private Date _fechaFino;
 	private long _nivel;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _usuarioHitssId;
 	private Estudio _escapedModel;
 }

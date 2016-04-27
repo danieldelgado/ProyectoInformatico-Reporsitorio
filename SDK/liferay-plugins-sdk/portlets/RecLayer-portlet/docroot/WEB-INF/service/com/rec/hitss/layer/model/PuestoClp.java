@@ -76,22 +76,12 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 
 		attributes.put("puestoId", getPuestoId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("fechaContrato", getFechaContrato());
-		attributes.put("fechaEvaluacionPsicologica",
-			getFechaEvaluacionPsicologica());
-		attributes.put("fechaEvalucionTecnica", getFechaEvalucionTecnica());
-		attributes.put("fechaEntrevistaGerenteArea",
-			getFechaEntrevistaGerenteArea());
-		attributes.put("fechaEvaluacionRRHH", getFechaEvaluacionRRHH());
-		attributes.put("fechaPostulacion", getFechaPostulacion());
-		attributes.put("seleccionado", getSeleccionado());
+		attributes.put("categoria", getCategoria());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("requerimientoRecursoId", getRequerimientoRecursoId());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -110,49 +100,10 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 			setDescripcion(descripcion);
 		}
 
-		Date fechaContrato = (Date)attributes.get("fechaContrato");
+		Long categoria = (Long)attributes.get("categoria");
 
-		if (fechaContrato != null) {
-			setFechaContrato(fechaContrato);
-		}
-
-		Date fechaEvaluacionPsicologica = (Date)attributes.get(
-				"fechaEvaluacionPsicologica");
-
-		if (fechaEvaluacionPsicologica != null) {
-			setFechaEvaluacionPsicologica(fechaEvaluacionPsicologica);
-		}
-
-		Date fechaEvalucionTecnica = (Date)attributes.get(
-				"fechaEvalucionTecnica");
-
-		if (fechaEvalucionTecnica != null) {
-			setFechaEvalucionTecnica(fechaEvalucionTecnica);
-		}
-
-		Date fechaEntrevistaGerenteArea = (Date)attributes.get(
-				"fechaEntrevistaGerenteArea");
-
-		if (fechaEntrevistaGerenteArea != null) {
-			setFechaEntrevistaGerenteArea(fechaEntrevistaGerenteArea);
-		}
-
-		Date fechaEvaluacionRRHH = (Date)attributes.get("fechaEvaluacionRRHH");
-
-		if (fechaEvaluacionRRHH != null) {
-			setFechaEvaluacionRRHH(fechaEvaluacionRRHH);
-		}
-
-		Date fechaPostulacion = (Date)attributes.get("fechaPostulacion");
-
-		if (fechaPostulacion != null) {
-			setFechaPostulacion(fechaPostulacion);
-		}
-
-		Boolean seleccionado = (Boolean)attributes.get("seleccionado");
-
-		if (seleccionado != null) {
-			setSeleccionado(seleccionado);
+		if (categoria != null) {
+			setCategoria(categoria);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -183,19 +134,6 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
-		}
-
-		Long requerimientoRecursoId = (Long)attributes.get(
-				"requerimientoRecursoId");
-
-		if (requerimientoRecursoId != null) {
-			setRequerimientoRecursoId(requerimientoRecursoId);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 	}
 
@@ -246,169 +184,21 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 	}
 
 	@Override
-	public Date getFechaContrato() {
-		return _fechaContrato;
+	public long getCategoria() {
+		return _categoria;
 	}
 
 	@Override
-	public void setFechaContrato(Date fechaContrato) {
-		_fechaContrato = fechaContrato;
+	public void setCategoria(long categoria) {
+		_categoria = categoria;
 
 		if (_puestoRemoteModel != null) {
 			try {
 				Class<?> clazz = _puestoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechaContrato", Date.class);
+				Method method = clazz.getMethod("setCategoria", long.class);
 
-				method.invoke(_puestoRemoteModel, fechaContrato);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public Date getFechaEvaluacionPsicologica() {
-		return _fechaEvaluacionPsicologica;
-	}
-
-	@Override
-	public void setFechaEvaluacionPsicologica(Date fechaEvaluacionPsicologica) {
-		_fechaEvaluacionPsicologica = fechaEvaluacionPsicologica;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFechaEvaluacionPsicologica",
-						Date.class);
-
-				method.invoke(_puestoRemoteModel, fechaEvaluacionPsicologica);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public Date getFechaEvalucionTecnica() {
-		return _fechaEvalucionTecnica;
-	}
-
-	@Override
-	public void setFechaEvalucionTecnica(Date fechaEvalucionTecnica) {
-		_fechaEvalucionTecnica = fechaEvalucionTecnica;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFechaEvalucionTecnica",
-						Date.class);
-
-				method.invoke(_puestoRemoteModel, fechaEvalucionTecnica);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public Date getFechaEntrevistaGerenteArea() {
-		return _fechaEntrevistaGerenteArea;
-	}
-
-	@Override
-	public void setFechaEntrevistaGerenteArea(Date fechaEntrevistaGerenteArea) {
-		_fechaEntrevistaGerenteArea = fechaEntrevistaGerenteArea;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFechaEntrevistaGerenteArea",
-						Date.class);
-
-				method.invoke(_puestoRemoteModel, fechaEntrevistaGerenteArea);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public Date getFechaEvaluacionRRHH() {
-		return _fechaEvaluacionRRHH;
-	}
-
-	@Override
-	public void setFechaEvaluacionRRHH(Date fechaEvaluacionRRHH) {
-		_fechaEvaluacionRRHH = fechaEvaluacionRRHH;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFechaEvaluacionRRHH",
-						Date.class);
-
-				method.invoke(_puestoRemoteModel, fechaEvaluacionRRHH);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public Date getFechaPostulacion() {
-		return _fechaPostulacion;
-	}
-
-	@Override
-	public void setFechaPostulacion(Date fechaPostulacion) {
-		_fechaPostulacion = fechaPostulacion;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFechaPostulacion",
-						Date.class);
-
-				method.invoke(_puestoRemoteModel, fechaPostulacion);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public boolean getSeleccionado() {
-		return _seleccionado;
-	}
-
-	@Override
-	public boolean isSeleccionado() {
-		return _seleccionado;
-	}
-
-	@Override
-	public void setSeleccionado(boolean seleccionado) {
-		_seleccionado = seleccionado;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setSeleccionado", boolean.class);
-
-				method.invoke(_puestoRemoteModel, seleccionado);
+				method.invoke(_puestoRemoteModel, categoria);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -537,53 +327,6 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 		}
 	}
 
-	@Override
-	public long getRequerimientoRecursoId() {
-		return _requerimientoRecursoId;
-	}
-
-	@Override
-	public void setRequerimientoRecursoId(long requerimientoRecursoId) {
-		_requerimientoRecursoId = requerimientoRecursoId;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setRequerimientoRecursoId",
-						long.class);
-
-				method.invoke(_puestoRemoteModel, requerimientoRecursoId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-
-		if (_puestoRemoteModel != null) {
-			try {
-				Class<?> clazz = _puestoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setUsuarioHitssId", long.class);
-
-				method.invoke(_puestoRemoteModel, usuarioHitssId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
 	public BaseModel<?> getPuestoRemoteModel() {
 		return _puestoRemoteModel;
 	}
@@ -655,20 +398,12 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 
 		clone.setPuestoId(getPuestoId());
 		clone.setDescripcion(getDescripcion());
-		clone.setFechaContrato(getFechaContrato());
-		clone.setFechaEvaluacionPsicologica(getFechaEvaluacionPsicologica());
-		clone.setFechaEvalucionTecnica(getFechaEvalucionTecnica());
-		clone.setFechaEntrevistaGerenteArea(getFechaEntrevistaGerenteArea());
-		clone.setFechaEvaluacionRRHH(getFechaEvaluacionRRHH());
-		clone.setFechaPostulacion(getFechaPostulacion());
-		clone.setSeleccionado(getSeleccionado());
+		clone.setCategoria(getCategoria());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
 		clone.setFechacreamodifica(getFechacreamodifica());
-		clone.setRequerimientoRecursoId(getRequerimientoRecursoId());
-		clone.setUsuarioHitssId(getUsuarioHitssId());
 
 		return clone;
 	}
@@ -677,7 +412,8 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 	public int compareTo(Puesto puesto) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), puesto.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				puesto.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -719,26 +455,14 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{puestoId=");
 		sb.append(getPuestoId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
-		sb.append(", fechaContrato=");
-		sb.append(getFechaContrato());
-		sb.append(", fechaEvaluacionPsicologica=");
-		sb.append(getFechaEvaluacionPsicologica());
-		sb.append(", fechaEvalucionTecnica=");
-		sb.append(getFechaEvalucionTecnica());
-		sb.append(", fechaEntrevistaGerenteArea=");
-		sb.append(getFechaEntrevistaGerenteArea());
-		sb.append(", fechaEvaluacionRRHH=");
-		sb.append(getFechaEvaluacionRRHH());
-		sb.append(", fechaPostulacion=");
-		sb.append(getFechaPostulacion());
-		sb.append(", seleccionado=");
-		sb.append(getSeleccionado());
+		sb.append(", categoria=");
+		sb.append(getCategoria());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -749,10 +473,6 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", requerimientoRecursoId=");
-		sb.append(getRequerimientoRecursoId());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append("}");
 
 		return sb.toString();
@@ -760,7 +480,7 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Puesto");
@@ -775,32 +495,8 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechaContrato</column-name><column-value><![CDATA[");
-		sb.append(getFechaContrato());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEvaluacionPsicologica</column-name><column-value><![CDATA[");
-		sb.append(getFechaEvaluacionPsicologica());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEvalucionTecnica</column-name><column-value><![CDATA[");
-		sb.append(getFechaEvalucionTecnica());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEntrevistaGerenteArea</column-name><column-value><![CDATA[");
-		sb.append(getFechaEntrevistaGerenteArea());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaEvaluacionRRHH</column-name><column-value><![CDATA[");
-		sb.append(getFechaEvaluacionRRHH());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaPostulacion</column-name><column-value><![CDATA[");
-		sb.append(getFechaPostulacion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>seleccionado</column-name><column-value><![CDATA[");
-		sb.append(getSeleccionado());
+			"<column><column-name>categoria</column-name><column-value><![CDATA[");
+		sb.append(getCategoria());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -822,14 +518,6 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>requerimientoRecursoId</column-name><column-value><![CDATA[");
-		sb.append(getRequerimientoRecursoId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -838,20 +526,12 @@ public class PuestoClp extends BaseModelImpl<Puesto> implements Puesto {
 
 	private long _puestoId;
 	private String _descripcion;
-	private Date _fechaContrato;
-	private Date _fechaEvaluacionPsicologica;
-	private Date _fechaEvalucionTecnica;
-	private Date _fechaEntrevistaGerenteArea;
-	private Date _fechaEvaluacionRRHH;
-	private Date _fechaPostulacion;
-	private boolean _seleccionado;
+	private long _categoria;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _requerimientoRecursoId;
-	private long _usuarioHitssId;
 	private BaseModel<?> _puestoRemoteModel;
 	private Class<?> _clpSerializerClass = com.rec.hitss.layer.service.ClpSerializer.class;
 }

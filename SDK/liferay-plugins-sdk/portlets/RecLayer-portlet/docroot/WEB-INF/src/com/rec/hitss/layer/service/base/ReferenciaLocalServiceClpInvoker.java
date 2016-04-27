@@ -32,11 +32,15 @@ public class ReferenciaLocalServiceClpInvoker {
 
 		_methodName1 = "createReferencia";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName2 = "deleteReferencia";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName3 = "deleteReferencia";
 
@@ -82,11 +86,15 @@ public class ReferenciaLocalServiceClpInvoker {
 
 		_methodName10 = "fetchReferencia";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName11 = "getReferencia";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.rec.hitss.layer.service.persistence.ReferenciaPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -106,13 +114,13 @@ public class ReferenciaLocalServiceClpInvoker {
 				"com.rec.hitss.layer.model.Referencia"
 			};
 
-		_methodName208 = "getBeanIdentifier";
+		_methodName142 = "getBeanIdentifier";
 
-		_methodParameterTypes208 = new String[] {  };
+		_methodParameterTypes142 = new String[] {  };
 
-		_methodName209 = "setBeanIdentifier";
+		_methodName143 = "setBeanIdentifier";
 
-		_methodParameterTypes209 = new String[] { "java.lang.String" };
+		_methodParameterTypes143 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -124,12 +132,12 @@ public class ReferenciaLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return ReferenciaLocalServiceUtil.createReferencia(((Long)arguments[0]).longValue());
+			return ReferenciaLocalServiceUtil.createReferencia((com.rec.hitss.layer.service.persistence.ReferenciaPK)arguments[0]);
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return ReferenciaLocalServiceUtil.deleteReferencia(((Long)arguments[0]).longValue());
+			return ReferenciaLocalServiceUtil.deleteReferencia((com.rec.hitss.layer.service.persistence.ReferenciaPK)arguments[0]);
 		}
 
 		if (_methodName3.equals(name) &&
@@ -175,12 +183,12 @@ public class ReferenciaLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return ReferenciaLocalServiceUtil.fetchReferencia(((Long)arguments[0]).longValue());
+			return ReferenciaLocalServiceUtil.fetchReferencia((com.rec.hitss.layer.service.persistence.ReferenciaPK)arguments[0]);
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return ReferenciaLocalServiceUtil.getReferencia(((Long)arguments[0]).longValue());
+			return ReferenciaLocalServiceUtil.getReferencia((com.rec.hitss.layer.service.persistence.ReferenciaPK)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&
@@ -204,13 +212,13 @@ public class ReferenciaLocalServiceClpInvoker {
 			return ReferenciaLocalServiceUtil.updateReferencia((com.rec.hitss.layer.model.Referencia)arguments[0]);
 		}
 
-		if (_methodName208.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes208, parameterTypes)) {
+		if (_methodName142.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes142, parameterTypes)) {
 			return ReferenciaLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName209.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes209, parameterTypes)) {
+		if (_methodName143.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes143, parameterTypes)) {
 			ReferenciaLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -251,8 +259,8 @@ public class ReferenciaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName208;
-	private String[] _methodParameterTypes208;
-	private String _methodName209;
-	private String[] _methodParameterTypes209;
+	private String _methodName142;
+	private String[] _methodParameterTypes142;
+	private String _methodName143;
+	private String[] _methodParameterTypes143;
 }

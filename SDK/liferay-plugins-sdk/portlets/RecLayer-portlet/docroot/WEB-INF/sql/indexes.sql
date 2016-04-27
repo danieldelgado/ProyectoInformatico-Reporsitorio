@@ -1,7 +1,14 @@
-create index IX_8D8FEE7 on Puesto (requerimientoRecursoId);
+create index IX_AC085D73 on Funcion (descripcion);
 
-create unique index IX_F958EAFA on RequerimientoRecurso (solicitudRequerimientoPersonalId);
+create index IX_24B38389 on Puesto (descripcion);
 
-create index IX_14DC8D69 on rec_Foo (field2);
+create index IX_BF01054 on Requisito (descripcion);
 
-create index IX_E53D5D89 on rec_foo (field2);
+create index IX_96963AE1 on SolicitudRequerimiento (estado);
+create index IX_DA6406D6 on SolicitudRequerimiento (puestoId, responsableRRHH, tiempoContrato, fechacrea, fechacrea);
+create index IX_48953397 on SolicitudRequerimiento (solicitudRequerimientoId);
+
+create index IX_5495C78E on Usuario (userId);
+
+create index IX_13820ED5 on rec_SolicitudRequerimientoFuncion (funcionId);
+create index IX_B967CB2A on rec_SolicitudRequerimientoFuncion (solicitudRequerimientoId);

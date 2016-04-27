@@ -53,13 +53,13 @@ public class RequisitoWrapper implements Requisito, ModelWrapper<Requisito> {
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("nivel", getNivel());
 		attributes.put("exigible", getExigible());
+		attributes.put("herramienta", getHerramienta());
+		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("solicitudRequerimientoPersonalId",
-			getSolicitudRequerimientoPersonalId());
 
 		return attributes;
 	}
@@ -90,6 +90,18 @@ public class RequisitoWrapper implements Requisito, ModelWrapper<Requisito> {
 			setExigible(exigible);
 		}
 
+		Long herramienta = (Long)attributes.get("herramienta");
+
+		if (herramienta != null) {
+			setHerramienta(herramienta);
+		}
+
+		Long tipoRequisito = (Long)attributes.get("tipoRequisito");
+
+		if (tipoRequisito != null) {
+			setTipoRequisito(tipoRequisito);
+		}
+
 		Boolean activo = (Boolean)attributes.get("activo");
 
 		if (activo != null) {
@@ -118,13 +130,6 @@ public class RequisitoWrapper implements Requisito, ModelWrapper<Requisito> {
 
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
-		}
-
-		Long solicitudRequerimientoPersonalId = (Long)attributes.get(
-				"solicitudRequerimientoPersonalId");
-
-		if (solicitudRequerimientoPersonalId != null) {
-			setSolicitudRequerimientoPersonalId(solicitudRequerimientoPersonalId);
 		}
 	}
 
@@ -239,6 +244,46 @@ public class RequisitoWrapper implements Requisito, ModelWrapper<Requisito> {
 	}
 
 	/**
+	* Returns the herramienta of this requisito.
+	*
+	* @return the herramienta of this requisito
+	*/
+	@Override
+	public long getHerramienta() {
+		return _requisito.getHerramienta();
+	}
+
+	/**
+	* Sets the herramienta of this requisito.
+	*
+	* @param herramienta the herramienta of this requisito
+	*/
+	@Override
+	public void setHerramienta(long herramienta) {
+		_requisito.setHerramienta(herramienta);
+	}
+
+	/**
+	* Returns the tipo requisito of this requisito.
+	*
+	* @return the tipo requisito of this requisito
+	*/
+	@Override
+	public long getTipoRequisito() {
+		return _requisito.getTipoRequisito();
+	}
+
+	/**
+	* Sets the tipo requisito of this requisito.
+	*
+	* @param tipoRequisito the tipo requisito of this requisito
+	*/
+	@Override
+	public void setTipoRequisito(long tipoRequisito) {
+		_requisito.setTipoRequisito(tipoRequisito);
+	}
+
+	/**
 	* Returns the activo of this requisito.
 	*
 	* @return the activo of this requisito
@@ -346,27 +391,6 @@ public class RequisitoWrapper implements Requisito, ModelWrapper<Requisito> {
 	@Override
 	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
 		_requisito.setFechacreamodifica(fechacreamodifica);
-	}
-
-	/**
-	* Returns the solicitud requerimiento personal ID of this requisito.
-	*
-	* @return the solicitud requerimiento personal ID of this requisito
-	*/
-	@Override
-	public long getSolicitudRequerimientoPersonalId() {
-		return _requisito.getSolicitudRequerimientoPersonalId();
-	}
-
-	/**
-	* Sets the solicitud requerimiento personal ID of this requisito.
-	*
-	* @param solicitudRequerimientoPersonalId the solicitud requerimiento personal ID of this requisito
-	*/
-	@Override
-	public void setSolicitudRequerimientoPersonalId(
-		long solicitudRequerimientoPersonalId) {
-		_requisito.setSolicitudRequerimientoPersonalId(solicitudRequerimientoPersonalId);
 	}
 
 	@Override

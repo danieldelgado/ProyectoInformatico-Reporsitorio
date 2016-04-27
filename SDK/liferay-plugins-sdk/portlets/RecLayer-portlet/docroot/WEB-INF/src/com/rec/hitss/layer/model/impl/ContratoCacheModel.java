@@ -37,18 +37,18 @@ import java.util.Date;
 public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{contratoId=");
 		sb.append(contratoId);
+		sb.append(", usuarioId=");
+		sb.append(usuarioId);
+		sb.append(", motivo=");
+		sb.append(motivo);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
-		sb.append(", fechaEmitida=");
-		sb.append(fechaEmitida);
-		sb.append(", Titulo=");
-		sb.append(Titulo);
-		sb.append(", Motivo=");
-		sb.append(Motivo);
+		sb.append(", titulo=");
+		sb.append(titulo);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -59,8 +59,6 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 		sb.append(usuariomodifica);
 		sb.append(", fechacreamodifica=");
 		sb.append(fechacreamodifica);
-		sb.append(", usuarioHitssId=");
-		sb.append(usuarioHitssId);
 		sb.append("}");
 
 		return sb.toString();
@@ -71,6 +69,14 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 		ContratoImpl contratoImpl = new ContratoImpl();
 
 		contratoImpl.setContratoId(contratoId);
+		contratoImpl.setUsuarioId(usuarioId);
+
+		if (motivo == null) {
+			contratoImpl.setMotivo(StringPool.BLANK);
+		}
+		else {
+			contratoImpl.setMotivo(motivo);
+		}
 
 		if (descripcion == null) {
 			contratoImpl.setDescripcion(StringPool.BLANK);
@@ -79,20 +85,11 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 			contratoImpl.setDescripcion(descripcion);
 		}
 
-		if (fechaEmitida == Long.MIN_VALUE) {
-			contratoImpl.setFechaEmitida(null);
+		if (titulo == null) {
+			contratoImpl.setTitulo(StringPool.BLANK);
 		}
 		else {
-			contratoImpl.setFechaEmitida(new Date(fechaEmitida));
-		}
-
-		contratoImpl.setTitulo(Titulo);
-
-		if (Motivo == null) {
-			contratoImpl.setMotivo(StringPool.BLANK);
-		}
-		else {
-			contratoImpl.setMotivo(Motivo);
+			contratoImpl.setTitulo(titulo);
 		}
 
 		contratoImpl.setActivo(activo);
@@ -114,8 +111,6 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 			contratoImpl.setFechacreamodifica(new Date(fechacreamodifica));
 		}
 
-		contratoImpl.setUsuarioHitssId(usuarioHitssId);
-
 		contratoImpl.resetOriginalValues();
 
 		return contratoImpl;
@@ -124,22 +119,29 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		contratoId = objectInput.readLong();
+		usuarioId = objectInput.readLong();
+		motivo = objectInput.readUTF();
 		descripcion = objectInput.readUTF();
-		fechaEmitida = objectInput.readLong();
-		Titulo = objectInput.readBoolean();
-		Motivo = objectInput.readUTF();
+		titulo = objectInput.readUTF();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
 		fechacreamodifica = objectInput.readLong();
-		usuarioHitssId = objectInput.readLong();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(contratoId);
+		objectOutput.writeLong(usuarioId);
+
+		if (motivo == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(motivo);
+		}
 
 		if (descripcion == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -148,14 +150,11 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 			objectOutput.writeUTF(descripcion);
 		}
 
-		objectOutput.writeLong(fechaEmitida);
-		objectOutput.writeBoolean(Titulo);
-
-		if (Motivo == null) {
+		if (titulo == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(Motivo);
+			objectOutput.writeUTF(titulo);
 		}
 
 		objectOutput.writeBoolean(activo);
@@ -163,18 +162,16 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
 		objectOutput.writeLong(fechacreamodifica);
-		objectOutput.writeLong(usuarioHitssId);
 	}
 
 	public long contratoId;
+	public long usuarioId;
+	public String motivo;
 	public String descripcion;
-	public long fechaEmitida;
-	public boolean Titulo;
-	public String Motivo;
+	public String titulo;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
 	public long fechacreamodifica;
-	public long usuarioHitssId;
 }

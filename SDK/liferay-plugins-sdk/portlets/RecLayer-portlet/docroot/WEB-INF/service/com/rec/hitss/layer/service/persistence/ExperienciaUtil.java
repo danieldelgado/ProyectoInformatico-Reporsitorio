@@ -133,25 +133,27 @@ public class ExperienciaUtil {
 	/**
 	* Creates a new experiencia with the primary key. Does not add the experiencia to the database.
 	*
-	* @param estudioId the primary key for the new experiencia
+	* @param experienciaId the primary key for the new experiencia
 	* @return the new experiencia
 	*/
-	public static com.rec.hitss.layer.model.Experiencia create(long estudioId) {
-		return getPersistence().create(estudioId);
+	public static com.rec.hitss.layer.model.Experiencia create(
+		long experienciaId) {
+		return getPersistence().create(experienciaId);
 	}
 
 	/**
 	* Removes the experiencia with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia that was removed
 	* @throws com.rec.hitss.layer.NoSuchExperienciaException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.rec.hitss.layer.model.Experiencia remove(long estudioId)
+	public static com.rec.hitss.layer.model.Experiencia remove(
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.rec.hitss.layer.NoSuchExperienciaException {
-		return getPersistence().remove(estudioId);
+		return getPersistence().remove(experienciaId);
 	}
 
 	public static com.rec.hitss.layer.model.Experiencia updateImpl(
@@ -163,29 +165,29 @@ public class ExperienciaUtil {
 	/**
 	* Returns the experiencia with the primary key or throws a {@link com.rec.hitss.layer.NoSuchExperienciaException} if it could not be found.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia
 	* @throws com.rec.hitss.layer.NoSuchExperienciaException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Experiencia findByPrimaryKey(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.rec.hitss.layer.NoSuchExperienciaException {
-		return getPersistence().findByPrimaryKey(estudioId);
+		return getPersistence().findByPrimaryKey(experienciaId);
 	}
 
 	/**
 	* Returns the experiencia with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia, or <code>null</code> if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Experiencia fetchByPrimaryKey(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(estudioId);
+		return getPersistence().fetchByPrimaryKey(experienciaId);
 	}
 
 	/**

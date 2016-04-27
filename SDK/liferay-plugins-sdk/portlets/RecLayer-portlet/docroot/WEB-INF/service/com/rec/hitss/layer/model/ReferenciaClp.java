@@ -24,6 +24,7 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.rec.hitss.layer.service.ClpSerializer;
 import com.rec.hitss.layer.service.ReferenciaLocalServiceUtil;
+import com.rec.hitss.layer.service.persistence.ReferenciaPK;
 
 import java.io.Serializable;
 
@@ -52,23 +53,24 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _referenciaId;
+	public ReferenciaPK getPrimaryKey() {
+		return new ReferenciaPK(_referenciaId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setReferenciaId(primaryKey);
+	public void setPrimaryKey(ReferenciaPK primaryKey) {
+		setReferenciaId(primaryKey.referenciaId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _referenciaId;
+		return new ReferenciaPK(_referenciaId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ReferenciaPK)primaryKeyObj);
 	}
 
 	@Override
@@ -76,11 +78,11 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("referenciaId", getReferenciaId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("empresa", getEmpresa());
 		attributes.put("telefono", getTelefono());
 		attributes.put("responsable", getResponsable());
 		attributes.put("motivo", getMotivo());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -96,6 +98,12 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 
 		if (referenciaId != null) {
 			setReferenciaId(referenciaId);
+		}
+
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
 		}
 
 		String empresa = (String)attributes.get("empresa");
@@ -120,12 +128,6 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 
 		if (motivo != null) {
 			setMotivo(motivo);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -175,6 +177,29 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 				Method method = clazz.getMethod("setReferenciaId", long.class);
 
 				method.invoke(_referenciaRemoteModel, referenciaId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+
+		if (_referenciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _referenciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUsuarioId", long.class);
+
+				method.invoke(_referenciaRemoteModel, usuarioId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -267,29 +292,6 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 				Method method = clazz.getMethod("setMotivo", String.class);
 
 				method.invoke(_referenciaRemoteModel, motivo);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-
-		if (_referenciaRemoteModel != null) {
-			try {
-				Class<?> clazz = _referenciaRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setUsuarioHitssId", long.class);
-
-				method.invoke(_referenciaRemoteModel, usuarioHitssId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -488,11 +490,11 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 		ReferenciaClp clone = new ReferenciaClp();
 
 		clone.setReferenciaId(getReferenciaId());
+		clone.setUsuarioId(getUsuarioId());
 		clone.setEmpresa(getEmpresa());
 		clone.setTelefono(getTelefono());
 		clone.setResponsable(getResponsable());
 		clone.setMotivo(getMotivo());
-		clone.setUsuarioHitssId(getUsuarioHitssId());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -506,7 +508,8 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 	public int compareTo(Referencia referencia) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), referencia.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				referencia.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -527,9 +530,9 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 
 		ReferenciaClp referencia = (ReferenciaClp)obj;
 
-		long primaryKey = referencia.getPrimaryKey();
+		ReferenciaPK primaryKey = referencia.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -543,7 +546,7 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
@@ -552,6 +555,8 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 
 		sb.append("{referenciaId=");
 		sb.append(getReferenciaId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
 		sb.append(", empresa=");
 		sb.append(getEmpresa());
 		sb.append(", telefono=");
@@ -560,8 +565,6 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 		sb.append(getResponsable());
 		sb.append(", motivo=");
 		sb.append(getMotivo());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -590,6 +593,10 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 		sb.append(getReferenciaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>empresa</column-name><column-value><![CDATA[");
 		sb.append(getEmpresa());
 		sb.append("]]></column-value></column>");
@@ -604,10 +611,6 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 		sb.append(
 			"<column><column-name>motivo</column-name><column-value><![CDATA[");
 		sb.append(getMotivo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -636,11 +639,11 @@ public class ReferenciaClp extends BaseModelImpl<Referencia>
 	}
 
 	private long _referenciaId;
+	private long _usuarioId;
 	private String _empresa;
 	private String _telefono;
 	private String _responsable;
 	private String _motivo;
-	private long _usuarioHitssId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

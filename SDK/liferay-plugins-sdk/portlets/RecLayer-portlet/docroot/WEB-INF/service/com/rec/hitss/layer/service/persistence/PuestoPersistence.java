@@ -38,141 +38,141 @@ public interface PuestoPersistence extends BasePersistence<Puesto> {
 	 */
 
 	/**
-	* Returns all the puestos where requerimientoRecursoId = &#63;.
+	* Returns all the puestos where descripcion LIKE &#63;.
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @return the matching puestos
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.rec.hitss.layer.model.Puesto> findByRequerimientoRecurso(
-		long requerimientoRecursoId)
+	public java.util.List<com.rec.hitss.layer.model.Puesto> findByfiltroDescripcion(
+		java.lang.String descripcion)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the puestos where requerimientoRecursoId = &#63;.
+	* Returns a range of all the puestos where descripcion LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.rec.hitss.layer.model.impl.PuestoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @param start the lower bound of the range of puestos
 	* @param end the upper bound of the range of puestos (not inclusive)
 	* @return the range of matching puestos
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.rec.hitss.layer.model.Puesto> findByRequerimientoRecurso(
-		long requerimientoRecursoId, int start, int end)
+	public java.util.List<com.rec.hitss.layer.model.Puesto> findByfiltroDescripcion(
+		java.lang.String descripcion, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the puestos where requerimientoRecursoId = &#63;.
+	* Returns an ordered range of all the puestos where descripcion LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.rec.hitss.layer.model.impl.PuestoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @param start the lower bound of the range of puestos
 	* @param end the upper bound of the range of puestos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching puestos
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.rec.hitss.layer.model.Puesto> findByRequerimientoRecurso(
-		long requerimientoRecursoId, int start, int end,
+	public java.util.List<com.rec.hitss.layer.model.Puesto> findByfiltroDescripcion(
+		java.lang.String descripcion, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first puesto in the ordered set where requerimientoRecursoId = &#63;.
+	* Returns the first puesto in the ordered set where descripcion LIKE &#63;.
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching puesto
 	* @throws com.rec.hitss.layer.NoSuchPuestoException if a matching puesto could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.rec.hitss.layer.model.Puesto findByRequerimientoRecurso_First(
-		long requerimientoRecursoId,
+	public com.rec.hitss.layer.model.Puesto findByfiltroDescripcion_First(
+		java.lang.String descripcion,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.rec.hitss.layer.NoSuchPuestoException;
 
 	/**
-	* Returns the first puesto in the ordered set where requerimientoRecursoId = &#63;.
+	* Returns the first puesto in the ordered set where descripcion LIKE &#63;.
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching puesto, or <code>null</code> if a matching puesto could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.rec.hitss.layer.model.Puesto fetchByRequerimientoRecurso_First(
-		long requerimientoRecursoId,
+	public com.rec.hitss.layer.model.Puesto fetchByfiltroDescripcion_First(
+		java.lang.String descripcion,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last puesto in the ordered set where requerimientoRecursoId = &#63;.
+	* Returns the last puesto in the ordered set where descripcion LIKE &#63;.
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching puesto
 	* @throws com.rec.hitss.layer.NoSuchPuestoException if a matching puesto could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.rec.hitss.layer.model.Puesto findByRequerimientoRecurso_Last(
-		long requerimientoRecursoId,
+	public com.rec.hitss.layer.model.Puesto findByfiltroDescripcion_Last(
+		java.lang.String descripcion,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.rec.hitss.layer.NoSuchPuestoException;
 
 	/**
-	* Returns the last puesto in the ordered set where requerimientoRecursoId = &#63;.
+	* Returns the last puesto in the ordered set where descripcion LIKE &#63;.
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching puesto, or <code>null</code> if a matching puesto could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.rec.hitss.layer.model.Puesto fetchByRequerimientoRecurso_Last(
-		long requerimientoRecursoId,
+	public com.rec.hitss.layer.model.Puesto fetchByfiltroDescripcion_Last(
+		java.lang.String descripcion,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the puestos before and after the current puesto in the ordered set where requerimientoRecursoId = &#63;.
+	* Returns the puestos before and after the current puesto in the ordered set where descripcion LIKE &#63;.
 	*
 	* @param puestoId the primary key of the current puesto
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next puesto
 	* @throws com.rec.hitss.layer.NoSuchPuestoException if a puesto with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.rec.hitss.layer.model.Puesto[] findByRequerimientoRecurso_PrevAndNext(
-		long puestoId, long requerimientoRecursoId,
+	public com.rec.hitss.layer.model.Puesto[] findByfiltroDescripcion_PrevAndNext(
+		long puestoId, java.lang.String descripcion,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.rec.hitss.layer.NoSuchPuestoException;
 
 	/**
-	* Removes all the puestos where requerimientoRecursoId = &#63; from the database.
+	* Removes all the puestos where descripcion LIKE &#63; from the database.
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByRequerimientoRecurso(long requerimientoRecursoId)
+	public void removeByfiltroDescripcion(java.lang.String descripcion)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of puestos where requerimientoRecursoId = &#63;.
+	* Returns the number of puestos where descripcion LIKE &#63;.
 	*
-	* @param requerimientoRecursoId the requerimiento recurso ID
+	* @param descripcion the descripcion
 	* @return the number of matching puestos
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByRequerimientoRecurso(long requerimientoRecursoId)
+	public int countByfiltroDescripcion(java.lang.String descripcion)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

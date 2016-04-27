@@ -23,14 +23,11 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.service.ServiceContext;
-
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import com.rec.hitss.layer.model.Referencia;
 import com.rec.hitss.layer.model.ReferenciaModel;
 import com.rec.hitss.layer.model.ReferenciaSoap;
+import com.rec.hitss.layer.service.persistence.ReferenciaPK;
 
 import java.io.Serializable;
 
@@ -66,21 +63,21 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	public static final String TABLE_NAME = "Referencia";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "referenciaId", Types.BIGINT },
+			{ "usuarioId", Types.BIGINT },
 			{ "empresa", Types.VARCHAR },
 			{ "telefono", Types.VARCHAR },
 			{ "responsable", Types.VARCHAR },
 			{ "motivo", Types.VARCHAR },
-			{ "usuarioHitssId", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Referencia (referenciaId LONG not null primary key,empresa VARCHAR(75) null,telefono VARCHAR(75) null,responsable VARCHAR(75) null,motivo VARCHAR(75) null,usuarioHitssId LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Referencia (referenciaId LONG not null,usuarioId LONG not null,empresa VARCHAR(75) null,telefono VARCHAR(75) null,responsable VARCHAR(75) null,motivo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,primary key (referenciaId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table Referencia";
-	public static final String ORDER_BY_JPQL = " ORDER BY referencia.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Referencia.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY referencia.fechacreamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Referencia.fechacreamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -106,11 +103,11 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		Referencia model = new ReferenciaImpl();
 
 		model.setReferenciaId(soapModel.getReferenciaId());
+		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setEmpresa(soapModel.getEmpresa());
 		model.setTelefono(soapModel.getTelefono());
 		model.setResponsable(soapModel.getResponsable());
 		model.setMotivo(soapModel.getMotivo());
-		model.setUsuarioHitssId(soapModel.getUsuarioHitssId());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -147,23 +144,24 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _referenciaId;
+	public ReferenciaPK getPrimaryKey() {
+		return new ReferenciaPK(_referenciaId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setReferenciaId(primaryKey);
+	public void setPrimaryKey(ReferenciaPK primaryKey) {
+		setReferenciaId(primaryKey.referenciaId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _referenciaId;
+		return new ReferenciaPK(_referenciaId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ReferenciaPK)primaryKeyObj);
 	}
 
 	@Override
@@ -181,11 +179,11 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("referenciaId", getReferenciaId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("empresa", getEmpresa());
 		attributes.put("telefono", getTelefono());
 		attributes.put("responsable", getResponsable());
 		attributes.put("motivo", getMotivo());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -201,6 +199,12 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 		if (referenciaId != null) {
 			setReferenciaId(referenciaId);
+		}
+
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
 		}
 
 		String empresa = (String)attributes.get("empresa");
@@ -225,12 +229,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 		if (motivo != null) {
 			setMotivo(motivo);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -273,6 +271,17 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	@Override
 	public void setReferenciaId(long referenciaId) {
 		_referenciaId = referenciaId;
+	}
+
+	@JSON
+	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
 	}
 
 	@JSON
@@ -341,17 +350,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 	@JSON
 	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-	}
-
-	@JSON
-	@Override
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -411,19 +409,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	}
 
 	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-			Referencia.class.getName(), getPrimaryKey());
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		ExpandoBridge expandoBridge = getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
-	}
-
-	@Override
 	public Referencia toEscapedModel() {
 		if (_escapedModel == null) {
 			_escapedModel = (Referencia)ProxyUtil.newProxyInstance(_classLoader,
@@ -438,11 +423,11 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		ReferenciaImpl referenciaImpl = new ReferenciaImpl();
 
 		referenciaImpl.setReferenciaId(getReferenciaId());
+		referenciaImpl.setUsuarioId(getUsuarioId());
 		referenciaImpl.setEmpresa(getEmpresa());
 		referenciaImpl.setTelefono(getTelefono());
 		referenciaImpl.setResponsable(getResponsable());
 		referenciaImpl.setMotivo(getMotivo());
-		referenciaImpl.setUsuarioHitssId(getUsuarioHitssId());
 		referenciaImpl.setActivo(getActivo());
 		referenciaImpl.setUsuariocrea(getUsuariocrea());
 		referenciaImpl.setFechacrea(getFechacrea());
@@ -458,7 +443,8 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	public int compareTo(Referencia referencia) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), referencia.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				referencia.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -479,9 +465,9 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 		Referencia referencia = (Referencia)obj;
 
-		long primaryKey = referencia.getPrimaryKey();
+		ReferenciaPK primaryKey = referencia.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -491,7 +477,7 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
@@ -503,6 +489,8 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		ReferenciaCacheModel referenciaCacheModel = new ReferenciaCacheModel();
 
 		referenciaCacheModel.referenciaId = getReferenciaId();
+
+		referenciaCacheModel.usuarioId = getUsuarioId();
 
 		referenciaCacheModel.empresa = getEmpresa();
 
@@ -535,8 +523,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		if ((motivo != null) && (motivo.length() == 0)) {
 			referenciaCacheModel.motivo = null;
 		}
-
-		referenciaCacheModel.usuarioHitssId = getUsuarioHitssId();
 
 		referenciaCacheModel.activo = getActivo();
 
@@ -571,6 +557,8 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 		sb.append("{referenciaId=");
 		sb.append(getReferenciaId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
 		sb.append(", empresa=");
 		sb.append(getEmpresa());
 		sb.append(", telefono=");
@@ -579,8 +567,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		sb.append(getResponsable());
 		sb.append(", motivo=");
 		sb.append(getMotivo());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -609,6 +595,10 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		sb.append(getReferenciaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>empresa</column-name><column-value><![CDATA[");
 		sb.append(getEmpresa());
 		sb.append("]]></column-value></column>");
@@ -623,10 +613,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		sb.append(
 			"<column><column-name>motivo</column-name><column-value><![CDATA[");
 		sb.append(getMotivo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -659,11 +645,11 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 			Referencia.class
 		};
 	private long _referenciaId;
+	private long _usuarioId;
 	private String _empresa;
 	private String _telefono;
 	private String _responsable;
 	private String _motivo;
-	private long _usuarioHitssId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

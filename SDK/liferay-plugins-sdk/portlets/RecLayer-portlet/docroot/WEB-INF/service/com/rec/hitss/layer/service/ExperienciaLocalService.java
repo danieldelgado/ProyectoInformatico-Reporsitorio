@@ -61,23 +61,23 @@ public interface ExperienciaLocalService extends BaseLocalService,
 	/**
 	* Creates a new experiencia with the primary key. Does not add the experiencia to the database.
 	*
-	* @param estudioId the primary key for the new experiencia
+	* @param experienciaId the primary key for the new experiencia
 	* @return the new experiencia
 	*/
 	public com.rec.hitss.layer.model.Experiencia createExperiencia(
-		long estudioId);
+		long experienciaId);
 
 	/**
 	* Deletes the experiencia with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia that was removed
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.rec.hitss.layer.model.Experiencia deleteExperiencia(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -172,19 +172,20 @@ public interface ExperienciaLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.rec.hitss.layer.model.Experiencia fetchExperiencia(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the experiencia with the primary key.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.rec.hitss.layer.model.Experiencia getExperiencia(long estudioId)
+	public com.rec.hitss.layer.model.Experiencia getExperiencia(
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

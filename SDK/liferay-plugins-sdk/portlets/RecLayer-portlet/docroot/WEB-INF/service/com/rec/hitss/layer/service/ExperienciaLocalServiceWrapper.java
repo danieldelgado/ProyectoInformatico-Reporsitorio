@@ -47,29 +47,29 @@ public class ExperienciaLocalServiceWrapper implements ExperienciaLocalService,
 	/**
 	* Creates a new experiencia with the primary key. Does not add the experiencia to the database.
 	*
-	* @param estudioId the primary key for the new experiencia
+	* @param experienciaId the primary key for the new experiencia
 	* @return the new experiencia
 	*/
 	@Override
 	public com.rec.hitss.layer.model.Experiencia createExperiencia(
-		long estudioId) {
-		return _experienciaLocalService.createExperiencia(estudioId);
+		long experienciaId) {
+		return _experienciaLocalService.createExperiencia(experienciaId);
 	}
 
 	/**
 	* Deletes the experiencia with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia that was removed
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.rec.hitss.layer.model.Experiencia deleteExperiencia(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _experienciaLocalService.deleteExperiencia(estudioId);
+		return _experienciaLocalService.deleteExperiencia(experienciaId);
 	}
 
 	/**
@@ -185,24 +185,25 @@ public class ExperienciaLocalServiceWrapper implements ExperienciaLocalService,
 
 	@Override
 	public com.rec.hitss.layer.model.Experiencia fetchExperiencia(
-		long estudioId)
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _experienciaLocalService.fetchExperiencia(estudioId);
+		return _experienciaLocalService.fetchExperiencia(experienciaId);
 	}
 
 	/**
 	* Returns the experiencia with the primary key.
 	*
-	* @param estudioId the primary key of the experiencia
+	* @param experienciaId the primary key of the experiencia
 	* @return the experiencia
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public com.rec.hitss.layer.model.Experiencia getExperiencia(long estudioId)
+	public com.rec.hitss.layer.model.Experiencia getExperiencia(
+		long experienciaId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _experienciaLocalService.getExperiencia(estudioId);
+		return _experienciaLocalService.getExperiencia(experienciaId);
 	}
 
 	@Override

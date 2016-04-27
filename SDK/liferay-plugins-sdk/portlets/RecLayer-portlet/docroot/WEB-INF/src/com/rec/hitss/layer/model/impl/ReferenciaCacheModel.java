@@ -42,6 +42,8 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 
 		sb.append("{referenciaId=");
 		sb.append(referenciaId);
+		sb.append(", usuarioId=");
+		sb.append(usuarioId);
 		sb.append(", empresa=");
 		sb.append(empresa);
 		sb.append(", telefono=");
@@ -50,8 +52,6 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 		sb.append(responsable);
 		sb.append(", motivo=");
 		sb.append(motivo);
-		sb.append(", usuarioHitssId=");
-		sb.append(usuarioHitssId);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -72,6 +72,7 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 		ReferenciaImpl referenciaImpl = new ReferenciaImpl();
 
 		referenciaImpl.setReferenciaId(referenciaId);
+		referenciaImpl.setUsuarioId(usuarioId);
 
 		if (empresa == null) {
 			referenciaImpl.setEmpresa(StringPool.BLANK);
@@ -101,7 +102,6 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 			referenciaImpl.setMotivo(motivo);
 		}
 
-		referenciaImpl.setUsuarioHitssId(usuarioHitssId);
 		referenciaImpl.setActivo(activo);
 		referenciaImpl.setUsuariocrea(usuariocrea);
 
@@ -129,11 +129,11 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		referenciaId = objectInput.readLong();
+		usuarioId = objectInput.readLong();
 		empresa = objectInput.readUTF();
 		telefono = objectInput.readUTF();
 		responsable = objectInput.readUTF();
 		motivo = objectInput.readUTF();
-		usuarioHitssId = objectInput.readLong();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -145,6 +145,7 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(referenciaId);
+		objectOutput.writeLong(usuarioId);
 
 		if (empresa == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -174,7 +175,6 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 			objectOutput.writeUTF(motivo);
 		}
 
-		objectOutput.writeLong(usuarioHitssId);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -183,11 +183,11 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 	}
 
 	public long referenciaId;
+	public long usuarioId;
 	public String empresa;
 	public String telefono;
 	public String responsable;
 	public String motivo;
-	public long usuarioHitssId;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

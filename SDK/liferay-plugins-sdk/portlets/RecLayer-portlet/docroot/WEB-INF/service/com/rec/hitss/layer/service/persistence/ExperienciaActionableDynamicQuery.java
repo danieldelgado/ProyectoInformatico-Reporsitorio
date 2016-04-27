@@ -32,6 +32,6 @@ public abstract class ExperienciaActionableDynamicQuery
 
 		setClassLoader(com.rec.hitss.layer.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("estudioId");
+		setPrimaryKeyPropertyName("experienciaId");
 	}
 }

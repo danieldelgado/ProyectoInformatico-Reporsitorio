@@ -21,6 +21,8 @@ import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 
+import com.rec.hitss.layer.service.persistence.ReferenciaPK;
+
 import java.io.Serializable;
 
 import java.util.Date;
@@ -50,14 +52,14 @@ public interface ReferenciaModel extends BaseModel<Referencia> {
 	 *
 	 * @return the primary key of this referencia
 	 */
-	public long getPrimaryKey();
+	public ReferenciaPK getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this referencia.
 	 *
 	 * @param primaryKey the primary key of this referencia
 	 */
-	public void setPrimaryKey(long primaryKey);
+	public void setPrimaryKey(ReferenciaPK primaryKey);
 
 	/**
 	 * Returns the referencia ID of this referencia.
@@ -72,6 +74,20 @@ public interface ReferenciaModel extends BaseModel<Referencia> {
 	 * @param referenciaId the referencia ID of this referencia
 	 */
 	public void setReferenciaId(long referenciaId);
+
+	/**
+	 * Returns the usuario ID of this referencia.
+	 *
+	 * @return the usuario ID of this referencia
+	 */
+	public long getUsuarioId();
+
+	/**
+	 * Sets the usuario ID of this referencia.
+	 *
+	 * @param usuarioId the usuario ID of this referencia
+	 */
+	public void setUsuarioId(long usuarioId);
 
 	/**
 	 * Returns the empresa of this referencia.
@@ -132,20 +148,6 @@ public interface ReferenciaModel extends BaseModel<Referencia> {
 	 * @param motivo the motivo of this referencia
 	 */
 	public void setMotivo(String motivo);
-
-	/**
-	 * Returns the usuario hitss ID of this referencia.
-	 *
-	 * @return the usuario hitss ID of this referencia
-	 */
-	public long getUsuarioHitssId();
-
-	/**
-	 * Sets the usuario hitss ID of this referencia.
-	 *
-	 * @param usuarioHitssId the usuario hitss ID of this referencia
-	 */
-	public void setUsuarioHitssId(long usuarioHitssId);
 
 	/**
 	 * Returns the activo of this referencia.

@@ -75,16 +75,15 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("contratoId", getContratoId());
+		attributes.put("usuarioId", getUsuarioId());
+		attributes.put("motivo", getMotivo());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("fechaEmitida", getFechaEmitida());
-		attributes.put("Titulo", getTitulo());
-		attributes.put("Motivo", getMotivo());
+		attributes.put("titulo", getTitulo());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -97,28 +96,28 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 			setContratoId(contratoId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
+		String motivo = (String)attributes.get("motivo");
+
+		if (motivo != null) {
+			setMotivo(motivo);
+		}
+
 		String descripcion = (String)attributes.get("descripcion");
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
 		}
 
-		Date fechaEmitida = (Date)attributes.get("fechaEmitida");
+		String titulo = (String)attributes.get("titulo");
 
-		if (fechaEmitida != null) {
-			setFechaEmitida(fechaEmitida);
-		}
-
-		Boolean Titulo = (Boolean)attributes.get("Titulo");
-
-		if (Titulo != null) {
-			setTitulo(Titulo);
-		}
-
-		String Motivo = (String)attributes.get("Motivo");
-
-		if (Motivo != null) {
-			setMotivo(Motivo);
+		if (titulo != null) {
+			setTitulo(titulo);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -150,12 +149,6 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
 		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
-		}
 	}
 
 	@Override
@@ -174,6 +167,52 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 				Method method = clazz.getMethod("setContratoId", long.class);
 
 				method.invoke(_contratoRemoteModel, contratoId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+
+		if (_contratoRemoteModel != null) {
+			try {
+				Class<?> clazz = _contratoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUsuarioId", long.class);
+
+				method.invoke(_contratoRemoteModel, usuarioId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getMotivo() {
+		return _motivo;
+	}
+
+	@Override
+	public void setMotivo(String motivo) {
+		_motivo = motivo;
+
+		if (_contratoRemoteModel != null) {
+			try {
+				Class<?> clazz = _contratoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setMotivo", String.class);
+
+				method.invoke(_contratoRemoteModel, motivo);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -205,72 +244,21 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 	}
 
 	@Override
-	public Date getFechaEmitida() {
-		return _fechaEmitida;
+	public String getTitulo() {
+		return _titulo;
 	}
 
 	@Override
-	public void setFechaEmitida(Date fechaEmitida) {
-		_fechaEmitida = fechaEmitida;
+	public void setTitulo(String titulo) {
+		_titulo = titulo;
 
 		if (_contratoRemoteModel != null) {
 			try {
 				Class<?> clazz = _contratoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechaEmitida", Date.class);
+				Method method = clazz.getMethod("setTitulo", String.class);
 
-				method.invoke(_contratoRemoteModel, fechaEmitida);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public boolean getTitulo() {
-		return _Titulo;
-	}
-
-	@Override
-	public boolean isTitulo() {
-		return _Titulo;
-	}
-
-	@Override
-	public void setTitulo(boolean Titulo) {
-		_Titulo = Titulo;
-
-		if (_contratoRemoteModel != null) {
-			try {
-				Class<?> clazz = _contratoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setTitulo", boolean.class);
-
-				method.invoke(_contratoRemoteModel, Titulo);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getMotivo() {
-		return _Motivo;
-	}
-
-	@Override
-	public void setMotivo(String Motivo) {
-		_Motivo = Motivo;
-
-		if (_contratoRemoteModel != null) {
-			try {
-				Class<?> clazz = _contratoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setMotivo", String.class);
-
-				method.invoke(_contratoRemoteModel, Motivo);
+				method.invoke(_contratoRemoteModel, titulo);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -399,29 +387,6 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 		}
 	}
 
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-
-		if (_contratoRemoteModel != null) {
-			try {
-				Class<?> clazz = _contratoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setUsuarioHitssId", long.class);
-
-				method.invoke(_contratoRemoteModel, usuarioHitssId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
 	public BaseModel<?> getContratoRemoteModel() {
 		return _contratoRemoteModel;
 	}
@@ -492,16 +457,15 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 		ContratoClp clone = new ContratoClp();
 
 		clone.setContratoId(getContratoId());
-		clone.setDescripcion(getDescripcion());
-		clone.setFechaEmitida(getFechaEmitida());
-		clone.setTitulo(getTitulo());
+		clone.setUsuarioId(getUsuarioId());
 		clone.setMotivo(getMotivo());
+		clone.setDescripcion(getDescripcion());
+		clone.setTitulo(getTitulo());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
 		clone.setFechacreamodifica(getFechacreamodifica());
-		clone.setUsuarioHitssId(getUsuarioHitssId());
 
 		return clone;
 	}
@@ -510,7 +474,8 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 	public int compareTo(Contrato contrato) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), contrato.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				contrato.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -552,18 +517,18 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{contratoId=");
 		sb.append(getContratoId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
+		sb.append(", motivo=");
+		sb.append(getMotivo());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
-		sb.append(", fechaEmitida=");
-		sb.append(getFechaEmitida());
-		sb.append(", Titulo=");
+		sb.append(", titulo=");
 		sb.append(getTitulo());
-		sb.append(", Motivo=");
-		sb.append(getMotivo());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -574,8 +539,6 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append("}");
 
 		return sb.toString();
@@ -583,7 +546,7 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Contrato");
@@ -594,20 +557,20 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 		sb.append(getContratoId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>motivo</column-name><column-value><![CDATA[");
+		sb.append(getMotivo());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechaEmitida</column-name><column-value><![CDATA[");
-		sb.append(getFechaEmitida());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>Titulo</column-name><column-value><![CDATA[");
+			"<column><column-name>titulo</column-name><column-value><![CDATA[");
 		sb.append(getTitulo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>Motivo</column-name><column-value><![CDATA[");
-		sb.append(getMotivo());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -629,10 +592,6 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -640,16 +599,15 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 	}
 
 	private long _contratoId;
+	private long _usuarioId;
+	private String _motivo;
 	private String _descripcion;
-	private Date _fechaEmitida;
-	private boolean _Titulo;
-	private String _Motivo;
+	private String _titulo;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _usuarioHitssId;
 	private BaseModel<?> _contratoRemoteModel;
 	private Class<?> _clpSerializerClass = com.rec.hitss.layer.service.ClpSerializer.class;
 }

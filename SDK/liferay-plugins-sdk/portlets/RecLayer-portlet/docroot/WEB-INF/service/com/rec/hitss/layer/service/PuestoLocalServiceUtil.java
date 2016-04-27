@@ -271,12 +271,10 @@ public class PuestoLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static java.util.List<com.rec.hitss.layer.model.Puesto> findByRequerimientoRecurso(
-		java.lang.Long requerimientoRecursoId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.rec.hitss.layer.NoSuchRequerimientoRecursoException,
-			java.text.ParseException {
-		return getService().findByRequerimientoRecurso(requerimientoRecursoId);
+	public static java.util.List<com.rec.hitss.layer.model.Puesto> findByfiltroDescripcion(
+		java.lang.String descripcion)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByfiltroDescripcion(descripcion);
 	}
 
 	public static void clearService() {

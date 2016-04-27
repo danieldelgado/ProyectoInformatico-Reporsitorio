@@ -250,9 +250,7 @@ public interface PuestoLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public java.util.List<com.rec.hitss.layer.model.Puesto> findByRequerimientoRecurso(
-		java.lang.Long requerimientoRecursoId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.rec.hitss.layer.NoSuchRequerimientoRecursoException,
-			java.text.ParseException;
+	public java.util.List<com.rec.hitss.layer.model.Puesto> findByfiltroDescripcion(
+		java.lang.String descripcion)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -43,10 +43,10 @@ public class FuncionCacheModel implements CacheModel<Funcion>, Externalizable {
 		sb.append(funcionId);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
+		sb.append(", etiqueta=");
+		sb.append(etiqueta);
 		sb.append(", exigible=");
 		sb.append(exigible);
-		sb.append(", etiquetaId=");
-		sb.append(etiquetaId);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -75,8 +75,8 @@ public class FuncionCacheModel implements CacheModel<Funcion>, Externalizable {
 			funcionImpl.setDescripcion(descripcion);
 		}
 
+		funcionImpl.setEtiqueta(etiqueta);
 		funcionImpl.setExigible(exigible);
-		funcionImpl.setEtiquetaId(etiquetaId);
 		funcionImpl.setActivo(activo);
 		funcionImpl.setUsuariocrea(usuariocrea);
 
@@ -105,8 +105,8 @@ public class FuncionCacheModel implements CacheModel<Funcion>, Externalizable {
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		funcionId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
+		etiqueta = objectInput.readLong();
 		exigible = objectInput.readBoolean();
-		etiquetaId = objectInput.readLong();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -126,8 +126,8 @@ public class FuncionCacheModel implements CacheModel<Funcion>, Externalizable {
 			objectOutput.writeUTF(descripcion);
 		}
 
+		objectOutput.writeLong(etiqueta);
 		objectOutput.writeBoolean(exigible);
-		objectOutput.writeLong(etiquetaId);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -137,8 +137,8 @@ public class FuncionCacheModel implements CacheModel<Funcion>, Externalizable {
 
 	public long funcionId;
 	public String descripcion;
+	public long etiqueta;
 	public boolean exigible;
-	public long etiquetaId;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

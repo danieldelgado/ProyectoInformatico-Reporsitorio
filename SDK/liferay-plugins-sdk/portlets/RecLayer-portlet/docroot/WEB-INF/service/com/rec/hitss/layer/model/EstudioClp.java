@@ -75,17 +75,14 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("estudioId", getEstudioId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("nombre", getNombre());
-		attributes.put("logro", getLogro());
-		attributes.put("fechaInicio", getFechaInicio());
-		attributes.put("fechaFino", getFechaFino());
 		attributes.put("nivel", getNivel());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -98,28 +95,16 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 			setEstudioId(estudioId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
 		String nombre = (String)attributes.get("nombre");
 
 		if (nombre != null) {
 			setNombre(nombre);
-		}
-
-		String logro = (String)attributes.get("logro");
-
-		if (logro != null) {
-			setLogro(logro);
-		}
-
-		Date fechaInicio = (Date)attributes.get("fechaInicio");
-
-		if (fechaInicio != null) {
-			setFechaInicio(fechaInicio);
-		}
-
-		Date fechaFino = (Date)attributes.get("fechaFino");
-
-		if (fechaFino != null) {
-			setFechaFino(fechaFino);
 		}
 
 		Long nivel = (Long)attributes.get("nivel");
@@ -157,12 +142,6 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
 		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
-		}
 	}
 
 	@Override
@@ -189,6 +168,29 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 	}
 
 	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+
+		if (_estudioRemoteModel != null) {
+			try {
+				Class<?> clazz = _estudioRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUsuarioId", long.class);
+
+				method.invoke(_estudioRemoteModel, usuarioId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public String getNombre() {
 		return _nombre;
 	}
@@ -204,75 +206,6 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 				Method method = clazz.getMethod("setNombre", String.class);
 
 				method.invoke(_estudioRemoteModel, nombre);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getLogro() {
-		return _logro;
-	}
-
-	@Override
-	public void setLogro(String logro) {
-		_logro = logro;
-
-		if (_estudioRemoteModel != null) {
-			try {
-				Class<?> clazz = _estudioRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setLogro", String.class);
-
-				method.invoke(_estudioRemoteModel, logro);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public Date getFechaInicio() {
-		return _fechaInicio;
-	}
-
-	@Override
-	public void setFechaInicio(Date fechaInicio) {
-		_fechaInicio = fechaInicio;
-
-		if (_estudioRemoteModel != null) {
-			try {
-				Class<?> clazz = _estudioRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFechaInicio", Date.class);
-
-				method.invoke(_estudioRemoteModel, fechaInicio);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public Date getFechaFino() {
-		return _fechaFino;
-	}
-
-	@Override
-	public void setFechaFino(Date fechaFino) {
-		_fechaFino = fechaFino;
-
-		if (_estudioRemoteModel != null) {
-			try {
-				Class<?> clazz = _estudioRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFechaFino", Date.class);
-
-				method.invoke(_estudioRemoteModel, fechaFino);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -424,29 +357,6 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		}
 	}
 
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-
-		if (_estudioRemoteModel != null) {
-			try {
-				Class<?> clazz = _estudioRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setUsuarioHitssId", long.class);
-
-				method.invoke(_estudioRemoteModel, usuarioHitssId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
 	public BaseModel<?> getEstudioRemoteModel() {
 		return _estudioRemoteModel;
 	}
@@ -517,17 +427,14 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		EstudioClp clone = new EstudioClp();
 
 		clone.setEstudioId(getEstudioId());
+		clone.setUsuarioId(getUsuarioId());
 		clone.setNombre(getNombre());
-		clone.setLogro(getLogro());
-		clone.setFechaInicio(getFechaInicio());
-		clone.setFechaFino(getFechaFino());
 		clone.setNivel(getNivel());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
 		clone.setFechacreamodifica(getFechacreamodifica());
-		clone.setUsuarioHitssId(getUsuarioHitssId());
 
 		return clone;
 	}
@@ -536,7 +443,8 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 	public int compareTo(Estudio estudio) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), estudio.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				estudio.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -578,18 +486,14 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{estudioId=");
 		sb.append(getEstudioId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
 		sb.append(", nombre=");
 		sb.append(getNombre());
-		sb.append(", logro=");
-		sb.append(getLogro());
-		sb.append(", fechaInicio=");
-		sb.append(getFechaInicio());
-		sb.append(", fechaFino=");
-		sb.append(getFechaFino());
 		sb.append(", nivel=");
 		sb.append(getNivel());
 		sb.append(", activo=");
@@ -602,8 +506,6 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append("}");
 
 		return sb.toString();
@@ -611,7 +513,7 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Estudio");
@@ -622,20 +524,12 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		sb.append(getEstudioId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>nombre</column-name><column-value><![CDATA[");
 		sb.append(getNombre());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>logro</column-name><column-value><![CDATA[");
-		sb.append(getLogro());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaInicio</column-name><column-value><![CDATA[");
-		sb.append(getFechaInicio());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fechaFino</column-name><column-value><![CDATA[");
-		sb.append(getFechaFino());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>nivel</column-name><column-value><![CDATA[");
@@ -661,10 +555,6 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -672,17 +562,14 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 	}
 
 	private long _estudioId;
+	private long _usuarioId;
 	private String _nombre;
-	private String _logro;
-	private Date _fechaInicio;
-	private Date _fechaFino;
 	private long _nivel;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _usuarioHitssId;
 	private BaseModel<?> _estudioRemoteModel;
 	private Class<?> _clpSerializerClass = com.rec.hitss.layer.service.ClpSerializer.class;
 }

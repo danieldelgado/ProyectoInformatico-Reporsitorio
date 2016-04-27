@@ -102,17 +102,17 @@ public class PuestoLocalServiceClpInvoker {
 				"com.rec.hitss.layer.model.Puesto"
 			};
 
-		_methodName208 = "getBeanIdentifier";
+		_methodName142 = "getBeanIdentifier";
 
-		_methodParameterTypes208 = new String[] {  };
+		_methodParameterTypes142 = new String[] {  };
 
-		_methodName209 = "setBeanIdentifier";
+		_methodName143 = "setBeanIdentifier";
 
-		_methodParameterTypes209 = new String[] { "java.lang.String" };
+		_methodParameterTypes143 = new String[] { "java.lang.String" };
 
-		_methodName214 = "findByRequerimientoRecurso";
+		_methodName148 = "findByfiltroDescripcion";
 
-		_methodParameterTypes214 = new String[] { "java.lang.Long" };
+		_methodParameterTypes148 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -204,21 +204,21 @@ public class PuestoLocalServiceClpInvoker {
 			return PuestoLocalServiceUtil.updatePuesto((com.rec.hitss.layer.model.Puesto)arguments[0]);
 		}
 
-		if (_methodName208.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes208, parameterTypes)) {
+		if (_methodName142.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes142, parameterTypes)) {
 			return PuestoLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName209.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes209, parameterTypes)) {
+		if (_methodName143.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes143, parameterTypes)) {
 			PuestoLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName214.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes214, parameterTypes)) {
-			return PuestoLocalServiceUtil.findByRequerimientoRecurso((java.lang.Long)arguments[0]);
+		if (_methodName148.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes148, parameterTypes)) {
+			return PuestoLocalServiceUtil.findByfiltroDescripcion((java.lang.String)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -256,10 +256,10 @@ public class PuestoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName208;
-	private String[] _methodParameterTypes208;
-	private String _methodName209;
-	private String[] _methodParameterTypes209;
-	private String _methodName214;
-	private String[] _methodParameterTypes214;
+	private String _methodName142;
+	private String[] _methodParameterTypes142;
+	private String _methodName143;
+	private String[] _methodParameterTypes143;
+	private String _methodName148;
+	private String[] _methodParameterTypes148;
 }

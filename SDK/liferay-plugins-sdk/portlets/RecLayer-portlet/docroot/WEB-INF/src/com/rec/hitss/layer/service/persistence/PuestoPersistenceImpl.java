@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -82,73 +83,63 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(PuestoModelImpl.ENTITY_CACHE_ENABLED,
 			PuestoModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_REQUERIMIENTORECURSO =
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_FILTRODESCRIPCION =
 		new FinderPath(PuestoModelImpl.ENTITY_CACHE_ENABLED,
 			PuestoModelImpl.FINDER_CACHE_ENABLED, PuestoImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByRequerimientoRecurso",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByfiltroDescripcion",
 			new String[] {
-				Long.class.getName(),
+				String.class.getName(),
 				
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REQUERIMIENTORECURSO =
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_FILTRODESCRIPCION =
 		new FinderPath(PuestoModelImpl.ENTITY_CACHE_ENABLED,
-			PuestoModelImpl.FINDER_CACHE_ENABLED, PuestoImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByRequerimientoRecurso",
-			new String[] { Long.class.getName() },
-			PuestoModelImpl.REQUERIMIENTORECURSOID_COLUMN_BITMASK |
-			PuestoModelImpl.FECHACREA_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_REQUERIMIENTORECURSO = new FinderPath(PuestoModelImpl.ENTITY_CACHE_ENABLED,
 			PuestoModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"countByRequerimientoRecurso", new String[] { Long.class.getName() });
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByfiltroDescripcion",
+			new String[] { String.class.getName() });
 
 	/**
-	 * Returns all the puestos where requerimientoRecursoId = &#63;.
+	 * Returns all the puestos where descripcion LIKE &#63;.
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @return the matching puestos
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Puesto> findByRequerimientoRecurso(long requerimientoRecursoId)
+	public List<Puesto> findByfiltroDescripcion(String descripcion)
 		throws SystemException {
-		return findByRequerimientoRecurso(requerimientoRecursoId,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByfiltroDescripcion(descripcion, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the puestos where requerimientoRecursoId = &#63;.
+	 * Returns a range of all the puestos where descripcion LIKE &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.rec.hitss.layer.model.impl.PuestoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @param start the lower bound of the range of puestos
 	 * @param end the upper bound of the range of puestos (not inclusive)
 	 * @return the range of matching puestos
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Puesto> findByRequerimientoRecurso(
-		long requerimientoRecursoId, int start, int end)
-		throws SystemException {
-		return findByRequerimientoRecurso(requerimientoRecursoId, start, end,
-			null);
+	public List<Puesto> findByfiltroDescripcion(String descripcion, int start,
+		int end) throws SystemException {
+		return findByfiltroDescripcion(descripcion, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the puestos where requerimientoRecursoId = &#63;.
+	 * Returns an ordered range of all the puestos where descripcion LIKE &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.rec.hitss.layer.model.impl.PuestoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @param start the lower bound of the range of puestos
 	 * @param end the upper bound of the range of puestos (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -156,34 +147,23 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Puesto> findByRequerimientoRecurso(
-		long requerimientoRecursoId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+	public List<Puesto> findByfiltroDescripcion(String descripcion, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REQUERIMIENTORECURSO;
-			finderArgs = new Object[] { requerimientoRecursoId };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_REQUERIMIENTORECURSO;
-			finderArgs = new Object[] {
-					requerimientoRecursoId,
-					
-					start, end, orderByComparator
-				};
-		}
+		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_FILTRODESCRIPCION;
+		finderArgs = new Object[] { descripcion, start, end, orderByComparator };
 
 		List<Puesto> list = (List<Puesto>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
 		if ((list != null) && !list.isEmpty()) {
 			for (Puesto puesto : list) {
-				if ((requerimientoRecursoId != puesto.getRequerimientoRecursoId())) {
+				if (!StringUtil.wildcardMatches(puesto.getDescripcion(),
+							descripcion, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true)) {
 					list = null;
 
 					break;
@@ -204,7 +184,19 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 			query.append(_SQL_SELECT_PUESTO_WHERE);
 
-			query.append(_FINDER_COLUMN_REQUERIMIENTORECURSO_REQUERIMIENTORECURSOID_2);
+			boolean bindDescripcion = false;
+
+			if (descripcion == null) {
+				query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_1);
+			}
+			else if (descripcion.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_3);
+			}
+			else {
+				bindDescripcion = true;
+
+				query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_2);
+			}
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -226,7 +218,9 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(requerimientoRecursoId);
+				if (bindDescripcion) {
+					qPos.add(descripcion);
+				}
 
 				if (!pagination) {
 					list = (List<Puesto>)QueryUtil.list(q, getDialect(), start,
@@ -259,19 +253,19 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	}
 
 	/**
-	 * Returns the first puesto in the ordered set where requerimientoRecursoId = &#63;.
+	 * Returns the first puesto in the ordered set where descripcion LIKE &#63;.
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching puesto
 	 * @throws com.rec.hitss.layer.NoSuchPuestoException if a matching puesto could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Puesto findByRequerimientoRecurso_First(
-		long requerimientoRecursoId, OrderByComparator orderByComparator)
+	public Puesto findByfiltroDescripcion_First(String descripcion,
+		OrderByComparator orderByComparator)
 		throws NoSuchPuestoException, SystemException {
-		Puesto puesto = fetchByRequerimientoRecurso_First(requerimientoRecursoId,
+		Puesto puesto = fetchByfiltroDescripcion_First(descripcion,
 				orderByComparator);
 
 		if (puesto != null) {
@@ -282,8 +276,8 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("requerimientoRecursoId=");
-		msg.append(requerimientoRecursoId);
+		msg.append("descripcion=");
+		msg.append(descripcion);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -291,19 +285,18 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	}
 
 	/**
-	 * Returns the first puesto in the ordered set where requerimientoRecursoId = &#63;.
+	 * Returns the first puesto in the ordered set where descripcion LIKE &#63;.
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching puesto, or <code>null</code> if a matching puesto could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Puesto fetchByRequerimientoRecurso_First(
-		long requerimientoRecursoId, OrderByComparator orderByComparator)
-		throws SystemException {
-		List<Puesto> list = findByRequerimientoRecurso(requerimientoRecursoId,
-				0, 1, orderByComparator);
+	public Puesto fetchByfiltroDescripcion_First(String descripcion,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<Puesto> list = findByfiltroDescripcion(descripcion, 0, 1,
+				orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -313,19 +306,19 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	}
 
 	/**
-	 * Returns the last puesto in the ordered set where requerimientoRecursoId = &#63;.
+	 * Returns the last puesto in the ordered set where descripcion LIKE &#63;.
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching puesto
 	 * @throws com.rec.hitss.layer.NoSuchPuestoException if a matching puesto could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Puesto findByRequerimientoRecurso_Last(long requerimientoRecursoId,
+	public Puesto findByfiltroDescripcion_Last(String descripcion,
 		OrderByComparator orderByComparator)
 		throws NoSuchPuestoException, SystemException {
-		Puesto puesto = fetchByRequerimientoRecurso_Last(requerimientoRecursoId,
+		Puesto puesto = fetchByfiltroDescripcion_Last(descripcion,
 				orderByComparator);
 
 		if (puesto != null) {
@@ -336,8 +329,8 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("requerimientoRecursoId=");
-		msg.append(requerimientoRecursoId);
+		msg.append("descripcion=");
+		msg.append(descripcion);
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -345,25 +338,24 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	}
 
 	/**
-	 * Returns the last puesto in the ordered set where requerimientoRecursoId = &#63;.
+	 * Returns the last puesto in the ordered set where descripcion LIKE &#63;.
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching puesto, or <code>null</code> if a matching puesto could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Puesto fetchByRequerimientoRecurso_Last(
-		long requerimientoRecursoId, OrderByComparator orderByComparator)
-		throws SystemException {
-		int count = countByRequerimientoRecurso(requerimientoRecursoId);
+	public Puesto fetchByfiltroDescripcion_Last(String descripcion,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByfiltroDescripcion(descripcion);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<Puesto> list = findByRequerimientoRecurso(requerimientoRecursoId,
-				count - 1, count, orderByComparator);
+		List<Puesto> list = findByfiltroDescripcion(descripcion, count - 1,
+				count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -373,18 +365,18 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	}
 
 	/**
-	 * Returns the puestos before and after the current puesto in the ordered set where requerimientoRecursoId = &#63;.
+	 * Returns the puestos before and after the current puesto in the ordered set where descripcion LIKE &#63;.
 	 *
 	 * @param puestoId the primary key of the current puesto
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next puesto
 	 * @throws com.rec.hitss.layer.NoSuchPuestoException if a puesto with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Puesto[] findByRequerimientoRecurso_PrevAndNext(long puestoId,
-		long requerimientoRecursoId, OrderByComparator orderByComparator)
+	public Puesto[] findByfiltroDescripcion_PrevAndNext(long puestoId,
+		String descripcion, OrderByComparator orderByComparator)
 		throws NoSuchPuestoException, SystemException {
 		Puesto puesto = findByPrimaryKey(puestoId);
 
@@ -395,13 +387,13 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 			Puesto[] array = new PuestoImpl[3];
 
-			array[0] = getByRequerimientoRecurso_PrevAndNext(session, puesto,
-					requerimientoRecursoId, orderByComparator, true);
+			array[0] = getByfiltroDescripcion_PrevAndNext(session, puesto,
+					descripcion, orderByComparator, true);
 
 			array[1] = puesto;
 
-			array[2] = getByRequerimientoRecurso_PrevAndNext(session, puesto,
-					requerimientoRecursoId, orderByComparator, false);
+			array[2] = getByfiltroDescripcion_PrevAndNext(session, puesto,
+					descripcion, orderByComparator, false);
 
 			return array;
 		}
@@ -413,9 +405,9 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 		}
 	}
 
-	protected Puesto getByRequerimientoRecurso_PrevAndNext(Session session,
-		Puesto puesto, long requerimientoRecursoId,
-		OrderByComparator orderByComparator, boolean previous) {
+	protected Puesto getByfiltroDescripcion_PrevAndNext(Session session,
+		Puesto puesto, String descripcion, OrderByComparator orderByComparator,
+		boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -428,7 +420,19 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 		query.append(_SQL_SELECT_PUESTO_WHERE);
 
-		query.append(_FINDER_COLUMN_REQUERIMIENTORECURSO_REQUERIMIENTORECURSOID_2);
+		boolean bindDescripcion = false;
+
+		if (descripcion == null) {
+			query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_1);
+		}
+		else if (descripcion.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_3);
+		}
+		else {
+			bindDescripcion = true;
+
+			query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_2);
+		}
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -498,7 +502,9 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(requerimientoRecursoId);
+		if (bindDescripcion) {
+			qPos.add(descripcion);
+		}
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(puesto);
@@ -519,34 +525,33 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 	}
 
 	/**
-	 * Removes all the puestos where requerimientoRecursoId = &#63; from the database.
+	 * Removes all the puestos where descripcion LIKE &#63; from the database.
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByRequerimientoRecurso(long requerimientoRecursoId)
+	public void removeByfiltroDescripcion(String descripcion)
 		throws SystemException {
-		for (Puesto puesto : findByRequerimientoRecurso(
-				requerimientoRecursoId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null)) {
+		for (Puesto puesto : findByfiltroDescripcion(descripcion,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(puesto);
 		}
 	}
 
 	/**
-	 * Returns the number of puestos where requerimientoRecursoId = &#63;.
+	 * Returns the number of puestos where descripcion LIKE &#63;.
 	 *
-	 * @param requerimientoRecursoId the requerimiento recurso ID
+	 * @param descripcion the descripcion
 	 * @return the number of matching puestos
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByRequerimientoRecurso(long requerimientoRecursoId)
+	public int countByfiltroDescripcion(String descripcion)
 		throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_REQUERIMIENTORECURSO;
+		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_FILTRODESCRIPCION;
 
-		Object[] finderArgs = new Object[] { requerimientoRecursoId };
+		Object[] finderArgs = new Object[] { descripcion };
 
 		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
 				this);
@@ -556,7 +561,19 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 			query.append(_SQL_COUNT_PUESTO_WHERE);
 
-			query.append(_FINDER_COLUMN_REQUERIMIENTORECURSO_REQUERIMIENTORECURSOID_2);
+			boolean bindDescripcion = false;
+
+			if (descripcion == null) {
+				query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_1);
+			}
+			else if (descripcion.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_3);
+			}
+			else {
+				bindDescripcion = true;
+
+				query.append(_FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_2);
+			}
 
 			String sql = query.toString();
 
@@ -569,7 +586,9 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(requerimientoRecursoId);
+				if (bindDescripcion) {
+					qPos.add(descripcion);
+				}
 
 				count = (Long)q.uniqueResult();
 
@@ -588,8 +607,9 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_REQUERIMIENTORECURSO_REQUERIMIENTORECURSOID_2 =
-		"puesto.requerimientoRecursoId = ?";
+	private static final String _FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_1 = "puesto.descripcion LIKE NULL AND puesto.activo=true";
+	private static final String _FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_2 = "puesto.descripcion LIKE ? AND puesto.activo=true";
+	private static final String _FINDER_COLUMN_FILTRODESCRIPCION_DESCRIPCION_3 = "(puesto.descripcion IS NULL OR puesto.descripcion LIKE '') AND puesto.activo=true";
 
 	public PuestoPersistenceImpl() {
 		setModelClass(Puesto.class);
@@ -783,8 +803,6 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 		boolean isNew = puesto.isNew();
 
-		PuestoModelImpl puestoModelImpl = (PuestoModelImpl)puesto;
-
 		Session session = null;
 
 		try {
@@ -812,27 +830,6 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
-		else {
-			if ((puestoModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REQUERIMIENTORECURSO.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						puestoModelImpl.getOriginalRequerimientoRecursoId()
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REQUERIMIENTORECURSO,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REQUERIMIENTORECURSO,
-					args);
-
-				args = new Object[] { puestoModelImpl.getRequerimientoRecursoId() };
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REQUERIMIENTORECURSO,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REQUERIMIENTORECURSO,
-					args);
-			}
-		}
-
 		EntityCacheUtil.putResult(PuestoModelImpl.ENTITY_CACHE_ENABLED,
 			PuestoImpl.class, puesto.getPrimaryKey(), puesto);
 
@@ -851,20 +848,12 @@ public class PuestoPersistenceImpl extends BasePersistenceImpl<Puesto>
 
 		puestoImpl.setPuestoId(puesto.getPuestoId());
 		puestoImpl.setDescripcion(puesto.getDescripcion());
-		puestoImpl.setFechaContrato(puesto.getFechaContrato());
-		puestoImpl.setFechaEvaluacionPsicologica(puesto.getFechaEvaluacionPsicologica());
-		puestoImpl.setFechaEvalucionTecnica(puesto.getFechaEvalucionTecnica());
-		puestoImpl.setFechaEntrevistaGerenteArea(puesto.getFechaEntrevistaGerenteArea());
-		puestoImpl.setFechaEvaluacionRRHH(puesto.getFechaEvaluacionRRHH());
-		puestoImpl.setFechaPostulacion(puesto.getFechaPostulacion());
-		puestoImpl.setSeleccionado(puesto.isSeleccionado());
+		puestoImpl.setCategoria(puesto.getCategoria());
 		puestoImpl.setActivo(puesto.isActivo());
 		puestoImpl.setUsuariocrea(puesto.getUsuariocrea());
 		puestoImpl.setFechacrea(puesto.getFechacrea());
 		puestoImpl.setUsuariomodifica(puesto.getUsuariomodifica());
 		puestoImpl.setFechacreamodifica(puesto.getFechacreamodifica());
-		puestoImpl.setRequerimientoRecursoId(puesto.getRequerimientoRecursoId());
-		puestoImpl.setUsuarioHitssId(puesto.getUsuarioHitssId());
 
 		return puestoImpl;
 	}

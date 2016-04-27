@@ -51,22 +51,12 @@ public class PuestoWrapper implements Puesto, ModelWrapper<Puesto> {
 
 		attributes.put("puestoId", getPuestoId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("fechaContrato", getFechaContrato());
-		attributes.put("fechaEvaluacionPsicologica",
-			getFechaEvaluacionPsicologica());
-		attributes.put("fechaEvalucionTecnica", getFechaEvalucionTecnica());
-		attributes.put("fechaEntrevistaGerenteArea",
-			getFechaEntrevistaGerenteArea());
-		attributes.put("fechaEvaluacionRRHH", getFechaEvaluacionRRHH());
-		attributes.put("fechaPostulacion", getFechaPostulacion());
-		attributes.put("seleccionado", getSeleccionado());
+		attributes.put("categoria", getCategoria());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("requerimientoRecursoId", getRequerimientoRecursoId());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -85,49 +75,10 @@ public class PuestoWrapper implements Puesto, ModelWrapper<Puesto> {
 			setDescripcion(descripcion);
 		}
 
-		Date fechaContrato = (Date)attributes.get("fechaContrato");
+		Long categoria = (Long)attributes.get("categoria");
 
-		if (fechaContrato != null) {
-			setFechaContrato(fechaContrato);
-		}
-
-		Date fechaEvaluacionPsicologica = (Date)attributes.get(
-				"fechaEvaluacionPsicologica");
-
-		if (fechaEvaluacionPsicologica != null) {
-			setFechaEvaluacionPsicologica(fechaEvaluacionPsicologica);
-		}
-
-		Date fechaEvalucionTecnica = (Date)attributes.get(
-				"fechaEvalucionTecnica");
-
-		if (fechaEvalucionTecnica != null) {
-			setFechaEvalucionTecnica(fechaEvalucionTecnica);
-		}
-
-		Date fechaEntrevistaGerenteArea = (Date)attributes.get(
-				"fechaEntrevistaGerenteArea");
-
-		if (fechaEntrevistaGerenteArea != null) {
-			setFechaEntrevistaGerenteArea(fechaEntrevistaGerenteArea);
-		}
-
-		Date fechaEvaluacionRRHH = (Date)attributes.get("fechaEvaluacionRRHH");
-
-		if (fechaEvaluacionRRHH != null) {
-			setFechaEvaluacionRRHH(fechaEvaluacionRRHH);
-		}
-
-		Date fechaPostulacion = (Date)attributes.get("fechaPostulacion");
-
-		if (fechaPostulacion != null) {
-			setFechaPostulacion(fechaPostulacion);
-		}
-
-		Boolean seleccionado = (Boolean)attributes.get("seleccionado");
-
-		if (seleccionado != null) {
-			setSeleccionado(seleccionado);
+		if (categoria != null) {
+			setCategoria(categoria);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -158,19 +109,6 @@ public class PuestoWrapper implements Puesto, ModelWrapper<Puesto> {
 
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
-		}
-
-		Long requerimientoRecursoId = (Long)attributes.get(
-				"requerimientoRecursoId");
-
-		if (requerimientoRecursoId != null) {
-			setRequerimientoRecursoId(requerimientoRecursoId);
-		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
 		}
 	}
 
@@ -235,155 +173,23 @@ public class PuestoWrapper implements Puesto, ModelWrapper<Puesto> {
 	}
 
 	/**
-	* Returns the fecha contrato of this puesto.
+	* Returns the categoria of this puesto.
 	*
-	* @return the fecha contrato of this puesto
+	* @return the categoria of this puesto
 	*/
 	@Override
-	public java.util.Date getFechaContrato() {
-		return _puesto.getFechaContrato();
+	public long getCategoria() {
+		return _puesto.getCategoria();
 	}
 
 	/**
-	* Sets the fecha contrato of this puesto.
+	* Sets the categoria of this puesto.
 	*
-	* @param fechaContrato the fecha contrato of this puesto
+	* @param categoria the categoria of this puesto
 	*/
 	@Override
-	public void setFechaContrato(java.util.Date fechaContrato) {
-		_puesto.setFechaContrato(fechaContrato);
-	}
-
-	/**
-	* Returns the fecha evaluacion psicologica of this puesto.
-	*
-	* @return the fecha evaluacion psicologica of this puesto
-	*/
-	@Override
-	public java.util.Date getFechaEvaluacionPsicologica() {
-		return _puesto.getFechaEvaluacionPsicologica();
-	}
-
-	/**
-	* Sets the fecha evaluacion psicologica of this puesto.
-	*
-	* @param fechaEvaluacionPsicologica the fecha evaluacion psicologica of this puesto
-	*/
-	@Override
-	public void setFechaEvaluacionPsicologica(
-		java.util.Date fechaEvaluacionPsicologica) {
-		_puesto.setFechaEvaluacionPsicologica(fechaEvaluacionPsicologica);
-	}
-
-	/**
-	* Returns the fecha evalucion tecnica of this puesto.
-	*
-	* @return the fecha evalucion tecnica of this puesto
-	*/
-	@Override
-	public java.util.Date getFechaEvalucionTecnica() {
-		return _puesto.getFechaEvalucionTecnica();
-	}
-
-	/**
-	* Sets the fecha evalucion tecnica of this puesto.
-	*
-	* @param fechaEvalucionTecnica the fecha evalucion tecnica of this puesto
-	*/
-	@Override
-	public void setFechaEvalucionTecnica(java.util.Date fechaEvalucionTecnica) {
-		_puesto.setFechaEvalucionTecnica(fechaEvalucionTecnica);
-	}
-
-	/**
-	* Returns the fecha entrevista gerente area of this puesto.
-	*
-	* @return the fecha entrevista gerente area of this puesto
-	*/
-	@Override
-	public java.util.Date getFechaEntrevistaGerenteArea() {
-		return _puesto.getFechaEntrevistaGerenteArea();
-	}
-
-	/**
-	* Sets the fecha entrevista gerente area of this puesto.
-	*
-	* @param fechaEntrevistaGerenteArea the fecha entrevista gerente area of this puesto
-	*/
-	@Override
-	public void setFechaEntrevistaGerenteArea(
-		java.util.Date fechaEntrevistaGerenteArea) {
-		_puesto.setFechaEntrevistaGerenteArea(fechaEntrevistaGerenteArea);
-	}
-
-	/**
-	* Returns the fecha evaluacion r r h h of this puesto.
-	*
-	* @return the fecha evaluacion r r h h of this puesto
-	*/
-	@Override
-	public java.util.Date getFechaEvaluacionRRHH() {
-		return _puesto.getFechaEvaluacionRRHH();
-	}
-
-	/**
-	* Sets the fecha evaluacion r r h h of this puesto.
-	*
-	* @param fechaEvaluacionRRHH the fecha evaluacion r r h h of this puesto
-	*/
-	@Override
-	public void setFechaEvaluacionRRHH(java.util.Date fechaEvaluacionRRHH) {
-		_puesto.setFechaEvaluacionRRHH(fechaEvaluacionRRHH);
-	}
-
-	/**
-	* Returns the fecha postulacion of this puesto.
-	*
-	* @return the fecha postulacion of this puesto
-	*/
-	@Override
-	public java.util.Date getFechaPostulacion() {
-		return _puesto.getFechaPostulacion();
-	}
-
-	/**
-	* Sets the fecha postulacion of this puesto.
-	*
-	* @param fechaPostulacion the fecha postulacion of this puesto
-	*/
-	@Override
-	public void setFechaPostulacion(java.util.Date fechaPostulacion) {
-		_puesto.setFechaPostulacion(fechaPostulacion);
-	}
-
-	/**
-	* Returns the seleccionado of this puesto.
-	*
-	* @return the seleccionado of this puesto
-	*/
-	@Override
-	public boolean getSeleccionado() {
-		return _puesto.getSeleccionado();
-	}
-
-	/**
-	* Returns <code>true</code> if this puesto is seleccionado.
-	*
-	* @return <code>true</code> if this puesto is seleccionado; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isSeleccionado() {
-		return _puesto.isSeleccionado();
-	}
-
-	/**
-	* Sets whether this puesto is seleccionado.
-	*
-	* @param seleccionado the seleccionado of this puesto
-	*/
-	@Override
-	public void setSeleccionado(boolean seleccionado) {
-		_puesto.setSeleccionado(seleccionado);
+	public void setCategoria(long categoria) {
+		_puesto.setCategoria(categoria);
 	}
 
 	/**
@@ -494,46 +300,6 @@ public class PuestoWrapper implements Puesto, ModelWrapper<Puesto> {
 	@Override
 	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
 		_puesto.setFechacreamodifica(fechacreamodifica);
-	}
-
-	/**
-	* Returns the requerimiento recurso ID of this puesto.
-	*
-	* @return the requerimiento recurso ID of this puesto
-	*/
-	@Override
-	public long getRequerimientoRecursoId() {
-		return _puesto.getRequerimientoRecursoId();
-	}
-
-	/**
-	* Sets the requerimiento recurso ID of this puesto.
-	*
-	* @param requerimientoRecursoId the requerimiento recurso ID of this puesto
-	*/
-	@Override
-	public void setRequerimientoRecursoId(long requerimientoRecursoId) {
-		_puesto.setRequerimientoRecursoId(requerimientoRecursoId);
-	}
-
-	/**
-	* Returns the usuario hitss ID of this puesto.
-	*
-	* @return the usuario hitss ID of this puesto
-	*/
-	@Override
-	public long getUsuarioHitssId() {
-		return _puesto.getUsuarioHitssId();
-	}
-
-	/**
-	* Sets the usuario hitss ID of this puesto.
-	*
-	* @param usuarioHitssId the usuario hitss ID of this puesto
-	*/
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_puesto.setUsuarioHitssId(usuarioHitssId);
 	}
 
 	@Override

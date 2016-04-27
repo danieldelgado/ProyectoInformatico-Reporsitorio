@@ -55,27 +55,27 @@ public class ReferenciaLocalServiceUtil {
 	/**
 	* Creates a new referencia with the primary key. Does not add the referencia to the database.
 	*
-	* @param referenciaId the primary key for the new referencia
+	* @param referenciaPK the primary key for the new referencia
 	* @return the new referencia
 	*/
 	public static com.rec.hitss.layer.model.Referencia createReferencia(
-		long referenciaId) {
-		return getService().createReferencia(referenciaId);
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK) {
+		return getService().createReferencia(referenciaPK);
 	}
 
 	/**
 	* Deletes the referencia with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param referenciaId the primary key of the referencia
+	* @param referenciaPK the primary key of the referencia
 	* @return the referencia that was removed
 	* @throws PortalException if a referencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Referencia deleteReferencia(
-		long referenciaId)
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteReferencia(referenciaId);
+		return getService().deleteReferencia(referenciaPK);
 	}
 
 	/**
@@ -182,24 +182,24 @@ public class ReferenciaLocalServiceUtil {
 	}
 
 	public static com.rec.hitss.layer.model.Referencia fetchReferencia(
-		long referenciaId)
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchReferencia(referenciaId);
+		return getService().fetchReferencia(referenciaPK);
 	}
 
 	/**
 	* Returns the referencia with the primary key.
 	*
-	* @param referenciaId the primary key of the referencia
+	* @param referenciaPK the primary key of the referencia
 	* @return the referencia
 	* @throws PortalException if a referencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Referencia getReferencia(
-		long referenciaId)
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getReferencia(referenciaId);
+		return getService().getReferencia(referenciaPK);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

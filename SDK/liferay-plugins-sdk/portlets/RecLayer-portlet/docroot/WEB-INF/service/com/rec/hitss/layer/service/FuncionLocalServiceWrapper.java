@@ -254,6 +254,181 @@ public class FuncionLocalServiceWrapper implements FuncionLocalService,
 	}
 
 	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void addSolicitudRequerimientoFuncion(
+		long solicitudRequerimientoId, long funcionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.addSolicitudRequerimientoFuncion(solicitudRequerimientoId,
+			funcionId);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void addSolicitudRequerimientoFuncion(
+		long solicitudRequerimientoId, com.rec.hitss.layer.model.Funcion funcion)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.addSolicitudRequerimientoFuncion(solicitudRequerimientoId,
+			funcion);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void addSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId, long[] funcionIds)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.addSolicitudRequerimientoFuncions(solicitudRequerimientoId,
+			funcionIds);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void addSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId,
+		java.util.List<com.rec.hitss.layer.model.Funcion> Funcions)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.addSolicitudRequerimientoFuncions(solicitudRequerimientoId,
+			Funcions);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void clearSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.clearSolicitudRequerimientoFuncions(solicitudRequerimientoId);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void deleteSolicitudRequerimientoFuncion(
+		long solicitudRequerimientoId, long funcionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.deleteSolicitudRequerimientoFuncion(solicitudRequerimientoId,
+			funcionId);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void deleteSolicitudRequerimientoFuncion(
+		long solicitudRequerimientoId, com.rec.hitss.layer.model.Funcion funcion)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.deleteSolicitudRequerimientoFuncion(solicitudRequerimientoId,
+			funcion);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void deleteSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId, long[] funcionIds)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.deleteSolicitudRequerimientoFuncions(solicitudRequerimientoId,
+			funcionIds);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void deleteSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId,
+		java.util.List<com.rec.hitss.layer.model.Funcion> Funcions)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.deleteSolicitudRequerimientoFuncions(solicitudRequerimientoId,
+			Funcions);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public java.util.List<com.rec.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _funcionLocalService.getSolicitudRequerimientoFuncions(solicitudRequerimientoId);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public java.util.List<com.rec.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _funcionLocalService.getSolicitudRequerimientoFuncions(solicitudRequerimientoId,
+			start, end);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public java.util.List<com.rec.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _funcionLocalService.getSolicitudRequerimientoFuncions(solicitudRequerimientoId,
+			start, end, orderByComparator);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public int getSolicitudRequerimientoFuncionsCount(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _funcionLocalService.getSolicitudRequerimientoFuncionsCount(solicitudRequerimientoId);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public boolean hasSolicitudRequerimientoFuncion(
+		long solicitudRequerimientoId, long funcionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _funcionLocalService.hasSolicitudRequerimientoFuncion(solicitudRequerimientoId,
+			funcionId);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public boolean hasSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _funcionLocalService.hasSolicitudRequerimientoFuncions(solicitudRequerimientoId);
+	}
+
+	/**
+	* @throws SystemException if a system exception occurred
+	*/
+	@Override
+	public void setSolicitudRequerimientoFuncions(
+		long solicitudRequerimientoId, long[] funcionIds)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_funcionLocalService.setSolicitudRequerimientoFuncions(solicitudRequerimientoId,
+			funcionIds);
+	}
+
+	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean

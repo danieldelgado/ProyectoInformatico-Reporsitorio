@@ -317,17 +317,14 @@ public class EstudioPersistenceImpl extends BasePersistenceImpl<Estudio>
 		estudioImpl.setPrimaryKey(estudio.getPrimaryKey());
 
 		estudioImpl.setEstudioId(estudio.getEstudioId());
+		estudioImpl.setUsuarioId(estudio.getUsuarioId());
 		estudioImpl.setNombre(estudio.getNombre());
-		estudioImpl.setLogro(estudio.getLogro());
-		estudioImpl.setFechaInicio(estudio.getFechaInicio());
-		estudioImpl.setFechaFino(estudio.getFechaFino());
 		estudioImpl.setNivel(estudio.getNivel());
 		estudioImpl.setActivo(estudio.isActivo());
 		estudioImpl.setUsuariocrea(estudio.getUsuariocrea());
 		estudioImpl.setFechacrea(estudio.getFechacrea());
 		estudioImpl.setUsuariomodifica(estudio.getUsuariomodifica());
 		estudioImpl.setFechacreamodifica(estudio.getFechacreamodifica());
-		estudioImpl.setUsuarioHitssId(estudio.getUsuarioHitssId());
 
 		return estudioImpl;
 	}

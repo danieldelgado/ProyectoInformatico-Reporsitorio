@@ -60,18 +60,32 @@ public interface ExperienciaModel extends BaseModel<Experiencia> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the estudio ID of this experiencia.
+	 * Returns the experiencia ID of this experiencia.
 	 *
-	 * @return the estudio ID of this experiencia
+	 * @return the experiencia ID of this experiencia
 	 */
-	public long getEstudioId();
+	public long getExperienciaId();
 
 	/**
-	 * Sets the estudio ID of this experiencia.
+	 * Sets the experiencia ID of this experiencia.
 	 *
-	 * @param estudioId the estudio ID of this experiencia
+	 * @param experienciaId the experiencia ID of this experiencia
 	 */
-	public void setEstudioId(long estudioId);
+	public void setExperienciaId(long experienciaId);
+
+	/**
+	 * Returns the usuario ID of this experiencia.
+	 *
+	 * @return the usuario ID of this experiencia
+	 */
+	public long getUsuarioId();
+
+	/**
+	 * Sets the usuario ID of this experiencia.
+	 *
+	 * @param usuarioId the usuario ID of this experiencia
+	 */
+	public void setUsuarioId(long usuarioId);
 
 	/**
 	 * Returns the descripcion of this experiencia.
@@ -87,20 +101,6 @@ public interface ExperienciaModel extends BaseModel<Experiencia> {
 	 * @param descripcion the descripcion of this experiencia
 	 */
 	public void setDescripcion(String descripcion);
-
-	/**
-	 * Returns the nivel of this experiencia.
-	 *
-	 * @return the nivel of this experiencia
-	 */
-	public long getNivel();
-
-	/**
-	 * Sets the nivel of this experiencia.
-	 *
-	 * @param nivel the nivel of this experiencia
-	 */
-	public void setNivel(long nivel);
 
 	/**
 	 * Returns the empresa of this experiencia.
@@ -159,20 +159,6 @@ public interface ExperienciaModel extends BaseModel<Experiencia> {
 	 * @param fechaFin the fecha fin of this experiencia
 	 */
 	public void setFechaFin(Date fechaFin);
-
-	/**
-	 * Returns the usuario hitss ID of this experiencia.
-	 *
-	 * @return the usuario hitss ID of this experiencia
-	 */
-	public long getUsuarioHitssId();
-
-	/**
-	 * Sets the usuario hitss ID of this experiencia.
-	 *
-	 * @param usuarioHitssId the usuario hitss ID of this experiencia
-	 */
-	public void setUsuarioHitssId(long usuarioHitssId);
 
 	/**
 	 * Returns the activo of this experiencia.

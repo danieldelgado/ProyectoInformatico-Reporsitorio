@@ -2,157 +2,34 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<import class="com.rec.hitss.layer.model.Actividades" />
-	<import class="com.rec.hitss.layer.model.ActividadPlan" />
-	<import class="com.rec.hitss.layer.model.Certificado" />
-	<import class="com.rec.hitss.layer.model.Conocimiento" />
 	<import class="com.rec.hitss.layer.model.Contrato" />
-	<import class="com.rec.hitss.layer.model.CriteriosEvaluacion" />
-	<import class="com.rec.hitss.layer.model.CronogramaEvaluacionPersonal" />
-	<import class="com.rec.hitss.layer.model.Entrevista" />
 	<import class="com.rec.hitss.layer.model.Estudio" />
-	<import class="com.rec.hitss.layer.model.Etiqueta" />
+	<import class="com.rec.hitss.layer.model.EtiquetaRelacionada" />
 	<import class="com.rec.hitss.layer.model.Evaluacion" />
 	<import class="com.rec.hitss.layer.model.EvaluacionPregunta" />
 	<import class="com.rec.hitss.layer.model.Experiencia" />
+	<import class="com.rec.hitss.layer.model.FasePostulacion" />
 	<import class="com.rec.hitss.layer.model.Funcion" />
-	<import class="com.rec.hitss.layer.model.FuncionRequerimiento" />
-	<import class="com.rec.hitss.layer.model.FuncionUsuario" />
-	<import class="com.rec.hitss.layer.model.InformeRetroalimentacion" />
-	<import class="com.rec.hitss.layer.model.Parametro" />
-	<import class="com.rec.hitss.layer.model.PlanAccion" />
+	<import class="com.rec.hitss.layer.model.Postulacion" />
 	<import class="com.rec.hitss.layer.model.Pregunta" />
-	<import class="com.rec.hitss.layer.model.PrioridadEquipos" />
 	<import class="com.rec.hitss.layer.model.Puesto" />
 	<import class="com.rec.hitss.layer.model.Referencia" />
-	<import class="com.rec.hitss.layer.model.RequerimientoRecurso" />
 	<import class="com.rec.hitss.layer.model.Requisito" />
 	<import class="com.rec.hitss.layer.model.Respuesta" />
 	<import class="com.rec.hitss.layer.model.ResultadoEvaluacion" />
-	<import class="com.rec.hitss.layer.model.SolicitudEvaluacionDesempeno" />
-	<import class="com.rec.hitss.layer.model.SolicitudRequerimientoPersonal" />
-	<import class="com.rec.hitss.layer.model.UsuarioGrupo" />
-	<import class="com.rec.hitss.layer.model.UsuarioHitss" />
-	<class name="com.rec.hitss.layer.model.impl.ActividadesImpl" table="Actividades">
-		<cache usage="read-write" />
-		<id name="actividadesId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="cronogramaEvaluacionPersonalId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-		<property name="fechaInicioEvaluacion" type="org.hibernate.type.TimestampType" />
-		<property name="fechaFinEvaluacion" type="org.hibernate.type.TimestampType" />
-		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.ActividadPlanImpl" table="ActividadPlan">
-		<cache usage="read-write" />
-		<id name="actividadPlanId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="planAccionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="duracion" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="actividad" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="cumplio" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="observacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="evidencia" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="objetivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.CertificadoImpl" table="Certificado">
-		<cache usage="read-write" />
-		<id name="certificadoId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="empresa" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="cargo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.ConocimientoImpl" table="Conocimiento">
-		<cache usage="read-write" />
-		<id name="conocimientoId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="etiquetaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="nivel" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="herramiento" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="implementacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
+	<import class="com.rec.hitss.layer.model.SolicitudRequerimiento" />
+	<import class="com.rec.hitss.layer.model.SolicitudRequerimientoRequisito" />
+	<import class="com.rec.hitss.layer.model.Usuario" />
+	<import class="com.rec.hitss.layer.model.UsuarioRequisito" />
 	<class name="com.rec.hitss.layer.model.impl.ContratoImpl" table="Contrato">
 		<cache usage="read-write" />
 		<id name="contratoId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fechaEmitida" type="org.hibernate.type.TimestampType" />
-		<property name="Titulo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="Motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.CriteriosEvaluacionImpl" table="CriteriosEvaluacion">
-		<cache usage="read-write" />
-		<id name="criteriosEvaluacionId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="nombre" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="nivelCriterio" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="observacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="parametroPadreId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="evaluacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.CronogramaEvaluacionPersonalImpl" table="CronogramaEvaluacionPersonal">
-		<cache usage="read-write" />
-		<id name="cronogramaEvaluacionPersonalId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="solicitudEvaluacionDesempenoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="observacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.EntrevistaImpl" table="Entrevista">
-		<cache usage="read-write" />
-		<id name="entrevistaId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="observacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="asistio" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="titulo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
@@ -164,23 +41,23 @@
 		<id name="estudioId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="nombre" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="logro" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fechaInicio" type="org.hibernate.type.TimestampType" />
-		<property name="fechaFino" type="org.hibernate.type.TimestampType" />
 		<property name="nivel" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="com.rec.hitss.layer.model.impl.EtiquetaImpl" table="Etiqueta">
+	<class name="com.rec.hitss.layer.model.impl.EtiquetaRelacionadaImpl" table="EtiquetaRelacionada">
 		<cache usage="read-write" />
-		<id name="etiquetaId" type="long">
+		<id name="etiquetaRelacionadaId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="registroId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="etiqueta" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tabla" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="tagId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -213,16 +90,32 @@
 	</class>
 	<class name="com.rec.hitss.layer.model.impl.ExperienciaImpl" table="Experiencia">
 		<cache usage="read-write" />
-		<id name="estudioId" type="long">
+		<id name="experienciaId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="nivel" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="empresa" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="proyecto" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="fechaInicio" type="org.hibernate.type.TimestampType" />
 		<property name="fechaFin" type="org.hibernate.type.TimestampType" />
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
+		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.rec.hitss.layer.model.impl.FasePostulacionImpl" table="FasePostulacion">
+		<cache usage="read-write" />
+		<id name="fasePostulacionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="solicitudRequerimientoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechaFase" type="org.hibernate.type.TimestampType" />
+		<property name="tipoFase" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
@@ -235,71 +128,22 @@
 			<generator class="assigned" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="etiqueta" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="exigible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="etiquetaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.rec.hitss.layer.model.impl.FuncionRequerimientoImpl" table="FuncionRequerimiento">
+	<class name="com.rec.hitss.layer.model.impl.PostulacionImpl" table="Postulacion">
 		<cache usage="read-write" />
-		<id name="funcionId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="requerimientoRecursoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.FuncionUsuarioImpl" table="FuncionUsuario">
-		<cache usage="read-write" />
-		<id name="funcionId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.InformeRetroalimentacionImpl" table="InformeRetroalimentacion">
-		<cache usage="read-write" />
-		<id name="informeRetroalimentacionId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="planAccionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="responsable" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fechaEmision" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="titulo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="integrante" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.ParametroImpl" table="Parametro">
-		<cache usage="read-write" />
-		<id name="parametroId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="llave" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="valor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="parametroPadreId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.PlanAccionImpl" table="PlanAccion">
-		<cache usage="read-write" />
-		<id name="planAccionId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="actividadesId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="responsable" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fechaEmitida" type="org.hibernate.type.TimestampType" />
-		<property name="fechaProgramada" type="org.hibernate.type.TimestampType" />
-		<property name="aprobadorColaborador" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="aprobadorLideres" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<composite-id name="primaryKey" class="com.rec.hitss.layer.service.persistence.PostulacionPK">
+			<key-property name="solicitudRequerimientoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="fechaPostulacion" type="org.hibernate.type.TimestampType" />
+		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
@@ -318,81 +162,29 @@
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.rec.hitss.layer.model.impl.PrioridadEquiposImpl" table="PrioridadEquipos">
-		<cache usage="read-write" />
-		<id name="prioridadEquiposId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="solicitudEvaluacionDesempenoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="responsable" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
 	<class name="com.rec.hitss.layer.model.impl.PuestoImpl" table="Puesto">
 		<cache usage="read-write" />
 		<id name="puestoId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fechaContrato" type="org.hibernate.type.TimestampType" />
-		<property name="fechaEvaluacionPsicologica" type="org.hibernate.type.TimestampType" />
-		<property name="fechaEvalucionTecnica" type="org.hibernate.type.TimestampType" />
-		<property name="fechaEntrevistaGerenteArea" type="org.hibernate.type.TimestampType" />
-		<property name="fechaEvaluacionRRHH" type="org.hibernate.type.TimestampType" />
-		<property name="fechaPostulacion" type="org.hibernate.type.TimestampType" />
-		<property name="seleccionado" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="categoria" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-		<property name="requerimientoRecursoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.rec.hitss.layer.model.impl.ReferenciaImpl" table="Referencia">
 		<cache usage="read-write" />
-		<id name="referenciaId" type="long">
-			<generator class="assigned" />
-		</id>
+		<composite-id name="primaryKey" class="com.rec.hitss.layer.service.persistence.ReferenciaPK">
+			<key-property name="referenciaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
 		<property name="empresa" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="telefono" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="responsable" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.RequerimientoRecursoImpl" table="RequerimientoRecurso">
-		<cache usage="read-write" />
-		<id name="requerimientoRecursoId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="especialidad" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="meta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="prioridad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fechaSolicitada" type="org.hibernate.type.TimestampType" />
-		<property name="fechaMetaIngreso" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="modalidad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="lugarTrabajo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="observacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="proyecto" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="requiereequipotenico" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="reemplazo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="revisado" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="aprobadoFichaIngresoCapitalHumano" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="observacionFichaIngresoCapitalHumano" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="aprobadoFichaIngresoOperaciones" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="observacionFichaIngresoOperaciones" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="tipoReclutamiento" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="solicitudRequerimientoPersonalId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
@@ -407,12 +199,13 @@
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="nivel" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="exigible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="herramienta" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tipoRequisito" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-		<property name="solicitudRequerimientoPersonalId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.rec.hitss.layer.model.impl.RespuestaImpl" table="Respuesta">
 		<cache usage="read-write" />
@@ -433,60 +226,68 @@
 		<property name="evaluacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="usuarioHitssId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
-	<class name="com.rec.hitss.layer.model.impl.SolicitudEvaluacionDesempenoImpl" table="SolicitudEvaluacionDesempeno">
+	<class name="com.rec.hitss.layer.model.impl.SolicitudRequerimientoImpl" table="SolicitudRequerimiento">
 		<cache usage="read-write" />
-		<id name="solicitudEvaluacionDesempenoId" type="long">
+		<id name="solicitudRequerimientoId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="fechaIncioEvaluacion" type="org.hibernate.type.TimestampType" />
-		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="observacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
-		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.rec.hitss.layer.model.impl.SolicitudRequerimientoPersonalImpl" table="SolicitudRequerimientoPersonal">
-		<cache usage="read-write" />
-		<id name="solicitudRequerimientoPersonalId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="puesto" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="areaSolicitante" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="cantidadRecursos" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="cantidadRecursos" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="responsableRRHH" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechaLimite" type="org.hibernate.type.TimestampType" />
-		<property name="cargo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="tiempoContrato" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="tipoNegocio" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="presupuestoMaximo" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="presupuestoMinimo" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="cliente" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="especialidad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="meta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="prioridad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modalidadjornada" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modalidadcontrato" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="lugarTrabajo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="puestoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="proyecto" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="requieroEquipoTecnico" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="reemplazo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="aprobacionFichaIngresoCapitalHumano" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="aprobacionFichaIngresoOperaciones" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="tiporeclutamiento" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.rec.hitss.layer.model.impl.UsuarioGrupoImpl" table="UsuarioGrupo">
+	<class name="com.rec.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl" table="SolicitudRequerimientoRequisito">
 		<cache usage="read-write" />
-		<id name="userGroupId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="prioridadEquiposId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<composite-id name="primaryKey" class="com.rec.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK">
+			<key-property name="solicitudRequerimientoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="requisitosId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="exigible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
-	<class name="com.rec.hitss.layer.model.impl.UsuarioHitssImpl" table="UsuarioHitss">
+	<class name="com.rec.hitss.layer.model.impl.UsuarioImpl" table="Usuario">
 		<cache usage="read-write" />
-		<id name="usuarioHitssId" type="long">
+		<id name="userId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="userUuId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="actividadPlanId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="usuarioLider" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="lider" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
+		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.rec.hitss.layer.model.impl.UsuarioRequisitoImpl" table="UsuarioRequisito">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.rec.hitss.layer.service.persistence.UsuarioRequisitoPK">
+			<key-property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="requisitoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="cumplerequisito" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>

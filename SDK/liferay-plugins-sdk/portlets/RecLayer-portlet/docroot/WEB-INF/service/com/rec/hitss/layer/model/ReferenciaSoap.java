@@ -14,6 +14,8 @@
 
 package com.rec.hitss.layer.model;
 
+import com.rec.hitss.layer.service.persistence.ReferenciaPK;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -32,11 +34,11 @@ public class ReferenciaSoap implements Serializable {
 		ReferenciaSoap soapModel = new ReferenciaSoap();
 
 		soapModel.setReferenciaId(model.getReferenciaId());
+		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setEmpresa(model.getEmpresa());
 		soapModel.setTelefono(model.getTelefono());
 		soapModel.setResponsable(model.getResponsable());
 		soapModel.setMotivo(model.getMotivo());
-		soapModel.setUsuarioHitssId(model.getUsuarioHitssId());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -86,12 +88,13 @@ public class ReferenciaSoap implements Serializable {
 	public ReferenciaSoap() {
 	}
 
-	public long getPrimaryKey() {
-		return _referenciaId;
+	public ReferenciaPK getPrimaryKey() {
+		return new ReferenciaPK(_referenciaId, _usuarioId);
 	}
 
-	public void setPrimaryKey(long pk) {
-		setReferenciaId(pk);
+	public void setPrimaryKey(ReferenciaPK pk) {
+		setReferenciaId(pk.referenciaId);
+		setUsuarioId(pk.usuarioId);
 	}
 
 	public long getReferenciaId() {
@@ -100,6 +103,14 @@ public class ReferenciaSoap implements Serializable {
 
 	public void setReferenciaId(long referenciaId) {
 		_referenciaId = referenciaId;
+	}
+
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
 	}
 
 	public String getEmpresa() {
@@ -132,14 +143,6 @@ public class ReferenciaSoap implements Serializable {
 
 	public void setMotivo(String motivo) {
 		_motivo = motivo;
-	}
-
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
 	}
 
 	public boolean getActivo() {
@@ -187,11 +190,11 @@ public class ReferenciaSoap implements Serializable {
 	}
 
 	private long _referenciaId;
+	private long _usuarioId;
 	private String _empresa;
 	private String _telefono;
 	private String _responsable;
 	private String _motivo;
-	private long _usuarioHitssId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

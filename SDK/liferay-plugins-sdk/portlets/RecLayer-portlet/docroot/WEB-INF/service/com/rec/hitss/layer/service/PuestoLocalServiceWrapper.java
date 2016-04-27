@@ -281,12 +281,10 @@ public class PuestoLocalServiceWrapper implements PuestoLocalService,
 	}
 
 	@Override
-	public java.util.List<com.rec.hitss.layer.model.Puesto> findByRequerimientoRecurso(
-		java.lang.Long requerimientoRecursoId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.rec.hitss.layer.NoSuchRequerimientoRecursoException,
-			java.text.ParseException {
-		return _puestoLocalService.findByRequerimientoRecurso(requerimientoRecursoId);
+	public java.util.List<com.rec.hitss.layer.model.Puesto> findByfiltroDescripcion(
+		java.lang.String descripcion)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _puestoLocalService.findByfiltroDescripcion(descripcion);
 	}
 
 	/**

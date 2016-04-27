@@ -124,6 +124,34 @@ public interface RequisitoModel extends BaseModel<Requisito> {
 	public void setExigible(boolean exigible);
 
 	/**
+	 * Returns the herramienta of this requisito.
+	 *
+	 * @return the herramienta of this requisito
+	 */
+	public long getHerramienta();
+
+	/**
+	 * Sets the herramienta of this requisito.
+	 *
+	 * @param herramienta the herramienta of this requisito
+	 */
+	public void setHerramienta(long herramienta);
+
+	/**
+	 * Returns the tipo requisito of this requisito.
+	 *
+	 * @return the tipo requisito of this requisito
+	 */
+	public long getTipoRequisito();
+
+	/**
+	 * Sets the tipo requisito of this requisito.
+	 *
+	 * @param tipoRequisito the tipo requisito of this requisito
+	 */
+	public void setTipoRequisito(long tipoRequisito);
+
+	/**
 	 * Returns the activo of this requisito.
 	 *
 	 * @return the activo of this requisito
@@ -199,21 +227,6 @@ public interface RequisitoModel extends BaseModel<Requisito> {
 	 * @param fechacreamodifica the fechacreamodifica of this requisito
 	 */
 	public void setFechacreamodifica(Date fechacreamodifica);
-
-	/**
-	 * Returns the solicitud requerimiento personal ID of this requisito.
-	 *
-	 * @return the solicitud requerimiento personal ID of this requisito
-	 */
-	public long getSolicitudRequerimientoPersonalId();
-
-	/**
-	 * Sets the solicitud requerimiento personal ID of this requisito.
-	 *
-	 * @param solicitudRequerimientoPersonalId the solicitud requerimiento personal ID of this requisito
-	 */
-	public void setSolicitudRequerimientoPersonalId(
-		long solicitudRequerimientoPersonalId);
 
 	@Override
 	public boolean isNew();

@@ -9,7 +9,15 @@
 	<meta charset="ISO-8859-1">
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
 
+	
 	$theme.include($top_head_include)
+	
+	<script type="text/javascript"  src="$javascript_folder/jquery-2.2.3.js" ></script>
+	<script type="text/javascript"  src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js" ></script>
+  
+	<script type="text/javascript">  
+		var $ = jQuery.noConflict(true);  
+	</script>	
 </head>
 
 #set ($dockbar = $theme.getSetting("dockbar-mode"))
@@ -26,6 +34,8 @@
 
 <body class="$css_class">
 
+	
+	
 <a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
 
 $theme.include($body_top_include)
@@ -76,7 +86,12 @@ $theme.include($body_top_include)
 			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
 	</div>
+	
+	
+	
 
+	
+	
 	<footer id="footer" role="contentinfo">
 		#set ($footerContent = $theme.getSetting("footer-web-content-article-id"))
 
@@ -90,6 +105,8 @@ $theme.include($body_top_include)
 	</footer>
 </div>
 
+	
+	
 $theme.include($body_bottom_include)
 
 $theme.include($bottom_include)

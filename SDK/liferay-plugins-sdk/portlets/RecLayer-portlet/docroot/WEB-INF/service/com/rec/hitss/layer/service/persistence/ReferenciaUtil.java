@@ -133,25 +133,27 @@ public class ReferenciaUtil {
 	/**
 	* Creates a new referencia with the primary key. Does not add the referencia to the database.
 	*
-	* @param referenciaId the primary key for the new referencia
+	* @param referenciaPK the primary key for the new referencia
 	* @return the new referencia
 	*/
-	public static com.rec.hitss.layer.model.Referencia create(long referenciaId) {
-		return getPersistence().create(referenciaId);
+	public static com.rec.hitss.layer.model.Referencia create(
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK) {
+		return getPersistence().create(referenciaPK);
 	}
 
 	/**
 	* Removes the referencia with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param referenciaId the primary key of the referencia
+	* @param referenciaPK the primary key of the referencia
 	* @return the referencia that was removed
 	* @throws com.rec.hitss.layer.NoSuchReferenciaException if a referencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.rec.hitss.layer.model.Referencia remove(long referenciaId)
+	public static com.rec.hitss.layer.model.Referencia remove(
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.rec.hitss.layer.NoSuchReferenciaException {
-		return getPersistence().remove(referenciaId);
+		return getPersistence().remove(referenciaPK);
 	}
 
 	public static com.rec.hitss.layer.model.Referencia updateImpl(
@@ -163,29 +165,29 @@ public class ReferenciaUtil {
 	/**
 	* Returns the referencia with the primary key or throws a {@link com.rec.hitss.layer.NoSuchReferenciaException} if it could not be found.
 	*
-	* @param referenciaId the primary key of the referencia
+	* @param referenciaPK the primary key of the referencia
 	* @return the referencia
 	* @throws com.rec.hitss.layer.NoSuchReferenciaException if a referencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Referencia findByPrimaryKey(
-		long referenciaId)
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.rec.hitss.layer.NoSuchReferenciaException {
-		return getPersistence().findByPrimaryKey(referenciaId);
+		return getPersistence().findByPrimaryKey(referenciaPK);
 	}
 
 	/**
 	* Returns the referencia with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param referenciaId the primary key of the referencia
+	* @param referenciaPK the primary key of the referencia
 	* @return the referencia, or <code>null</code> if a referencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.rec.hitss.layer.model.Referencia fetchByPrimaryKey(
-		long referenciaId)
+		com.rec.hitss.layer.service.persistence.ReferenciaPK referenciaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(referenciaId);
+		return getPersistence().fetchByPrimaryKey(referenciaPK);
 	}
 
 	/**

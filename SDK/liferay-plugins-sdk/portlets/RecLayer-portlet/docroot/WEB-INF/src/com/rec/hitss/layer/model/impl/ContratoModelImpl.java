@@ -66,21 +66,20 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 	public static final String TABLE_NAME = "Contrato";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "contratoId", Types.BIGINT },
+			{ "usuarioId", Types.BIGINT },
+			{ "motivo", Types.VARCHAR },
 			{ "descripcion", Types.VARCHAR },
-			{ "fechaEmitida", Types.TIMESTAMP },
-			{ "Titulo", Types.BOOLEAN },
-			{ "Motivo", Types.VARCHAR },
+			{ "titulo", Types.VARCHAR },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP },
-			{ "usuarioHitssId", Types.BIGINT }
+			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Contrato (contratoId LONG not null primary key,descripcion VARCHAR(75) null,fechaEmitida DATE null,Titulo BOOLEAN,Motivo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,usuarioHitssId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Contrato (contratoId LONG not null primary key,usuarioId LONG,motivo VARCHAR(75) null,descripcion VARCHAR(75) null,titulo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Contrato";
-	public static final String ORDER_BY_JPQL = " ORDER BY contrato.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Contrato.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY contrato.fechacreamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Contrato.fechacreamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -106,16 +105,15 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		Contrato model = new ContratoImpl();
 
 		model.setContratoId(soapModel.getContratoId());
-		model.setDescripcion(soapModel.getDescripcion());
-		model.setFechaEmitida(soapModel.getFechaEmitida());
-		model.setTitulo(soapModel.getTitulo());
+		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setMotivo(soapModel.getMotivo());
+		model.setDescripcion(soapModel.getDescripcion());
+		model.setTitulo(soapModel.getTitulo());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
 		model.setFechacreamodifica(soapModel.getFechacreamodifica());
-		model.setUsuarioHitssId(soapModel.getUsuarioHitssId());
 
 		return model;
 	}
@@ -181,16 +179,15 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("contratoId", getContratoId());
+		attributes.put("usuarioId", getUsuarioId());
+		attributes.put("motivo", getMotivo());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("fechaEmitida", getFechaEmitida());
-		attributes.put("Titulo", getTitulo());
-		attributes.put("Motivo", getMotivo());
+		attributes.put("titulo", getTitulo());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechacreamodifica", getFechacreamodifica());
-		attributes.put("usuarioHitssId", getUsuarioHitssId());
 
 		return attributes;
 	}
@@ -203,28 +200,28 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 			setContratoId(contratoId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
+		String motivo = (String)attributes.get("motivo");
+
+		if (motivo != null) {
+			setMotivo(motivo);
+		}
+
 		String descripcion = (String)attributes.get("descripcion");
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
 		}
 
-		Date fechaEmitida = (Date)attributes.get("fechaEmitida");
+		String titulo = (String)attributes.get("titulo");
 
-		if (fechaEmitida != null) {
-			setFechaEmitida(fechaEmitida);
-		}
-
-		Boolean Titulo = (Boolean)attributes.get("Titulo");
-
-		if (Titulo != null) {
-			setTitulo(Titulo);
-		}
-
-		String Motivo = (String)attributes.get("Motivo");
-
-		if (Motivo != null) {
-			setMotivo(Motivo);
+		if (titulo != null) {
+			setTitulo(titulo);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -256,12 +253,6 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		if (fechacreamodifica != null) {
 			setFechacreamodifica(fechacreamodifica);
 		}
-
-		Long usuarioHitssId = (Long)attributes.get("usuarioHitssId");
-
-		if (usuarioHitssId != null) {
-			setUsuarioHitssId(usuarioHitssId);
-		}
 	}
 
 	@JSON
@@ -273,6 +264,33 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 	@Override
 	public void setContratoId(long contratoId) {
 		_contratoId = contratoId;
+	}
+
+	@JSON
+	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+	}
+
+	@JSON
+	@Override
+	public String getMotivo() {
+		if (_motivo == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _motivo;
+		}
+	}
+
+	@Override
+	public void setMotivo(String motivo) {
+		_motivo = motivo;
 	}
 
 	@JSON
@@ -293,45 +311,18 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 
 	@JSON
 	@Override
-	public Date getFechaEmitida() {
-		return _fechaEmitida;
-	}
-
-	@Override
-	public void setFechaEmitida(Date fechaEmitida) {
-		_fechaEmitida = fechaEmitida;
-	}
-
-	@JSON
-	@Override
-	public boolean getTitulo() {
-		return _Titulo;
-	}
-
-	@Override
-	public boolean isTitulo() {
-		return _Titulo;
-	}
-
-	@Override
-	public void setTitulo(boolean Titulo) {
-		_Titulo = Titulo;
-	}
-
-	@JSON
-	@Override
-	public String getMotivo() {
-		if (_Motivo == null) {
+	public String getTitulo() {
+		if (_titulo == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _Motivo;
+			return _titulo;
 		}
 	}
 
 	@Override
-	public void setMotivo(String Motivo) {
-		_Motivo = Motivo;
+	public void setTitulo(String titulo) {
+		_titulo = titulo;
 	}
 
 	@JSON
@@ -394,17 +385,6 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		_fechacreamodifica = fechacreamodifica;
 	}
 
-	@JSON
-	@Override
-	public long getUsuarioHitssId() {
-		return _usuarioHitssId;
-	}
-
-	@Override
-	public void setUsuarioHitssId(long usuarioHitssId) {
-		_usuarioHitssId = usuarioHitssId;
-	}
-
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -433,16 +413,15 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		ContratoImpl contratoImpl = new ContratoImpl();
 
 		contratoImpl.setContratoId(getContratoId());
-		contratoImpl.setDescripcion(getDescripcion());
-		contratoImpl.setFechaEmitida(getFechaEmitida());
-		contratoImpl.setTitulo(getTitulo());
+		contratoImpl.setUsuarioId(getUsuarioId());
 		contratoImpl.setMotivo(getMotivo());
+		contratoImpl.setDescripcion(getDescripcion());
+		contratoImpl.setTitulo(getTitulo());
 		contratoImpl.setActivo(getActivo());
 		contratoImpl.setUsuariocrea(getUsuariocrea());
 		contratoImpl.setFechacrea(getFechacrea());
 		contratoImpl.setUsuariomodifica(getUsuariomodifica());
 		contratoImpl.setFechacreamodifica(getFechacreamodifica());
-		contratoImpl.setUsuarioHitssId(getUsuarioHitssId());
 
 		contratoImpl.resetOriginalValues();
 
@@ -453,7 +432,8 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 	public int compareTo(Contrato contrato) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), contrato.getFechacrea());
+		value = DateUtil.compareTo(getFechacreamodifica(),
+				contrato.getFechacreamodifica());
 
 		if (value != 0) {
 			return value;
@@ -499,6 +479,16 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 
 		contratoCacheModel.contratoId = getContratoId();
 
+		contratoCacheModel.usuarioId = getUsuarioId();
+
+		contratoCacheModel.motivo = getMotivo();
+
+		String motivo = contratoCacheModel.motivo;
+
+		if ((motivo != null) && (motivo.length() == 0)) {
+			contratoCacheModel.motivo = null;
+		}
+
 		contratoCacheModel.descripcion = getDescripcion();
 
 		String descripcion = contratoCacheModel.descripcion;
@@ -507,23 +497,12 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 			contratoCacheModel.descripcion = null;
 		}
 
-		Date fechaEmitida = getFechaEmitida();
+		contratoCacheModel.titulo = getTitulo();
 
-		if (fechaEmitida != null) {
-			contratoCacheModel.fechaEmitida = fechaEmitida.getTime();
-		}
-		else {
-			contratoCacheModel.fechaEmitida = Long.MIN_VALUE;
-		}
+		String titulo = contratoCacheModel.titulo;
 
-		contratoCacheModel.Titulo = getTitulo();
-
-		contratoCacheModel.Motivo = getMotivo();
-
-		String Motivo = contratoCacheModel.Motivo;
-
-		if ((Motivo != null) && (Motivo.length() == 0)) {
-			contratoCacheModel.Motivo = null;
+		if ((titulo != null) && (titulo.length() == 0)) {
+			contratoCacheModel.titulo = null;
 		}
 
 		contratoCacheModel.activo = getActivo();
@@ -550,25 +529,23 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 			contratoCacheModel.fechacreamodifica = Long.MIN_VALUE;
 		}
 
-		contratoCacheModel.usuarioHitssId = getUsuarioHitssId();
-
 		return contratoCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{contratoId=");
 		sb.append(getContratoId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
+		sb.append(", motivo=");
+		sb.append(getMotivo());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
-		sb.append(", fechaEmitida=");
-		sb.append(getFechaEmitida());
-		sb.append(", Titulo=");
+		sb.append(", titulo=");
 		sb.append(getTitulo());
-		sb.append(", Motivo=");
-		sb.append(getMotivo());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -579,8 +556,6 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		sb.append(getUsuariomodifica());
 		sb.append(", fechacreamodifica=");
 		sb.append(getFechacreamodifica());
-		sb.append(", usuarioHitssId=");
-		sb.append(getUsuarioHitssId());
 		sb.append("}");
 
 		return sb.toString();
@@ -588,7 +563,7 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.rec.hitss.layer.model.Contrato");
@@ -599,20 +574,20 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		sb.append(getContratoId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>motivo</column-name><column-value><![CDATA[");
+		sb.append(getMotivo());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechaEmitida</column-name><column-value><![CDATA[");
-		sb.append(getFechaEmitida());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>Titulo</column-name><column-value><![CDATA[");
+			"<column><column-name>titulo</column-name><column-value><![CDATA[");
 		sb.append(getTitulo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>Motivo</column-name><column-value><![CDATA[");
-		sb.append(getMotivo());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -634,10 +609,6 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechacreamodifica());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>usuarioHitssId</column-name><column-value><![CDATA[");
-		sb.append(getUsuarioHitssId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -649,15 +620,14 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 			Contrato.class
 		};
 	private long _contratoId;
+	private long _usuarioId;
+	private String _motivo;
 	private String _descripcion;
-	private Date _fechaEmitida;
-	private boolean _Titulo;
-	private String _Motivo;
+	private String _titulo;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
-	private long _usuarioHitssId;
 	private Contrato _escapedModel;
 }
