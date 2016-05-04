@@ -3,7 +3,18 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>6.2.5+</version>
+		<version>6.2.0+</version>
 	</compatibility>
-	<theme id="REV" name="REV" />
+	<theme id="rev-Theme" name="Tema de intranet">
+		<settings>
+			<setting configurable="true" key="dockbar-mode" type="select" options="normal,split" value="normal" />
+			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false" />
+			<setting configurable="true" key="breadcrumbs" type="checkbox" value="true" />
+			<setting configurable="true" key="navigation" type="select" options="left,right" value="right" />
+			<setting configurable="true" key="logo-menu-direction" type="select" options="left-right,right-left" value="left-right" />
+			<setting configurable="true" key="footer-web-content-article-id" type="text" value="" />
+		</settings>
+	</theme>
 </look-and-feel>
+
+
