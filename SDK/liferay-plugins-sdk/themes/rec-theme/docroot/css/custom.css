@@ -172,7 +172,9 @@
     background-color: #4AAECC;
 }
 
-
+.aui .input-append, .aui .input-prepend{
+	font-size: 14px;
+}
 
 
 

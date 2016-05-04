@@ -6,6 +6,7 @@
 		<portlet id="ActualizarSolicitudReclutamiento" ></portlet>
 		<portlet id="ActualizarSolicitudRequerimiento" ></portlet>
 		<portlet id="EvaluarFechaIngreso" ></portlet>
+		<portlet id="EvaluarSolicitudRequerimiento" ></portlet>
 		<portlet id="ProgramaEntrevista" ></portlet>
 		<portlet id="PublicarOferta" ></portlet>
 		<portlet id="RegistrarResultadoEntrevista"></portlet>

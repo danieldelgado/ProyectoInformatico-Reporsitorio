@@ -65,6 +65,36 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
+		<portlet-name>EvaluarSolicitudRequerimiento</portlet-name>
+		<display-name>EvaluarSolicitudRequerimiento</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/spring/context/evaluarsolicitudrequerimiento/servlet-context.xml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>EvaluarSolicitudRequerimiento</title>
+			<short-title>EvaluarSolicitudRequerimiento</short-title>
+			<keywords>EvaluarSolicitudRequerimiento</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
 		<portlet-name>EvaluarFechaIngreso</portlet-name>
 		<display-name>EvaluarFechaIngreso</display-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>

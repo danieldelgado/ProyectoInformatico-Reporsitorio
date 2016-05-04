@@ -65,6 +65,15 @@
 		<footer-portlet-javascript>/js/seleccionarpersonal/main.js</footer-portlet-javascript>
 		<css-class-wrapper>SeleccionarPersonal-portlet</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>EvaluarSolicitudRequerimiento</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/evaluarsolicitudrequerimiento/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/evaluarsolicitudrequerimiento/main.js</footer-portlet-javascript>
+		<css-class-wrapper>EvaluarSolicitudRequerimiento-portlet</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

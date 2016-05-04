@@ -6,34 +6,49 @@ public class SolicitudRequerimientoBean {
 
 	private long solicitudRequerimientoId;
 	private long areaSolicitante;
+	private String strareaSolicitante;
 	private int cantidadRecursos;
 	private long responsableRRHH;
+	private String strresponsableRRHH;
 	private Date fechaLimite;
+	private String strfechaLimite;
 	private long tiempoContrato;
+	private String strtiempoContrato;
 	private long tipoNegocio;
+	private String strtipoNegocio;
 	private long presupuestoMaximo;
 	private long presupuestoMinimo;
 	private long cliente;
+	private String strcliente;
 	private long especialidad;
+	private String strespecialidad;
 	private String meta;
 	private long prioridad;
+	private String strprioridad;
 	private String motivo;
 	private long modalidadjornada;
+	private String strmodalidadjornada;
 	private long modalidadcontrato;
+	private String strmodalidadcontrato;
 	private String lugarTrabajo;
 	private long puestoId;
+	private String strpuesto;
 	private String proyecto;
 	private boolean requieroEquipoTecnico;
 	private boolean reemplazo;
 	private boolean aprobacionFichaIngresoCapitalHumano;
 	private boolean aprobacionFichaIngresoOperaciones;
 	private long tiporeclutamiento;
+	private String strtiporeclutamiento;
 	private long estado;
+	private String strestado;
 	private boolean activo;
 	private long usuariocrea;
 	private Date fechacrea;
+	private String strfechacrea;
 	private long usuariomodifica;
 	private Date fechacreamodifica;
+	private String strfechacreamodifica;
 	
 	public SolicitudRequerimientoBean() {
 	}
@@ -276,6 +291,126 @@ public class SolicitudRequerimientoBean {
 
 	public void setFechacreamodifica(Date fechacreamodifica) {
 		this.fechacreamodifica = fechacreamodifica;
+	}
+
+	public String getStrareaSolicitante() {
+		return strareaSolicitante;
+	}
+
+	public void setStrareaSolicitante(String strareaSolicitante) {
+		this.strareaSolicitante = strareaSolicitante;
+	}
+
+	public String getStrresponsableRRHH() {
+		return strresponsableRRHH;
+	}
+
+	public void setStrresponsableRRHH(String strresponsableRRHH) {
+		this.strresponsableRRHH = strresponsableRRHH;
+	}
+
+	public String getStrtiempoContrato() {
+		return strtiempoContrato;
+	}
+
+	public void setStrtiempoContrato(String strtiempoContrato) {
+		this.strtiempoContrato = strtiempoContrato;
+	}
+
+	public String getStrtipoNegocio() {
+		return strtipoNegocio;
+	}
+
+	public void setStrtipoNegocio(String strtipoNegocio) {
+		this.strtipoNegocio = strtipoNegocio;
+	}
+
+	public String getStrcliente() {
+		return strcliente;
+	}
+
+	public void setStrcliente(String strcliente) {
+		this.strcliente = strcliente;
+	}
+
+	public String getStrespecialidad() {
+		return strespecialidad;
+	}
+
+	public void setStrespecialidad(String strespecialidad) {
+		this.strespecialidad = strespecialidad;
+	}
+
+	public String getStrprioridad() {
+		return strprioridad;
+	}
+
+	public void setStrprioridad(String strprioridad) {
+		this.strprioridad = strprioridad;
+	}
+
+	public String getStrmodalidadjornada() {
+		return strmodalidadjornada;
+	}
+
+	public void setStrmodalidadjornada(String strmodalidadjornada) {
+		this.strmodalidadjornada = strmodalidadjornada;
+	}
+
+	public String getStrmodalidadcontrato() {
+		return strmodalidadcontrato;
+	}
+
+	public void setStrmodalidadcontrato(String strmodalidadcontrato) {
+		this.strmodalidadcontrato = strmodalidadcontrato;
+	}
+
+	public String getStrpuesto() {
+		return strpuesto;
+	}
+
+	public void setStrpuesto(String strpuesto) {
+		this.strpuesto = strpuesto;
+	}
+
+	public String getStrtiporeclutamiento() {
+		return strtiporeclutamiento;
+	}
+
+	public void setStrtiporeclutamiento(String strtiporeclutamiento) {
+		this.strtiporeclutamiento = strtiporeclutamiento;
+	}
+
+	public String getStrestado() {
+		return strestado;
+	}
+
+	public void setStrestado(String strestado) {
+		this.strestado = strestado;
+	}
+
+	public String getStrfechaLimite() {
+		return strfechaLimite;
+	}
+
+	public void setStrfechaLimite(String strfechaLimite) {
+		this.strfechaLimite = strfechaLimite;
+	}
+
+	public String getStrfechacrea() {
+		return strfechacrea;
+	}
+
+	public void setStrfechacrea(String strfechacrea) {
+		this.strfechacrea = strfechacrea;
+	}
+
+	public String getStrfechacreamodifica() {
+		return strfechacreamodifica;
+	}
+
+	public void setStrfechacreamodifica(String strfechacreamodifica) {
+		this.strfechacreamodifica = strfechacreamodifica;
 	}
 	
 	
