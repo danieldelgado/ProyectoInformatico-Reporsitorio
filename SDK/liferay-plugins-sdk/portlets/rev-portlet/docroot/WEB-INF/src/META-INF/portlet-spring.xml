@@ -64,15 +64,9 @@
 	<bean id="com.hitss.layer.service.PrioridadGrupoUsuariosLocalService" class="com.hitss.layer.service.impl.PrioridadGrupoUsuariosLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.PrioridadGrupoUsuariosService" class="com.hitss.layer.service.impl.PrioridadGrupoUsuariosServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistence" class="com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistenceImpl" parent="basePersistence" />
-	<bean id="com.hitss.layer.service.PuestoLocalService" class="com.hitss.layer.service.impl.PuestoLocalServiceImpl" />
-	<bean id="com.hitss.layer.service.PuestoService" class="com.hitss.layer.service.impl.PuestoServiceImpl" />
-	<bean id="com.hitss.layer.service.persistence.PuestoPersistence" class="com.hitss.layer.service.persistence.PuestoPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.ReferenciaLocalService" class="com.hitss.layer.service.impl.ReferenciaLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.ReferenciaService" class="com.hitss.layer.service.impl.ReferenciaServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.ReferenciaPersistence" class="com.hitss.layer.service.persistence.ReferenciaPersistenceImpl" parent="basePersistence" />
-	<bean id="com.hitss.layer.service.RequisitoLocalService" class="com.hitss.layer.service.impl.RequisitoLocalServiceImpl" />
-	<bean id="com.hitss.layer.service.RequisitoService" class="com.hitss.layer.service.impl.RequisitoServiceImpl" />
-	<bean id="com.hitss.layer.service.persistence.RequisitoPersistence" class="com.hitss.layer.service.persistence.RequisitoPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.RespuestaLocalService" class="com.hitss.layer.service.impl.RespuestaLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.RespuestaService" class="com.hitss.layer.service.impl.RespuestaServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.RespuestaPersistence" class="com.hitss.layer.service.persistence.RespuestaPersistenceImpl" parent="basePersistence" />

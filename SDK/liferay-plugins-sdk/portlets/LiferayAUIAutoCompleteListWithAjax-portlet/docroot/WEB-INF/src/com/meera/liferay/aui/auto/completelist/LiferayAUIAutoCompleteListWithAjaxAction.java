@@ -28,7 +28,9 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
  */
 public class LiferayAUIAutoCompleteListWithAjaxAction extends MVCPortlet {
 	@Override
-	public void serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse) throws IOException, PortletException {
+	public void serveResource(ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException,
+			PortletException {
 		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
 		System.out.println("Constants.CMD: " + cmd);
@@ -38,13 +40,18 @@ public class LiferayAUIAutoCompleteListWithAjaxAction extends MVCPortlet {
 
 	}
 
-	private void getUsers(ResourceRequest resourceRequest, ResourceResponse resourceResponse) throws IOException, PortletException {
+	private void getUsers(ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse) throws IOException,
+			PortletException {
 		JSONArray usersJSONArray = JSONFactoryUtil.createJSONArray();
-		ThemeDisplay themeDisplay = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay) resourceRequest
+				.getAttribute(WebKeys.THEME_DISPLAY);
 		String userEmail = ParamUtil.getString(resourceRequest, "userEmail");
 		System.out.println("=====00000========" + userEmail);
-		DynamicQuery userQuery = DynamicQueryFactoryUtil.forClass(User.class, PortalClassLoaderUtil.getClassLoader());
-		Criterion criterion = RestrictionsFactoryUtil.like("emailAddress", StringPool.PERCENT + userEmail + StringPool.PERCENT);
+		DynamicQuery userQuery = DynamicQueryFactoryUtil.forClass(User.class,
+				PortalClassLoaderUtil.getClassLoader());
+		Criterion criterion = RestrictionsFactoryUtil.like("emailAddress",
+				StringPool.PERCENT + userEmail + StringPool.PERCENT);
 		userQuery.add(criterion);
 		JSONObject userJSON = null;
 		System.out.println("=====1111========" + userQuery.toString());

@@ -162,7 +162,7 @@
 		<attributes>
 			<id name="evaluacionId" />
 			<basic name="enfoque" />
-			<basic name="puestoEvaluacion" />
+			<basic name="puestoCategoriaEvaluacion" />
 			<basic name="tipoEvaluacion" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
@@ -431,25 +431,6 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.hitss.layer.model.impl.PuestoModelImpl">
-		<attributes>
-			<id name="puestoId" />
-			<basic name="descripcion" />
-			<basic name="categoria" />
-			<basic name="activo" />
-			<basic name="usuariocrea" />
-			<basic name="fechacrea">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.ReferenciaModelImpl">
 		<id-class class="com.hitss.layer.service.persistence.ReferenciaPK" />
 		<attributes>
@@ -459,28 +440,6 @@
 			<basic name="telefono" />
 			<basic name="responsable" />
 			<basic name="motivo" />
-			<basic name="activo" />
-			<basic name="usuariocrea" />
-			<basic name="fechacrea">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
-	<mapped-superclass class="com.hitss.layer.model.impl.RequisitoModelImpl">
-		<attributes>
-			<id name="requisitoId" />
-			<basic name="descripcion" />
-			<basic name="nivel" />
-			<basic name="exigible" />
-			<basic name="herramienta" />
-			<basic name="tipoRequisito" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
 			<basic name="fechacrea">
@@ -557,7 +516,7 @@
 			<basic name="modalidadjornada" />
 			<basic name="modalidadcontrato" />
 			<basic name="lugarTrabajo" />
-			<basic name="puestoId" />
+			<basic name="categoriaPuestoId" />
 			<basic name="proyecto" />
 			<basic name="requieroEquipoTecnico" />
 			<basic name="reemplazo" />
@@ -583,8 +542,20 @@
 		<id-class class="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK" />
 		<attributes>
 			<id name="solicitudRequerimientoId" />
-			<id name="requisitosId" />
+			<id name="tagId" />
+			<basic name="nivel" />
 			<basic name="exigible" />
+			<basic name="tipoRequisito" />
+			<basic name="herramienta" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -623,8 +594,21 @@
 		<id-class class="com.hitss.layer.service.persistence.UsuarioRequisitoPK" />
 		<attributes>
 			<id name="userId" />
-			<id name="requisitoId" />
+			<id name="tagId" />
+			<basic name="nivel" />
+			<basic name="exigible" />
+			<basic name="tipoRequisito" />
+			<basic name="herramienta" />
 			<basic name="cumplerequisito" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -715,16 +699,8 @@
 		<table name="PrioridadGrupoUsuarios" />
 		<attributes />
 	</entity>
-	<entity class="com.hitss.layer.model.impl.PuestoImpl" name="Puesto">
-		<table name="Puesto" />
-		<attributes />
-	</entity>
 	<entity class="com.hitss.layer.model.impl.ReferenciaImpl" name="Referencia">
 		<table name="Referencia" />
-		<attributes />
-	</entity>
-	<entity class="com.hitss.layer.model.impl.RequisitoImpl" name="Requisito">
-		<table name="Requisito" />
 		<attributes />
 	</entity>
 	<entity class="com.hitss.layer.model.impl.RespuestaImpl" name="Respuesta">

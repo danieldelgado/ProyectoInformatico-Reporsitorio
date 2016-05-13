@@ -89,7 +89,7 @@
 	<model name="com.hitss.layer.model.Evaluacion">
 		<field name="evaluacionId" type="long" />
 		<field name="enfoque" type="long" />
-		<field name="puestoEvaluacion" type="long" />
+		<field name="puestoCategoriaEvaluacion" type="long" />
 		<field name="tipoEvaluacion" type="long" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
@@ -234,16 +234,6 @@
 		<field name="usuariomodifica" type="long" />
 		<field name="fechacreamodifica" type="Date" />
 	</model>
-	<model name="com.hitss.layer.model.Puesto">
-		<field name="puestoId" type="long" />
-		<field name="descripcion" type="String" />
-		<field name="categoria" type="long" />
-		<field name="activo" type="boolean" />
-		<field name="usuariocrea" type="long" />
-		<field name="fechacrea" type="Date" />
-		<field name="usuariomodifica" type="long" />
-		<field name="fechacreamodifica" type="Date" />
-	</model>
 	<model name="com.hitss.layer.model.Referencia">
 		<field name="referenciaId" type="long" />
 		<field name="usuarioId" type="long" />
@@ -251,19 +241,6 @@
 		<field name="telefono" type="String" />
 		<field name="responsable" type="String" />
 		<field name="motivo" type="String" />
-		<field name="activo" type="boolean" />
-		<field name="usuariocrea" type="long" />
-		<field name="fechacrea" type="Date" />
-		<field name="usuariomodifica" type="long" />
-		<field name="fechacreamodifica" type="Date" />
-	</model>
-	<model name="com.hitss.layer.model.Requisito">
-		<field name="requisitoId" type="long" />
-		<field name="descripcion" type="String" />
-		<field name="nivel" type="long" />
-		<field name="exigible" type="boolean" />
-		<field name="herramienta" type="long" />
-		<field name="tipoRequisito" type="long" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -309,7 +286,7 @@
 		<field name="modalidadjornada" type="long" />
 		<field name="modalidadcontrato" type="long" />
 		<field name="lugarTrabajo" type="String" />
-		<field name="puestoId" type="long" />
+		<field name="categoriaPuestoId" type="long" />
 		<field name="proyecto" type="String" />
 		<field name="requieroEquipoTecnico" type="boolean" />
 		<field name="reemplazo" type="boolean" />
@@ -325,8 +302,16 @@
 	</model>
 	<model name="com.hitss.layer.model.SolicitudRequerimientoRequisito">
 		<field name="solicitudRequerimientoId" type="long" />
-		<field name="requisitosId" type="long" />
+		<field name="tagId" type="long" />
+		<field name="nivel" type="long" />
 		<field name="exigible" type="boolean" />
+		<field name="tipoRequisito" type="long" />
+		<field name="herramienta" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
 	</model>
 	<model name="com.hitss.layer.model.Usuario">
 		<field name="userId" type="long" />
@@ -343,7 +328,16 @@
 	</model>
 	<model name="com.hitss.layer.model.UsuarioRequisito">
 		<field name="userId" type="long" />
-		<field name="requisitoId" type="long" />
+		<field name="tagId" type="long" />
+		<field name="nivel" type="long" />
+		<field name="exigible" type="boolean" />
+		<field name="tipoRequisito" type="long" />
+		<field name="herramienta" type="long" />
 		<field name="cumplerequisito" type="boolean" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechacreamodifica" type="Date" />
 	</model>
 </model-hints>
