@@ -17,11 +17,14 @@
 <input type="hidden" value="<portlet:namespace/>" />
 
 <portlet:resourceURL var="actualizarSolicitud" id="actualizarSolicitud" />
+<portlet:resourceURL var="listarEtiquetas" id="listarEtiquetas" />
 <portlet:renderURL var="regresar">
 	<portlet:param name="action" value="default" />
 </portlet:renderURL>
 <input id="<portlet:namespace/>actualizarUrl" type="hidden" value="${actualizarSolicitud}" />
 <input id="<portlet:namespace/>listarSolicitudesUrl" type="hidden" value="${regresar}" />
+<input id="<portlet:namespace/>listarSolicitudesUrl" type="hidden" value="${regresar}" />
+<input id="<portlet:namespace/>listarEtiquetasUrl" type="hidden" value="${listarEtiquetas}" />
 
 <input id="<portlet:namespace/>msgpuesto" type="hidden" value="<liferay-ui:message key="actualizarreclutamiento.valid.mensaje.puesto" />" />
 <input id="<portlet:namespace/>msgcantidadrecursos" type="hidden" value="<liferay-ui:message key="actualizarreclutamiento.valid.mensaje.cantidad.recursos" />" />
@@ -69,7 +72,7 @@
 							</div>
 							<div class="controls span6">
 								<div class="input-prepend">
-									<select id="<portlet:namespace/>puestoId" name="<portlet:namespace/>puestoId" required>
+									<select id="<portlet:namespace/>puestoId" name="<portlet:namespace/>puestoId" >
 										<option value=""><liferay-ui:message key="general.form.seleccione" /></option>
 										<c:forEach items="${listaPuestoBeans}" var="puesto">
 											<option <c:if test="${solicitudReclutamiento.puestoId eq puesto.puestoId}"> selected="selected" </c:if> value="${puesto.puestoId}">${puesto.descripcion}</option>
@@ -85,7 +88,7 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<input class="span12" id="<portlet:namespace/>cantidadRecursos" name="<portlet:namespace/>cantidadRecursos" type="text" value="${solicitudReclutamiento.cantidadRecursos}" required />
+									<input class="span12" id="<portlet:namespace/>cantidadRecursos" name="<portlet:namespace/>cantidadRecursos" type="text" value="${solicitudReclutamiento.cantidadRecursos}" />
 								</div>
 							</div>
 						</div>
@@ -96,7 +99,7 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<select id="<portlet:namespace/>areaSolicitante" name="<portlet:namespace/>areaSolicitante" required>
+									<select id="<portlet:namespace/>areaSolicitante" name="<portlet:namespace/>areaSolicitante" >
 										<option value=""><liferay-ui:message key="general.form.seleccione" /></option>
 										<c:forEach items="${listaAreas}" var="parametro">
 											<option <c:if test="${solicitudReclutamiento.areaSolicitante eq parametro.parametroId}"> selected="selected" </c:if> value="${parametro.parametroId}">${parametro.valor}</option>
@@ -115,7 +118,7 @@
 								<div class="input-prepend">
 									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${solicitudReclutamiento.strfechaLimite}" id="<portlet:namespace/>fechaLimite"
 										name="<portlet:namespace/>fechaLimite" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;" /> <input id="<portlet:namespace/>fechaLimiteVal"
-										name="<portlet:namespace/>fechaLimiteVal" type="hidden" value="${solicitudReclutamiento.strfechaLimite}" required />
+										name="<portlet:namespace/>fechaLimiteVal" type="hidden" value="${solicitudReclutamiento.strfechaLimite}"  />
 								</div>
 							</div>
 						</div>
@@ -127,7 +130,7 @@
 							<div class="span6">
 								<div class="input-prepend">
 									<span class="add-on">S/.</span> <input class="span12" id="<portlet:namespace/>presupuestoMinimo" name="<portlet:namespace/>presupuestoMinimo" type="text"
-										value="${solicitudReclutamiento.presupuestoMinimo}" required>
+										value="${solicitudReclutamiento.presupuestoMinimo}" >
 								</div>
 							</div>
 						</div>
@@ -140,7 +143,7 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<select id="<portlet:namespace/>responsable" name="<portlet:namespace/>responsable" required>
+									<select id="<portlet:namespace/>responsable" name="<portlet:namespace/>responsable" >
 										<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 										<c:forEach items="${listaUsuarioBeans}" var="usuario">
 											<option <c:if test="${solicitudReclutamiento.responsableRRHH eq usuario.userId}"> selected="selected" </c:if> value="${usuario.userId}">${usuario.fullname}</option>
@@ -156,7 +159,7 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<select id="<portlet:namespace/>tiempoContrato" name="<portlet:namespace/>tiempoContrato" required>
+									<select id="<portlet:namespace/>tiempoContrato" name="<portlet:namespace/>tiempoContrato" >
 										<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 										<c:forEach items="${listaTiempoContrato}" var="parametro">
 											<option <c:if test="${solicitudReclutamiento.tiempoContrato eq parametro.parametroId}"> selected="selected" </c:if> value="${parametro.parametroId}">${parametro.valor}</option>
@@ -172,7 +175,7 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<select id="<portlet:namespace/>tipoNegocio" name="<portlet:namespace/>tipoNegocio" required>
+									<select id="<portlet:namespace/>tipoNegocio" name="<portlet:namespace/>tipoNegocio" >
 										<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 										<c:forEach items="${listaTipoNegocio}" var="parametro">
 											<option <c:if test="${solicitudReclutamiento.tipoNegocio eq parametro.parametroId}"> selected="selected" </c:if> value="${parametro.parametroId}">${parametro.valor}</option>
@@ -188,7 +191,7 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<select id="<portlet:namespace/>cliente" name="<portlet:namespace/>cliente" required>
+									<select id="<portlet:namespace/>cliente" name="<portlet:namespace/>cliente" >
 										<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 										<c:forEach items="${listaClientes}" var="parametro">
 											<option <c:if test="${solicitudReclutamiento.cliente eq parametro.parametroId}"> selected="selected" </c:if> value="${parametro.parametroId}">${parametro.valor}</option>
@@ -205,7 +208,7 @@
 							<div class="span6">
 								<div class="input-prepend">
 									<span class="add-on">S/.</span> <input class="span12" id="<portlet:namespace/>presupuestoMaximo" name="<portlet:namespace/>presupuestoMaximo" type="text"
-										value="${solicitudReclutamiento.presupuestoMaximo}" required>
+										value="${solicitudReclutamiento.presupuestoMaximo}" >
 								</div>
 							</div>
 						</div>
@@ -249,16 +252,16 @@
 								</div>
 								<div class="span1">
 									<div class="input-prepend">
-										<input id="<portlet:namespace/>exigile" name="<portlet:namespace/>exigile" class="span12" type="checkbox">
+										<input id="<portlet:namespace/>exigile" name="<portlet:namespace/>exigile" class="" type="checkbox">
 									</div>
 								</div>
 								<div class="span1">
 									<label> <liferay-ui:message key="actualizarreclutamiento.form.tipoRequisito" />:
 									</label>
 								</div>
-								<div class="span1">
+								<div class="span2">
 									<div class="input-prepend">
-										<select id="<portlet:namespace/>tipoRequisito" name="<portlet:namespace/>tipoRequisito" class="span12" required>
+										<select id="<portlet:namespace/>tipoRequisito" name="<portlet:namespace/>tipoRequisito" class="span12">
 											<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 											<c:forEach items="${listaTipoRequisito}" var="parametro">
 												<option value="${parametro.parametroId}">${parametro.valor}</option>
@@ -278,7 +281,6 @@
 								<table class="table table-hover table-bordered">
 									<thead>
 										<tr class="cabecera">
-											<th>#</th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.requisito" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.nivel" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.exigile" /></th>
@@ -317,5 +319,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		inicializarFormularioRegistro();
+		listarRequisitos('${requisitoEtiquetaBeans}');
 	});
 </script>

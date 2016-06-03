@@ -253,4 +253,19 @@ public interface SolicitudRequerimientoRequisitoLocalService
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(
+		long solicitudRequerimientoId, long tagId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisitoActivo(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

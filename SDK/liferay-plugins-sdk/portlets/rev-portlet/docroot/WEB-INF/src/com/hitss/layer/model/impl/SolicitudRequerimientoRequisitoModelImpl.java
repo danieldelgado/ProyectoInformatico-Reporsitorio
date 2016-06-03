@@ -86,7 +86,12 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.SolicitudRequerimientoRequisito"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.SolicitudRequerimientoRequisito"),
+			true);
+	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 1L;
+	public static long TAGID_COLUMN_BITMASK = 2L;
+	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -274,7 +279,19 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 	@Override
 	public void setSolicitudRequerimientoId(long solicitudRequerimientoId) {
+		_columnBitmask |= SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK;
+
+		if (!_setOriginalSolicitudRequerimientoId) {
+			_setOriginalSolicitudRequerimientoId = true;
+
+			_originalSolicitudRequerimientoId = _solicitudRequerimientoId;
+		}
+
 		_solicitudRequerimientoId = solicitudRequerimientoId;
+	}
+
+	public long getOriginalSolicitudRequerimientoId() {
+		return _originalSolicitudRequerimientoId;
 	}
 
 	@JSON
@@ -285,7 +302,19 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 	@Override
 	public void setTagId(long tagId) {
+		_columnBitmask |= TAGID_COLUMN_BITMASK;
+
+		if (!_setOriginalTagId) {
+			_setOriginalTagId = true;
+
+			_originalTagId = _tagId;
+		}
+
 		_tagId = tagId;
+	}
+
+	public long getOriginalTagId() {
+		return _originalTagId;
 	}
 
 	@JSON
@@ -394,7 +423,13 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 	@Override
 	public void setFechacreamodifica(Date fechacreamodifica) {
+		_columnBitmask = -1L;
+
 		_fechacreamodifica = fechacreamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -472,6 +507,18 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 	@Override
 	public void resetOriginalValues() {
+		SolicitudRequerimientoRequisitoModelImpl solicitudRequerimientoRequisitoModelImpl =
+			this;
+
+		solicitudRequerimientoRequisitoModelImpl._originalSolicitudRequerimientoId = solicitudRequerimientoRequisitoModelImpl._solicitudRequerimientoId;
+
+		solicitudRequerimientoRequisitoModelImpl._setOriginalSolicitudRequerimientoId = false;
+
+		solicitudRequerimientoRequisitoModelImpl._originalTagId = solicitudRequerimientoRequisitoModelImpl._tagId;
+
+		solicitudRequerimientoRequisitoModelImpl._setOriginalTagId = false;
+
+		solicitudRequerimientoRequisitoModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -612,7 +659,11 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 			SolicitudRequerimientoRequisito.class
 		};
 	private long _solicitudRequerimientoId;
+	private long _originalSolicitudRequerimientoId;
+	private boolean _setOriginalSolicitudRequerimientoId;
 	private long _tagId;
+	private long _originalTagId;
+	private boolean _setOriginalTagId;
 	private long _nivel;
 	private boolean _exigible;
 	private long _tipoRequisito;
@@ -622,5 +673,6 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
+	private long _columnBitmask;
 	private SolicitudRequerimientoRequisito _escapedModel;
 }

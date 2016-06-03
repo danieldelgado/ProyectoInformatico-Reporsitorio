@@ -2,6 +2,9 @@ var inputFristnamespace = null;
 var formvalid = false;
 var modalconfirmacion = null;
 var filtrafecharegistro = true;
+
+var listarequisitosMap = [];
+
 $(document).ready(function() {
 	init();
 });
@@ -30,9 +33,9 @@ function inicializarFormularioBusqueda() {
 	listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);
 
 	$(btnBuscar).click(function() {
-//		if(filtrafecharegistro){
-			listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);			
-//		}		
+		// if(filtrafecharegistro){
+		listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);
+		// }
 	});
 
 }
@@ -220,9 +223,9 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 }
 
-
 function inicializarFormularioRegistro() {
 	init();
+
 	var formActualizarSolicitud = $("#" + inputFristnamespace + "actualizarSolicitud");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var inputpuesto = inputFristnamespace + "puestoId";
@@ -237,13 +240,11 @@ function inicializarFormularioRegistro() {
 	var inputpresupuestoMaximo = inputFristnamespace + "presupuestoMaximo";
 
 	var btnAgregar = $("#" + inputFristnamespace + "btnAgregar");
-	
 
 	$(btnAgregar).click(function() {
 		agregarRequisitos();
 	});
-	
-	
+
 	var rules = {};
 	rules[inputpuesto] = {
 		required : function() {
@@ -351,7 +352,6 @@ function inicializarFormularioRegistro() {
 		}
 	});
 
-	
 	$(btnGuardar).click(function() {
 		formvalid = $(formActualizarSolicitud).valid();
 	});
@@ -362,28 +362,81 @@ function agregarRequisitos() {
 	var requisito = $("#" + inputFristnamespace + "requisito").val();
 	var nivel = $("#" + inputFristnamespace + "nivel option:selected").val();
 	var nivelText = $("#" + inputFristnamespace + "nivel option:selected").text();
-	var exigile = $("#" + inputFristnamespace + "exigile").val();
+	var exigile = $("#" + inputFristnamespace + "exigile").prop("checked");
 	var tipoRequisito = $("#" + inputFristnamespace + "tipoRequisito option:selected").val();
 	var tipoRequisitotext = $("#" + inputFristnamespace + "tipoRequisito option:selected").text();
-	var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
-	console.log(requisito);
-	console.log(nivel);
-	console.log(nivelText);
-	console.log(tipoRequisito);
-	console.log(tipoRequisitotext);
-	console.log(exigile);
-	console.log(tipoRequisito);
-	console.log(requisito);
-	var html = "";
-	html += "<tr>" +
-			"<td>"+1+"</td>" +
-			"<td>"+requisito+"</td>" +
-			"<td>"+nivelText+"</td>" +
-			"<td>"+exigile+"</td>" +
-			"<td>"+tipoRequisitotext+"</td>" +
-			"<td>Eliminar</td>" +
-			"</tr>";
-	$(listaRequisitos).append(html);
+	addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext);
+}
+
+function listarRequisitos(requisitoEtiquetaBeans){
+	var lista = $.parseJSON(requisitoEtiquetaBeans);
+	$.each(lista, function(index, object) {	
+		console.log(object);	
+		var exigible = false;
+		if(object['exigibleText'] == undefined){
+			exigible = object['exigible'];
+		}else{
+			exigible = object['exigibleText'];
+		}
+		console.log(exigible);
+		addRequisitoFila(object['requisito'], object['nivel'],object['nivelText'], exigible , object['tipoRequisito'], object['tipoRequisitoText']);
+	});
+}
+
+function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
+	var exigileValue = exigile;
+	if (exigile == true) {
+		exigile = "Si";
+	} else {
+		exigile = "No";
+	}
+
+	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
+		var b = validarExitenteRequisito(requisito);
+
+		if (b) {
+
+			var requistoMap = {};
+			requistoMap['requisito'] = requisito;
+			requistoMap['nivel'] = nivel;
+			requistoMap['exigibleText'] = exigileValue;
+
+			requistoMap['tipoRequisito'] = tipoRequisito;
+			listarequisitosMap.push(requistoMap);
+
+			var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
+			var html = "";
+			html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</td>" + "<td>" + "<a class='btn btn-primary eliminar' data='" + requisito + "' href='javascript:void(0);'>Eliminar</a>"
+					+ "</td>" + "</tr>";
+
+			$(listaRequisitos).append(html);
+			$(".eliminar").unbind("click");
+			$(".eliminar").click(function() {
+				var id = $(this).attr("data");
+				var tr = $(this).parent().parent();
+				removerItem(id, tr);
+			});
+		}
+	}
+}
+
+function removerItem(id, tr) {
+	$.each(listarequisitosMap, function(index, object) {
+		if (object['requisito'] == id) {
+			listarequisitosMap.splice(index, 1);
+		}
+	});
+	$(tr).remove();
+}
+
+function validarExitenteRequisito(requisito) {
+	var result = true;
+	$.each(listarequisitosMap, function(index, object) {
+		if (object['requisito'] == requisito) {
+			result = false;
+		}
+	});
+	return result;
 }
 
 function registrarSolicitud() {
@@ -396,10 +449,13 @@ function registrarSolicitud() {
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
 
+	var dataSend = $(formActualizarSolicitud).serialize();
+	dataSend = dataSend + "&" + inputFristnamespace + "requisitosList=" + JSON.stringify(listarequisitosMap) + "";
+
 	$.ajax({
 		type : "POST",
 		url : actualizarUrl,
-		data : $(formActualizarSolicitud).serialize(),
+		data : dataSend,
 		success : function(data) {
 			modalconfirmacion.hide();
 			data = $.parseJSON(data);
@@ -427,6 +483,42 @@ function registrarSolicitud() {
 AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
 	init();
 
+	if (A.one('#' + inputFristnamespace + 'requisito') != null) {
+		var testData;
+		var inputrequisito = inputFristnamespace + 'requisito';
+		var autocompleteRequisitoUrl = A.one('#' + inputFristnamespace + 'listarEtiquetasUrl').get('value');
+
+		new A.AutoCompleteList({
+			allowBrowserAutocomplete : 'true',
+			activateFirstItem : 'true',
+			inputNode : '#' + inputrequisito,
+			resultTextLocator : 'value',
+			render : 'true',
+			resultHighlighter : 'phraseMatch',
+			resultFilters : [ 'phraseMatch' ],
+			source : function() {
+				var inputValue = A.one('#' + inputFristnamespace + 'requisito').get('value');
+				var datasend = {};
+				datasend[inputFristnamespace + 'requisito'] = inputValue;
+				var myAjaxRequest = A.io.request(autocompleteRequisitoUrl, {
+					dataType : 'json',
+					method : 'POST',
+					data : datasend,
+					autoLoad : false,
+					sync : false,
+					on : {
+						success : function() {
+							var data = this.get('responseData');
+							testData = data;
+						}
+					}
+				});
+				myAjaxRequest.start();
+				return testData;
+			},
+		});
+
+	}
 	if (A.one('#' + inputFristnamespace + 'fechaRegistroInicio') != null) {
 		new A.DatePicker({
 			trigger : '#' + inputFristnamespace + 'fechaRegistroInicio',
@@ -436,7 +528,8 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 			},
 			on : {
 				selectionChange : function(event) {
-//					var btnBuscar = $("#" + inputFristnamespace + "btnBuscar");
+					// var btnBuscar = $("#" + inputFristnamespace +
+					// "btnBuscar");
 					var d = new Date(event.newSelection);
 					var day = d.getDate();
 					var monthIndex = d.getMonth();
@@ -445,7 +538,7 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 					console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
 					if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
 						var contenedorAlerta = $(".contenedorAlerta");
-						$(contenedorAlerta).html("");						
+						$(contenedorAlerta).html("");
 					} else {
 						var contenedorAlerta = $(".contenedorAlerta");
 						mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
@@ -464,7 +557,8 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 			},
 			on : {
 				selectionChange : function(event) {
-//					var btnBuscar = $("#" + inputFristnamespace + "btnBuscar");
+					// var btnBuscar = $("#" + inputFristnamespace +
+					// "btnBuscar");
 					var d = new Date(event.newSelection);
 					var day = d.getDate();
 					var monthIndex = d.getMonth();

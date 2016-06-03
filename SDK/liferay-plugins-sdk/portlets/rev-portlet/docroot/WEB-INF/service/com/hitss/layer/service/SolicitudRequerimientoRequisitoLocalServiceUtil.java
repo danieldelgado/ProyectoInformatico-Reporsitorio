@@ -282,6 +282,28 @@ public class SolicitudRequerimientoRequisitoLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(
+		long solicitudRequerimientoId, long tagId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getListaSolicitudRequerimientoRequisito(solicitudRequerimientoId,
+			tagId);
+	}
+
+	public static java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getListaSolicitudRequerimientoRequisito(solicitudRequerimientoId);
+	}
+
+	public static java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisitoActivo(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

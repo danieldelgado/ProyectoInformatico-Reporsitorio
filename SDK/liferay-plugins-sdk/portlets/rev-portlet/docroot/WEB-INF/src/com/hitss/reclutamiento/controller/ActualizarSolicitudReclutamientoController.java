@@ -21,6 +21,7 @@ import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 import com.hitss.reclutamiento.bean.ComboBean;
 import com.hitss.reclutamiento.bean.ParametroBean;
 import com.hitss.reclutamiento.bean.PuestoBean;
+import com.hitss.reclutamiento.bean.RequisitoEtiquetaBean;
 import com.hitss.reclutamiento.bean.SolicitudRequerimientoBean;
 import com.hitss.reclutamiento.bean.UsuarioBean;
 import com.hitss.reclutamiento.service.ActualizarSolicitudReclutamientoService;
@@ -67,7 +68,7 @@ public class ActualizarSolicitudReclutamientoController {
 			_log.debug("titulo:" + titulo);
 			model.addAttribute("titulo", titulo);
 		}
-		
+
 		return "view";
 	}
 
@@ -145,6 +146,7 @@ public class ActualizarSolicitudReclutamientoController {
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
 			SolicitudRequerimientoBean solicitudReclutamiento = actualizarSolicitudReclutamientoService.getSolicitudRequerimiento(solicitudRequerimientoId);
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
+			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
 		}
 
 		List<PuestoBean> listaPuestoBeans = actualizarSolicitudReclutamientoService.getListaPuestos(td.getSiteGroup().getGroupId(), null);
@@ -167,18 +169,18 @@ public class ActualizarSolicitudReclutamientoController {
 
 		List<ParametroBean> listaNiveles = actualizarSolicitudReclutamientoService.getListaNiveles();
 		model.addAttribute("listaNiveles", listaNiveles);
-		
+
 		List<ParametroBean> listaTipoRequisito = actualizarSolicitudReclutamientoService.getListaTipoRequisito();
 		model.addAttribute("listaTipoRequisito", listaTipoRequisito);
 
 		return "actualizarSolicitud";
 	}
-
+	
 	@ResourceMapping(value = "listarEtiquetas")
 	public void listarEtiquetas(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
-		String filtro = ParamUtil.get(resourceRequest, "filtro", "");
-		_log.debug("filtro:" + filtro);
-		List<ComboBean> listaRequisitos = actualizarSolicitudReclutamientoService.getListarEtiquetas(filtro);
+		String requisito = ParamUtil.get(resourceRequest, "requisito", "");
+		_log.debug("requisito:" + requisito);
+		List<ComboBean> listaRequisitos = actualizarSolicitudReclutamientoService.getListarEtiquetas(requisito);
 		try {
 			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaRequisitos);
 		} catch (IOException e) {
@@ -191,7 +193,7 @@ public class ActualizarSolicitudReclutamientoController {
 		String filtro = ParamUtil.get(resourceRequest, "filtro", "");
 		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		_log.debug("filtro:" + filtro);
-		List<ComboBean> listaRequisitos = actualizarSolicitudReclutamientoService.getListarPuestosCategorias(td.getSiteGroup().getGroupId(), filtro);		
+		List<ComboBean> listaRequisitos = actualizarSolicitudReclutamientoService.getListarPuestosCategorias(td.getSiteGroup().getGroupId(), filtro);
 		try {
 			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaRequisitos);
 		} catch (IOException e) {
@@ -199,6 +201,7 @@ public class ActualizarSolicitudReclutamientoController {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@ResourceMapping(value = "actualizarSolicitud")
 	public void actualizarSolicitud(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 		_log.debug("actualizarSolicitud");
@@ -241,6 +244,8 @@ public class ActualizarSolicitudReclutamientoController {
 		long presupuestoMaximo = ParamUtil.getLong(resourceRequest, "presupuestoMaximo");
 		_log.debug("presupuestoMaximo:" + presupuestoMaximo);
 
+		String requisitosLista = ParamUtil.get(resourceRequest, "requisitosList", "");
+
 		SolicitudRequerimientoBean solicitudRequerimiento = new SolicitudRequerimientoBean();
 		solicitudRequerimiento.setSolicitudRequerimientoId(solicitudRequerimientoId);
 		solicitudRequerimiento.setPuestoId(puestoId);
@@ -253,6 +258,10 @@ public class ActualizarSolicitudReclutamientoController {
 		solicitudRequerimiento.setResponsableRRHH(responsable);
 		solicitudRequerimiento.setTiempoContrato(tiempoContrato);
 		solicitudRequerimiento.setCliente(cliente);
+
+		List<RequisitoEtiquetaBean> lista = (List<RequisitoEtiquetaBean>) JsonUtil.getJsonObject(requisitosLista, new com.google.gson.reflect.TypeToken<List<RequisitoEtiquetaBean>>() {
+		});
+		solicitudRequerimiento.setRequisitoEtiquetaBeans(lista);
 
 		Map<String, Object> result = actualizarSolicitudReclutamientoService.guardarSolicitudReclutamiento(solicitudRequerimiento, user);
 		if (Validator.isNotNull(result)) {

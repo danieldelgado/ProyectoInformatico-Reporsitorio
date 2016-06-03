@@ -1,6 +1,7 @@
 package com.hitss.reclutamiento.bean;
 
 import java.util.Date;
+import java.util.List;
 
 public class SolicitudRequerimientoBean {
 
@@ -49,6 +50,7 @@ public class SolicitudRequerimientoBean {
 	private long usuariomodifica;
 	private Date fechacreamodifica;
 	private String strfechacreamodifica;
+	private List<RequisitoEtiquetaBean> requisitoEtiquetaBeans;
 	
 	public SolicitudRequerimientoBean() {
 	}
@@ -412,6 +414,15 @@ public class SolicitudRequerimientoBean {
 	public void setStrfechacreamodifica(String strfechacreamodifica) {
 		this.strfechacreamodifica = strfechacreamodifica;
 	}
+
+	public List<RequisitoEtiquetaBean> getRequisitoEtiquetaBeans() {
+		return requisitoEtiquetaBeans;
+	}
+
+	public void setRequisitoEtiquetaBeans(List<RequisitoEtiquetaBean> requisitoEtiquetaBeans) {
+		this.requisitoEtiquetaBeans = requisitoEtiquetaBeans;
+	}
+
 	
 	
 

@@ -1,12 +1,15 @@
 package com.hitss.reclutamiento.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.hitss.layer.model.SolicitudRequerimiento;
 import com.hitss.reclutamiento.bean.ComboBean;
 import com.hitss.reclutamiento.service.LiferayContentService;
+import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
@@ -17,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.model.AssetVocabulary;
@@ -37,7 +41,7 @@ public class LiferayContentServiceImpl implements LiferayContentService {
 		List<ComboBean> listaComboBeans = new ArrayList<ComboBean>();
 		try {
 			DynamicQuery query = DynamicQueryFactoryUtil.forClass(AssetTag.class, PortalClassLoaderUtil.getClassLoader());
-			query.add(PropertyFactoryUtil.forName("name").eq(StringPool.PERCENT + filtro + StringPool.PERCENT));
+			query.add(PropertyFactoryUtil.forName("name").like(StringPool.PERCENT + filtro + StringPool.PERCENT));
 			List<AssetTag> etiquetas = AssetTagLocalServiceUtil.dynamicQuery(query);
 			_log.debug(etiquetas);
 			ComboBean c = null;
@@ -51,6 +55,24 @@ public class LiferayContentServiceImpl implements LiferayContentService {
 			_log.error("listarPuesto:" + e.getMessage(), e);
 		}
 		return listaComboBeans;
+	}
+
+	public AssetTag getTagByName(String name) {
+		_log.debug("getTagByName");
+		_log.debug("name:" + name);
+
+		try {
+			DynamicQuery query = DynamicQueryFactoryUtil.forClass(AssetTag.class, PortalClassLoaderUtil.getClassLoader());
+			query.add(PropertyFactoryUtil.forName("name").eq(name));
+			List<AssetTag> etiquetas = AssetTagLocalServiceUtil.dynamicQuery(query);
+			if(!etiquetas.isEmpty()){
+				AssetTag etiqueta = etiquetas.get(0);
+				return etiqueta;
+			}			
+		} catch (SystemException e) {
+			_log.error("getTagByName:" + e.getMessage(), e);
+		}
+		return null;
 	}
 
 	@Override
@@ -79,7 +101,7 @@ public class LiferayContentServiceImpl implements LiferayContentService {
 			if (Validator.isNotNull(vocabulario)) {
 				assetVocabulary = AssetVocabularyLocalServiceUtil.getGroupVocabulary(groupId, vocabulario);
 			}
-			
+
 			DynamicQuery query = DynamicQueryFactoryUtil.forClass(AssetCategory.class, PortalClassLoaderUtil.getClassLoader());
 
 			if (Validator.isNotNull(assetVocabulary)) {
@@ -118,6 +140,29 @@ public class LiferayContentServiceImpl implements LiferayContentService {
 			_log.error("listarPuesto:" + e.getMessage(), e);
 		}
 		return c;
+	}
+
+	@Override
+	public AssetTag nuevaEtiqueta(String requisito, User user) {
+		AssetTag t = null;
+		try {
+			Long id = CounterLocalServiceUtil.increment(AssetTag.class.getName());
+			t = AssetTagLocalServiceUtil.createAssetTag(id);
+			t.setNew(true);
+			t.setUserName(user.getFullName());
+			t.setName(requisito);
+			t.setGroupId(user.getGroupId());
+			t.setCompanyId(user.getCompanyId());
+			t.setCreateDate(new Date());
+			t.setModifiedDate(new Date());
+			t.setUserId(user.getUserId());
+			t.setUserUuid(user.getUuid());			
+			t = AssetTagLocalServiceUtil.addAssetTag(t);			
+			return t;
+		} catch (SystemException | PortalException e) {
+			_log.error("nuevaEtiqueta:" + e.getMessage(), e);
+		}
+		return null;
 	}
 
 	// try {

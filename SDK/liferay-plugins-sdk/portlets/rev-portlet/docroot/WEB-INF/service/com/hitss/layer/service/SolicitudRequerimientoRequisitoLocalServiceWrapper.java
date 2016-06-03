@@ -290,6 +290,28 @@ public class SolicitudRequerimientoRequisitoLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(
+		long solicitudRequerimientoId, long tagId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _solicitudRequerimientoRequisitoLocalService.getListaSolicitudRequerimientoRequisito(solicitudRequerimientoId,
+			tagId);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _solicitudRequerimientoRequisitoLocalService.getListaSolicitudRequerimientoRequisito(solicitudRequerimientoId);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisitoActivo(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _solicitudRequerimientoRequisitoLocalService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

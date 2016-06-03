@@ -97,9 +97,29 @@
 		<column name="usuariomodifica" type="long" />
 		<column name="fechacreamodifica" type="Date" />
 
-		<order by="asc">
+		<order by="asc"> 
 			<order-column name="fechacreamodifica" />
 		</order>
+		
+		<finder name="S_T" return-type="Collection" where="activo=true">
+			<finder-column name="solicitudRequerimientoId"  />
+			<finder-column name="tagId"  />
+		</finder>
+		
+		<finder name="S_T_ALL" return-type="Collection" where="">
+			<finder-column name="solicitudRequerimientoId"  />
+			<finder-column name="tagId"  />
+		</finder>
+		
+		<finder name="S" return-type="Collection" where="activo=true">
+			<finder-column name="solicitudRequerimientoId"  />
+		</finder>
+
+
+		<finder name="S_All" return-type="Collection" >
+			<finder-column name="solicitudRequerimientoId"  />
+		</finder>
+
 
 	</entity>
 

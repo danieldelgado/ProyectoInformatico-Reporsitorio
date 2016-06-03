@@ -11,16 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hitss.layer.model.SolicitudRequerimiento;
+import com.hitss.layer.model.SolicitudRequerimientoRequisito;
+import com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
+import com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalServiceUtil;
 import com.hitss.layer.service.UsuarioLocalServiceUtil;
+import com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK;
 import com.hitss.reclutamiento.bean.ComboBean;
 import com.hitss.reclutamiento.bean.ParametroBean;
 import com.hitss.reclutamiento.bean.PuestoBean;
+import com.hitss.reclutamiento.bean.RequisitoEtiquetaBean;
 import com.hitss.reclutamiento.bean.SolicitudRequerimientoBean;
 import com.hitss.reclutamiento.bean.UsuarioBean;
 import com.hitss.reclutamiento.service.ActualizarSolicitudReclutamientoService;
 import com.hitss.reclutamiento.service.LiferayContentService;
 import com.hitss.reclutamiento.service.ParametroService;
+import com.hitss.reclutamiento.service.SolicitudRequerimientoRequisitoService;
 import com.hitss.reclutamiento.util.Constantes;
 import com.hitss.reclutamiento.util.PropiedadMensaje;
 import com.liferay.counter.service.CounterLocalServiceUtil;
@@ -31,6 +37,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.util.portlet.PortletProps;
 
 @Service("ActualizarSolicitudReclutamientoService")
@@ -43,6 +50,9 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 
 	@Autowired
 	private LiferayContentService liferayContentService;
+
+	@Autowired
+	private SolicitudRequerimientoRequisitoService solicitudRequerimientoRequisitoService;
 
 	@Override
 	public List<ParametroBean> getTiempoContrato() {
@@ -117,6 +127,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 
 					sRequerimiento = SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sRequerimiento);
 					solicitudRequerimiento.setSolicitudRequerimientoId(sRequerimiento.getSolicitudRequerimientoId());
+					registrarRequisitosEtiquetas(solicitudRequerimiento, user);
 					_log.debug("Actualizado:" + sRequerimiento.getSolicitudRequerimientoId());
 					result.put("respuesta", Constantes.TRANSACCION_OK);
 					result.put("objeto", solicitudRequerimiento);
@@ -152,6 +163,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 				sRequerimiento.setFechacreamodifica(new Date());
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.addSolicitudRequerimiento(sRequerimiento);
 				solicitudRequerimiento.setSolicitudRequerimientoId(sRequerimiento.getSolicitudRequerimientoId());
+				registrarRequisitosEtiquetas(solicitudRequerimiento, user);
 				_log.debug("Nuevo:" + sRequerimiento.getSolicitudRequerimientoId());
 				result.put("respuesta", Constantes.TRANSACCION_OK);
 				result.put("objeto", solicitudRequerimiento);
@@ -164,6 +176,92 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 			result.put("mensaje", PortletProps.get("portal.transaccion.error"));
 		}
 		return result;
+	}
+
+	private void registrarRequisitosEtiquetas(SolicitudRequerimientoBean solicitudRequerimiento, User user) {
+		try {
+			AssetTag tag = null;
+			List<RequisitoEtiquetaBean> requisitoEtiquetaBeans = solicitudRequerimiento.getRequisitoEtiquetaBeans();
+			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitosExitentesBeans(solicitudRequerimiento);
+			boolean exite = false;
+			for (RequisitoEtiquetaBean reqAct : requisitoEtiquetaBeans) {
+				reqAct.setActivo(true);
+				if (Validator.isNull(reqAct.getTagId())) {
+					tag = liferayContentService.getTagByName(reqAct.getRequisito());
+					if (Validator.isNotNull(tag)) {
+						reqAct.setTagId(tag.getTagId());
+					}
+				}
+				if (Validator.isNotNull(reqAct.getTagId())) {
+					for (RequisitoEtiquetaBean reqExite : listaSolicitudRequerimientoRequisitosExitentes) {
+						if (reqAct.getTagId() == reqExite.getTagId()) {
+							exite = true;
+						}
+					}
+					if (exite) {
+						if (exite) {
+							reqAct.setNuevo(false);
+						}
+						exite = false;
+						continue;
+					}
+				} else {
+					tag = liferayContentService.nuevaEtiqueta(reqAct.getRequisito(), user);
+					if (Validator.isNotNull(tag)) {
+						reqAct.setTagId(tag.getTagId());
+						reqAct.setActivo(true);
+					}
+				}
+			}
+			List<SolicitudRequerimientoRequisito> lista = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitosExitentes(solicitudRequerimiento);
+			for (SolicitudRequerimientoRequisito sreq : lista) {
+				sreq.setActivo(false);
+				sreq.setUsuariomodifica(user.getUserId());
+				sreq.setFechacreamodifica(new Date());
+				SolicitudRequerimientoRequisitoLocalServiceUtil.updateSolicitudRequerimientoRequisito(sreq);
+			}
+			
+			SolicitudRequerimientoRequisito rsr = null;
+			for (RequisitoEtiquetaBean reqAct : requisitoEtiquetaBeans) {
+				SolicitudRequerimientoRequisitoPK solicitudRequerimientoRequisitoPK = new SolicitudRequerimientoRequisitoPK(solicitudRequerimiento.getSolicitudRequerimientoId(), reqAct.getTagId());
+				SolicitudRequerimientoRequisito requerimientoRequisito = new SolicitudRequerimientoRequisitoImpl();
+				reqAct.setNuevo(true);
+				for (SolicitudRequerimientoRequisito sreq : lista) {
+					if (sreq.getTagId() == reqAct.getTagId()) {						
+						reqAct.setNuevo(false);		
+						rsr = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoByIds(solicitudRequerimiento.getSolicitudRequerimientoId(), reqAct.getTagId());
+						reqAct.setUsuariocrea(rsr.getUsuariocrea());
+						reqAct.setFechacreamodifica(rsr.getFechacreamodifica());
+					}
+				}
+				requerimientoRequisito.setPrimaryKey(solicitudRequerimientoRequisitoPK);
+				if(reqAct.getExigibleText().equals("true")){
+					requerimientoRequisito.setExigible(true);
+				}else{
+					requerimientoRequisito.setExigible(false);					
+				}
+				
+				
+				requerimientoRequisito.setNivel(reqAct.getNivel());
+				requerimientoRequisito.setTipoRequisito(reqAct.getTipoRequisito());
+				requerimientoRequisito.setActivo(reqAct.isActivo());
+				if (reqAct.isNuevo()) {
+					requerimientoRequisito.setUsuariocrea(user.getUserId());
+					requerimientoRequisito.setFechacrea(new Date());
+					requerimientoRequisito.setUsuariomodifica(user.getUserId());
+					requerimientoRequisito.setFechacreamodifica(new Date());
+					SolicitudRequerimientoRequisitoLocalServiceUtil.addSolicitudRequerimientoRequisito(requerimientoRequisito);
+				} else {
+					requerimientoRequisito.setUsuariocrea(reqAct.getUsuariocrea());
+					requerimientoRequisito.setFechacrea(reqAct.getFechacrea());
+					requerimientoRequisito.setUsuariomodifica(user.getUserId());
+					requerimientoRequisito.setFechacreamodifica(new Date());
+					SolicitudRequerimientoRequisitoLocalServiceUtil.updateSolicitudRequerimientoRequisito(requerimientoRequisito);
+				}
+			}
+		} catch (SystemException e) {
+			_log.error("registrarRequisitosEtiquetas:" + e.getMessage(), e);
+		}
 	}
 
 	@Override
@@ -316,6 +414,10 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 			solicitudRequerimientoBean.setCliente(sr.getCliente());
 			solicitudRequerimientoBean.setEstado(sr.getEstado());
 
+			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);			
+			solicitudRequerimientoBean.setRequisitoEtiquetaBeans(listaSolicitudRequerimientoRequisitosExitentes);
+			
+			
 			return solicitudRequerimientoBean;
 
 		} catch (PortalException | SystemException e) {

@@ -14,7 +14,12 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.SolicitudRequerimientoRequisito;
 import com.hitss.layer.service.base.SolicitudRequerimientoRequisitoLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the solicitud requerimiento requisito local service.
@@ -37,4 +42,19 @@ public class SolicitudRequerimientoRequisitoLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.SolicitudRequerimientoRequisitoLocalServiceUtil} to access the solicitud requerimiento requisito local service.
 	 */
+
+	public List<SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(long solicitudRequerimientoId, long tagId) throws SystemException{
+		return SolicitudRequerimientoRequisitoUtil.findByS_T(solicitudRequerimientoId, tagId);
+	}
+	
+	public List<SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisito(long solicitudRequerimientoId) throws SystemException{
+		return SolicitudRequerimientoRequisitoUtil.findByS_All(solicitudRequerimientoId);
+	}
+	
+
+	public List<SolicitudRequerimientoRequisito> getListaSolicitudRequerimientoRequisitoActivo(long solicitudRequerimientoId) throws SystemException{
+		return SolicitudRequerimientoRequisitoUtil.findByS(solicitudRequerimientoId);
+	}
+	
+	
 }

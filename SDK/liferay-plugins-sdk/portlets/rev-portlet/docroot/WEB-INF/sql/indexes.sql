@@ -10,6 +10,9 @@ create index IX_BF01054 on Requisito (descripcion);
 create index IX_96963AE1 on SolicitudRequerimiento (estado);
 create index IX_48953397 on SolicitudRequerimiento (solicitudRequerimientoId);
 
+create index IX_C1183918 on SolicitudRequerimientoRequisito (solicitudRequerimientoId);
+create index IX_9FB67BAD on SolicitudRequerimientoRequisito (solicitudRequerimientoId, tagId);
+
 create index IX_5495C78E on Usuario (userId);
 
 create index IX_71D8AD94 on rec_ActividadPlanUsuario (actividadPlanId);
