@@ -1,0 +1,734 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.hitss.layer.model.impl.ActividadCronogramaModelImpl">
+		<attributes>
+			<id name="cronogramaId" />
+			<basic name="actividadCronogramaId" />
+			<basic name="descripcion" />
+			<basic name="fechaInicio">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fechaFin">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="cumplido" />
+			<basic name="finalizado" />
+			<basic name="tipoActividad" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.ActividadPlanModelImpl">
+		<attributes>
+			<id name="actividadPlanId" />
+			<basic name="planAccionId" />
+			<basic name="responsable" />
+			<basic name="actividad" />
+			<basic name="evidencia" />
+			<basic name="objetivo" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.ContratoModelImpl">
+		<attributes>
+			<id name="contratoId" />
+			<basic name="usuarioId" />
+			<basic name="motivo" />
+			<basic name="descripcion" />
+			<basic name="titulo" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.CronogramaModelImpl">
+		<attributes>
+			<id name="cronogramaId" />
+			<basic name="solicitudEvaluacionDesempennoId" />
+			<basic name="descripcion" />
+			<basic name="estado" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.DetalleRepuestaEvaluacionModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.DetalleRepuestaEvaluacionPK" />
+		<attributes>
+			<id name="detalleRepuestaEvaluacionId" />
+			<id name="evaluacionId" />
+			<id name="usuarioId" />
+			<basic name="descripcion" />
+			<basic name="respuestaSeleccionada" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.DetalleRepuestaReclutamientoModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.DetalleRepuestaReclutamientoPK" />
+		<attributes>
+			<id name="detalleRepsuestaId" />
+			<id name="evaluacionId" />
+			<id name="fasePostulacionId" />
+			<basic name="descripcion" />
+			<basic name="respuestaSeleccionada" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.EstudioModelImpl">
+		<attributes>
+			<id name="estudioId" />
+			<basic name="usuarioId" />
+			<basic name="nombre" />
+			<basic name="nivel" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.EtiquetaRelacionadaModelImpl">
+		<attributes>
+			<id name="etiquetaRelacionadaId" />
+			<basic name="tabla" />
+			<basic name="registroId" />
+			<basic name="etiqueta" />
+			<basic name="tagId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.EvaluacionModelImpl">
+		<attributes>
+			<id name="evaluacionId" />
+			<basic name="enfoque" />
+			<basic name="puestoCategoriaEvaluacion" />
+			<basic name="tipoEvaluacion" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.EvaluacionPreguntaModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.EvaluacionPreguntaPK" />
+		<attributes>
+			<id name="evaluacionId" />
+			<id name="preguntaId" />
+			<basic name="nivel" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.ExperienciaModelImpl">
+		<attributes>
+			<id name="experienciaId" />
+			<basic name="usuarioId" />
+			<basic name="descripcion" />
+			<basic name="empresa" />
+			<basic name="proyecto" />
+			<basic name="fechaInicio">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="fechaFin">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.FasePostulacionModelImpl">
+		<attributes>
+			<id name="fasePostulacionId" />
+			<basic name="solicitudRequerimientoId" />
+			<basic name="usuarioId" />
+			<basic name="tipoFase" />
+			<basic name="fechaFase">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="descripcion" />
+			<basic name="estado" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.FuncionModelImpl">
+		<attributes>
+			<id name="funcionId" />
+			<basic name="descripcion" />
+			<basic name="etiqueta" />
+			<basic name="exigible" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.InformeRetroalimentacionModelImpl">
+		<attributes>
+			<id name="informeRetroalimentacionId" />
+			<basic name="planAccionId" />
+			<basic name="usuario" />
+			<basic name="titulo" />
+			<basic name="descripcion" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.LogOperacionesModelImpl">
+		<attributes>
+			<id name="logOperacionesId" />
+			<basic name="tipoActividad" />
+			<basic name="actividad" />
+			<basic name="usuario" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.ObservacionesModelImpl">
+		<attributes>
+			<id name="observacionId" />
+			<basic name="descripcion" />
+			<basic name="tabla" />
+			<basic name="registroId" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.ParametroModelImpl">
+		<attributes>
+			<id name="parametroId" />
+			<basic name="parametroIdpadre" />
+			<basic name="codigo" />
+			<basic name="descripcion" />
+			<basic name="valor" />
+			<basic name="tipodato" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.PlanAccionModelImpl">
+		<attributes>
+			<id name="planAccionId" />
+			<basic name="cronogramaId" />
+			<basic name="responsable" />
+			<basic name="fechaProgramada">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="aprobadorColaborador" />
+			<basic name="aprobadorLider" />
+			<basic name="jerarquiaEvaluar" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.PostulacionModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.PostulacionPK" />
+		<attributes>
+			<id name="solicitudRequerimientoId" />
+			<id name="usuarioId" />
+			<basic name="fechaPostulacion">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="estado" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.PreguntaModelImpl">
+		<attributes>
+			<id name="preguntaId" />
+			<basic name="descripcion" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.PrioridadGrupoUsuariosModelImpl">
+		<attributes>
+			<id name="prioridadGrupoUsuariosId" />
+			<basic name="solicitudEvaluacionDesempennoId" />
+			<basic name="responsableGrupo" />
+			<basic name="grupoUsuario" />
+			<basic name="orden" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.ReferenciaModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.ReferenciaPK" />
+		<attributes>
+			<id name="referenciaId" />
+			<id name="usuarioId" />
+			<basic name="empresa" />
+			<basic name="telefono" />
+			<basic name="responsable" />
+			<basic name="motivo" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.RespuestaModelImpl">
+		<attributes>
+			<id name="respuestaId" />
+			<basic name="descripcion" />
+			<basic name="correcta" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.SolicitudEvaluacionDesempennoModelImpl">
+		<attributes>
+			<id name="solicitudEvaluacionDesempennoId" />
+			<basic name="descripcion" />
+			<basic name="fechaInicio">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="estado" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl">
+		<attributes>
+			<id name="solicitudRequerimientoId" />
+			<basic name="areaSolicitante" />
+			<basic name="cantidadRecursos" />
+			<basic name="responsableRRHH" />
+			<basic name="fechaLimite">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="tiempoContrato" />
+			<basic name="tipoNegocio" />
+			<basic name="presupuestoMaximo" />
+			<basic name="presupuestoMinimo" />
+			<basic name="cliente" />
+			<basic name="especialidad" />
+			<basic name="meta" />
+			<basic name="prioridad" />
+			<basic name="motivo" />
+			<basic name="modalidadjornada" />
+			<basic name="modalidadcontrato" />
+			<basic name="lugarTrabajo" />
+			<basic name="categoriaPuestoId" />
+			<basic name="proyecto" />
+			<basic name="requieroEquipoTecnico" />
+			<basic name="reemplazo" />
+			<basic name="aprobacionFichaIngresoCapitalHumano" />
+			<basic name="aprobacionFichaIngresoOperaciones" />
+			<basic name="tiporeclutamiento" />
+			<basic name="estado" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK" />
+		<attributes>
+			<id name="solicitudRequerimientoId" />
+			<id name="tagId" />
+			<basic name="nivel" />
+			<basic name="exigible" />
+			<basic name="tipoRequisito" />
+			<basic name="herramienta" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.UsuarioModelImpl">
+		<attributes>
+			<id name="userId" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.UsuarioEvaluacionModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.UsuarioEvaluacionPK" />
+		<attributes>
+			<id name="actividadCronogramaId" />
+			<id name="usuarioId" />
+			<id name="evaluacionId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.UsuarioRequisitoModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.UsuarioRequisitoPK" />
+		<attributes>
+			<id name="userId" />
+			<id name="tagId" />
+			<basic name="nivel" />
+			<basic name="exigible" />
+			<basic name="tipoRequisito" />
+			<basic name="herramienta" />
+			<basic name="cumplerequisito" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechacreamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.hitss.layer.model.impl.ActividadCronogramaImpl" name="ActividadCronograma">
+		<table name="ActividadCronograma" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.ActividadPlanImpl" name="ActividadPlan">
+		<table name="ActividadPlan" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.ContratoImpl" name="Contrato">
+		<table name="Contrato" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.CronogramaImpl" name="Cronograma">
+		<table name="Cronograma" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.DetalleRepuestaEvaluacionImpl" name="DetalleRepuestaEvaluacion">
+		<table name="DetalleRepuestaEvaluacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.DetalleRepuestaReclutamientoImpl" name="DetalleRepuestaReclutamiento">
+		<table name="DetalleRepuestaReclutamiento" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.EstudioImpl" name="Estudio">
+		<table name="Estudio" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.EtiquetaRelacionadaImpl" name="EtiquetaRelacionada">
+		<table name="EtiquetaRelacionada" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.EvaluacionImpl" name="Evaluacion">
+		<table name="Evaluacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.EvaluacionPreguntaImpl" name="EvaluacionPregunta">
+		<table name="EvaluacionPregunta" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.ExperienciaImpl" name="Experiencia">
+		<table name="Experiencia" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.FasePostulacionImpl" name="FasePostulacion">
+		<table name="FasePostulacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.FuncionImpl" name="Funcion">
+		<table name="Funcion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.InformeRetroalimentacionImpl" name="InformeRetroalimentacion">
+		<table name="InformeRetroalimentacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.LogOperacionesImpl" name="LogOperaciones">
+		<table name="LogOperaciones" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.ObservacionesImpl" name="Observaciones">
+		<table name="Observaciones" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.ParametroImpl" name="Parametro">
+		<table name="Parametro" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.PlanAccionImpl" name="PlanAccion">
+		<table name="PlanAccion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.PostulacionImpl" name="Postulacion">
+		<table name="Postulacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.PreguntaImpl" name="Pregunta">
+		<table name="Pregunta" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.PrioridadGrupoUsuariosImpl" name="PrioridadGrupoUsuarios">
+		<table name="PrioridadGrupoUsuarios" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.ReferenciaImpl" name="Referencia">
+		<table name="Referencia" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.RespuestaImpl" name="Respuesta">
+		<table name="Respuesta" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.SolicitudEvaluacionDesempennoImpl" name="SolicitudEvaluacionDesempenno">
+		<table name="SolicitudEvaluacionDesempenno" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.SolicitudRequerimientoImpl" name="SolicitudRequerimiento">
+		<table name="SolicitudRequerimiento" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl" name="SolicitudRequerimientoRequisito">
+		<table name="SolicitudRequerimientoRequisito" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.UsuarioImpl" name="Usuario">
+		<table name="Usuario" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.UsuarioEvaluacionImpl" name="UsuarioEvaluacion">
+		<table name="UsuarioEvaluacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.UsuarioRequisitoImpl" name="UsuarioRequisito">
+		<table name="UsuarioRequisito" />
+		<attributes />
+	</entity>
+</entity-mappings>

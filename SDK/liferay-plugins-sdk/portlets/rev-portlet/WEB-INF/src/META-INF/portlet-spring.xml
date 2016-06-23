@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.hitss.layer.service.ActividadCronogramaLocalService" class="com.hitss.layer.service.impl.ActividadCronogramaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.ActividadCronogramaService" class="com.hitss.layer.service.impl.ActividadCronogramaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.ActividadCronogramaPersistence" class="com.hitss.layer.service.persistence.ActividadCronogramaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.ActividadPlanLocalService" class="com.hitss.layer.service.impl.ActividadPlanLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.ActividadPlanService" class="com.hitss.layer.service.impl.ActividadPlanServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.ActividadPlanPersistence" class="com.hitss.layer.service.persistence.ActividadPlanPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.ContratoLocalService" class="com.hitss.layer.service.impl.ContratoLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.ContratoService" class="com.hitss.layer.service.impl.ContratoServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.ContratoPersistence" class="com.hitss.layer.service.persistence.ContratoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.CronogramaLocalService" class="com.hitss.layer.service.impl.CronogramaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.CronogramaService" class="com.hitss.layer.service.impl.CronogramaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.CronogramaPersistence" class="com.hitss.layer.service.persistence.CronogramaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.DetalleRepuestaEvaluacionLocalService" class="com.hitss.layer.service.impl.DetalleRepuestaEvaluacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.DetalleRepuestaEvaluacionService" class="com.hitss.layer.service.impl.DetalleRepuestaEvaluacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.DetalleRepuestaEvaluacionPersistence" class="com.hitss.layer.service.persistence.DetalleRepuestaEvaluacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.DetalleRepuestaReclutamientoLocalService" class="com.hitss.layer.service.impl.DetalleRepuestaReclutamientoLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.DetalleRepuestaReclutamientoService" class="com.hitss.layer.service.impl.DetalleRepuestaReclutamientoServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.DetalleRepuestaReclutamientoPersistence" class="com.hitss.layer.service.persistence.DetalleRepuestaReclutamientoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.EstudioLocalService" class="com.hitss.layer.service.impl.EstudioLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.EstudioService" class="com.hitss.layer.service.impl.EstudioServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.EstudioPersistence" class="com.hitss.layer.service.persistence.EstudioPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.EtiquetaRelacionadaLocalService" class="com.hitss.layer.service.impl.EtiquetaRelacionadaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.EtiquetaRelacionadaService" class="com.hitss.layer.service.impl.EtiquetaRelacionadaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.EtiquetaRelacionadaPersistence" class="com.hitss.layer.service.persistence.EtiquetaRelacionadaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.EvaluacionLocalService" class="com.hitss.layer.service.impl.EvaluacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.EvaluacionService" class="com.hitss.layer.service.impl.EvaluacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.EvaluacionPersistence" class="com.hitss.layer.service.persistence.EvaluacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.EvaluacionPreguntaLocalService" class="com.hitss.layer.service.impl.EvaluacionPreguntaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.EvaluacionPreguntaService" class="com.hitss.layer.service.impl.EvaluacionPreguntaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.EvaluacionPreguntaPersistence" class="com.hitss.layer.service.persistence.EvaluacionPreguntaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.ExperienciaLocalService" class="com.hitss.layer.service.impl.ExperienciaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.ExperienciaService" class="com.hitss.layer.service.impl.ExperienciaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.ExperienciaPersistence" class="com.hitss.layer.service.persistence.ExperienciaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.FasePostulacionLocalService" class="com.hitss.layer.service.impl.FasePostulacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.FasePostulacionService" class="com.hitss.layer.service.impl.FasePostulacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.FasePostulacionPersistence" class="com.hitss.layer.service.persistence.FasePostulacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.FuncionLocalService" class="com.hitss.layer.service.impl.FuncionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.FuncionService" class="com.hitss.layer.service.impl.FuncionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.FuncionPersistence" class="com.hitss.layer.service.persistence.FuncionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.InformeRetroalimentacionLocalService" class="com.hitss.layer.service.impl.InformeRetroalimentacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.InformeRetroalimentacionService" class="com.hitss.layer.service.impl.InformeRetroalimentacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.InformeRetroalimentacionPersistence" class="com.hitss.layer.service.persistence.InformeRetroalimentacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.LogOperacionesLocalService" class="com.hitss.layer.service.impl.LogOperacionesLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.LogOperacionesService" class="com.hitss.layer.service.impl.LogOperacionesServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.LogOperacionesPersistence" class="com.hitss.layer.service.persistence.LogOperacionesPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.ObservacionesLocalService" class="com.hitss.layer.service.impl.ObservacionesLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.ObservacionesService" class="com.hitss.layer.service.impl.ObservacionesServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.ObservacionesPersistence" class="com.hitss.layer.service.persistence.ObservacionesPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.ParametroLocalService" class="com.hitss.layer.service.impl.ParametroLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.ParametroService" class="com.hitss.layer.service.impl.ParametroServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.ParametroPersistence" class="com.hitss.layer.service.persistence.ParametroPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.PlanAccionLocalService" class="com.hitss.layer.service.impl.PlanAccionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.PlanAccionService" class="com.hitss.layer.service.impl.PlanAccionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.PlanAccionPersistence" class="com.hitss.layer.service.persistence.PlanAccionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.PostulacionLocalService" class="com.hitss.layer.service.impl.PostulacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.PostulacionService" class="com.hitss.layer.service.impl.PostulacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.PostulacionPersistence" class="com.hitss.layer.service.persistence.PostulacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.PreguntaLocalService" class="com.hitss.layer.service.impl.PreguntaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.PreguntaService" class="com.hitss.layer.service.impl.PreguntaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.PreguntaPersistence" class="com.hitss.layer.service.persistence.PreguntaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.PrioridadGrupoUsuariosLocalService" class="com.hitss.layer.service.impl.PrioridadGrupoUsuariosLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.PrioridadGrupoUsuariosService" class="com.hitss.layer.service.impl.PrioridadGrupoUsuariosServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistence" class="com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.ReferenciaLocalService" class="com.hitss.layer.service.impl.ReferenciaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.ReferenciaService" class="com.hitss.layer.service.impl.ReferenciaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.ReferenciaPersistence" class="com.hitss.layer.service.persistence.ReferenciaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.RespuestaLocalService" class="com.hitss.layer.service.impl.RespuestaLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.RespuestaService" class="com.hitss.layer.service.impl.RespuestaServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.RespuestaPersistence" class="com.hitss.layer.service.persistence.RespuestaPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.SolicitudEvaluacionDesempennoLocalService" class="com.hitss.layer.service.impl.SolicitudEvaluacionDesempennoLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.SolicitudEvaluacionDesempennoService" class="com.hitss.layer.service.impl.SolicitudEvaluacionDesempennoServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.SolicitudEvaluacionDesempennoPersistence" class="com.hitss.layer.service.persistence.SolicitudEvaluacionDesempennoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.SolicitudRequerimientoLocalService" class="com.hitss.layer.service.impl.SolicitudRequerimientoLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.SolicitudRequerimientoService" class="com.hitss.layer.service.impl.SolicitudRequerimientoServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.SolicitudRequerimientoPersistence" class="com.hitss.layer.service.persistence.SolicitudRequerimientoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService" class="com.hitss.layer.service.impl.SolicitudRequerimientoRequisitoLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.SolicitudRequerimientoRequisitoService" class="com.hitss.layer.service.impl.SolicitudRequerimientoRequisitoServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistence" class="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.UsuarioLocalService" class="com.hitss.layer.service.impl.UsuarioLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.UsuarioService" class="com.hitss.layer.service.impl.UsuarioServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.UsuarioPersistence" class="com.hitss.layer.service.persistence.UsuarioPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.UsuarioEvaluacionLocalService" class="com.hitss.layer.service.impl.UsuarioEvaluacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.UsuarioEvaluacionService" class="com.hitss.layer.service.impl.UsuarioEvaluacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.UsuarioEvaluacionPersistence" class="com.hitss.layer.service.persistence.UsuarioEvaluacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.UsuarioRequisitoLocalService" class="com.hitss.layer.service.impl.UsuarioRequisitoLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.UsuarioRequisitoService" class="com.hitss.layer.service.impl.UsuarioRequisitoServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.UsuarioRequisitoPersistence" class="com.hitss.layer.service.persistence.UsuarioRequisitoPersistenceImpl" parent="basePersistence" />
+</beans>

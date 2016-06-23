@@ -1,0 +1,3 @@
+form.formulario .row-fluid [class*="span"]:first-child {
+  margin-left: 2px; }
+
