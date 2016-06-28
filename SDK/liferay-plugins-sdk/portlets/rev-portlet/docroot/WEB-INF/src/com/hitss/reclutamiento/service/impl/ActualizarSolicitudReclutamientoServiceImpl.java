@@ -114,17 +114,15 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 					sRequerimiento.setCantidadRecursos(solicitudRequerimiento.getCantidadRecursos());
 					sRequerimiento.setAreaSolicitante(solicitudRequerimiento.getAreaSolicitante());
 					sRequerimiento.setFechaLimite(solicitudRequerimiento.getFechaLimite());
-					sRequerimiento.setPresupuestoMinimo(solicitudRequerimiento.getPresupuestoMinimo());
-					sRequerimiento.setPresupuestoMaximo(solicitudRequerimiento.getPresupuestoMaximo());
 					sRequerimiento.setResponsableRRHH(solicitudRequerimiento.getResponsableRRHH());
 					sRequerimiento.setTiempoContrato(solicitudRequerimiento.getTiempoContrato());
 					sRequerimiento.setTipoNegocio(solicitudRequerimiento.getTipoNegocio());
 					sRequerimiento.setCliente(solicitudRequerimiento.getCliente());
-
+					sRequerimiento.setEspecialidad(solicitudRequerimiento.getEspecialidad());
+					sRequerimiento.setProyecto(solicitudRequerimiento.getProyecto());
 					sRequerimiento.setActivo(true);
 					sRequerimiento.setUsuariomodifica(user.getUserId());
 					sRequerimiento.setFechacreamodifica(new Date());
-
 					sRequerimiento = SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sRequerimiento);
 					solicitudRequerimiento.setSolicitudRequerimientoId(sRequerimiento.getSolicitudRequerimientoId());
 					registrarRequisitosEtiquetas(solicitudRequerimiento, user);
@@ -148,12 +146,12 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 				sRequerimiento.setCantidadRecursos(solicitudRequerimiento.getCantidadRecursos());
 				sRequerimiento.setAreaSolicitante(solicitudRequerimiento.getAreaSolicitante());
 				sRequerimiento.setFechaLimite(solicitudRequerimiento.getFechaLimite());
-				sRequerimiento.setPresupuestoMinimo(solicitudRequerimiento.getPresupuestoMinimo());
-				sRequerimiento.setPresupuestoMaximo(solicitudRequerimiento.getPresupuestoMaximo());
 				sRequerimiento.setResponsableRRHH(solicitudRequerimiento.getResponsableRRHH());
 				sRequerimiento.setTiempoContrato(solicitudRequerimiento.getTiempoContrato());
 				sRequerimiento.setTipoNegocio(solicitudRequerimiento.getTipoNegocio());
 				sRequerimiento.setCliente(solicitudRequerimiento.getCliente());
+				sRequerimiento.setEspecialidad(solicitudRequerimiento.getEspecialidad());
+				sRequerimiento.setProyecto(solicitudRequerimiento.getProyecto());
 				sRequerimiento.setEstado(parametroService.getParametro(Constantes.PARAMETRO_REGISTRADO).getParametroId());
 
 				sRequerimiento.setActivo(true);
@@ -336,9 +334,9 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 					solicitudRequerimientoBean.setStrfechaLimite(sdf.format(sr.getFechaLimite()));
 					solicitudRequerimientoBean.setFechacrea(sr.getFechacrea());
 					solicitudRequerimientoBean.setStrfechacrea(sdf.format(sr.getFechacrea()));
-					solicitudRequerimientoBean.setPresupuestoMinimo(sr.getPresupuestoMinimo());
-					solicitudRequerimientoBean.setPresupuestoMaximo(sr.getPresupuestoMaximo());
 					solicitudRequerimientoBean.setResponsableRRHH(sr.getResponsableRRHH());
+					solicitudRequerimientoBean.setEspecialidad(sr.getEspecialidad());
+					solicitudRequerimientoBean.setProyecto(sr.getProyecto());
 					solicitudRequerimientoBean.setStrresponsableRRHH(UserLocalServiceUtil.getUser(sr.getResponsableRRHH()).getFullName());
 					if (Validator.isNotNull(sr.getPrioridad())) {
 						solicitudRequerimientoBean.setPrioridad(sr.getPrioridad());
@@ -404,14 +402,14 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 			solicitudRequerimientoBean.setStrfechaLimite(sdf.format(sr.getFechaLimite()));
 			solicitudRequerimientoBean.setFechacrea(sr.getFechacrea());
 			solicitudRequerimientoBean.setStrfechacrea(sdf.format(sr.getFechacrea()));
-			solicitudRequerimientoBean.setPresupuestoMinimo(sr.getPresupuestoMinimo());
-			solicitudRequerimientoBean.setPresupuestoMaximo(sr.getPresupuestoMaximo());
 			solicitudRequerimientoBean.setResponsableRRHH(sr.getResponsableRRHH());
 			solicitudRequerimientoBean.setStrresponsableRRHH(UserLocalServiceUtil.getUser(sr.getResponsableRRHH()).getFullName());
 			solicitudRequerimientoBean.setPrioridad(sr.getPrioridad());
 			solicitudRequerimientoBean.setTiempoContrato(sr.getTiempoContrato());
 			solicitudRequerimientoBean.setTipoNegocio(sr.getTipoNegocio());
 			solicitudRequerimientoBean.setCliente(sr.getCliente());
+			solicitudRequerimientoBean.setEspecialidad(sr.getEspecialidad());
+			solicitudRequerimientoBean.setProyecto(sr.getProyecto());
 			solicitudRequerimientoBean.setEstado(sr.getEstado());
 
 			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);			

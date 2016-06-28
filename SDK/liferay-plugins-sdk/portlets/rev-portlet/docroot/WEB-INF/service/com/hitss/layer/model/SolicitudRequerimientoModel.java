@@ -204,14 +204,15 @@ public interface SolicitudRequerimientoModel extends BaseModel<SolicitudRequerim
 	 *
 	 * @return the especialidad of this solicitud requerimiento
 	 */
-	public long getEspecialidad();
+	@AutoEscape
+	public String getEspecialidad();
 
 	/**
 	 * Sets the especialidad of this solicitud requerimiento.
 	 *
 	 * @param especialidad the especialidad of this solicitud requerimiento
 	 */
-	public void setEspecialidad(long especialidad);
+	public void setEspecialidad(String especialidad);
 
 	/**
 	 * Returns the meta of this solicitud requerimiento.

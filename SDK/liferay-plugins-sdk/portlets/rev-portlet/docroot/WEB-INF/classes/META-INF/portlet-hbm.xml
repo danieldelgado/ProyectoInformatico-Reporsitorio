@@ -68,7 +68,7 @@
 	<class name="com.hitss.layer.model.impl.ContratoImpl" table="Contrato">
 		<cache usage="read-write" />
 		<id name="contratoId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -117,7 +117,7 @@
 	<class name="com.hitss.layer.model.impl.EstudioImpl" table="Estudio">
 		<cache usage="read-write" />
 		<id name="estudioId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="nombre" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -131,7 +131,7 @@
 	<class name="com.hitss.layer.model.impl.EtiquetaRelacionadaImpl" table="EtiquetaRelacionada">
 		<cache usage="read-write" />
 		<id name="etiquetaRelacionadaId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="tabla" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="registroId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -143,7 +143,7 @@
 	<class name="com.hitss.layer.model.impl.EvaluacionImpl" table="Evaluacion">
 		<cache usage="read-write" />
 		<id name="evaluacionId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="enfoque" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="puestoCategoriaEvaluacion" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -165,7 +165,7 @@
 	<class name="com.hitss.layer.model.impl.ExperienciaImpl" table="Experiencia">
 		<cache usage="read-write" />
 		<id name="experienciaId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -182,7 +182,7 @@
 	<class name="com.hitss.layer.model.impl.FasePostulacionImpl" table="FasePostulacion">
 		<cache usage="read-write" />
 		<id name="fasePostulacionId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="solicitudRequerimientoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -228,7 +228,7 @@
 	<class name="com.hitss.layer.model.impl.LogOperacionesImpl" table="LogOperaciones">
 		<cache usage="read-write" />
 		<id name="logOperacionesId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="tipoActividad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="actividad" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -242,7 +242,7 @@
 	<class name="com.hitss.layer.model.impl.ObservacionesImpl" table="Observaciones">
 		<cache usage="read-write" />
 		<id name="observacionId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="tabla" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -256,7 +256,7 @@
 	<class name="com.hitss.layer.model.impl.ParametroImpl" table="Parametro">
 		<cache usage="read-write" />
 		<id name="parametroId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="parametroIdpadre" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="codigo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -303,7 +303,7 @@
 	<class name="com.hitss.layer.model.impl.PreguntaImpl" table="Pregunta">
 		<cache usage="read-write" />
 		<id name="preguntaId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
@@ -315,7 +315,7 @@
 	<class name="com.hitss.layer.model.impl.PrioridadGrupoUsuariosImpl" table="PrioridadGrupoUsuarios">
 		<cache usage="read-write" />
 		<id name="prioridadGrupoUsuariosId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="solicitudEvaluacionDesempennoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="responsableGrupo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -346,7 +346,7 @@
 	<class name="com.hitss.layer.model.impl.RespuestaImpl" table="Respuesta">
 		<cache usage="read-write" />
 		<id name="respuestaId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="correcta" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
@@ -359,7 +359,7 @@
 	<class name="com.hitss.layer.model.impl.SolicitudEvaluacionDesempennoImpl" table="SolicitudEvaluacionDesempenno">
 		<cache usage="read-write" />
 		<id name="solicitudEvaluacionDesempennoId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="fechaInicio" type="org.hibernate.type.TimestampType" />
@@ -373,7 +373,7 @@
 	<class name="com.hitss.layer.model.impl.SolicitudRequerimientoImpl" table="SolicitudRequerimiento">
 		<cache usage="read-write" />
 		<id name="solicitudRequerimientoId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="areaSolicitante" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="cantidadRecursos" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
@@ -384,7 +384,7 @@
 		<property name="presupuestoMaximo" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="presupuestoMinimo" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="cliente" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="especialidad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="especialidad" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="meta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="prioridad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />

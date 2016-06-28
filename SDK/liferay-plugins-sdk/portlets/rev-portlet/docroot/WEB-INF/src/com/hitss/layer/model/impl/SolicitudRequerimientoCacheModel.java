@@ -126,7 +126,13 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		solicitudRequerimientoImpl.setPresupuestoMaximo(presupuestoMaximo);
 		solicitudRequerimientoImpl.setPresupuestoMinimo(presupuestoMinimo);
 		solicitudRequerimientoImpl.setCliente(cliente);
-		solicitudRequerimientoImpl.setEspecialidad(especialidad);
+
+		if (especialidad == null) {
+			solicitudRequerimientoImpl.setEspecialidad(StringPool.BLANK);
+		}
+		else {
+			solicitudRequerimientoImpl.setEspecialidad(especialidad);
+		}
 
 		if (meta == null) {
 			solicitudRequerimientoImpl.setMeta(StringPool.BLANK);
@@ -206,7 +212,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		presupuestoMaximo = objectInput.readLong();
 		presupuestoMinimo = objectInput.readLong();
 		cliente = objectInput.readLong();
-		especialidad = objectInput.readLong();
+		especialidad = objectInput.readUTF();
 		meta = objectInput.readUTF();
 		prioridad = objectInput.readLong();
 		motivo = objectInput.readUTF();
@@ -241,7 +247,13 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		objectOutput.writeLong(presupuestoMaximo);
 		objectOutput.writeLong(presupuestoMinimo);
 		objectOutput.writeLong(cliente);
-		objectOutput.writeLong(especialidad);
+
+		if (especialidad == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(especialidad);
+		}
 
 		if (meta == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -301,7 +313,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	public long presupuestoMaximo;
 	public long presupuestoMinimo;
 	public long cliente;
-	public long especialidad;
+	public String especialidad;
 	public String meta;
 	public long prioridad;
 	public String motivo;

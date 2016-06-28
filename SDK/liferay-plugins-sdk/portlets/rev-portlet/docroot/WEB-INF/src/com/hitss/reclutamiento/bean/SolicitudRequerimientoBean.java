@@ -21,8 +21,7 @@ public class SolicitudRequerimientoBean {
 	private long presupuestoMinimo;
 	private long cliente;
 	private String strcliente;
-	private long especialidad;
-	private String strespecialidad;
+	private String especialidad;
 	private String meta;
 	private long prioridad;
 	private String strprioridad;
@@ -133,14 +132,6 @@ public class SolicitudRequerimientoBean {
 
 	public void setCliente(long cliente) {
 		this.cliente = cliente;
-	}
-
-	public long getEspecialidad() {
-		return especialidad;
-	}
-
-	public void setEspecialidad(long especialidad) {
-		this.especialidad = especialidad;
 	}
 
 	public String getMeta() {
@@ -335,14 +326,6 @@ public class SolicitudRequerimientoBean {
 		this.strcliente = strcliente;
 	}
 
-	public String getStrespecialidad() {
-		return strespecialidad;
-	}
-
-	public void setStrespecialidad(String strespecialidad) {
-		this.strespecialidad = strespecialidad;
-	}
-
 	public String getStrprioridad() {
 		return strprioridad;
 	}
@@ -421,6 +404,14 @@ public class SolicitudRequerimientoBean {
 
 	public void setRequisitoEtiquetaBeans(List<RequisitoEtiquetaBean> requisitoEtiquetaBeans) {
 		this.requisitoEtiquetaBeans = requisitoEtiquetaBeans;
+	}
+
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
 	}
 
 	

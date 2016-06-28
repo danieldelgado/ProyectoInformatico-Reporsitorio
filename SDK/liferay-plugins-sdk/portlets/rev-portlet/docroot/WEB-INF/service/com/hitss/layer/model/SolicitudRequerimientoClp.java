@@ -174,7 +174,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 			setCliente(cliente);
 		}
 
-		Long especialidad = (Long)attributes.get("especialidad");
+		String especialidad = (String)attributes.get("especialidad");
 
 		if (especialidad != null) {
 			setEspecialidad(especialidad);
@@ -538,19 +538,19 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	}
 
 	@Override
-	public long getEspecialidad() {
+	public String getEspecialidad() {
 		return _especialidad;
 	}
 
 	@Override
-	public void setEspecialidad(long especialidad) {
+	public void setEspecialidad(String especialidad) {
 		_especialidad = especialidad;
 
 		if (_solicitudRequerimientoRemoteModel != null) {
 			try {
 				Class<?> clazz = _solicitudRequerimientoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setEspecialidad", long.class);
+				Method method = clazz.getMethod("setEspecialidad", String.class);
 
 				method.invoke(_solicitudRequerimientoRemoteModel, especialidad);
 			}
@@ -1404,7 +1404,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	private long _presupuestoMaximo;
 	private long _presupuestoMinimo;
 	private long _cliente;
-	private long _especialidad;
+	private String _especialidad;
 	private String _meta;
 	private long _prioridad;
 	private String _motivo;

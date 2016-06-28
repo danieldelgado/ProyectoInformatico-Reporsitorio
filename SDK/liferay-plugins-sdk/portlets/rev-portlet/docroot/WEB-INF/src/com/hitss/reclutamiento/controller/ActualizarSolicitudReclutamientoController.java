@@ -226,8 +226,8 @@ public class ActualizarSolicitudReclutamientoController {
 		Date fechaLimiteVal = ParamUtil.getDate(resourceRequest, "fechaLimiteVal", sdf);
 		_log.debug("fechaLimiteVal:" + fechaLimiteVal);
 
-		long presupuestoMinimo = ParamUtil.getLong(resourceRequest, "presupuestoMinimo");
-		_log.debug("presupuestoMinimo:" + presupuestoMinimo);
+		String proyecto = ParamUtil.get(resourceRequest, "proyecto","");
+		_log.debug("proyecto:" + proyecto);
 
 		int responsable = ParamUtil.getInteger(resourceRequest, "responsable");
 		_log.debug("responsable:" + responsable);
@@ -241,8 +241,8 @@ public class ActualizarSolicitudReclutamientoController {
 		int cliente = ParamUtil.getInteger(resourceRequest, "cliente");
 		_log.debug("cliente:" + cliente);
 
-		long presupuestoMaximo = ParamUtil.getLong(resourceRequest, "presupuestoMaximo");
-		_log.debug("presupuestoMaximo:" + presupuestoMaximo);
+		String especialidad = ParamUtil.get(resourceRequest, "especialidad","");
+		_log.debug("especialidad:" + especialidad);
 
 		String requisitosLista = ParamUtil.get(resourceRequest, "requisitosList", "");
 
@@ -253,11 +253,11 @@ public class ActualizarSolicitudReclutamientoController {
 		solicitudRequerimiento.setTipoNegocio(tipoNegocio);
 		solicitudRequerimiento.setAreaSolicitante(areaSolicitante);
 		solicitudRequerimiento.setFechaLimite(fechaLimiteVal);
-		solicitudRequerimiento.setPresupuestoMinimo(presupuestoMinimo);
-		solicitudRequerimiento.setPresupuestoMaximo(presupuestoMaximo);
 		solicitudRequerimiento.setResponsableRRHH(responsable);
 		solicitudRequerimiento.setTiempoContrato(tiempoContrato);
 		solicitudRequerimiento.setCliente(cliente);
+		solicitudRequerimiento.setEspecialidad(especialidad);
+		solicitudRequerimiento.setProyecto(proyecto);
 
 		List<RequisitoEtiquetaBean> lista = (List<RequisitoEtiquetaBean>) JsonUtil.getJsonObject(requisitosLista, new com.google.gson.reflect.TypeToken<List<RequisitoEtiquetaBean>>() {
 		});

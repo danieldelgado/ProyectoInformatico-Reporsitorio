@@ -47,8 +47,8 @@
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
-		<header-portlet-css>/css/evaluarfechaingreso/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/evaluarfechaingreso/main.js</footer-portlet-javascript>
+		<header-portlet-css>/css/programaentrevista/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/programaentrevista/main.js</footer-portlet-javascript>
 		<css-class-wrapper>ProgramaEntrevista-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>

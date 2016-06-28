@@ -330,7 +330,7 @@ create table SolicitudRequerimiento (
 	presupuestoMaximo LONG,
 	presupuestoMinimo LONG,
 	cliente LONG,
-	especialidad LONG,
+	especialidad VARCHAR(75) null,
 	meta VARCHAR(75) null,
 	prioridad LONG,
 	motivo VARCHAR(75) null,

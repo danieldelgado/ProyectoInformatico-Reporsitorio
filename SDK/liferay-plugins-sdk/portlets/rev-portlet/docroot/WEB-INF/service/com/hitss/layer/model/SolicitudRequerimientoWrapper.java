@@ -150,7 +150,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 			setCliente(cliente);
 		}
 
-		Long especialidad = (Long)attributes.get("especialidad");
+		String especialidad = (String)attributes.get("especialidad");
 
 		if (especialidad != null) {
 			setEspecialidad(especialidad);
@@ -500,7 +500,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	* @return the especialidad of this solicitud requerimiento
 	*/
 	@Override
-	public long getEspecialidad() {
+	public java.lang.String getEspecialidad() {
 		return _solicitudRequerimiento.getEspecialidad();
 	}
 
@@ -510,7 +510,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	* @param especialidad the especialidad of this solicitud requerimiento
 	*/
 	@Override
-	public void setEspecialidad(long especialidad) {
+	public void setEspecialidad(java.lang.String especialidad) {
 		_solicitudRequerimiento.setEspecialidad(especialidad);
 	}
 

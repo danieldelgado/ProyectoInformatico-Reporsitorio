@@ -85,7 +85,15 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 
 			$.each(data.lista, function(index, value) {
 				count++;
-				html += '<tr>';
+				
+				html += '<tr';
+				if(value.estado ==  49){
+					html += ' class="success" ';					
+				}
+				if(value.estado ==  50){
+					html += ' class="error" ';
+				}
+				html += '>';
 
 				html += '<td>' + +count + '</td>';
 
@@ -100,8 +108,13 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strestado + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				html += '		<a class="btn btn-primary" href="' + urls["modificarSolicitud"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionModificar + ' </a>';
-				html += '		<a class="btn btn-primary anular" data="' + value.solicitudRequerimientoId + '" href="javacript:void();">' + listaOpcionAnular + ' </a>';
+
+				if (value.estado == 48||value.estado == 50) {
+					html += '		<a class="btn btn-primary" href="' + urls["modificarSolicitud"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionModificar + ' </a>';
+				}
+				if (value.estado == 48) {
+					html += '		<a class="btn btn-primary anular" data="' + value.solicitudRequerimientoId + '" href="javacript:void();">' + listaOpcionAnular + ' </a>';
+				}
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';
@@ -230,14 +243,14 @@ function inicializarFormularioRegistro() {
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var inputpuesto = inputFristnamespace + "puestoId";
 	var inputcantidadRecursos = inputFristnamespace + "cantidadRecursos";
-	var inputareaSolicitante = inputFristnamespace + "areaSolicitante";
+	// var inputareaSolicitante = inputFristnamespace + "areaSolicitante";
 	var inputfechaLimiteVal = inputFristnamespace + "fechaLimiteVal";
-	var inputpresupuestoMinimo = inputFristnamespace + "presupuestoMinimo";
 	var inputresponsable = inputFristnamespace + "responsable";
 	var inputtiempoContrato = inputFristnamespace + "tiempoContrato";
 	var inputtipoNegocio = inputFristnamespace + "tipoNegocio";
 	var inputcliente = inputFristnamespace + "cliente";
-	var inputpresupuestoMaximo = inputFristnamespace + "presupuestoMaximo";
+	var inputproyecto = inputFristnamespace + "proyecto";
+	// var inputespecialidad = inputFristnamespace + "especialidad";
 
 	var btnAgregar = $("#" + inputFristnamespace + "btnAgregar");
 
@@ -258,19 +271,12 @@ function inicializarFormularioRegistro() {
 	rules[inputcantidadRecursos] = {
 		required : true
 	};
-	rules[inputareaSolicitante] = {
-		required : true
-	};
+	// rules[inputareaSolicitante] = {
+	// required : true
+	// };
 	rules[inputfechaLimiteVal] = {
 		required : true,
 		rango_fecha_limite : true
-	};
-	rules[inputpresupuestoMinimo] = {
-		required : true,
-		range : [ 850, 20000 ],
-		rango_no_menor : {
-			input : inputpresupuestoMaximo
-		}
 	};
 	rules[inputresponsable] = {
 		required : function() {
@@ -308,37 +314,41 @@ function inicializarFormularioRegistro() {
 			}
 		}
 	};
-	rules[inputpresupuestoMaximo] = {
-		required : true,
-		range : [ 850, 20000 ]
+	rules[inputproyecto] = {
+		required : true
 	};
+	// rules[inputespecialidad] = {
+	// required : true
+	// };
 
 	var mesajepuesto = $("#" + inputFristnamespace + "msgpuesto").val();
 	var mesajecantidadrecursos = $("#" + inputFristnamespace + "msgcantidadrecursos").val();
-	var mesajeareaSolicitante = $("#" + inputFristnamespace + "msgareaSolicitante").val();
+	// var mesajeareaSolicitante = $("#" + inputFristnamespace +
+	// "msgareaSolicitante").val();
 	var mesajefechalimite = $("#" + inputFristnamespace + "msgfechalimite").val();
 	var mesajefechalimiteFueraRango = $("#" + inputFristnamespace + "msgfechalimiteFueraRango").val();
-	var mesajepresupuestominimo = $("#" + inputFristnamespace + "msgpresupuestominimo").val();
 	var mesajeresponsablerrhh = $("#" + inputFristnamespace + "msgresponsablerrhh").val();
 	var mesajetiempocontrato = $("#" + inputFristnamespace + "msgtiempocontrato").val();
 	var mesajetiponegocio = $("#" + inputFristnamespace + "msgtiponegocio").val();
 	var mesajecliente = $("#" + inputFristnamespace + "msgcliente").val();
-	var mesajepresupuestomaximo = $("#" + inputFristnamespace + "msgpresupuestomaximo").val();
+	var mesajeproyecto = $("#" + inputFristnamespace + "msgproyecto").val();
+	// var mesajeespecialidad = $("#" + inputFristnamespace +
+	// "msgespecialidad").val();
 
 	var messages = {};
 	messages[inputpuesto] = mesajepuesto;
 	messages[inputcantidadRecursos] = mesajecantidadrecursos;
-	messages[inputareaSolicitante] = mesajeareaSolicitante;
+	// messages[inputareaSolicitante] = mesajeareaSolicitante;
 	messages[inputfechaLimiteVal] = {
 		required : mesajefechalimite,
 		rango_fecha_limite : mesajefechalimiteFueraRango
 	};
-	messages[inputpresupuestoMinimo] = mesajepresupuestominimo;
 	messages[inputresponsable] = mesajeresponsablerrhh;
 	messages[inputtiempoContrato] = mesajetiempocontrato;
 	messages[inputtipoNegocio] = mesajetiponegocio;
 	messages[inputcliente] = mesajecliente;
-	messages[inputpresupuestoMaximo] = mesajepresupuestomaximo;
+	messages[inputproyecto] = mesajeproyecto;
+	// messages[inputespecialidad] = mesajeespecialidad;
 
 	$(formActualizarSolicitud).validate({
 		ignore : [],
@@ -368,19 +378,19 @@ function agregarRequisitos() {
 	addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext);
 }
 
-function listarRequisitos(requisitoEtiquetaBeans){
-	var lista = $.parseJSON(requisitoEtiquetaBeans);
-	$.each(lista, function(index, object) {	
-		console.log(object);	
-		var exigible = false;
-		if(object['exigibleText'] == undefined){
-			exigible = object['exigible'];
-		}else{
-			exigible = object['exigibleText'];
-		}
-		console.log(exigible);
-		addRequisitoFila(object['requisito'], object['nivel'],object['nivelText'], exigible , object['tipoRequisito'], object['tipoRequisitoText']);
-	});
+function listarRequisitos(requisitoEtiquetaBeans) {
+	if (requisitoEtiquetaBeans != "") {
+		var lista = $.parseJSON(requisitoEtiquetaBeans);
+		$.each(lista, function(index, object) {
+			var exigible = false;
+			if (object['exigibleText'] == undefined) {
+				exigible = object['exigible'];
+			} else {
+				exigible = object['exigibleText'];
+			}
+			addRequisitoFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+		});
+	}
 }
 
 function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {

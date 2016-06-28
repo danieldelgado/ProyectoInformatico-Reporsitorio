@@ -75,7 +75,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "presupuestoMaximo", Types.BIGINT },
 			{ "presupuestoMinimo", Types.BIGINT },
 			{ "cliente", Types.BIGINT },
-			{ "especialidad", Types.BIGINT },
+			{ "especialidad", Types.VARCHAR },
 			{ "meta", Types.VARCHAR },
 			{ "prioridad", Types.BIGINT },
 			{ "motivo", Types.VARCHAR },
@@ -96,7 +96,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechacreamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad LONG,meta VARCHAR(75) null,prioridad LONG,motivo VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,requieroEquipoTecnico BOOLEAN,reemplazo BOOLEAN,aprobacionFichaIngresoCapitalHumano BOOLEAN,aprobacionFichaIngresoOperaciones BOOLEAN,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,prioridad LONG,motivo VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,requieroEquipoTecnico BOOLEAN,reemplazo BOOLEAN,aprobacionFichaIngresoCapitalHumano BOOLEAN,aprobacionFichaIngresoOperaciones BOOLEAN,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table SolicitudRequerimiento";
 	public static final String ORDER_BY_JPQL = " ORDER BY solicitudRequerimiento.fechacreamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SolicitudRequerimiento.fechacreamodifica ASC";
@@ -337,7 +337,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			setCliente(cliente);
 		}
 
-		Long especialidad = (Long)attributes.get("especialidad");
+		String especialidad = (String)attributes.get("especialidad");
 
 		if (especialidad != null) {
 			setEspecialidad(especialidad);
@@ -585,12 +585,17 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@JSON
 	@Override
-	public long getEspecialidad() {
-		return _especialidad;
+	public String getEspecialidad() {
+		if (_especialidad == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _especialidad;
+		}
 	}
 
 	@Override
-	public void setEspecialidad(long especialidad) {
+	public void setEspecialidad(String especialidad) {
 		_especialidad = especialidad;
 	}
 
@@ -1020,6 +1025,12 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 		solicitudRequerimientoCacheModel.especialidad = getEspecialidad();
 
+		String especialidad = solicitudRequerimientoCacheModel.especialidad;
+
+		if ((especialidad != null) && (especialidad.length() == 0)) {
+			solicitudRequerimientoCacheModel.especialidad = null;
+		}
+
 		solicitudRequerimientoCacheModel.meta = getMeta();
 
 		String meta = solicitudRequerimientoCacheModel.meta;
@@ -1318,7 +1329,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	private long _presupuestoMaximo;
 	private long _presupuestoMinimo;
 	private long _cliente;
-	private long _especialidad;
+	private String _especialidad;
 	private String _meta;
 	private long _prioridad;
 	private String _motivo;

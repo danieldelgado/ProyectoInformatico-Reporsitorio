@@ -197,11 +197,11 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		_cliente = cliente;
 	}
 
-	public long getEspecialidad() {
+	public String getEspecialidad() {
 		return _especialidad;
 	}
 
-	public void setEspecialidad(long especialidad) {
+	public void setEspecialidad(String especialidad) {
 		_especialidad = especialidad;
 	}
 
@@ -389,7 +389,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 	private long _presupuestoMaximo;
 	private long _presupuestoMinimo;
 	private long _cliente;
-	private long _especialidad;
+	private String _especialidad;
 	private String _meta;
 	private long _prioridad;
 	private String _motivo;

@@ -279,7 +279,7 @@
 		<field name="presupuestoMaximo" type="long" />
 		<field name="presupuestoMinimo" type="long" />
 		<field name="cliente" type="long" />
-		<field name="especialidad" type="long" />
+		<field name="especialidad" type="String" />
 		<field name="meta" type="String" />
 		<field name="prioridad" type="long" />
 		<field name="motivo" type="String" />
