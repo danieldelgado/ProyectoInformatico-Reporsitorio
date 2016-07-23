@@ -84,7 +84,12 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.Postulacion"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.Postulacion"),
+			true);
+	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 1L;
+	public static long USUARIOID_COLUMN_BITMASK = 2L;
+	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -252,7 +257,19 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@Override
 	public void setSolicitudRequerimientoId(long solicitudRequerimientoId) {
+		_columnBitmask |= SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK;
+
+		if (!_setOriginalSolicitudRequerimientoId) {
+			_setOriginalSolicitudRequerimientoId = true;
+
+			_originalSolicitudRequerimientoId = _solicitudRequerimientoId;
+		}
+
 		_solicitudRequerimientoId = solicitudRequerimientoId;
+	}
+
+	public long getOriginalSolicitudRequerimientoId() {
+		return _originalSolicitudRequerimientoId;
 	}
 
 	@JSON
@@ -263,7 +280,19 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@Override
 	public void setUsuarioId(long usuarioId) {
+		_columnBitmask |= USUARIOID_COLUMN_BITMASK;
+
+		if (!_setOriginalUsuarioId) {
+			_setOriginalUsuarioId = true;
+
+			_originalUsuarioId = _usuarioId;
+		}
+
 		_usuarioId = usuarioId;
+	}
+
+	public long getOriginalUsuarioId() {
+		return _originalUsuarioId;
 	}
 
 	@JSON
@@ -345,7 +374,13 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@Override
 	public void setFechacreamodifica(Date fechacreamodifica) {
+		_columnBitmask = -1L;
+
 		_fechacreamodifica = fechacreamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -420,6 +455,17 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@Override
 	public void resetOriginalValues() {
+		PostulacionModelImpl postulacionModelImpl = this;
+
+		postulacionModelImpl._originalSolicitudRequerimientoId = postulacionModelImpl._solicitudRequerimientoId;
+
+		postulacionModelImpl._setOriginalSolicitudRequerimientoId = false;
+
+		postulacionModelImpl._originalUsuarioId = postulacionModelImpl._usuarioId;
+
+		postulacionModelImpl._setOriginalUsuarioId = false;
+
+		postulacionModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -550,7 +596,11 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 			Postulacion.class
 		};
 	private long _solicitudRequerimientoId;
+	private long _originalSolicitudRequerimientoId;
+	private boolean _setOriginalSolicitudRequerimientoId;
 	private long _usuarioId;
+	private long _originalUsuarioId;
+	private boolean _setOriginalUsuarioId;
 	private Date _fechaPostulacion;
 	private long _estado;
 	private boolean _activo;
@@ -558,5 +608,6 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
+	private long _columnBitmask;
 	private Postulacion _escapedModel;
 }

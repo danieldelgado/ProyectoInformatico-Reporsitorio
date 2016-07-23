@@ -14,7 +14,19 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.FasePostulacion;
+import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.base.FasePostulacionServiceBaseImpl;
+import com.hitss.reclutamiento.controller.ProgramaEntrevistaController;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * The implementation of the fase postulacion remote service.
@@ -36,4 +48,7 @@ public class FasePostulacionServiceImpl extends FasePostulacionServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.FasePostulacionServiceUtil} to access the fase postulacion remote service.
 	 */
+
+	
+	
 }

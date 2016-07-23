@@ -36,4 +36,10 @@ public class PreguntaLocalServiceImpl extends PreguntaLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.PreguntaLocalServiceUtil} to access the pregunta local service.
 	 */
+	
+	
+	
+	
+	
+	
 }

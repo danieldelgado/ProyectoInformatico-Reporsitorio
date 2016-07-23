@@ -16,11 +16,8 @@
 <portlet:renderURL var="programarEntrevista">
 	<portlet:param name="action" value="programarEntrevista" />
 </portlet:renderURL>
-<input id="<portlet:namespace/>programarEntrevistaUrl" type="hidden" value="${programarEntrevista}" />
-
 <input type="hidden" value="<portlet:namespace/>" />
-
-
+<input id="<portlet:namespace/>programarEntrevistaUrl" type="hidden" value="${programarEntrevista}" />
 
 
 
@@ -41,7 +38,7 @@
 			<div class="span12">
 
 
-				<table class="table table-hover table-bordered">
+				<table  class="table table-hover table-bordered">
 					<thead>
 						<tr class="cabecera">
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.nombre" /></th>
@@ -52,14 +49,13 @@
 							<th><liferay-ui:message key="listasolicitudreclutamiento.lista.opciones" /></th>
 						</tr>
 					</thead>
-					<tbody id="<portlet:namespace/>listaRequisitos">
+					<tbody id="<portlet:namespace/>listaPostulantes">
 						<tr>
 							<td>Programador Java Junior</td>
 							<td>5</td>
 							<td>Claro Ecuador</td>
 							<td>IVAN Usuario01 QUIROZ</td>
 							<td>27/04/2016</td>
-							<td>1 mes</td>
 							<td><a class="btn btn-primary" href="${programarEntrevista}"> programarEntrevista </a></td>
 						</tr>
 						<tr>
@@ -68,7 +64,6 @@
 							<td>Claro Ecuador</td>
 							<td>IVAN Usuario01 QUIROZ</td>
 							<td>27/04/2016</td>
-							<td>1 mes</td>
 							<td><a class="btn btn-primary" href="${programarEntrevista}"> programarEntrevista </a></td>
 						</tr>
 					</tbody>
@@ -81,6 +76,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		inicializarListaPotulantes();
+		inicializarListaPotulantes('${requisitoEtiquetaBeans}');
 	});
 </script>

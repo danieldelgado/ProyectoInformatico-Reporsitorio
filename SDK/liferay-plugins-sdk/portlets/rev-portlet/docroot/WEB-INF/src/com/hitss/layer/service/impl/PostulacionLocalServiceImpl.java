@@ -14,7 +14,12 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.Postulacion;
 import com.hitss.layer.service.base.PostulacionLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.PostulacionUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the postulacion local service.
@@ -36,4 +41,11 @@ public class PostulacionLocalServiceImpl extends PostulacionLocalServiceBaseImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.PostulacionLocalServiceUtil} to access the postulacion local service.
 	 */
+	
+	public List<Postulacion> listaPostulacionedsSolicitud(long solicitudRequerimientoId) throws SystemException{			
+		List<Postulacion>  lista = PostulacionUtil.findByBy_S(solicitudRequerimientoId);
+		return lista;
+	}
+	
+	
 }

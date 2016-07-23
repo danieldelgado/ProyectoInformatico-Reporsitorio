@@ -429,6 +429,11 @@ public class FasePostulacionLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.hitss.layer.model.FasePostulacion getLastPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		return getService().getLastPostulacion(solicitud, usuario);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -11,4 +11,5 @@ public interface ParametroService {
 	public ParametroBean getParametro(long parametro);
 	
 	
+	
 }

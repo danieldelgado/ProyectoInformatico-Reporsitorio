@@ -22,7 +22,7 @@ import com.hitss.reclutamiento.bean.ParametroBean;
 import com.hitss.reclutamiento.bean.PuestoBean;
 import com.hitss.reclutamiento.bean.SolicitudRequerimientoBean;
 import com.hitss.reclutamiento.bean.UsuarioBean;
-import com.hitss.reclutamiento.service.ProgramaEntrevistaService;
+import com.hitss.reclutamiento.service.ProgramarEntrevistaService;
 import com.hitss.reclutamiento.util.JsonUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -40,7 +40,7 @@ public class ProgramaEntrevistaController {
 	private static Log _log = LogFactoryUtil.getLog(ProgramaEntrevistaController.class);
 	
 	@Autowired
-	private ProgramaEntrevistaService programaEntrevistaService;
+	private ProgramarEntrevistaService programaEntrevistaService;
 	
 	
 	@RenderMapping
@@ -54,6 +54,7 @@ public class ProgramaEntrevistaController {
 		List<ParametroBean> listaTiempoContrato = programaEntrevistaService.getTiempoContrato();
 		model.addAttribute("listaTiempoContrato", listaTiempoContrato);
 
+		
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
 		_log.debug("solicitudRequerimientoId defaultView :" + solicitudRequerimientoId);
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
@@ -167,7 +168,12 @@ public class ProgramaEntrevistaController {
 	}
 	
 	@RenderMapping(params = "action=listarPostulantes")
-	public String listarPostulantes(RenderRequest request, RenderResponse response, Model model) {
+	public String listarPostulantes(RenderRequest request, RenderResponse response, Model model) {		
+		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
+		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
+		List<UsuarioBean> listaUsuarios = programaEntrevistaService.getListaPostulantes(td.getCompanyId(),td.getCompanyGroupId(),solicitudRequerimientoId);
+		model.addAttribute("listaUsuarios", listaUsuarios);
 		return "listarPostulantes";
 	}
 	

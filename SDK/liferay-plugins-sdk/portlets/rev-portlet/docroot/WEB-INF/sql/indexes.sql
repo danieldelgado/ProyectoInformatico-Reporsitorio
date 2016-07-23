@@ -1,7 +1,13 @@
+create index IX_31601335 on FasePostulacion (solicitudRequerimientoId, fasePostulacionId);
+create index IX_26884404 on FasePostulacion (solicitudRequerimientoId, fasePostulacionId, usuarioId);
+
 create index IX_AC085D73 on Funcion (descripcion);
 
 create index IX_E0052BA5 on Parametro (parametroIdpadre);
 create index IX_9CDF672F on Parametro (parametroIdpadre, valor);
+
+create index IX_CFC74745 on Postulacion (solicitudRequerimientoId);
+create index IX_E272E5F4 on Postulacion (solicitudRequerimientoId, usuarioId);
 
 create index IX_24B38389 on Puesto (descripcion);
 

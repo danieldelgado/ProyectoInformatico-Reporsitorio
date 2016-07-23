@@ -14,7 +14,18 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.FasePostulacion;
+import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.base.FasePostulacionLocalServiceBaseImpl;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * The implementation of the fase postulacion local service.
@@ -37,4 +48,34 @@ public class FasePostulacionLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.FasePostulacionLocalServiceUtil} to access the fase postulacion local service.
 	 */
+	
+
+	private static Log _log = LogFactoryUtil.getLog(FasePostulacionServiceImpl.class);
+	
+	public FasePostulacion getLastPostulacion( Long solicitud, Long usuario ) {
+		
+	
+		DynamicQuery subQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"child");
+		subQuery.setProjection(ProjectionFactoryUtil.max("child.fechacreamodifica"));
+		subQuery.setLimit(0, 1);
+
+        DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.fechacreamodifica").eq(subQuery));
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").eq(solicitud));
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));;
+		
+		
+        try {
+			List<FasePostulacion> lstfasePostulacion = FasePostulacionLocalServiceUtil.dynamicQuery(dynamicQuery);
+			if(lstfasePostulacion.isEmpty() && lstfasePostulacion.size()>0){
+				return lstfasePostulacion.get(0);
+			}			
+		} catch (SystemException e) {
+			_log.error("FasePostulacionServiceImpl getLastPostulacion: "+e.getLocalizedMessage(),e);
+		}      
+        
+		return null;
+	}
+	
+	
 }

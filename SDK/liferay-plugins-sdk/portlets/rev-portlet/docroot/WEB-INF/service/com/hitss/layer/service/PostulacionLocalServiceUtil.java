@@ -275,6 +275,13 @@ public class PostulacionLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.hitss.layer.model.Postulacion> listaPostulacionedsSolicitud(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .listaPostulacionedsSolicitud(solicitudRequerimientoId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

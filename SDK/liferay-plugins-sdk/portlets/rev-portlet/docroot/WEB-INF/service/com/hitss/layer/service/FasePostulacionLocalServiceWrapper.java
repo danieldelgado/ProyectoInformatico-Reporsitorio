@@ -459,6 +459,13 @@ public class FasePostulacionLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
+	public com.hitss.layer.model.FasePostulacion getLastPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		return _fasePostulacionLocalService.getLastPostulacion(solicitud,
+			usuario);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

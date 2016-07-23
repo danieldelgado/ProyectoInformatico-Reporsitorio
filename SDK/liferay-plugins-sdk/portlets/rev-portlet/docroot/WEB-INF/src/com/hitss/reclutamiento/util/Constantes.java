@@ -29,6 +29,11 @@ public class Constantes {
 	public static final long PARAMETRO_CANCELADO = 62 ;
 	public static final long PARAMETRO_TERMINADO = 63 ;
 	public static final long PARAMETRO_ANULADO = 64 ;
+	
+	public static final long PARAMETRO_FASE_POSTULADO = 70 ;
+	public static final long PARAMETRO_FASE_EN_PROCESO = 71 ;
+	public static final long PARAMETRO_FASE_TERMINADO = 72 ;
+	public static final long PARAMETRO_FASE_CANCELADO = 73 ;
 
 	public static final boolean ACTIVO = true ;
 	public static final boolean INACTIVO = false ;

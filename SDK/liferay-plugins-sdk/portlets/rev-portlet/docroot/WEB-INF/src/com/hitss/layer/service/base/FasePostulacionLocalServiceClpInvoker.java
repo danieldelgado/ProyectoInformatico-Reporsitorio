@@ -184,6 +184,12 @@ public class FasePostulacionLocalServiceClpInvoker {
 		_methodName219 = "setBeanIdentifier";
 
 		_methodParameterTypes219 = new String[] { "java.lang.String" };
+
+		_methodName224 = "getLastPostulacion";
+
+		_methodParameterTypes224 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -402,6 +408,12 @@ public class FasePostulacionLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName224.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
+			return FasePostulacionLocalServiceUtil.getLastPostulacion((java.lang.Long)arguments[0],
+				(java.lang.Long)arguments[1]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -473,4 +485,6 @@ public class FasePostulacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes218;
 	private String _methodName219;
 	private String[] _methodParameterTypes219;
+	private String _methodName224;
+	private String[] _methodParameterTypes224;
 }

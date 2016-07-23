@@ -186,6 +186,12 @@ public class FasePostulacionLocalServiceClp
 		_methodName33 = "setBeanIdentifier";
 
 		_methodParameterTypes33 = new String[] { "java.lang.String" };
+
+		_methodName35 = "getLastPostulacion";
+
+		_methodParameterTypes35 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
 	}
 
 	@Override
@@ -1208,6 +1214,35 @@ public class FasePostulacionLocalServiceClp
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public com.hitss.layer.model.FasePostulacion getLastPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName35,
+					_methodParameterTypes35,
+					new Object[] {
+						ClpSerializer.translateInput(solicitud),
+						
+					ClpSerializer.translateInput(usuario)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.hitss.layer.model.FasePostulacion)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -1277,4 +1312,6 @@ public class FasePostulacionLocalServiceClp
 	private String[] _methodParameterTypes32;
 	private String _methodName33;
 	private String[] _methodParameterTypes33;
+	private String _methodName35;
+	private String[] _methodParameterTypes35;
 }

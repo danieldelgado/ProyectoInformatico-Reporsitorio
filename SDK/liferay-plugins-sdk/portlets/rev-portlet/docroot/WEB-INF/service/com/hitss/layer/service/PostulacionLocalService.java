@@ -253,4 +253,8 @@ public interface PostulacionLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public java.util.List<com.hitss.layer.model.Postulacion> listaPostulacionedsSolicitud(
+		long solicitudRequerimientoId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -36,13 +36,6 @@ function inicializarFormularioBusqueda() {
 
 }
 
-function inicializarListaPotulantes() {
-	
-}
-
-function inicializarFormularioProgramacionEntrevista() {
-	
-}
 
 
 function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesRelutamientoUrl, urls) {
@@ -157,3 +150,54 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 	}
 
 }
+
+
+
+function inicializarListaPotulantes(listaPostulantes) {
+	init();
+	
+	if (listaPostulantes != "") {
+		var lista = $.parseJSON(listaPostulantes);
+		
+		$.each(lista, function(index, object) {
+			var exigible = false;			
+			addPostulanteFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+		});
+		
+	}	
+}
+
+
+function addPostulanteFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
+	var exigileValue = exigile;
+	if (exigile == true) {
+		exigile = "Si";
+	} else {
+		exigile = "No";
+	}
+
+	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
+
+		var requistoMap = {};
+		requistoMap['requisito'] = requisito;
+		requistoMap['nivel'] = nivel;
+		requistoMap['exigibleText'] = exigileValue;
+
+		requistoMap['tipoRequisito'] = tipoRequisito;
+
+		var listaRequisitos = $("#" + inputFristnamespace + "listaPostulantes");
+		var html = "";
+		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
+
+		$(listaRequisitos).append(html);
+
+	}
+}
+
+function inicializarFormularioProgramacionEntrevista() {
+	
+}
+
+
+
+

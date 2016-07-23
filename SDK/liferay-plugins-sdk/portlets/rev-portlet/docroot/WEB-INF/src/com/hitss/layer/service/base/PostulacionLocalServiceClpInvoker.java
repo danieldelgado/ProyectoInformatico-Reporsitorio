@@ -121,6 +121,10 @@ public class PostulacionLocalServiceClpInvoker {
 		_methodName203 = "setBeanIdentifier";
 
 		_methodParameterTypes203 = new String[] { "java.lang.String" };
+
+		_methodName208 = "listaPostulacionedsSolicitud";
+
+		_methodParameterTypes208 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,6 +228,11 @@ public class PostulacionLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName208.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes208, parameterTypes)) {
+			return PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -263,4 +272,6 @@ public class PostulacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes202;
 	private String _methodName203;
 	private String[] _methodParameterTypes203;
+	private String _methodName208;
+	private String[] _methodParameterTypes208;
 }

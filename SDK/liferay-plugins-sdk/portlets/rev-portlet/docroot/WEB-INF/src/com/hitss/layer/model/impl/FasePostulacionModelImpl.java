@@ -91,7 +91,13 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.FasePostulacion"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.FasePostulacion"),
+			true);
+	public static long FASEPOSTULACIONID_COLUMN_BITMASK = 1L;
+	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 2L;
+	public static long USUARIOID_COLUMN_BITMASK = 4L;
+	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -295,7 +301,19 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public void setFasePostulacionId(long fasePostulacionId) {
+		_columnBitmask |= FASEPOSTULACIONID_COLUMN_BITMASK;
+
+		if (!_setOriginalFasePostulacionId) {
+			_setOriginalFasePostulacionId = true;
+
+			_originalFasePostulacionId = _fasePostulacionId;
+		}
+
 		_fasePostulacionId = fasePostulacionId;
+	}
+
+	public long getOriginalFasePostulacionId() {
+		return _originalFasePostulacionId;
 	}
 
 	@JSON
@@ -306,7 +324,19 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public void setSolicitudRequerimientoId(long solicitudRequerimientoId) {
+		_columnBitmask |= SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK;
+
+		if (!_setOriginalSolicitudRequerimientoId) {
+			_setOriginalSolicitudRequerimientoId = true;
+
+			_originalSolicitudRequerimientoId = _solicitudRequerimientoId;
+		}
+
 		_solicitudRequerimientoId = solicitudRequerimientoId;
+	}
+
+	public long getOriginalSolicitudRequerimientoId() {
+		return _originalSolicitudRequerimientoId;
 	}
 
 	@JSON
@@ -317,7 +347,19 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public void setUsuarioId(long usuarioId) {
+		_columnBitmask |= USUARIOID_COLUMN_BITMASK;
+
+		if (!_setOriginalUsuarioId) {
+			_setOriginalUsuarioId = true;
+
+			_originalUsuarioId = _usuarioId;
+		}
+
 		_usuarioId = usuarioId;
+	}
+
+	public long getOriginalUsuarioId() {
+		return _originalUsuarioId;
 	}
 
 	@JSON
@@ -426,7 +468,13 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public void setFechacreamodifica(Date fechacreamodifica) {
+		_columnBitmask = -1L;
+
 		_fechacreamodifica = fechacreamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -517,6 +565,21 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public void resetOriginalValues() {
+		FasePostulacionModelImpl fasePostulacionModelImpl = this;
+
+		fasePostulacionModelImpl._originalFasePostulacionId = fasePostulacionModelImpl._fasePostulacionId;
+
+		fasePostulacionModelImpl._setOriginalFasePostulacionId = false;
+
+		fasePostulacionModelImpl._originalSolicitudRequerimientoId = fasePostulacionModelImpl._solicitudRequerimientoId;
+
+		fasePostulacionModelImpl._setOriginalSolicitudRequerimientoId = false;
+
+		fasePostulacionModelImpl._originalUsuarioId = fasePostulacionModelImpl._usuarioId;
+
+		fasePostulacionModelImpl._setOriginalUsuarioId = false;
+
+		fasePostulacionModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -677,8 +740,14 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 			FasePostulacion.class
 		};
 	private long _fasePostulacionId;
+	private long _originalFasePostulacionId;
+	private boolean _setOriginalFasePostulacionId;
 	private long _solicitudRequerimientoId;
+	private long _originalSolicitudRequerimientoId;
+	private boolean _setOriginalSolicitudRequerimientoId;
 	private long _usuarioId;
+	private long _originalUsuarioId;
+	private boolean _setOriginalUsuarioId;
 	private long _tipoFase;
 	private Date _fechaFase;
 	private String _descripcion;
@@ -688,5 +757,6 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechacreamodifica;
+	private long _columnBitmask;
 	private FasePostulacion _escapedModel;
 }

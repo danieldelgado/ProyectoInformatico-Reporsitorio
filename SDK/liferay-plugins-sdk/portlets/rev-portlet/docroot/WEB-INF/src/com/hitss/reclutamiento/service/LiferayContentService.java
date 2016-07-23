@@ -15,4 +15,7 @@ public interface LiferayContentService {
 	AssetTag getTagByName(String name);
 	AssetTag nuevaEtiqueta(String requisito, User user);
 
+//	List<User> listarPostu
+	
+	
 }
