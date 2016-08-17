@@ -37,7 +37,7 @@ public class PreguntaSoap implements Serializable {
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
 		soapModel.setUsuariomodifica(model.getUsuariomodifica());
-		soapModel.setFechacreamodifica(model.getFechacreamodifica());
+		soapModel.setFechamodifica(model.getFechamodifica());
 
 		return soapModel;
 	}
@@ -142,12 +142,12 @@ public class PreguntaSoap implements Serializable {
 		_usuariomodifica = usuariomodifica;
 	}
 
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	private long _preguntaId;
@@ -156,5 +156,5 @@ public class PreguntaSoap implements Serializable {
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 }

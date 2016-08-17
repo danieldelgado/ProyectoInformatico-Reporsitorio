@@ -331,7 +331,7 @@ public class ObservacionesPersistenceImpl extends BasePersistenceImpl<Observacio
 		observacionesImpl.setUsuariocrea(observaciones.getUsuariocrea());
 		observacionesImpl.setFechacrea(observaciones.getFechacrea());
 		observacionesImpl.setUsuariomodifica(observaciones.getUsuariomodifica());
-		observacionesImpl.setFechacreamodifica(observaciones.getFechacreamodifica());
+		observacionesImpl.setFechamodifica(observaciones.getFechamodifica());
 
 		return observacionesImpl;
 	}

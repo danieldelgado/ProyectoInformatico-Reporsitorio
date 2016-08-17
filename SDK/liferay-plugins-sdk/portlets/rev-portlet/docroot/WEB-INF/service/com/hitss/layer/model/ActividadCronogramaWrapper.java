@@ -62,7 +62,7 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -142,10 +142,10 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -440,23 +440,23 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this actividad cronograma.
+	* Returns the fechamodifica of this actividad cronograma.
 	*
-	* @return the fechacreamodifica of this actividad cronograma
+	* @return the fechamodifica of this actividad cronograma
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _actividadCronograma.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _actividadCronograma.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this actividad cronograma.
+	* Sets the fechamodifica of this actividad cronograma.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this actividad cronograma
+	* @param fechamodifica the fechamodifica of this actividad cronograma
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_actividadCronograma.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_actividadCronograma.setFechamodifica(fechamodifica);
 	}
 
 	@Override

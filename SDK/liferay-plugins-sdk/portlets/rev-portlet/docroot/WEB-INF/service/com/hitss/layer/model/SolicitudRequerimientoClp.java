@@ -89,6 +89,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		attributes.put("meta", getMeta());
 		attributes.put("prioridad", getPrioridad());
 		attributes.put("motivo", getMotivo());
+		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
 		attributes.put("modalidadjornada", getModalidadjornada());
 		attributes.put("modalidadcontrato", getModalidadcontrato());
 		attributes.put("lugarTrabajo", getLugarTrabajo());
@@ -106,7 +107,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -196,6 +197,13 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 		if (motivo != null) {
 			setMotivo(motivo);
+		}
+
+		String descripcionPublicacion = (String)attributes.get(
+				"descripcionPublicacion");
+
+		if (descripcionPublicacion != null) {
+			setDescripcionPublicacion(descripcionPublicacion);
 		}
 
 		Long modalidadjornada = (Long)attributes.get("modalidadjornada");
@@ -291,10 +299,10 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -622,6 +630,31 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 				Method method = clazz.getMethod("setMotivo", String.class);
 
 				method.invoke(_solicitudRequerimientoRemoteModel, motivo);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getDescripcionPublicacion() {
+		return _descripcionPublicacion;
+	}
+
+	@Override
+	public void setDescripcionPublicacion(String descripcionPublicacion) {
+		_descripcionPublicacion = descripcionPublicacion;
+
+		if (_solicitudRequerimientoRemoteModel != null) {
+			try {
+				Class<?> clazz = _solicitudRequerimientoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescripcionPublicacion",
+						String.class);
+
+				method.invoke(_solicitudRequerimientoRemoteModel,
+					descripcionPublicacion);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -1017,23 +1050,21 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	}
 
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 
 		if (_solicitudRequerimientoRemoteModel != null) {
 			try {
 				Class<?> clazz = _solicitudRequerimientoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechacreamodifica",
-						Date.class);
+				Method method = clazz.getMethod("setFechamodifica", Date.class);
 
-				method.invoke(_solicitudRequerimientoRemoteModel,
-					fechacreamodifica);
+				method.invoke(_solicitudRequerimientoRemoteModel, fechamodifica);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -1126,6 +1157,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		clone.setMeta(getMeta());
 		clone.setPrioridad(getPrioridad());
 		clone.setMotivo(getMotivo());
+		clone.setDescripcionPublicacion(getDescripcionPublicacion());
 		clone.setModalidadjornada(getModalidadjornada());
 		clone.setModalidadcontrato(getModalidadcontrato());
 		clone.setLugarTrabajo(getLugarTrabajo());
@@ -1141,7 +1173,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
-		clone.setFechacreamodifica(getFechacreamodifica());
+		clone.setFechamodifica(getFechamodifica());
 
 		return clone;
 	}
@@ -1150,8 +1182,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	public int compareTo(SolicitudRequerimiento solicitudRequerimiento) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				solicitudRequerimiento.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				solicitudRequerimiento.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -1193,7 +1225,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(63);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1223,6 +1255,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getPrioridad());
 		sb.append(", motivo=");
 		sb.append(getMotivo());
+		sb.append(", descripcionPublicacion=");
+		sb.append(getDescripcionPublicacion());
 		sb.append(", modalidadjornada=");
 		sb.append(getModalidadjornada());
 		sb.append(", modalidadcontrato=");
@@ -1253,8 +1287,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -1262,7 +1296,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(94);
+		StringBundler sb = new StringBundler(97);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1325,6 +1359,10 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getMotivo());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>descripcionPublicacion</column-name><column-value><![CDATA[");
+		sb.append(getDescripcionPublicacion());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>modalidadjornada</column-name><column-value><![CDATA[");
 		sb.append(getModalidadjornada());
 		sb.append("]]></column-value></column>");
@@ -1385,8 +1423,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -1408,6 +1446,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	private String _meta;
 	private long _prioridad;
 	private String _motivo;
+	private String _descripcionPublicacion;
 	private long _modalidadjornada;
 	private long _modalidadcontrato;
 	private String _lugarTrabajo;
@@ -1423,7 +1462,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private BaseModel<?> _solicitudRequerimientoRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

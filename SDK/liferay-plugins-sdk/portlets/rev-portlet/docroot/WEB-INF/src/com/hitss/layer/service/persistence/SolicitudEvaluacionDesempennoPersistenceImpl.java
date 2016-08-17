@@ -346,7 +346,7 @@ public class SolicitudEvaluacionDesempennoPersistenceImpl
 		solicitudEvaluacionDesempennoImpl.setUsuariocrea(solicitudEvaluacionDesempenno.getUsuariocrea());
 		solicitudEvaluacionDesempennoImpl.setFechacrea(solicitudEvaluacionDesempenno.getFechacrea());
 		solicitudEvaluacionDesempennoImpl.setUsuariomodifica(solicitudEvaluacionDesempenno.getUsuariomodifica());
-		solicitudEvaluacionDesempennoImpl.setFechacreamodifica(solicitudEvaluacionDesempenno.getFechacreamodifica());
+		solicitudEvaluacionDesempennoImpl.setFechamodifica(solicitudEvaluacionDesempenno.getFechamodifica());
 
 		return solicitudEvaluacionDesempennoImpl;
 	}

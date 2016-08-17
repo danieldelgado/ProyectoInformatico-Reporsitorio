@@ -32,6 +32,7 @@ import com.hitss.layer.service.persistence.FuncionPersistence;
 import com.hitss.layer.service.persistence.InformeRetroalimentacionPersistence;
 import com.hitss.layer.service.persistence.LogOperacionesPersistence;
 import com.hitss.layer.service.persistence.ObservacionesPersistence;
+import com.hitss.layer.service.persistence.ParametroFinder;
 import com.hitss.layer.service.persistence.ParametroPersistence;
 import com.hitss.layer.service.persistence.PlanAccionPersistence;
 import com.hitss.layer.service.persistence.PostulacionPersistence;
@@ -1044,6 +1045,24 @@ public abstract class DetalleRepuestaEvaluacionServiceBaseImpl
 	}
 
 	/**
+	 * Returns the parametro finder.
+	 *
+	 * @return the parametro finder
+	 */
+	public ParametroFinder getParametroFinder() {
+		return parametroFinder;
+	}
+
+	/**
+	 * Sets the parametro finder.
+	 *
+	 * @param parametroFinder the parametro finder
+	 */
+	public void setParametroFinder(ParametroFinder parametroFinder) {
+		this.parametroFinder = parametroFinder;
+	}
+
+	/**
 	 * Returns the plan accion local service.
 	 *
 	 * @return the plan accion local service
@@ -1998,6 +2017,8 @@ public abstract class DetalleRepuestaEvaluacionServiceBaseImpl
 	protected com.hitss.layer.service.ParametroService parametroService;
 	@BeanReference(type = ParametroPersistence.class)
 	protected ParametroPersistence parametroPersistence;
+	@BeanReference(type = ParametroFinder.class)
+	protected ParametroFinder parametroFinder;
 	@BeanReference(type = com.hitss.layer.service.PlanAccionLocalService.class)
 	protected com.hitss.layer.service.PlanAccionLocalService planAccionLocalService;
 	@BeanReference(type = com.hitss.layer.service.PlanAccionService.class)

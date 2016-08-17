@@ -326,7 +326,7 @@ public class ContratoPersistenceImpl extends BasePersistenceImpl<Contrato>
 		contratoImpl.setUsuariocrea(contrato.getUsuariocrea());
 		contratoImpl.setFechacrea(contrato.getFechacrea());
 		contratoImpl.setUsuariomodifica(contrato.getUsuariomodifica());
-		contratoImpl.setFechacreamodifica(contrato.getFechacreamodifica());
+		contratoImpl.setFechamodifica(contrato.getFechamodifica());
 
 		return contratoImpl;
 	}

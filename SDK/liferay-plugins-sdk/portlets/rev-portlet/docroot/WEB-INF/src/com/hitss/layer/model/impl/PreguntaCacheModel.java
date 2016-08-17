@@ -51,8 +51,8 @@ public class PreguntaCacheModel implements CacheModel<Pregunta>, Externalizable 
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -83,11 +83,11 @@ public class PreguntaCacheModel implements CacheModel<Pregunta>, Externalizable 
 
 		preguntaImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			preguntaImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			preguntaImpl.setFechamodifica(null);
 		}
 		else {
-			preguntaImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			preguntaImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		preguntaImpl.resetOriginalValues();
@@ -103,7 +103,7 @@ public class PreguntaCacheModel implements CacheModel<Pregunta>, Externalizable 
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class PreguntaCacheModel implements CacheModel<Pregunta>, Externalizable 
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long preguntaId;
@@ -131,5 +131,5 @@ public class PreguntaCacheModel implements CacheModel<Pregunta>, Externalizable 
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

@@ -338,7 +338,7 @@ public class ActividadCronogramaPersistenceImpl extends BasePersistenceImpl<Acti
 		actividadCronogramaImpl.setUsuariocrea(actividadCronograma.getUsuariocrea());
 		actividadCronogramaImpl.setFechacrea(actividadCronograma.getFechacrea());
 		actividadCronogramaImpl.setUsuariomodifica(actividadCronograma.getUsuariomodifica());
-		actividadCronogramaImpl.setFechacreamodifica(actividadCronograma.getFechacreamodifica());
+		actividadCronogramaImpl.setFechamodifica(actividadCronograma.getFechamodifica());
 
 		return actividadCronogramaImpl;
 	}

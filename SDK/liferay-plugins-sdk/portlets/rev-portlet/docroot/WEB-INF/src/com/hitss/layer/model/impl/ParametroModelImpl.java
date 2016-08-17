@@ -20,6 +20,7 @@ import com.hitss.layer.model.ParametroSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -74,12 +75,12 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Parametro (parametroId LONG not null primary key,parametroIdpadre LONG,codigo VARCHAR(75) null,descripcion VARCHAR(75) null,valor VARCHAR(75) null,tipodato VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Parametro (parametroId LONG not null primary key,parametroIdpadre LONG,codigo VARCHAR(75) null,descripcion VARCHAR(75) null,valor VARCHAR(75) null,tipodato VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Parametro";
-	public static final String ORDER_BY_JPQL = " ORDER BY parametro.parametroId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Parametro.parametroId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY parametro.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Parametro.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -94,7 +95,7 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 			true);
 	public static long PARAMETROIDPADRE_COLUMN_BITMASK = 1L;
 	public static long VALOR_COLUMN_BITMASK = 2L;
-	public static long PARAMETROID_COLUMN_BITMASK = 4L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -119,7 +120,7 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -194,7 +195,7 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -261,10 +262,10 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -276,8 +277,6 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 
 	@Override
 	public void setParametroId(long parametroId) {
-		_columnBitmask = -1L;
-
 		_parametroId = parametroId;
 	}
 
@@ -429,13 +428,15 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
+		_fechamodifica = fechamodifica;
 	}
 
 	public long getColumnBitmask() {
@@ -479,7 +480,7 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 		parametroImpl.setUsuariocrea(getUsuariocrea());
 		parametroImpl.setFechacrea(getFechacrea());
 		parametroImpl.setUsuariomodifica(getUsuariomodifica());
-		parametroImpl.setFechacreamodifica(getFechacreamodifica());
+		parametroImpl.setFechamodifica(getFechamodifica());
 
 		parametroImpl.resetOriginalValues();
 
@@ -490,15 +491,8 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 	public int compareTo(Parametro parametro) {
 		int value = 0;
 
-		if (getParametroId() < parametro.getParametroId()) {
-			value = -1;
-		}
-		else if (getParametroId() > parametro.getParametroId()) {
-			value = 1;
-		}
-		else {
-			value = 0;
-		}
+		value = DateUtil.compareTo(getFechamodifica(),
+				parametro.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -602,13 +596,13 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 
 		parametroCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			parametroCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			parametroCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			parametroCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			parametroCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return parametroCacheModel;
@@ -638,8 +632,8 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -694,8 +688,8 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -720,7 +714,7 @@ public class ParametroModelImpl extends BaseModelImpl<Parametro>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private long _columnBitmask;
 	private Parametro _escapedModel;
 }

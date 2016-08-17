@@ -171,27 +171,27 @@ public class UsuarioLocalServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] { "long", "long[][]" };
 
-		_methodName218 = "getBeanIdentifier";
+		_methodName220 = "getBeanIdentifier";
 
-		_methodParameterTypes218 = new String[] {  };
+		_methodParameterTypes220 = new String[] {  };
 
-		_methodName219 = "setBeanIdentifier";
+		_methodName221 = "setBeanIdentifier";
 
-		_methodParameterTypes219 = new String[] { "java.lang.String" };
+		_methodParameterTypes221 = new String[] { "java.lang.String" };
 
-		_methodName224 = "newInstance";
+		_methodName226 = "newInstance";
 
-		_methodParameterTypes224 = new String[] {  };
+		_methodParameterTypes226 = new String[] {  };
 
-		_methodName225 = "listarUsuariosByRole";
+		_methodName227 = "listarUsuariosByRole";
 
-		_methodParameterTypes225 = new String[] {
+		_methodParameterTypes227 = new String[] {
 				"long", "long", "java.lang.String"
 			};
 
-		_methodName226 = "findByUsuariosSeleccionados";
+		_methodName228 = "findByUsuariosSeleccionados";
 
-		_methodParameterTypes226 = new String[] { "long[][]" };
+		_methodParameterTypes228 = new String[] { "long[][]" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -398,31 +398,31 @@ public class UsuarioLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName218.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes218, parameterTypes)) {
+		if (_methodName220.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes220, parameterTypes)) {
 			return UsuarioLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName219.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes219, parameterTypes)) {
+		if (_methodName221.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes221, parameterTypes)) {
 			UsuarioLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName224.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
+		if (_methodName226.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes226, parameterTypes)) {
 			return UsuarioLocalServiceUtil.newInstance();
 		}
 
-		if (_methodName225.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes225, parameterTypes)) {
+		if (_methodName227.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes227, parameterTypes)) {
 			return UsuarioLocalServiceUtil.listarUsuariosByRole(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
-		if (_methodName226.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes226, parameterTypes)) {
+		if (_methodName228.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes228, parameterTypes)) {
 			return UsuarioLocalServiceUtil.findByUsuariosSeleccionados((long[])arguments[0]);
 		}
 
@@ -493,14 +493,14 @@ public class UsuarioLocalServiceClpInvoker {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
-	private String _methodName218;
-	private String[] _methodParameterTypes218;
-	private String _methodName219;
-	private String[] _methodParameterTypes219;
-	private String _methodName224;
-	private String[] _methodParameterTypes224;
-	private String _methodName225;
-	private String[] _methodParameterTypes225;
+	private String _methodName220;
+	private String[] _methodParameterTypes220;
+	private String _methodName221;
+	private String[] _methodParameterTypes221;
 	private String _methodName226;
 	private String[] _methodParameterTypes226;
+	private String _methodName227;
+	private String[] _methodParameterTypes227;
+	private String _methodName228;
+	private String[] _methodParameterTypes228;
 }

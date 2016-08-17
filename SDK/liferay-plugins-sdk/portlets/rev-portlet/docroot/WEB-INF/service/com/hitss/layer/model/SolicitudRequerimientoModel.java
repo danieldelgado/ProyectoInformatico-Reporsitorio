@@ -259,6 +259,21 @@ public interface SolicitudRequerimientoModel extends BaseModel<SolicitudRequerim
 	public void setMotivo(String motivo);
 
 	/**
+	 * Returns the descripcion publicacion of this solicitud requerimiento.
+	 *
+	 * @return the descripcion publicacion of this solicitud requerimiento
+	 */
+	@AutoEscape
+	public String getDescripcionPublicacion();
+
+	/**
+	 * Sets the descripcion publicacion of this solicitud requerimiento.
+	 *
+	 * @param descripcionPublicacion the descripcion publicacion of this solicitud requerimiento
+	 */
+	public void setDescripcionPublicacion(String descripcionPublicacion);
+
+	/**
 	 * Returns the modalidadjornada of this solicitud requerimiento.
 	 *
 	 * @return the modalidadjornada of this solicitud requerimiento
@@ -508,18 +523,18 @@ public interface SolicitudRequerimientoModel extends BaseModel<SolicitudRequerim
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this solicitud requerimiento.
+	 * Returns the fechamodifica of this solicitud requerimiento.
 	 *
-	 * @return the fechacreamodifica of this solicitud requerimiento
+	 * @return the fechamodifica of this solicitud requerimiento
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this solicitud requerimiento.
+	 * Sets the fechamodifica of this solicitud requerimiento.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this solicitud requerimiento
+	 * @param fechamodifica the fechamodifica of this solicitud requerimiento
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

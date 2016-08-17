@@ -59,7 +59,7 @@ public class ParametroWrapper implements Parametro, ModelWrapper<Parametro> {
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -126,10 +126,10 @@ public class ParametroWrapper implements Parametro, ModelWrapper<Parametro> {
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -364,23 +364,23 @@ public class ParametroWrapper implements Parametro, ModelWrapper<Parametro> {
 	}
 
 	/**
-	* Returns the fechacreamodifica of this parametro.
+	* Returns the fechamodifica of this parametro.
 	*
-	* @return the fechacreamodifica of this parametro
+	* @return the fechamodifica of this parametro
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _parametro.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _parametro.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this parametro.
+	* Sets the fechamodifica of this parametro.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this parametro
+	* @param fechamodifica the fechamodifica of this parametro
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_parametro.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_parametro.setFechamodifica(fechamodifica);
 	}
 
 	@Override

@@ -329,7 +329,7 @@ public class ExperienciaPersistenceImpl extends BasePersistenceImpl<Experiencia>
 		experienciaImpl.setUsuariocrea(experiencia.getUsuariocrea());
 		experienciaImpl.setFechacrea(experiencia.getFechacrea());
 		experienciaImpl.setUsuariomodifica(experiencia.getUsuariomodifica());
-		experienciaImpl.setFechacreamodifica(experiencia.getFechacreamodifica());
+		experienciaImpl.setFechamodifica(experiencia.getFechamodifica());
 
 		return experienciaImpl;
 	}

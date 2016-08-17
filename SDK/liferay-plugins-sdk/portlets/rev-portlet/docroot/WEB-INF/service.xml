@@ -20,6 +20,7 @@
 		<column name="meta" type="String" />
 		<column name="prioridad" type="long" />
 		<column name="motivo" type="String" />
+		<column name="descripcionPublicacion" type="String" />
 		<column name="modalidadjornada" type="long" />
 		<column name="modalidadcontrato" type="long" />
 		<column name="lugarTrabajo" type="String" />
@@ -38,10 +39,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 
 		<finder name="SolicitudRequerimientoId" return-type="Collection" where="activo=true">
@@ -69,10 +70,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 
 
@@ -95,10 +96,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 
 		<finder name="S_T" return-type="Collection" where="activo=true">
@@ -140,10 +141,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -155,12 +156,12 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<column name="actividadesPlan" type="Collection" entity="ActividadPlan" mapping-table="ActividadPlanUsuario" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 
 		<finder name="UsuariosSeleccionados" return-type="Collection" where="activo=true">
@@ -182,10 +183,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -200,10 +201,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -221,10 +222,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -240,10 +241,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -258,10 +259,10 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 
 		<finder name="By_S" return-type="Collection" where="activo=true">
@@ -288,12 +289,13 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
+
 
 		<column name="evaluaciones" type="Collection" entity="Evaluacion" mapping-table="FasePostulacionEvaluacion" />
-
+	
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 
 		<finder name="By_S_F_u" return-type="Collection" where="activo=true">
@@ -328,12 +330,15 @@
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
+
+
 
 		<column name="fasepostulacion" type="Collection" entity="FasePostulacion" mapping-table="FasePostulacionEvaluacion" />
 
+		
 		<order by="asc">
-			<order-column name="fechacrea" />
+			<order-column name="fechamodifica" />
 		</order>
 
 
@@ -356,16 +361,18 @@
 		<column name="preguntaId" type="long" primary="true" id-type="increment" />
 		<column name="descripcion" type="String" />
 
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
+
 
 		<column name="respuestas" type="Collection" entity="Respuesta" mapping-table="PreguntaRespuesta" />
 
 		<order by="asc">
-			<order-column name="fechacrea" />
+			<order-column name="fechamodifica" />
 		</order>
 
 	</entity>
@@ -375,16 +382,17 @@
 		<column name="descripcion" type="String" />
 		<column name="correcta" type="boolean" />
 
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<column name="preguntas" type="Collection" entity="Pregunta" mapping-table="PreguntaRespuesta" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 
 	</entity>
@@ -401,14 +409,15 @@
 		<column name="valor" type="String" />
 		<column name="tipodato" type="String" />
 
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="parametroId" />
+			<order-column name="fechamodifica" />
 		</order>
 
 
@@ -430,14 +439,15 @@
 		<column name="usuario" type="String" />
 
 
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -463,14 +473,18 @@
 		<column name="tabla" type="String" />
 		<column name="registroId" type="long" />
 
+	
+
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
+
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -480,14 +494,15 @@
 		<column name="fechaInicio" type="Date" />
 		<column name="estado" type="long" />
 
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -498,14 +513,16 @@
 		<column name="grupoUsuario" type="String" />
 		<column name="orden" type="int" />
 
+		
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -515,14 +532,16 @@
 		<column name="descripcion" type="String" />
 		<column name="estado" type="long" />
 
+		
+		
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -536,14 +555,15 @@
 		<column name="finalizado" type="boolean" />
 		<column name="tipoActividad" type="long" />
 
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -556,14 +576,15 @@
 		<column name="aprobadorLider" type="boolean" />
 		<column name="jerarquiaEvaluar" type="long" />
 
+	
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
-
+		<column name="fechamodifica" type="Date" />
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -575,17 +596,18 @@
 		<column name="evidencia" type="String" />
 		<column name="objetivo" type="String" />
 
+	
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 
 		<column name="usuarios" type="Collection" entity="Usuario" mapping-table="ActividadPlanUsuario" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 
@@ -596,14 +618,16 @@
 		<column name="titulo" type="String" />
 		<column name="descripcion" type="String" />
 
+	
+	
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
-		<column name="fechacreamodifica" type="Date" />
+		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechacreamodifica" />
+			<order-column name="fechamodifica" />
 		</order>
 	</entity>
 

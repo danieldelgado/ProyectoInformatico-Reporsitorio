@@ -56,8 +56,8 @@ public class LogOperacionesCacheModel implements CacheModel<LogOperaciones>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -96,11 +96,11 @@ public class LogOperacionesCacheModel implements CacheModel<LogOperaciones>,
 
 		logOperacionesImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			logOperacionesImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			logOperacionesImpl.setFechamodifica(null);
 		}
 		else {
-			logOperacionesImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			logOperacionesImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		logOperacionesImpl.resetOriginalValues();
@@ -118,7 +118,7 @@ public class LogOperacionesCacheModel implements CacheModel<LogOperaciones>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -145,7 +145,7 @@ public class LogOperacionesCacheModel implements CacheModel<LogOperaciones>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long logOperacionesId;
@@ -156,5 +156,5 @@ public class LogOperacionesCacheModel implements CacheModel<LogOperaciones>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

@@ -215,18 +215,18 @@ public interface SolicitudRequerimientoRequisitoModel extends BaseModel<Solicitu
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this solicitud requerimiento requisito.
+	 * Returns the fechamodifica of this solicitud requerimiento requisito.
 	 *
-	 * @return the fechacreamodifica of this solicitud requerimiento requisito
+	 * @return the fechamodifica of this solicitud requerimiento requisito
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this solicitud requerimiento requisito.
+	 * Sets the fechamodifica of this solicitud requerimiento requisito.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this solicitud requerimiento requisito
+	 * @param fechamodifica the fechamodifica of this solicitud requerimiento requisito
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

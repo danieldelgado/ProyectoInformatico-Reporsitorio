@@ -77,12 +77,12 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table ActividadCronograma (actividadCronogramaId LONG,cronogramaId LONG not null primary key,descripcion VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,cumplido BOOLEAN,finalizado BOOLEAN,tipoActividad LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table ActividadCronograma (actividadCronogramaId LONG,cronogramaId LONG not null primary key,descripcion VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,cumplido BOOLEAN,finalizado BOOLEAN,tipoActividad LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table ActividadCronograma";
-	public static final String ORDER_BY_JPQL = " ORDER BY actividadCronograma.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ActividadCronograma.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY actividadCronograma.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY ActividadCronograma.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -119,7 +119,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -197,7 +197,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -277,10 +277,10 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -438,13 +438,13 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -486,7 +486,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		actividadCronogramaImpl.setUsuariocrea(getUsuariocrea());
 		actividadCronogramaImpl.setFechacrea(getFechacrea());
 		actividadCronogramaImpl.setUsuariomodifica(getUsuariomodifica());
-		actividadCronogramaImpl.setFechacreamodifica(getFechacreamodifica());
+		actividadCronogramaImpl.setFechamodifica(getFechamodifica());
 
 		actividadCronogramaImpl.resetOriginalValues();
 
@@ -497,8 +497,8 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	public int compareTo(ActividadCronograma actividadCronograma) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				actividadCronograma.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				actividadCronograma.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -593,13 +593,13 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 		actividadCronogramaCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			actividadCronogramaCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			actividadCronogramaCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			actividadCronogramaCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			actividadCronogramaCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return actividadCronogramaCacheModel;
@@ -633,8 +633,8 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -697,8 +697,8 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -722,6 +722,6 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private ActividadCronograma _escapedModel;
 }

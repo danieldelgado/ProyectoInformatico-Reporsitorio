@@ -58,7 +58,7 @@ public class EvaluacionWrapper implements Evaluacion, ModelWrapper<Evaluacion> {
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -114,10 +114,10 @@ public class EvaluacionWrapper implements Evaluacion, ModelWrapper<Evaluacion> {
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -312,23 +312,23 @@ public class EvaluacionWrapper implements Evaluacion, ModelWrapper<Evaluacion> {
 	}
 
 	/**
-	* Returns the fechacreamodifica of this evaluacion.
+	* Returns the fechamodifica of this evaluacion.
 	*
-	* @return the fechacreamodifica of this evaluacion
+	* @return the fechamodifica of this evaluacion
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _evaluacion.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _evaluacion.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this evaluacion.
+	* Sets the fechamodifica of this evaluacion.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this evaluacion
+	* @param fechamodifica the fechamodifica of this evaluacion
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_evaluacion.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_evaluacion.setFechamodifica(fechamodifica);
 	}
 
 	@Override

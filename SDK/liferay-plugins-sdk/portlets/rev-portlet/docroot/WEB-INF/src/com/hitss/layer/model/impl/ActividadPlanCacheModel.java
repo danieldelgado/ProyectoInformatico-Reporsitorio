@@ -60,8 +60,8 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -108,11 +108,11 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 
 		actividadPlanImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			actividadPlanImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			actividadPlanImpl.setFechamodifica(null);
 		}
 		else {
-			actividadPlanImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			actividadPlanImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		actividadPlanImpl.resetOriginalValues();
@@ -132,7 +132,7 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long actividadPlanId;
@@ -180,5 +180,5 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

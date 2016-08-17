@@ -180,18 +180,18 @@ public interface PostulacionModel extends BaseModel<Postulacion> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this postulacion.
+	 * Returns the fechamodifica of this postulacion.
 	 *
-	 * @return the fechacreamodifica of this postulacion
+	 * @return the fechamodifica of this postulacion
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this postulacion.
+	 * Sets the fechamodifica of this postulacion.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this postulacion
+	 * @param fechamodifica the fechamodifica of this postulacion
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

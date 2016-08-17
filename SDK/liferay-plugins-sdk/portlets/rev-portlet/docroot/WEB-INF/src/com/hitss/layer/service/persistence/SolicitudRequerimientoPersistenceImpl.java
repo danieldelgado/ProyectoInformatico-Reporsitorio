@@ -110,7 +110,7 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 			"findBySolicitudRequerimientoId",
 			new String[] { Long.class.getName() },
 			SolicitudRequerimientoModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
-			SolicitudRequerimientoModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			SolicitudRequerimientoModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_SOLICITUDREQUERIMIENTOID =
 		new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED, Long.class,
@@ -473,7 +473,7 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByEstado",
 			new String[] { Long.class.getName() },
 			SolicitudRequerimientoModelImpl.ESTADO_COLUMN_BITMASK |
-			SolicitudRequerimientoModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			SolicitudRequerimientoModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_ESTADO = new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByEstado",
@@ -1255,6 +1255,7 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		solicitudRequerimientoImpl.setMeta(solicitudRequerimiento.getMeta());
 		solicitudRequerimientoImpl.setPrioridad(solicitudRequerimiento.getPrioridad());
 		solicitudRequerimientoImpl.setMotivo(solicitudRequerimiento.getMotivo());
+		solicitudRequerimientoImpl.setDescripcionPublicacion(solicitudRequerimiento.getDescripcionPublicacion());
 		solicitudRequerimientoImpl.setModalidadjornada(solicitudRequerimiento.getModalidadjornada());
 		solicitudRequerimientoImpl.setModalidadcontrato(solicitudRequerimiento.getModalidadcontrato());
 		solicitudRequerimientoImpl.setLugarTrabajo(solicitudRequerimiento.getLugarTrabajo());
@@ -1270,7 +1271,7 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		solicitudRequerimientoImpl.setUsuariocrea(solicitudRequerimiento.getUsuariocrea());
 		solicitudRequerimientoImpl.setFechacrea(solicitudRequerimiento.getFechacrea());
 		solicitudRequerimientoImpl.setUsuariomodifica(solicitudRequerimiento.getUsuariomodifica());
-		solicitudRequerimientoImpl.setFechacreamodifica(solicitudRequerimiento.getFechacreamodifica());
+		solicitudRequerimientoImpl.setFechamodifica(solicitudRequerimiento.getFechamodifica());
 
 		return solicitudRequerimientoImpl;
 	}

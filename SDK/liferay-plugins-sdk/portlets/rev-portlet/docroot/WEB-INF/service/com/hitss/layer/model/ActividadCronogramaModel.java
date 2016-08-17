@@ -250,18 +250,18 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this actividad cronograma.
+	 * Returns the fechamodifica of this actividad cronograma.
 	 *
-	 * @return the fechacreamodifica of this actividad cronograma
+	 * @return the fechamodifica of this actividad cronograma
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this actividad cronograma.
+	 * Sets the fechamodifica of this actividad cronograma.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this actividad cronograma
+	 * @param fechamodifica the fechamodifica of this actividad cronograma
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

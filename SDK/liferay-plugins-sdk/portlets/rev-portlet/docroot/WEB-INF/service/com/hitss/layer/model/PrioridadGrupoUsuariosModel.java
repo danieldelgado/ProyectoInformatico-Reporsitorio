@@ -196,18 +196,18 @@ public interface PrioridadGrupoUsuariosModel extends BaseModel<PrioridadGrupoUsu
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this prioridad grupo usuarios.
+	 * Returns the fechamodifica of this prioridad grupo usuarios.
 	 *
-	 * @return the fechacreamodifica of this prioridad grupo usuarios
+	 * @return the fechamodifica of this prioridad grupo usuarios
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this prioridad grupo usuarios.
+	 * Sets the fechamodifica of this prioridad grupo usuarios.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this prioridad grupo usuarios
+	 * @param fechamodifica the fechamodifica of this prioridad grupo usuarios
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

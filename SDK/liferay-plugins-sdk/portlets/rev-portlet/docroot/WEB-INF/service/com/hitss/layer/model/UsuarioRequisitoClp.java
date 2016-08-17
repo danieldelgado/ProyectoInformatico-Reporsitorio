@@ -89,7 +89,7 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -162,10 +162,10 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -449,22 +449,21 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 	}
 
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 
 		if (_usuarioRequisitoRemoteModel != null) {
 			try {
 				Class<?> clazz = _usuarioRequisitoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechacreamodifica",
-						Date.class);
+				Method method = clazz.getMethod("setFechamodifica", Date.class);
 
-				method.invoke(_usuarioRequisitoRemoteModel, fechacreamodifica);
+				method.invoke(_usuarioRequisitoRemoteModel, fechamodifica);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -554,7 +553,7 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
-		clone.setFechacreamodifica(getFechacreamodifica());
+		clone.setFechamodifica(getFechamodifica());
 
 		return clone;
 	}
@@ -563,8 +562,8 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 	public int compareTo(UsuarioRequisito usuarioRequisito) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				usuarioRequisito.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				usuarioRequisito.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -630,8 +629,8 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -690,8 +689,8 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -711,7 +710,7 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private BaseModel<?> _usuarioRequisitoRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

@@ -333,7 +333,7 @@ public class RespuestaPersistenceImpl extends BasePersistenceImpl<Respuesta>
 		respuestaImpl.setUsuariocrea(respuesta.getUsuariocrea());
 		respuestaImpl.setFechacrea(respuesta.getFechacrea());
 		respuestaImpl.setUsuariomodifica(respuesta.getUsuariomodifica());
-		respuestaImpl.setFechacreamodifica(respuesta.getFechacreamodifica());
+		respuestaImpl.setFechamodifica(respuesta.getFechamodifica());
 
 		return respuestaImpl;
 	}

@@ -38,7 +38,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(63);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(solicitudRequerimientoId);
@@ -68,6 +68,8 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		sb.append(prioridad);
 		sb.append(", motivo=");
 		sb.append(motivo);
+		sb.append(", descripcionPublicacion=");
+		sb.append(descripcionPublicacion);
 		sb.append(", modalidadjornada=");
 		sb.append(modalidadjornada);
 		sb.append(", modalidadcontrato=");
@@ -98,8 +100,8 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -150,6 +152,13 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 			solicitudRequerimientoImpl.setMotivo(motivo);
 		}
 
+		if (descripcionPublicacion == null) {
+			solicitudRequerimientoImpl.setDescripcionPublicacion(StringPool.BLANK);
+		}
+		else {
+			solicitudRequerimientoImpl.setDescripcionPublicacion(descripcionPublicacion);
+		}
+
 		solicitudRequerimientoImpl.setModalidadjornada(modalidadjornada);
 		solicitudRequerimientoImpl.setModalidadcontrato(modalidadcontrato);
 
@@ -187,12 +196,11 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 
 		solicitudRequerimientoImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			solicitudRequerimientoImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			solicitudRequerimientoImpl.setFechamodifica(null);
 		}
 		else {
-			solicitudRequerimientoImpl.setFechacreamodifica(new Date(
-					fechacreamodifica));
+			solicitudRequerimientoImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		solicitudRequerimientoImpl.resetOriginalValues();
@@ -216,6 +224,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		meta = objectInput.readUTF();
 		prioridad = objectInput.readLong();
 		motivo = objectInput.readUTF();
+		descripcionPublicacion = objectInput.readUTF();
 		modalidadjornada = objectInput.readLong();
 		modalidadcontrato = objectInput.readLong();
 		lugarTrabajo = objectInput.readUTF();
@@ -231,7 +240,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -271,6 +280,13 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 			objectOutput.writeUTF(motivo);
 		}
 
+		if (descripcionPublicacion == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(descripcionPublicacion);
+		}
+
 		objectOutput.writeLong(modalidadjornada);
 		objectOutput.writeLong(modalidadcontrato);
 
@@ -300,7 +316,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long solicitudRequerimientoId;
@@ -317,6 +333,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	public String meta;
 	public long prioridad;
 	public String motivo;
+	public String descripcionPublicacion;
 	public long modalidadjornada;
 	public long modalidadcontrato;
 	public String lugarTrabajo;
@@ -332,5 +349,5 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

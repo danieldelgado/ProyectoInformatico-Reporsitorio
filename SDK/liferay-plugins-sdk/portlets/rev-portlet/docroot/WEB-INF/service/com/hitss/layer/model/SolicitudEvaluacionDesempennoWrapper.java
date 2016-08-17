@@ -61,7 +61,7 @@ public class SolicitudEvaluacionDesempennoWrapper
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -117,10 +117,10 @@ public class SolicitudEvaluacionDesempennoWrapper
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -316,23 +316,23 @@ public class SolicitudEvaluacionDesempennoWrapper
 	}
 
 	/**
-	* Returns the fechacreamodifica of this solicitud evaluacion desempenno.
+	* Returns the fechamodifica of this solicitud evaluacion desempenno.
 	*
-	* @return the fechacreamodifica of this solicitud evaluacion desempenno
+	* @return the fechamodifica of this solicitud evaluacion desempenno
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _solicitudEvaluacionDesempenno.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _solicitudEvaluacionDesempenno.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this solicitud evaluacion desempenno.
+	* Sets the fechamodifica of this solicitud evaluacion desempenno.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this solicitud evaluacion desempenno
+	* @param fechamodifica the fechamodifica of this solicitud evaluacion desempenno
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_solicitudEvaluacionDesempenno.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_solicitudEvaluacionDesempenno.setFechamodifica(fechamodifica);
 	}
 
 	@Override

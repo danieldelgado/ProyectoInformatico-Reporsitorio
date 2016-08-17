@@ -76,12 +76,12 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Experiencia (experienciaId LONG not null primary key,usuarioId LONG,descripcion VARCHAR(75) null,empresa VARCHAR(75) null,proyecto VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Experiencia (experienciaId LONG not null primary key,usuarioId LONG,descripcion VARCHAR(75) null,empresa VARCHAR(75) null,proyecto VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Experiencia";
-	public static final String ORDER_BY_JPQL = " ORDER BY experiencia.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Experiencia.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY experiencia.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Experiencia.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -117,7 +117,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -193,7 +193,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -266,10 +266,10 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -416,13 +416,13 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -463,7 +463,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		experienciaImpl.setUsuariocrea(getUsuariocrea());
 		experienciaImpl.setFechacrea(getFechacrea());
 		experienciaImpl.setUsuariomodifica(getUsuariomodifica());
-		experienciaImpl.setFechacreamodifica(getFechacreamodifica());
+		experienciaImpl.setFechamodifica(getFechamodifica());
 
 		experienciaImpl.resetOriginalValues();
 
@@ -474,8 +474,8 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	public int compareTo(Experiencia experiencia) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				experiencia.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				experiencia.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -580,13 +580,13 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 		experienciaCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			experienciaCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			experienciaCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			experienciaCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			experienciaCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return experienciaCacheModel;
@@ -618,8 +618,8 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -678,8 +678,8 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -702,6 +702,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private Experiencia _escapedModel;
 }

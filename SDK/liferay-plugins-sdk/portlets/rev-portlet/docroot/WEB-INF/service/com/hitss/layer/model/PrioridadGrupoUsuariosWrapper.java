@@ -61,7 +61,7 @@ public class PrioridadGrupoUsuariosWrapper implements PrioridadGrupoUsuarios,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -124,10 +124,10 @@ public class PrioridadGrupoUsuariosWrapper implements PrioridadGrupoUsuarios,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -343,23 +343,23 @@ public class PrioridadGrupoUsuariosWrapper implements PrioridadGrupoUsuarios,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this prioridad grupo usuarios.
+	* Returns the fechamodifica of this prioridad grupo usuarios.
 	*
-	* @return the fechacreamodifica of this prioridad grupo usuarios
+	* @return the fechamodifica of this prioridad grupo usuarios
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _prioridadGrupoUsuarios.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _prioridadGrupoUsuarios.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this prioridad grupo usuarios.
+	* Sets the fechamodifica of this prioridad grupo usuarios.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this prioridad grupo usuarios
+	* @param fechamodifica the fechamodifica of this prioridad grupo usuarios
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_prioridadGrupoUsuarios.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_prioridadGrupoUsuarios.setFechamodifica(fechamodifica);
 	}
 
 	@Override

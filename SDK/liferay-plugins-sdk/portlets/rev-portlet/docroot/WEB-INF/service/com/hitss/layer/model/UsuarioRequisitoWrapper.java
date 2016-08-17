@@ -61,7 +61,7 @@ public class UsuarioRequisitoWrapper implements UsuarioRequisito,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -134,10 +134,10 @@ public class UsuarioRequisitoWrapper implements UsuarioRequisito,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -435,23 +435,23 @@ public class UsuarioRequisitoWrapper implements UsuarioRequisito,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this usuario requisito.
+	* Returns the fechamodifica of this usuario requisito.
 	*
-	* @return the fechacreamodifica of this usuario requisito
+	* @return the fechamodifica of this usuario requisito
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _usuarioRequisito.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _usuarioRequisito.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this usuario requisito.
+	* Sets the fechamodifica of this usuario requisito.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this usuario requisito
+	* @param fechamodifica the fechamodifica of this usuario requisito
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_usuarioRequisito.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_usuarioRequisito.setFechamodifica(fechamodifica);
 	}
 
 	@Override

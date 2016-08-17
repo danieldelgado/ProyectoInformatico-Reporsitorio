@@ -195,18 +195,18 @@ public interface InformeRetroalimentacionModel extends BaseModel<InformeRetroali
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this informe retroalimentacion.
+	 * Returns the fechamodifica of this informe retroalimentacion.
 	 *
-	 * @return the fechacreamodifica of this informe retroalimentacion
+	 * @return the fechamodifica of this informe retroalimentacion
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this informe retroalimentacion.
+	 * Sets the fechamodifica of this informe retroalimentacion.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this informe retroalimentacion
+	 * @param fechamodifica the fechamodifica of this informe retroalimentacion
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

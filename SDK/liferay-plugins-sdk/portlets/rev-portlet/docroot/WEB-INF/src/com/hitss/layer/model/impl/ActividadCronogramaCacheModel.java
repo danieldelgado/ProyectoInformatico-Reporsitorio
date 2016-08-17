@@ -64,8 +64,8 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -114,12 +114,11 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 
 		actividadCronogramaImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			actividadCronogramaImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			actividadCronogramaImpl.setFechamodifica(null);
 		}
 		else {
-			actividadCronogramaImpl.setFechacreamodifica(new Date(
-					fechacreamodifica));
+			actividadCronogramaImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		actividadCronogramaImpl.resetOriginalValues();
@@ -141,7 +140,7 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -166,7 +165,7 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long actividadCronogramaId;
@@ -181,5 +180,5 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

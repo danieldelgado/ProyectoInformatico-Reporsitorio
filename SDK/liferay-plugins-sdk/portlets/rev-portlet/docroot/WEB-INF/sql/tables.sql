@@ -11,7 +11,7 @@ create table ActividadCronograma (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table ActividadPlan (
@@ -25,7 +25,7 @@ create table ActividadPlan (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table Contrato (
@@ -38,7 +38,7 @@ create table Contrato (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table Cronograma (
@@ -50,7 +50,7 @@ create table Cronograma (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table DetalleRepuestaEvaluacion (
@@ -80,7 +80,7 @@ create table Estudio (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table EtiquetaRelacionada (
@@ -102,7 +102,7 @@ create table Evaluacion (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table EvaluacionPregunta (
@@ -124,7 +124,7 @@ create table Experiencia (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table FasePostulacion (
@@ -139,7 +139,7 @@ create table FasePostulacion (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table Funcion (
@@ -151,7 +151,7 @@ create table Funcion (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table InformeRetroalimentacion (
@@ -164,7 +164,7 @@ create table InformeRetroalimentacion (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table LogOperaciones (
@@ -176,7 +176,7 @@ create table LogOperaciones (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table Observaciones (
@@ -188,7 +188,7 @@ create table Observaciones (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table Parametro (
@@ -202,7 +202,7 @@ create table Parametro (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table PlanAccion (
@@ -217,7 +217,7 @@ create table PlanAccion (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table Postulacion (
@@ -229,7 +229,7 @@ create table Postulacion (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null,
+	fechamodifica DATE null,
 	primary key (solicitudRequerimientoId, usuarioId)
 );
 
@@ -240,7 +240,7 @@ create table Pregunta (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table PrioridadGrupoUsuarios (
@@ -253,7 +253,7 @@ create table PrioridadGrupoUsuarios (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table Puesto (
@@ -278,7 +278,7 @@ create table Referencia (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null,
+	fechamodifica DATE null,
 	primary key (referenciaId, usuarioId)
 );
 
@@ -304,7 +304,7 @@ create table Respuesta (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table SolicitudEvaluacionDesempenno (
@@ -316,7 +316,7 @@ create table SolicitudEvaluacionDesempenno (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table SolicitudRequerimiento (
@@ -334,6 +334,7 @@ create table SolicitudRequerimiento (
 	meta VARCHAR(75) null,
 	prioridad LONG,
 	motivo VARCHAR(75) null,
+	descripcionPublicacion VARCHAR(75) null,
 	modalidadjornada LONG,
 	modalidadcontrato LONG,
 	lugarTrabajo VARCHAR(75) null,
@@ -349,7 +350,7 @@ create table SolicitudRequerimiento (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table SolicitudRequerimientoRequisito (
@@ -363,7 +364,7 @@ create table SolicitudRequerimientoRequisito (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null,
+	fechamodifica DATE null,
 	primary key (solicitudRequerimientoId, tagId)
 );
 
@@ -373,7 +374,7 @@ create table Usuario (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null
+	fechamodifica DATE null
 );
 
 create table UsuarioEvaluacion (
@@ -395,7 +396,7 @@ create table UsuarioRequisito (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechacreamodifica DATE null,
+	fechamodifica DATE null,
 	primary key (userId, tagId)
 );
 

@@ -181,18 +181,18 @@ public interface LogOperacionesModel extends BaseModel<LogOperaciones> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this log operaciones.
+	 * Returns the fechamodifica of this log operaciones.
 	 *
-	 * @return the fechacreamodifica of this log operaciones
+	 * @return the fechamodifica of this log operaciones
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this log operaciones.
+	 * Sets the fechamodifica of this log operaciones.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this log operaciones
+	 * @param fechamodifica the fechamodifica of this log operaciones
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

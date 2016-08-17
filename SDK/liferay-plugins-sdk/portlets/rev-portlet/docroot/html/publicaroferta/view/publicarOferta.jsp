@@ -17,8 +17,17 @@
 <portlet:renderURL var="regresar">
 	<portlet:param name="action" value="default" />
 </portlet:renderURL>
+<portlet:renderURL var="publicarOferta">
+	<portlet:param name="action" value="publicarOferta" />
+</portlet:renderURL>
+<portlet:renderURL var="finalizarOferta">
+	<portlet:param name="action" value="finalizarOferta" />
+</portlet:renderURL>
 
 <input type="hidden" value="<portlet:namespace/>" />
+<input id="<portlet:namespace/>regresar" type="hidden" value="${regresar}" />
+<input id="<portlet:namespace/>publicarOfertaUrl" type="hidden" value="${publicarOferta}" />
+<input id="<portlet:namespace/>finalizarOferta" type="hidden" value="${finalizarOferta}" />
 
 <fieldset>
 	<legend>Lista de Solicitudes de Reclutamiento</legend>

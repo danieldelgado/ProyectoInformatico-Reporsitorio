@@ -224,18 +224,18 @@ public interface ExperienciaModel extends BaseModel<Experiencia> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this experiencia.
+	 * Returns the fechamodifica of this experiencia.
 	 *
-	 * @return the fechacreamodifica of this experiencia
+	 * @return the fechamodifica of this experiencia
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this experiencia.
+	 * Sets the fechamodifica of this experiencia.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this experiencia
+	 * @param fechamodifica the fechamodifica of this experiencia
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

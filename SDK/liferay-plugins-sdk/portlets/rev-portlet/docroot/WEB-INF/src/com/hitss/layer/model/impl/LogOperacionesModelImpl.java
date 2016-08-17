@@ -73,12 +73,12 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table LogOperaciones (logOperacionesId LONG not null primary key,tipoActividad LONG,actividad VARCHAR(75) null,usuario VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table LogOperaciones (logOperacionesId LONG not null primary key,tipoActividad LONG,actividad VARCHAR(75) null,usuario VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table LogOperaciones";
-	public static final String ORDER_BY_JPQL = " ORDER BY logOperaciones.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY LogOperaciones.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY logOperaciones.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY LogOperaciones.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -111,7 +111,7 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -184,7 +184,7 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -239,10 +239,10 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -351,13 +351,13 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -395,7 +395,7 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 		logOperacionesImpl.setUsuariocrea(getUsuariocrea());
 		logOperacionesImpl.setFechacrea(getFechacrea());
 		logOperacionesImpl.setUsuariomodifica(getUsuariomodifica());
-		logOperacionesImpl.setFechacreamodifica(getFechacreamodifica());
+		logOperacionesImpl.setFechamodifica(getFechamodifica());
 
 		logOperacionesImpl.resetOriginalValues();
 
@@ -406,8 +406,8 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 	public int compareTo(LogOperaciones logOperaciones) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				logOperaciones.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				logOperaciones.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -486,13 +486,13 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 
 		logOperacionesCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			logOperacionesCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			logOperacionesCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			logOperacionesCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			logOperacionesCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return logOperacionesCacheModel;
@@ -518,8 +518,8 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -566,8 +566,8 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -587,6 +587,6 @@ public class LogOperacionesModelImpl extends BaseModelImpl<LogOperaciones>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private LogOperaciones _escapedModel;
 }

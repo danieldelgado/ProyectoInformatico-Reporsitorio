@@ -101,9 +101,17 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strestado + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				html += '		<a class="btn btn-danger" href="' + urls["finalizarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionFinalizarOferta + ' </a>';
-				html += '		<a class="btn btn-primary" href="' + urls["publicarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionPublicarOferta + ' </a>';
+
+				if (value.estado == 76) {
+					html += '		<a class="btn btn-danger" href="' + urls["finalizarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionFinalizarOferta + ' </a>';
+				}
+
+				if (value.estado == 75) {
+					html += '		<a class="btn btn-primary" href="' + urls["publicarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionPublicarOferta + ' </a>';
+				}
+				
 				html += '		<a class="btn btn-primary" href="' + urls["verDetalleSolicitudUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionVerDetalle + ' </a>';
+				
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';

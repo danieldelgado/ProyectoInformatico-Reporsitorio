@@ -27,7 +27,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -49,7 +49,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -70,7 +70,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -90,7 +90,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -136,7 +136,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -170,7 +170,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -208,7 +208,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -233,7 +233,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -253,7 +253,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -274,7 +274,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -294,7 +294,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -314,7 +314,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -336,7 +336,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -361,7 +361,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -384,7 +384,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -402,7 +402,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -423,7 +423,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -446,7 +446,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -465,7 +465,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -487,7 +487,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -513,6 +513,7 @@
 			<basic name="meta" />
 			<basic name="prioridad" />
 			<basic name="motivo" />
+			<basic name="descripcionPublicacion" />
 			<basic name="modalidadjornada" />
 			<basic name="modalidadcontrato" />
 			<basic name="lugarTrabajo" />
@@ -530,7 +531,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -553,7 +554,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -570,7 +571,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />
@@ -606,7 +607,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="usuariomodifica" />
-			<basic name="fechacreamodifica">
+			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<transient name="modelAttributes" />

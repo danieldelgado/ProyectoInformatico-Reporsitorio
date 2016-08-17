@@ -187,18 +187,18 @@ public interface FuncionModel extends BaseModel<Funcion> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this funcion.
+	 * Returns the fechamodifica of this funcion.
 	 *
-	 * @return the fechacreamodifica of this funcion
+	 * @return the fechamodifica of this funcion
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this funcion.
+	 * Sets the fechamodifica of this funcion.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this funcion
+	 * @param fechamodifica the fechamodifica of this funcion
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

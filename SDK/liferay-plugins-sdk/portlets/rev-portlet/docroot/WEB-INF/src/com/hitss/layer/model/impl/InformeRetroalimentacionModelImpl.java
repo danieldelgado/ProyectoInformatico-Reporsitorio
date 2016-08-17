@@ -74,12 +74,12 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table InformeRetroalimentacion (informeRetroalimentacionId LONG not null primary key,planAccionId LONG,usuario LONG,titulo VARCHAR(75) null,descripcion VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table InformeRetroalimentacion (informeRetroalimentacionId LONG not null primary key,planAccionId LONG,usuario LONG,titulo VARCHAR(75) null,descripcion VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table InformeRetroalimentacion";
-	public static final String ORDER_BY_JPQL = " ORDER BY informeRetroalimentacion.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY InformeRetroalimentacion.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY informeRetroalimentacion.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY InformeRetroalimentacion.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -114,7 +114,7 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -190,7 +190,7 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -252,10 +252,10 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -375,13 +375,13 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -420,7 +420,7 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		informeRetroalimentacionImpl.setUsuariocrea(getUsuariocrea());
 		informeRetroalimentacionImpl.setFechacrea(getFechacrea());
 		informeRetroalimentacionImpl.setUsuariomodifica(getUsuariomodifica());
-		informeRetroalimentacionImpl.setFechacreamodifica(getFechacreamodifica());
+		informeRetroalimentacionImpl.setFechamodifica(getFechamodifica());
 
 		informeRetroalimentacionImpl.resetOriginalValues();
 
@@ -431,8 +431,8 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 	public int compareTo(InformeRetroalimentacion informeRetroalimentacion) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				informeRetroalimentacion.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				informeRetroalimentacion.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -513,13 +513,13 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 
 		informeRetroalimentacionCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			informeRetroalimentacionCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			informeRetroalimentacionCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			informeRetroalimentacionCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			informeRetroalimentacionCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return informeRetroalimentacionCacheModel;
@@ -547,8 +547,8 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -599,8 +599,8 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -621,6 +621,6 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private InformeRetroalimentacion _escapedModel;
 }

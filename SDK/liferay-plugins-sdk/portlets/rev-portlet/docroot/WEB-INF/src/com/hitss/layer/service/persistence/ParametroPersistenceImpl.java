@@ -98,7 +98,8 @@ public class ParametroPersistenceImpl extends BasePersistenceImpl<Parametro>
 			ParametroModelImpl.FINDER_CACHE_ENABLED, ParametroImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByParametroPadre",
 			new String[] { Long.class.getName() },
-			ParametroModelImpl.PARAMETROIDPADRE_COLUMN_BITMASK);
+			ParametroModelImpl.PARAMETROIDPADRE_COLUMN_BITMASK |
+			ParametroModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_PARAMETROPADRE = new FinderPath(ParametroModelImpl.ENTITY_CACHE_ENABLED,
 			ParametroModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByParametroPadre",
@@ -1414,7 +1415,7 @@ public class ParametroPersistenceImpl extends BasePersistenceImpl<Parametro>
 		parametroImpl.setUsuariocrea(parametro.getUsuariocrea());
 		parametroImpl.setFechacrea(parametro.getFechacrea());
 		parametroImpl.setUsuariomodifica(parametro.getUsuariomodifica());
-		parametroImpl.setFechacreamodifica(parametro.getFechacreamodifica());
+		parametroImpl.setFechamodifica(parametro.getFechamodifica());
 
 		return parametroImpl;
 	}

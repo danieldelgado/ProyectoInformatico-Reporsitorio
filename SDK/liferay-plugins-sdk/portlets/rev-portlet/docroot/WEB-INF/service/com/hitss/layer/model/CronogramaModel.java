@@ -181,18 +181,18 @@ public interface CronogramaModel extends BaseModel<Cronograma> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this cronograma.
+	 * Returns the fechamodifica of this cronograma.
 	 *
-	 * @return the fechacreamodifica of this cronograma
+	 * @return the fechamodifica of this cronograma
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this cronograma.
+	 * Sets the fechamodifica of this cronograma.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this cronograma
+	 * @param fechamodifica the fechamodifica of this cronograma
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

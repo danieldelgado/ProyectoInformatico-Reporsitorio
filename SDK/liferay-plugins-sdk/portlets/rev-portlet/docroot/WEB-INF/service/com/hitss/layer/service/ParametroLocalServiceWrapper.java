@@ -288,6 +288,11 @@ public class ParametroLocalServiceWrapper implements ParametroLocalService,
 	}
 
 	@Override
+	public java.util.List<com.hitss.layer.model.Parametro> getParametros() {
+		return _parametroLocalService.getParametros();
+	}
+
+	@Override
 	public java.util.List<com.hitss.layer.model.Parametro> findByparametroPadre(
 		long parametroIdpadre)
 		throws com.liferay.portal.kernel.exception.SystemException {

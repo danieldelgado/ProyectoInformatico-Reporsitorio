@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-sql>
+    <sql id="com.hitss.layer.service.persistence.ParametroFinderImpl.findParametro">
+ 
+            <![CDATA[
+                
+				select  
+				hijo.parametroId ,
+				padre.parametroId as parametroIdpadre, 
+				hijo.descripcion, 
+				hijo.valor,
+				hijo.codigo, 
+				hijo.tipodato, 
+				hijo.activo, 
+				hijo.usuariocrea, 
+				hijo.fechacrea, 
+				hijo.usuariomodifica, 
+				hijo.fechamodifica
+				  from  
+				( select 
+				  parametroId , descripcion  
+				  from 
+				  revhitsslportal.parametro 
+				  where parametroIdpadre = 0 ) padre , 
+				( select 
+				  parametroId, parametroIdpadre, codigo, descripcion, valor, tipodato, activo, usuariocrea, fechacrea, usuariomodifica, fechamodifica
+				  from 
+				  revhitsslportal.parametro 
+				  where parametroIdpadre <> 0  ) hijo
+				  where 
+				  hijo.parametroIdpadre =  padre.parametroId
+				  group by padre.parametroId,padre.descripcion, 
+				  hijo.parametroId
+				  order by 2
+				  
+            ]]>
+    </sql>
+</custom-sql>

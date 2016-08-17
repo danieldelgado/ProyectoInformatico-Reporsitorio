@@ -79,6 +79,8 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 
 	@Override
 	public List<UsuarioBean> getListaResponsable(long companyId, long companyGroupId) {
+		System.out.println("getListaResponsable");
+		System.out.println(parametroService.getParametros());
 		List<UsuarioBean> listaUsuarioBeans = new ArrayList<UsuarioBean>();
 		try {
 			UsuarioBean ub = null;
@@ -122,7 +124,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 					sRequerimiento.setProyecto(solicitudRequerimiento.getProyecto());
 					sRequerimiento.setActivo(true);
 					sRequerimiento.setUsuariomodifica(user.getUserId());
-					sRequerimiento.setFechacreamodifica(new Date());
+					sRequerimiento.setFechamodifica(new Date());
 					sRequerimiento = SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sRequerimiento);
 					solicitudRequerimiento.setSolicitudRequerimientoId(sRequerimiento.getSolicitudRequerimientoId());
 					registrarRequisitosEtiquetas(solicitudRequerimiento, user);
@@ -158,7 +160,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 				sRequerimiento.setUsuariocrea(user.getUserId());
 				sRequerimiento.setFechacrea(new Date());
 				sRequerimiento.setUsuariomodifica(user.getUserId());
-				sRequerimiento.setFechacreamodifica(new Date());
+				sRequerimiento.setFechamodifica(new Date());
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.addSolicitudRequerimiento(sRequerimiento);
 				solicitudRequerimiento.setSolicitudRequerimientoId(sRequerimiento.getSolicitudRequerimientoId());
 				registrarRequisitosEtiquetas(solicitudRequerimiento, user);
@@ -215,7 +217,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 			for (SolicitudRequerimientoRequisito sreq : lista) {
 				sreq.setActivo(false);
 				sreq.setUsuariomodifica(user.getUserId());
-				sreq.setFechacreamodifica(new Date());
+				sreq.setFechamodifica(new Date());
 				SolicitudRequerimientoRequisitoLocalServiceUtil.updateSolicitudRequerimientoRequisito(sreq);
 			}
 			
@@ -229,7 +231,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 						reqAct.setNuevo(false);		
 						rsr = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoByIds(solicitudRequerimiento.getSolicitudRequerimientoId(), reqAct.getTagId());
 						reqAct.setUsuariocrea(rsr.getUsuariocrea());
-						reqAct.setFechacreamodifica(rsr.getFechacreamodifica());
+						reqAct.setFechacreamodifica(rsr.getFechamodifica());
 					}
 				}
 				requerimientoRequisito.setPrimaryKey(solicitudRequerimientoRequisitoPK);
@@ -247,13 +249,13 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 					requerimientoRequisito.setUsuariocrea(user.getUserId());
 					requerimientoRequisito.setFechacrea(new Date());
 					requerimientoRequisito.setUsuariomodifica(user.getUserId());
-					requerimientoRequisito.setFechacreamodifica(new Date());
+					requerimientoRequisito.setFechamodifica(new Date());
 					SolicitudRequerimientoRequisitoLocalServiceUtil.addSolicitudRequerimientoRequisito(requerimientoRequisito);
 				} else {
 					requerimientoRequisito.setUsuariocrea(reqAct.getUsuariocrea());
 					requerimientoRequisito.setFechacrea(reqAct.getFechacrea());
 					requerimientoRequisito.setUsuariomodifica(user.getUserId());
-					requerimientoRequisito.setFechacreamodifica(new Date());
+					requerimientoRequisito.setFechamodifica(new Date());
 					SolicitudRequerimientoRequisitoLocalServiceUtil.updateSolicitudRequerimientoRequisito(requerimientoRequisito);
 				}
 			}
@@ -276,7 +278,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 					sr.setEstado(parametroService.getParametro(Constantes.PARAMETRO_ANULADO).getParametroId());
 					sr.setActivo(false);
 					sr.setUsuariomodifica(user.getUserId());
-					sr.setFechacreamodifica(new Date());
+					sr.setFechamodifica(new Date());
 					sr = SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sr);
 					solicitudRequerimientoBean.setSolicitudRequerimientoId(sr.getSolicitudRequerimientoId());
 					solicitudRequerimientoBean.setEstado(sr.getEstado());

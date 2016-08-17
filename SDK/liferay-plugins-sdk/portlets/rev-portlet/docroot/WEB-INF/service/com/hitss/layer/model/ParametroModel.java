@@ -211,18 +211,18 @@ public interface ParametroModel extends BaseModel<Parametro> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this parametro.
+	 * Returns the fechamodifica of this parametro.
 	 *
-	 * @return the fechacreamodifica of this parametro
+	 * @return the fechamodifica of this parametro
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this parametro.
+	 * Sets the fechamodifica of this parametro.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this parametro
+	 * @param fechamodifica the fechamodifica of this parametro
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

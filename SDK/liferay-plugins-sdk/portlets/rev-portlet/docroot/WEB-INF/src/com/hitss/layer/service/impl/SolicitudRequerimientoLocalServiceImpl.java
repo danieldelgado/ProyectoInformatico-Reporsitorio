@@ -69,16 +69,19 @@ public class SolicitudRequerimientoLocalServiceImpl
 		listSolicitudRequerimientoPersonals = SolicitudRequerimientoLocalServiceUtil.dynamicQuery(query,inicio,fin);		
 		return listSolicitudRequerimientoPersonals;
 	}
-	
+		
 	private DynamicQuery query(SolicitudRequerimiento solicitudRequerimiento, Date fechaRegistroInicio, Date fechaRegistrFin, String orden, String campoOrden) {
 //		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		DynamicQuery query = DynamicQueryFactoryUtil.forClass(SolicitudRequerimiento.class);	
 		if (Validator.isNotNull(solicitudRequerimiento.getCategoriaPuestoId())) {
 			query.add(PropertyFactoryUtil.forName("categoriaPuestoId").eq(solicitudRequerimiento.getCategoriaPuestoId()));
-		}
+		} 
+		
+		
 		if (Validator.isNotNull(solicitudRequerimiento.getEstado())) {
 			query.add(PropertyFactoryUtil.forName("estado").eq(solicitudRequerimiento.getEstado()));
 		}
+		
 		if (Validator.isNotNull(solicitudRequerimiento.getResponsableRRHH())) {
 			query.add(PropertyFactoryUtil.forName("responsableRRHH").eq(solicitudRequerimiento.getResponsableRRHH()));
 		}
@@ -86,10 +89,10 @@ public class SolicitudRequerimientoLocalServiceImpl
 			query.add(PropertyFactoryUtil.forName("tiempoContrato").eq(Long.valueOf(solicitudRequerimiento.getTiempoContrato())));
 		}
 		if (Validator.isNotNull(fechaRegistroInicio) && Validator.isNotNull(fechaRegistrFin)) {
-			query.add(RestrictionsFactoryUtil.between("fechacreamodifica", fechaRegistroInicio, fechaRegistrFin ));
+			query.add(RestrictionsFactoryUtil.between("fechamodifica", fechaRegistroInicio, fechaRegistrFin ));
 		}
 		query.add(PropertyFactoryUtil.forName("activo").eq(true));
-		query.addOrder(OrderFactoryUtil.desc("fechacreamodifica"));
+		query.addOrder(OrderFactoryUtil.desc("fechamodifica"));
 		return query;
 	}
 	

@@ -114,25 +114,25 @@ public class SolicitudRequerimientoRequisitoLocalServiceClpInvoker {
 				"com.hitss.layer.model.SolicitudRequerimientoRequisito"
 			};
 
-		_methodName202 = "getBeanIdentifier";
+		_methodName204 = "getBeanIdentifier";
 
-		_methodParameterTypes202 = new String[] {  };
+		_methodParameterTypes204 = new String[] {  };
 
-		_methodName203 = "setBeanIdentifier";
+		_methodName205 = "setBeanIdentifier";
 
-		_methodParameterTypes203 = new String[] { "java.lang.String" };
+		_methodParameterTypes205 = new String[] { "java.lang.String" };
 
-		_methodName208 = "getListaSolicitudRequerimientoRequisito";
+		_methodName210 = "getListaSolicitudRequerimientoRequisito";
 
-		_methodParameterTypes208 = new String[] { "long", "long" };
+		_methodParameterTypes210 = new String[] { "long", "long" };
 
-		_methodName209 = "getListaSolicitudRequerimientoRequisito";
+		_methodName211 = "getListaSolicitudRequerimientoRequisito";
 
-		_methodParameterTypes209 = new String[] { "long" };
+		_methodParameterTypes211 = new String[] { "long" };
 
-		_methodName210 = "getListaSolicitudRequerimientoRequisitoActivo";
+		_methodName212 = "getListaSolicitudRequerimientoRequisitoActivo";
 
-		_methodParameterTypes210 = new String[] { "long" };
+		_methodParameterTypes212 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,31 +224,31 @@ public class SolicitudRequerimientoRequisitoLocalServiceClpInvoker {
 			return SolicitudRequerimientoRequisitoLocalServiceUtil.updateSolicitudRequerimientoRequisito((com.hitss.layer.model.SolicitudRequerimientoRequisito)arguments[0]);
 		}
 
-		if (_methodName202.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes202, parameterTypes)) {
+		if (_methodName204.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes204, parameterTypes)) {
 			return SolicitudRequerimientoRequisitoLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName203.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes203, parameterTypes)) {
+		if (_methodName205.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes205, parameterTypes)) {
 			SolicitudRequerimientoRequisitoLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName208.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes208, parameterTypes)) {
+		if (_methodName210.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes210, parameterTypes)) {
 			return SolicitudRequerimientoRequisitoLocalServiceUtil.getListaSolicitudRequerimientoRequisito(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName209.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes209, parameterTypes)) {
+		if (_methodName211.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes211, parameterTypes)) {
 			return SolicitudRequerimientoRequisitoLocalServiceUtil.getListaSolicitudRequerimientoRequisito(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName210.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes210, parameterTypes)) {
+		if (_methodName212.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes212, parameterTypes)) {
 			return SolicitudRequerimientoRequisitoLocalServiceUtil.getListaSolicitudRequerimientoRequisitoActivo(((Long)arguments[0]).longValue());
 		}
 
@@ -287,14 +287,14 @@ public class SolicitudRequerimientoRequisitoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName202;
-	private String[] _methodParameterTypes202;
-	private String _methodName203;
-	private String[] _methodParameterTypes203;
-	private String _methodName208;
-	private String[] _methodParameterTypes208;
-	private String _methodName209;
-	private String[] _methodParameterTypes209;
+	private String _methodName204;
+	private String[] _methodParameterTypes204;
+	private String _methodName205;
+	private String[] _methodParameterTypes205;
 	private String _methodName210;
 	private String[] _methodParameterTypes210;
+	private String _methodName211;
+	private String[] _methodParameterTypes211;
+	private String _methodName212;
+	private String[] _methodParameterTypes212;
 }

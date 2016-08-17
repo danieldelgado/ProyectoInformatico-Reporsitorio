@@ -111,7 +111,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 			FasePostulacionModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
 			FasePostulacionModelImpl.FASEPOSTULACIONID_COLUMN_BITMASK |
 			FasePostulacionModelImpl.USUARIOID_COLUMN_BITMASK |
-			FasePostulacionModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			FasePostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_BY_S_F_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S_F_u",
@@ -533,7 +533,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 			new String[] { Long.class.getName(), Long.class.getName() },
 			FasePostulacionModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
 			FasePostulacionModelImpl.FASEPOSTULACIONID_COLUMN_BITMASK |
-			FasePostulacionModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			FasePostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_BY_S_LF = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S_LF",
@@ -1208,7 +1208,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 		fasePostulacionImpl.setUsuariocrea(fasePostulacion.getUsuariocrea());
 		fasePostulacionImpl.setFechacrea(fasePostulacion.getFechacrea());
 		fasePostulacionImpl.setUsuariomodifica(fasePostulacion.getUsuariomodifica());
-		fasePostulacionImpl.setFechacreamodifica(fasePostulacion.getFechacreamodifica());
+		fasePostulacionImpl.setFechamodifica(fasePostulacion.getFechamodifica());
 
 		return fasePostulacionImpl;
 	}

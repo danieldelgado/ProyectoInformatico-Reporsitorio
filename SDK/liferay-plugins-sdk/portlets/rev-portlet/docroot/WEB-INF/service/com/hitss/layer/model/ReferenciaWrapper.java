@@ -59,7 +59,7 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -126,10 +126,10 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -365,23 +365,23 @@ public class ReferenciaWrapper implements Referencia, ModelWrapper<Referencia> {
 	}
 
 	/**
-	* Returns the fechacreamodifica of this referencia.
+	* Returns the fechamodifica of this referencia.
 	*
-	* @return the fechacreamodifica of this referencia
+	* @return the fechamodifica of this referencia
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _referencia.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _referencia.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this referencia.
+	* Sets the fechamodifica of this referencia.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this referencia
+	* @param fechamodifica the fechamodifica of this referencia
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_referencia.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_referencia.setFechamodifica(fechamodifica);
 	}
 
 	@Override

@@ -55,8 +55,8 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -82,11 +82,11 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 
 		evaluacionImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			evaluacionImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			evaluacionImpl.setFechamodifica(null);
 		}
 		else {
-			evaluacionImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			evaluacionImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		evaluacionImpl.resetOriginalValues();
@@ -104,7 +104,7 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long evaluacionId;
@@ -129,5 +129,5 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

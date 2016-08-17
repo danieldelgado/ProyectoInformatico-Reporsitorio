@@ -74,12 +74,12 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PrioridadGrupoUsuarios (prioridadGrupoUsuariosId LONG not null primary key,solicitudEvaluacionDesempennoId LONG,responsableGrupo VARCHAR(75) null,grupoUsuario VARCHAR(75) null,orden INTEGER,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table PrioridadGrupoUsuarios (prioridadGrupoUsuariosId LONG not null primary key,solicitudEvaluacionDesempennoId LONG,responsableGrupo VARCHAR(75) null,grupoUsuario VARCHAR(75) null,orden INTEGER,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table PrioridadGrupoUsuarios";
-	public static final String ORDER_BY_JPQL = " ORDER BY prioridadGrupoUsuarios.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY PrioridadGrupoUsuarios.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY prioridadGrupoUsuarios.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY PrioridadGrupoUsuarios.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -114,7 +114,7 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -190,7 +190,7 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -253,10 +253,10 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -377,13 +377,13 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -422,7 +422,7 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		prioridadGrupoUsuariosImpl.setUsuariocrea(getUsuariocrea());
 		prioridadGrupoUsuariosImpl.setFechacrea(getFechacrea());
 		prioridadGrupoUsuariosImpl.setUsuariomodifica(getUsuariomodifica());
-		prioridadGrupoUsuariosImpl.setFechacreamodifica(getFechacreamodifica());
+		prioridadGrupoUsuariosImpl.setFechamodifica(getFechamodifica());
 
 		prioridadGrupoUsuariosImpl.resetOriginalValues();
 
@@ -433,8 +433,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 	public int compareTo(PrioridadGrupoUsuarios prioridadGrupoUsuarios) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				prioridadGrupoUsuarios.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				prioridadGrupoUsuarios.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -515,13 +515,13 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 		prioridadGrupoUsuariosCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			prioridadGrupoUsuariosCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			prioridadGrupoUsuariosCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			prioridadGrupoUsuariosCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			prioridadGrupoUsuariosCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return prioridadGrupoUsuariosCacheModel;
@@ -549,8 +549,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -601,8 +601,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -623,6 +623,6 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private PrioridadGrupoUsuarios _escapedModel;
 }

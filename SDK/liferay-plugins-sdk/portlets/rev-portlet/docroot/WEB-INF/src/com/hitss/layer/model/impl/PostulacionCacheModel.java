@@ -55,8 +55,8 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -89,11 +89,11 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 
 		postulacionImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			postulacionImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			postulacionImpl.setFechamodifica(null);
 		}
 		else {
-			postulacionImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			postulacionImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		postulacionImpl.resetOriginalValues();
@@ -111,7 +111,7 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long solicitudRequerimientoId;
@@ -136,5 +136,5 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

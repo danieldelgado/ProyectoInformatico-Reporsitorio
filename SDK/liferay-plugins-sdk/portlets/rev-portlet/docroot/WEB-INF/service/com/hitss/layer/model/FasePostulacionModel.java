@@ -222,18 +222,18 @@ public interface FasePostulacionModel extends BaseModel<FasePostulacion> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this fase postulacion.
+	 * Returns the fechamodifica of this fase postulacion.
 	 *
-	 * @return the fechacreamodifica of this fase postulacion
+	 * @return the fechamodifica of this fase postulacion
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this fase postulacion.
+	 * Sets the fechamodifica of this fase postulacion.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this fase postulacion
+	 * @param fechamodifica the fechamodifica of this fase postulacion
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

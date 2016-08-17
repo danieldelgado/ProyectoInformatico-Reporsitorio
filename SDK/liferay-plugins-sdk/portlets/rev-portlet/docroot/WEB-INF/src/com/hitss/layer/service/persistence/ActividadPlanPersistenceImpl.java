@@ -341,7 +341,7 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 		actividadPlanImpl.setUsuariocrea(actividadPlan.getUsuariocrea());
 		actividadPlanImpl.setFechacrea(actividadPlan.getFechacrea());
 		actividadPlanImpl.setUsuariomodifica(actividadPlan.getUsuariomodifica());
-		actividadPlanImpl.setFechacreamodifica(actividadPlan.getFechacreamodifica());
+		actividadPlanImpl.setFechamodifica(actividadPlan.getFechamodifica());
 
 		return actividadPlanImpl;
 	}

@@ -55,7 +55,7 @@ public class PreguntaWrapper implements Pregunta, ModelWrapper<Pregunta> {
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -98,10 +98,10 @@ public class PreguntaWrapper implements Pregunta, ModelWrapper<Pregunta> {
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -256,23 +256,23 @@ public class PreguntaWrapper implements Pregunta, ModelWrapper<Pregunta> {
 	}
 
 	/**
-	* Returns the fechacreamodifica of this pregunta.
+	* Returns the fechamodifica of this pregunta.
 	*
-	* @return the fechacreamodifica of this pregunta
+	* @return the fechamodifica of this pregunta
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _pregunta.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _pregunta.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this pregunta.
+	* Sets the fechamodifica of this pregunta.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this pregunta
+	* @param fechamodifica the fechamodifica of this pregunta
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_pregunta.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_pregunta.setFechamodifica(fechamodifica);
 	}
 
 	@Override

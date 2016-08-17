@@ -60,8 +60,8 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -114,11 +114,11 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 
 		referenciaImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			referenciaImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			referenciaImpl.setFechamodifica(null);
 		}
 		else {
-			referenciaImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			referenciaImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		referenciaImpl.resetOriginalValues();
@@ -138,7 +138,7 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long referenciaId;
@@ -192,5 +192,5 @@ public class ReferenciaCacheModel implements CacheModel<Referencia>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

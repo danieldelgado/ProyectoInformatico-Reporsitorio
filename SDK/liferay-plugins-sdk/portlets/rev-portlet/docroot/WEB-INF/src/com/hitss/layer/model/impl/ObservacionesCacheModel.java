@@ -56,8 +56,8 @@ public class ObservacionesCacheModel implements CacheModel<Observaciones>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -96,11 +96,11 @@ public class ObservacionesCacheModel implements CacheModel<Observaciones>,
 
 		observacionesImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			observacionesImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			observacionesImpl.setFechamodifica(null);
 		}
 		else {
-			observacionesImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			observacionesImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		observacionesImpl.resetOriginalValues();
@@ -118,7 +118,7 @@ public class ObservacionesCacheModel implements CacheModel<Observaciones>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -145,7 +145,7 @@ public class ObservacionesCacheModel implements CacheModel<Observaciones>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long observacionId;
@@ -156,5 +156,5 @@ public class ObservacionesCacheModel implements CacheModel<Observaciones>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

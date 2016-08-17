@@ -326,7 +326,7 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 		cronogramaImpl.setUsuariocrea(cronograma.getUsuariocrea());
 		cronogramaImpl.setFechacrea(cronograma.getFechacrea());
 		cronogramaImpl.setUsuariomodifica(cronograma.getUsuariomodifica());
-		cronogramaImpl.setFechacreamodifica(cronograma.getFechacreamodifica());
+		cronogramaImpl.setFechamodifica(cronograma.getFechamodifica());
 
 		return cronogramaImpl;
 	}

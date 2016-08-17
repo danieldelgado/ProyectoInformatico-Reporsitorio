@@ -60,8 +60,8 @@ public class ParametroCacheModel implements CacheModel<Parametro>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -114,11 +114,11 @@ public class ParametroCacheModel implements CacheModel<Parametro>,
 
 		parametroImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			parametroImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			parametroImpl.setFechamodifica(null);
 		}
 		else {
-			parametroImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			parametroImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		parametroImpl.resetOriginalValues();
@@ -138,7 +138,7 @@ public class ParametroCacheModel implements CacheModel<Parametro>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class ParametroCacheModel implements CacheModel<Parametro>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long parametroId;
@@ -192,5 +192,5 @@ public class ParametroCacheModel implements CacheModel<Parametro>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

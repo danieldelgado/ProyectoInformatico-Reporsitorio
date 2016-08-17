@@ -103,7 +103,7 @@ public class SolicitudRequerimientoRequisitoPersistenceImpl
 			new String[] { Long.class.getName(), Long.class.getName() },
 			SolicitudRequerimientoRequisitoModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
 			SolicitudRequerimientoRequisitoModelImpl.TAGID_COLUMN_BITMASK |
-			SolicitudRequerimientoRequisitoModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			SolicitudRequerimientoRequisitoModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_S_T = new FinderPath(SolicitudRequerimientoRequisitoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoRequisitoModelImpl.FINDER_CACHE_ENABLED,
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
@@ -648,7 +648,7 @@ public class SolicitudRequerimientoRequisitoPersistenceImpl
 			new String[] { Long.class.getName(), Long.class.getName() },
 			SolicitudRequerimientoRequisitoModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
 			SolicitudRequerimientoRequisitoModelImpl.TAGID_COLUMN_BITMASK |
-			SolicitudRequerimientoRequisitoModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			SolicitudRequerimientoRequisitoModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_S_T_ALL = new FinderPath(SolicitudRequerimientoRequisitoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoRequisitoModelImpl.FINDER_CACHE_ENABLED,
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
@@ -1192,7 +1192,7 @@ public class SolicitudRequerimientoRequisitoPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByS",
 			new String[] { Long.class.getName() },
 			SolicitudRequerimientoRequisitoModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
-			SolicitudRequerimientoRequisitoModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			SolicitudRequerimientoRequisitoModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_S = new FinderPath(SolicitudRequerimientoRequisitoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoRequisitoModelImpl.FINDER_CACHE_ENABLED,
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByS",
@@ -1701,7 +1701,7 @@ public class SolicitudRequerimientoRequisitoPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByS_All",
 			new String[] { Long.class.getName() },
 			SolicitudRequerimientoRequisitoModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
-			SolicitudRequerimientoRequisitoModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			SolicitudRequerimientoRequisitoModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_S_ALL = new FinderPath(SolicitudRequerimientoRequisitoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoRequisitoModelImpl.FINDER_CACHE_ENABLED,
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
@@ -2544,7 +2544,7 @@ public class SolicitudRequerimientoRequisitoPersistenceImpl
 		solicitudRequerimientoRequisitoImpl.setUsuariocrea(solicitudRequerimientoRequisito.getUsuariocrea());
 		solicitudRequerimientoRequisitoImpl.setFechacrea(solicitudRequerimientoRequisito.getFechacrea());
 		solicitudRequerimientoRequisitoImpl.setUsuariomodifica(solicitudRequerimientoRequisito.getUsuariomodifica());
-		solicitudRequerimientoRequisitoImpl.setFechacreamodifica(solicitudRequerimientoRequisito.getFechacreamodifica());
+		solicitudRequerimientoRequisitoImpl.setFechamodifica(solicitudRequerimientoRequisito.getFechamodifica());
 
 		return solicitudRequerimientoRequisitoImpl;
 	}

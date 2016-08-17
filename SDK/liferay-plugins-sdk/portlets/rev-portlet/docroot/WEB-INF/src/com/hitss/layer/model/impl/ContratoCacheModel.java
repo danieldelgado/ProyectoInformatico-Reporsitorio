@@ -57,8 +57,8 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -104,11 +104,11 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 
 		contratoImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			contratoImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			contratoImpl.setFechamodifica(null);
 		}
 		else {
-			contratoImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			contratoImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		contratoImpl.resetOriginalValues();
@@ -127,7 +127,7 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long contratoId;
@@ -173,5 +173,5 @@ public class ContratoCacheModel implements CacheModel<Contrato>, Externalizable 
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

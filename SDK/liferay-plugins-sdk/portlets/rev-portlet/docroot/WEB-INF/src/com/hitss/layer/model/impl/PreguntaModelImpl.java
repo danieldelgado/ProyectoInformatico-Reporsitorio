@@ -71,12 +71,12 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Pregunta (preguntaId LONG not null primary key,descripcion VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Pregunta (preguntaId LONG not null primary key,descripcion VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Pregunta";
-	public static final String ORDER_BY_JPQL = " ORDER BY pregunta.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Pregunta.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY pregunta.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Pregunta.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -107,7 +107,7 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -186,7 +186,7 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -229,10 +229,10 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -314,13 +314,13 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -356,7 +356,7 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 		preguntaImpl.setUsuariocrea(getUsuariocrea());
 		preguntaImpl.setFechacrea(getFechacrea());
 		preguntaImpl.setUsuariomodifica(getUsuariomodifica());
-		preguntaImpl.setFechacreamodifica(getFechacreamodifica());
+		preguntaImpl.setFechamodifica(getFechamodifica());
 
 		preguntaImpl.resetOriginalValues();
 
@@ -367,7 +367,8 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 	public int compareTo(Pregunta pregunta) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), pregunta.getFechacrea());
+		value = DateUtil.compareTo(getFechamodifica(),
+				pregunta.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -436,13 +437,13 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 
 		preguntaCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			preguntaCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			preguntaCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			preguntaCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			preguntaCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return preguntaCacheModel;
@@ -464,8 +465,8 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -504,8 +505,8 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -523,6 +524,6 @@ public class PreguntaModelImpl extends BaseModelImpl<Pregunta>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private Pregunta _escapedModel;
 }

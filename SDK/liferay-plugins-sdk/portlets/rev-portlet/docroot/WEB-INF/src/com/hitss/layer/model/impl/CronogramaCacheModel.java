@@ -56,8 +56,8 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -90,11 +90,11 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 
 		cronogramaImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			cronogramaImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			cronogramaImpl.setFechamodifica(null);
 		}
 		else {
-			cronogramaImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			cronogramaImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		cronogramaImpl.resetOriginalValues();
@@ -112,7 +112,7 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long cronogramaId;
@@ -144,5 +144,5 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

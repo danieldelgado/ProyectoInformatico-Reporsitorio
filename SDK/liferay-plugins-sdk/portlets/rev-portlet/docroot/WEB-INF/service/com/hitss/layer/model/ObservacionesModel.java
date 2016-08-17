@@ -181,18 +181,18 @@ public interface ObservacionesModel extends BaseModel<Observaciones> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this observaciones.
+	 * Returns the fechamodifica of this observaciones.
 	 *
-	 * @return the fechacreamodifica of this observaciones
+	 * @return the fechamodifica of this observaciones
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this observaciones.
+	 * Sets the fechamodifica of this observaciones.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this observaciones
+	 * @param fechamodifica the fechamodifica of this observaciones
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

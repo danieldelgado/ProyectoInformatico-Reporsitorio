@@ -46,6 +46,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		soapModel.setMeta(model.getMeta());
 		soapModel.setPrioridad(model.getPrioridad());
 		soapModel.setMotivo(model.getMotivo());
+		soapModel.setDescripcionPublicacion(model.getDescripcionPublicacion());
 		soapModel.setModalidadjornada(model.getModalidadjornada());
 		soapModel.setModalidadcontrato(model.getModalidadcontrato());
 		soapModel.setLugarTrabajo(model.getLugarTrabajo());
@@ -61,7 +62,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
 		soapModel.setUsuariomodifica(model.getUsuariomodifica());
-		soapModel.setFechacreamodifica(model.getFechacreamodifica());
+		soapModel.setFechamodifica(model.getFechamodifica());
 
 		return soapModel;
 	}
@@ -229,6 +230,14 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		_motivo = motivo;
 	}
 
+	public String getDescripcionPublicacion() {
+		return _descripcionPublicacion;
+	}
+
+	public void setDescripcionPublicacion(String descripcionPublicacion) {
+		_descripcionPublicacion = descripcionPublicacion;
+	}
+
 	public long getModalidadjornada() {
 		return _modalidadjornada;
 	}
@@ -371,12 +380,12 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		_usuariomodifica = usuariomodifica;
 	}
 
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	private long _solicitudRequerimientoId;
@@ -393,6 +402,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 	private String _meta;
 	private long _prioridad;
 	private String _motivo;
+	private String _descripcionPublicacion;
 	private long _modalidadjornada;
 	private long _modalidadcontrato;
 	private String _lugarTrabajo;
@@ -408,5 +418,5 @@ public class SolicitudRequerimientoSoap implements Serializable {
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 }

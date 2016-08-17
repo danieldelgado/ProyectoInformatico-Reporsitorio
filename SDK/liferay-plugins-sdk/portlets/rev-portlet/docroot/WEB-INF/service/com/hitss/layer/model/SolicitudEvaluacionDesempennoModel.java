@@ -181,18 +181,18 @@ public interface SolicitudEvaluacionDesempennoModel extends BaseModel<SolicitudE
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this solicitud evaluacion desempenno.
+	 * Returns the fechamodifica of this solicitud evaluacion desempenno.
 	 *
-	 * @return the fechacreamodifica of this solicitud evaluacion desempenno
+	 * @return the fechamodifica of this solicitud evaluacion desempenno
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this solicitud evaluacion desempenno.
+	 * Sets the fechamodifica of this solicitud evaluacion desempenno.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this solicitud evaluacion desempenno
+	 * @param fechamodifica the fechamodifica of this solicitud evaluacion desempenno
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

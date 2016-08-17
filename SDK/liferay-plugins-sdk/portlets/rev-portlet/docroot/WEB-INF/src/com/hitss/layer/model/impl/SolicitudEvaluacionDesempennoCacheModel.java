@@ -56,8 +56,8 @@ public class SolicitudEvaluacionDesempennoCacheModel implements CacheModel<Solic
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -97,12 +97,12 @@ public class SolicitudEvaluacionDesempennoCacheModel implements CacheModel<Solic
 
 		solicitudEvaluacionDesempennoImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			solicitudEvaluacionDesempennoImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			solicitudEvaluacionDesempennoImpl.setFechamodifica(null);
 		}
 		else {
-			solicitudEvaluacionDesempennoImpl.setFechacreamodifica(new Date(
-					fechacreamodifica));
+			solicitudEvaluacionDesempennoImpl.setFechamodifica(new Date(
+					fechamodifica));
 		}
 
 		solicitudEvaluacionDesempennoImpl.resetOriginalValues();
@@ -120,7 +120,7 @@ public class SolicitudEvaluacionDesempennoCacheModel implements CacheModel<Solic
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class SolicitudEvaluacionDesempennoCacheModel implements CacheModel<Solic
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long solicitudEvaluacionDesempennoId;
@@ -152,5 +152,5 @@ public class SolicitudEvaluacionDesempennoCacheModel implements CacheModel<Solic
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

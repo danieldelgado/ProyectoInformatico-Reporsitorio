@@ -152,18 +152,18 @@ public interface PreguntaModel extends BaseModel<Pregunta> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this pregunta.
+	 * Returns the fechamodifica of this pregunta.
 	 *
-	 * @return the fechacreamodifica of this pregunta
+	 * @return the fechamodifica of this pregunta
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this pregunta.
+	 * Sets the fechamodifica of this pregunta.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this pregunta
+	 * @param fechamodifica the fechamodifica of this pregunta
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

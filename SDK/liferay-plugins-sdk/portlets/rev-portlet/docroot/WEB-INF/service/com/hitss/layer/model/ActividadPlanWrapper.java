@@ -60,7 +60,7 @@ public class ActividadPlanWrapper implements ActividadPlan,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -127,10 +127,10 @@ public class ActividadPlanWrapper implements ActividadPlan,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -365,23 +365,23 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this actividad plan.
+	* Returns the fechamodifica of this actividad plan.
 	*
-	* @return the fechacreamodifica of this actividad plan
+	* @return the fechamodifica of this actividad plan
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _actividadPlan.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _actividadPlan.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this actividad plan.
+	* Sets the fechamodifica of this actividad plan.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this actividad plan
+	* @param fechamodifica the fechamodifica of this actividad plan
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_actividadPlan.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_actividadPlan.setFechamodifica(fechamodifica);
 	}
 
 	@Override

@@ -331,7 +331,7 @@ public class PreguntaPersistenceImpl extends BasePersistenceImpl<Pregunta>
 		preguntaImpl.setUsuariocrea(pregunta.getUsuariocrea());
 		preguntaImpl.setFechacrea(pregunta.getFechacrea());
 		preguntaImpl.setUsuariomodifica(pregunta.getUsuariomodifica());
-		preguntaImpl.setFechacreamodifica(pregunta.getFechacreamodifica());
+		preguntaImpl.setFechamodifica(pregunta.getFechamodifica());
 
 		return preguntaImpl;
 	}

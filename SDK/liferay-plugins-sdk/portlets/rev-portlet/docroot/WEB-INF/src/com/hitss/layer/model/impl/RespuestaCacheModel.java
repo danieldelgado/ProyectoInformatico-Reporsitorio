@@ -54,8 +54,8 @@ public class RespuestaCacheModel implements CacheModel<Respuesta>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -87,11 +87,11 @@ public class RespuestaCacheModel implements CacheModel<Respuesta>,
 
 		respuestaImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			respuestaImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			respuestaImpl.setFechamodifica(null);
 		}
 		else {
-			respuestaImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			respuestaImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		respuestaImpl.resetOriginalValues();
@@ -108,7 +108,7 @@ public class RespuestaCacheModel implements CacheModel<Respuesta>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class RespuestaCacheModel implements CacheModel<Respuesta>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long respuestaId;
@@ -138,5 +138,5 @@ public class RespuestaCacheModel implements CacheModel<Respuesta>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

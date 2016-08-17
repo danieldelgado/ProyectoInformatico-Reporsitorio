@@ -48,8 +48,8 @@ public class UsuarioCacheModel implements CacheModel<Usuario>, Externalizable {
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -72,11 +72,11 @@ public class UsuarioCacheModel implements CacheModel<Usuario>, Externalizable {
 
 		usuarioImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			usuarioImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			usuarioImpl.setFechamodifica(null);
 		}
 		else {
-			usuarioImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			usuarioImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		usuarioImpl.resetOriginalValues();
@@ -91,7 +91,7 @@ public class UsuarioCacheModel implements CacheModel<Usuario>, Externalizable {
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class UsuarioCacheModel implements CacheModel<Usuario>, Externalizable {
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long userId;
@@ -110,5 +110,5 @@ public class UsuarioCacheModel implements CacheModel<Usuario>, Externalizable {
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

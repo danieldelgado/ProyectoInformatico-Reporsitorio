@@ -69,12 +69,12 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Postulacion (solicitudRequerimientoId LONG not null,usuarioId LONG not null,fechaPostulacion DATE null,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,primary key (solicitudRequerimientoId, usuarioId))";
+	public static final String TABLE_SQL_CREATE = "create table Postulacion (solicitudRequerimientoId LONG not null,usuarioId LONG not null,fechaPostulacion DATE null,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (solicitudRequerimientoId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table Postulacion";
-	public static final String ORDER_BY_JPQL = " ORDER BY postulacion.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Postulacion.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY postulacion.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Postulacion.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -89,7 +89,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 			true);
 	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 1L;
 	public static long USUARIOID_COLUMN_BITMASK = 2L;
-	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 4L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -112,7 +112,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -186,7 +186,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -242,10 +242,10 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -368,15 +368,15 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
+	public void setFechamodifica(Date fechamodifica) {
 		_columnBitmask = -1L;
 
-		_fechacreamodifica = fechacreamodifica;
+		_fechamodifica = fechamodifica;
 	}
 
 	public long getColumnBitmask() {
@@ -405,7 +405,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		postulacionImpl.setUsuariocrea(getUsuariocrea());
 		postulacionImpl.setFechacrea(getFechacrea());
 		postulacionImpl.setUsuariomodifica(getUsuariomodifica());
-		postulacionImpl.setFechacreamodifica(getFechacreamodifica());
+		postulacionImpl.setFechamodifica(getFechamodifica());
 
 		postulacionImpl.resetOriginalValues();
 
@@ -416,8 +416,8 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 	public int compareTo(Postulacion postulacion) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				postulacion.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				postulacion.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -502,13 +502,13 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 		postulacionCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			postulacionCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			postulacionCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			postulacionCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			postulacionCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return postulacionCacheModel;
@@ -534,8 +534,8 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -582,8 +582,8 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -607,7 +607,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private long _columnBitmask;
 	private Postulacion _escapedModel;
 }

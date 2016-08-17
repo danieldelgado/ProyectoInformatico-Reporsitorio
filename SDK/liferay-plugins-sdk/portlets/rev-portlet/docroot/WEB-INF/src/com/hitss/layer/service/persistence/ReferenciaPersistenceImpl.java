@@ -328,7 +328,7 @@ public class ReferenciaPersistenceImpl extends BasePersistenceImpl<Referencia>
 		referenciaImpl.setUsuariocrea(referencia.getUsuariocrea());
 		referenciaImpl.setFechacrea(referencia.getFechacrea());
 		referenciaImpl.setUsuariomodifica(referencia.getUsuariomodifica());
-		referenciaImpl.setFechacreamodifica(referencia.getFechacreamodifica());
+		referenciaImpl.setFechamodifica(referencia.getFechamodifica());
 
 		return referenciaImpl;
 	}

@@ -61,8 +61,8 @@ public class PlanAccionCacheModel implements CacheModel<PlanAccion>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -98,11 +98,11 @@ public class PlanAccionCacheModel implements CacheModel<PlanAccion>,
 
 		planAccionImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			planAccionImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			planAccionImpl.setFechamodifica(null);
 		}
 		else {
-			planAccionImpl.setFechacreamodifica(new Date(fechacreamodifica));
+			planAccionImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		planAccionImpl.resetOriginalValues();
@@ -123,7 +123,7 @@ public class PlanAccionCacheModel implements CacheModel<PlanAccion>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -140,7 +140,7 @@ public class PlanAccionCacheModel implements CacheModel<PlanAccion>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long planAccionId;
@@ -154,5 +154,5 @@ public class PlanAccionCacheModel implements CacheModel<PlanAccion>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

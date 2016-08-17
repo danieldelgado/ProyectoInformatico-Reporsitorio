@@ -97,7 +97,7 @@ public class PublicarOfertaServiceImpl implements PublicarOfertaService {
 		solicitudRequerimiento.setCategoriaPuestoId(puestoId);
 		solicitudRequerimiento.setResponsableRRHH(responsable);
 		solicitudRequerimiento.setTiempoContrato(tiempoContrato);
-		solicitudRequerimiento.setEstado(Constantes.PARAMETRO_REVISADO);//creo q no debe ir
+		solicitudRequerimiento.setEstado(Constantes.PARAMETRO_APROBADO);//creo q no debe ir
 		int total = 0;
 		int records = 0;
 		Long count = null;
@@ -227,6 +227,29 @@ public class PublicarOfertaServiceImpl implements PublicarOfertaService {
 	public List<ParametroBean> getListaTipoRequisito() {
 		List<ParametroBean> listaTiempoContrato = parametroService.getListaParametroGrupo(Constantes.PARAMETRO_PADRE_TIPO_REQUISITO);
 		return listaTiempoContrato;
+	}
+
+	@Override
+	public SolicitudRequerimientoBean publicarOfertaLaboral(
+			Long solicitudRequerimientoId, String descripcion, User user, boolean publicar ) {
+		SolicitudRequerimientoBean solicitudRequerimientoBean = new SolicitudRequerimientoBean();		
+		try {
+			SolicitudRequerimiento sr = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudRequerimientoId);
+			if(publicar){
+				sr.setDescripcionPublicacion(descripcion);
+				sr.setEstado(Constantes.PARAMETRO_PUBLICADO);
+			}else{
+				sr.setEstado(Constantes.PARAMETRO_FECHA_LIMITE_POSTULACION);				
+			}
+			sr.setFechamodifica(new Date());
+			sr.setUsuariomodifica(user.getUserId());
+			sr.setNew(false);
+			SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sr);
+			solicitudRequerimientoBean = getSolicitudRequerimiento(solicitudRequerimientoId);
+		} catch (PortalException | SystemException e) {
+			_log.error("Error al publicarOfertaLaboral " + e.getMessage(), e);
+		}
+		return solicitudRequerimientoBean;
 	}
 
 	

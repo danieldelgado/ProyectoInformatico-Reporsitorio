@@ -234,18 +234,18 @@ public interface PlanAccionModel extends BaseModel<PlanAccion> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this plan accion.
+	 * Returns the fechamodifica of this plan accion.
 	 *
-	 * @return the fechacreamodifica of this plan accion
+	 * @return the fechamodifica of this plan accion
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this plan accion.
+	 * Sets the fechamodifica of this plan accion.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this plan accion
+	 * @param fechamodifica the fechamodifica of this plan accion
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

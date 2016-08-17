@@ -173,18 +173,18 @@ public interface RespuestaModel extends BaseModel<Respuesta> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this respuesta.
+	 * Returns the fechamodifica of this respuesta.
 	 *
-	 * @return the fechacreamodifica of this respuesta
+	 * @return the fechamodifica of this respuesta
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this respuesta.
+	 * Sets the fechamodifica of this respuesta.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this respuesta
+	 * @param fechamodifica the fechamodifica of this respuesta
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

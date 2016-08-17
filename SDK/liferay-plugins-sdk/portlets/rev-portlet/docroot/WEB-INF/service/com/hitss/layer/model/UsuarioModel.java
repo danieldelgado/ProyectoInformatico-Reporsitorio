@@ -152,18 +152,18 @@ public interface UsuarioModel extends BaseModel<Usuario> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this usuario.
+	 * Returns the fechamodifica of this usuario.
 	 *
-	 * @return the fechacreamodifica of this usuario
+	 * @return the fechamodifica of this usuario
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this usuario.
+	 * Sets the fechamodifica of this usuario.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this usuario
+	 * @param fechamodifica the fechamodifica of this usuario
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

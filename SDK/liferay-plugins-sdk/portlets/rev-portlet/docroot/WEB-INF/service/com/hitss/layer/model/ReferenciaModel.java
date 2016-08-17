@@ -213,18 +213,18 @@ public interface ReferenciaModel extends BaseModel<Referencia> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this referencia.
+	 * Returns the fechamodifica of this referencia.
 	 *
-	 * @return the fechacreamodifica of this referencia
+	 * @return the fechamodifica of this referencia
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this referencia.
+	 * Sets the fechamodifica of this referencia.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this referencia
+	 * @param fechamodifica the fechamodifica of this referencia
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

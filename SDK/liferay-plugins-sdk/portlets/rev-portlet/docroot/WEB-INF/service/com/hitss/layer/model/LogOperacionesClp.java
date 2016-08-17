@@ -83,7 +83,7 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -138,10 +138,10 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -336,22 +336,21 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 	}
 
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 
 		if (_logOperacionesRemoteModel != null) {
 			try {
 				Class<?> clazz = _logOperacionesRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechacreamodifica",
-						Date.class);
+				Method method = clazz.getMethod("setFechamodifica", Date.class);
 
-				method.invoke(_logOperacionesRemoteModel, fechacreamodifica);
+				method.invoke(_logOperacionesRemoteModel, fechamodifica);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -438,7 +437,7 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
-		clone.setFechacreamodifica(getFechacreamodifica());
+		clone.setFechamodifica(getFechamodifica());
 
 		return clone;
 	}
@@ -447,8 +446,8 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 	public int compareTo(LogOperaciones logOperaciones) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				logOperaciones.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				logOperaciones.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -508,8 +507,8 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -556,8 +555,8 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -573,7 +572,7 @@ public class LogOperacionesClp extends BaseModelImpl<LogOperaciones>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private BaseModel<?> _logOperacionesRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

@@ -61,8 +61,8 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -91,12 +91,11 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 
 		usuarioRequisitoImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			usuarioRequisitoImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			usuarioRequisitoImpl.setFechamodifica(null);
 		}
 		else {
-			usuarioRequisitoImpl.setFechacreamodifica(new Date(
-					fechacreamodifica));
+			usuarioRequisitoImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		usuarioRequisitoImpl.resetOriginalValues();
@@ -117,7 +116,7 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -134,7 +133,7 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long userId;
@@ -148,5 +147,5 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

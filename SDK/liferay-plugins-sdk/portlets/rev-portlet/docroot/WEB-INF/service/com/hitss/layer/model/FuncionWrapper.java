@@ -57,7 +57,7 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -112,10 +112,10 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -320,23 +320,23 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 	}
 
 	/**
-	* Returns the fechacreamodifica of this funcion.
+	* Returns the fechamodifica of this funcion.
 	*
-	* @return the fechacreamodifica of this funcion
+	* @return the fechamodifica of this funcion
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _funcion.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _funcion.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this funcion.
+	* Sets the fechamodifica of this funcion.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this funcion
+	* @param fechamodifica the fechamodifica of this funcion
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_funcion.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_funcion.setFechamodifica(fechamodifica);
 	}
 
 	@Override

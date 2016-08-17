@@ -329,7 +329,7 @@ public class PlanAccionPersistenceImpl extends BasePersistenceImpl<PlanAccion>
 		planAccionImpl.setUsuariocrea(planAccion.getUsuariocrea());
 		planAccionImpl.setFechacrea(planAccion.getFechacrea());
 		planAccionImpl.setUsuariomodifica(planAccion.getUsuariomodifica());
-		planAccionImpl.setFechacreamodifica(planAccion.getFechacreamodifica());
+		planAccionImpl.setFechamodifica(planAccion.getFechamodifica());
 
 		return planAccionImpl;
 	}

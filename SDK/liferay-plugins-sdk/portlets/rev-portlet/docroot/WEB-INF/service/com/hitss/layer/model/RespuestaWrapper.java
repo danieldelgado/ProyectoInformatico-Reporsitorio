@@ -56,7 +56,7 @@ public class RespuestaWrapper implements Respuesta, ModelWrapper<Respuesta> {
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -105,10 +105,10 @@ public class RespuestaWrapper implements Respuesta, ModelWrapper<Respuesta> {
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -293,23 +293,23 @@ public class RespuestaWrapper implements Respuesta, ModelWrapper<Respuesta> {
 	}
 
 	/**
-	* Returns the fechacreamodifica of this respuesta.
+	* Returns the fechamodifica of this respuesta.
 	*
-	* @return the fechacreamodifica of this respuesta
+	* @return the fechamodifica of this respuesta
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _respuesta.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _respuesta.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this respuesta.
+	* Sets the fechamodifica of this respuesta.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this respuesta
+	* @param fechamodifica the fechamodifica of this respuesta
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_respuesta.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_respuesta.setFechamodifica(fechamodifica);
 	}
 
 	@Override

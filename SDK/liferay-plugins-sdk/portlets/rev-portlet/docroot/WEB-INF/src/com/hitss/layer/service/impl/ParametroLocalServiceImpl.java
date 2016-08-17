@@ -19,6 +19,7 @@ import java.util.List;
 import com.hitss.layer.model.Parametro;
 import com.hitss.layer.model.impl.ParametroImpl;
 import com.hitss.layer.service.base.ParametroLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.ParametroFinderUtil;
 import com.hitss.layer.service.persistence.ParametroUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
@@ -46,6 +47,11 @@ public class ParametroLocalServiceImpl extends ParametroLocalServiceBaseImpl {
 		return new ParametroImpl();
 	}
 
+	public List<Parametro> getParametros(){
+		return ParametroFinderUtil.getParametros();
+	}
+	
+	
 	public List<Parametro> findByparametroPadre(long parametroIdpadre) throws SystemException {
 		return ParametroUtil.findByParametroPadre(parametroIdpadre);
 	}

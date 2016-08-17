@@ -180,18 +180,18 @@ public interface EstudioModel extends BaseModel<Estudio> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this estudio.
+	 * Returns the fechamodifica of this estudio.
 	 *
-	 * @return the fechacreamodifica of this estudio
+	 * @return the fechamodifica of this estudio
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this estudio.
+	 * Sets the fechamodifica of this estudio.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this estudio
+	 * @param fechamodifica the fechamodifica of this estudio
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

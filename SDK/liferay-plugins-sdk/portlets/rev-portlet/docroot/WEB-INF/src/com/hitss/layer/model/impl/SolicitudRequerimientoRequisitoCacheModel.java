@@ -59,8 +59,8 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -88,12 +88,12 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 
 		solicitudRequerimientoRequisitoImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			solicitudRequerimientoRequisitoImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			solicitudRequerimientoRequisitoImpl.setFechamodifica(null);
 		}
 		else {
-			solicitudRequerimientoRequisitoImpl.setFechacreamodifica(new Date(
-					fechacreamodifica));
+			solicitudRequerimientoRequisitoImpl.setFechamodifica(new Date(
+					fechamodifica));
 		}
 
 		solicitudRequerimientoRequisitoImpl.resetOriginalValues();
@@ -113,7 +113,7 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long solicitudRequerimientoId;
@@ -142,5 +142,5 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

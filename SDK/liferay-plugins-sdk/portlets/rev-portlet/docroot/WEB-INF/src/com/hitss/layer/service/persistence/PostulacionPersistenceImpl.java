@@ -96,7 +96,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByBy_S",
 			new String[] { Long.class.getName() },
 			PostulacionModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
-			PostulacionModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			PostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_BY_S = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S",
@@ -596,7 +596,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 			new String[] { Long.class.getName(), Long.class.getName() },
 			PostulacionModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
 			PostulacionModelImpl.USUARIOID_COLUMN_BITMASK |
-			PostulacionModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			PostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_BY_S_U = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S_U",
@@ -1406,7 +1406,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		postulacionImpl.setUsuariocrea(postulacion.getUsuariocrea());
 		postulacionImpl.setFechacrea(postulacion.getFechacrea());
 		postulacionImpl.setUsuariomodifica(postulacion.getUsuariomodifica());
-		postulacionImpl.setFechacreamodifica(postulacion.getFechacreamodifica());
+		postulacionImpl.setFechamodifica(postulacion.getFechamodifica());
 
 		return postulacionImpl;
 	}

@@ -331,7 +331,7 @@ public class LogOperacionesPersistenceImpl extends BasePersistenceImpl<LogOperac
 		logOperacionesImpl.setUsuariocrea(logOperaciones.getUsuariocrea());
 		logOperacionesImpl.setFechacrea(logOperaciones.getFechacrea());
 		logOperacionesImpl.setUsuariomodifica(logOperaciones.getUsuariomodifica());
-		logOperacionesImpl.setFechacreamodifica(logOperaciones.getFechacreamodifica());
+		logOperacionesImpl.setFechamodifica(logOperaciones.getFechamodifica());
 
 		return logOperacionesImpl;
 	}

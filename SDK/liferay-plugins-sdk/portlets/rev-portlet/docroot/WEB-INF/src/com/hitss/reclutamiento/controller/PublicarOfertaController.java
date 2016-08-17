@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
@@ -176,10 +177,36 @@ public class PublicarOfertaController {
 			SolicitudRequerimientoBean solicitudReclutamiento = publicarOfertaService.getSolicitudRequerimiento(solicitudRequerimientoId);
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
 			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
-		}
-		
+		}	
 		
 		return "publicarOferta";
 	}
 	
+	@ResourceMapping(value = "publicarOferta")
+	public void publicarOfertaLaboral(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		_log.debug("listarSolicitudesRelutamiento");
+		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		User user = td.getUser();
+		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
+		String descripcion = ParamUtil.get(resourceRequest, "descripcion", "");
+		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
+			SolicitudRequerimientoBean solicitudReclutamiento = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId,descripcion,user,true);
+		
+
+		}
+		
+	}
+	
+
+	@ResourceMapping(value = "finalizarOferta")
+	public void finalizarOferta(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		User user = td.getUser();
+		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
+		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
+			SolicitudRequerimientoBean solicitudReclutamiento = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId,null,user,false);
+		
+
+		}
+	}
 }

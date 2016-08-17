@@ -83,7 +83,7 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -138,10 +138,10 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -335,22 +335,21 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 	}
 
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 
 		if (_observacionesRemoteModel != null) {
 			try {
 				Class<?> clazz = _observacionesRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechacreamodifica",
-						Date.class);
+				Method method = clazz.getMethod("setFechamodifica", Date.class);
 
-				method.invoke(_observacionesRemoteModel, fechacreamodifica);
+				method.invoke(_observacionesRemoteModel, fechamodifica);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -436,7 +435,7 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
-		clone.setFechacreamodifica(getFechacreamodifica());
+		clone.setFechamodifica(getFechamodifica());
 
 		return clone;
 	}
@@ -445,8 +444,8 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 	public int compareTo(Observaciones observaciones) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				observaciones.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				observaciones.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -506,8 +505,8 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -554,8 +553,8 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -571,7 +570,7 @@ public class ObservacionesClp extends BaseModelImpl<Observaciones>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private BaseModel<?> _observacionesRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

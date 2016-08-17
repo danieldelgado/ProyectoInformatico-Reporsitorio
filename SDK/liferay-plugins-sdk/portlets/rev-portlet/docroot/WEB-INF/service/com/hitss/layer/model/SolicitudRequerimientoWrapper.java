@@ -65,6 +65,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 		attributes.put("meta", getMeta());
 		attributes.put("prioridad", getPrioridad());
 		attributes.put("motivo", getMotivo());
+		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
 		attributes.put("modalidadjornada", getModalidadjornada());
 		attributes.put("modalidadcontrato", getModalidadcontrato());
 		attributes.put("lugarTrabajo", getLugarTrabajo());
@@ -82,7 +83,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -172,6 +173,13 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 
 		if (motivo != null) {
 			setMotivo(motivo);
+		}
+
+		String descripcionPublicacion = (String)attributes.get(
+				"descripcionPublicacion");
+
+		if (descripcionPublicacion != null) {
+			setDescripcionPublicacion(descripcionPublicacion);
 		}
 
 		Long modalidadjornada = (Long)attributes.get("modalidadjornada");
@@ -267,10 +275,10 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -572,6 +580,27 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	@Override
 	public void setMotivo(java.lang.String motivo) {
 		_solicitudRequerimiento.setMotivo(motivo);
+	}
+
+	/**
+	* Returns the descripcion publicacion of this solicitud requerimiento.
+	*
+	* @return the descripcion publicacion of this solicitud requerimiento
+	*/
+	@Override
+	public java.lang.String getDescripcionPublicacion() {
+		return _solicitudRequerimiento.getDescripcionPublicacion();
+	}
+
+	/**
+	* Sets the descripcion publicacion of this solicitud requerimiento.
+	*
+	* @param descripcionPublicacion the descripcion publicacion of this solicitud requerimiento
+	*/
+	@Override
+	public void setDescripcionPublicacion(
+		java.lang.String descripcionPublicacion) {
+		_solicitudRequerimiento.setDescripcionPublicacion(descripcionPublicacion);
 	}
 
 	/**
@@ -927,23 +956,23 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this solicitud requerimiento.
+	* Returns the fechamodifica of this solicitud requerimiento.
 	*
-	* @return the fechacreamodifica of this solicitud requerimiento
+	* @return the fechamodifica of this solicitud requerimiento
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _solicitudRequerimiento.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _solicitudRequerimiento.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this solicitud requerimiento.
+	* Sets the fechamodifica of this solicitud requerimiento.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this solicitud requerimiento
+	* @param fechamodifica the fechamodifica of this solicitud requerimiento
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_solicitudRequerimiento.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_solicitudRequerimiento.setFechamodifica(fechamodifica);
 	}
 
 	@Override

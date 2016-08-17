@@ -23,7 +23,6 @@
 </portlet:renderURL>
 <input id="<portlet:namespace/>actualizarUrl" type="hidden" value="${actualizarSolicitud}" />
 <input id="<portlet:namespace/>listarSolicitudesUrl" type="hidden" value="${regresar}" />
-<input id="<portlet:namespace/>listarSolicitudesUrl" type="hidden" value="${regresar}" />
 <input id="<portlet:namespace/>listarEtiquetasUrl" type="hidden" value="${listarEtiquetas}" />
 
 <input id="<portlet:namespace/>msgpuesto" type="hidden" value="<liferay-ui:message key="actualizarreclutamiento.valid.mensaje.puesto" />" />
@@ -57,7 +56,7 @@
 
 
 <fieldset>
-	<legend> ${empty solicitudReclutamiento?'Registrar':'Actuaizar'} Solicitud de Reclutamiento </legend>
+	<legend> ${empty solicitudReclutamiento?'Registrar':'Actualizar'} Solicitud de Reclutamiento </legend>
 	<div class="container">
 		<div class="contenedorAlerta"></div>
 		<div class="offset1 span10">

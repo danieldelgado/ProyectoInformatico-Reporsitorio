@@ -47,7 +47,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.ActividadPlanImpl" table="ActividadPlan">
 		<cache usage="read-write" />
@@ -63,7 +63,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.ContratoImpl" table="Contrato">
 		<cache usage="read-write" />
@@ -78,7 +78,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.CronogramaImpl" table="Cronograma">
 		<cache usage="read-write" />
@@ -92,7 +92,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.DetalleRepuestaEvaluacionImpl" table="DetalleRepuestaEvaluacion">
 		<cache usage="read-write" />
@@ -126,7 +126,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.EtiquetaRelacionadaImpl" table="EtiquetaRelacionada">
 		<cache usage="read-write" />
@@ -152,7 +152,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.EvaluacionPreguntaImpl" table="EvaluacionPregunta">
 		<cache usage="read-write" />
@@ -177,7 +177,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.FasePostulacionImpl" table="FasePostulacion">
 		<cache usage="read-write" />
@@ -194,7 +194,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.FuncionImpl" table="Funcion">
 		<cache usage="read-write" />
@@ -208,7 +208,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.InformeRetroalimentacionImpl" table="InformeRetroalimentacion">
 		<cache usage="read-write" />
@@ -223,7 +223,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.LogOperacionesImpl" table="LogOperaciones">
 		<cache usage="read-write" />
@@ -237,7 +237,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.ObservacionesImpl" table="Observaciones">
 		<cache usage="read-write" />
@@ -251,7 +251,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.ParametroImpl" table="Parametro">
 		<cache usage="read-write" />
@@ -267,7 +267,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.PlanAccionImpl" table="PlanAccion">
 		<cache usage="read-write" />
@@ -284,7 +284,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.PostulacionImpl" table="Postulacion">
 		<cache usage="read-write" />
@@ -298,7 +298,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.PreguntaImpl" table="Pregunta">
 		<cache usage="read-write" />
@@ -310,7 +310,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.PrioridadGrupoUsuariosImpl" table="PrioridadGrupoUsuarios">
 		<cache usage="read-write" />
@@ -325,7 +325,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.ReferenciaImpl" table="Referencia">
 		<cache usage="read-write" />
@@ -341,7 +341,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.RespuestaImpl" table="Respuesta">
 		<cache usage="read-write" />
@@ -354,7 +354,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.SolicitudEvaluacionDesempennoImpl" table="SolicitudEvaluacionDesempenno">
 		<cache usage="read-write" />
@@ -368,7 +368,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.SolicitudRequerimientoImpl" table="SolicitudRequerimiento">
 		<cache usage="read-write" />
@@ -388,6 +388,7 @@
 		<property name="meta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="prioridad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="descripcionPublicacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="modalidadjornada" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modalidadcontrato" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="lugarTrabajo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -403,7 +404,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl" table="SolicitudRequerimientoRequisito">
 		<cache usage="read-write" />
@@ -419,7 +420,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.UsuarioImpl" table="Usuario">
 		<cache usage="read-write" />
@@ -430,7 +431,7 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.UsuarioEvaluacionImpl" table="UsuarioEvaluacion">
 		<cache usage="read-write" />
@@ -455,6 +456,6 @@
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="fechacreamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

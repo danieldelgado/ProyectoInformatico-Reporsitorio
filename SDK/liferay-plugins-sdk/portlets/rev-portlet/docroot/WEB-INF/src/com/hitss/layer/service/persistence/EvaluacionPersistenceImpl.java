@@ -334,7 +334,7 @@ public class EvaluacionPersistenceImpl extends BasePersistenceImpl<Evaluacion>
 		evaluacionImpl.setUsuariocrea(evaluacion.getUsuariocrea());
 		evaluacionImpl.setFechacrea(evaluacion.getFechacrea());
 		evaluacionImpl.setUsuariomodifica(evaluacion.getUsuariomodifica());
-		evaluacionImpl.setFechacreamodifica(evaluacion.getFechacreamodifica());
+		evaluacionImpl.setFechamodifica(evaluacion.getFechamodifica());
 
 		return evaluacionImpl;
 	}

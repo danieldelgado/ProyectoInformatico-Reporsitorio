@@ -85,7 +85,7 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -152,10 +152,10 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -395,22 +395,21 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 	}
 
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 
 		if (_actividadPlanRemoteModel != null) {
 			try {
 				Class<?> clazz = _actividadPlanRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechacreamodifica",
-						Date.class);
+				Method method = clazz.getMethod("setFechamodifica", Date.class);
 
-				method.invoke(_actividadPlanRemoteModel, fechacreamodifica);
+				method.invoke(_actividadPlanRemoteModel, fechamodifica);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -498,7 +497,7 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
-		clone.setFechacreamodifica(getFechacreamodifica());
+		clone.setFechamodifica(getFechamodifica());
 
 		return clone;
 	}
@@ -507,8 +506,8 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 	public int compareTo(ActividadPlan actividadPlan) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				actividadPlan.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				actividadPlan.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -572,8 +571,8 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -628,8 +627,8 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -647,7 +646,7 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private BaseModel<?> _actividadPlanRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

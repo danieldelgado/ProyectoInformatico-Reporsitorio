@@ -72,12 +72,12 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Referencia (referenciaId LONG not null,usuarioId LONG not null,empresa VARCHAR(75) null,telefono VARCHAR(75) null,responsable VARCHAR(75) null,motivo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,primary key (referenciaId, usuarioId))";
+	public static final String TABLE_SQL_CREATE = "create table Referencia (referenciaId LONG not null,usuarioId LONG not null,empresa VARCHAR(75) null,telefono VARCHAR(75) null,responsable VARCHAR(75) null,motivo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (referenciaId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table Referencia";
-	public static final String ORDER_BY_JPQL = " ORDER BY referencia.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Referencia.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY referencia.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Referencia.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -112,7 +112,7 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -188,7 +188,7 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -255,10 +255,10 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -399,13 +399,13 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -432,7 +432,7 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		referenciaImpl.setUsuariocrea(getUsuariocrea());
 		referenciaImpl.setFechacrea(getFechacrea());
 		referenciaImpl.setUsuariomodifica(getUsuariomodifica());
-		referenciaImpl.setFechacreamodifica(getFechacreamodifica());
+		referenciaImpl.setFechamodifica(getFechamodifica());
 
 		referenciaImpl.resetOriginalValues();
 
@@ -443,8 +443,8 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	public int compareTo(Referencia referencia) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				referencia.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				referencia.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -539,13 +539,13 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 		referenciaCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			referenciaCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			referenciaCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			referenciaCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			referenciaCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return referenciaCacheModel;
@@ -575,8 +575,8 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -631,8 +631,8 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -654,6 +654,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private Referencia _escapedModel;
 }

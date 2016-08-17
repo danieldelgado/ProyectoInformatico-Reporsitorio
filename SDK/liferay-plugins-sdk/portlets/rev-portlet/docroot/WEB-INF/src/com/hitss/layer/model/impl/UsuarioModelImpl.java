@@ -71,12 +71,12 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Usuario (userId LONG not null primary key,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Usuario (userId LONG not null primary key,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Usuario";
-	public static final String ORDER_BY_JPQL = " ORDER BY usuario.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Usuario.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY usuario.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Usuario.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -90,7 +90,7 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 				"value.object.column.bitmask.enabled.com.hitss.layer.model.Usuario"),
 			true);
 	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long FECHACREAMODIFICA_COLUMN_BITMASK = 2L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -110,7 +110,7 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -191,7 +191,7 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -228,10 +228,10 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -319,15 +319,15 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
+	public void setFechamodifica(Date fechamodifica) {
 		_columnBitmask = -1L;
 
-		_fechacreamodifica = fechacreamodifica;
+		_fechamodifica = fechamodifica;
 	}
 
 	public long getColumnBitmask() {
@@ -366,7 +366,7 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 		usuarioImpl.setUsuariocrea(getUsuariocrea());
 		usuarioImpl.setFechacrea(getFechacrea());
 		usuarioImpl.setUsuariomodifica(getUsuariomodifica());
-		usuarioImpl.setFechacreamodifica(getFechacreamodifica());
+		usuarioImpl.setFechamodifica(getFechamodifica());
 
 		usuarioImpl.resetOriginalValues();
 
@@ -377,8 +377,8 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 	public int compareTo(Usuario usuario) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				usuario.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				usuario.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -446,13 +446,13 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 
 		usuarioCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			usuarioCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			usuarioCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			usuarioCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			usuarioCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return usuarioCacheModel;
@@ -472,8 +472,8 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -508,8 +508,8 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -529,7 +529,7 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private long _columnBitmask;
 	private Usuario _escapedModel;
 }

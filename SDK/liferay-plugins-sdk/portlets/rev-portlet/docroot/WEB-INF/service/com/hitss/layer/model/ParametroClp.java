@@ -19,6 +19,7 @@ import com.hitss.layer.service.ParametroLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -83,7 +84,7 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -150,10 +151,10 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -394,22 +395,21 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 	}
 
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 
 		if (_parametroRemoteModel != null) {
 			try {
 				Class<?> clazz = _parametroRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setFechacreamodifica",
-						Date.class);
+				Method method = clazz.getMethod("setFechamodifica", Date.class);
 
-				method.invoke(_parametroRemoteModel, fechacreamodifica);
+				method.invoke(_parametroRemoteModel, fechamodifica);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -496,7 +496,7 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
-		clone.setFechacreamodifica(getFechacreamodifica());
+		clone.setFechamodifica(getFechamodifica());
 
 		return clone;
 	}
@@ -505,15 +505,8 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 	public int compareTo(Parametro parametro) {
 		int value = 0;
 
-		if (getParametroId() < parametro.getParametroId()) {
-			value = -1;
-		}
-		else if (getParametroId() > parametro.getParametroId()) {
-			value = 1;
-		}
-		else {
-			value = 0;
-		}
+		value = DateUtil.compareTo(getFechamodifica(),
+				parametro.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -577,8 +570,8 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -633,8 +626,8 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -652,7 +645,7 @@ public class ParametroClp extends BaseModelImpl<Parametro> implements Parametro 
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private BaseModel<?> _parametroRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

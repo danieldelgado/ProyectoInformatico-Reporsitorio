@@ -61,7 +61,7 @@ public class FasePostulacionWrapper implements FasePostulacion,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -135,10 +135,10 @@ public class FasePostulacionWrapper implements FasePostulacion,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -393,23 +393,23 @@ public class FasePostulacionWrapper implements FasePostulacion,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this fase postulacion.
+	* Returns the fechamodifica of this fase postulacion.
 	*
-	* @return the fechacreamodifica of this fase postulacion
+	* @return the fechamodifica of this fase postulacion
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _fasePostulacion.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _fasePostulacion.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this fase postulacion.
+	* Sets the fechamodifica of this fase postulacion.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this fase postulacion
+	* @param fechamodifica the fechamodifica of this fase postulacion
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_fasePostulacion.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_fasePostulacion.setFechamodifica(fechamodifica);
 	}
 
 	@Override

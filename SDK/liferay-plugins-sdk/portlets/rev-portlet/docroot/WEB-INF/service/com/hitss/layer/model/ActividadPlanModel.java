@@ -210,18 +210,18 @@ public interface ActividadPlanModel extends BaseModel<ActividadPlan> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this actividad plan.
+	 * Returns the fechamodifica of this actividad plan.
 	 *
-	 * @return the fechacreamodifica of this actividad plan
+	 * @return the fechamodifica of this actividad plan
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this actividad plan.
+	 * Sets the fechamodifica of this actividad plan.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this actividad plan
+	 * @param fechamodifica the fechamodifica of this actividad plan
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

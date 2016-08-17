@@ -178,18 +178,18 @@ public interface EvaluacionModel extends BaseModel<Evaluacion> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this evaluacion.
+	 * Returns the fechamodifica of this evaluacion.
 	 *
-	 * @return the fechacreamodifica of this evaluacion
+	 * @return the fechamodifica of this evaluacion
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this evaluacion.
+	 * Sets the fechamodifica of this evaluacion.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this evaluacion
+	 * @param fechamodifica the fechamodifica of this evaluacion
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

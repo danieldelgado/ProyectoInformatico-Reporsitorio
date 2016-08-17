@@ -107,7 +107,7 @@ public class UsuarioPersistenceImpl extends BasePersistenceImpl<Usuario>
 			"findByUsuariosSeleccionados",
 			new String[] { Long.class.getName() },
 			UsuarioModelImpl.USERID_COLUMN_BITMASK |
-			UsuarioModelImpl.FECHACREAMODIFICA_COLUMN_BITMASK);
+			UsuarioModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_USUARIOSSELECCIONADOS = new FinderPath(UsuarioModelImpl.ENTITY_CACHE_ENABLED,
 			UsuarioModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
@@ -974,7 +974,7 @@ public class UsuarioPersistenceImpl extends BasePersistenceImpl<Usuario>
 		usuarioImpl.setUsuariocrea(usuario.getUsuariocrea());
 		usuarioImpl.setFechacrea(usuario.getFechacrea());
 		usuarioImpl.setUsuariomodifica(usuario.getUsuariomodifica());
-		usuarioImpl.setFechacreamodifica(usuario.getFechacreamodifica());
+		usuarioImpl.setFechamodifica(usuario.getFechamodifica());
 
 		return usuarioImpl;
 	}

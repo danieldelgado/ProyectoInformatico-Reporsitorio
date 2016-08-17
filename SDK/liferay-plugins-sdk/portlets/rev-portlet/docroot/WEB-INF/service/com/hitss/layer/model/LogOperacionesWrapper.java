@@ -58,7 +58,7 @@ public class LogOperacionesWrapper implements LogOperaciones,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -113,10 +113,10 @@ public class LogOperacionesWrapper implements LogOperaciones,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -311,23 +311,23 @@ public class LogOperacionesWrapper implements LogOperaciones,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this log operaciones.
+	* Returns the fechamodifica of this log operaciones.
 	*
-	* @return the fechacreamodifica of this log operaciones
+	* @return the fechamodifica of this log operaciones
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _logOperaciones.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _logOperaciones.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this log operaciones.
+	* Sets the fechamodifica of this log operaciones.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this log operaciones
+	* @param fechamodifica the fechamodifica of this log operaciones
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_logOperaciones.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_logOperaciones.setFechamodifica(fechamodifica);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import com.hitss.reclutamiento.bean.ParametroBean;
 import com.hitss.reclutamiento.bean.PuestoBean;
 import com.hitss.reclutamiento.bean.SolicitudRequerimientoBean;
 import com.hitss.reclutamiento.bean.UsuarioBean;
+import com.liferay.portal.model.User;
 
 public interface PublicarOfertaService {
 	List<PuestoBean> getListaPuestos(long groupId, String object);
@@ -29,6 +30,8 @@ public interface PublicarOfertaService {
 	List<ParametroBean> getListaNiveles();
 
 	List<ParametroBean> getAreas();
+
+	SolicitudRequerimientoBean publicarOfertaLaboral(Long solicitudRequerimientoId, String descripcion,User user, boolean publicar );
 
 
 }

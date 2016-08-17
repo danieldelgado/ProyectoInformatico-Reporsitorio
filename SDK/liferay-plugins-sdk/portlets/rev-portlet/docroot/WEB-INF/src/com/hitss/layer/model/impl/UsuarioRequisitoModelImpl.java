@@ -74,12 +74,12 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table UsuarioRequisito (userId LONG not null,tagId LONG not null,nivel LONG,exigible BOOLEAN,tipoRequisito LONG,herramienta LONG,cumplerequisito BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null,primary key (userId, tagId))";
+	public static final String TABLE_SQL_CREATE = "create table UsuarioRequisito (userId LONG not null,tagId LONG not null,nivel LONG,exigible BOOLEAN,tipoRequisito LONG,herramienta LONG,cumplerequisito BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (userId, tagId))";
 	public static final String TABLE_SQL_DROP = "drop table UsuarioRequisito";
-	public static final String ORDER_BY_JPQL = " ORDER BY usuarioRequisito.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY UsuarioRequisito.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY usuarioRequisito.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY UsuarioRequisito.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -115,7 +115,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -193,7 +193,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -266,10 +266,10 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -421,13 +421,13 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -455,7 +455,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		usuarioRequisitoImpl.setUsuariocrea(getUsuariocrea());
 		usuarioRequisitoImpl.setFechacrea(getFechacrea());
 		usuarioRequisitoImpl.setUsuariomodifica(getUsuariomodifica());
-		usuarioRequisitoImpl.setFechacreamodifica(getFechacreamodifica());
+		usuarioRequisitoImpl.setFechamodifica(getFechamodifica());
 
 		usuarioRequisitoImpl.resetOriginalValues();
 
@@ -466,8 +466,8 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 	public int compareTo(UsuarioRequisito usuarioRequisito) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				usuarioRequisito.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				usuarioRequisito.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -540,13 +540,13 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 		usuarioRequisitoCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			usuarioRequisitoCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			usuarioRequisitoCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			usuarioRequisitoCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			usuarioRequisitoCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return usuarioRequisitoCacheModel;
@@ -578,8 +578,8 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -638,8 +638,8 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -663,6 +663,6 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private UsuarioRequisito _escapedModel;
 }

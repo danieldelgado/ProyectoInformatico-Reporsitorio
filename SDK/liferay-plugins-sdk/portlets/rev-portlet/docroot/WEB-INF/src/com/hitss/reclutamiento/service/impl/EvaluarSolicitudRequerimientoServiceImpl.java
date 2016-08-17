@@ -238,7 +238,7 @@ public class EvaluarSolicitudRequerimientoServiceImpl implements EvaluarSolicitu
 			if(solicitudAprobada){
 				sr.setPresupuestoMinimo(presupuestoMinimo.longValue());
 				sr.setPresupuestoMaximo(presupuestoMaximo.longValue());
-				sr.setEstado(Constantes.PARAMETRO_REVISADO);
+				sr.setEstado(Constantes.PARAMETRO_APROBADO);
 			}else{
 				Long id = CounterLocalServiceUtil.increment(Observaciones.class.getName());				
 				Observaciones o = ObservacionesLocalServiceUtil.createObservaciones(id);
@@ -250,14 +250,14 @@ public class EvaluarSolicitudRequerimientoServiceImpl implements EvaluarSolicitu
 				o.setUsuariocrea(user.getUserId());
 				o.setFechacrea(new Date());
 				o.setUsuariomodifica(user.getUserId());
-				o.setFechacreamodifica(new Date());
+				o.setFechamodifica(new Date());
 				ObservacionesLocalServiceUtil.addObservaciones(o);
 				sr.setEstado(Constantes.PARAMETRO_OBSERVADO);
 				sr.setMotivo(motivoRechazo);				
 			}
 			sr.setNew(false);
 			sr.setUsuariomodifica(user.getUserId());
-			sr.setFechacreamodifica(new Date());
+			sr.setFechamodifica(new Date());
 			sr = SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sr);
 			return getSolicitudRequerimiento(solicitudRequerimientoId);
 		} catch (PortalException | SystemException e) {

@@ -61,7 +61,7 @@ public class InformeRetroalimentacionWrapper implements InformeRetroalimentacion
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -123,10 +123,10 @@ public class InformeRetroalimentacionWrapper implements InformeRetroalimentacion
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -341,23 +341,23 @@ public class InformeRetroalimentacionWrapper implements InformeRetroalimentacion
 	}
 
 	/**
-	* Returns the fechacreamodifica of this informe retroalimentacion.
+	* Returns the fechamodifica of this informe retroalimentacion.
 	*
-	* @return the fechacreamodifica of this informe retroalimentacion
+	* @return the fechamodifica of this informe retroalimentacion
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _informeRetroalimentacion.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _informeRetroalimentacion.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this informe retroalimentacion.
+	* Sets the fechamodifica of this informe retroalimentacion.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this informe retroalimentacion
+	* @param fechamodifica the fechamodifica of this informe retroalimentacion
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_informeRetroalimentacion.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_informeRetroalimentacion.setFechamodifica(fechamodifica);
 	}
 
 	@Override

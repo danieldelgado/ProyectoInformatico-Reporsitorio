@@ -75,12 +75,12 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PlanAccion (planAccionId LONG not null primary key,cronogramaId LONG,responsable LONG,fechaProgramada DATE null,aprobadorColaborador BOOLEAN,aprobadorLider BOOLEAN,jerarquiaEvaluar LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table PlanAccion (planAccionId LONG not null primary key,cronogramaId LONG,responsable LONG,fechaProgramada DATE null,aprobadorColaborador BOOLEAN,aprobadorLider BOOLEAN,jerarquiaEvaluar LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table PlanAccion";
-	public static final String ORDER_BY_JPQL = " ORDER BY planAccion.fechacreamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY PlanAccion.fechacreamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY planAccion.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY PlanAccion.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -116,7 +116,7 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -192,7 +192,7 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -266,10 +266,10 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -411,13 +411,13 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -458,7 +458,7 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 		planAccionImpl.setUsuariocrea(getUsuariocrea());
 		planAccionImpl.setFechacrea(getFechacrea());
 		planAccionImpl.setUsuariomodifica(getUsuariomodifica());
-		planAccionImpl.setFechacreamodifica(getFechacreamodifica());
+		planAccionImpl.setFechamodifica(getFechamodifica());
 
 		planAccionImpl.resetOriginalValues();
 
@@ -469,8 +469,8 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 	public int compareTo(PlanAccion planAccion) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacreamodifica(),
-				planAccion.getFechacreamodifica());
+		value = DateUtil.compareTo(getFechamodifica(),
+				planAccion.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -550,13 +550,13 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 
 		planAccionCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			planAccionCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			planAccionCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			planAccionCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			planAccionCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return planAccionCacheModel;
@@ -588,8 +588,8 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -648,8 +648,8 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -672,6 +672,6 @@ public class PlanAccionModelImpl extends BaseModelImpl<PlanAccion>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private PlanAccion _escapedModel;
 }

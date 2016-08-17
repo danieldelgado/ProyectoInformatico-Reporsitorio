@@ -79,4 +79,10 @@ public class ParametroServiceImpl implements ParametroService {
 		return parametroBean;
 	}
 
+	@Override
+	public List<ParametroBean> getParametros() {
+		System.out.println(ParametroLocalServiceUtil.getParametros());
+		return null;
+	}
+
 }

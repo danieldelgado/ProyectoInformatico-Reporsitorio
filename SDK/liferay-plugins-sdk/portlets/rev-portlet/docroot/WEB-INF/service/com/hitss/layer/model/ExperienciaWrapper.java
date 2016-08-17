@@ -61,7 +61,7 @@ public class ExperienciaWrapper implements Experiencia,
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -134,10 +134,10 @@ public class ExperienciaWrapper implements Experiencia,
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -392,23 +392,23 @@ public class ExperienciaWrapper implements Experiencia,
 	}
 
 	/**
-	* Returns the fechacreamodifica of this experiencia.
+	* Returns the fechamodifica of this experiencia.
 	*
-	* @return the fechacreamodifica of this experiencia
+	* @return the fechamodifica of this experiencia
 	*/
 	@Override
-	public java.util.Date getFechacreamodifica() {
-		return _experiencia.getFechacreamodifica();
+	public java.util.Date getFechamodifica() {
+		return _experiencia.getFechamodifica();
 	}
 
 	/**
-	* Sets the fechacreamodifica of this experiencia.
+	* Sets the fechamodifica of this experiencia.
 	*
-	* @param fechacreamodifica the fechacreamodifica of this experiencia
+	* @param fechamodifica the fechamodifica of this experiencia
 	*/
 	@Override
-	public void setFechacreamodifica(java.util.Date fechacreamodifica) {
-		_experiencia.setFechacreamodifica(fechacreamodifica);
+	public void setFechamodifica(java.util.Date fechamodifica) {
+		_experiencia.setFechamodifica(fechamodifica);
 	}
 
 	@Override

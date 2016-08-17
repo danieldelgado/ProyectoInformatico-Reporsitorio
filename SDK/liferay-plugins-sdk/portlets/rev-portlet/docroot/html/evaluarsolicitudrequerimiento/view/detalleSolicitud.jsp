@@ -57,7 +57,7 @@
 
 
 <fieldset>
-	<legend> ${empty solicitudReclutamiento?'Registrar':'Actuaizar'} Solicitud de Reclutamiento </legend>
+	<legend> ${empty solicitudReclutamiento?'Registrar':'Actualizar'} Solicitud de Reclutamiento </legend>
 	<div class="container">
 		<div class="contenedorAlerta"></div>
 		<div class="offset1 span10">

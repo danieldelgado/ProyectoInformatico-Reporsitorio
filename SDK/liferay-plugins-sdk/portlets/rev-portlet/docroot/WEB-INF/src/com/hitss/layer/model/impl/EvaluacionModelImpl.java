@@ -72,12 +72,12 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechacreamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Evaluacion (evaluacionId LONG not null primary key,enfoque LONG,puestoCategoriaEvaluacion LONG,tipoEvaluacion LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechacreamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Evaluacion (evaluacionId LONG not null primary key,enfoque LONG,puestoCategoriaEvaluacion LONG,tipoEvaluacion LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Evaluacion";
-	public static final String ORDER_BY_JPQL = " ORDER BY evaluacion.fechacrea ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Evaluacion.fechacrea ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY evaluacion.fechamodifica ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY Evaluacion.fechamodifica ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -110,7 +110,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
-		model.setFechacreamodifica(soapModel.getFechacreamodifica());
+		model.setFechamodifica(soapModel.getFechamodifica());
 
 		return model;
 	}
@@ -196,7 +196,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
-		attributes.put("fechacreamodifica", getFechacreamodifica());
+		attributes.put("fechamodifica", getFechamodifica());
 
 		return attributes;
 	}
@@ -252,10 +252,10 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 			setUsuariomodifica(usuariomodifica);
 		}
 
-		Date fechacreamodifica = (Date)attributes.get("fechacreamodifica");
+		Date fechamodifica = (Date)attributes.get("fechamodifica");
 
-		if (fechacreamodifica != null) {
-			setFechacreamodifica(fechacreamodifica);
+		if (fechamodifica != null) {
+			setFechamodifica(fechamodifica);
 		}
 	}
 
@@ -354,13 +354,13 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 
 	@JSON
 	@Override
-	public Date getFechacreamodifica() {
-		return _fechacreamodifica;
+	public Date getFechamodifica() {
+		return _fechamodifica;
 	}
 
 	@Override
-	public void setFechacreamodifica(Date fechacreamodifica) {
-		_fechacreamodifica = fechacreamodifica;
+	public void setFechamodifica(Date fechamodifica) {
+		_fechamodifica = fechamodifica;
 	}
 
 	@Override
@@ -398,7 +398,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		evaluacionImpl.setUsuariocrea(getUsuariocrea());
 		evaluacionImpl.setFechacrea(getFechacrea());
 		evaluacionImpl.setUsuariomodifica(getUsuariomodifica());
-		evaluacionImpl.setFechacreamodifica(getFechacreamodifica());
+		evaluacionImpl.setFechamodifica(getFechamodifica());
 
 		evaluacionImpl.resetOriginalValues();
 
@@ -409,7 +409,8 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 	public int compareTo(Evaluacion evaluacion) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechacrea(), evaluacion.getFechacrea());
+		value = DateUtil.compareTo(getFechamodifica(),
+				evaluacion.getFechamodifica());
 
 		if (value != 0) {
 			return value;
@@ -476,13 +477,13 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 
 		evaluacionCacheModel.usuariomodifica = getUsuariomodifica();
 
-		Date fechacreamodifica = getFechacreamodifica();
+		Date fechamodifica = getFechamodifica();
 
-		if (fechacreamodifica != null) {
-			evaluacionCacheModel.fechacreamodifica = fechacreamodifica.getTime();
+		if (fechamodifica != null) {
+			evaluacionCacheModel.fechamodifica = fechamodifica.getTime();
 		}
 		else {
-			evaluacionCacheModel.fechacreamodifica = Long.MIN_VALUE;
+			evaluacionCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
 		return evaluacionCacheModel;
@@ -508,8 +509,8 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		sb.append(getFechacrea());
 		sb.append(", usuariomodifica=");
 		sb.append(getUsuariomodifica());
-		sb.append(", fechacreamodifica=");
-		sb.append(getFechacreamodifica());
+		sb.append(", fechamodifica=");
+		sb.append(getFechamodifica());
 		sb.append("}");
 
 		return sb.toString();
@@ -556,8 +557,8 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		sb.append(getUsuariomodifica());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fechacreamodifica</column-name><column-value><![CDATA[");
-		sb.append(getFechacreamodifica());
+			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
+		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -577,6 +578,6 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
-	private Date _fechacreamodifica;
+	private Date _fechamodifica;
 	private Evaluacion _escapedModel;
 }

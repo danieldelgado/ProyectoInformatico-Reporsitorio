@@ -252,6 +252,9 @@ public interface ParametroLocalService extends BaseLocalService,
 
 	public com.hitss.layer.model.Parametro newInstance();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.Parametro> getParametros();
+
 	public java.util.List<com.hitss.layer.model.Parametro> findByparametroPadre(
 		long parametroIdpadre)
 		throws com.liferay.portal.kernel.exception.SystemException;

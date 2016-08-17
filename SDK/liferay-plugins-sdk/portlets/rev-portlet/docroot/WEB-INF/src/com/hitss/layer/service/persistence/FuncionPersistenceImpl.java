@@ -862,7 +862,7 @@ public class FuncionPersistenceImpl extends BasePersistenceImpl<Funcion>
 		funcionImpl.setUsuariocrea(funcion.getUsuariocrea());
 		funcionImpl.setFechacrea(funcion.getFechacrea());
 		funcionImpl.setUsuariomodifica(funcion.getUsuariomodifica());
-		funcionImpl.setFechacreamodifica(funcion.getFechacreamodifica());
+		funcionImpl.setFechamodifica(funcion.getFechamodifica());
 
 		return funcionImpl;
 	}

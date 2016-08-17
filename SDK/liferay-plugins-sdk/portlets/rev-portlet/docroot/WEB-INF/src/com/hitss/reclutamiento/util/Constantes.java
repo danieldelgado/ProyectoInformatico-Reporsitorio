@@ -22,6 +22,7 @@ public class Constantes {
 	
 	public static final long PARAMETRO_REGISTRADO = 48 ;
 	public static final long PARAMETRO_REVISADO = 49 ;
+	public static final long PARAMETRO_APROBADO = 76 ;
 	public static final long PARAMETRO_OBSERVADO = 50 ;
 	public static final long PARAMETRO_FECHA_LIMITE_POSTULACION = 68 ;
 	public static final long PARAMETRO_EVALUACION = 51 ;
@@ -29,7 +30,8 @@ public class Constantes {
 	public static final long PARAMETRO_CANCELADO = 62 ;
 	public static final long PARAMETRO_TERMINADO = 63 ;
 	public static final long PARAMETRO_ANULADO = 64 ;
-	
+	public static final long PARAMETRO_PUBLICADO=75;
+			
 	public static final long PARAMETRO_FASE_POSTULADO = 70 ;
 	public static final long PARAMETRO_FASE_EN_PROCESO = 71 ;
 	public static final long PARAMETRO_FASE_TERMINADO = 72 ;

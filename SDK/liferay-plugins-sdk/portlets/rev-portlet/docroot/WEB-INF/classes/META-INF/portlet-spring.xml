@@ -52,6 +52,7 @@
 	<bean id="com.hitss.layer.service.ParametroLocalService" class="com.hitss.layer.service.impl.ParametroLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.ParametroService" class="com.hitss.layer.service.impl.ParametroServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.ParametroPersistence" class="com.hitss.layer.service.persistence.ParametroPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.persistence.ParametroFinder" class="com.hitss.layer.service.persistence.ParametroFinderImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.PlanAccionLocalService" class="com.hitss.layer.service.impl.PlanAccionLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.PlanAccionService" class="com.hitss.layer.service.impl.PlanAccionServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.PlanAccionPersistence" class="com.hitss.layer.service.persistence.PlanAccionPersistenceImpl" parent="basePersistence" />

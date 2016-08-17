@@ -336,7 +336,7 @@ public class UsuarioRequisitoPersistenceImpl extends BasePersistenceImpl<Usuario
 		usuarioRequisitoImpl.setUsuariocrea(usuarioRequisito.getUsuariocrea());
 		usuarioRequisitoImpl.setFechacrea(usuarioRequisito.getFechacrea());
 		usuarioRequisitoImpl.setUsuariomodifica(usuarioRequisito.getUsuariomodifica());
-		usuarioRequisitoImpl.setFechacreamodifica(usuarioRequisito.getFechacreamodifica());
+		usuarioRequisitoImpl.setFechamodifica(usuarioRequisito.getFechamodifica());
 
 		return usuarioRequisitoImpl;
 	}

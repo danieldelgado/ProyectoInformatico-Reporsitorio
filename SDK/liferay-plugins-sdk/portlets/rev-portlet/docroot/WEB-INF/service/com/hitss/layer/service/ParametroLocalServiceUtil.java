@@ -278,6 +278,10 @@ public class ParametroLocalServiceUtil {
 		return getService().newInstance();
 	}
 
+	public static java.util.List<com.hitss.layer.model.Parametro> getParametros() {
+		return getService().getParametros();
+	}
+
 	public static java.util.List<com.hitss.layer.model.Parametro> findByparametroPadre(
 		long parametroIdpadre)
 		throws com.liferay.portal.kernel.exception.SystemException {

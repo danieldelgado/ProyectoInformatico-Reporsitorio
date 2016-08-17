@@ -339,7 +339,7 @@ public class PrioridadGrupoUsuariosPersistenceImpl extends BasePersistenceImpl<P
 		prioridadGrupoUsuariosImpl.setUsuariocrea(prioridadGrupoUsuarios.getUsuariocrea());
 		prioridadGrupoUsuariosImpl.setFechacrea(prioridadGrupoUsuarios.getFechacrea());
 		prioridadGrupoUsuariosImpl.setUsuariomodifica(prioridadGrupoUsuarios.getUsuariomodifica());
-		prioridadGrupoUsuariosImpl.setFechacreamodifica(prioridadGrupoUsuarios.getFechacreamodifica());
+		prioridadGrupoUsuariosImpl.setFechamodifica(prioridadGrupoUsuarios.getFechamodifica());
 
 		return prioridadGrupoUsuariosImpl;
 	}

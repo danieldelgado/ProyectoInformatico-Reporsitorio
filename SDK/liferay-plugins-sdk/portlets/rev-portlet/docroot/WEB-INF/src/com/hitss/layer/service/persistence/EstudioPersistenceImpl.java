@@ -324,7 +324,7 @@ public class EstudioPersistenceImpl extends BasePersistenceImpl<Estudio>
 		estudioImpl.setUsuariocrea(estudio.getUsuariocrea());
 		estudioImpl.setFechacrea(estudio.getFechacrea());
 		estudioImpl.setUsuariomodifica(estudio.getUsuariomodifica());
-		estudioImpl.setFechacreamodifica(estudio.getFechacreamodifica());
+		estudioImpl.setFechamodifica(estudio.getFechamodifica());
 
 		return estudioImpl;
 	}

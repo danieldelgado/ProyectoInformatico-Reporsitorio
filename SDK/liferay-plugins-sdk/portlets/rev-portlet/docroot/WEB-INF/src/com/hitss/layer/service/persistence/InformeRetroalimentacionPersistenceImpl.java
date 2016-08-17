@@ -339,7 +339,7 @@ public class InformeRetroalimentacionPersistenceImpl extends BasePersistenceImpl
 		informeRetroalimentacionImpl.setUsuariocrea(informeRetroalimentacion.getUsuariocrea());
 		informeRetroalimentacionImpl.setFechacrea(informeRetroalimentacion.getFechacrea());
 		informeRetroalimentacionImpl.setUsuariomodifica(informeRetroalimentacion.getUsuariomodifica());
-		informeRetroalimentacionImpl.setFechacreamodifica(informeRetroalimentacion.getFechacreamodifica());
+		informeRetroalimentacionImpl.setFechamodifica(informeRetroalimentacion.getFechamodifica());
 
 		return informeRetroalimentacionImpl;
 	}

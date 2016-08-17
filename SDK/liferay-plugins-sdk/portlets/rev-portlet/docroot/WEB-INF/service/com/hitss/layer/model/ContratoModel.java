@@ -196,18 +196,18 @@ public interface ContratoModel extends BaseModel<Contrato> {
 	public void setUsuariomodifica(long usuariomodifica);
 
 	/**
-	 * Returns the fechacreamodifica of this contrato.
+	 * Returns the fechamodifica of this contrato.
 	 *
-	 * @return the fechacreamodifica of this contrato
+	 * @return the fechamodifica of this contrato
 	 */
-	public Date getFechacreamodifica();
+	public Date getFechamodifica();
 
 	/**
-	 * Sets the fechacreamodifica of this contrato.
+	 * Sets the fechamodifica of this contrato.
 	 *
-	 * @param fechacreamodifica the fechacreamodifica of this contrato
+	 * @param fechamodifica the fechamodifica of this contrato
 	 */
-	public void setFechacreamodifica(Date fechacreamodifica);
+	public void setFechamodifica(Date fechamodifica);
 
 	@Override
 	public boolean isNew();

@@ -58,8 +58,8 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -99,12 +99,12 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 
 		informeRetroalimentacionImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			informeRetroalimentacionImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			informeRetroalimentacionImpl.setFechamodifica(null);
 		}
 		else {
-			informeRetroalimentacionImpl.setFechacreamodifica(new Date(
-					fechacreamodifica));
+			informeRetroalimentacionImpl.setFechamodifica(new Date(
+					fechamodifica));
 		}
 
 		informeRetroalimentacionImpl.resetOriginalValues();
@@ -123,7 +123,7 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -151,7 +151,7 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long informeRetroalimentacionId;
@@ -163,5 +163,5 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }

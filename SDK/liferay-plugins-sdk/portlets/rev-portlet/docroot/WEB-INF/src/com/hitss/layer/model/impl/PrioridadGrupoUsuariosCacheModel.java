@@ -58,8 +58,8 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 		sb.append(fechacrea);
 		sb.append(", usuariomodifica=");
 		sb.append(usuariomodifica);
-		sb.append(", fechacreamodifica=");
-		sb.append(fechacreamodifica);
+		sb.append(", fechamodifica=");
+		sb.append(fechamodifica);
 		sb.append("}");
 
 		return sb.toString();
@@ -99,12 +99,11 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 
 		prioridadGrupoUsuariosImpl.setUsuariomodifica(usuariomodifica);
 
-		if (fechacreamodifica == Long.MIN_VALUE) {
-			prioridadGrupoUsuariosImpl.setFechacreamodifica(null);
+		if (fechamodifica == Long.MIN_VALUE) {
+			prioridadGrupoUsuariosImpl.setFechamodifica(null);
 		}
 		else {
-			prioridadGrupoUsuariosImpl.setFechacreamodifica(new Date(
-					fechacreamodifica));
+			prioridadGrupoUsuariosImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
 		prioridadGrupoUsuariosImpl.resetOriginalValues();
@@ -123,7 +122,7 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
-		fechacreamodifica = objectInput.readLong();
+		fechamodifica = objectInput.readLong();
 	}
 
 	@Override
@@ -151,7 +150,7 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
-		objectOutput.writeLong(fechacreamodifica);
+		objectOutput.writeLong(fechamodifica);
 	}
 
 	public long prioridadGrupoUsuariosId;
@@ -163,5 +162,5 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 	public long usuariocrea;
 	public long fechacrea;
 	public long usuariomodifica;
-	public long fechacreamodifica;
+	public long fechamodifica;
 }
