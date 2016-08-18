@@ -37,13 +37,11 @@ import com.liferay.portal.util.PortalUtil;
 @RequestMapping(value = "VIEW")
 public class PublicarOfertaController {
 
-
 	private static Log _log = LogFactoryUtil.getLog(PublicarOfertaController.class);
-	
+
 	@Autowired
 	private PublicarOfertaService publicarOfertaService;
-	
-	
+
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 
@@ -68,11 +66,10 @@ public class PublicarOfertaController {
 			model.addAttribute("titulo", titulo);
 		}
 
-
 		return "view";
 
 	}
-	
+
 	@RenderMapping(params = "action=default")
 	public String irDefault(RenderRequest request, RenderResponse response, Model model) {
 		return defaultView(request, response, model);
@@ -119,14 +116,15 @@ public class PublicarOfertaController {
 		String campoOrden = ParamUtil.get(resourceRequest, "campoOrden", "");
 		_log.debug("campoOrden:" + campoOrden);
 
-		Map<String, Object> result = publicarOfertaService.listarSolicitudesRequermiento(puestoId, fechaRegistroInicio, fechaRegistrFin, responsable, tiempoContrato, filas, pagina, orden, campoOrden);
+		Map<String, Object> result = publicarOfertaService.listarSolicitudesRequermiento(puestoId, fechaRegistroInicio, fechaRegistrFin, responsable, tiempoContrato, filas,
+				pagina, orden, campoOrden);
 		try {
 			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
 		} catch (IOException e) {
 			_log.error("e:" + e.getLocalizedMessage(), e);
 		}
 	}
-	
+
 	@RenderMapping(params = "action=verDetalleSolicitud")
 	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("actualizarSolicitud");
@@ -167,7 +165,7 @@ public class PublicarOfertaController {
 
 		return "detalleSolicitud";
 	}
-	
+
 	@RenderMapping(params = "action=publicarOferta")
 	public String publicarOferta(RenderRequest request, RenderResponse response, Model model) {
 		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
@@ -177,36 +175,48 @@ public class PublicarOfertaController {
 			SolicitudRequerimientoBean solicitudReclutamiento = publicarOfertaService.getSolicitudRequerimiento(solicitudRequerimientoId);
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
 			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
-		}	
-		
+		}
+
 		return "publicarOferta";
 	}
-	
+
 	@ResourceMapping(value = "publicarOferta")
 	public void publicarOfertaLaboral(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
-		_log.debug("listarSolicitudesRelutamiento");
+		_log.info("publicarOfertaLaboral");
 		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		User user = td.getUser();
 		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
 		String descripcion = ParamUtil.get(resourceRequest, "descripcion", "");
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
-			SolicitudRequerimientoBean solicitudReclutamiento = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId,descripcion,user,true);
-		
-
+			_log.info("solicitudRequerimientoId:"+solicitudRequerimientoId);
+			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, descripcion, user, true);
+			
+			_log.info("result:"+result);
+			try {
+				JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
+			} catch (IOException e) {
+				_log.error("e:" + e.getLocalizedMessage(), e);
+			}
 		}
-		
 	}
-	
 
 	@ResourceMapping(value = "finalizarOferta")
 	public void finalizarOferta(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		_log.info("finalizarOferta");
 		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		User user = td.getUser();
 		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
-			SolicitudRequerimientoBean solicitudReclutamiento = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId,null,user,false);
-		
 
+			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, null, user, false);
+			
+			_log.info("result:"+result);
+			try {
+				JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
+			} catch (IOException e) {
+				_log.error("e:" + e.getLocalizedMessage(), e);
+			}
 		}
 	}
+	
 }

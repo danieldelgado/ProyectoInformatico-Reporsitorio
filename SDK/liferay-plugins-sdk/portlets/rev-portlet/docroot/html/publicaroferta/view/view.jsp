@@ -21,6 +21,8 @@
 	<portlet:param name="action" value="verDetalleSolicitud" />
 </portlet:renderURL>
 
+<portlet:resourceURL var="finalizarOferta" id="finalizarOferta" />
+
 
 <input type="hidden" value="<portlet:namespace/>" />
 <input id="<portlet:namespace/>listarSolicitudesReclutamiento" type="hidden" value="${listarSolicitudesReclutamiento}" />
@@ -45,6 +47,9 @@
 <input id="<portlet:namespace/>listaOpcionFinalizarOferta" type="hidden" value="<liferay-ui:message key="publicar.oferta.opciones.finalizar.oferta" />" />
 <input id="<portlet:namespace/>listaOpcionPublicarOferta" type="hidden" value="<liferay-ui:message key="publicar.oferta.opciones.publicar" />" />
 <input id="<portlet:namespace/>listaOpcionVerDetalle" type="hidden" value="<liferay-ui:message key="general.form.opciones.ver.detalle" />" />
+
+<input id="<portlet:namespace/>popupFinalizarPublicacionTitulo" type="hidden" value="<liferay-ui:message key="publicar.oferta.mensaje.finizaliar.popup.titulo" />" />
+<input id="<portlet:namespace/>popupFinalizarPublicacionMensage" type="hidden" value="<liferay-ui:message key="publicar.oferta.mensaje.finizaliar.popup.titulo.mensaje" />" />
 
 <input id="<portlet:namespace/>msgAceptar" type="hidden" value="<liferay-ui:message key="general.form.opciones.aceptar" />" />
 <input id="<portlet:namespace/>msgCancelar" type="hidden" value="<liferay-ui:message key="general.form.opciones.cancelar" />" />
@@ -144,9 +149,11 @@
 		</div>
 	</div>
 </fieldset>
+
 <div class="yui3-skin-sam">
-	<div id="<portlet:namespace/>modalAnular"></div>
+	<div id="<portlet:namespace/>modal"></div>
 </div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		inicializarFormularioBusqueda();

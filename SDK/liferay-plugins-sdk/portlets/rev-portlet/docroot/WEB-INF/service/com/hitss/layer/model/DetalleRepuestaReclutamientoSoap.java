@@ -37,6 +37,7 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 		soapModel.setEvaluacionId(model.getEvaluacionId());
 		soapModel.setFasePostulacionId(model.getFasePostulacionId());
 		soapModel.setDescripcion(model.getDescripcion());
+		soapModel.setPreguntaId(model.getPreguntaId());
 		soapModel.setRespuestaSeleccionada(model.getRespuestaSeleccionada());
 
 		return soapModel;
@@ -87,13 +88,14 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 
 	public DetalleRepuestaReclutamientoPK getPrimaryKey() {
 		return new DetalleRepuestaReclutamientoPK(_detalleRepsuestaId,
-			_evaluacionId, _fasePostulacionId);
+			_evaluacionId, _fasePostulacionId, _preguntaId);
 	}
 
 	public void setPrimaryKey(DetalleRepuestaReclutamientoPK pk) {
 		setDetalleRepsuestaId(pk.detalleRepsuestaId);
 		setEvaluacionId(pk.evaluacionId);
 		setFasePostulacionId(pk.fasePostulacionId);
+		setPreguntaId(pk.preguntaId);
 	}
 
 	public long getDetalleRepsuestaId() {
@@ -128,6 +130,14 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 		_descripcion = descripcion;
 	}
 
+	public long getPreguntaId() {
+		return _preguntaId;
+	}
+
+	public void setPreguntaId(long preguntaId) {
+		_preguntaId = preguntaId;
+	}
+
 	public int getRespuestaSeleccionada() {
 		return _respuestaSeleccionada;
 	}
@@ -140,5 +150,6 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 	private long _evaluacionId;
 	private long _fasePostulacionId;
 	private String _descripcion;
+	private long _preguntaId;
 	private int _respuestaSeleccionada;
 }

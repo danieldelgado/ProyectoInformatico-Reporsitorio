@@ -117,6 +117,7 @@
 			<id name="detalleRepsuestaId" />
 			<id name="evaluacionId" />
 			<id name="fasePostulacionId" />
+			<id name="preguntaId" />
 			<basic name="descripcion" />
 			<basic name="respuestaSeleccionada" />
 			<transient name="modelAttributes" />
@@ -239,6 +240,31 @@
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.FichaIngresoModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.FichaIngresoPK" />
+		<attributes>
+			<id name="fichaingresoId" />
+			<id name="solicitudRequerimientoId" />
+			<basic name="userId" />
+			<basic name="requieroEquipoTecnico" />
+			<basic name="reemplazo" />
+			<basic name="aprobacionFichaIngresoCapitalHumano" />
+			<basic name="aprobacionFichaIngresoOperaciones" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.FuncionModelImpl">
@@ -519,10 +545,6 @@
 			<basic name="lugarTrabajo" />
 			<basic name="categoriaPuestoId" />
 			<basic name="proyecto" />
-			<basic name="requieroEquipoTecnico" />
-			<basic name="reemplazo" />
-			<basic name="aprobacionFichaIngresoCapitalHumano" />
-			<basic name="aprobacionFichaIngresoOperaciones" />
 			<basic name="tiporeclutamiento" />
 			<basic name="estado" />
 			<basic name="activo" />
@@ -662,6 +684,10 @@
 	</entity>
 	<entity class="com.hitss.layer.model.impl.FasePostulacionImpl" name="FasePostulacion">
 		<table name="FasePostulacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.FichaIngresoImpl" name="FichaIngreso">
+		<table name="FichaIngreso" />
 		<attributes />
 	</entity>
 	<entity class="com.hitss.layer.model.impl.FuncionImpl" name="Funcion">

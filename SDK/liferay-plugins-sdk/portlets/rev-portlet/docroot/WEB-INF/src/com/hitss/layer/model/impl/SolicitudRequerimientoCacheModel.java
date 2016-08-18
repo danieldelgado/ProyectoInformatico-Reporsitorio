@@ -38,7 +38,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(63);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(solicitudRequerimientoId);
@@ -80,14 +80,6 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		sb.append(categoriaPuestoId);
 		sb.append(", proyecto=");
 		sb.append(proyecto);
-		sb.append(", requieroEquipoTecnico=");
-		sb.append(requieroEquipoTecnico);
-		sb.append(", reemplazo=");
-		sb.append(reemplazo);
-		sb.append(", aprobacionFichaIngresoCapitalHumano=");
-		sb.append(aprobacionFichaIngresoCapitalHumano);
-		sb.append(", aprobacionFichaIngresoOperaciones=");
-		sb.append(aprobacionFichaIngresoOperaciones);
 		sb.append(", tiporeclutamiento=");
 		sb.append(tiporeclutamiento);
 		sb.append(", estado=");
@@ -178,10 +170,6 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 			solicitudRequerimientoImpl.setProyecto(proyecto);
 		}
 
-		solicitudRequerimientoImpl.setRequieroEquipoTecnico(requieroEquipoTecnico);
-		solicitudRequerimientoImpl.setReemplazo(reemplazo);
-		solicitudRequerimientoImpl.setAprobacionFichaIngresoCapitalHumano(aprobacionFichaIngresoCapitalHumano);
-		solicitudRequerimientoImpl.setAprobacionFichaIngresoOperaciones(aprobacionFichaIngresoOperaciones);
 		solicitudRequerimientoImpl.setTiporeclutamiento(tiporeclutamiento);
 		solicitudRequerimientoImpl.setEstado(estado);
 		solicitudRequerimientoImpl.setActivo(activo);
@@ -230,10 +218,6 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		lugarTrabajo = objectInput.readUTF();
 		categoriaPuestoId = objectInput.readLong();
 		proyecto = objectInput.readUTF();
-		requieroEquipoTecnico = objectInput.readBoolean();
-		reemplazo = objectInput.readBoolean();
-		aprobacionFichaIngresoCapitalHumano = objectInput.readBoolean();
-		aprobacionFichaIngresoOperaciones = objectInput.readBoolean();
 		tiporeclutamiento = objectInput.readLong();
 		estado = objectInput.readLong();
 		activo = objectInput.readBoolean();
@@ -306,10 +290,6 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 			objectOutput.writeUTF(proyecto);
 		}
 
-		objectOutput.writeBoolean(requieroEquipoTecnico);
-		objectOutput.writeBoolean(reemplazo);
-		objectOutput.writeBoolean(aprobacionFichaIngresoCapitalHumano);
-		objectOutput.writeBoolean(aprobacionFichaIngresoOperaciones);
 		objectOutput.writeLong(tiporeclutamiento);
 		objectOutput.writeLong(estado);
 		objectOutput.writeBoolean(activo);
@@ -339,10 +319,6 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	public String lugarTrabajo;
 	public long categoriaPuestoId;
 	public String proyecto;
-	public boolean requieroEquipoTecnico;
-	public boolean reemplazo;
-	public boolean aprobacionFichaIngresoCapitalHumano;
-	public boolean aprobacionFichaIngresoOperaciones;
 	public long tiporeclutamiento;
 	public long estado;
 	public boolean activo;

@@ -64,12 +64,13 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 			{ "evaluacionId", Types.BIGINT },
 			{ "fasePostulacionId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
+			{ "preguntaId", Types.BIGINT },
 			{ "respuestaSeleccionada", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table DetalleRepuestaReclutamiento (detalleRepsuestaId LONG not null,evaluacionId LONG not null,fasePostulacionId LONG not null,descripcion VARCHAR(75) null,respuestaSeleccionada INTEGER,primary key (detalleRepsuestaId, evaluacionId, fasePostulacionId))";
+	public static final String TABLE_SQL_CREATE = "create table DetalleRepuestaReclutamiento (detalleRepsuestaId LONG not null,evaluacionId LONG not null,fasePostulacionId LONG not null,descripcion VARCHAR(75) null,preguntaId LONG not null,respuestaSeleccionada INTEGER,primary key (detalleRepsuestaId, evaluacionId, fasePostulacionId, preguntaId))";
 	public static final String TABLE_SQL_DROP = "drop table DetalleRepuestaReclutamiento";
-	public static final String ORDER_BY_JPQL = " ORDER BY detalleRepuestaReclutamiento.id.detalleRepsuestaId ASC, detalleRepuestaReclutamiento.id.evaluacionId ASC, detalleRepuestaReclutamiento.id.fasePostulacionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DetalleRepuestaReclutamiento.detalleRepsuestaId ASC, DetalleRepuestaReclutamiento.evaluacionId ASC, DetalleRepuestaReclutamiento.fasePostulacionId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY detalleRepuestaReclutamiento.id.detalleRepsuestaId ASC, detalleRepuestaReclutamiento.id.evaluacionId ASC, detalleRepuestaReclutamiento.id.fasePostulacionId ASC, detalleRepuestaReclutamiento.id.preguntaId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY DetalleRepuestaReclutamiento.detalleRepsuestaId ASC, DetalleRepuestaReclutamiento.evaluacionId ASC, DetalleRepuestaReclutamiento.fasePostulacionId ASC, DetalleRepuestaReclutamiento.preguntaId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -99,6 +100,7 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 		model.setEvaluacionId(soapModel.getEvaluacionId());
 		model.setFasePostulacionId(soapModel.getFasePostulacionId());
 		model.setDescripcion(soapModel.getDescripcion());
+		model.setPreguntaId(soapModel.getPreguntaId());
 		model.setRespuestaSeleccionada(soapModel.getRespuestaSeleccionada());
 
 		return model;
@@ -134,7 +136,7 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 	@Override
 	public DetalleRepuestaReclutamientoPK getPrimaryKey() {
 		return new DetalleRepuestaReclutamientoPK(_detalleRepsuestaId,
-			_evaluacionId, _fasePostulacionId);
+			_evaluacionId, _fasePostulacionId, _preguntaId);
 	}
 
 	@Override
@@ -142,12 +144,13 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 		setDetalleRepsuestaId(primaryKey.detalleRepsuestaId);
 		setEvaluacionId(primaryKey.evaluacionId);
 		setFasePostulacionId(primaryKey.fasePostulacionId);
+		setPreguntaId(primaryKey.preguntaId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new DetalleRepuestaReclutamientoPK(_detalleRepsuestaId,
-			_evaluacionId, _fasePostulacionId);
+			_evaluacionId, _fasePostulacionId, _preguntaId);
 	}
 
 	@Override
@@ -173,6 +176,7 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 		attributes.put("evaluacionId", getEvaluacionId());
 		attributes.put("fasePostulacionId", getFasePostulacionId());
 		attributes.put("descripcion", getDescripcion());
+		attributes.put("preguntaId", getPreguntaId());
 		attributes.put("respuestaSeleccionada", getRespuestaSeleccionada());
 
 		return attributes;
@@ -202,6 +206,12 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
+		}
+
+		Long preguntaId = (Long)attributes.get("preguntaId");
+
+		if (preguntaId != null) {
+			setPreguntaId(preguntaId);
 		}
 
 		Integer respuestaSeleccionada = (Integer)attributes.get(
@@ -263,6 +273,17 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 
 	@JSON
 	@Override
+	public long getPreguntaId() {
+		return _preguntaId;
+	}
+
+	@Override
+	public void setPreguntaId(long preguntaId) {
+		_preguntaId = preguntaId;
+	}
+
+	@JSON
+	@Override
 	public int getRespuestaSeleccionada() {
 		return _respuestaSeleccionada;
 	}
@@ -290,6 +311,7 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 		detalleRepuestaReclutamientoImpl.setEvaluacionId(getEvaluacionId());
 		detalleRepuestaReclutamientoImpl.setFasePostulacionId(getFasePostulacionId());
 		detalleRepuestaReclutamientoImpl.setDescripcion(getDescripcion());
+		detalleRepuestaReclutamientoImpl.setPreguntaId(getPreguntaId());
 		detalleRepuestaReclutamientoImpl.setRespuestaSeleccionada(getRespuestaSeleccionada());
 
 		detalleRepuestaReclutamientoImpl.resetOriginalValues();
@@ -355,6 +377,8 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 			detalleRepuestaReclutamientoCacheModel.descripcion = null;
 		}
 
+		detalleRepuestaReclutamientoCacheModel.preguntaId = getPreguntaId();
+
 		detalleRepuestaReclutamientoCacheModel.respuestaSeleccionada = getRespuestaSeleccionada();
 
 		return detalleRepuestaReclutamientoCacheModel;
@@ -362,7 +386,7 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{detalleRepsuestaId=");
 		sb.append(getDetalleRepsuestaId());
@@ -372,6 +396,8 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 		sb.append(getFasePostulacionId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
+		sb.append(", preguntaId=");
+		sb.append(getPreguntaId());
 		sb.append(", respuestaSeleccionada=");
 		sb.append(getRespuestaSeleccionada());
 		sb.append("}");
@@ -381,7 +407,7 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.DetalleRepuestaReclutamiento");
@@ -404,6 +430,10 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>preguntaId</column-name><column-value><![CDATA[");
+		sb.append(getPreguntaId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>respuestaSeleccionada</column-name><column-value><![CDATA[");
 		sb.append(getRespuestaSeleccionada());
 		sb.append("]]></column-value></column>");
@@ -421,6 +451,7 @@ public class DetalleRepuestaReclutamientoModelImpl extends BaseModelImpl<Detalle
 	private long _evaluacionId;
 	private long _fasePostulacionId;
 	private String _descripcion;
+	private long _preguntaId;
 	private int _respuestaSeleccionada;
 	private DetalleRepuestaReclutamiento _escapedModel;
 }

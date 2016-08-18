@@ -24,6 +24,7 @@ import com.hitss.reclutamiento.service.ParametroService;
 import com.hitss.reclutamiento.service.PublicarOfertaService;
 import com.hitss.reclutamiento.service.SolicitudRequerimientoRequisitoService;
 import com.hitss.reclutamiento.util.Constantes;
+import com.hitss.reclutamiento.util.PropiedadMensaje;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -31,6 +32,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
 
 @Service("PublicarOfertaService")
 public class PublicarOfertaServiceImpl implements PublicarOfertaService {
@@ -97,7 +99,7 @@ public class PublicarOfertaServiceImpl implements PublicarOfertaService {
 		solicitudRequerimiento.setCategoriaPuestoId(puestoId);
 		solicitudRequerimiento.setResponsableRRHH(responsable);
 		solicitudRequerimiento.setTiempoContrato(tiempoContrato);
-		solicitudRequerimiento.setEstado(Constantes.PARAMETRO_APROBADO);//creo q no debe ir
+		//solicitudRequerimiento.setEstado(Constantes.PARAMETRO_APROBADO | Constantes.PARAMETRO_PUBLICADO );//creo q no debe ir
 		int total = 0;
 		int records = 0;
 		Long count = null;
@@ -230,26 +232,36 @@ public class PublicarOfertaServiceImpl implements PublicarOfertaService {
 	}
 
 	@Override
-	public SolicitudRequerimientoBean publicarOfertaLaboral(
+	public Map<String, Object> publicarOfertaLaboral(
 			Long solicitudRequerimientoId, String descripcion, User user, boolean publicar ) {
-		SolicitudRequerimientoBean solicitudRequerimientoBean = new SolicitudRequerimientoBean();		
+		SolicitudRequerimientoBean solicitudRequerimientoBean = new SolicitudRequerimientoBean();	
+		Map<String, Object> result = new HashMap<String, Object>();	
 		try {
 			SolicitudRequerimiento sr = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudRequerimientoId);
 			if(publicar){
 				sr.setDescripcionPublicacion(descripcion);
 				sr.setEstado(Constantes.PARAMETRO_PUBLICADO);
+				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("publicar.oferta.mensaje.publicar"), String.valueOf(sr.getSolicitudRequerimientoId())));
 			}else{
-				sr.setEstado(Constantes.PARAMETRO_FECHA_LIMITE_POSTULACION);				
+				sr.setEstado(Constantes.PARAMETRO_FECHA_LIMITE_POSTULACION);		
+				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("publicar.oferta.mensaje.finalizar"), String.valueOf(sr.getSolicitudRequerimientoId())));		
 			}
 			sr.setFechamodifica(new Date());
 			sr.setUsuariomodifica(user.getUserId());
 			sr.setNew(false);
 			SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sr);
 			solicitudRequerimientoBean = getSolicitudRequerimiento(solicitudRequerimientoId);
+			result.put("objeto", solicitudRequerimientoBean);
+			result.put("respuesta", Constantes.TRANSACCION_OK);
+			
 		} catch (PortalException | SystemException e) {
 			_log.error("Error al publicarOfertaLaboral " + e.getMessage(), e);
+			result.put("objeto", solicitudRequerimientoBean);
+			result.put("respuesta", Constantes.TRANSACCION_NO_OK);
+			result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("publicar.oferta.mensaje.error"), String.valueOf(solicitudRequerimientoBean.getSolicitudRequerimientoId())));
+	
 		}
-		return solicitudRequerimientoBean;
+		return result;
 	}
 
 	

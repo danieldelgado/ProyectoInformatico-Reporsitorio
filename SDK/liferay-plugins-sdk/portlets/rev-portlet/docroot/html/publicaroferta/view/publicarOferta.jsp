@@ -17,17 +17,22 @@
 <portlet:renderURL var="regresar">
 	<portlet:param name="action" value="default" />
 </portlet:renderURL>
-<portlet:renderURL var="publicarOferta">
-	<portlet:param name="action" value="publicarOferta" />
-</portlet:renderURL>
-<portlet:renderURL var="finalizarOferta">
-	<portlet:param name="action" value="finalizarOferta" />
-</portlet:renderURL>
+
+<portlet:resourceURL var="publicarOferta" id="publicarOferta" />
 
 <input type="hidden" value="<portlet:namespace/>" />
+
 <input id="<portlet:namespace/>regresar" type="hidden" value="${regresar}" />
 <input id="<portlet:namespace/>publicarOfertaUrl" type="hidden" value="${publicarOferta}" />
-<input id="<portlet:namespace/>finalizarOferta" type="hidden" value="${finalizarOferta}" />
+
+<input id="<portlet:namespace/>popupPublicacionTitulo" type="hidden" value="<liferay-ui:message key="publicar.oferta.mensaje.publicar.popup.titulo" />" />
+<input id="<portlet:namespace/>popupPublicacionMensage" type="hidden" value="<liferay-ui:message key="publicar.oferta.mensaje.publicar.popup.mensaje" />" />
+
+<input id="<portlet:namespace/>popupMensaje" type="hidden" value="<liferay-ui:message key="publicar.oferta.mensaje.publicar" />" />
+<input id="<portlet:namespace/>msgError" type="hidden" value="<liferay-ui:message key="general.form.error" />" />
+
+<input id="<portlet:namespace/>msgAceptar" type="hidden" value="<liferay-ui:message key="general.form.opciones.aceptar" />" />
+<input id="<portlet:namespace/>msgCancelar" type="hidden" value="<liferay-ui:message key="general.form.opciones.cancelar" />" />
 
 <fieldset>
 	<legend>Lista de Solicitudes de Reclutamiento</legend>
@@ -42,10 +47,10 @@
 			</c:if>
 		</div>
 		<div class="offset1 span10">
-			<form id="<portlet:namespace/>buscarSolicitud" class="formulario">
+			<form id="<portlet:namespace/>publicaroferta" class="formulario">
 				<input id="<portlet:namespace/>solicitudReclutamientoId" type="hidden" value="${solicitudReclutamiento.solicitudRequerimientoId}" />
 				<div class="row-fluid">
-					<div class="span5">
+					<div class="span12">
 						<div>
 							<div class="span5">
 								<label>Puesto:</label>
@@ -71,15 +76,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="span1"></div>
-					<div class="span5">
-						<div class="span3">
-							<label>Descripcion:</label>
-						</div>
-						<div class="span9">
-							<textarea id="<portlet:namespace/>descripcion" name="<portlet:namespace/>descripcion" rows="15" cols="">
-								
-								</textarea>
+					<div>
+						<div class="span12">
+							<div class="span12">
+								<label>Descripcion:</label>
+							</div>
+							<div class="span12">
+								<textarea id="<portlet:namespace/>descripcion" class="span12" name="<portlet:namespace/>descripcion" rows="5" cols=""></textarea>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -97,7 +101,7 @@
 				<div class="row">
 					<div class="offset5 span2">
 						<aui:button-row>
-							<a class="btn btn-primary" href="${regresar}"> <liferay-ui:message key="general.form.opciones.guardar" />
+							<a class="btn btn-primary" id="<portlet:namespace/>btnGuardar" href="javascript:void(0)"> <liferay-ui:message key="general.form.opciones.guardar" />
 							</a>
 							<a class="btn btn-primary" href="${regresar}"> <liferay-ui:message key="general.form.opciones.salir" />
 							</a>
@@ -108,3 +112,17 @@
 		</div>
 	</div>
 </fieldset>
+
+<div class="yui3-skin-sam">
+	<div id="<portlet:namespace/>modal"></div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		inicializarFormularioPublicarOferta();
+		listarRequisitos('${requisitoEtiquetaBeans}');
+	});
+</script>
+
+

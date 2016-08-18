@@ -20,12 +20,12 @@
 				( select 
 				  parametroId , descripcion  
 				  from 
-				  revhitsslportal.parametro 
+				  parametro 
 				  where parametroIdpadre = 0 ) padre , 
 				( select 
 				  parametroId, parametroIdpadre, codigo, descripcion, valor, tipodato, activo, usuariocrea, fechacrea, usuariomodifica, fechamodifica
 				  from 
-				  revhitsslportal.parametro 
+				  parametro 
 				  where parametroIdpadre <> 0  ) hijo
 				  where 
 				  hijo.parametroIdpadre =  padre.parametroId

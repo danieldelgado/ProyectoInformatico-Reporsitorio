@@ -39,6 +39,8 @@ import com.hitss.layer.service.ExperienciaLocalServiceUtil;
 import com.hitss.layer.service.ExperienciaServiceUtil;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.FasePostulacionServiceUtil;
+import com.hitss.layer.service.FichaIngresoLocalServiceUtil;
+import com.hitss.layer.service.FichaIngresoServiceUtil;
 import com.hitss.layer.service.FuncionLocalServiceUtil;
 import com.hitss.layer.service.FuncionServiceUtil;
 import com.hitss.layer.service.InformeRetroalimentacionLocalServiceUtil;
@@ -128,6 +130,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			FasePostulacionLocalServiceUtil.clearService();
 
 			FasePostulacionServiceUtil.clearService();
+			FichaIngresoLocalServiceUtil.clearService();
+
+			FichaIngresoServiceUtil.clearService();
 			FuncionLocalServiceUtil.clearService();
 
 			FuncionServiceUtil.clearService();

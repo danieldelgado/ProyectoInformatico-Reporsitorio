@@ -37,6 +37,9 @@
 	<bean id="com.hitss.layer.service.FasePostulacionLocalService" class="com.hitss.layer.service.impl.FasePostulacionLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.FasePostulacionService" class="com.hitss.layer.service.impl.FasePostulacionServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.FasePostulacionPersistence" class="com.hitss.layer.service.persistence.FasePostulacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.FichaIngresoLocalService" class="com.hitss.layer.service.impl.FichaIngresoLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.FichaIngresoService" class="com.hitss.layer.service.impl.FichaIngresoServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.FichaIngresoPersistence" class="com.hitss.layer.service.persistence.FichaIngresoPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.FuncionLocalService" class="com.hitss.layer.service.impl.FuncionLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.FuncionService" class="com.hitss.layer.service.impl.FuncionServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.FuncionPersistence" class="com.hitss.layer.service.persistence.FuncionPersistenceImpl" parent="basePersistence" />

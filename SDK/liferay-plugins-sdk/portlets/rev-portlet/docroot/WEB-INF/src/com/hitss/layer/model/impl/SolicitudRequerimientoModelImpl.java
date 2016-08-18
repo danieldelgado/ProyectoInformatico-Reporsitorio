@@ -85,10 +85,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "lugarTrabajo", Types.VARCHAR },
 			{ "categoriaPuestoId", Types.BIGINT },
 			{ "proyecto", Types.VARCHAR },
-			{ "requieroEquipoTecnico", Types.BOOLEAN },
-			{ "reemplazo", Types.BOOLEAN },
-			{ "aprobacionFichaIngresoCapitalHumano", Types.BOOLEAN },
-			{ "aprobacionFichaIngresoOperaciones", Types.BOOLEAN },
 			{ "tiporeclutamiento", Types.BIGINT },
 			{ "estado", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
@@ -97,7 +93,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,prioridad LONG,motivo VARCHAR(75) null,descripcionPublicacion VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,requieroEquipoTecnico BOOLEAN,reemplazo BOOLEAN,aprobacionFichaIngresoCapitalHumano BOOLEAN,aprobacionFichaIngresoOperaciones BOOLEAN,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,prioridad LONG,motivo VARCHAR(75) null,descripcionPublicacion VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table SolicitudRequerimiento";
 	public static final String ORDER_BY_JPQL = " ORDER BY solicitudRequerimiento.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SolicitudRequerimiento.fechamodifica ASC";
@@ -151,10 +147,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		model.setLugarTrabajo(soapModel.getLugarTrabajo());
 		model.setCategoriaPuestoId(soapModel.getCategoriaPuestoId());
 		model.setProyecto(soapModel.getProyecto());
-		model.setRequieroEquipoTecnico(soapModel.getRequieroEquipoTecnico());
-		model.setReemplazo(soapModel.getReemplazo());
-		model.setAprobacionFichaIngresoCapitalHumano(soapModel.getAprobacionFichaIngresoCapitalHumano());
-		model.setAprobacionFichaIngresoOperaciones(soapModel.getAprobacionFichaIngresoOperaciones());
 		model.setTiporeclutamiento(soapModel.getTiporeclutamiento());
 		model.setEstado(soapModel.getEstado());
 		model.setActivo(soapModel.getActivo());
@@ -260,12 +252,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		attributes.put("lugarTrabajo", getLugarTrabajo());
 		attributes.put("categoriaPuestoId", getCategoriaPuestoId());
 		attributes.put("proyecto", getProyecto());
-		attributes.put("requieroEquipoTecnico", getRequieroEquipoTecnico());
-		attributes.put("reemplazo", getReemplazo());
-		attributes.put("aprobacionFichaIngresoCapitalHumano",
-			getAprobacionFichaIngresoCapitalHumano());
-		attributes.put("aprobacionFichaIngresoOperaciones",
-			getAprobacionFichaIngresoOperaciones());
 		attributes.put("tiporeclutamiento", getTiporeclutamiento());
 		attributes.put("estado", getEstado());
 		attributes.put("activo", getActivo());
@@ -399,33 +385,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 		if (proyecto != null) {
 			setProyecto(proyecto);
-		}
-
-		Boolean requieroEquipoTecnico = (Boolean)attributes.get(
-				"requieroEquipoTecnico");
-
-		if (requieroEquipoTecnico != null) {
-			setRequieroEquipoTecnico(requieroEquipoTecnico);
-		}
-
-		Boolean reemplazo = (Boolean)attributes.get("reemplazo");
-
-		if (reemplazo != null) {
-			setReemplazo(reemplazo);
-		}
-
-		Boolean aprobacionFichaIngresoCapitalHumano = (Boolean)attributes.get(
-				"aprobacionFichaIngresoCapitalHumano");
-
-		if (aprobacionFichaIngresoCapitalHumano != null) {
-			setAprobacionFichaIngresoCapitalHumano(aprobacionFichaIngresoCapitalHumano);
-		}
-
-		Boolean aprobacionFichaIngresoOperaciones = (Boolean)attributes.get(
-				"aprobacionFichaIngresoOperaciones");
-
-		if (aprobacionFichaIngresoOperaciones != null) {
-			setAprobacionFichaIngresoOperaciones(aprobacionFichaIngresoOperaciones);
 		}
 
 		Long tiporeclutamiento = (Long)attributes.get("tiporeclutamiento");
@@ -735,72 +694,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@JSON
 	@Override
-	public boolean getRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
-	}
-
-	@Override
-	public boolean isRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
-	}
-
-	@Override
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico) {
-		_requieroEquipoTecnico = requieroEquipoTecnico;
-	}
-
-	@JSON
-	@Override
-	public boolean getReemplazo() {
-		return _reemplazo;
-	}
-
-	@Override
-	public boolean isReemplazo() {
-		return _reemplazo;
-	}
-
-	@Override
-	public void setReemplazo(boolean reemplazo) {
-		_reemplazo = reemplazo;
-	}
-
-	@JSON
-	@Override
-	public boolean getAprobacionFichaIngresoCapitalHumano() {
-		return _aprobacionFichaIngresoCapitalHumano;
-	}
-
-	@Override
-	public boolean isAprobacionFichaIngresoCapitalHumano() {
-		return _aprobacionFichaIngresoCapitalHumano;
-	}
-
-	@Override
-	public void setAprobacionFichaIngresoCapitalHumano(
-		boolean aprobacionFichaIngresoCapitalHumano) {
-		_aprobacionFichaIngresoCapitalHumano = aprobacionFichaIngresoCapitalHumano;
-	}
-
-	@JSON
-	@Override
-	public boolean getAprobacionFichaIngresoOperaciones() {
-		return _aprobacionFichaIngresoOperaciones;
-	}
-
-	@Override
-	public boolean isAprobacionFichaIngresoOperaciones() {
-		return _aprobacionFichaIngresoOperaciones;
-	}
-
-	@Override
-	public void setAprobacionFichaIngresoOperaciones(
-		boolean aprobacionFichaIngresoOperaciones) {
-		_aprobacionFichaIngresoOperaciones = aprobacionFichaIngresoOperaciones;
-	}
-
-	@JSON
-	@Override
 	public long getTiporeclutamiento() {
 		return _tiporeclutamiento;
 	}
@@ -946,10 +839,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		solicitudRequerimientoImpl.setLugarTrabajo(getLugarTrabajo());
 		solicitudRequerimientoImpl.setCategoriaPuestoId(getCategoriaPuestoId());
 		solicitudRequerimientoImpl.setProyecto(getProyecto());
-		solicitudRequerimientoImpl.setRequieroEquipoTecnico(getRequieroEquipoTecnico());
-		solicitudRequerimientoImpl.setReemplazo(getReemplazo());
-		solicitudRequerimientoImpl.setAprobacionFichaIngresoCapitalHumano(getAprobacionFichaIngresoCapitalHumano());
-		solicitudRequerimientoImpl.setAprobacionFichaIngresoOperaciones(getAprobacionFichaIngresoOperaciones());
 		solicitudRequerimientoImpl.setTiporeclutamiento(getTiporeclutamiento());
 		solicitudRequerimientoImpl.setEstado(getEstado());
 		solicitudRequerimientoImpl.setActivo(getActivo());
@@ -1107,14 +996,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			solicitudRequerimientoCacheModel.proyecto = null;
 		}
 
-		solicitudRequerimientoCacheModel.requieroEquipoTecnico = getRequieroEquipoTecnico();
-
-		solicitudRequerimientoCacheModel.reemplazo = getReemplazo();
-
-		solicitudRequerimientoCacheModel.aprobacionFichaIngresoCapitalHumano = getAprobacionFichaIngresoCapitalHumano();
-
-		solicitudRequerimientoCacheModel.aprobacionFichaIngresoOperaciones = getAprobacionFichaIngresoOperaciones();
-
 		solicitudRequerimientoCacheModel.tiporeclutamiento = getTiporeclutamiento();
 
 		solicitudRequerimientoCacheModel.estado = getEstado();
@@ -1148,7 +1029,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(63);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1190,14 +1071,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		sb.append(getCategoriaPuestoId());
 		sb.append(", proyecto=");
 		sb.append(getProyecto());
-		sb.append(", requieroEquipoTecnico=");
-		sb.append(getRequieroEquipoTecnico());
-		sb.append(", reemplazo=");
-		sb.append(getReemplazo());
-		sb.append(", aprobacionFichaIngresoCapitalHumano=");
-		sb.append(getAprobacionFichaIngresoCapitalHumano());
-		sb.append(", aprobacionFichaIngresoOperaciones=");
-		sb.append(getAprobacionFichaIngresoOperaciones());
 		sb.append(", tiporeclutamiento=");
 		sb.append(getTiporeclutamiento());
 		sb.append(", estado=");
@@ -1219,7 +1092,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(97);
+		StringBundler sb = new StringBundler(85);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1306,22 +1179,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		sb.append(getProyecto());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>requieroEquipoTecnico</column-name><column-value><![CDATA[");
-		sb.append(getRequieroEquipoTecnico());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>reemplazo</column-name><column-value><![CDATA[");
-		sb.append(getReemplazo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>aprobacionFichaIngresoCapitalHumano</column-name><column-value><![CDATA[");
-		sb.append(getAprobacionFichaIngresoCapitalHumano());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>aprobacionFichaIngresoOperaciones</column-name><column-value><![CDATA[");
-		sb.append(getAprobacionFichaIngresoOperaciones());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>tiporeclutamiento</column-name><column-value><![CDATA[");
 		sb.append(getTiporeclutamiento());
 		sb.append("]]></column-value></column>");
@@ -1381,10 +1238,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	private String _lugarTrabajo;
 	private long _categoriaPuestoId;
 	private String _proyecto;
-	private boolean _requieroEquipoTecnico;
-	private boolean _reemplazo;
-	private boolean _aprobacionFichaIngresoCapitalHumano;
-	private boolean _aprobacionFichaIngresoOperaciones;
 	private long _tiporeclutamiento;
 	private long _estado;
 	private long _originalEstado;

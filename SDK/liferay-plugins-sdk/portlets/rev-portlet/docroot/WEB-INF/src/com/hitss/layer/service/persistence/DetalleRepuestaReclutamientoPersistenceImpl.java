@@ -342,6 +342,7 @@ public class DetalleRepuestaReclutamientoPersistenceImpl
 		detalleRepuestaReclutamientoImpl.setEvaluacionId(detalleRepuestaReclutamiento.getEvaluacionId());
 		detalleRepuestaReclutamientoImpl.setFasePostulacionId(detalleRepuestaReclutamiento.getFasePostulacionId());
 		detalleRepuestaReclutamientoImpl.setDescripcion(detalleRepuestaReclutamiento.getDescripcion());
+		detalleRepuestaReclutamientoImpl.setPreguntaId(detalleRepuestaReclutamiento.getPreguntaId());
 		detalleRepuestaReclutamientoImpl.setRespuestaSeleccionada(detalleRepuestaReclutamiento.getRespuestaSeleccionada());
 
 		return detalleRepuestaReclutamientoImpl;

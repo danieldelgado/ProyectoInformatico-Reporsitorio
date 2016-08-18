@@ -48,6 +48,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 	var listacantidad = $("#" + inputFristnamespace + "listacantidad").val();
 	var listaareaSolicitante = $("#" + inputFristnamespace + "listaareaSolicitante").val();
 	var listaresponsableRRHH = $("#" + inputFristnamespace + "listaresponsableRRHH").val();
+	var listafechaemitida = $("#" + inputFristnamespace + "listafechaemitida").val();
 	var listafechalimite = $("#" + inputFristnamespace + "listafechalimite").val();
 	var listatiempocontrato = $("#" + inputFristnamespace + "listatiempocontrato").val();
 	var listacliente = $("#" + inputFristnamespace + "listacliente").val();
@@ -72,6 +73,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			html += '<th>' + listacantidad + '</th>';
 			html += '<th>' + listaareaSolicitante + '</th>';
 			html += '<th>' + listaresponsableRRHH + '</th>';
+			html += '<th>' + listafechaemitida + '</th>';
 			html += '<th>' + listafechalimite + '</th>';
 			html += '<th>' + listatiempocontrato + '</th>';
 			html += '<th>' + listacliente + '</th>';
@@ -101,6 +103,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.cantidadRecursos + '</td>';
 				html += '<td>' + value.strareaSolicitante + '</td>';
 				html += '<td>' + value.strresponsableRRHH + '</td>';
+				html += '<td>' + value.strfechacrea + '</td>';
 				html += '<td>' + value.strfechaLimite + '</td>';
 				html += '<td>' + value.strtiempoContrato + '</td>';
 				html += '<td>' + value.strcliente + '</td>';

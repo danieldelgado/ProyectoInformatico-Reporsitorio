@@ -28,16 +28,16 @@
 		<css-class-wrapper>ActualizarSolicitudRequerimiento-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>EvaluarFechaIngreso</portlet-name>
+		<portlet-name>EvaluarFichaIngreso</portlet-name>
 		<icon>/icon.png</icon>
 		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
 		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
-		<header-portlet-css>/css/evaluarfechaingreso/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/evaluarfechaingreso/main.js</footer-portlet-javascript>
-		<css-class-wrapper>EvaluarFechaIngreso-portlet</css-class-wrapper>
+		<header-portlet-css>/css/evaluarfichaingreso/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/evaluarfichaingreso/main.js</footer-portlet-javascript>
+		<css-class-wrapper>EvaluarFichaIngreso-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>ProgramaEntrevista</portlet-name>

@@ -96,7 +96,8 @@ public class ProgramarEntrevistaServiceImpl implements ProgramarEntrevistaServic
 	}
 
 	@Override
-	public Map<String, Object> listarSolicitudesRequermiento(Long puestoId, Date fechaRegistroInicio, Date fechaRegistrFin, int responsable, int tiempoContrato, int filas, int pagina, String orden, String campoOrden) {
+	public Map<String, Object> listarSolicitudesRequermiento(Long puestoId, Date fechaRegistroInicio, Date fechaRegistrFin, int responsable, int tiempoContrato, int filas,
+			int pagina, String orden, String campoOrden) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		List<SolicitudRequerimientoBean> lista = null;
@@ -104,11 +105,6 @@ public class ProgramarEntrevistaServiceImpl implements ProgramarEntrevistaServic
 		solicitudRequerimiento.setCategoriaPuestoId(puestoId);
 		solicitudRequerimiento.setResponsableRRHH(responsable);
 		solicitudRequerimiento.setTiempoContrato(tiempoContrato);
-		solicitudRequerimiento.setEstado(Constantes.PARAMETRO_FECHA_LIMITE_POSTULACION);// creo
-																						// q
-																						// no
-																						// debe
-																						// ir
 		int total = 0;
 		int records = 0;
 		Long count = null;
@@ -122,7 +118,8 @@ public class ProgramarEntrevistaServiceImpl implements ProgramarEntrevistaServic
 				int init = (filas * pagina - filas);
 				int fin = init + filas;
 				_log.debug("records :" + records + " init:" + init + " fin:" + fin);
-				List<SolicitudRequerimiento> listaSolicitudRequerimientos = SolicitudRequerimientoLocalServiceUtil.listaSolicitudRequerimiento(solicitudRequerimiento, fechaRegistroInicio, fechaRegistrFin, init, fin, orden, campoOrden);
+				List<SolicitudRequerimiento> listaSolicitudRequerimientos = SolicitudRequerimientoLocalServiceUtil.listaSolicitudRequerimiento(solicitudRequerimiento,
+						fechaRegistroInicio, fechaRegistrFin, init, fin, orden, campoOrden);
 				SolicitudRequerimientoBean solicitudRequerimientoBean = null;
 				lista = new ArrayList<SolicitudRequerimientoBean>();
 				for (SolicitudRequerimiento sr : listaSolicitudRequerimientos) {
@@ -215,7 +212,8 @@ public class ProgramarEntrevistaServiceImpl implements ProgramarEntrevistaServic
 			solicitudRequerimientoBean.setProyecto(sr.getProyecto());
 			solicitudRequerimientoBean.setEstado(sr.getEstado());
 
-			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);
+			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService
+					.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);
 			solicitudRequerimientoBean.setRequisitoEtiquetaBeans(listaSolicitudRequerimientoRequisitosExitentes);
 
 			return solicitudRequerimientoBean;
@@ -242,53 +240,62 @@ public class ProgramarEntrevistaServiceImpl implements ProgramarEntrevistaServic
 	@Override
 	public List<UsuarioBean> getListaPostulantes(long companyId, long companyGroupId, Long solicitudRequerimientoId) {
 
-		 List<UsuarioBean> lstReturn = null;
-		try {	
-			
-			List<Postulacion> lst =  PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(solicitudRequerimientoId);
-			long[] userIds = new long[lst.size()];
-			for (int i = 0; i < lst.size(); i++) {
-				userIds[i] = lst.get(i).getUsuarioId();
-			}
-			
-			if(userIds!=null){
-				List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);
-				if(!lstUsuariosPostulantes.isEmpty()){
-					lstReturn =  new ArrayList<UsuarioBean>();
-					User user = null;
-					UsuarioBean usuarioBean = null;
-					Postulacion post = null;
-					FasePostulacion fase = null;
-					for (Usuario usuario : lstUsuariosPostulantes) {
-						user = UserLocalServiceUtil.getUser(usuario.getUserId());	
-						for (Postulacion postulacion : lst) {							
-							if(postulacion.getUsuarioId() == usuario.getUserId()){
-								post = postulacion;
-							}
-						}				
-						fase = FasePostulacionLocalServiceUtil.getLastPostulacion(post.getSolicitudRequerimientoId(), usuario.getUserId());		
-						usuarioBean =  new UsuarioBean();
-						usuarioBean.setUserId(usuario.getUserId());
-						usuarioBean.setFullname(user.getFullName());
-						usuarioBean.setDisponibilidad("");
-						
-						if (Validator.isNotNull(fase)) {
-							usuarioBean.setFasePostulacion(fase.getDescripcion());	
-							usuarioBean.setFechaPostulacion(Util.getStrFecha(fase.getFechaFase()));
-							usuarioBean.setEstado(parametroService.getParametro(fase.getEstado()).getValor());							
-						}else{
-							usuarioBean.setFasePostulacion(StringPool.BLANK);
-							usuarioBean.setFechaPostulacion(StringPool.BLANK);
-							usuarioBean.setEstado(parametroService.getParametro(Constantes.PARAMETRO_FASE_POSTULADO).getValor());	
-						}
-						lstReturn.add(usuarioBean);
-					}	
+		List<UsuarioBean> lstReturn = new ArrayList<UsuarioBean>();
+		try {
+
+			List<Postulacion> lst = PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(solicitudRequerimientoId);
+			System.out.println(lst);
+
+			if (!lst.isEmpty()) {
+				long[] userIds = new long[lst.size()];
+				for (int i = 0; i < lst.size(); i++) {
+					userIds[i] = lst.get(i).getUsuarioId();
 				}
-				
+
+				if (userIds != null) {
+					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);
+					if (!lstUsuariosPostulantes.isEmpty()) {
+						
+						User user = null;
+						UsuarioBean usuarioBean = null;
+						Postulacion post = null;
+						FasePostulacion fase = null;
+						for (Usuario usuario : lstUsuariosPostulantes) {
+							user = UserLocalServiceUtil.getUser(usuario.getUserId());
+							for (Postulacion postulacion : lst) {
+								if (postulacion.getUsuarioId() == usuario.getUserId()) {
+									post = postulacion;
+								}
+							}
+							System.out.println(post);
+							System.out.println(post.getSolicitudRequerimientoId());
+							System.out.println(usuario.getUserId());
+							fase = FasePostulacionLocalServiceUtil.getLastPostulacion(post.getSolicitudRequerimientoId(), usuario.getUserId());
+							usuarioBean = new UsuarioBean();
+							usuarioBean.setUserId(usuario.getUserId());
+							usuarioBean.setFullname(user.getFullName());
+							usuarioBean.setDisponibilidad("");
+
+							if (Validator.isNotNull(fase)) {
+								usuarioBean.setFasePostulacion(fase.getDescripcion());
+								usuarioBean.setFechaPostulacion(Util.getStrFecha(fase.getFechaFase()));
+								usuarioBean.setEstado(parametroService.getParametro(fase.getEstado()).getValor());
+							} else {
+								usuarioBean.setFasePostulacion(StringPool.BLANK);
+								usuarioBean.setFechaPostulacion(StringPool.BLANK);
+								usuarioBean.setEstado(parametroService.getParametro(Constantes.PARAMETRO_FASE_POSTULADO).getValor());
+							}
+							lstReturn.add(usuarioBean);
+						}
+					}
+
+				}
+
 			}
+
 		} catch (SystemException | PortalException e) {
 			_log.error("Error al listarSolicitudesRequermiento " + e.getMessage(), e);
-		} 
+		}
 		return lstReturn;
 	}
 }

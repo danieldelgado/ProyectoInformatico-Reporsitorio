@@ -64,6 +64,7 @@
 		<field name="evaluacionId" type="long" />
 		<field name="fasePostulacionId" type="long" />
 		<field name="descripcion" type="String" />
+		<field name="preguntaId" type="long" />
 		<field name="respuestaSeleccionada" type="int" />
 	</model>
 	<model name="com.hitss.layer.model.Estudio">
@@ -124,6 +125,20 @@
 		<field name="fechaFase" type="Date" />
 		<field name="descripcion" type="String" />
 		<field name="estado" type="long" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechamodifica" type="Date" />
+	</model>
+	<model name="com.hitss.layer.model.FichaIngreso">
+		<field name="fichaingresoId" type="long" />
+		<field name="solicitudRequerimientoId" type="long" />
+		<field name="userId" type="long" />
+		<field name="requieroEquipoTecnico" type="boolean" />
+		<field name="reemplazo" type="boolean" />
+		<field name="aprobacionFichaIngresoCapitalHumano" type="boolean" />
+		<field name="aprobacionFichaIngresoOperaciones" type="boolean" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -289,10 +304,6 @@
 		<field name="lugarTrabajo" type="String" />
 		<field name="categoriaPuestoId" type="long" />
 		<field name="proyecto" type="String" />
-		<field name="requieroEquipoTecnico" type="boolean" />
-		<field name="reemplazo" type="boolean" />
-		<field name="aprobacionFichaIngresoCapitalHumano" type="boolean" />
-		<field name="aprobacionFichaIngresoOperaciones" type="boolean" />
 		<field name="tiporeclutamiento" type="long" />
 		<field name="estado" type="long" />
 		<field name="activo" type="boolean" />

@@ -93,7 +93,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_BY_S_F_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionModelImpl.FINDER_CACHE_ENABLED,
 			FasePostulacionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByBy_S_F_u",
+			"findByBy_S_F_U",
 			new String[] {
 				Long.class.getName(), Long.class.getName(), Long.class.getName(),
 				
@@ -104,7 +104,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 		new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionModelImpl.FINDER_CACHE_ENABLED,
 			FasePostulacionImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByBy_S_F_u",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByBy_S_F_U",
 			new String[] {
 				Long.class.getName(), Long.class.getName(), Long.class.getName()
 			},
@@ -114,7 +114,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 			FasePostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_BY_S_F_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S_F_u",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S_F_U",
 			new String[] {
 				Long.class.getName(), Long.class.getName(), Long.class.getName()
 			});
@@ -129,9 +129,9 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<FasePostulacion> findByBy_S_F_u(long solicitudRequerimientoId,
+	public List<FasePostulacion> findByBy_S_F_U(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId) throws SystemException {
-		return findByBy_S_F_u(solicitudRequerimientoId, fasePostulacionId,
+		return findByBy_S_F_U(solicitudRequerimientoId, fasePostulacionId,
 			usuarioId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -151,10 +151,10 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<FasePostulacion> findByBy_S_F_u(long solicitudRequerimientoId,
+	public List<FasePostulacion> findByBy_S_F_U(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId, int start, int end)
 		throws SystemException {
-		return findByBy_S_F_u(solicitudRequerimientoId, fasePostulacionId,
+		return findByBy_S_F_U(solicitudRequerimientoId, fasePostulacionId,
 			usuarioId, start, end, null);
 	}
 
@@ -175,7 +175,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<FasePostulacion> findByBy_S_F_u(long solicitudRequerimientoId,
+	public List<FasePostulacion> findByBy_S_F_U(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -301,11 +301,11 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FasePostulacion findByBy_S_F_u_First(long solicitudRequerimientoId,
+	public FasePostulacion findByBy_S_F_U_First(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFasePostulacionException, SystemException {
-		FasePostulacion fasePostulacion = fetchByBy_S_F_u_First(solicitudRequerimientoId,
+		FasePostulacion fasePostulacion = fetchByBy_S_F_U_First(solicitudRequerimientoId,
 				fasePostulacionId, usuarioId, orderByComparator);
 
 		if (fasePostulacion != null) {
@@ -341,10 +341,10 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FasePostulacion fetchByBy_S_F_u_First(
+	public FasePostulacion fetchByBy_S_F_U_First(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId,
 		OrderByComparator orderByComparator) throws SystemException {
-		List<FasePostulacion> list = findByBy_S_F_u(solicitudRequerimientoId,
+		List<FasePostulacion> list = findByBy_S_F_U(solicitudRequerimientoId,
 				fasePostulacionId, usuarioId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -366,11 +366,11 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FasePostulacion findByBy_S_F_u_Last(long solicitudRequerimientoId,
+	public FasePostulacion findByBy_S_F_U_Last(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFasePostulacionException, SystemException {
-		FasePostulacion fasePostulacion = fetchByBy_S_F_u_Last(solicitudRequerimientoId,
+		FasePostulacion fasePostulacion = fetchByBy_S_F_U_Last(solicitudRequerimientoId,
 				fasePostulacionId, usuarioId, orderByComparator);
 
 		if (fasePostulacion != null) {
@@ -406,17 +406,17 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FasePostulacion fetchByBy_S_F_u_Last(long solicitudRequerimientoId,
+	public FasePostulacion fetchByBy_S_F_U_Last(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId,
 		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByBy_S_F_u(solicitudRequerimientoId,
+		int count = countByBy_S_F_U(solicitudRequerimientoId,
 				fasePostulacionId, usuarioId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<FasePostulacion> list = findByBy_S_F_u(solicitudRequerimientoId,
+		List<FasePostulacion> list = findByBy_S_F_U(solicitudRequerimientoId,
 				fasePostulacionId, usuarioId, count - 1, count,
 				orderByComparator);
 
@@ -436,9 +436,9 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByBy_S_F_u(long solicitudRequerimientoId,
+	public void removeByBy_S_F_U(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId) throws SystemException {
-		for (FasePostulacion fasePostulacion : findByBy_S_F_u(
+		for (FasePostulacion fasePostulacion : findByBy_S_F_U(
 				solicitudRequerimientoId, fasePostulacionId, usuarioId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(fasePostulacion);
@@ -455,7 +455,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByBy_S_F_u(long solicitudRequerimientoId,
+	public int countByBy_S_F_U(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId) throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_BY_S_F_U;
 

@@ -5,7 +5,7 @@
 	<category name="REV HITSS">
 		<portlet id="ActualizarSolicitudReclutamiento" ></portlet>
 		<portlet id="ActualizarSolicitudRequerimiento" ></portlet>
-		<portlet id="EvaluarFechaIngreso" ></portlet>
+		<portlet id="EvaluarFichaIngreso" ></portlet>
 		<portlet id="EvaluarSolicitudRequerimiento" ></portlet>
 		<portlet id="ProgramaEntrevista" ></portlet>
 		<portlet id="PublicarOferta" ></portlet>

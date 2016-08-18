@@ -1261,10 +1261,6 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		solicitudRequerimientoImpl.setLugarTrabajo(solicitudRequerimiento.getLugarTrabajo());
 		solicitudRequerimientoImpl.setCategoriaPuestoId(solicitudRequerimiento.getCategoriaPuestoId());
 		solicitudRequerimientoImpl.setProyecto(solicitudRequerimiento.getProyecto());
-		solicitudRequerimientoImpl.setRequieroEquipoTecnico(solicitudRequerimiento.isRequieroEquipoTecnico());
-		solicitudRequerimientoImpl.setReemplazo(solicitudRequerimiento.isReemplazo());
-		solicitudRequerimientoImpl.setAprobacionFichaIngresoCapitalHumano(solicitudRequerimiento.isAprobacionFichaIngresoCapitalHumano());
-		solicitudRequerimientoImpl.setAprobacionFichaIngresoOperaciones(solicitudRequerimiento.isAprobacionFichaIngresoOperaciones());
 		solicitudRequerimientoImpl.setTiporeclutamiento(solicitudRequerimiento.getTiporeclutamiento());
 		solicitudRequerimientoImpl.setEstado(solicitudRequerimiento.getEstado());
 		solicitudRequerimientoImpl.setActivo(solicitudRequerimiento.isActivo());

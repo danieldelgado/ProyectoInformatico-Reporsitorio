@@ -115,6 +115,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 					sRequerimiento.setCategoriaPuestoId(solicitudRequerimiento.getPuestoId());
 					sRequerimiento.setCantidadRecursos(solicitudRequerimiento.getCantidadRecursos());
 					sRequerimiento.setAreaSolicitante(solicitudRequerimiento.getAreaSolicitante());
+					sRequerimiento.setFechacrea(solicitudRequerimiento.getFechacrea());
 					sRequerimiento.setFechaLimite(solicitudRequerimiento.getFechaLimite());
 					sRequerimiento.setResponsableRRHH(solicitudRequerimiento.getResponsableRRHH());
 					sRequerimiento.setTiempoContrato(solicitudRequerimiento.getTiempoContrato());
@@ -147,6 +148,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl implements ActualizarSo
 				sRequerimiento.setCategoriaPuestoId(solicitudRequerimiento.getPuestoId());
 				sRequerimiento.setCantidadRecursos(solicitudRequerimiento.getCantidadRecursos());
 				sRequerimiento.setAreaSolicitante(solicitudRequerimiento.getAreaSolicitante());
+				sRequerimiento.setFechacrea(solicitudRequerimiento.getFechacrea());
 				sRequerimiento.setFechaLimite(solicitudRequerimiento.getFechaLimite());
 				sRequerimiento.setResponsableRRHH(solicitudRequerimiento.getResponsableRRHH());
 				sRequerimiento.setTiempoContrato(solicitudRequerimiento.getTiempoContrato());

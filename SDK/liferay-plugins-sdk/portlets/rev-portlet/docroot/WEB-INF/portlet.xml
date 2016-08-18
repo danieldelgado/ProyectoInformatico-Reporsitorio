@@ -95,21 +95,21 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>EvaluarFechaIngreso</portlet-name>
-		<display-name>EvaluarFechaIngreso</display-name>
+		<portlet-name>EvaluarFichaIngreso</portlet-name>
+		<display-name>EvaluarFichaIngreso</display-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/spring/context/evaluarfechaingreso/servlet-context.xml</value>
+			<value>/WEB-INF/spring/context/evaluarfichaingreso/servlet-context.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>EvaluarFechaIngreso</title>
-			<short-title>EvaluarFechaIngreso</short-title>
-			<keywords>EvaluarFechaIngreso</keywords>
+			<title>EvaluarFichaIngreso</title>
+			<short-title>EvaluarFichaIngreso</short-title>
+			<keywords>EvaluarFichaIngreso</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

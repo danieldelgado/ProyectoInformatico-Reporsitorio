@@ -28,6 +28,7 @@ import com.hitss.layer.service.persistence.EvaluacionPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPreguntaPersistence;
 import com.hitss.layer.service.persistence.ExperienciaPersistence;
 import com.hitss.layer.service.persistence.FasePostulacionPersistence;
+import com.hitss.layer.service.persistence.FichaIngresoPersistence;
 import com.hitss.layer.service.persistence.FuncionPersistence;
 import com.hitss.layer.service.persistence.InformeRetroalimentacionPersistence;
 import com.hitss.layer.service.persistence.LogOperacionesPersistence;
@@ -757,6 +758,63 @@ public abstract class ContratoServiceBaseImpl extends BaseServiceImpl
 	public void setFasePostulacionPersistence(
 		FasePostulacionPersistence fasePostulacionPersistence) {
 		this.fasePostulacionPersistence = fasePostulacionPersistence;
+	}
+
+	/**
+	 * Returns the ficha ingreso local service.
+	 *
+	 * @return the ficha ingreso local service
+	 */
+	public com.hitss.layer.service.FichaIngresoLocalService getFichaIngresoLocalService() {
+		return fichaIngresoLocalService;
+	}
+
+	/**
+	 * Sets the ficha ingreso local service.
+	 *
+	 * @param fichaIngresoLocalService the ficha ingreso local service
+	 */
+	public void setFichaIngresoLocalService(
+		com.hitss.layer.service.FichaIngresoLocalService fichaIngresoLocalService) {
+		this.fichaIngresoLocalService = fichaIngresoLocalService;
+	}
+
+	/**
+	 * Returns the ficha ingreso remote service.
+	 *
+	 * @return the ficha ingreso remote service
+	 */
+	public com.hitss.layer.service.FichaIngresoService getFichaIngresoService() {
+		return fichaIngresoService;
+	}
+
+	/**
+	 * Sets the ficha ingreso remote service.
+	 *
+	 * @param fichaIngresoService the ficha ingreso remote service
+	 */
+	public void setFichaIngresoService(
+		com.hitss.layer.service.FichaIngresoService fichaIngresoService) {
+		this.fichaIngresoService = fichaIngresoService;
+	}
+
+	/**
+	 * Returns the ficha ingreso persistence.
+	 *
+	 * @return the ficha ingreso persistence
+	 */
+	public FichaIngresoPersistence getFichaIngresoPersistence() {
+		return fichaIngresoPersistence;
+	}
+
+	/**
+	 * Sets the ficha ingreso persistence.
+	 *
+	 * @param fichaIngresoPersistence the ficha ingreso persistence
+	 */
+	public void setFichaIngresoPersistence(
+		FichaIngresoPersistence fichaIngresoPersistence) {
+		this.fichaIngresoPersistence = fichaIngresoPersistence;
 	}
 
 	/**
@@ -1986,6 +2044,12 @@ public abstract class ContratoServiceBaseImpl extends BaseServiceImpl
 	protected com.hitss.layer.service.FasePostulacionService fasePostulacionService;
 	@BeanReference(type = FasePostulacionPersistence.class)
 	protected FasePostulacionPersistence fasePostulacionPersistence;
+	@BeanReference(type = com.hitss.layer.service.FichaIngresoLocalService.class)
+	protected com.hitss.layer.service.FichaIngresoLocalService fichaIngresoLocalService;
+	@BeanReference(type = com.hitss.layer.service.FichaIngresoService.class)
+	protected com.hitss.layer.service.FichaIngresoService fichaIngresoService;
+	@BeanReference(type = FichaIngresoPersistence.class)
+	protected FichaIngresoPersistence fichaIngresoPersistence;
 	@BeanReference(type = com.hitss.layer.service.FuncionLocalService.class)
 	protected com.hitss.layer.service.FuncionLocalService funcionLocalService;
 	@BeanReference(type = com.hitss.layer.service.FuncionService.class)

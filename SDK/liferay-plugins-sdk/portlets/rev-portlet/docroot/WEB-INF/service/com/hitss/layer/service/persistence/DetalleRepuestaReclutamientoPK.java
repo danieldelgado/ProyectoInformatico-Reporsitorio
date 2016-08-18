@@ -28,15 +28,17 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 	public long detalleRepsuestaId;
 	public long evaluacionId;
 	public long fasePostulacionId;
+	public long preguntaId;
 
 	public DetalleRepuestaReclutamientoPK() {
 	}
 
 	public DetalleRepuestaReclutamientoPK(long detalleRepsuestaId,
-		long evaluacionId, long fasePostulacionId) {
+		long evaluacionId, long fasePostulacionId, long preguntaId) {
 		this.detalleRepsuestaId = detalleRepsuestaId;
 		this.evaluacionId = evaluacionId;
 		this.fasePostulacionId = fasePostulacionId;
+		this.preguntaId = preguntaId;
 	}
 
 	public long getDetalleRepsuestaId() {
@@ -61,6 +63,14 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 
 	public void setFasePostulacionId(long fasePostulacionId) {
 		this.fasePostulacionId = fasePostulacionId;
+	}
+
+	public long getPreguntaId() {
+		return preguntaId;
+	}
+
+	public void setPreguntaId(long preguntaId) {
+		this.preguntaId = preguntaId;
 	}
 
 	@Override
@@ -113,6 +123,20 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 			return value;
 		}
 
+		if (preguntaId < pk.preguntaId) {
+			value = -1;
+		}
+		else if (preguntaId > pk.preguntaId) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
+
+		if (value != 0) {
+			return value;
+		}
+
 		return 0;
 	}
 
@@ -130,7 +154,8 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 
 		if ((detalleRepsuestaId == pk.detalleRepsuestaId) &&
 				(evaluacionId == pk.evaluacionId) &&
-				(fasePostulacionId == pk.fasePostulacionId)) {
+				(fasePostulacionId == pk.fasePostulacionId) &&
+				(preguntaId == pk.preguntaId)) {
 			return true;
 		}
 		else {
@@ -141,12 +166,13 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 	@Override
 	public int hashCode() {
 		return (String.valueOf(detalleRepsuestaId) +
-		String.valueOf(evaluacionId) + String.valueOf(fasePostulacionId)).hashCode();
+		String.valueOf(evaluacionId) + String.valueOf(fasePostulacionId) +
+		String.valueOf(preguntaId)).hashCode();
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(20);
 
 		sb.append(StringPool.OPEN_CURLY_BRACE);
 
@@ -165,6 +191,12 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 		sb.append("fasePostulacionId");
 		sb.append(StringPool.EQUAL);
 		sb.append(fasePostulacionId);
+
+		sb.append(StringPool.COMMA);
+		sb.append(StringPool.SPACE);
+		sb.append("preguntaId");
+		sb.append(StringPool.EQUAL);
+		sb.append(preguntaId);
 
 		sb.append(StringPool.CLOSE_CURLY_BRACE);
 

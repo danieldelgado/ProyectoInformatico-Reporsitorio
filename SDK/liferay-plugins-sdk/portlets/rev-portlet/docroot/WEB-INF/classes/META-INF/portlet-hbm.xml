@@ -14,6 +14,7 @@
 	<import class="com.hitss.layer.model.EvaluacionPregunta" />
 	<import class="com.hitss.layer.model.Experiencia" />
 	<import class="com.hitss.layer.model.FasePostulacion" />
+	<import class="com.hitss.layer.model.FichaIngreso" />
 	<import class="com.hitss.layer.model.Funcion" />
 	<import class="com.hitss.layer.model.InformeRetroalimentacion" />
 	<import class="com.hitss.layer.model.LogOperaciones" />
@@ -110,6 +111,7 @@
 			<key-property name="detalleRepsuestaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 			<key-property name="evaluacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 			<key-property name="fasePostulacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="preguntaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		</composite-id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="respuestaSeleccionada" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
@@ -190,6 +192,23 @@
 		<property name="fechaFase" type="org.hibernate.type.TimestampType" />
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
+		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.hitss.layer.model.impl.FichaIngresoImpl" table="FichaIngreso">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.FichaIngresoPK">
+			<key-property name="fichaingresoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="solicitudRequerimientoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="requieroEquipoTecnico" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="reemplazo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="aprobacionFichaIngresoCapitalHumano" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="aprobacionFichaIngresoOperaciones" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
@@ -394,10 +413,6 @@
 		<property name="lugarTrabajo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="categoriaPuestoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="proyecto" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="requieroEquipoTecnico" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="reemplazo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="aprobacionFichaIngresoCapitalHumano" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="aprobacionFichaIngresoOperaciones" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="tiporeclutamiento" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />

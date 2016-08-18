@@ -31,7 +31,7 @@ public interface PublicarOfertaService {
 
 	List<ParametroBean> getAreas();
 
-	SolicitudRequerimientoBean publicarOfertaLaboral(Long solicitudRequerimientoId, String descripcion,User user, boolean publicar );
+	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, String descripcion,User user, boolean publicar );
 
 
 }

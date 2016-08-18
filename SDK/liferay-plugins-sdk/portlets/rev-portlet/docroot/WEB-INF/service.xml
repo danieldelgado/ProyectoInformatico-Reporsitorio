@@ -18,6 +18,7 @@
 		<column name="cliente" type="long" />
 		<column name="especialidad" type="String" />
 		<column name="meta" type="String" />
+		<column name="fechameta" type="Date" />
 		<column name="prioridad" type="long" />
 		<column name="motivo" type="String" />
 		<column name="descripcionPublicacion" type="String" />
@@ -26,10 +27,6 @@
 		<column name="lugarTrabajo" type="String" />
 		<column name="categoriaPuestoId" type="long" />
 		<column name="proyecto" type="String" />
-		<column name="requieroEquipoTecnico" type="boolean" />
-		<column name="reemplazo" type="boolean" />
-		<column name="aprobacionFichaIngresoCapitalHumano" type="boolean" />
-		<column name="aprobacionFichaIngresoOperaciones" type="boolean" />
 		<column name="tiporeclutamiento" type="long" />
 		<column name="estado" type="long" />
 
@@ -57,6 +54,7 @@
 
 
 	</entity>
+
 
 	<entity name="Funcion" table="Funcion" local-service="true" remote-service="true">
 		<column name="funcionId" type="long" primary="true" />
@@ -125,6 +123,26 @@
 	</entity>
 
 
+	<entity name="FichaIngreso" table="FichaIngreso" local-service="true" remote-service="true">
+		<column name="fichaingresoId" type="long" primary="true" id-type="increment" />
+		<column name="solicitudRequerimientoId" type="long" primary="true" />
+		<column name="userId" type="long" />
+		<column name="requieroEquipoTecnico" type="boolean" />
+		<column name="reemplazo" type="boolean" />
+		<column name="aprobacionFichaIngresoCapitalHumano" type="boolean" />
+		<column name="aprobacionFichaIngresoOperaciones" type="boolean" />
+
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechamodifica" type="Date" />
+
+		<order by="asc">
+			<order-column name="fechamodifica" />
+		</order>
+	</entity>
 
 
 	<entity name="UsuarioRequisito" table="UsuarioRequisito" local-service="true" remote-service="true">
@@ -293,12 +311,12 @@
 
 
 		<column name="evaluaciones" type="Collection" entity="Evaluacion" mapping-table="FasePostulacionEvaluacion" />
-	
+
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
 
-		<finder name="By_S_F_u" return-type="Collection" where="activo=true">
+		<finder name="By_S_F_U" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 			<finder-column name="fasePostulacionId" />
 			<finder-column name="usuarioId" />
@@ -317,6 +335,7 @@
 		<column name="evaluacionId" type="long" primary="true" />
 		<column name="fasePostulacionId" type="long" primary="true" />
 		<column name="descripcion" type="String" />
+		<column name="preguntaId" type="long" primary="true" />
 		<column name="respuestaSeleccionada" type="int" />
 	</entity>
 
@@ -336,7 +355,7 @@
 
 		<column name="fasepostulacion" type="Collection" entity="FasePostulacion" mapping-table="FasePostulacionEvaluacion" />
 
-		
+
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
@@ -361,7 +380,7 @@
 		<column name="preguntaId" type="long" primary="true" id-type="increment" />
 		<column name="descripcion" type="String" />
 
-		
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -382,7 +401,7 @@
 		<column name="descripcion" type="String" />
 		<column name="correcta" type="boolean" />
 
-		
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -409,7 +428,7 @@
 		<column name="valor" type="String" />
 		<column name="tipodato" type="String" />
 
-		
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -439,7 +458,7 @@
 		<column name="usuario" type="String" />
 
 
-		
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -473,9 +492,9 @@
 		<column name="tabla" type="String" />
 		<column name="registroId" type="long" />
 
-	
 
-		
+
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -494,7 +513,7 @@
 		<column name="fechaInicio" type="Date" />
 		<column name="estado" type="long" />
 
-		
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -513,8 +532,8 @@
 		<column name="grupoUsuario" type="String" />
 		<column name="orden" type="int" />
 
-		
-		
+
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -532,8 +551,8 @@
 		<column name="descripcion" type="String" />
 		<column name="estado" type="long" />
 
-		
-		
+
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -576,7 +595,7 @@
 		<column name="aprobadorLider" type="boolean" />
 		<column name="jerarquiaEvaluar" type="long" />
 
-	
+
 
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
@@ -596,7 +615,7 @@
 		<column name="evidencia" type="String" />
 		<column name="objetivo" type="String" />
 
-	
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -618,8 +637,8 @@
 		<column name="titulo" type="String" />
 		<column name="descripcion" type="String" />
 
-	
-	
+
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />

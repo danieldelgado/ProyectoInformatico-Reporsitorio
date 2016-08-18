@@ -128,10 +128,6 @@
 					<div class="offset4 span5">
 						<aui:button-row>
 							<button id="<portlet:namespace/>btnBuscar" class="btn btn-primary" type="button">Buscar</button>
-
-
-							<a class="btn btn-primary" href="${listarPostulantes}">listarPostulantes</a>
-
 						</aui:button-row>
 					</div>
 				</div>

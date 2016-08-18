@@ -36,7 +36,7 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{detalleRepsuestaId=");
 		sb.append(detalleRepsuestaId);
@@ -46,6 +46,8 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 		sb.append(fasePostulacionId);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
+		sb.append(", preguntaId=");
+		sb.append(preguntaId);
 		sb.append(", respuestaSeleccionada=");
 		sb.append(respuestaSeleccionada);
 		sb.append("}");
@@ -68,6 +70,7 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 			detalleRepuestaReclutamientoImpl.setDescripcion(descripcion);
 		}
 
+		detalleRepuestaReclutamientoImpl.setPreguntaId(preguntaId);
 		detalleRepuestaReclutamientoImpl.setRespuestaSeleccionada(respuestaSeleccionada);
 
 		detalleRepuestaReclutamientoImpl.resetOriginalValues();
@@ -81,6 +84,7 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 		evaluacionId = objectInput.readLong();
 		fasePostulacionId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
+		preguntaId = objectInput.readLong();
 		respuestaSeleccionada = objectInput.readInt();
 	}
 
@@ -98,6 +102,7 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 			objectOutput.writeUTF(descripcion);
 		}
 
+		objectOutput.writeLong(preguntaId);
 		objectOutput.writeInt(respuestaSeleccionada);
 	}
 
@@ -105,5 +110,6 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 	public long evaluacionId;
 	public long fasePostulacionId;
 	public String descripcion;
+	public long preguntaId;
 	public int respuestaSeleccionada;
 }

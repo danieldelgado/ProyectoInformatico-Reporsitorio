@@ -71,12 +71,6 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 		attributes.put("lugarTrabajo", getLugarTrabajo());
 		attributes.put("categoriaPuestoId", getCategoriaPuestoId());
 		attributes.put("proyecto", getProyecto());
-		attributes.put("requieroEquipoTecnico", getRequieroEquipoTecnico());
-		attributes.put("reemplazo", getReemplazo());
-		attributes.put("aprobacionFichaIngresoCapitalHumano",
-			getAprobacionFichaIngresoCapitalHumano());
-		attributes.put("aprobacionFichaIngresoOperaciones",
-			getAprobacionFichaIngresoOperaciones());
 		attributes.put("tiporeclutamiento", getTiporeclutamiento());
 		attributes.put("estado", getEstado());
 		attributes.put("activo", getActivo());
@@ -210,33 +204,6 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 
 		if (proyecto != null) {
 			setProyecto(proyecto);
-		}
-
-		Boolean requieroEquipoTecnico = (Boolean)attributes.get(
-				"requieroEquipoTecnico");
-
-		if (requieroEquipoTecnico != null) {
-			setRequieroEquipoTecnico(requieroEquipoTecnico);
-		}
-
-		Boolean reemplazo = (Boolean)attributes.get("reemplazo");
-
-		if (reemplazo != null) {
-			setReemplazo(reemplazo);
-		}
-
-		Boolean aprobacionFichaIngresoCapitalHumano = (Boolean)attributes.get(
-				"aprobacionFichaIngresoCapitalHumano");
-
-		if (aprobacionFichaIngresoCapitalHumano != null) {
-			setAprobacionFichaIngresoCapitalHumano(aprobacionFichaIngresoCapitalHumano);
-		}
-
-		Boolean aprobacionFichaIngresoOperaciones = (Boolean)attributes.get(
-				"aprobacionFichaIngresoOperaciones");
-
-		if (aprobacionFichaIngresoOperaciones != null) {
-			setAprobacionFichaIngresoOperaciones(aprobacionFichaIngresoOperaciones);
 		}
 
 		Long tiporeclutamiento = (Long)attributes.get("tiporeclutamiento");
@@ -701,128 +668,6 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	@Override
 	public void setProyecto(java.lang.String proyecto) {
 		_solicitudRequerimiento.setProyecto(proyecto);
-	}
-
-	/**
-	* Returns the requiero equipo tecnico of this solicitud requerimiento.
-	*
-	* @return the requiero equipo tecnico of this solicitud requerimiento
-	*/
-	@Override
-	public boolean getRequieroEquipoTecnico() {
-		return _solicitudRequerimiento.getRequieroEquipoTecnico();
-	}
-
-	/**
-	* Returns <code>true</code> if this solicitud requerimiento is requiero equipo tecnico.
-	*
-	* @return <code>true</code> if this solicitud requerimiento is requiero equipo tecnico; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isRequieroEquipoTecnico() {
-		return _solicitudRequerimiento.isRequieroEquipoTecnico();
-	}
-
-	/**
-	* Sets whether this solicitud requerimiento is requiero equipo tecnico.
-	*
-	* @param requieroEquipoTecnico the requiero equipo tecnico of this solicitud requerimiento
-	*/
-	@Override
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico) {
-		_solicitudRequerimiento.setRequieroEquipoTecnico(requieroEquipoTecnico);
-	}
-
-	/**
-	* Returns the reemplazo of this solicitud requerimiento.
-	*
-	* @return the reemplazo of this solicitud requerimiento
-	*/
-	@Override
-	public boolean getReemplazo() {
-		return _solicitudRequerimiento.getReemplazo();
-	}
-
-	/**
-	* Returns <code>true</code> if this solicitud requerimiento is reemplazo.
-	*
-	* @return <code>true</code> if this solicitud requerimiento is reemplazo; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isReemplazo() {
-		return _solicitudRequerimiento.isReemplazo();
-	}
-
-	/**
-	* Sets whether this solicitud requerimiento is reemplazo.
-	*
-	* @param reemplazo the reemplazo of this solicitud requerimiento
-	*/
-	@Override
-	public void setReemplazo(boolean reemplazo) {
-		_solicitudRequerimiento.setReemplazo(reemplazo);
-	}
-
-	/**
-	* Returns the aprobacion ficha ingreso capital humano of this solicitud requerimiento.
-	*
-	* @return the aprobacion ficha ingreso capital humano of this solicitud requerimiento
-	*/
-	@Override
-	public boolean getAprobacionFichaIngresoCapitalHumano() {
-		return _solicitudRequerimiento.getAprobacionFichaIngresoCapitalHumano();
-	}
-
-	/**
-	* Returns <code>true</code> if this solicitud requerimiento is aprobacion ficha ingreso capital humano.
-	*
-	* @return <code>true</code> if this solicitud requerimiento is aprobacion ficha ingreso capital humano; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isAprobacionFichaIngresoCapitalHumano() {
-		return _solicitudRequerimiento.isAprobacionFichaIngresoCapitalHumano();
-	}
-
-	/**
-	* Sets whether this solicitud requerimiento is aprobacion ficha ingreso capital humano.
-	*
-	* @param aprobacionFichaIngresoCapitalHumano the aprobacion ficha ingreso capital humano of this solicitud requerimiento
-	*/
-	@Override
-	public void setAprobacionFichaIngresoCapitalHumano(
-		boolean aprobacionFichaIngresoCapitalHumano) {
-		_solicitudRequerimiento.setAprobacionFichaIngresoCapitalHumano(aprobacionFichaIngresoCapitalHumano);
-	}
-
-	/**
-	* Returns the aprobacion ficha ingreso operaciones of this solicitud requerimiento.
-	*
-	* @return the aprobacion ficha ingreso operaciones of this solicitud requerimiento
-	*/
-	@Override
-	public boolean getAprobacionFichaIngresoOperaciones() {
-		return _solicitudRequerimiento.getAprobacionFichaIngresoOperaciones();
-	}
-
-	/**
-	* Returns <code>true</code> if this solicitud requerimiento is aprobacion ficha ingreso operaciones.
-	*
-	* @return <code>true</code> if this solicitud requerimiento is aprobacion ficha ingreso operaciones; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isAprobacionFichaIngresoOperaciones() {
-		return _solicitudRequerimiento.isAprobacionFichaIngresoOperaciones();
-	}
-
-	/**
-	* Sets whether this solicitud requerimiento is aprobacion ficha ingreso operaciones.
-	*
-	* @param aprobacionFichaIngresoOperaciones the aprobacion ficha ingreso operaciones of this solicitud requerimiento
-	*/
-	@Override
-	public void setAprobacionFichaIngresoOperaciones(
-		boolean aprobacionFichaIngresoOperaciones) {
-		_solicitudRequerimiento.setAprobacionFichaIngresoOperaciones(aprobacionFichaIngresoOperaciones);
 	}
 
 	/**

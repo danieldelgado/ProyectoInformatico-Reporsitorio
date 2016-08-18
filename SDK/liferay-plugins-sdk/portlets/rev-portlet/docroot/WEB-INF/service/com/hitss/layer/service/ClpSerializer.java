@@ -26,6 +26,7 @@ import com.hitss.layer.model.EvaluacionClp;
 import com.hitss.layer.model.EvaluacionPreguntaClp;
 import com.hitss.layer.model.ExperienciaClp;
 import com.hitss.layer.model.FasePostulacionClp;
+import com.hitss.layer.model.FichaIngresoClp;
 import com.hitss.layer.model.FuncionClp;
 import com.hitss.layer.model.InformeRetroalimentacionClp;
 import com.hitss.layer.model.LogOperacionesClp;
@@ -178,6 +179,10 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(FasePostulacionClp.class.getName())) {
 			return translateInputFasePostulacion(oldModel);
+		}
+
+		if (oldModelClassName.equals(FichaIngresoClp.class.getName())) {
+			return translateInputFichaIngreso(oldModel);
 		}
 
 		if (oldModelClassName.equals(FuncionClp.class.getName())) {
@@ -384,6 +389,16 @@ public class ClpSerializer {
 		FasePostulacionClp oldClpModel = (FasePostulacionClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getFasePostulacionRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputFichaIngreso(BaseModel<?> oldModel) {
+		FichaIngresoClp oldClpModel = (FichaIngresoClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getFichaIngresoRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -990,6 +1005,43 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.hitss.layer.model.impl.FasePostulacionImpl")) {
 			return translateOutputFasePostulacion(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.hitss.layer.model.impl.FichaIngresoImpl")) {
+			return translateOutputFichaIngreso(oldModel);
 		}
 		else if (oldModelClassName.endsWith("Clp")) {
 			try {
@@ -1781,6 +1833,10 @@ public class ClpSerializer {
 			return new com.hitss.layer.NoSuchFasePostulacionException();
 		}
 
+		if (className.equals("com.hitss.layer.NoSuchFichaIngresoException")) {
+			return new com.hitss.layer.NoSuchFichaIngresoException();
+		}
+
 		if (className.equals("com.hitss.layer.NoSuchFuncionException")) {
 			return new com.hitss.layer.NoSuchFuncionException();
 		}
@@ -1978,6 +2034,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setFasePostulacionRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputFichaIngreso(BaseModel<?> oldModel) {
+		FichaIngresoClp newModel = new FichaIngresoClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setFichaIngresoRemoteModel(oldModel);
 
 		return newModel;
 	}

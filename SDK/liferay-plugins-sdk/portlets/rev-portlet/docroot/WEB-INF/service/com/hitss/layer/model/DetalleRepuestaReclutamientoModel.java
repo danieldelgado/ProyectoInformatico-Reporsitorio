@@ -117,6 +117,20 @@ public interface DetalleRepuestaReclutamientoModel extends BaseModel<DetalleRepu
 	public void setDescripcion(String descripcion);
 
 	/**
+	 * Returns the pregunta ID of this detalle repuesta reclutamiento.
+	 *
+	 * @return the pregunta ID of this detalle repuesta reclutamiento
+	 */
+	public long getPreguntaId();
+
+	/**
+	 * Sets the pregunta ID of this detalle repuesta reclutamiento.
+	 *
+	 * @param preguntaId the pregunta ID of this detalle repuesta reclutamiento
+	 */
+	public void setPreguntaId(long preguntaId);
+
+	/**
 	 * Returns the respuesta seleccionada of this detalle repuesta reclutamiento.
 	 *
 	 * @return the respuesta seleccionada of this detalle repuesta reclutamiento

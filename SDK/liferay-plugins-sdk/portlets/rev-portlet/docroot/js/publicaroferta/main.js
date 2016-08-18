@@ -1,5 +1,8 @@
 
 var inputFristnamespace = null;
+var formvalid = true;
+var modalconfirmacion = null;
+
 $(document).ready(function() {
 	init();
 });
@@ -102,11 +105,12 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>';
 				html += '	<div class="btn-group">';
 
-				if (value.estado == 76) {
-					html += '		<a class="btn btn-danger" href="' + urls["finalizarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionFinalizarOferta + ' </a>';
+				if (value.estado == 75) {
+					html += '		<a class="btn btn-primary finalizarPublicacion" data="' + value.solicitudRequerimientoId + '" href="javascript:void();">' + listaOpcionFinalizarOferta + ' </a>';
+					//html += '		<a class="btn btn-danger" href="' + urls["finalizarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionFinalizarOferta + ' </a>';
 				}
 
-				if (value.estado == 75) {
+				if (value.estado == 76) {
 					html += '		<a class="btn btn-primary" href="' + urls["publicarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionPublicarOferta + ' </a>';
 				}
 				
@@ -121,7 +125,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			$(listaSolicitudes).html(html);
 
 			barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesRelutamientoUrl, data, urls);
-
+			finalizarPublicacion();
 		}
 	});
 
@@ -161,8 +165,133 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 	}
 
 }
-function listarRequisitos(requisitoEtiquetaBeans) {
 
+function finalizarPublicacion(){
+	var id = null;
+	var anularSolicitudUrl = $("#" + inputFristnamespace + "finalizarOfertaUrl").val();
+	var modal = null;
+	
+	var titulo = $("#" + inputFristnamespace + "popupFinalizarPublicacionTitulo").val();
+	var mensaje = $("#" + inputFristnamespace + "popupFinalizarPublicacionMensage").val();
+	
+	var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+	var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+	var btnBuscar = $("#" + inputFristnamespace + "btnBuscar");
+
+	var anularOpcions = $(".finalizarPublicacion");
+	$(anularOpcions).click(function() {
+		id = $(this).attr("data");
+		modal.show();
+	});
+
+	AUI().use('aui-modal', function(A) {
+
+		modal = new A.Modal({
+			bodyContent : mensaje,
+			centered : true,
+			destroyOnHide : false,
+			headerContent : "<h5>" + titulo + "</h5>",
+			modal : true,
+			render : '#' + inputFristnamespace + 'modal',
+			resizable : false,
+			visible : false,
+			width : 305
+		}).render();
+
+		modal.addToolbar([ {
+			label : msgCancelar,
+			on : {
+				click : function() {
+					modal.hide();
+				}
+			}
+		}, {
+			label : msgAceptar,
+			on : {
+				click : function() {
+					$.ajax({
+						type : "POST",
+						url : anularSolicitudUrl + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + id,
+						data : {},
+						success : function(data) {
+							modal.hide();
+							data = $.parseJSON(data);
+							console.log(data);
+							var objeto = data["objeto"];
+							console.log(objeto);
+							var respuesta = data["respuesta"];
+							console.log(respuesta);
+							var mensaje = data["mensaje"];
+							console.log(mensaje);
+							var contenedorAlerta = $(".contenedorAlerta");
+							console.log(objeto);
+							mostrarAlerta(contenedorAlerta, titulo, mensaje, "alert-success", function() {
+								$(btnBuscar).click();
+							});
+						}
+					});
+				}
+			}
+		} ]);
+
+	});
+}
+
+function inicializarFormularioPublicarOferta(){
+	init();
+	
+	var formPublicarOferta = $("#" + inputFristnamespace + "publicaroferta");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var solicitudReclutamientoId = inputFristnamespace + "solicitudReclutamientoId";
+
+}
+
+function publicarOfertaLaboral(){
+	
+	var formPublicarOferta = $("#" + inputFristnamespace + "publicaroferta");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var solicitudReclutamientoId = inputFristnamespace + "solicitudReclutamientoId";
+	var publicarOfertaUrl = $("#" + inputFristnamespace + "publicarOfertaUrl").val();
+	var listarSolicitudesUrl = $("#" + inputFristnamespace + "regresar").val();
+		
+	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
+	var msgError = $("#" + inputFristnamespace + "msgError").val();
+	
+	var dataSend = $(formPublicarOferta).serialize();
+	
+	$.ajax({
+		type : "POST",
+		url : publicarOfertaUrl,
+		data : dataSend,
+		success : function(data) {
+			modalconfirmacion.hide();
+			data = $.parseJSON(data);
+			var objeto = data["objeto"];
+			var respuesta = data["respuesta"];
+			var mensaje = data["mensaje"];
+			var contenedorAlerta = $(".contenedorAlerta");
+			listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
+			console.log(popupMensaje);
+			listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
+			console.log(mensaje);
+			listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
+			if (respuesta == 1) {
+				$(btnGuardar).attr("disabled", "disabled");
+				mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+					setTimeout(function() {
+						window.location = listarSolicitudesUrl;
+					}, 1500);
+				});
+			} else {
+				mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+			}
+		}
+	});
+	
+	
+}
+
+function listarRequisitos(requisitoEtiquetaBeans) {
 	init();
 
 	if (requisitoEtiquetaBeans != "") {
@@ -205,3 +334,52 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 	}
 }
 
+
+
+AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+	init();
+
+	if (A.one('#' + inputFristnamespace + 'modal') != null) {
+		var popupconfirmartitulo = $("#" + inputFristnamespace + "popupPublicacionTitulo").val();
+		var popupconfirmarMensage = $("#" + inputFristnamespace + "popupPublicacionMensage").val();
+		var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+		var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+
+		modalconfirmacion = new A.Modal({
+			bodyContent : popupconfirmarMensage,
+			centered : true,
+			destroyOnHide : false,
+			headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+			modal : true,
+			render : '#' + inputFristnamespace + 'modal',
+			resizable : false,
+			visible : false,
+			width : 305
+		}).render();
+
+		modalconfirmacion.addToolbar([ {
+			label : msgCancelar,
+			on : {
+				click : function() {
+					modalconfirmacion.hide();
+				}
+			}
+		}, {
+			label : msgAceptar,
+			on : {
+				click : function() {
+					if (formvalid) {
+						publicarOfertaLaboral();
+					}
+				}
+			}
+		} ]);
+	}
+	if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
+		A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
+			if (formvalid) {
+				modalconfirmacion.show();
+			}
+		});
+	}
+});

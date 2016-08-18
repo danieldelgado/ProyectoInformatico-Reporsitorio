@@ -52,10 +52,6 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		soapModel.setLugarTrabajo(model.getLugarTrabajo());
 		soapModel.setCategoriaPuestoId(model.getCategoriaPuestoId());
 		soapModel.setProyecto(model.getProyecto());
-		soapModel.setRequieroEquipoTecnico(model.getRequieroEquipoTecnico());
-		soapModel.setReemplazo(model.getReemplazo());
-		soapModel.setAprobacionFichaIngresoCapitalHumano(model.getAprobacionFichaIngresoCapitalHumano());
-		soapModel.setAprobacionFichaIngresoOperaciones(model.getAprobacionFichaIngresoOperaciones());
 		soapModel.setTiporeclutamiento(model.getTiporeclutamiento());
 		soapModel.setEstado(model.getEstado());
 		soapModel.setActivo(model.getActivo());
@@ -278,56 +274,6 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		_proyecto = proyecto;
 	}
 
-	public boolean getRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
-	}
-
-	public boolean isRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
-	}
-
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico) {
-		_requieroEquipoTecnico = requieroEquipoTecnico;
-	}
-
-	public boolean getReemplazo() {
-		return _reemplazo;
-	}
-
-	public boolean isReemplazo() {
-		return _reemplazo;
-	}
-
-	public void setReemplazo(boolean reemplazo) {
-		_reemplazo = reemplazo;
-	}
-
-	public boolean getAprobacionFichaIngresoCapitalHumano() {
-		return _aprobacionFichaIngresoCapitalHumano;
-	}
-
-	public boolean isAprobacionFichaIngresoCapitalHumano() {
-		return _aprobacionFichaIngresoCapitalHumano;
-	}
-
-	public void setAprobacionFichaIngresoCapitalHumano(
-		boolean aprobacionFichaIngresoCapitalHumano) {
-		_aprobacionFichaIngresoCapitalHumano = aprobacionFichaIngresoCapitalHumano;
-	}
-
-	public boolean getAprobacionFichaIngresoOperaciones() {
-		return _aprobacionFichaIngresoOperaciones;
-	}
-
-	public boolean isAprobacionFichaIngresoOperaciones() {
-		return _aprobacionFichaIngresoOperaciones;
-	}
-
-	public void setAprobacionFichaIngresoOperaciones(
-		boolean aprobacionFichaIngresoOperaciones) {
-		_aprobacionFichaIngresoOperaciones = aprobacionFichaIngresoOperaciones;
-	}
-
 	public long getTiporeclutamiento() {
 		return _tiporeclutamiento;
 	}
@@ -408,10 +354,6 @@ public class SolicitudRequerimientoSoap implements Serializable {
 	private String _lugarTrabajo;
 	private long _categoriaPuestoId;
 	private String _proyecto;
-	private boolean _requieroEquipoTecnico;
-	private boolean _reemplazo;
-	private boolean _aprobacionFichaIngresoCapitalHumano;
-	private boolean _aprobacionFichaIngresoOperaciones;
 	private long _tiporeclutamiento;
 	private long _estado;
 	private boolean _activo;

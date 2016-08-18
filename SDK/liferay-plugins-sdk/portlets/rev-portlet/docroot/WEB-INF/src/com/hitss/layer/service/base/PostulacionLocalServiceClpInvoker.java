@@ -114,17 +114,17 @@ public class PostulacionLocalServiceClpInvoker {
 				"com.hitss.layer.model.Postulacion"
 			};
 
-		_methodName204 = "getBeanIdentifier";
+		_methodName210 = "getBeanIdentifier";
 
-		_methodParameterTypes204 = new String[] {  };
+		_methodParameterTypes210 = new String[] {  };
 
-		_methodName205 = "setBeanIdentifier";
+		_methodName211 = "setBeanIdentifier";
 
-		_methodParameterTypes205 = new String[] { "java.lang.String" };
+		_methodParameterTypes211 = new String[] { "java.lang.String" };
 
-		_methodName210 = "listaPostulacionedsSolicitud";
+		_methodName216 = "listaPostulacionedsSolicitud";
 
-		_methodParameterTypes210 = new String[] { "long" };
+		_methodParameterTypes216 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,20 +216,20 @@ public class PostulacionLocalServiceClpInvoker {
 			return PostulacionLocalServiceUtil.updatePostulacion((com.hitss.layer.model.Postulacion)arguments[0]);
 		}
 
-		if (_methodName204.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes204, parameterTypes)) {
+		if (_methodName210.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes210, parameterTypes)) {
 			return PostulacionLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName205.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes205, parameterTypes)) {
+		if (_methodName211.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes211, parameterTypes)) {
 			PostulacionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName210.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes210, parameterTypes)) {
+		if (_methodName216.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
 			return PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(((Long)arguments[0]).longValue());
 		}
 
@@ -268,10 +268,10 @@ public class PostulacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName204;
-	private String[] _methodParameterTypes204;
-	private String _methodName205;
-	private String[] _methodParameterTypes205;
 	private String _methodName210;
 	private String[] _methodParameterTypes210;
+	private String _methodName211;
+	private String[] _methodParameterTypes211;
+	private String _methodName216;
+	private String[] _methodParameterTypes216;
 }

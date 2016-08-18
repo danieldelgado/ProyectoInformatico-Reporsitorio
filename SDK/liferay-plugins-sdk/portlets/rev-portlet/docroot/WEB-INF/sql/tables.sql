@@ -67,8 +67,9 @@ create table DetalleRepuestaReclutamiento (
 	evaluacionId LONG not null,
 	fasePostulacionId LONG not null,
 	descripcion VARCHAR(75) null,
+	preguntaId LONG not null,
 	respuestaSeleccionada INTEGER,
-	primary key (detalleRepsuestaId, evaluacionId, fasePostulacionId)
+	primary key (detalleRepsuestaId, evaluacionId, fasePostulacionId, preguntaId)
 );
 
 create table Estudio (
@@ -140,6 +141,22 @@ create table FasePostulacion (
 	fechacrea DATE null,
 	usuariomodifica LONG,
 	fechamodifica DATE null
+);
+
+create table FichaIngreso (
+	fichaingresoId LONG not null,
+	solicitudRequerimientoId LONG not null,
+	userId LONG,
+	requieroEquipoTecnico BOOLEAN,
+	reemplazo BOOLEAN,
+	aprobacionFichaIngresoCapitalHumano BOOLEAN,
+	aprobacionFichaIngresoOperaciones BOOLEAN,
+	activo BOOLEAN,
+	usuariocrea LONG,
+	fechacrea DATE null,
+	usuariomodifica LONG,
+	fechamodifica DATE null,
+	primary key (fichaingresoId, solicitudRequerimientoId)
 );
 
 create table Funcion (
@@ -340,10 +357,6 @@ create table SolicitudRequerimiento (
 	lugarTrabajo VARCHAR(75) null,
 	categoriaPuestoId LONG,
 	proyecto VARCHAR(75) null,
-	requieroEquipoTecnico BOOLEAN,
-	reemplazo BOOLEAN,
-	aprobacionFichaIngresoCapitalHumano BOOLEAN,
-	aprobacionFichaIngresoOperaciones BOOLEAN,
 	tiporeclutamiento LONG,
 	estado LONG,
 	activo BOOLEAN,
