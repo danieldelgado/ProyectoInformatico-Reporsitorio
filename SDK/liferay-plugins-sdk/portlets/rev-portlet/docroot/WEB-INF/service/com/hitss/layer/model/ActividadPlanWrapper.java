@@ -50,12 +50,11 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
+		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("actividadPlanId", getActividadPlanId());
 		attributes.put("planAccionId", getPlanAccionId());
-		attributes.put("responsable", getResponsable());
 		attributes.put("actividad", getActividad());
 		attributes.put("evidencia", getEvidencia());
-		attributes.put("objetivo", getObjetivo());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -67,6 +66,13 @@ public class ActividadPlanWrapper implements ActividadPlan,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long actividadCronogramaId = (Long)attributes.get(
+				"actividadCronogramaId");
+
+		if (actividadCronogramaId != null) {
+			setActividadCronogramaId(actividadCronogramaId);
+		}
+
 		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
 
 		if (actividadPlanId != null) {
@@ -79,12 +85,6 @@ public class ActividadPlanWrapper implements ActividadPlan,
 			setPlanAccionId(planAccionId);
 		}
 
-		Long responsable = (Long)attributes.get("responsable");
-
-		if (responsable != null) {
-			setResponsable(responsable);
-		}
-
 		String actividad = (String)attributes.get("actividad");
 
 		if (actividad != null) {
@@ -95,12 +95,6 @@ public class ActividadPlanWrapper implements ActividadPlan,
 
 		if (evidencia != null) {
 			setEvidencia(evidencia);
-		}
-
-		String objetivo = (String)attributes.get("objetivo");
-
-		if (objetivo != null) {
-			setObjetivo(objetivo);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -140,7 +134,7 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	* @return the primary key of this actividad plan
 	*/
 	@Override
-	public long getPrimaryKey() {
+	public com.hitss.layer.service.persistence.ActividadPlanPK getPrimaryKey() {
 		return _actividadPlan.getPrimaryKey();
 	}
 
@@ -150,8 +144,29 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	* @param primaryKey the primary key of this actividad plan
 	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(
+		com.hitss.layer.service.persistence.ActividadPlanPK primaryKey) {
 		_actividadPlan.setPrimaryKey(primaryKey);
+	}
+
+	/**
+	* Returns the actividad cronograma ID of this actividad plan.
+	*
+	* @return the actividad cronograma ID of this actividad plan
+	*/
+	@Override
+	public long getActividadCronogramaId() {
+		return _actividadPlan.getActividadCronogramaId();
+	}
+
+	/**
+	* Sets the actividad cronograma ID of this actividad plan.
+	*
+	* @param actividadCronogramaId the actividad cronograma ID of this actividad plan
+	*/
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadPlan.setActividadCronogramaId(actividadCronogramaId);
 	}
 
 	/**
@@ -195,26 +210,6 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	}
 
 	/**
-	* Returns the responsable of this actividad plan.
-	*
-	* @return the responsable of this actividad plan
-	*/
-	@Override
-	public long getResponsable() {
-		return _actividadPlan.getResponsable();
-	}
-
-	/**
-	* Sets the responsable of this actividad plan.
-	*
-	* @param responsable the responsable of this actividad plan
-	*/
-	@Override
-	public void setResponsable(long responsable) {
-		_actividadPlan.setResponsable(responsable);
-	}
-
-	/**
 	* Returns the actividad of this actividad plan.
 	*
 	* @return the actividad of this actividad plan
@@ -252,26 +247,6 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	@Override
 	public void setEvidencia(java.lang.String evidencia) {
 		_actividadPlan.setEvidencia(evidencia);
-	}
-
-	/**
-	* Returns the objetivo of this actividad plan.
-	*
-	* @return the objetivo of this actividad plan
-	*/
-	@Override
-	public java.lang.String getObjetivo() {
-		return _actividadPlan.getObjetivo();
-	}
-
-	/**
-	* Sets the objetivo of this actividad plan.
-	*
-	* @param objetivo the objetivo of this actividad plan
-	*/
-	@Override
-	public void setObjetivo(java.lang.String objetivo) {
-		_actividadPlan.setObjetivo(objetivo);
 	}
 
 	/**

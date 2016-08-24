@@ -63,10 +63,10 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 			{ "usuarioId", Types.BIGINT },
 			{ "evaluacionId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table UsuarioEvaluacion (actividadCronogramaId LONG not null,usuarioId LONG not null,evaluacionId LONG not null,primary key (actividadCronogramaId, usuarioId, evaluacionId))";
+	public static final String TABLE_SQL_CREATE = "create table UsuarioEvaluacion (actividadCronogramaId LONG,usuarioId LONG not null,evaluacionId LONG not null,primary key (usuarioId, evaluacionId))";
 	public static final String TABLE_SQL_DROP = "drop table UsuarioEvaluacion";
-	public static final String ORDER_BY_JPQL = " ORDER BY usuarioEvaluacion.id.actividadCronogramaId ASC, usuarioEvaluacion.id.usuarioId ASC, usuarioEvaluacion.id.evaluacionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY UsuarioEvaluacion.actividadCronogramaId ASC, UsuarioEvaluacion.usuarioId ASC, UsuarioEvaluacion.evaluacionId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY usuarioEvaluacion.id.usuarioId ASC, usuarioEvaluacion.id.evaluacionId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY UsuarioEvaluacion.usuarioId ASC, UsuarioEvaluacion.evaluacionId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -127,21 +127,18 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 
 	@Override
 	public UsuarioEvaluacionPK getPrimaryKey() {
-		return new UsuarioEvaluacionPK(_actividadCronogramaId, _usuarioId,
-			_evaluacionId);
+		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
 	}
 
 	@Override
 	public void setPrimaryKey(UsuarioEvaluacionPK primaryKey) {
-		setActividadCronogramaId(primaryKey.actividadCronogramaId);
 		setUsuarioId(primaryKey.usuarioId);
 		setEvaluacionId(primaryKey.evaluacionId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new UsuarioEvaluacionPK(_actividadCronogramaId, _usuarioId,
-			_evaluacionId);
+		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
 	}
 
 	@Override

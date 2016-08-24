@@ -185,10 +185,14 @@ public class PublicarOfertaController {
 		_log.info("publicarOfertaLaboral");
 		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
 		User user = td.getUser();
+		
+		System.out.println(resourceRequest.getParameterMap());
+		
 		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
-		String descripcion = ParamUtil.get(resourceRequest, "descripcion", "");
+		String descripcion = ParamUtil.get(resourceRequest, "descripcionva", "");
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
 			_log.info("solicitudRequerimientoId:"+solicitudRequerimientoId);
+			_log.info("descripcionva:"+descripcion);
 			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, descripcion, user, true);
 			
 			_log.info("result:"+result);

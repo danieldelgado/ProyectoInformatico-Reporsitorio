@@ -117,6 +117,27 @@ public interface PostulacionModel extends BaseModel<Postulacion> {
 	public void setEstado(long estado);
 
 	/**
+	 * Returns the seleccionado of this postulacion.
+	 *
+	 * @return the seleccionado of this postulacion
+	 */
+	public boolean getSeleccionado();
+
+	/**
+	 * Returns <code>true</code> if this postulacion is seleccionado.
+	 *
+	 * @return <code>true</code> if this postulacion is seleccionado; <code>false</code> otherwise
+	 */
+	public boolean isSeleccionado();
+
+	/**
+	 * Sets whether this postulacion is seleccionado.
+	 *
+	 * @param seleccionado the seleccionado of this postulacion
+	 */
+	public void setSeleccionado(boolean seleccionado);
+
+	/**
 	 * Returns the activo of this postulacion.
 	 *
 	 * @return the activo of this postulacion

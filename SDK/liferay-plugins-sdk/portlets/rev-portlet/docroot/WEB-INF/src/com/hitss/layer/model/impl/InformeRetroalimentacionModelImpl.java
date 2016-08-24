@@ -66,9 +66,8 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 	public static final String TABLE_NAME = "InformeRetroalimentacion";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "informeRetroalimentacionId", Types.BIGINT },
-			{ "planAccionId", Types.BIGINT },
+			{ "regisitrarActividadPlanUsuariocoId", Types.BIGINT },
 			{ "usuario", Types.BIGINT },
-			{ "titulo", Types.VARCHAR },
 			{ "descripcion", Types.VARCHAR },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
@@ -76,7 +75,7 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table InformeRetroalimentacion (informeRetroalimentacionId LONG not null primary key,planAccionId LONG,usuario LONG,titulo VARCHAR(75) null,descripcion VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table InformeRetroalimentacion (informeRetroalimentacionId LONG not null primary key,regisitrarActividadPlanUsuariocoId LONG,usuario LONG,descripcion VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table InformeRetroalimentacion";
 	public static final String ORDER_BY_JPQL = " ORDER BY informeRetroalimentacion.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY InformeRetroalimentacion.fechamodifica ASC";
@@ -106,9 +105,8 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		InformeRetroalimentacion model = new InformeRetroalimentacionImpl();
 
 		model.setInformeRetroalimentacionId(soapModel.getInformeRetroalimentacionId());
-		model.setPlanAccionId(soapModel.getPlanAccionId());
+		model.setRegisitrarActividadPlanUsuariocoId(soapModel.getRegisitrarActividadPlanUsuariocoId());
 		model.setUsuario(soapModel.getUsuario());
-		model.setTitulo(soapModel.getTitulo());
 		model.setDescripcion(soapModel.getDescripcion());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
@@ -182,9 +180,9 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 
 		attributes.put("informeRetroalimentacionId",
 			getInformeRetroalimentacionId());
-		attributes.put("planAccionId", getPlanAccionId());
+		attributes.put("regisitrarActividadPlanUsuariocoId",
+			getRegisitrarActividadPlanUsuariocoId());
 		attributes.put("usuario", getUsuario());
-		attributes.put("titulo", getTitulo());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
@@ -204,22 +202,17 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 			setInformeRetroalimentacionId(informeRetroalimentacionId);
 		}
 
-		Long planAccionId = (Long)attributes.get("planAccionId");
+		Long regisitrarActividadPlanUsuariocoId = (Long)attributes.get(
+				"regisitrarActividadPlanUsuariocoId");
 
-		if (planAccionId != null) {
-			setPlanAccionId(planAccionId);
+		if (regisitrarActividadPlanUsuariocoId != null) {
+			setRegisitrarActividadPlanUsuariocoId(regisitrarActividadPlanUsuariocoId);
 		}
 
 		Long usuario = (Long)attributes.get("usuario");
 
 		if (usuario != null) {
 			setUsuario(usuario);
-		}
-
-		String titulo = (String)attributes.get("titulo");
-
-		if (titulo != null) {
-			setTitulo(titulo);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -272,13 +265,14 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 
 	@JSON
 	@Override
-	public long getPlanAccionId() {
-		return _planAccionId;
+	public long getRegisitrarActividadPlanUsuariocoId() {
+		return _regisitrarActividadPlanUsuariocoId;
 	}
 
 	@Override
-	public void setPlanAccionId(long planAccionId) {
-		_planAccionId = planAccionId;
+	public void setRegisitrarActividadPlanUsuariocoId(
+		long regisitrarActividadPlanUsuariocoId) {
+		_regisitrarActividadPlanUsuariocoId = regisitrarActividadPlanUsuariocoId;
 	}
 
 	@JSON
@@ -290,22 +284,6 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 	@Override
 	public void setUsuario(long usuario) {
 		_usuario = usuario;
-	}
-
-	@JSON
-	@Override
-	public String getTitulo() {
-		if (_titulo == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _titulo;
-		}
-	}
-
-	@Override
-	public void setTitulo(String titulo) {
-		_titulo = titulo;
 	}
 
 	@JSON
@@ -412,9 +390,8 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		InformeRetroalimentacionImpl informeRetroalimentacionImpl = new InformeRetroalimentacionImpl();
 
 		informeRetroalimentacionImpl.setInformeRetroalimentacionId(getInformeRetroalimentacionId());
-		informeRetroalimentacionImpl.setPlanAccionId(getPlanAccionId());
+		informeRetroalimentacionImpl.setRegisitrarActividadPlanUsuariocoId(getRegisitrarActividadPlanUsuariocoId());
 		informeRetroalimentacionImpl.setUsuario(getUsuario());
-		informeRetroalimentacionImpl.setTitulo(getTitulo());
 		informeRetroalimentacionImpl.setDescripcion(getDescripcion());
 		informeRetroalimentacionImpl.setActivo(getActivo());
 		informeRetroalimentacionImpl.setUsuariocrea(getUsuariocrea());
@@ -478,17 +455,9 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 
 		informeRetroalimentacionCacheModel.informeRetroalimentacionId = getInformeRetroalimentacionId();
 
-		informeRetroalimentacionCacheModel.planAccionId = getPlanAccionId();
+		informeRetroalimentacionCacheModel.regisitrarActividadPlanUsuariocoId = getRegisitrarActividadPlanUsuariocoId();
 
 		informeRetroalimentacionCacheModel.usuario = getUsuario();
-
-		informeRetroalimentacionCacheModel.titulo = getTitulo();
-
-		String titulo = informeRetroalimentacionCacheModel.titulo;
-
-		if ((titulo != null) && (titulo.length() == 0)) {
-			informeRetroalimentacionCacheModel.titulo = null;
-		}
 
 		informeRetroalimentacionCacheModel.descripcion = getDescripcion();
 
@@ -527,16 +496,14 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{informeRetroalimentacionId=");
 		sb.append(getInformeRetroalimentacionId());
-		sb.append(", planAccionId=");
-		sb.append(getPlanAccionId());
+		sb.append(", regisitrarActividadPlanUsuariocoId=");
+		sb.append(getRegisitrarActividadPlanUsuariocoId());
 		sb.append(", usuario=");
 		sb.append(getUsuario());
-		sb.append(", titulo=");
-		sb.append(getTitulo());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
 		sb.append(", activo=");
@@ -556,7 +523,7 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.InformeRetroalimentacion");
@@ -567,16 +534,12 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 		sb.append(getInformeRetroalimentacionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>planAccionId</column-name><column-value><![CDATA[");
-		sb.append(getPlanAccionId());
+			"<column><column-name>regisitrarActividadPlanUsuariocoId</column-name><column-value><![CDATA[");
+		sb.append(getRegisitrarActividadPlanUsuariocoId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>usuario</column-name><column-value><![CDATA[");
 		sb.append(getUsuario());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>titulo</column-name><column-value><![CDATA[");
-		sb.append(getTitulo());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
@@ -613,9 +576,8 @@ public class InformeRetroalimentacionModelImpl extends BaseModelImpl<InformeRetr
 			InformeRetroalimentacion.class
 		};
 	private long _informeRetroalimentacionId;
-	private long _planAccionId;
+	private long _regisitrarActividadPlanUsuariocoId;
 	private long _usuario;
-	private String _titulo;
 	private String _descripcion;
 	private boolean _activo;
 	private long _usuariocrea;

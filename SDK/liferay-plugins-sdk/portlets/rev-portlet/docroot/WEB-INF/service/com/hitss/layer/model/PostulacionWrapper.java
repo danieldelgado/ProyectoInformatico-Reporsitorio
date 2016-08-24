@@ -54,6 +54,7 @@ public class PostulacionWrapper implements Postulacion,
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("fechaPostulacion", getFechaPostulacion());
 		attributes.put("estado", getEstado());
+		attributes.put("seleccionado", getSeleccionado());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -88,6 +89,12 @@ public class PostulacionWrapper implements Postulacion,
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Boolean seleccionado = (Boolean)attributes.get("seleccionado");
+
+		if (seleccionado != null) {
+			setSeleccionado(seleccionado);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -220,6 +227,36 @@ public class PostulacionWrapper implements Postulacion,
 	@Override
 	public void setEstado(long estado) {
 		_postulacion.setEstado(estado);
+	}
+
+	/**
+	* Returns the seleccionado of this postulacion.
+	*
+	* @return the seleccionado of this postulacion
+	*/
+	@Override
+	public boolean getSeleccionado() {
+		return _postulacion.getSeleccionado();
+	}
+
+	/**
+	* Returns <code>true</code> if this postulacion is seleccionado.
+	*
+	* @return <code>true</code> if this postulacion is seleccionado; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isSeleccionado() {
+		return _postulacion.isSeleccionado();
+	}
+
+	/**
+	* Sets whether this postulacion is seleccionado.
+	*
+	* @param seleccionado the seleccionado of this postulacion
+	*/
+	@Override
+	public void setSeleccionado(boolean seleccionado) {
+		_postulacion.setSeleccionado(seleccionado);
 	}
 
 	/**

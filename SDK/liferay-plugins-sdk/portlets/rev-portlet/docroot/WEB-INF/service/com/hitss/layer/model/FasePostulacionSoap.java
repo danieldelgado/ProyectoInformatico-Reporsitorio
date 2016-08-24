@@ -38,6 +38,9 @@ public class FasePostulacionSoap implements Serializable {
 		soapModel.setFechaFase(model.getFechaFase());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setEstado(model.getEstado());
+		soapModel.setApruebaEntrevista(model.getApruebaEntrevista());
+		soapModel.setPuntuacion(model.getPuntuacion());
+		soapModel.setSalario(model.getSalario());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -153,6 +156,34 @@ public class FasePostulacionSoap implements Serializable {
 		_estado = estado;
 	}
 
+	public boolean getApruebaEntrevista() {
+		return _apruebaEntrevista;
+	}
+
+	public boolean isApruebaEntrevista() {
+		return _apruebaEntrevista;
+	}
+
+	public void setApruebaEntrevista(boolean apruebaEntrevista) {
+		_apruebaEntrevista = apruebaEntrevista;
+	}
+
+	public int getPuntuacion() {
+		return _puntuacion;
+	}
+
+	public void setPuntuacion(int puntuacion) {
+		_puntuacion = puntuacion;
+	}
+
+	public double getSalario() {
+		return _salario;
+	}
+
+	public void setSalario(double salario) {
+		_salario = salario;
+	}
+
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -204,6 +235,9 @@ public class FasePostulacionSoap implements Serializable {
 	private Date _fechaFase;
 	private String _descripcion;
 	private long _estado;
+	private boolean _apruebaEntrevista;
+	private int _puntuacion;
+	private double _salario;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

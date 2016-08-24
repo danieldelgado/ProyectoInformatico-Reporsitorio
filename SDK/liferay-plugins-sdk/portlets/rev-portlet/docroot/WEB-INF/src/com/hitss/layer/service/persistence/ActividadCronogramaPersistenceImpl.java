@@ -172,15 +172,16 @@ public class ActividadCronogramaPersistenceImpl extends BasePersistenceImpl<Acti
 	/**
 	 * Creates a new actividad cronograma with the primary key. Does not add the actividad cronograma to the database.
 	 *
-	 * @param cronogramaId the primary key for the new actividad cronograma
+	 * @param actividadCronogramaPK the primary key for the new actividad cronograma
 	 * @return the new actividad cronograma
 	 */
 	@Override
-	public ActividadCronograma create(long cronogramaId) {
+	public ActividadCronograma create(
+		ActividadCronogramaPK actividadCronogramaPK) {
 		ActividadCronograma actividadCronograma = new ActividadCronogramaImpl();
 
 		actividadCronograma.setNew(true);
-		actividadCronograma.setPrimaryKey(cronogramaId);
+		actividadCronograma.setPrimaryKey(actividadCronogramaPK);
 
 		return actividadCronograma;
 	}
@@ -188,15 +189,16 @@ public class ActividadCronogramaPersistenceImpl extends BasePersistenceImpl<Acti
 	/**
 	 * Removes the actividad cronograma with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param cronogramaId the primary key of the actividad cronograma
+	 * @param actividadCronogramaPK the primary key of the actividad cronograma
 	 * @return the actividad cronograma that was removed
 	 * @throws com.hitss.layer.NoSuchActividadCronogramaException if a actividad cronograma with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public ActividadCronograma remove(long cronogramaId)
+	public ActividadCronograma remove(
+		ActividadCronogramaPK actividadCronogramaPK)
 		throws NoSuchActividadCronogramaException, SystemException {
-		return remove((Serializable)cronogramaId);
+		return remove((Serializable)actividadCronogramaPK);
 	}
 
 	/**
@@ -326,14 +328,22 @@ public class ActividadCronogramaPersistenceImpl extends BasePersistenceImpl<Acti
 		actividadCronogramaImpl.setNew(actividadCronograma.isNew());
 		actividadCronogramaImpl.setPrimaryKey(actividadCronograma.getPrimaryKey());
 
-		actividadCronogramaImpl.setActividadCronogramaId(actividadCronograma.getActividadCronogramaId());
 		actividadCronogramaImpl.setCronogramaId(actividadCronograma.getCronogramaId());
+		actividadCronogramaImpl.setActividadCronogramaId(actividadCronograma.getActividadCronogramaId());
 		actividadCronogramaImpl.setDescripcion(actividadCronograma.getDescripcion());
 		actividadCronogramaImpl.setFechaInicio(actividadCronograma.getFechaInicio());
 		actividadCronogramaImpl.setFechaFin(actividadCronograma.getFechaFin());
-		actividadCronogramaImpl.setCumplido(actividadCronograma.isCumplido());
-		actividadCronogramaImpl.setFinalizado(actividadCronograma.isFinalizado());
+		actividadCronogramaImpl.setCumplidoEvaluacion(actividadCronograma.isCumplidoEvaluacion());
+		actividadCronogramaImpl.setEstado(actividadCronograma.getEstado());
+		actividadCronogramaImpl.setFechaInicioEvaluacion(actividadCronograma.getFechaInicioEvaluacion());
+		actividadCronogramaImpl.setFechaFinEvaluacion(actividadCronograma.getFechaFinEvaluacion());
+		actividadCronogramaImpl.setGrupoUsuario(actividadCronograma.getGrupoUsuario());
 		actividadCronogramaImpl.setTipoActividad(actividadCronograma.getTipoActividad());
+		actividadCronogramaImpl.setAprobadoColaborador(actividadCronograma.getAprobadoColaborador());
+		actividadCronogramaImpl.setJerarquiaEvaluar(actividadCronograma.getJerarquiaEvaluar());
+		actividadCronogramaImpl.setAprobadoLider(actividadCronograma.getAprobadoLider());
+		actividadCronogramaImpl.setUsuarioGerenteId(actividadCronograma.getUsuarioGerenteId());
+		actividadCronogramaImpl.setUsuarioLiderId(actividadCronograma.getUsuarioLiderId());
 		actividadCronogramaImpl.setActivo(actividadCronograma.isActivo());
 		actividadCronogramaImpl.setUsuariocrea(actividadCronograma.getUsuariocrea());
 		actividadCronogramaImpl.setFechacrea(actividadCronograma.getFechacrea());
@@ -371,15 +381,16 @@ public class ActividadCronogramaPersistenceImpl extends BasePersistenceImpl<Acti
 	/**
 	 * Returns the actividad cronograma with the primary key or throws a {@link com.hitss.layer.NoSuchActividadCronogramaException} if it could not be found.
 	 *
-	 * @param cronogramaId the primary key of the actividad cronograma
+	 * @param actividadCronogramaPK the primary key of the actividad cronograma
 	 * @return the actividad cronograma
 	 * @throws com.hitss.layer.NoSuchActividadCronogramaException if a actividad cronograma with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public ActividadCronograma findByPrimaryKey(long cronogramaId)
+	public ActividadCronograma findByPrimaryKey(
+		ActividadCronogramaPK actividadCronogramaPK)
 		throws NoSuchActividadCronogramaException, SystemException {
-		return findByPrimaryKey((Serializable)cronogramaId);
+		return findByPrimaryKey((Serializable)actividadCronogramaPK);
 	}
 
 	/**
@@ -434,14 +445,14 @@ public class ActividadCronogramaPersistenceImpl extends BasePersistenceImpl<Acti
 	/**
 	 * Returns the actividad cronograma with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param cronogramaId the primary key of the actividad cronograma
+	 * @param actividadCronogramaPK the primary key of the actividad cronograma
 	 * @return the actividad cronograma, or <code>null</code> if a actividad cronograma with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public ActividadCronograma fetchByPrimaryKey(long cronogramaId)
-		throws SystemException {
-		return fetchByPrimaryKey((Serializable)cronogramaId);
+	public ActividadCronograma fetchByPrimaryKey(
+		ActividadCronogramaPK actividadCronogramaPK) throws SystemException {
+		return fetchByPrimaryKey((Serializable)actividadCronogramaPK);
 	}
 
 	/**

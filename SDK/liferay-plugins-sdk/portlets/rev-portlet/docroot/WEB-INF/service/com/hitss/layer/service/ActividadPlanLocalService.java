@@ -61,23 +61,23 @@ public interface ActividadPlanLocalService extends BaseLocalService,
 	/**
 	* Creates a new actividad plan with the primary key. Does not add the actividad plan to the database.
 	*
-	* @param actividadPlanId the primary key for the new actividad plan
+	* @param actividadPlanPK the primary key for the new actividad plan
 	* @return the new actividad plan
 	*/
 	public com.hitss.layer.model.ActividadPlan createActividadPlan(
-		long actividadPlanId);
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK);
 
 	/**
 	* Deletes the actividad plan with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param actividadPlanId the primary key of the actividad plan
+	* @param actividadPlanPK the primary key of the actividad plan
 	* @return the actividad plan that was removed
 	* @throws PortalException if a actividad plan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.hitss.layer.model.ActividadPlan deleteActividadPlan(
-		long actividadPlanId)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -172,20 +172,20 @@ public interface ActividadPlanLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.ActividadPlan fetchActividadPlan(
-		long actividadPlanId)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the actividad plan with the primary key.
 	*
-	* @param actividadPlanId the primary key of the actividad plan
+	* @param actividadPlanPK the primary key of the actividad plan
 	* @return the actividad plan
 	* @throws PortalException if a actividad plan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.ActividadPlan getActividadPlan(
-		long actividadPlanId)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -233,115 +233,6 @@ public interface ActividadPlanLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.hitss.layer.model.ActividadPlan updateActividadPlan(
 		com.hitss.layer.model.ActividadPlan actividadPlan)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addUsuarioActividadPlan(long userId, long actividadPlanId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addUsuarioActividadPlan(long userId,
-		com.hitss.layer.model.ActividadPlan actividadPlan)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addUsuarioActividadPlans(long userId, long[] actividadPlanIds)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addUsuarioActividadPlans(long userId,
-		java.util.List<com.hitss.layer.model.ActividadPlan> ActividadPlans)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void clearUsuarioActividadPlans(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteUsuarioActividadPlan(long userId, long actividadPlanId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteUsuarioActividadPlan(long userId,
-		com.hitss.layer.model.ActividadPlan actividadPlan)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteUsuarioActividadPlans(long userId, long[] actividadPlanIds)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteUsuarioActividadPlans(long userId,
-		java.util.List<com.hitss.layer.model.ActividadPlan> ActividadPlans)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.hitss.layer.model.ActividadPlan> getUsuarioActividadPlans(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.hitss.layer.model.ActividadPlan> getUsuarioActividadPlans(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.hitss.layer.model.ActividadPlan> getUsuarioActividadPlans(
-		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getUsuarioActividadPlansCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasUsuarioActividadPlan(long userId, long actividadPlanId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasUsuarioActividadPlans(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void setUsuarioActividadPlans(long userId, long[] actividadPlanIds)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

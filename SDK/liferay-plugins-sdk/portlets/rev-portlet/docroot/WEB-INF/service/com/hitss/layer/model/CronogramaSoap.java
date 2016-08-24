@@ -35,6 +35,7 @@ public class CronogramaSoap implements Serializable {
 		soapModel.setSolicitudEvaluacionDesempennoId(model.getSolicitudEvaluacionDesempennoId());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setEstado(model.getEstado());
+		soapModel.setAprobacionCronograma(model.getAprobacionCronograma());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -125,6 +126,14 @@ public class CronogramaSoap implements Serializable {
 		_estado = estado;
 	}
 
+	public int getAprobacionCronograma() {
+		return _aprobacionCronograma;
+	}
+
+	public void setAprobacionCronograma(int aprobacionCronograma) {
+		_aprobacionCronograma = aprobacionCronograma;
+	}
+
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -173,6 +182,7 @@ public class CronogramaSoap implements Serializable {
 	private long _solicitudEvaluacionDesempennoId;
 	private String _descripcion;
 	private long _estado;
+	private int _aprobacionCronograma;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

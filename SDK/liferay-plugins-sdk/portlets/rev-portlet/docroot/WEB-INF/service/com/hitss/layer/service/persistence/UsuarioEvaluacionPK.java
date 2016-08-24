@@ -25,26 +25,15 @@ import java.io.Serializable;
  */
 public class UsuarioEvaluacionPK implements Comparable<UsuarioEvaluacionPK>,
 	Serializable {
-	public long actividadCronogramaId;
 	public long usuarioId;
 	public long evaluacionId;
 
 	public UsuarioEvaluacionPK() {
 	}
 
-	public UsuarioEvaluacionPK(long actividadCronogramaId, long usuarioId,
-		long evaluacionId) {
-		this.actividadCronogramaId = actividadCronogramaId;
+	public UsuarioEvaluacionPK(long usuarioId, long evaluacionId) {
 		this.usuarioId = usuarioId;
 		this.evaluacionId = evaluacionId;
-	}
-
-	public long getActividadCronogramaId() {
-		return actividadCronogramaId;
-	}
-
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		this.actividadCronogramaId = actividadCronogramaId;
 	}
 
 	public long getUsuarioId() {
@@ -70,20 +59,6 @@ public class UsuarioEvaluacionPK implements Comparable<UsuarioEvaluacionPK>,
 		}
 
 		int value = 0;
-
-		if (actividadCronogramaId < pk.actividadCronogramaId) {
-			value = -1;
-		}
-		else if (actividadCronogramaId > pk.actividadCronogramaId) {
-			value = 1;
-		}
-		else {
-			value = 0;
-		}
-
-		if (value != 0) {
-			return value;
-		}
 
 		if (usuarioId < pk.usuarioId) {
 			value = -1;
@@ -128,9 +103,7 @@ public class UsuarioEvaluacionPK implements Comparable<UsuarioEvaluacionPK>,
 
 		UsuarioEvaluacionPK pk = (UsuarioEvaluacionPK)obj;
 
-		if ((actividadCronogramaId == pk.actividadCronogramaId) &&
-				(usuarioId == pk.usuarioId) &&
-				(evaluacionId == pk.evaluacionId)) {
+		if ((usuarioId == pk.usuarioId) && (evaluacionId == pk.evaluacionId)) {
 			return true;
 		}
 		else {
@@ -140,22 +113,15 @@ public class UsuarioEvaluacionPK implements Comparable<UsuarioEvaluacionPK>,
 
 	@Override
 	public int hashCode() {
-		return (String.valueOf(actividadCronogramaId) +
-		String.valueOf(usuarioId) + String.valueOf(evaluacionId)).hashCode();
+		return (String.valueOf(usuarioId) + String.valueOf(evaluacionId)).hashCode();
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append(StringPool.OPEN_CURLY_BRACE);
 
-		sb.append("actividadCronogramaId");
-		sb.append(StringPool.EQUAL);
-		sb.append(actividadCronogramaId);
-
-		sb.append(StringPool.COMMA);
-		sb.append(StringPool.SPACE);
 		sb.append("usuarioId");
 		sb.append(StringPool.EQUAL);
 		sb.append(usuarioId);

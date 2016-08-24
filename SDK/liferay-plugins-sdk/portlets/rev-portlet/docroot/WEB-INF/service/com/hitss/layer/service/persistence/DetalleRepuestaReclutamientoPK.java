@@ -26,18 +26,18 @@ import java.io.Serializable;
 public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuestaReclutamientoPK>,
 	Serializable {
 	public long detalleRepsuestaId;
+	public long usuarioId;
 	public long evaluacionId;
-	public long fasePostulacionId;
 	public long preguntaId;
 
 	public DetalleRepuestaReclutamientoPK() {
 	}
 
 	public DetalleRepuestaReclutamientoPK(long detalleRepsuestaId,
-		long evaluacionId, long fasePostulacionId, long preguntaId) {
+		long usuarioId, long evaluacionId, long preguntaId) {
 		this.detalleRepsuestaId = detalleRepsuestaId;
+		this.usuarioId = usuarioId;
 		this.evaluacionId = evaluacionId;
-		this.fasePostulacionId = fasePostulacionId;
 		this.preguntaId = preguntaId;
 	}
 
@@ -49,20 +49,20 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 		this.detalleRepsuestaId = detalleRepsuestaId;
 	}
 
+	public long getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(long usuarioId) {
+		this.usuarioId = usuarioId;
+	}
+
 	public long getEvaluacionId() {
 		return evaluacionId;
 	}
 
 	public void setEvaluacionId(long evaluacionId) {
 		this.evaluacionId = evaluacionId;
-	}
-
-	public long getFasePostulacionId() {
-		return fasePostulacionId;
-	}
-
-	public void setFasePostulacionId(long fasePostulacionId) {
-		this.fasePostulacionId = fasePostulacionId;
 	}
 
 	public long getPreguntaId() {
@@ -95,10 +95,10 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 			return value;
 		}
 
-		if (evaluacionId < pk.evaluacionId) {
+		if (usuarioId < pk.usuarioId) {
 			value = -1;
 		}
-		else if (evaluacionId > pk.evaluacionId) {
+		else if (usuarioId > pk.usuarioId) {
 			value = 1;
 		}
 		else {
@@ -109,10 +109,10 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 			return value;
 		}
 
-		if (fasePostulacionId < pk.fasePostulacionId) {
+		if (evaluacionId < pk.evaluacionId) {
 			value = -1;
 		}
-		else if (fasePostulacionId > pk.fasePostulacionId) {
+		else if (evaluacionId > pk.evaluacionId) {
 			value = 1;
 		}
 		else {
@@ -153,8 +153,8 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 		DetalleRepuestaReclutamientoPK pk = (DetalleRepuestaReclutamientoPK)obj;
 
 		if ((detalleRepsuestaId == pk.detalleRepsuestaId) &&
+				(usuarioId == pk.usuarioId) &&
 				(evaluacionId == pk.evaluacionId) &&
-				(fasePostulacionId == pk.fasePostulacionId) &&
 				(preguntaId == pk.preguntaId)) {
 			return true;
 		}
@@ -165,9 +165,8 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 
 	@Override
 	public int hashCode() {
-		return (String.valueOf(detalleRepsuestaId) +
-		String.valueOf(evaluacionId) + String.valueOf(fasePostulacionId) +
-		String.valueOf(preguntaId)).hashCode();
+		return (String.valueOf(detalleRepsuestaId) + String.valueOf(usuarioId) +
+		String.valueOf(evaluacionId) + String.valueOf(preguntaId)).hashCode();
 	}
 
 	@Override
@@ -182,15 +181,15 @@ public class DetalleRepuestaReclutamientoPK implements Comparable<DetalleRepuest
 
 		sb.append(StringPool.COMMA);
 		sb.append(StringPool.SPACE);
-		sb.append("evaluacionId");
+		sb.append("usuarioId");
 		sb.append(StringPool.EQUAL);
-		sb.append(evaluacionId);
+		sb.append(usuarioId);
 
 		sb.append(StringPool.COMMA);
 		sb.append(StringPool.SPACE);
-		sb.append("fasePostulacionId");
+		sb.append("evaluacionId");
 		sb.append(StringPool.EQUAL);
-		sb.append(fasePostulacionId);
+		sb.append(evaluacionId);
 
 		sb.append(StringPool.COMMA);
 		sb.append(StringPool.SPACE);

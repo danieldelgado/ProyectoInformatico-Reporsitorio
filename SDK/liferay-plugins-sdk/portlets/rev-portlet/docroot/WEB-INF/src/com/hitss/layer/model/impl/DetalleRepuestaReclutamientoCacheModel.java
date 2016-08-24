@@ -40,10 +40,10 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 
 		sb.append("{detalleRepsuestaId=");
 		sb.append(detalleRepsuestaId);
+		sb.append(", usuarioId=");
+		sb.append(usuarioId);
 		sb.append(", evaluacionId=");
 		sb.append(evaluacionId);
-		sb.append(", fasePostulacionId=");
-		sb.append(fasePostulacionId);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
 		sb.append(", preguntaId=");
@@ -60,8 +60,8 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 		DetalleRepuestaReclutamientoImpl detalleRepuestaReclutamientoImpl = new DetalleRepuestaReclutamientoImpl();
 
 		detalleRepuestaReclutamientoImpl.setDetalleRepsuestaId(detalleRepsuestaId);
+		detalleRepuestaReclutamientoImpl.setUsuarioId(usuarioId);
 		detalleRepuestaReclutamientoImpl.setEvaluacionId(evaluacionId);
-		detalleRepuestaReclutamientoImpl.setFasePostulacionId(fasePostulacionId);
 
 		if (descripcion == null) {
 			detalleRepuestaReclutamientoImpl.setDescripcion(StringPool.BLANK);
@@ -81,8 +81,8 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		detalleRepsuestaId = objectInput.readLong();
+		usuarioId = objectInput.readLong();
 		evaluacionId = objectInput.readLong();
-		fasePostulacionId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		preguntaId = objectInput.readLong();
 		respuestaSeleccionada = objectInput.readInt();
@@ -92,8 +92,8 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(detalleRepsuestaId);
+		objectOutput.writeLong(usuarioId);
 		objectOutput.writeLong(evaluacionId);
-		objectOutput.writeLong(fasePostulacionId);
 
 		if (descripcion == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -107,8 +107,8 @@ public class DetalleRepuestaReclutamientoCacheModel implements CacheModel<Detall
 	}
 
 	public long detalleRepsuestaId;
+	public long usuarioId;
 	public long evaluacionId;
-	public long fasePostulacionId;
 	public String descripcion;
 	public long preguntaId;
 	public int respuestaSeleccionada;

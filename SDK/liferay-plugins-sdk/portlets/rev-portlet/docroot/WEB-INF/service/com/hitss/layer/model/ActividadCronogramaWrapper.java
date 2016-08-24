@@ -50,14 +50,22 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("cronogramaId", getCronogramaId());
+		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
-		attributes.put("cumplido", getCumplido());
-		attributes.put("finalizado", getFinalizado());
+		attributes.put("cumplidoEvaluacion", getCumplidoEvaluacion());
+		attributes.put("estado", getEstado());
+		attributes.put("fechaInicioEvaluacion", getFechaInicioEvaluacion());
+		attributes.put("fechaFinEvaluacion", getFechaFinEvaluacion());
+		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("tipoActividad", getTipoActividad());
+		attributes.put("aprobadoColaborador", getAprobadoColaborador());
+		attributes.put("jerarquiaEvaluar", getJerarquiaEvaluar());
+		attributes.put("aprobadoLider", getAprobadoLider());
+		attributes.put("usuarioGerenteId", getUsuarioGerenteId());
+		attributes.put("usuarioLiderId", getUsuarioLiderId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -69,17 +77,17 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long cronogramaId = (Long)attributes.get("cronogramaId");
+
+		if (cronogramaId != null) {
+			setCronogramaId(cronogramaId);
+		}
+
 		Long actividadCronogramaId = (Long)attributes.get(
 				"actividadCronogramaId");
 
 		if (actividadCronogramaId != null) {
 			setActividadCronogramaId(actividadCronogramaId);
-		}
-
-		Long cronogramaId = (Long)attributes.get("cronogramaId");
-
-		if (cronogramaId != null) {
-			setCronogramaId(cronogramaId);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -100,22 +108,72 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 			setFechaFin(fechaFin);
 		}
 
-		Boolean cumplido = (Boolean)attributes.get("cumplido");
+		Boolean cumplidoEvaluacion = (Boolean)attributes.get(
+				"cumplidoEvaluacion");
 
-		if (cumplido != null) {
-			setCumplido(cumplido);
+		if (cumplidoEvaluacion != null) {
+			setCumplidoEvaluacion(cumplidoEvaluacion);
 		}
 
-		Boolean finalizado = (Boolean)attributes.get("finalizado");
+		Long estado = (Long)attributes.get("estado");
 
-		if (finalizado != null) {
-			setFinalizado(finalizado);
+		if (estado != null) {
+			setEstado(estado);
+		}
+
+		Date fechaInicioEvaluacion = (Date)attributes.get(
+				"fechaInicioEvaluacion");
+
+		if (fechaInicioEvaluacion != null) {
+			setFechaInicioEvaluacion(fechaInicioEvaluacion);
+		}
+
+		Date fechaFinEvaluacion = (Date)attributes.get("fechaFinEvaluacion");
+
+		if (fechaFinEvaluacion != null) {
+			setFechaFinEvaluacion(fechaFinEvaluacion);
+		}
+
+		Long grupoUsuario = (Long)attributes.get("grupoUsuario");
+
+		if (grupoUsuario != null) {
+			setGrupoUsuario(grupoUsuario);
 		}
 
 		Long tipoActividad = (Long)attributes.get("tipoActividad");
 
 		if (tipoActividad != null) {
 			setTipoActividad(tipoActividad);
+		}
+
+		Long aprobadoColaborador = (Long)attributes.get("aprobadoColaborador");
+
+		if (aprobadoColaborador != null) {
+			setAprobadoColaborador(aprobadoColaborador);
+		}
+
+		Long jerarquiaEvaluar = (Long)attributes.get("jerarquiaEvaluar");
+
+		if (jerarquiaEvaluar != null) {
+			setJerarquiaEvaluar(jerarquiaEvaluar);
+		}
+
+		Long aprobadoLider = (Long)attributes.get("aprobadoLider");
+
+		if (aprobadoLider != null) {
+			setAprobadoLider(aprobadoLider);
+		}
+
+		Long usuarioGerenteId = (Long)attributes.get("usuarioGerenteId");
+
+		if (usuarioGerenteId != null) {
+			setUsuarioGerenteId(usuarioGerenteId);
+		}
+
+		Long usuarioLiderId = (Long)attributes.get("usuarioLiderId");
+
+		if (usuarioLiderId != null) {
+			setUsuarioLiderId(usuarioLiderId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -155,7 +213,7 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	* @return the primary key of this actividad cronograma
 	*/
 	@Override
-	public long getPrimaryKey() {
+	public com.hitss.layer.service.persistence.ActividadCronogramaPK getPrimaryKey() {
 		return _actividadCronograma.getPrimaryKey();
 	}
 
@@ -165,28 +223,9 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	* @param primaryKey the primary key of this actividad cronograma
 	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(
+		com.hitss.layer.service.persistence.ActividadCronogramaPK primaryKey) {
 		_actividadCronograma.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the actividad cronograma ID of this actividad cronograma.
-	*
-	* @return the actividad cronograma ID of this actividad cronograma
-	*/
-	@Override
-	public long getActividadCronogramaId() {
-		return _actividadCronograma.getActividadCronogramaId();
-	}
-
-	/**
-	* Sets the actividad cronograma ID of this actividad cronograma.
-	*
-	* @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
-	*/
-	@Override
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronograma.setActividadCronogramaId(actividadCronogramaId);
 	}
 
 	/**
@@ -207,6 +246,26 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	@Override
 	public void setCronogramaId(long cronogramaId) {
 		_actividadCronograma.setCronogramaId(cronogramaId);
+	}
+
+	/**
+	* Returns the actividad cronograma ID of this actividad cronograma.
+	*
+	* @return the actividad cronograma ID of this actividad cronograma
+	*/
+	@Override
+	public long getActividadCronogramaId() {
+		return _actividadCronograma.getActividadCronogramaId();
+	}
+
+	/**
+	* Sets the actividad cronograma ID of this actividad cronograma.
+	*
+	* @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
+	*/
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronograma.setActividadCronogramaId(actividadCronogramaId);
 	}
 
 	/**
@@ -270,63 +329,113 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	}
 
 	/**
-	* Returns the cumplido of this actividad cronograma.
+	* Returns the cumplido evaluacion of this actividad cronograma.
 	*
-	* @return the cumplido of this actividad cronograma
+	* @return the cumplido evaluacion of this actividad cronograma
 	*/
 	@Override
-	public boolean getCumplido() {
-		return _actividadCronograma.getCumplido();
+	public boolean getCumplidoEvaluacion() {
+		return _actividadCronograma.getCumplidoEvaluacion();
 	}
 
 	/**
-	* Returns <code>true</code> if this actividad cronograma is cumplido.
+	* Returns <code>true</code> if this actividad cronograma is cumplido evaluacion.
 	*
-	* @return <code>true</code> if this actividad cronograma is cumplido; <code>false</code> otherwise
+	* @return <code>true</code> if this actividad cronograma is cumplido evaluacion; <code>false</code> otherwise
 	*/
 	@Override
-	public boolean isCumplido() {
-		return _actividadCronograma.isCumplido();
+	public boolean isCumplidoEvaluacion() {
+		return _actividadCronograma.isCumplidoEvaluacion();
 	}
 
 	/**
-	* Sets whether this actividad cronograma is cumplido.
+	* Sets whether this actividad cronograma is cumplido evaluacion.
 	*
-	* @param cumplido the cumplido of this actividad cronograma
+	* @param cumplidoEvaluacion the cumplido evaluacion of this actividad cronograma
 	*/
 	@Override
-	public void setCumplido(boolean cumplido) {
-		_actividadCronograma.setCumplido(cumplido);
+	public void setCumplidoEvaluacion(boolean cumplidoEvaluacion) {
+		_actividadCronograma.setCumplidoEvaluacion(cumplidoEvaluacion);
 	}
 
 	/**
-	* Returns the finalizado of this actividad cronograma.
+	* Returns the estado of this actividad cronograma.
 	*
-	* @return the finalizado of this actividad cronograma
+	* @return the estado of this actividad cronograma
 	*/
 	@Override
-	public boolean getFinalizado() {
-		return _actividadCronograma.getFinalizado();
+	public long getEstado() {
+		return _actividadCronograma.getEstado();
 	}
 
 	/**
-	* Returns <code>true</code> if this actividad cronograma is finalizado.
+	* Sets the estado of this actividad cronograma.
 	*
-	* @return <code>true</code> if this actividad cronograma is finalizado; <code>false</code> otherwise
+	* @param estado the estado of this actividad cronograma
 	*/
 	@Override
-	public boolean isFinalizado() {
-		return _actividadCronograma.isFinalizado();
+	public void setEstado(long estado) {
+		_actividadCronograma.setEstado(estado);
 	}
 
 	/**
-	* Sets whether this actividad cronograma is finalizado.
+	* Returns the fecha inicio evaluacion of this actividad cronograma.
 	*
-	* @param finalizado the finalizado of this actividad cronograma
+	* @return the fecha inicio evaluacion of this actividad cronograma
 	*/
 	@Override
-	public void setFinalizado(boolean finalizado) {
-		_actividadCronograma.setFinalizado(finalizado);
+	public java.util.Date getFechaInicioEvaluacion() {
+		return _actividadCronograma.getFechaInicioEvaluacion();
+	}
+
+	/**
+	* Sets the fecha inicio evaluacion of this actividad cronograma.
+	*
+	* @param fechaInicioEvaluacion the fecha inicio evaluacion of this actividad cronograma
+	*/
+	@Override
+	public void setFechaInicioEvaluacion(java.util.Date fechaInicioEvaluacion) {
+		_actividadCronograma.setFechaInicioEvaluacion(fechaInicioEvaluacion);
+	}
+
+	/**
+	* Returns the fecha fin evaluacion of this actividad cronograma.
+	*
+	* @return the fecha fin evaluacion of this actividad cronograma
+	*/
+	@Override
+	public java.util.Date getFechaFinEvaluacion() {
+		return _actividadCronograma.getFechaFinEvaluacion();
+	}
+
+	/**
+	* Sets the fecha fin evaluacion of this actividad cronograma.
+	*
+	* @param fechaFinEvaluacion the fecha fin evaluacion of this actividad cronograma
+	*/
+	@Override
+	public void setFechaFinEvaluacion(java.util.Date fechaFinEvaluacion) {
+		_actividadCronograma.setFechaFinEvaluacion(fechaFinEvaluacion);
+	}
+
+	/**
+	* Returns the grupo usuario of this actividad cronograma.
+	*
+	* @return the grupo usuario of this actividad cronograma
+	*/
+	@Override
+	public long getGrupoUsuario() {
+		return _actividadCronograma.getGrupoUsuario();
+	}
+
+	/**
+	* Sets the grupo usuario of this actividad cronograma.
+	*
+	* @param grupoUsuario the grupo usuario of this actividad cronograma
+	*/
+	@Override
+	public void setGrupoUsuario(long grupoUsuario) {
+		_actividadCronograma.setGrupoUsuario(grupoUsuario);
 	}
 
 	/**
@@ -347,6 +456,106 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	@Override
 	public void setTipoActividad(long tipoActividad) {
 		_actividadCronograma.setTipoActividad(tipoActividad);
+	}
+
+	/**
+	* Returns the aprobado colaborador of this actividad cronograma.
+	*
+	* @return the aprobado colaborador of this actividad cronograma
+	*/
+	@Override
+	public long getAprobadoColaborador() {
+		return _actividadCronograma.getAprobadoColaborador();
+	}
+
+	/**
+	* Sets the aprobado colaborador of this actividad cronograma.
+	*
+	* @param aprobadoColaborador the aprobado colaborador of this actividad cronograma
+	*/
+	@Override
+	public void setAprobadoColaborador(long aprobadoColaborador) {
+		_actividadCronograma.setAprobadoColaborador(aprobadoColaborador);
+	}
+
+	/**
+	* Returns the jerarquia evaluar of this actividad cronograma.
+	*
+	* @return the jerarquia evaluar of this actividad cronograma
+	*/
+	@Override
+	public long getJerarquiaEvaluar() {
+		return _actividadCronograma.getJerarquiaEvaluar();
+	}
+
+	/**
+	* Sets the jerarquia evaluar of this actividad cronograma.
+	*
+	* @param jerarquiaEvaluar the jerarquia evaluar of this actividad cronograma
+	*/
+	@Override
+	public void setJerarquiaEvaluar(long jerarquiaEvaluar) {
+		_actividadCronograma.setJerarquiaEvaluar(jerarquiaEvaluar);
+	}
+
+	/**
+	* Returns the aprobado lider of this actividad cronograma.
+	*
+	* @return the aprobado lider of this actividad cronograma
+	*/
+	@Override
+	public long getAprobadoLider() {
+		return _actividadCronograma.getAprobadoLider();
+	}
+
+	/**
+	* Sets the aprobado lider of this actividad cronograma.
+	*
+	* @param aprobadoLider the aprobado lider of this actividad cronograma
+	*/
+	@Override
+	public void setAprobadoLider(long aprobadoLider) {
+		_actividadCronograma.setAprobadoLider(aprobadoLider);
+	}
+
+	/**
+	* Returns the usuario gerente ID of this actividad cronograma.
+	*
+	* @return the usuario gerente ID of this actividad cronograma
+	*/
+	@Override
+	public long getUsuarioGerenteId() {
+		return _actividadCronograma.getUsuarioGerenteId();
+	}
+
+	/**
+	* Sets the usuario gerente ID of this actividad cronograma.
+	*
+	* @param usuarioGerenteId the usuario gerente ID of this actividad cronograma
+	*/
+	@Override
+	public void setUsuarioGerenteId(long usuarioGerenteId) {
+		_actividadCronograma.setUsuarioGerenteId(usuarioGerenteId);
+	}
+
+	/**
+	* Returns the usuario lider ID of this actividad cronograma.
+	*
+	* @return the usuario lider ID of this actividad cronograma
+	*/
+	@Override
+	public long getUsuarioLiderId() {
+		return _actividadCronograma.getUsuarioLiderId();
+	}
+
+	/**
+	* Sets the usuario lider ID of this actividad cronograma.
+	*
+	* @param usuarioLiderId the usuario lider ID of this actividad cronograma
+	*/
+	@Override
+	public void setUsuarioLiderId(long usuarioLiderId) {
+		_actividadCronograma.setUsuarioLiderId(usuarioLiderId);
 	}
 
 	/**

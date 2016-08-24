@@ -87,6 +87,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		attributes.put("cliente", getCliente());
 		attributes.put("especialidad", getEspecialidad());
 		attributes.put("meta", getMeta());
+		attributes.put("fechameta", getFechameta());
 		attributes.put("prioridad", getPrioridad());
 		attributes.put("motivo", getMotivo());
 		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
@@ -179,6 +180,12 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 		if (meta != null) {
 			setMeta(meta);
+		}
+
+		Date fechameta = (Date)attributes.get("fechameta");
+
+		if (fechameta != null) {
+			setFechameta(fechameta);
 		}
 
 		Long prioridad = (Long)attributes.get("prioridad");
@@ -551,6 +558,29 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 				Method method = clazz.getMethod("setMeta", String.class);
 
 				method.invoke(_solicitudRequerimientoRemoteModel, meta);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public Date getFechameta() {
+		return _fechameta;
+	}
+
+	@Override
+	public void setFechameta(Date fechameta) {
+		_fechameta = fechameta;
+
+		if (_solicitudRequerimientoRemoteModel != null) {
+			try {
+				Class<?> clazz = _solicitudRequerimientoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFechameta", Date.class);
+
+				method.invoke(_solicitudRequerimientoRemoteModel, fechameta);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -1002,6 +1032,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		clone.setCliente(getCliente());
 		clone.setEspecialidad(getEspecialidad());
 		clone.setMeta(getMeta());
+		clone.setFechameta(getFechameta());
 		clone.setPrioridad(getPrioridad());
 		clone.setMotivo(getMotivo());
 		clone.setDescripcionPublicacion(getDescripcionPublicacion());
@@ -1068,7 +1099,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1094,6 +1125,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getEspecialidad());
 		sb.append(", meta=");
 		sb.append(getMeta());
+		sb.append(", fechameta=");
+		sb.append(getFechameta());
 		sb.append(", prioridad=");
 		sb.append(getPrioridad());
 		sb.append(", motivo=");
@@ -1131,7 +1164,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1184,6 +1217,10 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(
 			"<column><column-name>meta</column-name><column-value><![CDATA[");
 		sb.append(getMeta());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechameta</column-name><column-value><![CDATA[");
+		sb.append(getFechameta());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>prioridad</column-name><column-value><![CDATA[");
@@ -1263,6 +1300,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	private long _cliente;
 	private String _especialidad;
 	private String _meta;
+	private Date _fechameta;
 	private long _prioridad;
 	private String _motivo;
 	private String _descripcionPublicacion;

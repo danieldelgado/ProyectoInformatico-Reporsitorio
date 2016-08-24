@@ -256,6 +256,15 @@ function publicarOfertaLaboral(){
 		
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
+
+	
+	var editor_descripcion = $("#cke_" + inputFristnamespace + "editor");
+	
+		
+	var descripcion = $("#" + inputFristnamespace + "descripcion");
+	
+	$(descripcion).val(  $(editor_descripcion).text() );
+	
 	
 	var dataSend = $(formPublicarOferta).serialize();
 	

@@ -38,20 +38,18 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
-		sb.append("{actividadPlanId=");
+		sb.append("{actividadCronogramaId=");
+		sb.append(actividadCronogramaId);
+		sb.append(", actividadPlanId=");
 		sb.append(actividadPlanId);
 		sb.append(", planAccionId=");
 		sb.append(planAccionId);
-		sb.append(", responsable=");
-		sb.append(responsable);
 		sb.append(", actividad=");
 		sb.append(actividad);
 		sb.append(", evidencia=");
 		sb.append(evidencia);
-		sb.append(", objetivo=");
-		sb.append(objetivo);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -71,9 +69,9 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 	public ActividadPlan toEntityModel() {
 		ActividadPlanImpl actividadPlanImpl = new ActividadPlanImpl();
 
+		actividadPlanImpl.setActividadCronogramaId(actividadCronogramaId);
 		actividadPlanImpl.setActividadPlanId(actividadPlanId);
 		actividadPlanImpl.setPlanAccionId(planAccionId);
-		actividadPlanImpl.setResponsable(responsable);
 
 		if (actividad == null) {
 			actividadPlanImpl.setActividad(StringPool.BLANK);
@@ -87,13 +85,6 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 		}
 		else {
 			actividadPlanImpl.setEvidencia(evidencia);
-		}
-
-		if (objetivo == null) {
-			actividadPlanImpl.setObjetivo(StringPool.BLANK);
-		}
-		else {
-			actividadPlanImpl.setObjetivo(objetivo);
 		}
 
 		actividadPlanImpl.setActivo(activo);
@@ -122,12 +113,11 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
+		actividadCronogramaId = objectInput.readLong();
 		actividadPlanId = objectInput.readLong();
 		planAccionId = objectInput.readLong();
-		responsable = objectInput.readLong();
 		actividad = objectInput.readUTF();
 		evidencia = objectInput.readUTF();
-		objetivo = objectInput.readUTF();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -138,9 +128,9 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
+		objectOutput.writeLong(actividadCronogramaId);
 		objectOutput.writeLong(actividadPlanId);
 		objectOutput.writeLong(planAccionId);
-		objectOutput.writeLong(responsable);
 
 		if (actividad == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -156,13 +146,6 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 			objectOutput.writeUTF(evidencia);
 		}
 
-		if (objetivo == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(objetivo);
-		}
-
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -170,12 +153,11 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 		objectOutput.writeLong(fechamodifica);
 	}
 
+	public long actividadCronogramaId;
 	public long actividadPlanId;
 	public long planAccionId;
-	public long responsable;
 	public String actividad;
 	public String evidencia;
-	public String objetivo;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

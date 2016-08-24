@@ -82,7 +82,8 @@
 								<label>Descripcion:</label>
 							</div>
 							<div class="span12">
-								<textarea id="<portlet:namespace/>descripcion" class="span12" name="<portlet:namespace/>descripcion" rows="5" cols=""></textarea>
+								<liferay-ui:input-editor />
+								<input name="<portlet:namespace />htmlCodeFromEditorPlacedHere" type="hidden" value="" />
 							</div>
 						</div>
 					</div>
@@ -122,7 +123,27 @@
 	$(document).ready(function() {
 		inicializarFormularioPublicarOferta();
 		listarRequisitos('${requisitoEtiquetaBeans}');
+
 	});
+
+	function <portlet:namespace />initEditor() {
+		return '';
+	}
+
+	function <portlet:namespace />extractCodeFromEditor() {
+
+		console.log("1");
+		console.log(window.<portlet:namespace />editor.getHTML());
+		console.log("2");
+		console.log($('#<portlet:namespace />htmlCodeFromEditorPlacedHere'));
+		
+		var html = "'" + window.<portlet:namespace />editor.getHTML() + "'"; 
+		var greeting = $('#<portlet:namespace />htmlCodeFromEditorPlacedHere').val( window.<portlet:namespace />editor.getHTML() );
+		console.log("3");
+		console.log(greeting);
+	
+
+	}
 </script>
 
 

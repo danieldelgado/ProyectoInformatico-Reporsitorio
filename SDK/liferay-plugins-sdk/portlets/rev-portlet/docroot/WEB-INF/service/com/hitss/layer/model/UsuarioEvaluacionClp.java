@@ -52,21 +52,18 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 
 	@Override
 	public UsuarioEvaluacionPK getPrimaryKey() {
-		return new UsuarioEvaluacionPK(_actividadCronogramaId, _usuarioId,
-			_evaluacionId);
+		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
 	}
 
 	@Override
 	public void setPrimaryKey(UsuarioEvaluacionPK primaryKey) {
-		setActividadCronogramaId(primaryKey.actividadCronogramaId);
 		setUsuarioId(primaryKey.usuarioId);
 		setEvaluacionId(primaryKey.evaluacionId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new UsuarioEvaluacionPK(_actividadCronogramaId, _usuarioId,
-			_evaluacionId);
+		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
 	}
 
 	@Override

@@ -2,14 +2,22 @@
 
 <model-hints>
 	<model name="com.hitss.layer.model.ActividadCronograma">
-		<field name="actividadCronogramaId" type="long" />
 		<field name="cronogramaId" type="long" />
+		<field name="actividadCronogramaId" type="long" />
 		<field name="descripcion" type="String" />
 		<field name="fechaInicio" type="Date" />
 		<field name="fechaFin" type="Date" />
-		<field name="cumplido" type="boolean" />
-		<field name="finalizado" type="boolean" />
+		<field name="cumplidoEvaluacion" type="boolean" />
+		<field name="estado" type="long" />
+		<field name="fechaInicioEvaluacion" type="Date" />
+		<field name="fechaFinEvaluacion" type="Date" />
+		<field name="grupoUsuario" type="long" />
 		<field name="tipoActividad" type="long" />
+		<field name="aprobadoColaborador" type="long" />
+		<field name="jerarquiaEvaluar" type="long" />
+		<field name="aprobadoLider" type="long" />
+		<field name="usuarioGerenteId" type="long" />
+		<field name="usuarioLiderId" type="long" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -17,12 +25,11 @@
 		<field name="fechamodifica" type="Date" />
 	</model>
 	<model name="com.hitss.layer.model.ActividadPlan">
+		<field name="actividadCronogramaId" type="long" />
 		<field name="actividadPlanId" type="long" />
 		<field name="planAccionId" type="long" />
-		<field name="responsable" type="long" />
 		<field name="actividad" type="String" />
 		<field name="evidencia" type="String" />
-		<field name="objetivo" type="String" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -46,6 +53,7 @@
 		<field name="solicitudEvaluacionDesempennoId" type="long" />
 		<field name="descripcion" type="String" />
 		<field name="estado" type="long" />
+		<field name="aprobacionCronograma" type="int" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -57,12 +65,13 @@
 		<field name="evaluacionId" type="long" />
 		<field name="usuarioId" type="long" />
 		<field name="descripcion" type="String" />
+		<field name="preguntaId" type="long" />
 		<field name="respuestaSeleccionada" type="long" />
 	</model>
 	<model name="com.hitss.layer.model.DetalleRepuestaReclutamiento">
 		<field name="detalleRepsuestaId" type="long" />
+		<field name="usuarioId" type="long" />
 		<field name="evaluacionId" type="long" />
-		<field name="fasePostulacionId" type="long" />
 		<field name="descripcion" type="String" />
 		<field name="preguntaId" type="long" />
 		<field name="respuestaSeleccionada" type="int" />
@@ -125,6 +134,9 @@
 		<field name="fechaFase" type="Date" />
 		<field name="descripcion" type="String" />
 		<field name="estado" type="long" />
+		<field name="apruebaEntrevista" type="boolean" />
+		<field name="puntuacion" type="int" />
+		<field name="salario" type="double" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -158,9 +170,8 @@
 	</model>
 	<model name="com.hitss.layer.model.InformeRetroalimentacion">
 		<field name="informeRetroalimentacionId" type="long" />
-		<field name="planAccionId" type="long" />
+		<field name="regisitrarActividadPlanUsuariocoId" type="long" />
 		<field name="usuario" type="long" />
-		<field name="titulo" type="String" />
 		<field name="descripcion" type="String" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
@@ -203,25 +214,12 @@
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
 	</model>
-	<model name="com.hitss.layer.model.PlanAccion">
-		<field name="planAccionId" type="long" />
-		<field name="cronogramaId" type="long" />
-		<field name="responsable" type="long" />
-		<field name="fechaProgramada" type="Date" />
-		<field name="aprobadorColaborador" type="boolean" />
-		<field name="aprobadorLider" type="boolean" />
-		<field name="jerarquiaEvaluar" type="long" />
-		<field name="activo" type="boolean" />
-		<field name="usuariocrea" type="long" />
-		<field name="fechacrea" type="Date" />
-		<field name="usuariomodifica" type="long" />
-		<field name="fechamodifica" type="Date" />
-	</model>
 	<model name="com.hitss.layer.model.Postulacion">
 		<field name="solicitudRequerimientoId" type="long" />
 		<field name="usuarioId" type="long" />
 		<field name="fechaPostulacion" type="Date" />
 		<field name="estado" type="long" />
+		<field name="seleccionado" type="boolean" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -236,6 +234,10 @@
 		<field name="fechacrea" type="Date" />
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
+	</model>
+	<model name="com.hitss.layer.model.PreguntaRespuesta">
+		<field name="preguntaId" type="long" />
+		<field name="respuestaId" type="long" />
 	</model>
 	<model name="com.hitss.layer.model.PrioridadGrupoUsuarios">
 		<field name="prioridadGrupoUsuariosId" type="long" />
@@ -256,6 +258,18 @@
 		<field name="telefono" type="String" />
 		<field name="responsable" type="String" />
 		<field name="motivo" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechamodifica" type="Date" />
+	</model>
+	<model name="com.hitss.layer.model.RegisitrarActividadPlanUsuario">
+		<field name="actividadPlanId" type="long" />
+		<field name="regisitrarActividadPlanUsuariocoId" type="long" />
+		<field name="usuarioId" type="long" />
+		<field name="cumplio" type="long" />
+		<field name="actividad" type="String" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -296,6 +310,7 @@
 		<field name="cliente" type="long" />
 		<field name="especialidad" type="String" />
 		<field name="meta" type="String" />
+		<field name="fechameta" type="Date" />
 		<field name="prioridad" type="long" />
 		<field name="motivo" type="String" />
 		<field name="descripcionPublicacion" type="String" />

@@ -32,11 +32,15 @@ public class ActividadPlanLocalServiceClpInvoker {
 
 		_methodName1 = "createActividadPlan";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadPlanPK"
+			};
 
 		_methodName2 = "deleteActividadPlan";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadPlanPK"
+			};
 
 		_methodName3 = "deleteActividadPlan";
 
@@ -82,11 +86,15 @@ public class ActividadPlanLocalServiceClpInvoker {
 
 		_methodName10 = "fetchActividadPlan";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadPlanPK"
+			};
 
 		_methodName11 = "getActividadPlan";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadPlanPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -106,84 +114,13 @@ public class ActividadPlanLocalServiceClpInvoker {
 				"com.hitss.layer.model.ActividadPlan"
 			};
 
-		_methodName16 = "addUsuarioActividadPlan";
+		_methodName216 = "getBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] { "long", "long" };
+		_methodParameterTypes216 = new String[] {  };
 
-		_methodName17 = "addUsuarioActividadPlan";
+		_methodName217 = "setBeanIdentifier";
 
-		_methodParameterTypes17 = new String[] {
-				"long", "com.hitss.layer.model.ActividadPlan"
-			};
-
-		_methodName18 = "addUsuarioActividadPlans";
-
-		_methodParameterTypes18 = new String[] { "long", "long[][]" };
-
-		_methodName19 = "addUsuarioActividadPlans";
-
-		_methodParameterTypes19 = new String[] { "long", "java.util.List" };
-
-		_methodName20 = "clearUsuarioActividadPlans";
-
-		_methodParameterTypes20 = new String[] { "long" };
-
-		_methodName21 = "deleteUsuarioActividadPlan";
-
-		_methodParameterTypes21 = new String[] { "long", "long" };
-
-		_methodName22 = "deleteUsuarioActividadPlan";
-
-		_methodParameterTypes22 = new String[] {
-				"long", "com.hitss.layer.model.ActividadPlan"
-			};
-
-		_methodName23 = "deleteUsuarioActividadPlans";
-
-		_methodParameterTypes23 = new String[] { "long", "long[][]" };
-
-		_methodName24 = "deleteUsuarioActividadPlans";
-
-		_methodParameterTypes24 = new String[] { "long", "java.util.List" };
-
-		_methodName25 = "getUsuarioActividadPlans";
-
-		_methodParameterTypes25 = new String[] { "long" };
-
-		_methodName26 = "getUsuarioActividadPlans";
-
-		_methodParameterTypes26 = new String[] { "long", "int", "int" };
-
-		_methodName27 = "getUsuarioActividadPlans";
-
-		_methodParameterTypes27 = new String[] {
-				"long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
-
-		_methodName28 = "getUsuarioActividadPlansCount";
-
-		_methodParameterTypes28 = new String[] { "long" };
-
-		_methodName29 = "hasUsuarioActividadPlan";
-
-		_methodParameterTypes29 = new String[] { "long", "long" };
-
-		_methodName30 = "hasUsuarioActividadPlans";
-
-		_methodParameterTypes30 = new String[] { "long" };
-
-		_methodName31 = "setUsuarioActividadPlans";
-
-		_methodParameterTypes31 = new String[] { "long", "long[][]" };
-
-		_methodName226 = "getBeanIdentifier";
-
-		_methodParameterTypes226 = new String[] {  };
-
-		_methodName227 = "setBeanIdentifier";
-
-		_methodParameterTypes227 = new String[] { "java.lang.String" };
+		_methodParameterTypes217 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -195,12 +132,12 @@ public class ActividadPlanLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.createActividadPlan(((Long)arguments[0]).longValue());
+			return ActividadPlanLocalServiceUtil.createActividadPlan((com.hitss.layer.service.persistence.ActividadPlanPK)arguments[0]);
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.deleteActividadPlan(((Long)arguments[0]).longValue());
+			return ActividadPlanLocalServiceUtil.deleteActividadPlan((com.hitss.layer.service.persistence.ActividadPlanPK)arguments[0]);
 		}
 
 		if (_methodName3.equals(name) &&
@@ -246,12 +183,12 @@ public class ActividadPlanLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.fetchActividadPlan(((Long)arguments[0]).longValue());
+			return ActividadPlanLocalServiceUtil.fetchActividadPlan((com.hitss.layer.service.persistence.ActividadPlanPK)arguments[0]);
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.getActividadPlan(((Long)arguments[0]).longValue());
+			return ActividadPlanLocalServiceUtil.getActividadPlan((com.hitss.layer.service.persistence.ActividadPlanPK)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&
@@ -275,128 +212,13 @@ public class ActividadPlanLocalServiceClpInvoker {
 			return ActividadPlanLocalServiceUtil.updateActividadPlan((com.hitss.layer.model.ActividadPlan)arguments[0]);
 		}
 
-		if (_methodName16.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.addUsuarioActividadPlan(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-
-			return null;
-		}
-
-		if (_methodName17.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.addUsuarioActividadPlan(((Long)arguments[0]).longValue(),
-				(com.hitss.layer.model.ActividadPlan)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName18.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.addUsuarioActividadPlans(((Long)arguments[0]).longValue(),
-				(long[])arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName19.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.addUsuarioActividadPlans(((Long)arguments[0]).longValue(),
-				(java.util.List<com.hitss.layer.model.ActividadPlan>)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName20.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes20, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.clearUsuarioActividadPlans(((Long)arguments[0]).longValue());
-
-			return null;
-		}
-
-		if (_methodName21.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes21, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.deleteUsuarioActividadPlan(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-
-			return null;
-		}
-
-		if (_methodName22.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes22, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.deleteUsuarioActividadPlan(((Long)arguments[0]).longValue(),
-				(com.hitss.layer.model.ActividadPlan)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName23.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes23, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.deleteUsuarioActividadPlans(((Long)arguments[0]).longValue(),
-				(long[])arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName24.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.deleteUsuarioActividadPlans(((Long)arguments[0]).longValue(),
-				(java.util.List<com.hitss.layer.model.ActividadPlan>)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName25.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.getUsuarioActividadPlans(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName26.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.getUsuarioActividadPlans(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
-		}
-
-		if (_methodName27.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.getUsuarioActividadPlans(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
-		}
-
-		if (_methodName28.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.getUsuarioActividadPlansCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName29.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.hasUsuarioActividadPlan(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-		}
-
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
-			return ActividadPlanLocalServiceUtil.hasUsuarioActividadPlans(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
-			ActividadPlanLocalServiceUtil.setUsuarioActividadPlans(((Long)arguments[0]).longValue(),
-				(long[])arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName226.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes226, parameterTypes)) {
+		if (_methodName216.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
 			return ActividadPlanLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName227.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes227, parameterTypes)) {
+		if (_methodName217.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes217, parameterTypes)) {
 			ActividadPlanLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -437,40 +259,8 @@ public class ActividadPlanLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName16;
-	private String[] _methodParameterTypes16;
-	private String _methodName17;
-	private String[] _methodParameterTypes17;
-	private String _methodName18;
-	private String[] _methodParameterTypes18;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
-	private String _methodName20;
-	private String[] _methodParameterTypes20;
-	private String _methodName21;
-	private String[] _methodParameterTypes21;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
-	private String _methodName29;
-	private String[] _methodParameterTypes29;
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
-	private String _methodName226;
-	private String[] _methodParameterTypes226;
-	private String _methodName227;
-	private String[] _methodParameterTypes227;
+	private String _methodName216;
+	private String[] _methodParameterTypes216;
+	private String _methodName217;
+	private String[] _methodParameterTypes217;
 }

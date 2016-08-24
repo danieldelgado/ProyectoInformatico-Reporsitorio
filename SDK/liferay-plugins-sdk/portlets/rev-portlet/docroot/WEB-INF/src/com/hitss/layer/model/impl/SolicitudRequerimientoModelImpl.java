@@ -77,6 +77,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "cliente", Types.BIGINT },
 			{ "especialidad", Types.VARCHAR },
 			{ "meta", Types.VARCHAR },
+			{ "fechameta", Types.TIMESTAMP },
 			{ "prioridad", Types.BIGINT },
 			{ "motivo", Types.VARCHAR },
 			{ "descripcionPublicacion", Types.VARCHAR },
@@ -93,7 +94,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,prioridad LONG,motivo VARCHAR(75) null,descripcionPublicacion VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,fechameta DATE null,prioridad LONG,motivo VARCHAR(75) null,descripcionPublicacion VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table SolicitudRequerimiento";
 	public static final String ORDER_BY_JPQL = " ORDER BY solicitudRequerimiento.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SolicitudRequerimiento.fechamodifica ASC";
@@ -139,6 +140,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		model.setCliente(soapModel.getCliente());
 		model.setEspecialidad(soapModel.getEspecialidad());
 		model.setMeta(soapModel.getMeta());
+		model.setFechameta(soapModel.getFechameta());
 		model.setPrioridad(soapModel.getPrioridad());
 		model.setMotivo(soapModel.getMotivo());
 		model.setDescripcionPublicacion(soapModel.getDescripcionPublicacion());
@@ -244,6 +246,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		attributes.put("cliente", getCliente());
 		attributes.put("especialidad", getEspecialidad());
 		attributes.put("meta", getMeta());
+		attributes.put("fechameta", getFechameta());
 		attributes.put("prioridad", getPrioridad());
 		attributes.put("motivo", getMotivo());
 		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
@@ -336,6 +339,12 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 		if (meta != null) {
 			setMeta(meta);
+		}
+
+		Date fechameta = (Date)attributes.get("fechameta");
+
+		if (fechameta != null) {
+			setFechameta(fechameta);
 		}
 
 		Long prioridad = (Long)attributes.get("prioridad");
@@ -586,6 +595,17 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@JSON
 	@Override
+	public Date getFechameta() {
+		return _fechameta;
+	}
+
+	@Override
+	public void setFechameta(Date fechameta) {
+		_fechameta = fechameta;
+	}
+
+	@JSON
+	@Override
 	public long getPrioridad() {
 		return _prioridad;
 	}
@@ -831,6 +851,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		solicitudRequerimientoImpl.setCliente(getCliente());
 		solicitudRequerimientoImpl.setEspecialidad(getEspecialidad());
 		solicitudRequerimientoImpl.setMeta(getMeta());
+		solicitudRequerimientoImpl.setFechameta(getFechameta());
 		solicitudRequerimientoImpl.setPrioridad(getPrioridad());
 		solicitudRequerimientoImpl.setMotivo(getMotivo());
 		solicitudRequerimientoImpl.setDescripcionPublicacion(getDescripcionPublicacion());
@@ -955,6 +976,15 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			solicitudRequerimientoCacheModel.meta = null;
 		}
 
+		Date fechameta = getFechameta();
+
+		if (fechameta != null) {
+			solicitudRequerimientoCacheModel.fechameta = fechameta.getTime();
+		}
+		else {
+			solicitudRequerimientoCacheModel.fechameta = Long.MIN_VALUE;
+		}
+
 		solicitudRequerimientoCacheModel.prioridad = getPrioridad();
 
 		solicitudRequerimientoCacheModel.motivo = getMotivo();
@@ -1029,7 +1059,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1055,6 +1085,8 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		sb.append(getEspecialidad());
 		sb.append(", meta=");
 		sb.append(getMeta());
+		sb.append(", fechameta=");
+		sb.append(getFechameta());
 		sb.append(", prioridad=");
 		sb.append(getPrioridad());
 		sb.append(", motivo=");
@@ -1092,7 +1124,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1145,6 +1177,10 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		sb.append(
 			"<column><column-name>meta</column-name><column-value><![CDATA[");
 		sb.append(getMeta());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechameta</column-name><column-value><![CDATA[");
+		sb.append(getFechameta());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>prioridad</column-name><column-value><![CDATA[");
@@ -1230,6 +1266,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	private long _cliente;
 	private String _especialidad;
 	private String _meta;
+	private Date _fechameta;
 	private long _prioridad;
 	private String _motivo;
 	private String _descripcionPublicacion;

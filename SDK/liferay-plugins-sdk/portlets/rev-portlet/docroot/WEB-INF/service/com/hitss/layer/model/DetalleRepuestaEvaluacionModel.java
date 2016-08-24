@@ -117,6 +117,20 @@ public interface DetalleRepuestaEvaluacionModel extends BaseModel<DetalleRepuest
 	public void setDescripcion(String descripcion);
 
 	/**
+	 * Returns the pregunta ID of this detalle repuesta evaluacion.
+	 *
+	 * @return the pregunta ID of this detalle repuesta evaluacion
+	 */
+	public long getPreguntaId();
+
+	/**
+	 * Sets the pregunta ID of this detalle repuesta evaluacion.
+	 *
+	 * @param preguntaId the pregunta ID of this detalle repuesta evaluacion
+	 */
+	public void setPreguntaId(long preguntaId);
+
+	/**
 	 * Returns the respuesta seleccionada of this detalle repuesta evaluacion.
 	 *
 	 * @return the respuesta seleccionada of this detalle repuesta evaluacion

@@ -54,6 +54,7 @@ public class CronogramaWrapper implements Cronograma, ModelWrapper<Cronograma> {
 			getSolicitudEvaluacionDesempennoId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("aprobacionCronograma", getAprobacionCronograma());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -88,6 +89,13 @@ public class CronogramaWrapper implements Cronograma, ModelWrapper<Cronograma> {
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Integer aprobacionCronograma = (Integer)attributes.get(
+				"aprobacionCronograma");
+
+		if (aprobacionCronograma != null) {
+			setAprobacionCronograma(aprobacionCronograma);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -220,6 +228,26 @@ public class CronogramaWrapper implements Cronograma, ModelWrapper<Cronograma> {
 	@Override
 	public void setEstado(long estado) {
 		_cronograma.setEstado(estado);
+	}
+
+	/**
+	* Returns the aprobacion cronograma of this cronograma.
+	*
+	* @return the aprobacion cronograma of this cronograma
+	*/
+	@Override
+	public int getAprobacionCronograma() {
+		return _cronograma.getAprobacionCronograma();
+	}
+
+	/**
+	* Sets the aprobacion cronograma of this cronograma.
+	*
+	* @param aprobacionCronograma the aprobacion cronograma of this cronograma
+	*/
+	@Override
+	public void setAprobacionCronograma(int aprobacionCronograma) {
+		_cronograma.setAprobacionCronograma(aprobacionCronograma);
 	}
 
 	/**

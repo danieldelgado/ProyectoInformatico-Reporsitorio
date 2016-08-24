@@ -74,18 +74,19 @@ public interface InformeRetroalimentacionModel extends BaseModel<InformeRetroali
 	public void setInformeRetroalimentacionId(long informeRetroalimentacionId);
 
 	/**
-	 * Returns the plan accion ID of this informe retroalimentacion.
+	 * Returns the regisitrar actividad plan usuarioco ID of this informe retroalimentacion.
 	 *
-	 * @return the plan accion ID of this informe retroalimentacion
+	 * @return the regisitrar actividad plan usuarioco ID of this informe retroalimentacion
 	 */
-	public long getPlanAccionId();
+	public long getRegisitrarActividadPlanUsuariocoId();
 
 	/**
-	 * Sets the plan accion ID of this informe retroalimentacion.
+	 * Sets the regisitrar actividad plan usuarioco ID of this informe retroalimentacion.
 	 *
-	 * @param planAccionId the plan accion ID of this informe retroalimentacion
+	 * @param regisitrarActividadPlanUsuariocoId the regisitrar actividad plan usuarioco ID of this informe retroalimentacion
 	 */
-	public void setPlanAccionId(long planAccionId);
+	public void setRegisitrarActividadPlanUsuariocoId(
+		long regisitrarActividadPlanUsuariocoId);
 
 	/**
 	 * Returns the usuario of this informe retroalimentacion.
@@ -100,21 +101,6 @@ public interface InformeRetroalimentacionModel extends BaseModel<InformeRetroali
 	 * @param usuario the usuario of this informe retroalimentacion
 	 */
 	public void setUsuario(long usuario);
-
-	/**
-	 * Returns the titulo of this informe retroalimentacion.
-	 *
-	 * @return the titulo of this informe retroalimentacion
-	 */
-	@AutoEscape
-	public String getTitulo();
-
-	/**
-	 * Sets the titulo of this informe retroalimentacion.
-	 *
-	 * @param titulo the titulo of this informe retroalimentacion
-	 */
-	public void setTitulo(String titulo);
 
 	/**
 	 * Returns the descripcion of this informe retroalimentacion.

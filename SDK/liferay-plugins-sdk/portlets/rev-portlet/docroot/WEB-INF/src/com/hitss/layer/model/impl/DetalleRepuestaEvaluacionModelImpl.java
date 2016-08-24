@@ -64,9 +64,10 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 			{ "evaluacionId", Types.BIGINT },
 			{ "usuarioId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
+			{ "preguntaId", Types.BIGINT },
 			{ "respuestaSeleccionada", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table DetalleRepuestaEvaluacion (detalleRepuestaEvaluacionId LONG not null,evaluacionId LONG not null,usuarioId LONG not null,descripcion VARCHAR(75) null,respuestaSeleccionada LONG,primary key (detalleRepuestaEvaluacionId, evaluacionId, usuarioId))";
+	public static final String TABLE_SQL_CREATE = "create table DetalleRepuestaEvaluacion (detalleRepuestaEvaluacionId LONG not null,evaluacionId LONG not null,usuarioId LONG not null,descripcion VARCHAR(75) null,preguntaId LONG,respuestaSeleccionada LONG,primary key (detalleRepuestaEvaluacionId, evaluacionId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table DetalleRepuestaEvaluacion";
 	public static final String ORDER_BY_JPQL = " ORDER BY detalleRepuestaEvaluacion.id.detalleRepuestaEvaluacionId ASC, detalleRepuestaEvaluacion.id.evaluacionId ASC, detalleRepuestaEvaluacion.id.usuarioId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY DetalleRepuestaEvaluacion.detalleRepuestaEvaluacionId ASC, DetalleRepuestaEvaluacion.evaluacionId ASC, DetalleRepuestaEvaluacion.usuarioId ASC";
@@ -99,6 +100,7 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 		model.setEvaluacionId(soapModel.getEvaluacionId());
 		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setDescripcion(soapModel.getDescripcion());
+		model.setPreguntaId(soapModel.getPreguntaId());
 		model.setRespuestaSeleccionada(soapModel.getRespuestaSeleccionada());
 
 		return model;
@@ -174,6 +176,7 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 		attributes.put("evaluacionId", getEvaluacionId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
+		attributes.put("preguntaId", getPreguntaId());
 		attributes.put("respuestaSeleccionada", getRespuestaSeleccionada());
 
 		return attributes;
@@ -204,6 +207,12 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
+		}
+
+		Long preguntaId = (Long)attributes.get("preguntaId");
+
+		if (preguntaId != null) {
+			setPreguntaId(preguntaId);
 		}
 
 		Long respuestaSeleccionada = (Long)attributes.get(
@@ -265,6 +274,17 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 
 	@JSON
 	@Override
+	public long getPreguntaId() {
+		return _preguntaId;
+	}
+
+	@Override
+	public void setPreguntaId(long preguntaId) {
+		_preguntaId = preguntaId;
+	}
+
+	@JSON
+	@Override
 	public long getRespuestaSeleccionada() {
 		return _respuestaSeleccionada;
 	}
@@ -292,6 +312,7 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 		detalleRepuestaEvaluacionImpl.setEvaluacionId(getEvaluacionId());
 		detalleRepuestaEvaluacionImpl.setUsuarioId(getUsuarioId());
 		detalleRepuestaEvaluacionImpl.setDescripcion(getDescripcion());
+		detalleRepuestaEvaluacionImpl.setPreguntaId(getPreguntaId());
 		detalleRepuestaEvaluacionImpl.setRespuestaSeleccionada(getRespuestaSeleccionada());
 
 		detalleRepuestaEvaluacionImpl.resetOriginalValues();
@@ -355,6 +376,8 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 			detalleRepuestaEvaluacionCacheModel.descripcion = null;
 		}
 
+		detalleRepuestaEvaluacionCacheModel.preguntaId = getPreguntaId();
+
 		detalleRepuestaEvaluacionCacheModel.respuestaSeleccionada = getRespuestaSeleccionada();
 
 		return detalleRepuestaEvaluacionCacheModel;
@@ -362,7 +385,7 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{detalleRepuestaEvaluacionId=");
 		sb.append(getDetalleRepuestaEvaluacionId());
@@ -372,6 +395,8 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 		sb.append(getUsuarioId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
+		sb.append(", preguntaId=");
+		sb.append(getPreguntaId());
 		sb.append(", respuestaSeleccionada=");
 		sb.append(getRespuestaSeleccionada());
 		sb.append("}");
@@ -381,7 +406,7 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.DetalleRepuestaEvaluacion");
@@ -404,6 +429,10 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>preguntaId</column-name><column-value><![CDATA[");
+		sb.append(getPreguntaId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>respuestaSeleccionada</column-name><column-value><![CDATA[");
 		sb.append(getRespuestaSeleccionada());
 		sb.append("]]></column-value></column>");
@@ -421,6 +450,7 @@ public class DetalleRepuestaEvaluacionModelImpl extends BaseModelImpl<DetalleRep
 	private long _evaluacionId;
 	private long _usuarioId;
 	private String _descripcion;
+	private long _preguntaId;
 	private long _respuestaSeleccionada;
 	private DetalleRepuestaEvaluacion _escapedModel;
 }

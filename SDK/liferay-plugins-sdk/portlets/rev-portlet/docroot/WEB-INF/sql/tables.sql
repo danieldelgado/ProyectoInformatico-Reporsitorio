@@ -1,31 +1,40 @@
 create table ActividadCronograma (
-	actividadCronogramaId LONG,
-	cronogramaId LONG not null primary key,
+	cronogramaId LONG not null,
+	actividadCronogramaId LONG not null,
 	descripcion VARCHAR(75) null,
 	fechaInicio DATE null,
 	fechaFin DATE null,
-	cumplido BOOLEAN,
-	finalizado BOOLEAN,
+	cumplidoEvaluacion BOOLEAN,
+	estado LONG,
+	fechaInicioEvaluacion DATE null,
+	fechaFinEvaluacion DATE null,
+	grupoUsuario LONG,
 	tipoActividad LONG,
+	aprobadoColaborador LONG,
+	jerarquiaEvaluar LONG,
+	aprobadoLider LONG,
+	usuarioGerenteId LONG,
+	usuarioLiderId LONG,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechamodifica DATE null
+	fechamodifica DATE null,
+	primary key (cronogramaId, actividadCronogramaId)
 );
 
 create table ActividadPlan (
-	actividadPlanId LONG not null primary key,
+	actividadCronogramaId LONG not null,
+	actividadPlanId LONG not null,
 	planAccionId LONG,
-	responsable LONG,
 	actividad VARCHAR(75) null,
 	evidencia VARCHAR(75) null,
-	objetivo VARCHAR(75) null,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechamodifica DATE null
+	fechamodifica DATE null,
+	primary key (actividadCronogramaId, actividadPlanId)
 );
 
 create table Contrato (
@@ -46,6 +55,7 @@ create table Cronograma (
 	solicitudEvaluacionDesempennoId LONG,
 	descripcion VARCHAR(75) null,
 	estado LONG,
+	aprobacionCronograma INTEGER,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
@@ -58,18 +68,19 @@ create table DetalleRepuestaEvaluacion (
 	evaluacionId LONG not null,
 	usuarioId LONG not null,
 	descripcion VARCHAR(75) null,
+	preguntaId LONG,
 	respuestaSeleccionada LONG,
 	primary key (detalleRepuestaEvaluacionId, evaluacionId, usuarioId)
 );
 
 create table DetalleRepuestaReclutamiento (
 	detalleRepsuestaId LONG not null,
+	usuarioId LONG not null,
 	evaluacionId LONG not null,
-	fasePostulacionId LONG not null,
 	descripcion VARCHAR(75) null,
 	preguntaId LONG not null,
 	respuestaSeleccionada INTEGER,
-	primary key (detalleRepsuestaId, evaluacionId, fasePostulacionId, preguntaId)
+	primary key (detalleRepsuestaId, usuarioId, evaluacionId, preguntaId)
 );
 
 create table Estudio (
@@ -136,6 +147,9 @@ create table FasePostulacion (
 	fechaFase DATE null,
 	descripcion VARCHAR(75) null,
 	estado LONG,
+	apruebaEntrevista BOOLEAN,
+	puntuacion INTEGER,
+	salario DOUBLE,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
@@ -173,9 +187,8 @@ create table Funcion (
 
 create table InformeRetroalimentacion (
 	informeRetroalimentacionId LONG not null primary key,
-	planAccionId LONG,
+	regisitrarActividadPlanUsuariocoId LONG,
 	usuario LONG,
-	titulo VARCHAR(75) null,
 	descripcion VARCHAR(75) null,
 	activo BOOLEAN,
 	usuariocrea LONG,
@@ -242,6 +255,7 @@ create table Postulacion (
 	usuarioId LONG not null,
 	fechaPostulacion DATE null,
 	estado LONG,
+	seleccionado BOOLEAN,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
@@ -258,6 +272,12 @@ create table Pregunta (
 	fechacrea DATE null,
 	usuariomodifica LONG,
 	fechamodifica DATE null
+);
+
+create table PreguntaRespuesta (
+	preguntaId LONG not null,
+	respuestaId LONG not null,
+	primary key (preguntaId, respuestaId)
 );
 
 create table PrioridadGrupoUsuarios (
@@ -297,6 +317,20 @@ create table Referencia (
 	usuariomodifica LONG,
 	fechamodifica DATE null,
 	primary key (referenciaId, usuarioId)
+);
+
+create table RegisitrarActividadPlanUsuario (
+	actividadPlanId LONG not null,
+	regisitrarActividadPlanUsuariocoId LONG not null,
+	usuarioId LONG,
+	cumplio LONG,
+	actividad VARCHAR(75) null,
+	activo BOOLEAN,
+	usuariocrea LONG,
+	fechacrea DATE null,
+	usuariomodifica LONG,
+	fechamodifica DATE null,
+	primary key (actividadPlanId, regisitrarActividadPlanUsuariocoId)
 );
 
 create table Requisito (
@@ -349,6 +383,7 @@ create table SolicitudRequerimiento (
 	cliente LONG,
 	especialidad VARCHAR(75) null,
 	meta VARCHAR(75) null,
+	fechameta DATE null,
 	prioridad LONG,
 	motivo VARCHAR(75) null,
 	descripcionPublicacion VARCHAR(75) null,
@@ -391,10 +426,10 @@ create table Usuario (
 );
 
 create table UsuarioEvaluacion (
-	actividadCronogramaId LONG not null,
+	actividadCronogramaId LONG,
 	usuarioId LONG not null,
 	evaluacionId LONG not null,
-	primary key (actividadCronogramaId, usuarioId, evaluacionId)
+	primary key (usuarioId, evaluacionId)
 );
 
 create table UsuarioRequisito (

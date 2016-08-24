@@ -44,6 +44,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		soapModel.setCliente(model.getCliente());
 		soapModel.setEspecialidad(model.getEspecialidad());
 		soapModel.setMeta(model.getMeta());
+		soapModel.setFechameta(model.getFechameta());
 		soapModel.setPrioridad(model.getPrioridad());
 		soapModel.setMotivo(model.getMotivo());
 		soapModel.setDescripcionPublicacion(model.getDescripcionPublicacion());
@@ -210,6 +211,14 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		_meta = meta;
 	}
 
+	public Date getFechameta() {
+		return _fechameta;
+	}
+
+	public void setFechameta(Date fechameta) {
+		_fechameta = fechameta;
+	}
+
 	public long getPrioridad() {
 		return _prioridad;
 	}
@@ -346,6 +355,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 	private long _cliente;
 	private String _especialidad;
 	private String _meta;
+	private Date _fechameta;
 	private long _prioridad;
 	private String _motivo;
 	private String _descripcionPublicacion;

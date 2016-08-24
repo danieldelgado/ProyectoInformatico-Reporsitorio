@@ -34,11 +34,15 @@ public class ActividadCronogramaLocalServiceClp
 
 		_methodName1 = "createActividadCronograma";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName2 = "deleteActividadCronograma";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName3 = "deleteActividadCronograma";
 
@@ -84,11 +88,15 @@ public class ActividadCronogramaLocalServiceClp
 
 		_methodName10 = "fetchActividadCronograma";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName11 = "getActividadCronograma";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -151,12 +159,15 @@ public class ActividadCronogramaLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.ActividadCronograma createActividadCronograma(
-		long cronogramaId) {
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { cronogramaId });
+					_methodParameterTypes1,
+					new Object[] {
+						ClpSerializer.translateInput(actividadCronogramaPK)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -175,14 +186,17 @@ public class ActividadCronogramaLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.ActividadCronograma deleteActividadCronograma(
-		long cronogramaId)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { cronogramaId });
+					_methodParameterTypes2,
+					new Object[] {
+						ClpSerializer.translateInput(actividadCronogramaPK)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -438,13 +452,16 @@ public class ActividadCronogramaLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.ActividadCronograma fetchActividadCronograma(
-		long cronogramaId)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { cronogramaId });
+					_methodParameterTypes10,
+					new Object[] {
+						ClpSerializer.translateInput(actividadCronogramaPK)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -467,14 +484,17 @@ public class ActividadCronogramaLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.ActividadCronograma getActividadCronograma(
-		long cronogramaId)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { cronogramaId });
+					_methodParameterTypes11,
+					new Object[] {
+						ClpSerializer.translateInput(actividadCronogramaPK)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

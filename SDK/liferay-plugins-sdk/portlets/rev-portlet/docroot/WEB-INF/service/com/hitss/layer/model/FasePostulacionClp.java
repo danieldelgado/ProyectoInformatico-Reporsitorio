@@ -82,6 +82,9 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		attributes.put("fechaFase", getFechaFase());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("apruebaEntrevista", getApruebaEntrevista());
+		attributes.put("puntuacion", getPuntuacion());
+		attributes.put("salario", getSalario());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -134,6 +137,24 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Boolean apruebaEntrevista = (Boolean)attributes.get("apruebaEntrevista");
+
+		if (apruebaEntrevista != null) {
+			setApruebaEntrevista(apruebaEntrevista);
+		}
+
+		Integer puntuacion = (Integer)attributes.get("puntuacion");
+
+		if (puntuacion != null) {
+			setPuntuacion(puntuacion);
+		}
+
+		Double salario = (Double)attributes.get("salario");
+
+		if (salario != null) {
+			setSalario(salario);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -324,6 +345,81 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 				Method method = clazz.getMethod("setEstado", long.class);
 
 				method.invoke(_fasePostulacionRemoteModel, estado);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public boolean getApruebaEntrevista() {
+		return _apruebaEntrevista;
+	}
+
+	@Override
+	public boolean isApruebaEntrevista() {
+		return _apruebaEntrevista;
+	}
+
+	@Override
+	public void setApruebaEntrevista(boolean apruebaEntrevista) {
+		_apruebaEntrevista = apruebaEntrevista;
+
+		if (_fasePostulacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _fasePostulacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setApruebaEntrevista",
+						boolean.class);
+
+				method.invoke(_fasePostulacionRemoteModel, apruebaEntrevista);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getPuntuacion() {
+		return _puntuacion;
+	}
+
+	@Override
+	public void setPuntuacion(int puntuacion) {
+		_puntuacion = puntuacion;
+
+		if (_fasePostulacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _fasePostulacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPuntuacion", int.class);
+
+				method.invoke(_fasePostulacionRemoteModel, puntuacion);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public double getSalario() {
+		return _salario;
+	}
+
+	@Override
+	public void setSalario(double salario) {
+		_salario = salario;
+
+		if (_fasePostulacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _fasePostulacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSalario", double.class);
+
+				method.invoke(_fasePostulacionRemoteModel, salario);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -529,6 +625,9 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		clone.setFechaFase(getFechaFase());
 		clone.setDescripcion(getDescripcion());
 		clone.setEstado(getEstado());
+		clone.setApruebaEntrevista(getApruebaEntrevista());
+		clone.setPuntuacion(getPuntuacion());
+		clone.setSalario(getSalario());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -585,7 +684,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{fasePostulacionId=");
 		sb.append(getFasePostulacionId());
@@ -601,6 +700,12 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		sb.append(getDescripcion());
 		sb.append(", estado=");
 		sb.append(getEstado());
+		sb.append(", apruebaEntrevista=");
+		sb.append(getApruebaEntrevista());
+		sb.append(", puntuacion=");
+		sb.append(getPuntuacion());
+		sb.append(", salario=");
+		sb.append(getSalario());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -618,7 +723,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.FasePostulacion");
@@ -653,6 +758,18 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		sb.append(getEstado());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>apruebaEntrevista</column-name><column-value><![CDATA[");
+		sb.append(getApruebaEntrevista());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>puntuacion</column-name><column-value><![CDATA[");
+		sb.append(getPuntuacion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>salario</column-name><column-value><![CDATA[");
+		sb.append(getSalario());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
 		sb.append(getActivo());
 		sb.append("]]></column-value></column>");
@@ -685,6 +802,9 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 	private Date _fechaFase;
 	private String _descripcion;
 	private long _estado;
+	private boolean _apruebaEntrevista;
+	private int _puntuacion;
+	private double _salario;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

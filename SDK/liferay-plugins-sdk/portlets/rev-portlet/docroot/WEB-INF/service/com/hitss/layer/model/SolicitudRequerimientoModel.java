@@ -230,6 +230,20 @@ public interface SolicitudRequerimientoModel extends BaseModel<SolicitudRequerim
 	public void setMeta(String meta);
 
 	/**
+	 * Returns the fechameta of this solicitud requerimiento.
+	 *
+	 * @return the fechameta of this solicitud requerimiento
+	 */
+	public Date getFechameta();
+
+	/**
+	 * Sets the fechameta of this solicitud requerimiento.
+	 *
+	 * @param fechameta the fechameta of this solicitud requerimiento
+	 */
+	public void setFechameta(Date fechameta);
+
+	/**
 	 * Returns the prioridad of this solicitud requerimiento.
 	 *
 	 * @return the prioridad of this solicitud requerimiento

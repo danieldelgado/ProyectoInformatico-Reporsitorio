@@ -37,6 +37,7 @@ public class DetalleRepuestaEvaluacionSoap implements Serializable {
 		soapModel.setEvaluacionId(model.getEvaluacionId());
 		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setDescripcion(model.getDescripcion());
+		soapModel.setPreguntaId(model.getPreguntaId());
 		soapModel.setRespuestaSeleccionada(model.getRespuestaSeleccionada());
 
 		return soapModel;
@@ -128,6 +129,14 @@ public class DetalleRepuestaEvaluacionSoap implements Serializable {
 		_descripcion = descripcion;
 	}
 
+	public long getPreguntaId() {
+		return _preguntaId;
+	}
+
+	public void setPreguntaId(long preguntaId) {
+		_preguntaId = preguntaId;
+	}
+
 	public long getRespuestaSeleccionada() {
 		return _respuestaSeleccionada;
 	}
@@ -140,5 +149,6 @@ public class DetalleRepuestaEvaluacionSoap implements Serializable {
 	private long _evaluacionId;
 	private long _usuarioId;
 	private String _descripcion;
+	private long _preguntaId;
 	private long _respuestaSeleccionada;
 }

@@ -63,6 +63,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 		attributes.put("cliente", getCliente());
 		attributes.put("especialidad", getEspecialidad());
 		attributes.put("meta", getMeta());
+		attributes.put("fechameta", getFechameta());
 		attributes.put("prioridad", getPrioridad());
 		attributes.put("motivo", getMotivo());
 		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
@@ -155,6 +156,12 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 
 		if (meta != null) {
 			setMeta(meta);
+		}
+
+		Date fechameta = (Date)attributes.get("fechameta");
+
+		if (fechameta != null) {
+			setFechameta(fechameta);
 		}
 
 		Long prioridad = (Long)attributes.get("prioridad");
@@ -507,6 +514,26 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	@Override
 	public void setMeta(java.lang.String meta) {
 		_solicitudRequerimiento.setMeta(meta);
+	}
+
+	/**
+	* Returns the fechameta of this solicitud requerimiento.
+	*
+	* @return the fechameta of this solicitud requerimiento
+	*/
+	@Override
+	public java.util.Date getFechameta() {
+		return _solicitudRequerimiento.getFechameta();
+	}
+
+	/**
+	* Sets the fechameta of this solicitud requerimiento.
+	*
+	* @param fechameta the fechameta of this solicitud requerimiento
+	*/
+	@Override
+	public void setFechameta(java.util.Date fechameta) {
+		_solicitudRequerimiento.setFechameta(fechameta);
 	}
 
 	/**

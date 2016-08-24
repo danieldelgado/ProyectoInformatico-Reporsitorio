@@ -17,6 +17,7 @@ package com.hitss.layer.model.impl;
 import com.hitss.layer.model.ActividadCronograma;
 import com.hitss.layer.model.ActividadCronogramaModel;
 import com.hitss.layer.model.ActividadCronogramaSoap;
+import com.hitss.layer.service.persistence.ActividadCronogramaPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
@@ -27,10 +28,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.service.ServiceContext;
-
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
@@ -65,21 +62,29 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	 */
 	public static final String TABLE_NAME = "ActividadCronograma";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "actividadCronogramaId", Types.BIGINT },
 			{ "cronogramaId", Types.BIGINT },
+			{ "actividadCronogramaId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
 			{ "fechaInicio", Types.TIMESTAMP },
 			{ "fechaFin", Types.TIMESTAMP },
-			{ "cumplido", Types.BOOLEAN },
-			{ "finalizado", Types.BOOLEAN },
+			{ "cumplidoEvaluacion", Types.BOOLEAN },
+			{ "estado", Types.BIGINT },
+			{ "fechaInicioEvaluacion", Types.TIMESTAMP },
+			{ "fechaFinEvaluacion", Types.TIMESTAMP },
+			{ "grupoUsuario", Types.BIGINT },
 			{ "tipoActividad", Types.BIGINT },
+			{ "aprobadoColaborador", Types.BIGINT },
+			{ "jerarquiaEvaluar", Types.BIGINT },
+			{ "aprobadoLider", Types.BIGINT },
+			{ "usuarioGerenteId", Types.BIGINT },
+			{ "usuarioLiderId", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table ActividadCronograma (actividadCronogramaId LONG,cronogramaId LONG not null primary key,descripcion VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,cumplido BOOLEAN,finalizado BOOLEAN,tipoActividad LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table ActividadCronograma (cronogramaId LONG not null,actividadCronogramaId LONG not null,descripcion VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,cumplidoEvaluacion BOOLEAN,estado LONG,fechaInicioEvaluacion DATE null,fechaFinEvaluacion DATE null,grupoUsuario LONG,tipoActividad LONG,aprobadoColaborador LONG,jerarquiaEvaluar LONG,aprobadoLider LONG,usuarioGerenteId LONG,usuarioLiderId LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (cronogramaId, actividadCronogramaId))";
 	public static final String TABLE_SQL_DROP = "drop table ActividadCronograma";
 	public static final String ORDER_BY_JPQL = " ORDER BY actividadCronograma.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY ActividadCronograma.fechamodifica ASC";
@@ -107,14 +112,22 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 		ActividadCronograma model = new ActividadCronogramaImpl();
 
-		model.setActividadCronogramaId(soapModel.getActividadCronogramaId());
 		model.setCronogramaId(soapModel.getCronogramaId());
+		model.setActividadCronogramaId(soapModel.getActividadCronogramaId());
 		model.setDescripcion(soapModel.getDescripcion());
 		model.setFechaInicio(soapModel.getFechaInicio());
 		model.setFechaFin(soapModel.getFechaFin());
-		model.setCumplido(soapModel.getCumplido());
-		model.setFinalizado(soapModel.getFinalizado());
+		model.setCumplidoEvaluacion(soapModel.getCumplidoEvaluacion());
+		model.setEstado(soapModel.getEstado());
+		model.setFechaInicioEvaluacion(soapModel.getFechaInicioEvaluacion());
+		model.setFechaFinEvaluacion(soapModel.getFechaFinEvaluacion());
+		model.setGrupoUsuario(soapModel.getGrupoUsuario());
 		model.setTipoActividad(soapModel.getTipoActividad());
+		model.setAprobadoColaborador(soapModel.getAprobadoColaborador());
+		model.setJerarquiaEvaluar(soapModel.getJerarquiaEvaluar());
+		model.setAprobadoLider(soapModel.getAprobadoLider());
+		model.setUsuarioGerenteId(soapModel.getUsuarioGerenteId());
+		model.setUsuarioLiderId(soapModel.getUsuarioLiderId());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -152,23 +165,24 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _cronogramaId;
+	public ActividadCronogramaPK getPrimaryKey() {
+		return new ActividadCronogramaPK(_cronogramaId, _actividadCronogramaId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setCronogramaId(primaryKey);
+	public void setPrimaryKey(ActividadCronogramaPK primaryKey) {
+		setCronogramaId(primaryKey.cronogramaId);
+		setActividadCronogramaId(primaryKey.actividadCronogramaId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _cronogramaId;
+		return new ActividadCronogramaPK(_cronogramaId, _actividadCronogramaId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ActividadCronogramaPK)primaryKeyObj);
 	}
 
 	@Override
@@ -185,14 +199,22 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("cronogramaId", getCronogramaId());
+		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
-		attributes.put("cumplido", getCumplido());
-		attributes.put("finalizado", getFinalizado());
+		attributes.put("cumplidoEvaluacion", getCumplidoEvaluacion());
+		attributes.put("estado", getEstado());
+		attributes.put("fechaInicioEvaluacion", getFechaInicioEvaluacion());
+		attributes.put("fechaFinEvaluacion", getFechaFinEvaluacion());
+		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("tipoActividad", getTipoActividad());
+		attributes.put("aprobadoColaborador", getAprobadoColaborador());
+		attributes.put("jerarquiaEvaluar", getJerarquiaEvaluar());
+		attributes.put("aprobadoLider", getAprobadoLider());
+		attributes.put("usuarioGerenteId", getUsuarioGerenteId());
+		attributes.put("usuarioLiderId", getUsuarioLiderId());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -204,17 +226,17 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long cronogramaId = (Long)attributes.get("cronogramaId");
+
+		if (cronogramaId != null) {
+			setCronogramaId(cronogramaId);
+		}
+
 		Long actividadCronogramaId = (Long)attributes.get(
 				"actividadCronogramaId");
 
 		if (actividadCronogramaId != null) {
 			setActividadCronogramaId(actividadCronogramaId);
-		}
-
-		Long cronogramaId = (Long)attributes.get("cronogramaId");
-
-		if (cronogramaId != null) {
-			setCronogramaId(cronogramaId);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -235,22 +257,72 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			setFechaFin(fechaFin);
 		}
 
-		Boolean cumplido = (Boolean)attributes.get("cumplido");
+		Boolean cumplidoEvaluacion = (Boolean)attributes.get(
+				"cumplidoEvaluacion");
 
-		if (cumplido != null) {
-			setCumplido(cumplido);
+		if (cumplidoEvaluacion != null) {
+			setCumplidoEvaluacion(cumplidoEvaluacion);
 		}
 
-		Boolean finalizado = (Boolean)attributes.get("finalizado");
+		Long estado = (Long)attributes.get("estado");
 
-		if (finalizado != null) {
-			setFinalizado(finalizado);
+		if (estado != null) {
+			setEstado(estado);
+		}
+
+		Date fechaInicioEvaluacion = (Date)attributes.get(
+				"fechaInicioEvaluacion");
+
+		if (fechaInicioEvaluacion != null) {
+			setFechaInicioEvaluacion(fechaInicioEvaluacion);
+		}
+
+		Date fechaFinEvaluacion = (Date)attributes.get("fechaFinEvaluacion");
+
+		if (fechaFinEvaluacion != null) {
+			setFechaFinEvaluacion(fechaFinEvaluacion);
+		}
+
+		Long grupoUsuario = (Long)attributes.get("grupoUsuario");
+
+		if (grupoUsuario != null) {
+			setGrupoUsuario(grupoUsuario);
 		}
 
 		Long tipoActividad = (Long)attributes.get("tipoActividad");
 
 		if (tipoActividad != null) {
 			setTipoActividad(tipoActividad);
+		}
+
+		Long aprobadoColaborador = (Long)attributes.get("aprobadoColaborador");
+
+		if (aprobadoColaborador != null) {
+			setAprobadoColaborador(aprobadoColaborador);
+		}
+
+		Long jerarquiaEvaluar = (Long)attributes.get("jerarquiaEvaluar");
+
+		if (jerarquiaEvaluar != null) {
+			setJerarquiaEvaluar(jerarquiaEvaluar);
+		}
+
+		Long aprobadoLider = (Long)attributes.get("aprobadoLider");
+
+		if (aprobadoLider != null) {
+			setAprobadoLider(aprobadoLider);
+		}
+
+		Long usuarioGerenteId = (Long)attributes.get("usuarioGerenteId");
+
+		if (usuarioGerenteId != null) {
+			setUsuarioGerenteId(usuarioGerenteId);
+		}
+
+		Long usuarioLiderId = (Long)attributes.get("usuarioLiderId");
+
+		if (usuarioLiderId != null) {
+			setUsuarioLiderId(usuarioLiderId);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -286,17 +358,6 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@JSON
 	@Override
-	public long getActividadCronogramaId() {
-		return _actividadCronogramaId;
-	}
-
-	@Override
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronogramaId = actividadCronogramaId;
-	}
-
-	@JSON
-	@Override
 	public long getCronogramaId() {
 		return _cronogramaId;
 	}
@@ -304,6 +365,17 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	@Override
 	public void setCronogramaId(long cronogramaId) {
 		_cronogramaId = cronogramaId;
+	}
+
+	@JSON
+	@Override
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
 	}
 
 	@JSON
@@ -346,34 +418,62 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@JSON
 	@Override
-	public boolean getCumplido() {
-		return _cumplido;
+	public boolean getCumplidoEvaluacion() {
+		return _cumplidoEvaluacion;
 	}
 
 	@Override
-	public boolean isCumplido() {
-		return _cumplido;
+	public boolean isCumplidoEvaluacion() {
+		return _cumplidoEvaluacion;
 	}
 
 	@Override
-	public void setCumplido(boolean cumplido) {
-		_cumplido = cumplido;
+	public void setCumplidoEvaluacion(boolean cumplidoEvaluacion) {
+		_cumplidoEvaluacion = cumplidoEvaluacion;
 	}
 
 	@JSON
 	@Override
-	public boolean getFinalizado() {
-		return _finalizado;
+	public long getEstado() {
+		return _estado;
 	}
 
 	@Override
-	public boolean isFinalizado() {
-		return _finalizado;
+	public void setEstado(long estado) {
+		_estado = estado;
+	}
+
+	@JSON
+	@Override
+	public Date getFechaInicioEvaluacion() {
+		return _fechaInicioEvaluacion;
 	}
 
 	@Override
-	public void setFinalizado(boolean finalizado) {
-		_finalizado = finalizado;
+	public void setFechaInicioEvaluacion(Date fechaInicioEvaluacion) {
+		_fechaInicioEvaluacion = fechaInicioEvaluacion;
+	}
+
+	@JSON
+	@Override
+	public Date getFechaFinEvaluacion() {
+		return _fechaFinEvaluacion;
+	}
+
+	@Override
+	public void setFechaFinEvaluacion(Date fechaFinEvaluacion) {
+		_fechaFinEvaluacion = fechaFinEvaluacion;
+	}
+
+	@JSON
+	@Override
+	public long getGrupoUsuario() {
+		return _grupoUsuario;
+	}
+
+	@Override
+	public void setGrupoUsuario(long grupoUsuario) {
+		_grupoUsuario = grupoUsuario;
 	}
 
 	@JSON
@@ -385,6 +485,61 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	@Override
 	public void setTipoActividad(long tipoActividad) {
 		_tipoActividad = tipoActividad;
+	}
+
+	@JSON
+	@Override
+	public long getAprobadoColaborador() {
+		return _aprobadoColaborador;
+	}
+
+	@Override
+	public void setAprobadoColaborador(long aprobadoColaborador) {
+		_aprobadoColaborador = aprobadoColaborador;
+	}
+
+	@JSON
+	@Override
+	public long getJerarquiaEvaluar() {
+		return _jerarquiaEvaluar;
+	}
+
+	@Override
+	public void setJerarquiaEvaluar(long jerarquiaEvaluar) {
+		_jerarquiaEvaluar = jerarquiaEvaluar;
+	}
+
+	@JSON
+	@Override
+	public long getAprobadoLider() {
+		return _aprobadoLider;
+	}
+
+	@Override
+	public void setAprobadoLider(long aprobadoLider) {
+		_aprobadoLider = aprobadoLider;
+	}
+
+	@JSON
+	@Override
+	public long getUsuarioGerenteId() {
+		return _usuarioGerenteId;
+	}
+
+	@Override
+	public void setUsuarioGerenteId(long usuarioGerenteId) {
+		_usuarioGerenteId = usuarioGerenteId;
+	}
+
+	@JSON
+	@Override
+	public long getUsuarioLiderId() {
+		return _usuarioLiderId;
+	}
+
+	@Override
+	public void setUsuarioLiderId(long usuarioLiderId) {
+		_usuarioLiderId = usuarioLiderId;
 	}
 
 	@JSON
@@ -448,19 +603,6 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	}
 
 	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-			ActividadCronograma.class.getName(), getPrimaryKey());
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		ExpandoBridge expandoBridge = getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
-	}
-
-	@Override
 	public ActividadCronograma toEscapedModel() {
 		if (_escapedModel == null) {
 			_escapedModel = (ActividadCronograma)ProxyUtil.newProxyInstance(_classLoader,
@@ -474,14 +616,22 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	public Object clone() {
 		ActividadCronogramaImpl actividadCronogramaImpl = new ActividadCronogramaImpl();
 
-		actividadCronogramaImpl.setActividadCronogramaId(getActividadCronogramaId());
 		actividadCronogramaImpl.setCronogramaId(getCronogramaId());
+		actividadCronogramaImpl.setActividadCronogramaId(getActividadCronogramaId());
 		actividadCronogramaImpl.setDescripcion(getDescripcion());
 		actividadCronogramaImpl.setFechaInicio(getFechaInicio());
 		actividadCronogramaImpl.setFechaFin(getFechaFin());
-		actividadCronogramaImpl.setCumplido(getCumplido());
-		actividadCronogramaImpl.setFinalizado(getFinalizado());
+		actividadCronogramaImpl.setCumplidoEvaluacion(getCumplidoEvaluacion());
+		actividadCronogramaImpl.setEstado(getEstado());
+		actividadCronogramaImpl.setFechaInicioEvaluacion(getFechaInicioEvaluacion());
+		actividadCronogramaImpl.setFechaFinEvaluacion(getFechaFinEvaluacion());
+		actividadCronogramaImpl.setGrupoUsuario(getGrupoUsuario());
 		actividadCronogramaImpl.setTipoActividad(getTipoActividad());
+		actividadCronogramaImpl.setAprobadoColaborador(getAprobadoColaborador());
+		actividadCronogramaImpl.setJerarquiaEvaluar(getJerarquiaEvaluar());
+		actividadCronogramaImpl.setAprobadoLider(getAprobadoLider());
+		actividadCronogramaImpl.setUsuarioGerenteId(getUsuarioGerenteId());
+		actividadCronogramaImpl.setUsuarioLiderId(getUsuarioLiderId());
 		actividadCronogramaImpl.setActivo(getActivo());
 		actividadCronogramaImpl.setUsuariocrea(getUsuariocrea());
 		actividadCronogramaImpl.setFechacrea(getFechacrea());
@@ -519,9 +669,9 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 		ActividadCronograma actividadCronograma = (ActividadCronograma)obj;
 
-		long primaryKey = actividadCronograma.getPrimaryKey();
+		ActividadCronogramaPK primaryKey = actividadCronograma.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -531,7 +681,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
@@ -542,9 +692,9 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	public CacheModel<ActividadCronograma> toCacheModel() {
 		ActividadCronogramaCacheModel actividadCronogramaCacheModel = new ActividadCronogramaCacheModel();
 
-		actividadCronogramaCacheModel.actividadCronogramaId = getActividadCronogramaId();
-
 		actividadCronogramaCacheModel.cronogramaId = getCronogramaId();
+
+		actividadCronogramaCacheModel.actividadCronogramaId = getActividadCronogramaId();
 
 		actividadCronogramaCacheModel.descripcion = getDescripcion();
 
@@ -572,11 +722,41 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			actividadCronogramaCacheModel.fechaFin = Long.MIN_VALUE;
 		}
 
-		actividadCronogramaCacheModel.cumplido = getCumplido();
+		actividadCronogramaCacheModel.cumplidoEvaluacion = getCumplidoEvaluacion();
 
-		actividadCronogramaCacheModel.finalizado = getFinalizado();
+		actividadCronogramaCacheModel.estado = getEstado();
+
+		Date fechaInicioEvaluacion = getFechaInicioEvaluacion();
+
+		if (fechaInicioEvaluacion != null) {
+			actividadCronogramaCacheModel.fechaInicioEvaluacion = fechaInicioEvaluacion.getTime();
+		}
+		else {
+			actividadCronogramaCacheModel.fechaInicioEvaluacion = Long.MIN_VALUE;
+		}
+
+		Date fechaFinEvaluacion = getFechaFinEvaluacion();
+
+		if (fechaFinEvaluacion != null) {
+			actividadCronogramaCacheModel.fechaFinEvaluacion = fechaFinEvaluacion.getTime();
+		}
+		else {
+			actividadCronogramaCacheModel.fechaFinEvaluacion = Long.MIN_VALUE;
+		}
+
+		actividadCronogramaCacheModel.grupoUsuario = getGrupoUsuario();
 
 		actividadCronogramaCacheModel.tipoActividad = getTipoActividad();
+
+		actividadCronogramaCacheModel.aprobadoColaborador = getAprobadoColaborador();
+
+		actividadCronogramaCacheModel.jerarquiaEvaluar = getJerarquiaEvaluar();
+
+		actividadCronogramaCacheModel.aprobadoLider = getAprobadoLider();
+
+		actividadCronogramaCacheModel.usuarioGerenteId = getUsuarioGerenteId();
+
+		actividadCronogramaCacheModel.usuarioLiderId = getUsuarioLiderId();
 
 		actividadCronogramaCacheModel.activo = getActivo();
 
@@ -607,24 +787,40 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(43);
 
-		sb.append("{actividadCronogramaId=");
-		sb.append(getActividadCronogramaId());
-		sb.append(", cronogramaId=");
+		sb.append("{cronogramaId=");
 		sb.append(getCronogramaId());
+		sb.append(", actividadCronogramaId=");
+		sb.append(getActividadCronogramaId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
 		sb.append(", fechaInicio=");
 		sb.append(getFechaInicio());
 		sb.append(", fechaFin=");
 		sb.append(getFechaFin());
-		sb.append(", cumplido=");
-		sb.append(getCumplido());
-		sb.append(", finalizado=");
-		sb.append(getFinalizado());
+		sb.append(", cumplidoEvaluacion=");
+		sb.append(getCumplidoEvaluacion());
+		sb.append(", estado=");
+		sb.append(getEstado());
+		sb.append(", fechaInicioEvaluacion=");
+		sb.append(getFechaInicioEvaluacion());
+		sb.append(", fechaFinEvaluacion=");
+		sb.append(getFechaFinEvaluacion());
+		sb.append(", grupoUsuario=");
+		sb.append(getGrupoUsuario());
 		sb.append(", tipoActividad=");
 		sb.append(getTipoActividad());
+		sb.append(", aprobadoColaborador=");
+		sb.append(getAprobadoColaborador());
+		sb.append(", jerarquiaEvaluar=");
+		sb.append(getJerarquiaEvaluar());
+		sb.append(", aprobadoLider=");
+		sb.append(getAprobadoLider());
+		sb.append(", usuarioGerenteId=");
+		sb.append(getUsuarioGerenteId());
+		sb.append(", usuarioLiderId=");
+		sb.append(getUsuarioLiderId());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -642,19 +838,19 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(67);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.ActividadCronograma");
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
-		sb.append(getActividadCronogramaId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>cronogramaId</column-name><column-value><![CDATA[");
 		sb.append(getCronogramaId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
+		sb.append(getActividadCronogramaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
@@ -669,16 +865,48 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		sb.append(getFechaFin());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>cumplido</column-name><column-value><![CDATA[");
-		sb.append(getCumplido());
+			"<column><column-name>cumplidoEvaluacion</column-name><column-value><![CDATA[");
+		sb.append(getCumplidoEvaluacion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>finalizado</column-name><column-value><![CDATA[");
-		sb.append(getFinalizado());
+			"<column><column-name>estado</column-name><column-value><![CDATA[");
+		sb.append(getEstado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechaInicioEvaluacion</column-name><column-value><![CDATA[");
+		sb.append(getFechaInicioEvaluacion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fechaFinEvaluacion</column-name><column-value><![CDATA[");
+		sb.append(getFechaFinEvaluacion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>grupoUsuario</column-name><column-value><![CDATA[");
+		sb.append(getGrupoUsuario());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>tipoActividad</column-name><column-value><![CDATA[");
 		sb.append(getTipoActividad());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>aprobadoColaborador</column-name><column-value><![CDATA[");
+		sb.append(getAprobadoColaborador());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>jerarquiaEvaluar</column-name><column-value><![CDATA[");
+		sb.append(getJerarquiaEvaluar());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>aprobadoLider</column-name><column-value><![CDATA[");
+		sb.append(getAprobadoLider());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>usuarioGerenteId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioGerenteId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>usuarioLiderId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioLiderId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -710,14 +938,22 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			ActividadCronograma.class
 		};
-	private long _actividadCronogramaId;
 	private long _cronogramaId;
+	private long _actividadCronogramaId;
 	private String _descripcion;
 	private Date _fechaInicio;
 	private Date _fechaFin;
-	private boolean _cumplido;
-	private boolean _finalizado;
+	private boolean _cumplidoEvaluacion;
+	private long _estado;
+	private Date _fechaInicioEvaluacion;
+	private Date _fechaFinEvaluacion;
+	private long _grupoUsuario;
 	private long _tipoActividad;
+	private long _aprobadoColaborador;
+	private long _jerarquiaEvaluar;
+	private long _aprobadoLider;
+	private long _usuarioGerenteId;
+	private long _usuarioLiderId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

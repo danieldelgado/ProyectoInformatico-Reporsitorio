@@ -36,7 +36,7 @@ public class DetalleRepuestaEvaluacionCacheModel implements CacheModel<DetalleRe
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{detalleRepuestaEvaluacionId=");
 		sb.append(detalleRepuestaEvaluacionId);
@@ -46,6 +46,8 @@ public class DetalleRepuestaEvaluacionCacheModel implements CacheModel<DetalleRe
 		sb.append(usuarioId);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
+		sb.append(", preguntaId=");
+		sb.append(preguntaId);
 		sb.append(", respuestaSeleccionada=");
 		sb.append(respuestaSeleccionada);
 		sb.append("}");
@@ -68,6 +70,7 @@ public class DetalleRepuestaEvaluacionCacheModel implements CacheModel<DetalleRe
 			detalleRepuestaEvaluacionImpl.setDescripcion(descripcion);
 		}
 
+		detalleRepuestaEvaluacionImpl.setPreguntaId(preguntaId);
 		detalleRepuestaEvaluacionImpl.setRespuestaSeleccionada(respuestaSeleccionada);
 
 		detalleRepuestaEvaluacionImpl.resetOriginalValues();
@@ -81,6 +84,7 @@ public class DetalleRepuestaEvaluacionCacheModel implements CacheModel<DetalleRe
 		evaluacionId = objectInput.readLong();
 		usuarioId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
+		preguntaId = objectInput.readLong();
 		respuestaSeleccionada = objectInput.readLong();
 	}
 
@@ -98,6 +102,7 @@ public class DetalleRepuestaEvaluacionCacheModel implements CacheModel<DetalleRe
 			objectOutput.writeUTF(descripcion);
 		}
 
+		objectOutput.writeLong(preguntaId);
 		objectOutput.writeLong(respuestaSeleccionada);
 	}
 
@@ -105,5 +110,6 @@ public class DetalleRepuestaEvaluacionCacheModel implements CacheModel<DetalleRe
 	public long evaluacionId;
 	public long usuarioId;
 	public String descripcion;
+	public long preguntaId;
 	public long respuestaSeleccionada;
 }

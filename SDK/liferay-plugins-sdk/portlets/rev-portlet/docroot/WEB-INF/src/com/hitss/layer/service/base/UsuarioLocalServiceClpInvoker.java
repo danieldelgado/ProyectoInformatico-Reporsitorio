@@ -100,98 +100,27 @@ public class UsuarioLocalServiceClpInvoker {
 
 		_methodParameterTypes15 = new String[] { "com.hitss.layer.model.Usuario" };
 
-		_methodName16 = "addActividadPlanUsuario";
+		_methodName216 = "getBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] { "long", "long" };
+		_methodParameterTypes216 = new String[] {  };
 
-		_methodName17 = "addActividadPlanUsuario";
+		_methodName217 = "setBeanIdentifier";
 
-		_methodParameterTypes17 = new String[] {
-				"long", "com.hitss.layer.model.Usuario"
-			};
+		_methodParameterTypes217 = new String[] { "java.lang.String" };
 
-		_methodName18 = "addActividadPlanUsuarios";
+		_methodName222 = "newInstance";
 
-		_methodParameterTypes18 = new String[] { "long", "long[][]" };
+		_methodParameterTypes222 = new String[] {  };
 
-		_methodName19 = "addActividadPlanUsuarios";
+		_methodName223 = "listarUsuariosByRole";
 
-		_methodParameterTypes19 = new String[] { "long", "java.util.List" };
-
-		_methodName20 = "clearActividadPlanUsuarios";
-
-		_methodParameterTypes20 = new String[] { "long" };
-
-		_methodName21 = "deleteActividadPlanUsuario";
-
-		_methodParameterTypes21 = new String[] { "long", "long" };
-
-		_methodName22 = "deleteActividadPlanUsuario";
-
-		_methodParameterTypes22 = new String[] {
-				"long", "com.hitss.layer.model.Usuario"
-			};
-
-		_methodName23 = "deleteActividadPlanUsuarios";
-
-		_methodParameterTypes23 = new String[] { "long", "long[][]" };
-
-		_methodName24 = "deleteActividadPlanUsuarios";
-
-		_methodParameterTypes24 = new String[] { "long", "java.util.List" };
-
-		_methodName25 = "getActividadPlanUsuarios";
-
-		_methodParameterTypes25 = new String[] { "long" };
-
-		_methodName26 = "getActividadPlanUsuarios";
-
-		_methodParameterTypes26 = new String[] { "long", "int", "int" };
-
-		_methodName27 = "getActividadPlanUsuarios";
-
-		_methodParameterTypes27 = new String[] {
-				"long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
-
-		_methodName28 = "getActividadPlanUsuariosCount";
-
-		_methodParameterTypes28 = new String[] { "long" };
-
-		_methodName29 = "hasActividadPlanUsuario";
-
-		_methodParameterTypes29 = new String[] { "long", "long" };
-
-		_methodName30 = "hasActividadPlanUsuarios";
-
-		_methodParameterTypes30 = new String[] { "long" };
-
-		_methodName31 = "setActividadPlanUsuarios";
-
-		_methodParameterTypes31 = new String[] { "long", "long[][]" };
-
-		_methodName226 = "getBeanIdentifier";
-
-		_methodParameterTypes226 = new String[] {  };
-
-		_methodName227 = "setBeanIdentifier";
-
-		_methodParameterTypes227 = new String[] { "java.lang.String" };
-
-		_methodName232 = "newInstance";
-
-		_methodParameterTypes232 = new String[] {  };
-
-		_methodName233 = "listarUsuariosByRole";
-
-		_methodParameterTypes233 = new String[] {
+		_methodParameterTypes223 = new String[] {
 				"long", "long", "java.lang.String"
 			};
 
-		_methodName234 = "findByUsuariosSeleccionados";
+		_methodName224 = "findByUsuariosSeleccionados";
 
-		_methodParameterTypes234 = new String[] { "long[][]" };
+		_methodParameterTypes224 = new String[] { "long[][]" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -283,146 +212,31 @@ public class UsuarioLocalServiceClpInvoker {
 			return UsuarioLocalServiceUtil.updateUsuario((com.hitss.layer.model.Usuario)arguments[0]);
 		}
 
-		if (_methodName16.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			UsuarioLocalServiceUtil.addActividadPlanUsuario(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-
-			return null;
-		}
-
-		if (_methodName17.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			UsuarioLocalServiceUtil.addActividadPlanUsuario(((Long)arguments[0]).longValue(),
-				(com.hitss.layer.model.Usuario)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName18.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
-			UsuarioLocalServiceUtil.addActividadPlanUsuarios(((Long)arguments[0]).longValue(),
-				(long[])arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName19.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
-			UsuarioLocalServiceUtil.addActividadPlanUsuarios(((Long)arguments[0]).longValue(),
-				(java.util.List<com.hitss.layer.model.Usuario>)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName20.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes20, parameterTypes)) {
-			UsuarioLocalServiceUtil.clearActividadPlanUsuarios(((Long)arguments[0]).longValue());
-
-			return null;
-		}
-
-		if (_methodName21.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes21, parameterTypes)) {
-			UsuarioLocalServiceUtil.deleteActividadPlanUsuario(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-
-			return null;
-		}
-
-		if (_methodName22.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes22, parameterTypes)) {
-			UsuarioLocalServiceUtil.deleteActividadPlanUsuario(((Long)arguments[0]).longValue(),
-				(com.hitss.layer.model.Usuario)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName23.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes23, parameterTypes)) {
-			UsuarioLocalServiceUtil.deleteActividadPlanUsuarios(((Long)arguments[0]).longValue(),
-				(long[])arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName24.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
-			UsuarioLocalServiceUtil.deleteActividadPlanUsuarios(((Long)arguments[0]).longValue(),
-				(java.util.List<com.hitss.layer.model.Usuario>)arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName25.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
-			return UsuarioLocalServiceUtil.getActividadPlanUsuarios(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName26.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
-			return UsuarioLocalServiceUtil.getActividadPlanUsuarios(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
-		}
-
-		if (_methodName27.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
-			return UsuarioLocalServiceUtil.getActividadPlanUsuarios(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
-		}
-
-		if (_methodName28.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
-			return UsuarioLocalServiceUtil.getActividadPlanUsuariosCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName29.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
-			return UsuarioLocalServiceUtil.hasActividadPlanUsuario(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-		}
-
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
-			return UsuarioLocalServiceUtil.hasActividadPlanUsuarios(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
-			UsuarioLocalServiceUtil.setActividadPlanUsuarios(((Long)arguments[0]).longValue(),
-				(long[])arguments[1]);
-
-			return null;
-		}
-
-		if (_methodName226.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes226, parameterTypes)) {
+		if (_methodName216.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
 			return UsuarioLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName227.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes227, parameterTypes)) {
+		if (_methodName217.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes217, parameterTypes)) {
 			UsuarioLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName232.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes232, parameterTypes)) {
+		if (_methodName222.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes222, parameterTypes)) {
 			return UsuarioLocalServiceUtil.newInstance();
 		}
 
-		if (_methodName233.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes233, parameterTypes)) {
+		if (_methodName223.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes223, parameterTypes)) {
 			return UsuarioLocalServiceUtil.listarUsuariosByRole(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
-		if (_methodName234.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes234, parameterTypes)) {
+		if (_methodName224.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
 			return UsuarioLocalServiceUtil.findByUsuariosSeleccionados((long[])arguments[0]);
 		}
 
@@ -461,46 +275,14 @@ public class UsuarioLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName16;
-	private String[] _methodParameterTypes16;
-	private String _methodName17;
-	private String[] _methodParameterTypes17;
-	private String _methodName18;
-	private String[] _methodParameterTypes18;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
-	private String _methodName20;
-	private String[] _methodParameterTypes20;
-	private String _methodName21;
-	private String[] _methodParameterTypes21;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
-	private String _methodName29;
-	private String[] _methodParameterTypes29;
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
-	private String _methodName226;
-	private String[] _methodParameterTypes226;
-	private String _methodName227;
-	private String[] _methodParameterTypes227;
-	private String _methodName232;
-	private String[] _methodParameterTypes232;
-	private String _methodName233;
-	private String[] _methodParameterTypes233;
-	private String _methodName234;
-	private String[] _methodParameterTypes234;
+	private String _methodName216;
+	private String[] _methodParameterTypes216;
+	private String _methodName217;
+	private String[] _methodParameterTypes217;
+	private String _methodName222;
+	private String[] _methodParameterTypes222;
+	private String _methodName223;
+	private String[] _methodParameterTypes223;
+	private String _methodName224;
+	private String[] _methodParameterTypes224;
 }

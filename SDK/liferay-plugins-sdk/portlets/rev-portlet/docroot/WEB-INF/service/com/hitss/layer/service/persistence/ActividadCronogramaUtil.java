@@ -134,27 +134,27 @@ public class ActividadCronogramaUtil {
 	/**
 	* Creates a new actividad cronograma with the primary key. Does not add the actividad cronograma to the database.
 	*
-	* @param cronogramaId the primary key for the new actividad cronograma
+	* @param actividadCronogramaPK the primary key for the new actividad cronograma
 	* @return the new actividad cronograma
 	*/
 	public static com.hitss.layer.model.ActividadCronograma create(
-		long cronogramaId) {
-		return getPersistence().create(cronogramaId);
+		ActividadCronogramaPK actividadCronogramaPK) {
+		return getPersistence().create(actividadCronogramaPK);
 	}
 
 	/**
 	* Removes the actividad cronograma with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param cronogramaId the primary key of the actividad cronograma
+	* @param actividadCronogramaPK the primary key of the actividad cronograma
 	* @return the actividad cronograma that was removed
 	* @throws com.hitss.layer.NoSuchActividadCronogramaException if a actividad cronograma with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadCronograma remove(
-		long cronogramaId)
+		ActividadCronogramaPK actividadCronogramaPK)
 		throws com.hitss.layer.NoSuchActividadCronogramaException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(cronogramaId);
+		return getPersistence().remove(actividadCronogramaPK);
 	}
 
 	public static com.hitss.layer.model.ActividadCronograma updateImpl(
@@ -166,29 +166,29 @@ public class ActividadCronogramaUtil {
 	/**
 	* Returns the actividad cronograma with the primary key or throws a {@link com.hitss.layer.NoSuchActividadCronogramaException} if it could not be found.
 	*
-	* @param cronogramaId the primary key of the actividad cronograma
+	* @param actividadCronogramaPK the primary key of the actividad cronograma
 	* @return the actividad cronograma
 	* @throws com.hitss.layer.NoSuchActividadCronogramaException if a actividad cronograma with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadCronograma findByPrimaryKey(
-		long cronogramaId)
+		ActividadCronogramaPK actividadCronogramaPK)
 		throws com.hitss.layer.NoSuchActividadCronogramaException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(cronogramaId);
+		return getPersistence().findByPrimaryKey(actividadCronogramaPK);
 	}
 
 	/**
 	* Returns the actividad cronograma with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param cronogramaId the primary key of the actividad cronograma
+	* @param actividadCronogramaPK the primary key of the actividad cronograma
 	* @return the actividad cronograma, or <code>null</code> if a actividad cronograma with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadCronograma fetchByPrimaryKey(
-		long cronogramaId)
+		ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(cronogramaId);
+		return getPersistence().fetchByPrimaryKey(actividadCronogramaPK);
 	}
 
 	/**

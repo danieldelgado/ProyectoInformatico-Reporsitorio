@@ -331,9 +331,8 @@ public class InformeRetroalimentacionPersistenceImpl extends BasePersistenceImpl
 		informeRetroalimentacionImpl.setPrimaryKey(informeRetroalimentacion.getPrimaryKey());
 
 		informeRetroalimentacionImpl.setInformeRetroalimentacionId(informeRetroalimentacion.getInformeRetroalimentacionId());
-		informeRetroalimentacionImpl.setPlanAccionId(informeRetroalimentacion.getPlanAccionId());
+		informeRetroalimentacionImpl.setRegisitrarActividadPlanUsuariocoId(informeRetroalimentacion.getRegisitrarActividadPlanUsuariocoId());
 		informeRetroalimentacionImpl.setUsuario(informeRetroalimentacion.getUsuario());
-		informeRetroalimentacionImpl.setTitulo(informeRetroalimentacion.getTitulo());
 		informeRetroalimentacionImpl.setDescripcion(informeRetroalimentacion.getDescripcion());
 		informeRetroalimentacionImpl.setActivo(informeRetroalimentacion.isActivo());
 		informeRetroalimentacionImpl.setUsuariocrea(informeRetroalimentacion.getUsuariocrea());

@@ -338,6 +338,7 @@ public class DetalleRepuestaEvaluacionPersistenceImpl
 		detalleRepuestaEvaluacionImpl.setEvaluacionId(detalleRepuestaEvaluacion.getEvaluacionId());
 		detalleRepuestaEvaluacionImpl.setUsuarioId(detalleRepuestaEvaluacion.getUsuarioId());
 		detalleRepuestaEvaluacionImpl.setDescripcion(detalleRepuestaEvaluacion.getDescripcion());
+		detalleRepuestaEvaluacionImpl.setPreguntaId(detalleRepuestaEvaluacion.getPreguntaId());
 		detalleRepuestaEvaluacionImpl.setRespuestaSeleccionada(detalleRepuestaEvaluacion.getRespuestaSeleccionada());
 
 		return detalleRepuestaEvaluacionImpl;

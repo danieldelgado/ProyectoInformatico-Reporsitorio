@@ -57,6 +57,9 @@ public class FasePostulacionWrapper implements FasePostulacion,
 		attributes.put("fechaFase", getFechaFase());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("apruebaEntrevista", getApruebaEntrevista());
+		attributes.put("puntuacion", getPuntuacion());
+		attributes.put("salario", getSalario());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -109,6 +112,24 @@ public class FasePostulacionWrapper implements FasePostulacion,
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Boolean apruebaEntrevista = (Boolean)attributes.get("apruebaEntrevista");
+
+		if (apruebaEntrevista != null) {
+			setApruebaEntrevista(apruebaEntrevista);
+		}
+
+		Integer puntuacion = (Integer)attributes.get("puntuacion");
+
+		if (puntuacion != null) {
+			setPuntuacion(puntuacion);
+		}
+
+		Double salario = (Double)attributes.get("salario");
+
+		if (salario != null) {
+			setSalario(salario);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -300,6 +321,76 @@ public class FasePostulacionWrapper implements FasePostulacion,
 	@Override
 	public void setEstado(long estado) {
 		_fasePostulacion.setEstado(estado);
+	}
+
+	/**
+	* Returns the aprueba entrevista of this fase postulacion.
+	*
+	* @return the aprueba entrevista of this fase postulacion
+	*/
+	@Override
+	public boolean getApruebaEntrevista() {
+		return _fasePostulacion.getApruebaEntrevista();
+	}
+
+	/**
+	* Returns <code>true</code> if this fase postulacion is aprueba entrevista.
+	*
+	* @return <code>true</code> if this fase postulacion is aprueba entrevista; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isApruebaEntrevista() {
+		return _fasePostulacion.isApruebaEntrevista();
+	}
+
+	/**
+	* Sets whether this fase postulacion is aprueba entrevista.
+	*
+	* @param apruebaEntrevista the aprueba entrevista of this fase postulacion
+	*/
+	@Override
+	public void setApruebaEntrevista(boolean apruebaEntrevista) {
+		_fasePostulacion.setApruebaEntrevista(apruebaEntrevista);
+	}
+
+	/**
+	* Returns the puntuacion of this fase postulacion.
+	*
+	* @return the puntuacion of this fase postulacion
+	*/
+	@Override
+	public int getPuntuacion() {
+		return _fasePostulacion.getPuntuacion();
+	}
+
+	/**
+	* Sets the puntuacion of this fase postulacion.
+	*
+	* @param puntuacion the puntuacion of this fase postulacion
+	*/
+	@Override
+	public void setPuntuacion(int puntuacion) {
+		_fasePostulacion.setPuntuacion(puntuacion);
+	}
+
+	/**
+	* Returns the salario of this fase postulacion.
+	*
+	* @return the salario of this fase postulacion
+	*/
+	@Override
+	public double getSalario() {
+		return _fasePostulacion.getSalario();
+	}
+
+	/**
+	* Sets the salario of this fase postulacion.
+	*
+	* @param salario the salario of this fase postulacion
+	*/
+	@Override
+	public void setSalario(double salario) {
+		_fasePostulacion.setSalario(salario);
 	}
 
 	/**

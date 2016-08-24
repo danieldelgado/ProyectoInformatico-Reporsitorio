@@ -83,12 +83,10 @@ public class UsuarioEvaluacionSoap implements Serializable {
 	}
 
 	public UsuarioEvaluacionPK getPrimaryKey() {
-		return new UsuarioEvaluacionPK(_actividadCronogramaId, _usuarioId,
-			_evaluacionId);
+		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
 	}
 
 	public void setPrimaryKey(UsuarioEvaluacionPK pk) {
-		setActividadCronogramaId(pk.actividadCronogramaId);
 		setUsuarioId(pk.usuarioId);
 		setEvaluacionId(pk.evaluacionId);
 	}

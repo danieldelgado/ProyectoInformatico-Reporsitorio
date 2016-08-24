@@ -322,6 +322,7 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 		cronogramaImpl.setSolicitudEvaluacionDesempennoId(cronograma.getSolicitudEvaluacionDesempennoId());
 		cronogramaImpl.setDescripcion(cronograma.getDescripcion());
 		cronogramaImpl.setEstado(cronograma.getEstado());
+		cronogramaImpl.setAprobacionCronograma(cronograma.getAprobacionCronograma());
 		cronogramaImpl.setActivo(cronograma.isActivo());
 		cronogramaImpl.setUsuariocrea(cronograma.getUsuariocrea());
 		cronogramaImpl.setFechacrea(cronograma.getFechacrea());

@@ -34,8 +34,8 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 		DetalleRepuestaReclutamientoSoap soapModel = new DetalleRepuestaReclutamientoSoap();
 
 		soapModel.setDetalleRepsuestaId(model.getDetalleRepsuestaId());
+		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setEvaluacionId(model.getEvaluacionId());
-		soapModel.setFasePostulacionId(model.getFasePostulacionId());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setPreguntaId(model.getPreguntaId());
 		soapModel.setRespuestaSeleccionada(model.getRespuestaSeleccionada());
@@ -88,13 +88,13 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 
 	public DetalleRepuestaReclutamientoPK getPrimaryKey() {
 		return new DetalleRepuestaReclutamientoPK(_detalleRepsuestaId,
-			_evaluacionId, _fasePostulacionId, _preguntaId);
+			_usuarioId, _evaluacionId, _preguntaId);
 	}
 
 	public void setPrimaryKey(DetalleRepuestaReclutamientoPK pk) {
 		setDetalleRepsuestaId(pk.detalleRepsuestaId);
+		setUsuarioId(pk.usuarioId);
 		setEvaluacionId(pk.evaluacionId);
-		setFasePostulacionId(pk.fasePostulacionId);
 		setPreguntaId(pk.preguntaId);
 	}
 
@@ -106,20 +106,20 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 		_detalleRepsuestaId = detalleRepsuestaId;
 	}
 
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+	}
+
 	public long getEvaluacionId() {
 		return _evaluacionId;
 	}
 
 	public void setEvaluacionId(long evaluacionId) {
 		_evaluacionId = evaluacionId;
-	}
-
-	public long getFasePostulacionId() {
-		return _fasePostulacionId;
-	}
-
-	public void setFasePostulacionId(long fasePostulacionId) {
-		_fasePostulacionId = fasePostulacionId;
 	}
 
 	public String getDescripcion() {
@@ -147,8 +147,8 @@ public class DetalleRepuestaReclutamientoSoap implements Serializable {
 	}
 
 	private long _detalleRepsuestaId;
+	private long _usuarioId;
 	private long _evaluacionId;
-	private long _fasePostulacionId;
 	private String _descripcion;
 	private long _preguntaId;
 	private int _respuestaSeleccionada;

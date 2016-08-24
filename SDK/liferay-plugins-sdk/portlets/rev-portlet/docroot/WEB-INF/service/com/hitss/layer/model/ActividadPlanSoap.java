@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ActividadPlanPK;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -31,12 +33,11 @@ public class ActividadPlanSoap implements Serializable {
 	public static ActividadPlanSoap toSoapModel(ActividadPlan model) {
 		ActividadPlanSoap soapModel = new ActividadPlanSoap();
 
+		soapModel.setActividadCronogramaId(model.getActividadCronogramaId());
 		soapModel.setActividadPlanId(model.getActividadPlanId());
 		soapModel.setPlanAccionId(model.getPlanAccionId());
-		soapModel.setResponsable(model.getResponsable());
 		soapModel.setActividad(model.getActividad());
 		soapModel.setEvidencia(model.getEvidencia());
-		soapModel.setObjetivo(model.getObjetivo());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -86,12 +87,21 @@ public class ActividadPlanSoap implements Serializable {
 	public ActividadPlanSoap() {
 	}
 
-	public long getPrimaryKey() {
-		return _actividadPlanId;
+	public ActividadPlanPK getPrimaryKey() {
+		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
 	}
 
-	public void setPrimaryKey(long pk) {
-		setActividadPlanId(pk);
+	public void setPrimaryKey(ActividadPlanPK pk) {
+		setActividadCronogramaId(pk.actividadCronogramaId);
+		setActividadPlanId(pk.actividadPlanId);
+	}
+
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
 	}
 
 	public long getActividadPlanId() {
@@ -110,14 +120,6 @@ public class ActividadPlanSoap implements Serializable {
 		_planAccionId = planAccionId;
 	}
 
-	public long getResponsable() {
-		return _responsable;
-	}
-
-	public void setResponsable(long responsable) {
-		_responsable = responsable;
-	}
-
 	public String getActividad() {
 		return _actividad;
 	}
@@ -132,14 +134,6 @@ public class ActividadPlanSoap implements Serializable {
 
 	public void setEvidencia(String evidencia) {
 		_evidencia = evidencia;
-	}
-
-	public String getObjetivo() {
-		return _objetivo;
-	}
-
-	public void setObjetivo(String objetivo) {
-		_objetivo = objetivo;
 	}
 
 	public boolean getActivo() {
@@ -186,12 +180,11 @@ public class ActividadPlanSoap implements Serializable {
 		_fechamodifica = fechamodifica;
 	}
 
+	private long _actividadCronogramaId;
 	private long _actividadPlanId;
 	private long _planAccionId;
-	private long _responsable;
 	private String _actividad;
 	private String _evidencia;
-	private String _objetivo;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ActividadCronogramaPK;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -31,14 +33,22 @@ public class ActividadCronogramaSoap implements Serializable {
 	public static ActividadCronogramaSoap toSoapModel(ActividadCronograma model) {
 		ActividadCronogramaSoap soapModel = new ActividadCronogramaSoap();
 
-		soapModel.setActividadCronogramaId(model.getActividadCronogramaId());
 		soapModel.setCronogramaId(model.getCronogramaId());
+		soapModel.setActividadCronogramaId(model.getActividadCronogramaId());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setFechaInicio(model.getFechaInicio());
 		soapModel.setFechaFin(model.getFechaFin());
-		soapModel.setCumplido(model.getCumplido());
-		soapModel.setFinalizado(model.getFinalizado());
+		soapModel.setCumplidoEvaluacion(model.getCumplidoEvaluacion());
+		soapModel.setEstado(model.getEstado());
+		soapModel.setFechaInicioEvaluacion(model.getFechaInicioEvaluacion());
+		soapModel.setFechaFinEvaluacion(model.getFechaFinEvaluacion());
+		soapModel.setGrupoUsuario(model.getGrupoUsuario());
 		soapModel.setTipoActividad(model.getTipoActividad());
+		soapModel.setAprobadoColaborador(model.getAprobadoColaborador());
+		soapModel.setJerarquiaEvaluar(model.getJerarquiaEvaluar());
+		soapModel.setAprobadoLider(model.getAprobadoLider());
+		soapModel.setUsuarioGerenteId(model.getUsuarioGerenteId());
+		soapModel.setUsuarioLiderId(model.getUsuarioLiderId());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -91,20 +101,13 @@ public class ActividadCronogramaSoap implements Serializable {
 	public ActividadCronogramaSoap() {
 	}
 
-	public long getPrimaryKey() {
-		return _cronogramaId;
+	public ActividadCronogramaPK getPrimaryKey() {
+		return new ActividadCronogramaPK(_cronogramaId, _actividadCronogramaId);
 	}
 
-	public void setPrimaryKey(long pk) {
-		setCronogramaId(pk);
-	}
-
-	public long getActividadCronogramaId() {
-		return _actividadCronogramaId;
-	}
-
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronogramaId = actividadCronogramaId;
+	public void setPrimaryKey(ActividadCronogramaPK pk) {
+		setCronogramaId(pk.cronogramaId);
+		setActividadCronogramaId(pk.actividadCronogramaId);
 	}
 
 	public long getCronogramaId() {
@@ -113,6 +116,14 @@ public class ActividadCronogramaSoap implements Serializable {
 
 	public void setCronogramaId(long cronogramaId) {
 		_cronogramaId = cronogramaId;
+	}
+
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
 	}
 
 	public String getDescripcion() {
@@ -139,28 +150,48 @@ public class ActividadCronogramaSoap implements Serializable {
 		_fechaFin = fechaFin;
 	}
 
-	public boolean getCumplido() {
-		return _cumplido;
+	public boolean getCumplidoEvaluacion() {
+		return _cumplidoEvaluacion;
 	}
 
-	public boolean isCumplido() {
-		return _cumplido;
+	public boolean isCumplidoEvaluacion() {
+		return _cumplidoEvaluacion;
 	}
 
-	public void setCumplido(boolean cumplido) {
-		_cumplido = cumplido;
+	public void setCumplidoEvaluacion(boolean cumplidoEvaluacion) {
+		_cumplidoEvaluacion = cumplidoEvaluacion;
 	}
 
-	public boolean getFinalizado() {
-		return _finalizado;
+	public long getEstado() {
+		return _estado;
 	}
 
-	public boolean isFinalizado() {
-		return _finalizado;
+	public void setEstado(long estado) {
+		_estado = estado;
 	}
 
-	public void setFinalizado(boolean finalizado) {
-		_finalizado = finalizado;
+	public Date getFechaInicioEvaluacion() {
+		return _fechaInicioEvaluacion;
+	}
+
+	public void setFechaInicioEvaluacion(Date fechaInicioEvaluacion) {
+		_fechaInicioEvaluacion = fechaInicioEvaluacion;
+	}
+
+	public Date getFechaFinEvaluacion() {
+		return _fechaFinEvaluacion;
+	}
+
+	public void setFechaFinEvaluacion(Date fechaFinEvaluacion) {
+		_fechaFinEvaluacion = fechaFinEvaluacion;
+	}
+
+	public long getGrupoUsuario() {
+		return _grupoUsuario;
+	}
+
+	public void setGrupoUsuario(long grupoUsuario) {
+		_grupoUsuario = grupoUsuario;
 	}
 
 	public long getTipoActividad() {
@@ -169,6 +200,46 @@ public class ActividadCronogramaSoap implements Serializable {
 
 	public void setTipoActividad(long tipoActividad) {
 		_tipoActividad = tipoActividad;
+	}
+
+	public long getAprobadoColaborador() {
+		return _aprobadoColaborador;
+	}
+
+	public void setAprobadoColaborador(long aprobadoColaborador) {
+		_aprobadoColaborador = aprobadoColaborador;
+	}
+
+	public long getJerarquiaEvaluar() {
+		return _jerarquiaEvaluar;
+	}
+
+	public void setJerarquiaEvaluar(long jerarquiaEvaluar) {
+		_jerarquiaEvaluar = jerarquiaEvaluar;
+	}
+
+	public long getAprobadoLider() {
+		return _aprobadoLider;
+	}
+
+	public void setAprobadoLider(long aprobadoLider) {
+		_aprobadoLider = aprobadoLider;
+	}
+
+	public long getUsuarioGerenteId() {
+		return _usuarioGerenteId;
+	}
+
+	public void setUsuarioGerenteId(long usuarioGerenteId) {
+		_usuarioGerenteId = usuarioGerenteId;
+	}
+
+	public long getUsuarioLiderId() {
+		return _usuarioLiderId;
+	}
+
+	public void setUsuarioLiderId(long usuarioLiderId) {
+		_usuarioLiderId = usuarioLiderId;
 	}
 
 	public boolean getActivo() {
@@ -215,14 +286,22 @@ public class ActividadCronogramaSoap implements Serializable {
 		_fechamodifica = fechamodifica;
 	}
 
-	private long _actividadCronogramaId;
 	private long _cronogramaId;
+	private long _actividadCronogramaId;
 	private String _descripcion;
 	private Date _fechaInicio;
 	private Date _fechaFin;
-	private boolean _cumplido;
-	private boolean _finalizado;
+	private boolean _cumplidoEvaluacion;
+	private long _estado;
+	private Date _fechaInicioEvaluacion;
+	private Date _fechaFinEvaluacion;
+	private long _grupoUsuario;
 	private long _tipoActividad;
+	private long _aprobadoColaborador;
+	private long _jerarquiaEvaluar;
+	private long _aprobadoLider;
+	private long _usuarioGerenteId;
+	private long _usuarioLiderId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

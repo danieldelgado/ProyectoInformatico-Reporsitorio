@@ -19,7 +19,6 @@ import com.hitss.layer.model.ActividadPlan;
 import com.hitss.layer.model.impl.ActividadPlanImpl;
 import com.hitss.layer.model.impl.ActividadPlanModelImpl;
 
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -35,23 +34,18 @@ import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.portal.service.persistence.impl.TableMapper;
-import com.liferay.portal.service.persistence.impl.TableMapperFactory;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The persistence implementation for the actividad plan service.
@@ -176,15 +170,15 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 	/**
 	 * Creates a new actividad plan with the primary key. Does not add the actividad plan to the database.
 	 *
-	 * @param actividadPlanId the primary key for the new actividad plan
+	 * @param actividadPlanPK the primary key for the new actividad plan
 	 * @return the new actividad plan
 	 */
 	@Override
-	public ActividadPlan create(long actividadPlanId) {
+	public ActividadPlan create(ActividadPlanPK actividadPlanPK) {
 		ActividadPlan actividadPlan = new ActividadPlanImpl();
 
 		actividadPlan.setNew(true);
-		actividadPlan.setPrimaryKey(actividadPlanId);
+		actividadPlan.setPrimaryKey(actividadPlanPK);
 
 		return actividadPlan;
 	}
@@ -192,15 +186,15 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 	/**
 	 * Removes the actividad plan with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param actividadPlanId the primary key of the actividad plan
+	 * @param actividadPlanPK the primary key of the actividad plan
 	 * @return the actividad plan that was removed
 	 * @throws com.hitss.layer.NoSuchActividadPlanException if a actividad plan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public ActividadPlan remove(long actividadPlanId)
+	public ActividadPlan remove(ActividadPlanPK actividadPlanPK)
 		throws NoSuchActividadPlanException, SystemException {
-		return remove((Serializable)actividadPlanId);
+		return remove((Serializable)actividadPlanPK);
 	}
 
 	/**
@@ -248,8 +242,6 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 	protected ActividadPlan removeImpl(ActividadPlan actividadPlan)
 		throws SystemException {
 		actividadPlan = toUnwrappedModel(actividadPlan);
-
-		actividadPlanToUsuarioTableMapper.deleteLeftPrimaryKeyTableMappings(actividadPlan.getPrimaryKey());
 
 		Session session = null;
 
@@ -331,12 +323,11 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 		actividadPlanImpl.setNew(actividadPlan.isNew());
 		actividadPlanImpl.setPrimaryKey(actividadPlan.getPrimaryKey());
 
+		actividadPlanImpl.setActividadCronogramaId(actividadPlan.getActividadCronogramaId());
 		actividadPlanImpl.setActividadPlanId(actividadPlan.getActividadPlanId());
 		actividadPlanImpl.setPlanAccionId(actividadPlan.getPlanAccionId());
-		actividadPlanImpl.setResponsable(actividadPlan.getResponsable());
 		actividadPlanImpl.setActividad(actividadPlan.getActividad());
 		actividadPlanImpl.setEvidencia(actividadPlan.getEvidencia());
-		actividadPlanImpl.setObjetivo(actividadPlan.getObjetivo());
 		actividadPlanImpl.setActivo(actividadPlan.isActivo());
 		actividadPlanImpl.setUsuariocrea(actividadPlan.getUsuariocrea());
 		actividadPlanImpl.setFechacrea(actividadPlan.getFechacrea());
@@ -374,15 +365,15 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 	/**
 	 * Returns the actividad plan with the primary key or throws a {@link com.hitss.layer.NoSuchActividadPlanException} if it could not be found.
 	 *
-	 * @param actividadPlanId the primary key of the actividad plan
+	 * @param actividadPlanPK the primary key of the actividad plan
 	 * @return the actividad plan
 	 * @throws com.hitss.layer.NoSuchActividadPlanException if a actividad plan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public ActividadPlan findByPrimaryKey(long actividadPlanId)
+	public ActividadPlan findByPrimaryKey(ActividadPlanPK actividadPlanPK)
 		throws NoSuchActividadPlanException, SystemException {
-		return findByPrimaryKey((Serializable)actividadPlanId);
+		return findByPrimaryKey((Serializable)actividadPlanPK);
 	}
 
 	/**
@@ -436,14 +427,14 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 	/**
 	 * Returns the actividad plan with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param actividadPlanId the primary key of the actividad plan
+	 * @param actividadPlanPK the primary key of the actividad plan
 	 * @return the actividad plan, or <code>null</code> if a actividad plan with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public ActividadPlan fetchByPrimaryKey(long actividadPlanId)
+	public ActividadPlan fetchByPrimaryKey(ActividadPlanPK actividadPlanPK)
 		throws SystemException {
-		return fetchByPrimaryKey((Serializable)actividadPlanId);
+		return fetchByPrimaryKey((Serializable)actividadPlanPK);
 	}
 
 	/**
@@ -620,290 +611,6 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 	}
 
 	/**
-	 * Returns all the usuarios associated with the actividad plan.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @return the usuarios associated with the actividad plan
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<com.hitss.layer.model.Usuario> getUsuarios(long pk)
-		throws SystemException {
-		return getUsuarios(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-	}
-
-	/**
-	 * Returns a range of all the usuarios associated with the actividad plan.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.ActividadPlanModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param start the lower bound of the range of actividad plans
-	 * @param end the upper bound of the range of actividad plans (not inclusive)
-	 * @return the range of usuarios associated with the actividad plan
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<com.hitss.layer.model.Usuario> getUsuarios(long pk, int start,
-		int end) throws SystemException {
-		return getUsuarios(pk, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the usuarios associated with the actividad plan.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.ActividadPlanModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param start the lower bound of the range of actividad plans
-	 * @param end the upper bound of the range of actividad plans (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of usuarios associated with the actividad plan
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<com.hitss.layer.model.Usuario> getUsuarios(long pk, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		return actividadPlanToUsuarioTableMapper.getRightBaseModels(pk, start,
-			end, orderByComparator);
-	}
-
-	/**
-	 * Returns the number of usuarios associated with the actividad plan.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @return the number of usuarios associated with the actividad plan
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int getUsuariosSize(long pk) throws SystemException {
-		long[] pks = actividadPlanToUsuarioTableMapper.getRightPrimaryKeys(pk);
-
-		return pks.length;
-	}
-
-	/**
-	 * Returns <code>true</code> if the usuario is associated with the actividad plan.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarioPK the primary key of the usuario
-	 * @return <code>true</code> if the usuario is associated with the actividad plan; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public boolean containsUsuario(long pk, long usuarioPK)
-		throws SystemException {
-		return actividadPlanToUsuarioTableMapper.containsTableMapping(pk,
-			usuarioPK);
-	}
-
-	/**
-	 * Returns <code>true</code> if the actividad plan has any usuarios associated with it.
-	 *
-	 * @param pk the primary key of the actividad plan to check for associations with usuarios
-	 * @return <code>true</code> if the actividad plan has any usuarios associated with it; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public boolean containsUsuarios(long pk) throws SystemException {
-		if (getUsuariosSize(pk) > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	/**
-	 * Adds an association between the actividad plan and the usuario. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarioPK the primary key of the usuario
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addUsuario(long pk, long usuarioPK) throws SystemException {
-		actividadPlanToUsuarioTableMapper.addTableMapping(pk, usuarioPK);
-	}
-
-	/**
-	 * Adds an association between the actividad plan and the usuario. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuario the usuario
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addUsuario(long pk, com.hitss.layer.model.Usuario usuario)
-		throws SystemException {
-		actividadPlanToUsuarioTableMapper.addTableMapping(pk,
-			usuario.getPrimaryKey());
-	}
-
-	/**
-	 * Adds an association between the actividad plan and the usuarios. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarioPKs the primary keys of the usuarios
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addUsuarios(long pk, long[] usuarioPKs)
-		throws SystemException {
-		for (long usuarioPK : usuarioPKs) {
-			actividadPlanToUsuarioTableMapper.addTableMapping(pk, usuarioPK);
-		}
-	}
-
-	/**
-	 * Adds an association between the actividad plan and the usuarios. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarios the usuarios
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addUsuarios(long pk,
-		List<com.hitss.layer.model.Usuario> usuarios) throws SystemException {
-		for (com.hitss.layer.model.Usuario usuario : usuarios) {
-			actividadPlanToUsuarioTableMapper.addTableMapping(pk,
-				usuario.getPrimaryKey());
-		}
-	}
-
-	/**
-	 * Clears all associations between the actividad plan and its usuarios. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan to clear the associated usuarios from
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void clearUsuarios(long pk) throws SystemException {
-		actividadPlanToUsuarioTableMapper.deleteLeftPrimaryKeyTableMappings(pk);
-	}
-
-	/**
-	 * Removes the association between the actividad plan and the usuario. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarioPK the primary key of the usuario
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeUsuario(long pk, long usuarioPK)
-		throws SystemException {
-		actividadPlanToUsuarioTableMapper.deleteTableMapping(pk, usuarioPK);
-	}
-
-	/**
-	 * Removes the association between the actividad plan and the usuario. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuario the usuario
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeUsuario(long pk, com.hitss.layer.model.Usuario usuario)
-		throws SystemException {
-		actividadPlanToUsuarioTableMapper.deleteTableMapping(pk,
-			usuario.getPrimaryKey());
-	}
-
-	/**
-	 * Removes the association between the actividad plan and the usuarios. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarioPKs the primary keys of the usuarios
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeUsuarios(long pk, long[] usuarioPKs)
-		throws SystemException {
-		for (long usuarioPK : usuarioPKs) {
-			actividadPlanToUsuarioTableMapper.deleteTableMapping(pk, usuarioPK);
-		}
-	}
-
-	/**
-	 * Removes the association between the actividad plan and the usuarios. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarios the usuarios
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeUsuarios(long pk,
-		List<com.hitss.layer.model.Usuario> usuarios) throws SystemException {
-		for (com.hitss.layer.model.Usuario usuario : usuarios) {
-			actividadPlanToUsuarioTableMapper.deleteTableMapping(pk,
-				usuario.getPrimaryKey());
-		}
-	}
-
-	/**
-	 * Sets the usuarios associated with the actividad plan, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarioPKs the primary keys of the usuarios to be associated with the actividad plan
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void setUsuarios(long pk, long[] usuarioPKs)
-		throws SystemException {
-		Set<Long> newUsuarioPKsSet = SetUtil.fromArray(usuarioPKs);
-		Set<Long> oldUsuarioPKsSet = SetUtil.fromArray(actividadPlanToUsuarioTableMapper.getRightPrimaryKeys(
-					pk));
-
-		Set<Long> removeUsuarioPKsSet = new HashSet<Long>(oldUsuarioPKsSet);
-
-		removeUsuarioPKsSet.removeAll(newUsuarioPKsSet);
-
-		for (long removeUsuarioPK : removeUsuarioPKsSet) {
-			actividadPlanToUsuarioTableMapper.deleteTableMapping(pk,
-				removeUsuarioPK);
-		}
-
-		newUsuarioPKsSet.removeAll(oldUsuarioPKsSet);
-
-		for (long newUsuarioPK : newUsuarioPKsSet) {
-			actividadPlanToUsuarioTableMapper.addTableMapping(pk, newUsuarioPK);
-		}
-	}
-
-	/**
-	 * Sets the usuarios associated with the actividad plan, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the actividad plan
-	 * @param usuarios the usuarios to be associated with the actividad plan
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void setUsuarios(long pk,
-		List<com.hitss.layer.model.Usuario> usuarios) throws SystemException {
-		try {
-			long[] usuarioPKs = new long[usuarios.size()];
-
-			for (int i = 0; i < usuarios.size(); i++) {
-				com.hitss.layer.model.Usuario usuario = usuarios.get(i);
-
-				usuarioPKs[i] = usuario.getPrimaryKey();
-			}
-
-			setUsuarios(pk, usuarioPKs);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			FinderCacheUtil.clearCache(ActividadPlanModelImpl.MAPPING_TABLE_REC_ACTIVIDADPLANUSUARIO_NAME);
-		}
-	}
-
-	/**
 	 * Initializes the actividad plan persistence.
 	 */
 	public void afterPropertiesSet() {
@@ -926,9 +633,6 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 				_log.error(e);
 			}
 		}
-
-		actividadPlanToUsuarioTableMapper = TableMapperFactory.getTableMapper("rec_ActividadPlanUsuario",
-				"actividadPlanId", "userId", this, usuarioPersistence);
 	}
 
 	public void destroy() {
@@ -936,13 +640,8 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		TableMapperFactory.removeTableMapper("rec_ActividadPlanUsuario");
 	}
 
-	@BeanReference(type = UsuarioPersistence.class)
-	protected UsuarioPersistence usuarioPersistence;
-	protected TableMapper<ActividadPlan, com.hitss.layer.model.Usuario> actividadPlanToUsuarioTableMapper;
 	private static final String _SQL_SELECT_ACTIVIDADPLAN = "SELECT actividadPlan FROM ActividadPlan actividadPlan";
 	private static final String _SQL_COUNT_ACTIVIDADPLAN = "SELECT COUNT(actividadPlan) FROM ActividadPlan actividadPlan";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "actividadPlan.";

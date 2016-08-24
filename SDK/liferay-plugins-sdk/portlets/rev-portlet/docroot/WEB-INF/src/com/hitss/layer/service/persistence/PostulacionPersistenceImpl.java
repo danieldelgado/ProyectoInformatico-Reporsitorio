@@ -1402,6 +1402,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		postulacionImpl.setUsuarioId(postulacion.getUsuarioId());
 		postulacionImpl.setFechaPostulacion(postulacion.getFechaPostulacion());
 		postulacionImpl.setEstado(postulacion.getEstado());
+		postulacionImpl.setSeleccionado(postulacion.isSeleccionado());
 		postulacionImpl.setActivo(postulacion.isActivo());
 		postulacionImpl.setUsuariocrea(postulacion.getUsuariocrea());
 		postulacionImpl.setFechacrea(postulacion.getFechacrea());

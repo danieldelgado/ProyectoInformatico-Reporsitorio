@@ -52,8 +52,8 @@ public class DetalleRepuestaReclutamientoWrapper
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("detalleRepsuestaId", getDetalleRepsuestaId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("evaluacionId", getEvaluacionId());
-		attributes.put("fasePostulacionId", getFasePostulacionId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("preguntaId", getPreguntaId());
 		attributes.put("respuestaSeleccionada", getRespuestaSeleccionada());
@@ -69,16 +69,16 @@ public class DetalleRepuestaReclutamientoWrapper
 			setDetalleRepsuestaId(detalleRepsuestaId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
 		Long evaluacionId = (Long)attributes.get("evaluacionId");
 
 		if (evaluacionId != null) {
 			setEvaluacionId(evaluacionId);
-		}
-
-		Long fasePostulacionId = (Long)attributes.get("fasePostulacionId");
-
-		if (fasePostulacionId != null) {
-			setFasePostulacionId(fasePostulacionId);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -143,6 +143,26 @@ public class DetalleRepuestaReclutamientoWrapper
 	}
 
 	/**
+	* Returns the usuario ID of this detalle repuesta reclutamiento.
+	*
+	* @return the usuario ID of this detalle repuesta reclutamiento
+	*/
+	@Override
+	public long getUsuarioId() {
+		return _detalleRepuestaReclutamiento.getUsuarioId();
+	}
+
+	/**
+	* Sets the usuario ID of this detalle repuesta reclutamiento.
+	*
+	* @param usuarioId the usuario ID of this detalle repuesta reclutamiento
+	*/
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_detalleRepuestaReclutamiento.setUsuarioId(usuarioId);
+	}
+
+	/**
 	* Returns the evaluacion ID of this detalle repuesta reclutamiento.
 	*
 	* @return the evaluacion ID of this detalle repuesta reclutamiento
@@ -160,26 +180,6 @@ public class DetalleRepuestaReclutamientoWrapper
 	@Override
 	public void setEvaluacionId(long evaluacionId) {
 		_detalleRepuestaReclutamiento.setEvaluacionId(evaluacionId);
-	}
-
-	/**
-	* Returns the fase postulacion ID of this detalle repuesta reclutamiento.
-	*
-	* @return the fase postulacion ID of this detalle repuesta reclutamiento
-	*/
-	@Override
-	public long getFasePostulacionId() {
-		return _detalleRepuestaReclutamiento.getFasePostulacionId();
-	}
-
-	/**
-	* Sets the fase postulacion ID of this detalle repuesta reclutamiento.
-	*
-	* @param fasePostulacionId the fase postulacion ID of this detalle repuesta reclutamiento
-	*/
-	@Override
-	public void setFasePostulacionId(long fasePostulacionId) {
-		_detalleRepuestaReclutamiento.setFasePostulacionId(fasePostulacionId);
 	}
 
 	/**

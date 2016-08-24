@@ -83,6 +83,7 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 		attributes.put("evaluacionId", getEvaluacionId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
+		attributes.put("preguntaId", getPreguntaId());
 		attributes.put("respuestaSeleccionada", getRespuestaSeleccionada());
 
 		return attributes;
@@ -113,6 +114,12 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
+		}
+
+		Long preguntaId = (Long)attributes.get("preguntaId");
+
+		if (preguntaId != null) {
+			setPreguntaId(preguntaId);
 		}
 
 		Long respuestaSeleccionada = (Long)attributes.get(
@@ -211,6 +218,29 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 				Method method = clazz.getMethod("setDescripcion", String.class);
 
 				method.invoke(_detalleRepuestaEvaluacionRemoteModel, descripcion);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getPreguntaId() {
+		return _preguntaId;
+	}
+
+	@Override
+	public void setPreguntaId(long preguntaId) {
+		_preguntaId = preguntaId;
+
+		if (_detalleRepuestaEvaluacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _detalleRepuestaEvaluacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPreguntaId", long.class);
+
+				method.invoke(_detalleRepuestaEvaluacionRemoteModel, preguntaId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -318,6 +348,7 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 		clone.setEvaluacionId(getEvaluacionId());
 		clone.setUsuarioId(getUsuarioId());
 		clone.setDescripcion(getDescripcion());
+		clone.setPreguntaId(getPreguntaId());
 		clone.setRespuestaSeleccionada(getRespuestaSeleccionada());
 
 		return clone;
@@ -363,7 +394,7 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{detalleRepuestaEvaluacionId=");
 		sb.append(getDetalleRepuestaEvaluacionId());
@@ -373,6 +404,8 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 		sb.append(getUsuarioId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
+		sb.append(", preguntaId=");
+		sb.append(getPreguntaId());
 		sb.append(", respuestaSeleccionada=");
 		sb.append(getRespuestaSeleccionada());
 		sb.append("}");
@@ -382,7 +415,7 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.DetalleRepuestaEvaluacion");
@@ -405,6 +438,10 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>preguntaId</column-name><column-value><![CDATA[");
+		sb.append(getPreguntaId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>respuestaSeleccionada</column-name><column-value><![CDATA[");
 		sb.append(getRespuestaSeleccionada());
 		sb.append("]]></column-value></column>");
@@ -418,6 +455,7 @@ public class DetalleRepuestaEvaluacionClp extends BaseModelImpl<DetalleRepuestaE
 	private long _evaluacionId;
 	private long _usuarioId;
 	private String _descripcion;
+	private long _preguntaId;
 	private long _respuestaSeleccionada;
 	private BaseModel<?> _detalleRepuestaEvaluacionRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;

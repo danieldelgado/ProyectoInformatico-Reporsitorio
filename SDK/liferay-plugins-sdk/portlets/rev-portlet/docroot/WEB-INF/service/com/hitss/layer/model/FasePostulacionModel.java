@@ -159,6 +159,55 @@ public interface FasePostulacionModel extends BaseModel<FasePostulacion> {
 	public void setEstado(long estado);
 
 	/**
+	 * Returns the aprueba entrevista of this fase postulacion.
+	 *
+	 * @return the aprueba entrevista of this fase postulacion
+	 */
+	public boolean getApruebaEntrevista();
+
+	/**
+	 * Returns <code>true</code> if this fase postulacion is aprueba entrevista.
+	 *
+	 * @return <code>true</code> if this fase postulacion is aprueba entrevista; <code>false</code> otherwise
+	 */
+	public boolean isApruebaEntrevista();
+
+	/**
+	 * Sets whether this fase postulacion is aprueba entrevista.
+	 *
+	 * @param apruebaEntrevista the aprueba entrevista of this fase postulacion
+	 */
+	public void setApruebaEntrevista(boolean apruebaEntrevista);
+
+	/**
+	 * Returns the puntuacion of this fase postulacion.
+	 *
+	 * @return the puntuacion of this fase postulacion
+	 */
+	public int getPuntuacion();
+
+	/**
+	 * Sets the puntuacion of this fase postulacion.
+	 *
+	 * @param puntuacion the puntuacion of this fase postulacion
+	 */
+	public void setPuntuacion(int puntuacion);
+
+	/**
+	 * Returns the salario of this fase postulacion.
+	 *
+	 * @return the salario of this fase postulacion
+	 */
+	public double getSalario();
+
+	/**
+	 * Sets the salario of this fase postulacion.
+	 *
+	 * @param salario the salario of this fase postulacion
+	 */
+	public void setSalario(double salario);
+
+	/**
 	 * Returns the activo of this fase postulacion.
 	 *
 	 * @return the activo of this fase postulacion

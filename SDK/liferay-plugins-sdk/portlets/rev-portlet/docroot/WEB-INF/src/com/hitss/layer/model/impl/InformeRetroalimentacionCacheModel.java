@@ -38,16 +38,14 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{informeRetroalimentacionId=");
 		sb.append(informeRetroalimentacionId);
-		sb.append(", planAccionId=");
-		sb.append(planAccionId);
+		sb.append(", regisitrarActividadPlanUsuariocoId=");
+		sb.append(regisitrarActividadPlanUsuariocoId);
 		sb.append(", usuario=");
 		sb.append(usuario);
-		sb.append(", titulo=");
-		sb.append(titulo);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
 		sb.append(", activo=");
@@ -70,15 +68,8 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 		InformeRetroalimentacionImpl informeRetroalimentacionImpl = new InformeRetroalimentacionImpl();
 
 		informeRetroalimentacionImpl.setInformeRetroalimentacionId(informeRetroalimentacionId);
-		informeRetroalimentacionImpl.setPlanAccionId(planAccionId);
+		informeRetroalimentacionImpl.setRegisitrarActividadPlanUsuariocoId(regisitrarActividadPlanUsuariocoId);
 		informeRetroalimentacionImpl.setUsuario(usuario);
-
-		if (titulo == null) {
-			informeRetroalimentacionImpl.setTitulo(StringPool.BLANK);
-		}
-		else {
-			informeRetroalimentacionImpl.setTitulo(titulo);
-		}
 
 		if (descripcion == null) {
 			informeRetroalimentacionImpl.setDescripcion(StringPool.BLANK);
@@ -115,9 +106,8 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		informeRetroalimentacionId = objectInput.readLong();
-		planAccionId = objectInput.readLong();
+		regisitrarActividadPlanUsuariocoId = objectInput.readLong();
 		usuario = objectInput.readLong();
-		titulo = objectInput.readUTF();
 		descripcion = objectInput.readUTF();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
@@ -130,15 +120,8 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(informeRetroalimentacionId);
-		objectOutput.writeLong(planAccionId);
+		objectOutput.writeLong(regisitrarActividadPlanUsuariocoId);
 		objectOutput.writeLong(usuario);
-
-		if (titulo == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(titulo);
-		}
 
 		if (descripcion == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -155,9 +138,8 @@ public class InformeRetroalimentacionCacheModel implements CacheModel<InformeRet
 	}
 
 	public long informeRetroalimentacionId;
-	public long planAccionId;
+	public long regisitrarActividadPlanUsuariocoId;
 	public long usuario;
-	public String titulo;
 	public String descripcion;
 	public boolean activo;
 	public long usuariocrea;

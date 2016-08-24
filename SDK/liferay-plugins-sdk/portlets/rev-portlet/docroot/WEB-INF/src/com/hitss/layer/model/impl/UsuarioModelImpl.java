@@ -135,17 +135,6 @@ public class UsuarioModelImpl extends BaseModelImpl<Usuario>
 		return models;
 	}
 
-	public static final String MAPPING_TABLE_REC_ACTIVIDADPLANUSUARIO_NAME = "rec_ActividadPlanUsuario";
-	public static final Object[][] MAPPING_TABLE_REC_ACTIVIDADPLANUSUARIO_COLUMNS =
-		{
-			{ "actividadPlanId", Types.BIGINT },
-			{ "userId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_REC_ACTIVIDADPLANUSUARIO_SQL_CREATE =
-		"create table rec_ActividadPlanUsuario (actividadPlanId LONG not null,userId LONG not null,primary key (actividadPlanId, userId))";
-	public static final boolean FINDER_CACHE_ENABLED_REC_ACTIVIDADPLANUSUARIO = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.rec_ActividadPlanUsuario"),
-			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.hitss.layer.model.Usuario"));
 

@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ActividadCronogramaPK;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -50,28 +52,14 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	 *
 	 * @return the primary key of this actividad cronograma
 	 */
-	public long getPrimaryKey();
+	public ActividadCronogramaPK getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this actividad cronograma.
 	 *
 	 * @param primaryKey the primary key of this actividad cronograma
 	 */
-	public void setPrimaryKey(long primaryKey);
-
-	/**
-	 * Returns the actividad cronograma ID of this actividad cronograma.
-	 *
-	 * @return the actividad cronograma ID of this actividad cronograma
-	 */
-	public long getActividadCronogramaId();
-
-	/**
-	 * Sets the actividad cronograma ID of this actividad cronograma.
-	 *
-	 * @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
-	 */
-	public void setActividadCronogramaId(long actividadCronogramaId);
+	public void setPrimaryKey(ActividadCronogramaPK primaryKey);
 
 	/**
 	 * Returns the cronograma ID of this actividad cronograma.
@@ -86,6 +74,20 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	 * @param cronogramaId the cronograma ID of this actividad cronograma
 	 */
 	public void setCronogramaId(long cronogramaId);
+
+	/**
+	 * Returns the actividad cronograma ID of this actividad cronograma.
+	 *
+	 * @return the actividad cronograma ID of this actividad cronograma
+	 */
+	public long getActividadCronogramaId();
+
+	/**
+	 * Sets the actividad cronograma ID of this actividad cronograma.
+	 *
+	 * @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
+	 */
+	public void setActividadCronogramaId(long actividadCronogramaId);
 
 	/**
 	 * Returns the descripcion of this actividad cronograma.
@@ -131,46 +133,81 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	public void setFechaFin(Date fechaFin);
 
 	/**
-	 * Returns the cumplido of this actividad cronograma.
+	 * Returns the cumplido evaluacion of this actividad cronograma.
 	 *
-	 * @return the cumplido of this actividad cronograma
+	 * @return the cumplido evaluacion of this actividad cronograma
 	 */
-	public boolean getCumplido();
+	public boolean getCumplidoEvaluacion();
 
 	/**
-	 * Returns <code>true</code> if this actividad cronograma is cumplido.
+	 * Returns <code>true</code> if this actividad cronograma is cumplido evaluacion.
 	 *
-	 * @return <code>true</code> if this actividad cronograma is cumplido; <code>false</code> otherwise
+	 * @return <code>true</code> if this actividad cronograma is cumplido evaluacion; <code>false</code> otherwise
 	 */
-	public boolean isCumplido();
+	public boolean isCumplidoEvaluacion();
 
 	/**
-	 * Sets whether this actividad cronograma is cumplido.
+	 * Sets whether this actividad cronograma is cumplido evaluacion.
 	 *
-	 * @param cumplido the cumplido of this actividad cronograma
+	 * @param cumplidoEvaluacion the cumplido evaluacion of this actividad cronograma
 	 */
-	public void setCumplido(boolean cumplido);
+	public void setCumplidoEvaluacion(boolean cumplidoEvaluacion);
 
 	/**
-	 * Returns the finalizado of this actividad cronograma.
+	 * Returns the estado of this actividad cronograma.
 	 *
-	 * @return the finalizado of this actividad cronograma
+	 * @return the estado of this actividad cronograma
 	 */
-	public boolean getFinalizado();
+	public long getEstado();
 
 	/**
-	 * Returns <code>true</code> if this actividad cronograma is finalizado.
+	 * Sets the estado of this actividad cronograma.
 	 *
-	 * @return <code>true</code> if this actividad cronograma is finalizado; <code>false</code> otherwise
+	 * @param estado the estado of this actividad cronograma
 	 */
-	public boolean isFinalizado();
+	public void setEstado(long estado);
 
 	/**
-	 * Sets whether this actividad cronograma is finalizado.
+	 * Returns the fecha inicio evaluacion of this actividad cronograma.
 	 *
-	 * @param finalizado the finalizado of this actividad cronograma
+	 * @return the fecha inicio evaluacion of this actividad cronograma
 	 */
-	public void setFinalizado(boolean finalizado);
+	public Date getFechaInicioEvaluacion();
+
+	/**
+	 * Sets the fecha inicio evaluacion of this actividad cronograma.
+	 *
+	 * @param fechaInicioEvaluacion the fecha inicio evaluacion of this actividad cronograma
+	 */
+	public void setFechaInicioEvaluacion(Date fechaInicioEvaluacion);
+
+	/**
+	 * Returns the fecha fin evaluacion of this actividad cronograma.
+	 *
+	 * @return the fecha fin evaluacion of this actividad cronograma
+	 */
+	public Date getFechaFinEvaluacion();
+
+	/**
+	 * Sets the fecha fin evaluacion of this actividad cronograma.
+	 *
+	 * @param fechaFinEvaluacion the fecha fin evaluacion of this actividad cronograma
+	 */
+	public void setFechaFinEvaluacion(Date fechaFinEvaluacion);
+
+	/**
+	 * Returns the grupo usuario of this actividad cronograma.
+	 *
+	 * @return the grupo usuario of this actividad cronograma
+	 */
+	public long getGrupoUsuario();
+
+	/**
+	 * Sets the grupo usuario of this actividad cronograma.
+	 *
+	 * @param grupoUsuario the grupo usuario of this actividad cronograma
+	 */
+	public void setGrupoUsuario(long grupoUsuario);
 
 	/**
 	 * Returns the tipo actividad of this actividad cronograma.
@@ -185,6 +222,76 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	 * @param tipoActividad the tipo actividad of this actividad cronograma
 	 */
 	public void setTipoActividad(long tipoActividad);
+
+	/**
+	 * Returns the aprobado colaborador of this actividad cronograma.
+	 *
+	 * @return the aprobado colaborador of this actividad cronograma
+	 */
+	public long getAprobadoColaborador();
+
+	/**
+	 * Sets the aprobado colaborador of this actividad cronograma.
+	 *
+	 * @param aprobadoColaborador the aprobado colaborador of this actividad cronograma
+	 */
+	public void setAprobadoColaborador(long aprobadoColaborador);
+
+	/**
+	 * Returns the jerarquia evaluar of this actividad cronograma.
+	 *
+	 * @return the jerarquia evaluar of this actividad cronograma
+	 */
+	public long getJerarquiaEvaluar();
+
+	/**
+	 * Sets the jerarquia evaluar of this actividad cronograma.
+	 *
+	 * @param jerarquiaEvaluar the jerarquia evaluar of this actividad cronograma
+	 */
+	public void setJerarquiaEvaluar(long jerarquiaEvaluar);
+
+	/**
+	 * Returns the aprobado lider of this actividad cronograma.
+	 *
+	 * @return the aprobado lider of this actividad cronograma
+	 */
+	public long getAprobadoLider();
+
+	/**
+	 * Sets the aprobado lider of this actividad cronograma.
+	 *
+	 * @param aprobadoLider the aprobado lider of this actividad cronograma
+	 */
+	public void setAprobadoLider(long aprobadoLider);
+
+	/**
+	 * Returns the usuario gerente ID of this actividad cronograma.
+	 *
+	 * @return the usuario gerente ID of this actividad cronograma
+	 */
+	public long getUsuarioGerenteId();
+
+	/**
+	 * Sets the usuario gerente ID of this actividad cronograma.
+	 *
+	 * @param usuarioGerenteId the usuario gerente ID of this actividad cronograma
+	 */
+	public void setUsuarioGerenteId(long usuarioGerenteId);
+
+	/**
+	 * Returns the usuario lider ID of this actividad cronograma.
+	 *
+	 * @return the usuario lider ID of this actividad cronograma
+	 */
+	public long getUsuarioLiderId();
+
+	/**
+	 * Sets the usuario lider ID of this actividad cronograma.
+	 *
+	 * @param usuarioLiderId the usuario lider ID of this actividad cronograma
+	 */
+	public void setUsuarioLiderId(long usuarioLiderId);
 
 	/**
 	 * Returns the activo of this actividad cronograma.

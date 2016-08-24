@@ -51,16 +51,18 @@ import com.hitss.layer.service.ObservacionesLocalServiceUtil;
 import com.hitss.layer.service.ObservacionesServiceUtil;
 import com.hitss.layer.service.ParametroLocalServiceUtil;
 import com.hitss.layer.service.ParametroServiceUtil;
-import com.hitss.layer.service.PlanAccionLocalServiceUtil;
-import com.hitss.layer.service.PlanAccionServiceUtil;
 import com.hitss.layer.service.PostulacionLocalServiceUtil;
 import com.hitss.layer.service.PostulacionServiceUtil;
 import com.hitss.layer.service.PreguntaLocalServiceUtil;
+import com.hitss.layer.service.PreguntaRespuestaLocalServiceUtil;
+import com.hitss.layer.service.PreguntaRespuestaServiceUtil;
 import com.hitss.layer.service.PreguntaServiceUtil;
 import com.hitss.layer.service.PrioridadGrupoUsuariosLocalServiceUtil;
 import com.hitss.layer.service.PrioridadGrupoUsuariosServiceUtil;
 import com.hitss.layer.service.ReferenciaLocalServiceUtil;
 import com.hitss.layer.service.ReferenciaServiceUtil;
+import com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalServiceUtil;
+import com.hitss.layer.service.RegisitrarActividadPlanUsuarioServiceUtil;
 import com.hitss.layer.service.RespuestaLocalServiceUtil;
 import com.hitss.layer.service.RespuestaServiceUtil;
 import com.hitss.layer.service.SolicitudEvaluacionDesempennoLocalServiceUtil;
@@ -148,21 +150,24 @@ public class ClpMessageListener extends BaseMessageListener {
 			ParametroLocalServiceUtil.clearService();
 
 			ParametroServiceUtil.clearService();
-			PlanAccionLocalServiceUtil.clearService();
-
-			PlanAccionServiceUtil.clearService();
 			PostulacionLocalServiceUtil.clearService();
 
 			PostulacionServiceUtil.clearService();
 			PreguntaLocalServiceUtil.clearService();
 
 			PreguntaServiceUtil.clearService();
+			PreguntaRespuestaLocalServiceUtil.clearService();
+
+			PreguntaRespuestaServiceUtil.clearService();
 			PrioridadGrupoUsuariosLocalServiceUtil.clearService();
 
 			PrioridadGrupoUsuariosServiceUtil.clearService();
 			ReferenciaLocalServiceUtil.clearService();
 
 			ReferenciaServiceUtil.clearService();
+			RegisitrarActividadPlanUsuarioLocalServiceUtil.clearService();
+
+			RegisitrarActividadPlanUsuarioServiceUtil.clearService();
 			RespuestaLocalServiceUtil.clearService();
 
 			RespuestaServiceUtil.clearService();

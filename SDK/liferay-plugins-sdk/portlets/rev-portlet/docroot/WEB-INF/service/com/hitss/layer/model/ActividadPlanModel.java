@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ActividadPlanPK;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -50,14 +52,28 @@ public interface ActividadPlanModel extends BaseModel<ActividadPlan> {
 	 *
 	 * @return the primary key of this actividad plan
 	 */
-	public long getPrimaryKey();
+	public ActividadPlanPK getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this actividad plan.
 	 *
 	 * @param primaryKey the primary key of this actividad plan
 	 */
-	public void setPrimaryKey(long primaryKey);
+	public void setPrimaryKey(ActividadPlanPK primaryKey);
+
+	/**
+	 * Returns the actividad cronograma ID of this actividad plan.
+	 *
+	 * @return the actividad cronograma ID of this actividad plan
+	 */
+	public long getActividadCronogramaId();
+
+	/**
+	 * Sets the actividad cronograma ID of this actividad plan.
+	 *
+	 * @param actividadCronogramaId the actividad cronograma ID of this actividad plan
+	 */
+	public void setActividadCronogramaId(long actividadCronogramaId);
 
 	/**
 	 * Returns the actividad plan ID of this actividad plan.
@@ -88,20 +104,6 @@ public interface ActividadPlanModel extends BaseModel<ActividadPlan> {
 	public void setPlanAccionId(long planAccionId);
 
 	/**
-	 * Returns the responsable of this actividad plan.
-	 *
-	 * @return the responsable of this actividad plan
-	 */
-	public long getResponsable();
-
-	/**
-	 * Sets the responsable of this actividad plan.
-	 *
-	 * @param responsable the responsable of this actividad plan
-	 */
-	public void setResponsable(long responsable);
-
-	/**
 	 * Returns the actividad of this actividad plan.
 	 *
 	 * @return the actividad of this actividad plan
@@ -130,21 +132,6 @@ public interface ActividadPlanModel extends BaseModel<ActividadPlan> {
 	 * @param evidencia the evidencia of this actividad plan
 	 */
 	public void setEvidencia(String evidencia);
-
-	/**
-	 * Returns the objetivo of this actividad plan.
-	 *
-	 * @return the objetivo of this actividad plan
-	 */
-	@AutoEscape
-	public String getObjetivo();
-
-	/**
-	 * Sets the objetivo of this actividad plan.
-	 *
-	 * @param objetivo the objetivo of this actividad plan
-	 */
-	public void setObjetivo(String objetivo);
 
 	/**
 	 * Returns the activo of this actividad plan.

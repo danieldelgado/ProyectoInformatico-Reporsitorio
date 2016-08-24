@@ -38,7 +38,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(solicitudRequerimientoId);
@@ -64,6 +64,8 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		sb.append(especialidad);
 		sb.append(", meta=");
 		sb.append(meta);
+		sb.append(", fechameta=");
+		sb.append(fechameta);
 		sb.append(", prioridad=");
 		sb.append(prioridad);
 		sb.append(", motivo=");
@@ -133,6 +135,13 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		}
 		else {
 			solicitudRequerimientoImpl.setMeta(meta);
+		}
+
+		if (fechameta == Long.MIN_VALUE) {
+			solicitudRequerimientoImpl.setFechameta(null);
+		}
+		else {
+			solicitudRequerimientoImpl.setFechameta(new Date(fechameta));
 		}
 
 		solicitudRequerimientoImpl.setPrioridad(prioridad);
@@ -210,6 +219,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		cliente = objectInput.readLong();
 		especialidad = objectInput.readUTF();
 		meta = objectInput.readUTF();
+		fechameta = objectInput.readLong();
 		prioridad = objectInput.readLong();
 		motivo = objectInput.readUTF();
 		descripcionPublicacion = objectInput.readUTF();
@@ -255,6 +265,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 			objectOutput.writeUTF(meta);
 		}
 
+		objectOutput.writeLong(fechameta);
 		objectOutput.writeLong(prioridad);
 
 		if (motivo == null) {
@@ -311,6 +322,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	public long cliente;
 	public String especialidad;
 	public String meta;
+	public long fechameta;
 	public long prioridad;
 	public String motivo;
 	public String descripcionPublicacion;

@@ -69,13 +69,14 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 			{ "solicitudEvaluacionDesempennoId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
 			{ "estado", Types.BIGINT },
+			{ "aprobacionCronograma", Types.INTEGER },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Cronograma (cronogramaId LONG not null primary key,solicitudEvaluacionDesempennoId LONG,descripcion VARCHAR(75) null,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Cronograma (cronogramaId LONG not null primary key,solicitudEvaluacionDesempennoId LONG,descripcion VARCHAR(75) null,estado LONG,aprobacionCronograma INTEGER,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Cronograma";
 	public static final String ORDER_BY_JPQL = " ORDER BY cronograma.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Cronograma.fechamodifica ASC";
@@ -107,6 +108,7 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 		model.setSolicitudEvaluacionDesempennoId(soapModel.getSolicitudEvaluacionDesempennoId());
 		model.setDescripcion(soapModel.getDescripcion());
 		model.setEstado(soapModel.getEstado());
+		model.setAprobacionCronograma(soapModel.getAprobacionCronograma());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -181,6 +183,7 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 			getSolicitudEvaluacionDesempennoId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("aprobacionCronograma", getAprobacionCronograma());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -215,6 +218,13 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Integer aprobacionCronograma = (Integer)attributes.get(
+				"aprobacionCronograma");
+
+		if (aprobacionCronograma != null) {
+			setAprobacionCronograma(aprobacionCronograma);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -296,6 +306,17 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 	@Override
 	public void setEstado(long estado) {
 		_estado = estado;
+	}
+
+	@JSON
+	@Override
+	public int getAprobacionCronograma() {
+		return _aprobacionCronograma;
+	}
+
+	@Override
+	public void setAprobacionCronograma(int aprobacionCronograma) {
+		_aprobacionCronograma = aprobacionCronograma;
 	}
 
 	@JSON
@@ -389,6 +410,7 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 		cronogramaImpl.setSolicitudEvaluacionDesempennoId(getSolicitudEvaluacionDesempennoId());
 		cronogramaImpl.setDescripcion(getDescripcion());
 		cronogramaImpl.setEstado(getEstado());
+		cronogramaImpl.setAprobacionCronograma(getAprobacionCronograma());
 		cronogramaImpl.setActivo(getActivo());
 		cronogramaImpl.setUsuariocrea(getUsuariocrea());
 		cronogramaImpl.setFechacrea(getFechacrea());
@@ -463,6 +485,8 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 
 		cronogramaCacheModel.estado = getEstado();
 
+		cronogramaCacheModel.aprobacionCronograma = getAprobacionCronograma();
+
 		cronogramaCacheModel.activo = getActivo();
 
 		cronogramaCacheModel.usuariocrea = getUsuariocrea();
@@ -492,7 +516,7 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{cronogramaId=");
 		sb.append(getCronogramaId());
@@ -502,6 +526,8 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 		sb.append(getDescripcion());
 		sb.append(", estado=");
 		sb.append(getEstado());
+		sb.append(", aprobacionCronograma=");
+		sb.append(getAprobacionCronograma());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -519,7 +545,7 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Cronograma");
@@ -540,6 +566,10 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 		sb.append(
 			"<column><column-name>estado</column-name><column-value><![CDATA[");
 		sb.append(getEstado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>aprobacionCronograma</column-name><column-value><![CDATA[");
+		sb.append(getAprobacionCronograma());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -575,6 +605,7 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 	private long _solicitudEvaluacionDesempennoId;
 	private String _descripcion;
 	private long _estado;
+	private int _aprobacionCronograma;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

@@ -48,29 +48,29 @@ public class ActividadPlanLocalServiceWrapper
 	/**
 	* Creates a new actividad plan with the primary key. Does not add the actividad plan to the database.
 	*
-	* @param actividadPlanId the primary key for the new actividad plan
+	* @param actividadPlanPK the primary key for the new actividad plan
 	* @return the new actividad plan
 	*/
 	@Override
 	public com.hitss.layer.model.ActividadPlan createActividadPlan(
-		long actividadPlanId) {
-		return _actividadPlanLocalService.createActividadPlan(actividadPlanId);
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK) {
+		return _actividadPlanLocalService.createActividadPlan(actividadPlanPK);
 	}
 
 	/**
 	* Deletes the actividad plan with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param actividadPlanId the primary key of the actividad plan
+	* @param actividadPlanPK the primary key of the actividad plan
 	* @return the actividad plan that was removed
 	* @throws PortalException if a actividad plan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.hitss.layer.model.ActividadPlan deleteActividadPlan(
-		long actividadPlanId)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.deleteActividadPlan(actividadPlanId);
+		return _actividadPlanLocalService.deleteActividadPlan(actividadPlanPK);
 	}
 
 	/**
@@ -186,25 +186,25 @@ public class ActividadPlanLocalServiceWrapper
 
 	@Override
 	public com.hitss.layer.model.ActividadPlan fetchActividadPlan(
-		long actividadPlanId)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.fetchActividadPlan(actividadPlanId);
+		return _actividadPlanLocalService.fetchActividadPlan(actividadPlanPK);
 	}
 
 	/**
 	* Returns the actividad plan with the primary key.
 	*
-	* @param actividadPlanId the primary key of the actividad plan
+	* @param actividadPlanPK the primary key of the actividad plan
 	* @return the actividad plan
 	* @throws PortalException if a actividad plan with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.hitss.layer.model.ActividadPlan getActividadPlan(
-		long actividadPlanId)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.getActividadPlan(actividadPlanId);
+		return _actividadPlanLocalService.getActividadPlan(actividadPlanPK);
 	}
 
 	@Override
@@ -258,168 +258,6 @@ public class ActividadPlanLocalServiceWrapper
 		com.hitss.layer.model.ActividadPlan actividadPlan)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _actividadPlanLocalService.updateActividadPlan(actividadPlan);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void addUsuarioActividadPlan(long userId, long actividadPlanId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.addUsuarioActividadPlan(userId,
-			actividadPlanId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void addUsuarioActividadPlan(long userId,
-		com.hitss.layer.model.ActividadPlan actividadPlan)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.addUsuarioActividadPlan(userId, actividadPlan);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void addUsuarioActividadPlans(long userId, long[] actividadPlanIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.addUsuarioActividadPlans(userId,
-			actividadPlanIds);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void addUsuarioActividadPlans(long userId,
-		java.util.List<com.hitss.layer.model.ActividadPlan> ActividadPlans)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.addUsuarioActividadPlans(userId,
-			ActividadPlans);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void clearUsuarioActividadPlans(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.clearUsuarioActividadPlans(userId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void deleteUsuarioActividadPlan(long userId, long actividadPlanId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.deleteUsuarioActividadPlan(userId,
-			actividadPlanId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void deleteUsuarioActividadPlan(long userId,
-		com.hitss.layer.model.ActividadPlan actividadPlan)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.deleteUsuarioActividadPlan(userId,
-			actividadPlan);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void deleteUsuarioActividadPlans(long userId, long[] actividadPlanIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.deleteUsuarioActividadPlans(userId,
-			actividadPlanIds);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void deleteUsuarioActividadPlans(long userId,
-		java.util.List<com.hitss.layer.model.ActividadPlan> ActividadPlans)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.deleteUsuarioActividadPlans(userId,
-			ActividadPlans);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.util.List<com.hitss.layer.model.ActividadPlan> getUsuarioActividadPlans(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.getUsuarioActividadPlans(userId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.util.List<com.hitss.layer.model.ActividadPlan> getUsuarioActividadPlans(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.getUsuarioActividadPlans(userId,
-			start, end);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public java.util.List<com.hitss.layer.model.ActividadPlan> getUsuarioActividadPlans(
-		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.getUsuarioActividadPlans(userId,
-			start, end, orderByComparator);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public int getUsuarioActividadPlansCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.getUsuarioActividadPlansCount(userId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public boolean hasUsuarioActividadPlan(long userId, long actividadPlanId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.hasUsuarioActividadPlan(userId,
-			actividadPlanId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public boolean hasUsuarioActividadPlans(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _actividadPlanLocalService.hasUsuarioActividadPlans(userId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Override
-	public void setUsuarioActividadPlans(long userId, long[] actividadPlanIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_actividadPlanLocalService.setUsuarioActividadPlans(userId,
-			actividadPlanIds);
 	}
 
 	/**

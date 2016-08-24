@@ -32,11 +32,15 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 
 		_methodName1 = "createActividadCronograma";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName2 = "deleteActividadCronograma";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName3 = "deleteActividadCronograma";
 
@@ -82,11 +86,15 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 
 		_methodName10 = "fetchActividadCronograma";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName11 = "getActividadCronograma";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.ActividadCronogramaPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -106,13 +114,13 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 				"com.hitss.layer.model.ActividadCronograma"
 			};
 
-		_methodName210 = "getBeanIdentifier";
+		_methodName216 = "getBeanIdentifier";
 
-		_methodParameterTypes210 = new String[] {  };
+		_methodParameterTypes216 = new String[] {  };
 
-		_methodName211 = "setBeanIdentifier";
+		_methodName217 = "setBeanIdentifier";
 
-		_methodParameterTypes211 = new String[] { "java.lang.String" };
+		_methodParameterTypes217 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -124,12 +132,12 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return ActividadCronogramaLocalServiceUtil.createActividadCronograma(((Long)arguments[0]).longValue());
+			return ActividadCronogramaLocalServiceUtil.createActividadCronograma((com.hitss.layer.service.persistence.ActividadCronogramaPK)arguments[0]);
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return ActividadCronogramaLocalServiceUtil.deleteActividadCronograma(((Long)arguments[0]).longValue());
+			return ActividadCronogramaLocalServiceUtil.deleteActividadCronograma((com.hitss.layer.service.persistence.ActividadCronogramaPK)arguments[0]);
 		}
 
 		if (_methodName3.equals(name) &&
@@ -175,12 +183,12 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return ActividadCronogramaLocalServiceUtil.fetchActividadCronograma(((Long)arguments[0]).longValue());
+			return ActividadCronogramaLocalServiceUtil.fetchActividadCronograma((com.hitss.layer.service.persistence.ActividadCronogramaPK)arguments[0]);
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return ActividadCronogramaLocalServiceUtil.getActividadCronograma(((Long)arguments[0]).longValue());
+			return ActividadCronogramaLocalServiceUtil.getActividadCronograma((com.hitss.layer.service.persistence.ActividadCronogramaPK)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&
@@ -204,13 +212,13 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 			return ActividadCronogramaLocalServiceUtil.updateActividadCronograma((com.hitss.layer.model.ActividadCronograma)arguments[0]);
 		}
 
-		if (_methodName210.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes210, parameterTypes)) {
+		if (_methodName216.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
 			return ActividadCronogramaLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName211.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes211, parameterTypes)) {
+		if (_methodName217.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes217, parameterTypes)) {
 			ActividadCronogramaLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -251,8 +259,8 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName210;
-	private String[] _methodParameterTypes210;
-	private String _methodName211;
-	private String[] _methodParameterTypes211;
+	private String _methodName216;
+	private String[] _methodParameterTypes216;
+	private String _methodName217;
+	private String[] _methodParameterTypes217;
 }

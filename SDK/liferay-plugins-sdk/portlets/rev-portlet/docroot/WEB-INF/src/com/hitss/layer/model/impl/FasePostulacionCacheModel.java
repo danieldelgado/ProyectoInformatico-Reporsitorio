@@ -38,7 +38,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{fasePostulacionId=");
 		sb.append(fasePostulacionId);
@@ -54,6 +54,12 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		sb.append(descripcion);
 		sb.append(", estado=");
 		sb.append(estado);
+		sb.append(", apruebaEntrevista=");
+		sb.append(apruebaEntrevista);
+		sb.append(", puntuacion=");
+		sb.append(puntuacion);
+		sb.append(", salario=");
+		sb.append(salario);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -93,6 +99,9 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		}
 
 		fasePostulacionImpl.setEstado(estado);
+		fasePostulacionImpl.setApruebaEntrevista(apruebaEntrevista);
+		fasePostulacionImpl.setPuntuacion(puntuacion);
+		fasePostulacionImpl.setSalario(salario);
 		fasePostulacionImpl.setActivo(activo);
 		fasePostulacionImpl.setUsuariocrea(usuariocrea);
 
@@ -126,6 +135,9 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		fechaFase = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		estado = objectInput.readLong();
+		apruebaEntrevista = objectInput.readBoolean();
+		puntuacion = objectInput.readInt();
+		salario = objectInput.readDouble();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -150,6 +162,9 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		}
 
 		objectOutput.writeLong(estado);
+		objectOutput.writeBoolean(apruebaEntrevista);
+		objectOutput.writeInt(puntuacion);
+		objectOutput.writeDouble(salario);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -164,6 +179,9 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 	public long fechaFase;
 	public String descripcion;
 	public long estado;
+	public boolean apruebaEntrevista;
+	public int puntuacion;
+	public double salario;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

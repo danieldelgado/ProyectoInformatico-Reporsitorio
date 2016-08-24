@@ -53,21 +53,21 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 	@Override
 	public DetalleRepuestaReclutamientoPK getPrimaryKey() {
 		return new DetalleRepuestaReclutamientoPK(_detalleRepsuestaId,
-			_evaluacionId, _fasePostulacionId, _preguntaId);
+			_usuarioId, _evaluacionId, _preguntaId);
 	}
 
 	@Override
 	public void setPrimaryKey(DetalleRepuestaReclutamientoPK primaryKey) {
 		setDetalleRepsuestaId(primaryKey.detalleRepsuestaId);
+		setUsuarioId(primaryKey.usuarioId);
 		setEvaluacionId(primaryKey.evaluacionId);
-		setFasePostulacionId(primaryKey.fasePostulacionId);
 		setPreguntaId(primaryKey.preguntaId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new DetalleRepuestaReclutamientoPK(_detalleRepsuestaId,
-			_evaluacionId, _fasePostulacionId, _preguntaId);
+			_usuarioId, _evaluacionId, _preguntaId);
 	}
 
 	@Override
@@ -80,8 +80,8 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("detalleRepsuestaId", getDetalleRepsuestaId());
+		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("evaluacionId", getEvaluacionId());
-		attributes.put("fasePostulacionId", getFasePostulacionId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("preguntaId", getPreguntaId());
 		attributes.put("respuestaSeleccionada", getRespuestaSeleccionada());
@@ -97,16 +97,16 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 			setDetalleRepsuestaId(detalleRepsuestaId);
 		}
 
+		Long usuarioId = (Long)attributes.get("usuarioId");
+
+		if (usuarioId != null) {
+			setUsuarioId(usuarioId);
+		}
+
 		Long evaluacionId = (Long)attributes.get("evaluacionId");
 
 		if (evaluacionId != null) {
 			setEvaluacionId(evaluacionId);
-		}
-
-		Long fasePostulacionId = (Long)attributes.get("fasePostulacionId");
-
-		if (fasePostulacionId != null) {
-			setFasePostulacionId(fasePostulacionId);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -155,6 +155,30 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 	}
 
 	@Override
+	public long getUsuarioId() {
+		return _usuarioId;
+	}
+
+	@Override
+	public void setUsuarioId(long usuarioId) {
+		_usuarioId = usuarioId;
+
+		if (_detalleRepuestaReclutamientoRemoteModel != null) {
+			try {
+				Class<?> clazz = _detalleRepuestaReclutamientoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUsuarioId", long.class);
+
+				method.invoke(_detalleRepuestaReclutamientoRemoteModel,
+					usuarioId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public long getEvaluacionId() {
 		return _evaluacionId;
 	}
@@ -171,31 +195,6 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 
 				method.invoke(_detalleRepuestaReclutamientoRemoteModel,
 					evaluacionId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getFasePostulacionId() {
-		return _fasePostulacionId;
-	}
-
-	@Override
-	public void setFasePostulacionId(long fasePostulacionId) {
-		_fasePostulacionId = fasePostulacionId;
-
-		if (_detalleRepuestaReclutamientoRemoteModel != null) {
-			try {
-				Class<?> clazz = _detalleRepuestaReclutamientoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setFasePostulacionId",
-						long.class);
-
-				method.invoke(_detalleRepuestaReclutamientoRemoteModel,
-					fasePostulacionId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -348,8 +347,8 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 		DetalleRepuestaReclutamientoClp clone = new DetalleRepuestaReclutamientoClp();
 
 		clone.setDetalleRepsuestaId(getDetalleRepsuestaId());
+		clone.setUsuarioId(getUsuarioId());
 		clone.setEvaluacionId(getEvaluacionId());
-		clone.setFasePostulacionId(getFasePostulacionId());
 		clone.setDescripcion(getDescripcion());
 		clone.setPreguntaId(getPreguntaId());
 		clone.setRespuestaSeleccionada(getRespuestaSeleccionada());
@@ -402,10 +401,10 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 
 		sb.append("{detalleRepsuestaId=");
 		sb.append(getDetalleRepsuestaId());
+		sb.append(", usuarioId=");
+		sb.append(getUsuarioId());
 		sb.append(", evaluacionId=");
 		sb.append(getEvaluacionId());
-		sb.append(", fasePostulacionId=");
-		sb.append(getFasePostulacionId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
 		sb.append(", preguntaId=");
@@ -430,12 +429,12 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 		sb.append(getDetalleRepsuestaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>evaluacionId</column-name><column-value><![CDATA[");
-		sb.append(getEvaluacionId());
+			"<column><column-name>usuarioId</column-name><column-value><![CDATA[");
+		sb.append(getUsuarioId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>fasePostulacionId</column-name><column-value><![CDATA[");
-		sb.append(getFasePostulacionId());
+			"<column><column-name>evaluacionId</column-name><column-value><![CDATA[");
+		sb.append(getEvaluacionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
@@ -456,8 +455,8 @@ public class DetalleRepuestaReclutamientoClp extends BaseModelImpl<DetalleRepues
 	}
 
 	private long _detalleRepsuestaId;
+	private long _usuarioId;
 	private long _evaluacionId;
-	private long _fasePostulacionId;
 	private String _descripcion;
 	private long _preguntaId;
 	private int _respuestaSeleccionada;

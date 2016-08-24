@@ -74,6 +74,20 @@ public interface DetalleRepuestaReclutamientoModel extends BaseModel<DetalleRepu
 	public void setDetalleRepsuestaId(long detalleRepsuestaId);
 
 	/**
+	 * Returns the usuario ID of this detalle repuesta reclutamiento.
+	 *
+	 * @return the usuario ID of this detalle repuesta reclutamiento
+	 */
+	public long getUsuarioId();
+
+	/**
+	 * Sets the usuario ID of this detalle repuesta reclutamiento.
+	 *
+	 * @param usuarioId the usuario ID of this detalle repuesta reclutamiento
+	 */
+	public void setUsuarioId(long usuarioId);
+
+	/**
 	 * Returns the evaluacion ID of this detalle repuesta reclutamiento.
 	 *
 	 * @return the evaluacion ID of this detalle repuesta reclutamiento
@@ -86,20 +100,6 @@ public interface DetalleRepuestaReclutamientoModel extends BaseModel<DetalleRepu
 	 * @param evaluacionId the evaluacion ID of this detalle repuesta reclutamiento
 	 */
 	public void setEvaluacionId(long evaluacionId);
-
-	/**
-	 * Returns the fase postulacion ID of this detalle repuesta reclutamiento.
-	 *
-	 * @return the fase postulacion ID of this detalle repuesta reclutamiento
-	 */
-	public long getFasePostulacionId();
-
-	/**
-	 * Sets the fase postulacion ID of this detalle repuesta reclutamiento.
-	 *
-	 * @param fasePostulacionId the fase postulacion ID of this detalle repuesta reclutamiento
-	 */
-	public void setFasePostulacionId(long fasePostulacionId);
 
 	/**
 	 * Returns the descripcion of this detalle repuesta reclutamiento.

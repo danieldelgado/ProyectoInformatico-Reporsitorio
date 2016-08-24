@@ -37,7 +37,7 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(solicitudRequerimientoId);
@@ -47,6 +47,8 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 		sb.append(fechaPostulacion);
 		sb.append(", estado=");
 		sb.append(estado);
+		sb.append(", seleccionado=");
+		sb.append(seleccionado);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -77,6 +79,7 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 		}
 
 		postulacionImpl.setEstado(estado);
+		postulacionImpl.setSeleccionado(seleccionado);
 		postulacionImpl.setActivo(activo);
 		postulacionImpl.setUsuariocrea(usuariocrea);
 
@@ -107,6 +110,7 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 		usuarioId = objectInput.readLong();
 		fechaPostulacion = objectInput.readLong();
 		estado = objectInput.readLong();
+		seleccionado = objectInput.readBoolean();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -121,6 +125,7 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 		objectOutput.writeLong(usuarioId);
 		objectOutput.writeLong(fechaPostulacion);
 		objectOutput.writeLong(estado);
+		objectOutput.writeBoolean(seleccionado);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -132,6 +137,7 @@ public class PostulacionCacheModel implements CacheModel<Postulacion>,
 	public long usuarioId;
 	public long fechaPostulacion;
 	public long estado;
+	public boolean seleccionado;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

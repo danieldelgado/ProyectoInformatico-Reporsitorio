@@ -80,6 +80,7 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 			getSolicitudEvaluacionDesempennoId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("aprobacionCronograma", getAprobacionCronograma());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -114,6 +115,13 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Integer aprobacionCronograma = (Integer)attributes.get(
+				"aprobacionCronograma");
+
+		if (aprobacionCronograma != null) {
+			setAprobacionCronograma(aprobacionCronograma);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -235,6 +243,30 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 				Method method = clazz.getMethod("setEstado", long.class);
 
 				method.invoke(_cronogramaRemoteModel, estado);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getAprobacionCronograma() {
+		return _aprobacionCronograma;
+	}
+
+	@Override
+	public void setAprobacionCronograma(int aprobacionCronograma) {
+		_aprobacionCronograma = aprobacionCronograma;
+
+		if (_cronogramaRemoteModel != null) {
+			try {
+				Class<?> clazz = _cronogramaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAprobacionCronograma",
+						int.class);
+
+				method.invoke(_cronogramaRemoteModel, aprobacionCronograma);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -435,6 +467,7 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 		clone.setSolicitudEvaluacionDesempennoId(getSolicitudEvaluacionDesempennoId());
 		clone.setDescripcion(getDescripcion());
 		clone.setEstado(getEstado());
+		clone.setAprobacionCronograma(getAprobacionCronograma());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -491,7 +524,7 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{cronogramaId=");
 		sb.append(getCronogramaId());
@@ -501,6 +534,8 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 		sb.append(getDescripcion());
 		sb.append(", estado=");
 		sb.append(getEstado());
+		sb.append(", aprobacionCronograma=");
+		sb.append(getAprobacionCronograma());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -518,7 +553,7 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Cronograma");
@@ -539,6 +574,10 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 		sb.append(
 			"<column><column-name>estado</column-name><column-value><![CDATA[");
 		sb.append(getEstado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>aprobacionCronograma</column-name><column-value><![CDATA[");
+		sb.append(getAprobacionCronograma());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -570,6 +609,7 @@ public class CronogramaClp extends BaseModelImpl<Cronograma>
 	private long _solicitudEvaluacionDesempennoId;
 	private String _descripcion;
 	private long _estado;
+	private int _aprobacionCronograma;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

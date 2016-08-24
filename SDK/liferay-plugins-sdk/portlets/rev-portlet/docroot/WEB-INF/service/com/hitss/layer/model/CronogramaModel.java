@@ -118,6 +118,20 @@ public interface CronogramaModel extends BaseModel<Cronograma> {
 	public void setEstado(long estado);
 
 	/**
+	 * Returns the aprobacion cronograma of this cronograma.
+	 *
+	 * @return the aprobacion cronograma of this cronograma
+	 */
+	public int getAprobacionCronograma();
+
+	/**
+	 * Sets the aprobacion cronograma of this cronograma.
+	 *
+	 * @param aprobacionCronograma the aprobacion cronograma of this cronograma
+	 */
+	public void setAprobacionCronograma(int aprobacionCronograma);
+
+	/**
 	 * Returns the activo of this cronograma.
 	 *
 	 * @return the activo of this cronograma

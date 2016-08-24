@@ -36,11 +36,12 @@ import com.hitss.layer.service.persistence.LogOperacionesPersistence;
 import com.hitss.layer.service.persistence.ObservacionesPersistence;
 import com.hitss.layer.service.persistence.ParametroFinder;
 import com.hitss.layer.service.persistence.ParametroPersistence;
-import com.hitss.layer.service.persistence.PlanAccionPersistence;
 import com.hitss.layer.service.persistence.PostulacionPersistence;
 import com.hitss.layer.service.persistence.PreguntaPersistence;
+import com.hitss.layer.service.persistence.PreguntaRespuestaPersistence;
 import com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistence;
 import com.hitss.layer.service.persistence.ReferenciaPersistence;
+import com.hitss.layer.service.persistence.RegisitrarActividadPlanUsuarioPersistence;
 import com.hitss.layer.service.persistence.RespuestaPersistence;
 import com.hitss.layer.service.persistence.SolicitudEvaluacionDesempennoPersistence;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoPersistence;
@@ -1356,63 +1357,6 @@ public abstract class EvaluacionPreguntaLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the plan accion local service.
-	 *
-	 * @return the plan accion local service
-	 */
-	public com.hitss.layer.service.PlanAccionLocalService getPlanAccionLocalService() {
-		return planAccionLocalService;
-	}
-
-	/**
-	 * Sets the plan accion local service.
-	 *
-	 * @param planAccionLocalService the plan accion local service
-	 */
-	public void setPlanAccionLocalService(
-		com.hitss.layer.service.PlanAccionLocalService planAccionLocalService) {
-		this.planAccionLocalService = planAccionLocalService;
-	}
-
-	/**
-	 * Returns the plan accion remote service.
-	 *
-	 * @return the plan accion remote service
-	 */
-	public com.hitss.layer.service.PlanAccionService getPlanAccionService() {
-		return planAccionService;
-	}
-
-	/**
-	 * Sets the plan accion remote service.
-	 *
-	 * @param planAccionService the plan accion remote service
-	 */
-	public void setPlanAccionService(
-		com.hitss.layer.service.PlanAccionService planAccionService) {
-		this.planAccionService = planAccionService;
-	}
-
-	/**
-	 * Returns the plan accion persistence.
-	 *
-	 * @return the plan accion persistence
-	 */
-	public PlanAccionPersistence getPlanAccionPersistence() {
-		return planAccionPersistence;
-	}
-
-	/**
-	 * Sets the plan accion persistence.
-	 *
-	 * @param planAccionPersistence the plan accion persistence
-	 */
-	public void setPlanAccionPersistence(
-		PlanAccionPersistence planAccionPersistence) {
-		this.planAccionPersistence = planAccionPersistence;
-	}
-
-	/**
 	 * Returns the postulacion local service.
 	 *
 	 * @return the postulacion local service
@@ -1523,6 +1467,63 @@ public abstract class EvaluacionPreguntaLocalServiceBaseImpl
 	 */
 	public void setPreguntaPersistence(PreguntaPersistence preguntaPersistence) {
 		this.preguntaPersistence = preguntaPersistence;
+	}
+
+	/**
+	 * Returns the pregunta respuesta local service.
+	 *
+	 * @return the pregunta respuesta local service
+	 */
+	public com.hitss.layer.service.PreguntaRespuestaLocalService getPreguntaRespuestaLocalService() {
+		return preguntaRespuestaLocalService;
+	}
+
+	/**
+	 * Sets the pregunta respuesta local service.
+	 *
+	 * @param preguntaRespuestaLocalService the pregunta respuesta local service
+	 */
+	public void setPreguntaRespuestaLocalService(
+		com.hitss.layer.service.PreguntaRespuestaLocalService preguntaRespuestaLocalService) {
+		this.preguntaRespuestaLocalService = preguntaRespuestaLocalService;
+	}
+
+	/**
+	 * Returns the pregunta respuesta remote service.
+	 *
+	 * @return the pregunta respuesta remote service
+	 */
+	public com.hitss.layer.service.PreguntaRespuestaService getPreguntaRespuestaService() {
+		return preguntaRespuestaService;
+	}
+
+	/**
+	 * Sets the pregunta respuesta remote service.
+	 *
+	 * @param preguntaRespuestaService the pregunta respuesta remote service
+	 */
+	public void setPreguntaRespuestaService(
+		com.hitss.layer.service.PreguntaRespuestaService preguntaRespuestaService) {
+		this.preguntaRespuestaService = preguntaRespuestaService;
+	}
+
+	/**
+	 * Returns the pregunta respuesta persistence.
+	 *
+	 * @return the pregunta respuesta persistence
+	 */
+	public PreguntaRespuestaPersistence getPreguntaRespuestaPersistence() {
+		return preguntaRespuestaPersistence;
+	}
+
+	/**
+	 * Sets the pregunta respuesta persistence.
+	 *
+	 * @param preguntaRespuestaPersistence the pregunta respuesta persistence
+	 */
+	public void setPreguntaRespuestaPersistence(
+		PreguntaRespuestaPersistence preguntaRespuestaPersistence) {
+		this.preguntaRespuestaPersistence = preguntaRespuestaPersistence;
 	}
 
 	/**
@@ -1637,6 +1638,63 @@ public abstract class EvaluacionPreguntaLocalServiceBaseImpl
 	public void setReferenciaPersistence(
 		ReferenciaPersistence referenciaPersistence) {
 		this.referenciaPersistence = referenciaPersistence;
+	}
+
+	/**
+	 * Returns the regisitrar actividad plan usuario local service.
+	 *
+	 * @return the regisitrar actividad plan usuario local service
+	 */
+	public com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService getRegisitrarActividadPlanUsuarioLocalService() {
+		return regisitrarActividadPlanUsuarioLocalService;
+	}
+
+	/**
+	 * Sets the regisitrar actividad plan usuario local service.
+	 *
+	 * @param regisitrarActividadPlanUsuarioLocalService the regisitrar actividad plan usuario local service
+	 */
+	public void setRegisitrarActividadPlanUsuarioLocalService(
+		com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService regisitrarActividadPlanUsuarioLocalService) {
+		this.regisitrarActividadPlanUsuarioLocalService = regisitrarActividadPlanUsuarioLocalService;
+	}
+
+	/**
+	 * Returns the regisitrar actividad plan usuario remote service.
+	 *
+	 * @return the regisitrar actividad plan usuario remote service
+	 */
+	public com.hitss.layer.service.RegisitrarActividadPlanUsuarioService getRegisitrarActividadPlanUsuarioService() {
+		return regisitrarActividadPlanUsuarioService;
+	}
+
+	/**
+	 * Sets the regisitrar actividad plan usuario remote service.
+	 *
+	 * @param regisitrarActividadPlanUsuarioService the regisitrar actividad plan usuario remote service
+	 */
+	public void setRegisitrarActividadPlanUsuarioService(
+		com.hitss.layer.service.RegisitrarActividadPlanUsuarioService regisitrarActividadPlanUsuarioService) {
+		this.regisitrarActividadPlanUsuarioService = regisitrarActividadPlanUsuarioService;
+	}
+
+	/**
+	 * Returns the regisitrar actividad plan usuario persistence.
+	 *
+	 * @return the regisitrar actividad plan usuario persistence
+	 */
+	public RegisitrarActividadPlanUsuarioPersistence getRegisitrarActividadPlanUsuarioPersistence() {
+		return regisitrarActividadPlanUsuarioPersistence;
+	}
+
+	/**
+	 * Sets the regisitrar actividad plan usuario persistence.
+	 *
+	 * @param regisitrarActividadPlanUsuarioPersistence the regisitrar actividad plan usuario persistence
+	 */
+	public void setRegisitrarActividadPlanUsuarioPersistence(
+		RegisitrarActividadPlanUsuarioPersistence regisitrarActividadPlanUsuarioPersistence) {
+		this.regisitrarActividadPlanUsuarioPersistence = regisitrarActividadPlanUsuarioPersistence;
 	}
 
 	/**
@@ -2323,12 +2381,6 @@ public abstract class EvaluacionPreguntaLocalServiceBaseImpl
 	protected ParametroPersistence parametroPersistence;
 	@BeanReference(type = ParametroFinder.class)
 	protected ParametroFinder parametroFinder;
-	@BeanReference(type = com.hitss.layer.service.PlanAccionLocalService.class)
-	protected com.hitss.layer.service.PlanAccionLocalService planAccionLocalService;
-	@BeanReference(type = com.hitss.layer.service.PlanAccionService.class)
-	protected com.hitss.layer.service.PlanAccionService planAccionService;
-	@BeanReference(type = PlanAccionPersistence.class)
-	protected PlanAccionPersistence planAccionPersistence;
 	@BeanReference(type = com.hitss.layer.service.PostulacionLocalService.class)
 	protected com.hitss.layer.service.PostulacionLocalService postulacionLocalService;
 	@BeanReference(type = com.hitss.layer.service.PostulacionService.class)
@@ -2341,6 +2393,12 @@ public abstract class EvaluacionPreguntaLocalServiceBaseImpl
 	protected com.hitss.layer.service.PreguntaService preguntaService;
 	@BeanReference(type = PreguntaPersistence.class)
 	protected PreguntaPersistence preguntaPersistence;
+	@BeanReference(type = com.hitss.layer.service.PreguntaRespuestaLocalService.class)
+	protected com.hitss.layer.service.PreguntaRespuestaLocalService preguntaRespuestaLocalService;
+	@BeanReference(type = com.hitss.layer.service.PreguntaRespuestaService.class)
+	protected com.hitss.layer.service.PreguntaRespuestaService preguntaRespuestaService;
+	@BeanReference(type = PreguntaRespuestaPersistence.class)
+	protected PreguntaRespuestaPersistence preguntaRespuestaPersistence;
 	@BeanReference(type = com.hitss.layer.service.PrioridadGrupoUsuariosLocalService.class)
 	protected com.hitss.layer.service.PrioridadGrupoUsuariosLocalService prioridadGrupoUsuariosLocalService;
 	@BeanReference(type = com.hitss.layer.service.PrioridadGrupoUsuariosService.class)
@@ -2353,6 +2411,12 @@ public abstract class EvaluacionPreguntaLocalServiceBaseImpl
 	protected com.hitss.layer.service.ReferenciaService referenciaService;
 	@BeanReference(type = ReferenciaPersistence.class)
 	protected ReferenciaPersistence referenciaPersistence;
+	@BeanReference(type = com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService.class)
+	protected com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService regisitrarActividadPlanUsuarioLocalService;
+	@BeanReference(type = com.hitss.layer.service.RegisitrarActividadPlanUsuarioService.class)
+	protected com.hitss.layer.service.RegisitrarActividadPlanUsuarioService regisitrarActividadPlanUsuarioService;
+	@BeanReference(type = RegisitrarActividadPlanUsuarioPersistence.class)
+	protected RegisitrarActividadPlanUsuarioPersistence regisitrarActividadPlanUsuarioPersistence;
 	@BeanReference(type = com.hitss.layer.service.RespuestaLocalService.class)
 	protected com.hitss.layer.service.RespuestaLocalService respuestaLocalService;
 	@BeanReference(type = com.hitss.layer.service.RespuestaService.class)

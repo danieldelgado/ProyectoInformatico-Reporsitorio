@@ -1,3 +1,6 @@
+
+var validation = null; 
+
 AUI().ready('liferay-sign-in-modal', function(A) {
 	var Lang = A.Lang;
 
@@ -45,7 +48,30 @@ $(document).ready(function() {
 		}
 		return false;
 	}, "* Enddate should be greater than Startdate");
+	
+	$.validator.addMethod("rango_no_menor_date", function(value, element, params) {
+		try {
+			var fechaIncial = stringToDate(value,"dd/MM/yyyy","/");	
+			var fechaFin = stringToDate($("#" + params.input).val());
+			
+			if(fechaIncial != "" && fechaFin != ""){
+				if( (fechaIncial < fechaFin) ){
+					return true;
+				} else {
+					return false;
+				}
+			}
+			
+		
+		} catch (e) {
+			console.error("catch");
+			console.error(e);
+			return false;
+		}
+		return false;
+	}, "* Enddate should be greater than Startdate");
 
+	
 	$.validator.addMethod("rango_fecha_limite", function(value, element) {
 		try {
 
@@ -64,8 +90,41 @@ $(document).ready(function() {
 		return false;
 	}, "* Enddate should be greater than Startdate");
 
+	
 
-});
+
+	validation = new function() {
+
+	    this.isNotEmpty = function (o) {
+	        return !(o.length == 0);
+	    };
+	    this.isNumber = function (o) {
+	    	 return typeof o === 'number' && isFinite(o);
+	    };
+	    
+	}
+
+
+	
+
+}); 
+
+function validarFecharSimple(element, elementComparate){
+	try {		
+		var fechaIncial = stringToDate($("#" + element).val(),"dd/MM/yyyy","/");			
+		var fechaFin = stringToDate($("#" + elementComparate).val(),"dd/MM/yyyy","/");		
+		if((fechaIncial != "" && fechaFin != "") || (fechaIncial != "NaN" && fechaFin != "NaN")|| (fechaIncial != "Invalid Date" && fechaFin != "Invalid Date") ){
+			if( (fechaIncial < fechaFin) ){
+				return true;
+			} else {
+				return false;
+			}
+		}
+	} catch (e) {
+		return false;
+	}
+	return false;
+}
 
 function mostrarAlerta(contenedor, titulo, mensaje, tipoclase, callbackFunction) {//alert-block -  alert-success - alert-error - alert-info
 	if(contenedor!=null){

@@ -33,9 +33,8 @@ public class InformeRetroalimentacionSoap implements Serializable {
 		InformeRetroalimentacionSoap soapModel = new InformeRetroalimentacionSoap();
 
 		soapModel.setInformeRetroalimentacionId(model.getInformeRetroalimentacionId());
-		soapModel.setPlanAccionId(model.getPlanAccionId());
+		soapModel.setRegisitrarActividadPlanUsuariocoId(model.getRegisitrarActividadPlanUsuariocoId());
 		soapModel.setUsuario(model.getUsuario());
-		soapModel.setTitulo(model.getTitulo());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
@@ -105,12 +104,13 @@ public class InformeRetroalimentacionSoap implements Serializable {
 		_informeRetroalimentacionId = informeRetroalimentacionId;
 	}
 
-	public long getPlanAccionId() {
-		return _planAccionId;
+	public long getRegisitrarActividadPlanUsuariocoId() {
+		return _regisitrarActividadPlanUsuariocoId;
 	}
 
-	public void setPlanAccionId(long planAccionId) {
-		_planAccionId = planAccionId;
+	public void setRegisitrarActividadPlanUsuariocoId(
+		long regisitrarActividadPlanUsuariocoId) {
+		_regisitrarActividadPlanUsuariocoId = regisitrarActividadPlanUsuariocoId;
 	}
 
 	public long getUsuario() {
@@ -119,14 +119,6 @@ public class InformeRetroalimentacionSoap implements Serializable {
 
 	public void setUsuario(long usuario) {
 		_usuario = usuario;
-	}
-
-	public String getTitulo() {
-		return _titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		_titulo = titulo;
 	}
 
 	public String getDescripcion() {
@@ -182,9 +174,8 @@ public class InformeRetroalimentacionSoap implements Serializable {
 	}
 
 	private long _informeRetroalimentacionId;
-	private long _planAccionId;
+	private long _regisitrarActividadPlanUsuariocoId;
 	private long _usuario;
-	private String _titulo;
 	private String _descripcion;
 	private boolean _activo;
 	private long _usuariocrea;

@@ -81,6 +81,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("fechaPostulacion", getFechaPostulacion());
 		attributes.put("estado", getEstado());
+		attributes.put("seleccionado", getSeleccionado());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -115,6 +116,12 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Boolean seleccionado = (Boolean)attributes.get("seleccionado");
+
+		if (seleccionado != null) {
+			setSeleccionado(seleccionado);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -235,6 +242,34 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 				Method method = clazz.getMethod("setEstado", long.class);
 
 				method.invoke(_postulacionRemoteModel, estado);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public boolean getSeleccionado() {
+		return _seleccionado;
+	}
+
+	@Override
+	public boolean isSeleccionado() {
+		return _seleccionado;
+	}
+
+	@Override
+	public void setSeleccionado(boolean seleccionado) {
+		_seleccionado = seleccionado;
+
+		if (_postulacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _postulacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSeleccionado", boolean.class);
+
+				method.invoke(_postulacionRemoteModel, seleccionado);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -435,6 +470,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		clone.setUsuarioId(getUsuarioId());
 		clone.setFechaPostulacion(getFechaPostulacion());
 		clone.setEstado(getEstado());
+		clone.setSeleccionado(getSeleccionado());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -491,7 +527,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -501,6 +537,8 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		sb.append(getFechaPostulacion());
 		sb.append(", estado=");
 		sb.append(getEstado());
+		sb.append(", seleccionado=");
+		sb.append(getSeleccionado());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -518,7 +556,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Postulacion");
@@ -539,6 +577,10 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		sb.append(
 			"<column><column-name>estado</column-name><column-value><![CDATA[");
 		sb.append(getEstado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>seleccionado</column-name><column-value><![CDATA[");
+		sb.append(getSeleccionado());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -570,6 +612,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 	private long _usuarioId;
 	private Date _fechaPostulacion;
 	private long _estado;
+	private boolean _seleccionado;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

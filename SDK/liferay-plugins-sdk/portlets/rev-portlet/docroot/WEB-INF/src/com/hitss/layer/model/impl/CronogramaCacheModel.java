@@ -38,7 +38,7 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{cronogramaId=");
 		sb.append(cronogramaId);
@@ -48,6 +48,8 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 		sb.append(descripcion);
 		sb.append(", estado=");
 		sb.append(estado);
+		sb.append(", aprobacionCronograma=");
+		sb.append(aprobacionCronograma);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -78,6 +80,7 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 		}
 
 		cronogramaImpl.setEstado(estado);
+		cronogramaImpl.setAprobacionCronograma(aprobacionCronograma);
 		cronogramaImpl.setActivo(activo);
 		cronogramaImpl.setUsuariocrea(usuariocrea);
 
@@ -108,6 +111,7 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 		solicitudEvaluacionDesempennoId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		estado = objectInput.readLong();
+		aprobacionCronograma = objectInput.readInt();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -129,6 +133,7 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 		}
 
 		objectOutput.writeLong(estado);
+		objectOutput.writeInt(aprobacionCronograma);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -140,6 +145,7 @@ public class CronogramaCacheModel implements CacheModel<Cronograma>,
 	public long solicitudEvaluacionDesempennoId;
 	public String descripcion;
 	public long estado;
+	public int aprobacionCronograma;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

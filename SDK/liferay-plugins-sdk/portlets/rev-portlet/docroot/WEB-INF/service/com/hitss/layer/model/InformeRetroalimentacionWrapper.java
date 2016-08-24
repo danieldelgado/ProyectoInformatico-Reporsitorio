@@ -53,9 +53,9 @@ public class InformeRetroalimentacionWrapper implements InformeRetroalimentacion
 
 		attributes.put("informeRetroalimentacionId",
 			getInformeRetroalimentacionId());
-		attributes.put("planAccionId", getPlanAccionId());
+		attributes.put("regisitrarActividadPlanUsuariocoId",
+			getRegisitrarActividadPlanUsuariocoId());
 		attributes.put("usuario", getUsuario());
-		attributes.put("titulo", getTitulo());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
@@ -75,22 +75,17 @@ public class InformeRetroalimentacionWrapper implements InformeRetroalimentacion
 			setInformeRetroalimentacionId(informeRetroalimentacionId);
 		}
 
-		Long planAccionId = (Long)attributes.get("planAccionId");
+		Long regisitrarActividadPlanUsuariocoId = (Long)attributes.get(
+				"regisitrarActividadPlanUsuariocoId");
 
-		if (planAccionId != null) {
-			setPlanAccionId(planAccionId);
+		if (regisitrarActividadPlanUsuariocoId != null) {
+			setRegisitrarActividadPlanUsuariocoId(regisitrarActividadPlanUsuariocoId);
 		}
 
 		Long usuario = (Long)attributes.get("usuario");
 
 		if (usuario != null) {
 			setUsuario(usuario);
-		}
-
-		String titulo = (String)attributes.get("titulo");
-
-		if (titulo != null) {
-			setTitulo(titulo);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -171,23 +166,24 @@ public class InformeRetroalimentacionWrapper implements InformeRetroalimentacion
 	}
 
 	/**
-	* Returns the plan accion ID of this informe retroalimentacion.
+	* Returns the regisitrar actividad plan usuarioco ID of this informe retroalimentacion.
 	*
-	* @return the plan accion ID of this informe retroalimentacion
+	* @return the regisitrar actividad plan usuarioco ID of this informe retroalimentacion
 	*/
 	@Override
-	public long getPlanAccionId() {
-		return _informeRetroalimentacion.getPlanAccionId();
+	public long getRegisitrarActividadPlanUsuariocoId() {
+		return _informeRetroalimentacion.getRegisitrarActividadPlanUsuariocoId();
 	}
 
 	/**
-	* Sets the plan accion ID of this informe retroalimentacion.
+	* Sets the regisitrar actividad plan usuarioco ID of this informe retroalimentacion.
 	*
-	* @param planAccionId the plan accion ID of this informe retroalimentacion
+	* @param regisitrarActividadPlanUsuariocoId the regisitrar actividad plan usuarioco ID of this informe retroalimentacion
 	*/
 	@Override
-	public void setPlanAccionId(long planAccionId) {
-		_informeRetroalimentacion.setPlanAccionId(planAccionId);
+	public void setRegisitrarActividadPlanUsuariocoId(
+		long regisitrarActividadPlanUsuariocoId) {
+		_informeRetroalimentacion.setRegisitrarActividadPlanUsuariocoId(regisitrarActividadPlanUsuariocoId);
 	}
 
 	/**
@@ -208,26 +204,6 @@ public class InformeRetroalimentacionWrapper implements InformeRetroalimentacion
 	@Override
 	public void setUsuario(long usuario) {
 		_informeRetroalimentacion.setUsuario(usuario);
-	}
-
-	/**
-	* Returns the titulo of this informe retroalimentacion.
-	*
-	* @return the titulo of this informe retroalimentacion
-	*/
-	@Override
-	public java.lang.String getTitulo() {
-		return _informeRetroalimentacion.getTitulo();
-	}
-
-	/**
-	* Sets the titulo of this informe retroalimentacion.
-	*
-	* @param titulo the titulo of this informe retroalimentacion
-	*/
-	@Override
-	public void setTitulo(java.lang.String titulo) {
-		_informeRetroalimentacion.setTitulo(titulo);
 	}
 
 	/**

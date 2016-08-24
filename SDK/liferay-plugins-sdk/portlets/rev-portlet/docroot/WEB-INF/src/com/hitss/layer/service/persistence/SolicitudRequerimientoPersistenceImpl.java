@@ -1253,6 +1253,7 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		solicitudRequerimientoImpl.setCliente(solicitudRequerimiento.getCliente());
 		solicitudRequerimientoImpl.setEspecialidad(solicitudRequerimiento.getEspecialidad());
 		solicitudRequerimientoImpl.setMeta(solicitudRequerimiento.getMeta());
+		solicitudRequerimientoImpl.setFechameta(solicitudRequerimiento.getFechameta());
 		solicitudRequerimientoImpl.setPrioridad(solicitudRequerimiento.getPrioridad());
 		solicitudRequerimientoImpl.setMotivo(solicitudRequerimiento.getMotivo());
 		solicitudRequerimientoImpl.setDescripcionPublicacion(solicitudRequerimiento.getDescripcionPublicacion());

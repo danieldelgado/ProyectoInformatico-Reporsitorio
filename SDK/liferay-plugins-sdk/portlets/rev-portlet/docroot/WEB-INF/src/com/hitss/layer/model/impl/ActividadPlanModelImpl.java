@@ -17,6 +17,7 @@ package com.hitss.layer.model.impl;
 import com.hitss.layer.model.ActividadPlan;
 import com.hitss.layer.model.ActividadPlanModel;
 import com.hitss.layer.model.ActividadPlanSoap;
+import com.hitss.layer.service.persistence.ActividadPlanPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
@@ -27,10 +28,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.service.ServiceContext;
-
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
@@ -65,19 +62,18 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	 */
 	public static final String TABLE_NAME = "ActividadPlan";
 	public static final Object[][] TABLE_COLUMNS = {
+			{ "actividadCronogramaId", Types.BIGINT },
 			{ "actividadPlanId", Types.BIGINT },
 			{ "planAccionId", Types.BIGINT },
-			{ "responsable", Types.BIGINT },
 			{ "actividad", Types.VARCHAR },
 			{ "evidencia", Types.VARCHAR },
-			{ "objetivo", Types.VARCHAR },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table ActividadPlan (actividadPlanId LONG not null primary key,planAccionId LONG,responsable LONG,actividad VARCHAR(75) null,evidencia VARCHAR(75) null,objetivo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table ActividadPlan (actividadCronogramaId LONG not null,actividadPlanId LONG not null,planAccionId LONG,actividad VARCHAR(75) null,evidencia VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (actividadCronogramaId, actividadPlanId))";
 	public static final String TABLE_SQL_DROP = "drop table ActividadPlan";
 	public static final String ORDER_BY_JPQL = " ORDER BY actividadPlan.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY ActividadPlan.fechamodifica ASC";
@@ -105,12 +101,11 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 		ActividadPlan model = new ActividadPlanImpl();
 
+		model.setActividadCronogramaId(soapModel.getActividadCronogramaId());
 		model.setActividadPlanId(soapModel.getActividadPlanId());
 		model.setPlanAccionId(soapModel.getPlanAccionId());
-		model.setResponsable(soapModel.getResponsable());
 		model.setActividad(soapModel.getActividad());
 		model.setEvidencia(soapModel.getEvidencia());
-		model.setObjetivo(soapModel.getObjetivo());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -140,17 +135,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 		return models;
 	}
 
-	public static final String MAPPING_TABLE_REC_ACTIVIDADPLANUSUARIO_NAME = "rec_ActividadPlanUsuario";
-	public static final Object[][] MAPPING_TABLE_REC_ACTIVIDADPLANUSUARIO_COLUMNS =
-		{
-			{ "actividadPlanId", Types.BIGINT },
-			{ "userId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_REC_ACTIVIDADPLANUSUARIO_SQL_CREATE =
-		"create table rec_ActividadPlanUsuario (actividadPlanId LONG not null,userId LONG not null,primary key (actividadPlanId, userId))";
-	public static final boolean FINDER_CACHE_ENABLED_REC_ACTIVIDADPLANUSUARIO = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.rec_ActividadPlanUsuario"),
-			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.hitss.layer.model.ActividadPlan"));
 
@@ -158,23 +142,24 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _actividadPlanId;
+	public ActividadPlanPK getPrimaryKey() {
+		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setActividadPlanId(primaryKey);
+	public void setPrimaryKey(ActividadPlanPK primaryKey) {
+		setActividadCronogramaId(primaryKey.actividadCronogramaId);
+		setActividadPlanId(primaryKey.actividadPlanId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _actividadPlanId;
+		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ActividadPlanPK)primaryKeyObj);
 	}
 
 	@Override
@@ -191,12 +176,11 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
+		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("actividadPlanId", getActividadPlanId());
 		attributes.put("planAccionId", getPlanAccionId());
-		attributes.put("responsable", getResponsable());
 		attributes.put("actividad", getActividad());
 		attributes.put("evidencia", getEvidencia());
-		attributes.put("objetivo", getObjetivo());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -208,6 +192,13 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long actividadCronogramaId = (Long)attributes.get(
+				"actividadCronogramaId");
+
+		if (actividadCronogramaId != null) {
+			setActividadCronogramaId(actividadCronogramaId);
+		}
+
 		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
 
 		if (actividadPlanId != null) {
@@ -220,12 +211,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 			setPlanAccionId(planAccionId);
 		}
 
-		Long responsable = (Long)attributes.get("responsable");
-
-		if (responsable != null) {
-			setResponsable(responsable);
-		}
-
 		String actividad = (String)attributes.get("actividad");
 
 		if (actividad != null) {
@@ -236,12 +221,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 		if (evidencia != null) {
 			setEvidencia(evidencia);
-		}
-
-		String objetivo = (String)attributes.get("objetivo");
-
-		if (objetivo != null) {
-			setObjetivo(objetivo);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -277,6 +256,17 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@JSON
 	@Override
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
+	}
+
+	@JSON
+	@Override
 	public long getActividadPlanId() {
 		return _actividadPlanId;
 	}
@@ -295,17 +285,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	@Override
 	public void setPlanAccionId(long planAccionId) {
 		_planAccionId = planAccionId;
-	}
-
-	@JSON
-	@Override
-	public long getResponsable() {
-		return _responsable;
-	}
-
-	@Override
-	public void setResponsable(long responsable) {
-		_responsable = responsable;
 	}
 
 	@JSON
@@ -338,22 +317,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	@Override
 	public void setEvidencia(String evidencia) {
 		_evidencia = evidencia;
-	}
-
-	@JSON
-	@Override
-	public String getObjetivo() {
-		if (_objetivo == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _objetivo;
-		}
-	}
-
-	@Override
-	public void setObjetivo(String objetivo) {
-		_objetivo = objetivo;
 	}
 
 	@JSON
@@ -417,19 +380,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	}
 
 	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-			ActividadPlan.class.getName(), getPrimaryKey());
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		ExpandoBridge expandoBridge = getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
-	}
-
-	@Override
 	public ActividadPlan toEscapedModel() {
 		if (_escapedModel == null) {
 			_escapedModel = (ActividadPlan)ProxyUtil.newProxyInstance(_classLoader,
@@ -443,12 +393,11 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	public Object clone() {
 		ActividadPlanImpl actividadPlanImpl = new ActividadPlanImpl();
 
+		actividadPlanImpl.setActividadCronogramaId(getActividadCronogramaId());
 		actividadPlanImpl.setActividadPlanId(getActividadPlanId());
 		actividadPlanImpl.setPlanAccionId(getPlanAccionId());
-		actividadPlanImpl.setResponsable(getResponsable());
 		actividadPlanImpl.setActividad(getActividad());
 		actividadPlanImpl.setEvidencia(getEvidencia());
-		actividadPlanImpl.setObjetivo(getObjetivo());
 		actividadPlanImpl.setActivo(getActivo());
 		actividadPlanImpl.setUsuariocrea(getUsuariocrea());
 		actividadPlanImpl.setFechacrea(getFechacrea());
@@ -486,9 +435,9 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 		ActividadPlan actividadPlan = (ActividadPlan)obj;
 
-		long primaryKey = actividadPlan.getPrimaryKey();
+		ActividadPlanPK primaryKey = actividadPlan.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -498,7 +447,7 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
@@ -509,11 +458,11 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	public CacheModel<ActividadPlan> toCacheModel() {
 		ActividadPlanCacheModel actividadPlanCacheModel = new ActividadPlanCacheModel();
 
+		actividadPlanCacheModel.actividadCronogramaId = getActividadCronogramaId();
+
 		actividadPlanCacheModel.actividadPlanId = getActividadPlanId();
 
 		actividadPlanCacheModel.planAccionId = getPlanAccionId();
-
-		actividadPlanCacheModel.responsable = getResponsable();
 
 		actividadPlanCacheModel.actividad = getActividad();
 
@@ -529,14 +478,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 		if ((evidencia != null) && (evidencia.length() == 0)) {
 			actividadPlanCacheModel.evidencia = null;
-		}
-
-		actividadPlanCacheModel.objetivo = getObjetivo();
-
-		String objetivo = actividadPlanCacheModel.objetivo;
-
-		if ((objetivo != null) && (objetivo.length() == 0)) {
-			actividadPlanCacheModel.objetivo = null;
 		}
 
 		actividadPlanCacheModel.activo = getActivo();
@@ -568,20 +509,18 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
-		sb.append("{actividadPlanId=");
+		sb.append("{actividadCronogramaId=");
+		sb.append(getActividadCronogramaId());
+		sb.append(", actividadPlanId=");
 		sb.append(getActividadPlanId());
 		sb.append(", planAccionId=");
 		sb.append(getPlanAccionId());
-		sb.append(", responsable=");
-		sb.append(getResponsable());
 		sb.append(", actividad=");
 		sb.append(getActividad());
 		sb.append(", evidencia=");
 		sb.append(getEvidencia());
-		sb.append(", objetivo=");
-		sb.append(getObjetivo());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -599,12 +538,16 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.ActividadPlan");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
+		sb.append(getActividadCronogramaId());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>actividadPlanId</column-name><column-value><![CDATA[");
 		sb.append(getActividadPlanId());
@@ -614,20 +557,12 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 		sb.append(getPlanAccionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>responsable</column-name><column-value><![CDATA[");
-		sb.append(getResponsable());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>actividad</column-name><column-value><![CDATA[");
 		sb.append(getActividad());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>evidencia</column-name><column-value><![CDATA[");
 		sb.append(getEvidencia());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>objetivo</column-name><column-value><![CDATA[");
-		sb.append(getObjetivo());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -659,12 +594,11 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			ActividadPlan.class
 		};
+	private long _actividadCronogramaId;
 	private long _actividadPlanId;
 	private long _planAccionId;
-	private long _responsable;
 	private String _actividad;
 	private String _evidencia;
-	private String _objetivo;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

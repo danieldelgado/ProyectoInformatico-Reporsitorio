@@ -56,6 +56,7 @@ public class DetalleRepuestaEvaluacionWrapper
 		attributes.put("evaluacionId", getEvaluacionId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
+		attributes.put("preguntaId", getPreguntaId());
 		attributes.put("respuestaSeleccionada", getRespuestaSeleccionada());
 
 		return attributes;
@@ -86,6 +87,12 @@ public class DetalleRepuestaEvaluacionWrapper
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
+		}
+
+		Long preguntaId = (Long)attributes.get("preguntaId");
+
+		if (preguntaId != null) {
+			setPreguntaId(preguntaId);
 		}
 
 		Long respuestaSeleccionada = (Long)attributes.get(
@@ -195,6 +202,26 @@ public class DetalleRepuestaEvaluacionWrapper
 	@Override
 	public void setDescripcion(java.lang.String descripcion) {
 		_detalleRepuestaEvaluacion.setDescripcion(descripcion);
+	}
+
+	/**
+	* Returns the pregunta ID of this detalle repuesta evaluacion.
+	*
+	* @return the pregunta ID of this detalle repuesta evaluacion
+	*/
+	@Override
+	public long getPreguntaId() {
+		return _detalleRepuestaEvaluacion.getPreguntaId();
+	}
+
+	/**
+	* Sets the pregunta ID of this detalle repuesta evaluacion.
+	*
+	* @param preguntaId the pregunta ID of this detalle repuesta evaluacion
+	*/
+	@Override
+	public void setPreguntaId(long preguntaId) {
+		_detalleRepuestaEvaluacion.setPreguntaId(preguntaId);
 	}
 
 	/**

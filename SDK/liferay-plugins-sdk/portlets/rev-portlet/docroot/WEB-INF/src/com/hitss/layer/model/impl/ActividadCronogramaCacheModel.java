@@ -38,24 +38,40 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(43);
 
-		sb.append("{actividadCronogramaId=");
-		sb.append(actividadCronogramaId);
-		sb.append(", cronogramaId=");
+		sb.append("{cronogramaId=");
 		sb.append(cronogramaId);
+		sb.append(", actividadCronogramaId=");
+		sb.append(actividadCronogramaId);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
 		sb.append(", fechaInicio=");
 		sb.append(fechaInicio);
 		sb.append(", fechaFin=");
 		sb.append(fechaFin);
-		sb.append(", cumplido=");
-		sb.append(cumplido);
-		sb.append(", finalizado=");
-		sb.append(finalizado);
+		sb.append(", cumplidoEvaluacion=");
+		sb.append(cumplidoEvaluacion);
+		sb.append(", estado=");
+		sb.append(estado);
+		sb.append(", fechaInicioEvaluacion=");
+		sb.append(fechaInicioEvaluacion);
+		sb.append(", fechaFinEvaluacion=");
+		sb.append(fechaFinEvaluacion);
+		sb.append(", grupoUsuario=");
+		sb.append(grupoUsuario);
 		sb.append(", tipoActividad=");
 		sb.append(tipoActividad);
+		sb.append(", aprobadoColaborador=");
+		sb.append(aprobadoColaborador);
+		sb.append(", jerarquiaEvaluar=");
+		sb.append(jerarquiaEvaluar);
+		sb.append(", aprobadoLider=");
+		sb.append(aprobadoLider);
+		sb.append(", usuarioGerenteId=");
+		sb.append(usuarioGerenteId);
+		sb.append(", usuarioLiderId=");
+		sb.append(usuarioLiderId);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -75,8 +91,8 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	public ActividadCronograma toEntityModel() {
 		ActividadCronogramaImpl actividadCronogramaImpl = new ActividadCronogramaImpl();
 
-		actividadCronogramaImpl.setActividadCronogramaId(actividadCronogramaId);
 		actividadCronogramaImpl.setCronogramaId(cronogramaId);
+		actividadCronogramaImpl.setActividadCronogramaId(actividadCronogramaId);
 
 		if (descripcion == null) {
 			actividadCronogramaImpl.setDescripcion(StringPool.BLANK);
@@ -99,9 +115,32 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 			actividadCronogramaImpl.setFechaFin(new Date(fechaFin));
 		}
 
-		actividadCronogramaImpl.setCumplido(cumplido);
-		actividadCronogramaImpl.setFinalizado(finalizado);
+		actividadCronogramaImpl.setCumplidoEvaluacion(cumplidoEvaluacion);
+		actividadCronogramaImpl.setEstado(estado);
+
+		if (fechaInicioEvaluacion == Long.MIN_VALUE) {
+			actividadCronogramaImpl.setFechaInicioEvaluacion(null);
+		}
+		else {
+			actividadCronogramaImpl.setFechaInicioEvaluacion(new Date(
+					fechaInicioEvaluacion));
+		}
+
+		if (fechaFinEvaluacion == Long.MIN_VALUE) {
+			actividadCronogramaImpl.setFechaFinEvaluacion(null);
+		}
+		else {
+			actividadCronogramaImpl.setFechaFinEvaluacion(new Date(
+					fechaFinEvaluacion));
+		}
+
+		actividadCronogramaImpl.setGrupoUsuario(grupoUsuario);
 		actividadCronogramaImpl.setTipoActividad(tipoActividad);
+		actividadCronogramaImpl.setAprobadoColaborador(aprobadoColaborador);
+		actividadCronogramaImpl.setJerarquiaEvaluar(jerarquiaEvaluar);
+		actividadCronogramaImpl.setAprobadoLider(aprobadoLider);
+		actividadCronogramaImpl.setUsuarioGerenteId(usuarioGerenteId);
+		actividadCronogramaImpl.setUsuarioLiderId(usuarioLiderId);
 		actividadCronogramaImpl.setActivo(activo);
 		actividadCronogramaImpl.setUsuariocrea(usuariocrea);
 
@@ -128,14 +167,22 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		actividadCronogramaId = objectInput.readLong();
 		cronogramaId = objectInput.readLong();
+		actividadCronogramaId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		fechaInicio = objectInput.readLong();
 		fechaFin = objectInput.readLong();
-		cumplido = objectInput.readBoolean();
-		finalizado = objectInput.readBoolean();
+		cumplidoEvaluacion = objectInput.readBoolean();
+		estado = objectInput.readLong();
+		fechaInicioEvaluacion = objectInput.readLong();
+		fechaFinEvaluacion = objectInput.readLong();
+		grupoUsuario = objectInput.readLong();
 		tipoActividad = objectInput.readLong();
+		aprobadoColaborador = objectInput.readLong();
+		jerarquiaEvaluar = objectInput.readLong();
+		aprobadoLider = objectInput.readLong();
+		usuarioGerenteId = objectInput.readLong();
+		usuarioLiderId = objectInput.readLong();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -146,8 +193,8 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(actividadCronogramaId);
 		objectOutput.writeLong(cronogramaId);
+		objectOutput.writeLong(actividadCronogramaId);
 
 		if (descripcion == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -158,9 +205,17 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 
 		objectOutput.writeLong(fechaInicio);
 		objectOutput.writeLong(fechaFin);
-		objectOutput.writeBoolean(cumplido);
-		objectOutput.writeBoolean(finalizado);
+		objectOutput.writeBoolean(cumplidoEvaluacion);
+		objectOutput.writeLong(estado);
+		objectOutput.writeLong(fechaInicioEvaluacion);
+		objectOutput.writeLong(fechaFinEvaluacion);
+		objectOutput.writeLong(grupoUsuario);
 		objectOutput.writeLong(tipoActividad);
+		objectOutput.writeLong(aprobadoColaborador);
+		objectOutput.writeLong(jerarquiaEvaluar);
+		objectOutput.writeLong(aprobadoLider);
+		objectOutput.writeLong(usuarioGerenteId);
+		objectOutput.writeLong(usuarioLiderId);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -168,14 +223,22 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		objectOutput.writeLong(fechamodifica);
 	}
 
-	public long actividadCronogramaId;
 	public long cronogramaId;
+	public long actividadCronogramaId;
 	public String descripcion;
 	public long fechaInicio;
 	public long fechaFin;
-	public boolean cumplido;
-	public boolean finalizado;
+	public boolean cumplidoEvaluacion;
+	public long estado;
+	public long fechaInicioEvaluacion;
+	public long fechaFinEvaluacion;
+	public long grupoUsuario;
 	public long tipoActividad;
+	public long aprobadoColaborador;
+	public long jerarquiaEvaluar;
+	public long aprobadoLider;
+	public long usuarioGerenteId;
+	public long usuarioLiderId;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

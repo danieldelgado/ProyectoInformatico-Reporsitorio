@@ -61,23 +61,23 @@ public interface ActividadCronogramaLocalService extends BaseLocalService,
 	/**
 	* Creates a new actividad cronograma with the primary key. Does not add the actividad cronograma to the database.
 	*
-	* @param cronogramaId the primary key for the new actividad cronograma
+	* @param actividadCronogramaPK the primary key for the new actividad cronograma
 	* @return the new actividad cronograma
 	*/
 	public com.hitss.layer.model.ActividadCronograma createActividadCronograma(
-		long cronogramaId);
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK);
 
 	/**
 	* Deletes the actividad cronograma with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param cronogramaId the primary key of the actividad cronograma
+	* @param actividadCronogramaPK the primary key of the actividad cronograma
 	* @return the actividad cronograma that was removed
 	* @throws PortalException if a actividad cronograma with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.hitss.layer.model.ActividadCronograma deleteActividadCronograma(
-		long cronogramaId)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -172,20 +172,20 @@ public interface ActividadCronogramaLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.ActividadCronograma fetchActividadCronograma(
-		long cronogramaId)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the actividad cronograma with the primary key.
 	*
-	* @param cronogramaId the primary key of the actividad cronograma
+	* @param actividadCronogramaPK the primary key of the actividad cronograma
 	* @return the actividad cronograma
 	* @throws PortalException if a actividad cronograma with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.ActividadCronograma getActividadCronograma(
-		long cronogramaId)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
