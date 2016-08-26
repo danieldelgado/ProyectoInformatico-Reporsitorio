@@ -138,7 +138,7 @@ public class ActividadCronogramaUtil {
 	* @return the new actividad cronograma
 	*/
 	public static com.hitss.layer.model.ActividadCronograma create(
-		ActividadCronogramaPK actividadCronogramaPK) {
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK) {
 		return getPersistence().create(actividadCronogramaPK);
 	}
 
@@ -151,7 +151,7 @@ public class ActividadCronogramaUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadCronograma remove(
-		ActividadCronogramaPK actividadCronogramaPK)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.hitss.layer.NoSuchActividadCronogramaException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().remove(actividadCronogramaPK);
@@ -172,7 +172,7 @@ public class ActividadCronogramaUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadCronograma findByPrimaryKey(
-		ActividadCronogramaPK actividadCronogramaPK)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.hitss.layer.NoSuchActividadCronogramaException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(actividadCronogramaPK);
@@ -186,7 +186,7 @@ public class ActividadCronogramaUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadCronograma fetchByPrimaryKey(
-		ActividadCronogramaPK actividadCronogramaPK)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(actividadCronogramaPK);
 	}

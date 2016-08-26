@@ -6,8 +6,8 @@
 	<portlet>
 		<portlet-name>ActualizarSolicitudReclutamiento</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>		
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
@@ -18,8 +18,8 @@
 	<portlet>
 		<portlet-name>ActualizarSolicitudRequerimiento</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
@@ -30,8 +30,8 @@
 	<portlet>
 		<portlet-name>EvaluarFichaIngreso</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
@@ -42,8 +42,8 @@
 	<portlet>
 		<portlet-name>ProgramaEntrevista</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
@@ -54,8 +54,8 @@
 	<portlet>
 		<portlet-name>PublicarOferta</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
@@ -66,8 +66,8 @@
 	<portlet>
 		<portlet-name>RegistrarResultadoEntrevista</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
@@ -78,8 +78,8 @@
 	<portlet>
 		<portlet-name>SeleccionarPersonal</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
@@ -90,8 +90,8 @@
 	<portlet>
 		<portlet-name>EvaluarSolicitudRequerimiento</portlet-name>
 		<icon>/icon.png</icon>
-		<user-notification-definitions>com/hitss/liferay/functions/dockbar-user-notification-definitions.xml</user-notification-definitions>
-		<user-notification-handler-class>com.hitss.liferay.functions.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<user-notification-definitions>com/hitss/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>

@@ -60,7 +60,7 @@ public interface ActividadCronogramaPersistence extends BasePersistence<Activida
 	* @return the new actividad cronograma
 	*/
 	public com.hitss.layer.model.ActividadCronograma create(
-		ActividadCronogramaPK actividadCronogramaPK);
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK);
 
 	/**
 	* Removes the actividad cronograma with the primary key from the database. Also notifies the appropriate model listeners.
@@ -71,7 +71,7 @@ public interface ActividadCronogramaPersistence extends BasePersistence<Activida
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.ActividadCronograma remove(
-		ActividadCronogramaPK actividadCronogramaPK)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.hitss.layer.NoSuchActividadCronogramaException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -88,7 +88,7 @@ public interface ActividadCronogramaPersistence extends BasePersistence<Activida
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.ActividadCronograma findByPrimaryKey(
-		ActividadCronogramaPK actividadCronogramaPK)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.hitss.layer.NoSuchActividadCronogramaException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -100,7 +100,7 @@ public interface ActividadCronogramaPersistence extends BasePersistence<Activida
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.ActividadCronograma fetchByPrimaryKey(
-		ActividadCronogramaPK actividadCronogramaPK)
+		com.hitss.layer.service.persistence.ActividadCronogramaPK actividadCronogramaPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -71,9 +71,9 @@
 	<bean id="com.hitss.layer.service.ReferenciaLocalService" class="com.hitss.layer.service.impl.ReferenciaLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.ReferenciaService" class="com.hitss.layer.service.impl.ReferenciaServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.ReferenciaPersistence" class="com.hitss.layer.service.persistence.ReferenciaPersistenceImpl" parent="basePersistence" />
-	<bean id="com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService" class="com.hitss.layer.service.impl.RegisitrarActividadPlanUsuarioLocalServiceImpl" />
-	<bean id="com.hitss.layer.service.RegisitrarActividadPlanUsuarioService" class="com.hitss.layer.service.impl.RegisitrarActividadPlanUsuarioServiceImpl" />
-	<bean id="com.hitss.layer.service.persistence.RegisitrarActividadPlanUsuarioPersistence" class="com.hitss.layer.service.persistence.RegisitrarActividadPlanUsuarioPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService" class="com.hitss.layer.service.impl.RegistrarActividadPlanUsuarioLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.RegistrarActividadPlanUsuarioService" class="com.hitss.layer.service.impl.RegistrarActividadPlanUsuarioServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPersistence" class="com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.RespuestaLocalService" class="com.hitss.layer.service.impl.RespuestaLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.RespuestaService" class="com.hitss.layer.service.impl.RespuestaServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.RespuestaPersistence" class="com.hitss.layer.service.persistence.RespuestaPersistenceImpl" parent="basePersistence" />

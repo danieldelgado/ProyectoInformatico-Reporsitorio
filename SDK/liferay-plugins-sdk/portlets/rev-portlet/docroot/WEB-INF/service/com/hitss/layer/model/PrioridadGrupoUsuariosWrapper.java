@@ -54,7 +54,8 @@ public class PrioridadGrupoUsuariosWrapper implements PrioridadGrupoUsuarios,
 		attributes.put("prioridadGrupoUsuariosId", getPrioridadGrupoUsuariosId());
 		attributes.put("solicitudEvaluacionDesempennoId",
 			getSolicitudEvaluacionDesempennoId());
-		attributes.put("responsableGrupo", getResponsableGrupo());
+		attributes.put("liderGrupo", getLiderGrupo());
+		attributes.put("gerenteArea", getGerenteArea());
 		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("orden", getOrden());
 		attributes.put("activo", getActivo());
@@ -82,10 +83,16 @@ public class PrioridadGrupoUsuariosWrapper implements PrioridadGrupoUsuarios,
 			setSolicitudEvaluacionDesempennoId(solicitudEvaluacionDesempennoId);
 		}
 
-		String responsableGrupo = (String)attributes.get("responsableGrupo");
+		Long liderGrupo = (Long)attributes.get("liderGrupo");
 
-		if (responsableGrupo != null) {
-			setResponsableGrupo(responsableGrupo);
+		if (liderGrupo != null) {
+			setLiderGrupo(liderGrupo);
+		}
+
+		Long gerenteArea = (Long)attributes.get("gerenteArea");
+
+		if (gerenteArea != null) {
+			setGerenteArea(gerenteArea);
 		}
 
 		String grupoUsuario = (String)attributes.get("grupoUsuario");
@@ -193,23 +200,43 @@ public class PrioridadGrupoUsuariosWrapper implements PrioridadGrupoUsuarios,
 	}
 
 	/**
-	* Returns the responsable grupo of this prioridad grupo usuarios.
+	* Returns the lider grupo of this prioridad grupo usuarios.
 	*
-	* @return the responsable grupo of this prioridad grupo usuarios
+	* @return the lider grupo of this prioridad grupo usuarios
 	*/
 	@Override
-	public java.lang.String getResponsableGrupo() {
-		return _prioridadGrupoUsuarios.getResponsableGrupo();
+	public long getLiderGrupo() {
+		return _prioridadGrupoUsuarios.getLiderGrupo();
 	}
 
 	/**
-	* Sets the responsable grupo of this prioridad grupo usuarios.
+	* Sets the lider grupo of this prioridad grupo usuarios.
 	*
-	* @param responsableGrupo the responsable grupo of this prioridad grupo usuarios
+	* @param liderGrupo the lider grupo of this prioridad grupo usuarios
 	*/
 	@Override
-	public void setResponsableGrupo(java.lang.String responsableGrupo) {
-		_prioridadGrupoUsuarios.setResponsableGrupo(responsableGrupo);
+	public void setLiderGrupo(long liderGrupo) {
+		_prioridadGrupoUsuarios.setLiderGrupo(liderGrupo);
+	}
+
+	/**
+	* Returns the gerente area of this prioridad grupo usuarios.
+	*
+	* @return the gerente area of this prioridad grupo usuarios
+	*/
+	@Override
+	public long getGerenteArea() {
+		return _prioridadGrupoUsuarios.getGerenteArea();
+	}
+
+	/**
+	* Sets the gerente area of this prioridad grupo usuarios.
+	*
+	* @param gerenteArea the gerente area of this prioridad grupo usuarios
+	*/
+	@Override
+	public void setGerenteArea(long gerenteArea) {
+		_prioridadGrupoUsuarios.setGerenteArea(gerenteArea);
 	}
 
 	/**

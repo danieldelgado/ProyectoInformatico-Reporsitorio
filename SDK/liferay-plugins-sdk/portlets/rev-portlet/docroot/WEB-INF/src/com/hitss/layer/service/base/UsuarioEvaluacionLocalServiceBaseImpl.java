@@ -40,12 +40,11 @@ import com.hitss.layer.service.persistence.PreguntaPersistence;
 import com.hitss.layer.service.persistence.PreguntaRespuestaPersistence;
 import com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistence;
 import com.hitss.layer.service.persistence.ReferenciaPersistence;
-import com.hitss.layer.service.persistence.RegisitrarActividadPlanUsuarioPersistence;
+import com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPersistence;
 import com.hitss.layer.service.persistence.RespuestaPersistence;
 import com.hitss.layer.service.persistence.SolicitudEvaluacionDesempennoPersistence;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoPersistence;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistence;
-import com.hitss.layer.service.persistence.UsuarioEvaluacionPK;
 import com.hitss.layer.service.persistence.UsuarioEvaluacionPersistence;
 import com.hitss.layer.service.persistence.UsuarioPersistence;
 import com.hitss.layer.service.persistence.UsuarioRequisitoPersistence;
@@ -113,29 +112,27 @@ public abstract class UsuarioEvaluacionLocalServiceBaseImpl
 	/**
 	 * Creates a new usuario evaluacion with the primary key. Does not add the usuario evaluacion to the database.
 	 *
-	 * @param usuarioEvaluacionPK the primary key for the new usuario evaluacion
+	 * @param usuarioId the primary key for the new usuario evaluacion
 	 * @return the new usuario evaluacion
 	 */
 	@Override
-	public UsuarioEvaluacion createUsuarioEvaluacion(
-		UsuarioEvaluacionPK usuarioEvaluacionPK) {
-		return usuarioEvaluacionPersistence.create(usuarioEvaluacionPK);
+	public UsuarioEvaluacion createUsuarioEvaluacion(long usuarioId) {
+		return usuarioEvaluacionPersistence.create(usuarioId);
 	}
 
 	/**
 	 * Deletes the usuario evaluacion with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	 * @param usuarioId the primary key of the usuario evaluacion
 	 * @return the usuario evaluacion that was removed
 	 * @throws PortalException if a usuario evaluacion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public UsuarioEvaluacion deleteUsuarioEvaluacion(
-		UsuarioEvaluacionPK usuarioEvaluacionPK)
+	public UsuarioEvaluacion deleteUsuarioEvaluacion(long usuarioId)
 		throws PortalException, SystemException {
-		return usuarioEvaluacionPersistence.remove(usuarioEvaluacionPK);
+		return usuarioEvaluacionPersistence.remove(usuarioId);
 	}
 
 	/**
@@ -246,24 +243,23 @@ public abstract class UsuarioEvaluacionLocalServiceBaseImpl
 	}
 
 	@Override
-	public UsuarioEvaluacion fetchUsuarioEvaluacion(
-		UsuarioEvaluacionPK usuarioEvaluacionPK) throws SystemException {
-		return usuarioEvaluacionPersistence.fetchByPrimaryKey(usuarioEvaluacionPK);
+	public UsuarioEvaluacion fetchUsuarioEvaluacion(long usuarioId)
+		throws SystemException {
+		return usuarioEvaluacionPersistence.fetchByPrimaryKey(usuarioId);
 	}
 
 	/**
 	 * Returns the usuario evaluacion with the primary key.
 	 *
-	 * @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	 * @param usuarioId the primary key of the usuario evaluacion
 	 * @return the usuario evaluacion
 	 * @throws PortalException if a usuario evaluacion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public UsuarioEvaluacion getUsuarioEvaluacion(
-		UsuarioEvaluacionPK usuarioEvaluacionPK)
+	public UsuarioEvaluacion getUsuarioEvaluacion(long usuarioId)
 		throws PortalException, SystemException {
-		return usuarioEvaluacionPersistence.findByPrimaryKey(usuarioEvaluacionPK);
+		return usuarioEvaluacionPersistence.findByPrimaryKey(usuarioId);
 	}
 
 	@Override
@@ -1641,60 +1637,60 @@ public abstract class UsuarioEvaluacionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the regisitrar actividad plan usuario local service.
+	 * Returns the registrar actividad plan usuario local service.
 	 *
-	 * @return the regisitrar actividad plan usuario local service
+	 * @return the registrar actividad plan usuario local service
 	 */
-	public com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService getRegisitrarActividadPlanUsuarioLocalService() {
-		return regisitrarActividadPlanUsuarioLocalService;
+	public com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService getRegistrarActividadPlanUsuarioLocalService() {
+		return registrarActividadPlanUsuarioLocalService;
 	}
 
 	/**
-	 * Sets the regisitrar actividad plan usuario local service.
+	 * Sets the registrar actividad plan usuario local service.
 	 *
-	 * @param regisitrarActividadPlanUsuarioLocalService the regisitrar actividad plan usuario local service
+	 * @param registrarActividadPlanUsuarioLocalService the registrar actividad plan usuario local service
 	 */
-	public void setRegisitrarActividadPlanUsuarioLocalService(
-		com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService regisitrarActividadPlanUsuarioLocalService) {
-		this.regisitrarActividadPlanUsuarioLocalService = regisitrarActividadPlanUsuarioLocalService;
+	public void setRegistrarActividadPlanUsuarioLocalService(
+		com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService registrarActividadPlanUsuarioLocalService) {
+		this.registrarActividadPlanUsuarioLocalService = registrarActividadPlanUsuarioLocalService;
 	}
 
 	/**
-	 * Returns the regisitrar actividad plan usuario remote service.
+	 * Returns the registrar actividad plan usuario remote service.
 	 *
-	 * @return the regisitrar actividad plan usuario remote service
+	 * @return the registrar actividad plan usuario remote service
 	 */
-	public com.hitss.layer.service.RegisitrarActividadPlanUsuarioService getRegisitrarActividadPlanUsuarioService() {
-		return regisitrarActividadPlanUsuarioService;
+	public com.hitss.layer.service.RegistrarActividadPlanUsuarioService getRegistrarActividadPlanUsuarioService() {
+		return registrarActividadPlanUsuarioService;
 	}
 
 	/**
-	 * Sets the regisitrar actividad plan usuario remote service.
+	 * Sets the registrar actividad plan usuario remote service.
 	 *
-	 * @param regisitrarActividadPlanUsuarioService the regisitrar actividad plan usuario remote service
+	 * @param registrarActividadPlanUsuarioService the registrar actividad plan usuario remote service
 	 */
-	public void setRegisitrarActividadPlanUsuarioService(
-		com.hitss.layer.service.RegisitrarActividadPlanUsuarioService regisitrarActividadPlanUsuarioService) {
-		this.regisitrarActividadPlanUsuarioService = regisitrarActividadPlanUsuarioService;
+	public void setRegistrarActividadPlanUsuarioService(
+		com.hitss.layer.service.RegistrarActividadPlanUsuarioService registrarActividadPlanUsuarioService) {
+		this.registrarActividadPlanUsuarioService = registrarActividadPlanUsuarioService;
 	}
 
 	/**
-	 * Returns the regisitrar actividad plan usuario persistence.
+	 * Returns the registrar actividad plan usuario persistence.
 	 *
-	 * @return the regisitrar actividad plan usuario persistence
+	 * @return the registrar actividad plan usuario persistence
 	 */
-	public RegisitrarActividadPlanUsuarioPersistence getRegisitrarActividadPlanUsuarioPersistence() {
-		return regisitrarActividadPlanUsuarioPersistence;
+	public RegistrarActividadPlanUsuarioPersistence getRegistrarActividadPlanUsuarioPersistence() {
+		return registrarActividadPlanUsuarioPersistence;
 	}
 
 	/**
-	 * Sets the regisitrar actividad plan usuario persistence.
+	 * Sets the registrar actividad plan usuario persistence.
 	 *
-	 * @param regisitrarActividadPlanUsuarioPersistence the regisitrar actividad plan usuario persistence
+	 * @param registrarActividadPlanUsuarioPersistence the registrar actividad plan usuario persistence
 	 */
-	public void setRegisitrarActividadPlanUsuarioPersistence(
-		RegisitrarActividadPlanUsuarioPersistence regisitrarActividadPlanUsuarioPersistence) {
-		this.regisitrarActividadPlanUsuarioPersistence = regisitrarActividadPlanUsuarioPersistence;
+	public void setRegistrarActividadPlanUsuarioPersistence(
+		RegistrarActividadPlanUsuarioPersistence registrarActividadPlanUsuarioPersistence) {
+		this.registrarActividadPlanUsuarioPersistence = registrarActividadPlanUsuarioPersistence;
 	}
 
 	/**
@@ -2411,12 +2407,12 @@ public abstract class UsuarioEvaluacionLocalServiceBaseImpl
 	protected com.hitss.layer.service.ReferenciaService referenciaService;
 	@BeanReference(type = ReferenciaPersistence.class)
 	protected ReferenciaPersistence referenciaPersistence;
-	@BeanReference(type = com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService.class)
-	protected com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalService regisitrarActividadPlanUsuarioLocalService;
-	@BeanReference(type = com.hitss.layer.service.RegisitrarActividadPlanUsuarioService.class)
-	protected com.hitss.layer.service.RegisitrarActividadPlanUsuarioService regisitrarActividadPlanUsuarioService;
-	@BeanReference(type = RegisitrarActividadPlanUsuarioPersistence.class)
-	protected RegisitrarActividadPlanUsuarioPersistence regisitrarActividadPlanUsuarioPersistence;
+	@BeanReference(type = com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService.class)
+	protected com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService registrarActividadPlanUsuarioLocalService;
+	@BeanReference(type = com.hitss.layer.service.RegistrarActividadPlanUsuarioService.class)
+	protected com.hitss.layer.service.RegistrarActividadPlanUsuarioService registrarActividadPlanUsuarioService;
+	@BeanReference(type = RegistrarActividadPlanUsuarioPersistence.class)
+	protected RegistrarActividadPlanUsuarioPersistence registrarActividadPlanUsuarioPersistence;
 	@BeanReference(type = com.hitss.layer.service.RespuestaLocalService.class)
 	protected com.hitss.layer.service.RespuestaLocalService respuestaLocalService;
 	@BeanReference(type = com.hitss.layer.service.RespuestaService.class)

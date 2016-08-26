@@ -61,8 +61,8 @@ import com.hitss.layer.service.PrioridadGrupoUsuariosLocalServiceUtil;
 import com.hitss.layer.service.PrioridadGrupoUsuariosServiceUtil;
 import com.hitss.layer.service.ReferenciaLocalServiceUtil;
 import com.hitss.layer.service.ReferenciaServiceUtil;
-import com.hitss.layer.service.RegisitrarActividadPlanUsuarioLocalServiceUtil;
-import com.hitss.layer.service.RegisitrarActividadPlanUsuarioServiceUtil;
+import com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalServiceUtil;
+import com.hitss.layer.service.RegistrarActividadPlanUsuarioServiceUtil;
 import com.hitss.layer.service.RespuestaLocalServiceUtil;
 import com.hitss.layer.service.RespuestaServiceUtil;
 import com.hitss.layer.service.SolicitudEvaluacionDesempennoLocalServiceUtil;
@@ -165,9 +165,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			ReferenciaLocalServiceUtil.clearService();
 
 			ReferenciaServiceUtil.clearService();
-			RegisitrarActividadPlanUsuarioLocalServiceUtil.clearService();
+			RegistrarActividadPlanUsuarioLocalServiceUtil.clearService();
 
-			RegisitrarActividadPlanUsuarioServiceUtil.clearService();
+			RegistrarActividadPlanUsuarioServiceUtil.clearService();
 			RespuestaLocalServiceUtil.clearService();
 
 			RespuestaServiceUtil.clearService();

@@ -14,8 +14,6 @@
 
 package com.hitss.layer.model;
 
-import com.hitss.layer.service.persistence.UsuarioEvaluacionPK;
-
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -49,14 +47,14 @@ public interface UsuarioEvaluacionModel extends BaseModel<UsuarioEvaluacion> {
 	 *
 	 * @return the primary key of this usuario evaluacion
 	 */
-	public UsuarioEvaluacionPK getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this usuario evaluacion.
 	 *
 	 * @param primaryKey the primary key of this usuario evaluacion
 	 */
-	public void setPrimaryKey(UsuarioEvaluacionPK primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the actividad cronograma ID of this usuario evaluacion.
@@ -99,6 +97,20 @@ public interface UsuarioEvaluacionModel extends BaseModel<UsuarioEvaluacion> {
 	 * @param evaluacionId the evaluacion ID of this usuario evaluacion
 	 */
 	public void setEvaluacionId(long evaluacionId);
+
+	/**
+	 * Returns the nota of this usuario evaluacion.
+	 *
+	 * @return the nota of this usuario evaluacion
+	 */
+	public int getNota();
+
+	/**
+	 * Sets the nota of this usuario evaluacion.
+	 *
+	 * @param nota the nota of this usuario evaluacion
+	 */
+	public void setNota(int nota);
 
 	@Override
 	public boolean isNew();

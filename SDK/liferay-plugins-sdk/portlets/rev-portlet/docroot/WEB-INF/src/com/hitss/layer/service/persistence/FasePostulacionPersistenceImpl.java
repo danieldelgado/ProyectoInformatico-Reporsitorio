@@ -1204,7 +1204,7 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 		fasePostulacionImpl.setFechaFase(fasePostulacion.getFechaFase());
 		fasePostulacionImpl.setDescripcion(fasePostulacion.getDescripcion());
 		fasePostulacionImpl.setEstado(fasePostulacion.getEstado());
-		fasePostulacionImpl.setApruebaEntrevista(fasePostulacion.isApruebaEntrevista());
+		fasePostulacionImpl.setApruebaFase(fasePostulacion.isApruebaFase());
 		fasePostulacionImpl.setPuntuacion(fasePostulacion.getPuntuacion());
 		fasePostulacionImpl.setSalario(fasePostulacion.getSalario());
 		fasePostulacionImpl.setActivo(fasePostulacion.isActivo());

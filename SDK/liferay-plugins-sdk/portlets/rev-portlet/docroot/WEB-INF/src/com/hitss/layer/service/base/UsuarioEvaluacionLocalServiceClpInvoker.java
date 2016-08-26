@@ -32,15 +32,11 @@ public class UsuarioEvaluacionLocalServiceClpInvoker {
 
 		_methodName1 = "createUsuarioEvaluacion";
 
-		_methodParameterTypes1 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteUsuarioEvaluacion";
 
-		_methodParameterTypes2 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteUsuarioEvaluacion";
 
@@ -86,15 +82,11 @@ public class UsuarioEvaluacionLocalServiceClpInvoker {
 
 		_methodName10 = "fetchUsuarioEvaluacion";
 
-		_methodParameterTypes10 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getUsuarioEvaluacion";
 
-		_methodParameterTypes11 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes11 = new String[] { "long" };
 
 		_methodName12 = "getPersistedModel";
 
@@ -132,12 +124,12 @@ public class UsuarioEvaluacionLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return UsuarioEvaluacionLocalServiceUtil.createUsuarioEvaluacion((com.hitss.layer.service.persistence.UsuarioEvaluacionPK)arguments[0]);
+			return UsuarioEvaluacionLocalServiceUtil.createUsuarioEvaluacion(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return UsuarioEvaluacionLocalServiceUtil.deleteUsuarioEvaluacion((com.hitss.layer.service.persistence.UsuarioEvaluacionPK)arguments[0]);
+			return UsuarioEvaluacionLocalServiceUtil.deleteUsuarioEvaluacion(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
@@ -183,12 +175,12 @@ public class UsuarioEvaluacionLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return UsuarioEvaluacionLocalServiceUtil.fetchUsuarioEvaluacion((com.hitss.layer.service.persistence.UsuarioEvaluacionPK)arguments[0]);
+			return UsuarioEvaluacionLocalServiceUtil.fetchUsuarioEvaluacion(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return UsuarioEvaluacionLocalServiceUtil.getUsuarioEvaluacion((com.hitss.layer.service.persistence.UsuarioEvaluacionPK)arguments[0]);
+			return UsuarioEvaluacionLocalServiceUtil.getUsuarioEvaluacion(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&

@@ -137,7 +137,7 @@ public class ActividadPlanUtil {
 	* @return the new actividad plan
 	*/
 	public static com.hitss.layer.model.ActividadPlan create(
-		ActividadPlanPK actividadPlanPK) {
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK) {
 		return getPersistence().create(actividadPlanPK);
 	}
 
@@ -150,7 +150,7 @@ public class ActividadPlanUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadPlan remove(
-		ActividadPlanPK actividadPlanPK)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.hitss.layer.NoSuchActividadPlanException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().remove(actividadPlanPK);
@@ -171,7 +171,7 @@ public class ActividadPlanUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadPlan findByPrimaryKey(
-		ActividadPlanPK actividadPlanPK)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.hitss.layer.NoSuchActividadPlanException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(actividadPlanPK);
@@ -185,7 +185,7 @@ public class ActividadPlanUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.ActividadPlan fetchByPrimaryKey(
-		ActividadPlanPK actividadPlanPK)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(actividadPlanPK);
 	}

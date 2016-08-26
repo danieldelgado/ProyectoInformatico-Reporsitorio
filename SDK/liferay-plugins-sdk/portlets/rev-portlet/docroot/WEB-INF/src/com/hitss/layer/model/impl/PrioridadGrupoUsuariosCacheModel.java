@@ -38,14 +38,16 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{prioridadGrupoUsuariosId=");
 		sb.append(prioridadGrupoUsuariosId);
 		sb.append(", solicitudEvaluacionDesempennoId=");
 		sb.append(solicitudEvaluacionDesempennoId);
-		sb.append(", responsableGrupo=");
-		sb.append(responsableGrupo);
+		sb.append(", liderGrupo=");
+		sb.append(liderGrupo);
+		sb.append(", gerenteArea=");
+		sb.append(gerenteArea);
 		sb.append(", grupoUsuario=");
 		sb.append(grupoUsuario);
 		sb.append(", orden=");
@@ -71,13 +73,8 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 
 		prioridadGrupoUsuariosImpl.setPrioridadGrupoUsuariosId(prioridadGrupoUsuariosId);
 		prioridadGrupoUsuariosImpl.setSolicitudEvaluacionDesempennoId(solicitudEvaluacionDesempennoId);
-
-		if (responsableGrupo == null) {
-			prioridadGrupoUsuariosImpl.setResponsableGrupo(StringPool.BLANK);
-		}
-		else {
-			prioridadGrupoUsuariosImpl.setResponsableGrupo(responsableGrupo);
-		}
+		prioridadGrupoUsuariosImpl.setLiderGrupo(liderGrupo);
+		prioridadGrupoUsuariosImpl.setGerenteArea(gerenteArea);
 
 		if (grupoUsuario == null) {
 			prioridadGrupoUsuariosImpl.setGrupoUsuario(StringPool.BLANK);
@@ -115,7 +112,8 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		prioridadGrupoUsuariosId = objectInput.readLong();
 		solicitudEvaluacionDesempennoId = objectInput.readLong();
-		responsableGrupo = objectInput.readUTF();
+		liderGrupo = objectInput.readLong();
+		gerenteArea = objectInput.readLong();
 		grupoUsuario = objectInput.readUTF();
 		orden = objectInput.readInt();
 		activo = objectInput.readBoolean();
@@ -130,13 +128,8 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 		throws IOException {
 		objectOutput.writeLong(prioridadGrupoUsuariosId);
 		objectOutput.writeLong(solicitudEvaluacionDesempennoId);
-
-		if (responsableGrupo == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(responsableGrupo);
-		}
+		objectOutput.writeLong(liderGrupo);
+		objectOutput.writeLong(gerenteArea);
 
 		if (grupoUsuario == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -155,7 +148,8 @@ public class PrioridadGrupoUsuariosCacheModel implements CacheModel<PrioridadGru
 
 	public long prioridadGrupoUsuariosId;
 	public long solicitudEvaluacionDesempennoId;
-	public String responsableGrupo;
+	public long liderGrupo;
+	public long gerenteArea;
 	public String grupoUsuario;
 	public int orden;
 	public boolean activo;

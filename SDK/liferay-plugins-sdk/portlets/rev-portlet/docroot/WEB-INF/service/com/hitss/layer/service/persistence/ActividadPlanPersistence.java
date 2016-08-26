@@ -59,7 +59,7 @@ public interface ActividadPlanPersistence extends BasePersistence<ActividadPlan>
 	* @return the new actividad plan
 	*/
 	public com.hitss.layer.model.ActividadPlan create(
-		ActividadPlanPK actividadPlanPK);
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK);
 
 	/**
 	* Removes the actividad plan with the primary key from the database. Also notifies the appropriate model listeners.
@@ -70,7 +70,7 @@ public interface ActividadPlanPersistence extends BasePersistence<ActividadPlan>
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.ActividadPlan remove(
-		ActividadPlanPK actividadPlanPK)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.hitss.layer.NoSuchActividadPlanException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -87,7 +87,7 @@ public interface ActividadPlanPersistence extends BasePersistence<ActividadPlan>
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.ActividadPlan findByPrimaryKey(
-		ActividadPlanPK actividadPlanPK)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.hitss.layer.NoSuchActividadPlanException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -99,7 +99,7 @@ public interface ActividadPlanPersistence extends BasePersistence<ActividadPlan>
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.ActividadPlan fetchByPrimaryKey(
-		ActividadPlanPK actividadPlanPK)
+		com.hitss.layer.service.persistence.ActividadPlanPK actividadPlanPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

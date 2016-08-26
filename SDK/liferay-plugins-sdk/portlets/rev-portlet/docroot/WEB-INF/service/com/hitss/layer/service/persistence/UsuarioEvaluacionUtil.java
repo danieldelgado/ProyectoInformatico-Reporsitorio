@@ -134,27 +134,25 @@ public class UsuarioEvaluacionUtil {
 	/**
 	* Creates a new usuario evaluacion with the primary key. Does not add the usuario evaluacion to the database.
 	*
-	* @param usuarioEvaluacionPK the primary key for the new usuario evaluacion
+	* @param usuarioId the primary key for the new usuario evaluacion
 	* @return the new usuario evaluacion
 	*/
-	public static com.hitss.layer.model.UsuarioEvaluacion create(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK) {
-		return getPersistence().create(usuarioEvaluacionPK);
+	public static com.hitss.layer.model.UsuarioEvaluacion create(long usuarioId) {
+		return getPersistence().create(usuarioId);
 	}
 
 	/**
 	* Removes the usuario evaluacion with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	* @param usuarioId the primary key of the usuario evaluacion
 	* @return the usuario evaluacion that was removed
 	* @throws com.hitss.layer.NoSuchUsuarioEvaluacionException if a usuario evaluacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.UsuarioEvaluacion remove(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+	public static com.hitss.layer.model.UsuarioEvaluacion remove(long usuarioId)
 		throws com.hitss.layer.NoSuchUsuarioEvaluacionException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(usuarioEvaluacionPK);
+		return getPersistence().remove(usuarioId);
 	}
 
 	public static com.hitss.layer.model.UsuarioEvaluacion updateImpl(
@@ -166,29 +164,29 @@ public class UsuarioEvaluacionUtil {
 	/**
 	* Returns the usuario evaluacion with the primary key or throws a {@link com.hitss.layer.NoSuchUsuarioEvaluacionException} if it could not be found.
 	*
-	* @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	* @param usuarioId the primary key of the usuario evaluacion
 	* @return the usuario evaluacion
 	* @throws com.hitss.layer.NoSuchUsuarioEvaluacionException if a usuario evaluacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.UsuarioEvaluacion findByPrimaryKey(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.hitss.layer.NoSuchUsuarioEvaluacionException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(usuarioEvaluacionPK);
+		return getPersistence().findByPrimaryKey(usuarioId);
 	}
 
 	/**
 	* Returns the usuario evaluacion with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	* @param usuarioId the primary key of the usuario evaluacion
 	* @return the usuario evaluacion, or <code>null</code> if a usuario evaluacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.UsuarioEvaluacion fetchByPrimaryKey(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(usuarioEvaluacionPK);
+		return getPersistence().fetchByPrimaryKey(usuarioId);
 	}
 
 	/**

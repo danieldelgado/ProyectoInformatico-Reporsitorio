@@ -171,15 +171,15 @@ public class UsuarioEvaluacionPersistenceImpl extends BasePersistenceImpl<Usuari
 	/**
 	 * Creates a new usuario evaluacion with the primary key. Does not add the usuario evaluacion to the database.
 	 *
-	 * @param usuarioEvaluacionPK the primary key for the new usuario evaluacion
+	 * @param usuarioId the primary key for the new usuario evaluacion
 	 * @return the new usuario evaluacion
 	 */
 	@Override
-	public UsuarioEvaluacion create(UsuarioEvaluacionPK usuarioEvaluacionPK) {
+	public UsuarioEvaluacion create(long usuarioId) {
 		UsuarioEvaluacion usuarioEvaluacion = new UsuarioEvaluacionImpl();
 
 		usuarioEvaluacion.setNew(true);
-		usuarioEvaluacion.setPrimaryKey(usuarioEvaluacionPK);
+		usuarioEvaluacion.setPrimaryKey(usuarioId);
 
 		return usuarioEvaluacion;
 	}
@@ -187,15 +187,15 @@ public class UsuarioEvaluacionPersistenceImpl extends BasePersistenceImpl<Usuari
 	/**
 	 * Removes the usuario evaluacion with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	 * @param usuarioId the primary key of the usuario evaluacion
 	 * @return the usuario evaluacion that was removed
 	 * @throws com.hitss.layer.NoSuchUsuarioEvaluacionException if a usuario evaluacion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public UsuarioEvaluacion remove(UsuarioEvaluacionPK usuarioEvaluacionPK)
+	public UsuarioEvaluacion remove(long usuarioId)
 		throws NoSuchUsuarioEvaluacionException, SystemException {
-		return remove((Serializable)usuarioEvaluacionPK);
+		return remove((Serializable)usuarioId);
 	}
 
 	/**
@@ -328,6 +328,7 @@ public class UsuarioEvaluacionPersistenceImpl extends BasePersistenceImpl<Usuari
 		usuarioEvaluacionImpl.setActividadCronogramaId(usuarioEvaluacion.getActividadCronogramaId());
 		usuarioEvaluacionImpl.setUsuarioId(usuarioEvaluacion.getUsuarioId());
 		usuarioEvaluacionImpl.setEvaluacionId(usuarioEvaluacion.getEvaluacionId());
+		usuarioEvaluacionImpl.setNota(usuarioEvaluacion.getNota());
 
 		return usuarioEvaluacionImpl;
 	}
@@ -360,16 +361,15 @@ public class UsuarioEvaluacionPersistenceImpl extends BasePersistenceImpl<Usuari
 	/**
 	 * Returns the usuario evaluacion with the primary key or throws a {@link com.hitss.layer.NoSuchUsuarioEvaluacionException} if it could not be found.
 	 *
-	 * @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	 * @param usuarioId the primary key of the usuario evaluacion
 	 * @return the usuario evaluacion
 	 * @throws com.hitss.layer.NoSuchUsuarioEvaluacionException if a usuario evaluacion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public UsuarioEvaluacion findByPrimaryKey(
-		UsuarioEvaluacionPK usuarioEvaluacionPK)
+	public UsuarioEvaluacion findByPrimaryKey(long usuarioId)
 		throws NoSuchUsuarioEvaluacionException, SystemException {
-		return findByPrimaryKey((Serializable)usuarioEvaluacionPK);
+		return findByPrimaryKey((Serializable)usuarioId);
 	}
 
 	/**
@@ -424,14 +424,14 @@ public class UsuarioEvaluacionPersistenceImpl extends BasePersistenceImpl<Usuari
 	/**
 	 * Returns the usuario evaluacion with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	 * @param usuarioId the primary key of the usuario evaluacion
 	 * @return the usuario evaluacion, or <code>null</code> if a usuario evaluacion with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public UsuarioEvaluacion fetchByPrimaryKey(
-		UsuarioEvaluacionPK usuarioEvaluacionPK) throws SystemException {
-		return fetchByPrimaryKey((Serializable)usuarioEvaluacionPK);
+	public UsuarioEvaluacion fetchByPrimaryKey(long usuarioId)
+		throws SystemException {
+		return fetchByPrimaryKey((Serializable)usuarioId);
 	}
 
 	/**

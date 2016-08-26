@@ -82,7 +82,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		attributes.put("fechaFase", getFechaFase());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
-		attributes.put("apruebaEntrevista", getApruebaEntrevista());
+		attributes.put("apruebaFase", getApruebaFase());
 		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("salario", getSalario());
 		attributes.put("activo", getActivo());
@@ -139,10 +139,10 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 			setEstado(estado);
 		}
 
-		Boolean apruebaEntrevista = (Boolean)attributes.get("apruebaEntrevista");
+		Boolean apruebaFase = (Boolean)attributes.get("apruebaFase");
 
-		if (apruebaEntrevista != null) {
-			setApruebaEntrevista(apruebaEntrevista);
+		if (apruebaFase != null) {
+			setApruebaFase(apruebaFase);
 		}
 
 		Integer puntuacion = (Integer)attributes.get("puntuacion");
@@ -353,27 +353,26 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 	}
 
 	@Override
-	public boolean getApruebaEntrevista() {
-		return _apruebaEntrevista;
+	public boolean getApruebaFase() {
+		return _apruebaFase;
 	}
 
 	@Override
-	public boolean isApruebaEntrevista() {
-		return _apruebaEntrevista;
+	public boolean isApruebaFase() {
+		return _apruebaFase;
 	}
 
 	@Override
-	public void setApruebaEntrevista(boolean apruebaEntrevista) {
-		_apruebaEntrevista = apruebaEntrevista;
+	public void setApruebaFase(boolean apruebaFase) {
+		_apruebaFase = apruebaFase;
 
 		if (_fasePostulacionRemoteModel != null) {
 			try {
 				Class<?> clazz = _fasePostulacionRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setApruebaEntrevista",
-						boolean.class);
+				Method method = clazz.getMethod("setApruebaFase", boolean.class);
 
-				method.invoke(_fasePostulacionRemoteModel, apruebaEntrevista);
+				method.invoke(_fasePostulacionRemoteModel, apruebaFase);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -625,7 +624,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		clone.setFechaFase(getFechaFase());
 		clone.setDescripcion(getDescripcion());
 		clone.setEstado(getEstado());
-		clone.setApruebaEntrevista(getApruebaEntrevista());
+		clone.setApruebaFase(getApruebaFase());
 		clone.setPuntuacion(getPuntuacion());
 		clone.setSalario(getSalario());
 		clone.setActivo(getActivo());
@@ -700,8 +699,8 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		sb.append(getDescripcion());
 		sb.append(", estado=");
 		sb.append(getEstado());
-		sb.append(", apruebaEntrevista=");
-		sb.append(getApruebaEntrevista());
+		sb.append(", apruebaFase=");
+		sb.append(getApruebaFase());
 		sb.append(", puntuacion=");
 		sb.append(getPuntuacion());
 		sb.append(", salario=");
@@ -758,8 +757,8 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		sb.append(getEstado());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>apruebaEntrevista</column-name><column-value><![CDATA[");
-		sb.append(getApruebaEntrevista());
+			"<column><column-name>apruebaFase</column-name><column-value><![CDATA[");
+		sb.append(getApruebaFase());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>puntuacion</column-name><column-value><![CDATA[");
@@ -802,7 +801,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 	private Date _fechaFase;
 	private String _descripcion;
 	private long _estado;
-	private boolean _apruebaEntrevista;
+	private boolean _apruebaFase;
 	private int _puntuacion;
 	private double _salario;
 	private boolean _activo;

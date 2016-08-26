@@ -37,7 +37,7 @@ import com.hitss.layer.model.PreguntaClp;
 import com.hitss.layer.model.PreguntaRespuestaClp;
 import com.hitss.layer.model.PrioridadGrupoUsuariosClp;
 import com.hitss.layer.model.ReferenciaClp;
-import com.hitss.layer.model.RegisitrarActividadPlanUsuarioClp;
+import com.hitss.layer.model.RegistrarActividadPlanUsuarioClp;
 import com.hitss.layer.model.RespuestaClp;
 import com.hitss.layer.model.SolicitudEvaluacionDesempennoClp;
 import com.hitss.layer.model.SolicitudRequerimientoClp;
@@ -228,8 +228,8 @@ public class ClpSerializer {
 		}
 
 		if (oldModelClassName.equals(
-					RegisitrarActividadPlanUsuarioClp.class.getName())) {
-			return translateInputRegisitrarActividadPlanUsuario(oldModel);
+					RegistrarActividadPlanUsuarioClp.class.getName())) {
+			return translateInputRegistrarActividadPlanUsuario(oldModel);
 		}
 
 		if (oldModelClassName.equals(RespuestaClp.class.getName())) {
@@ -513,11 +513,11 @@ public class ClpSerializer {
 		return newModel;
 	}
 
-	public static Object translateInputRegisitrarActividadPlanUsuario(
+	public static Object translateInputRegistrarActividadPlanUsuario(
 		BaseModel<?> oldModel) {
-		RegisitrarActividadPlanUsuarioClp oldClpModel = (RegisitrarActividadPlanUsuarioClp)oldModel;
+		RegistrarActividadPlanUsuarioClp oldClpModel = (RegistrarActividadPlanUsuarioClp)oldModel;
 
-		BaseModel<?> newModel = oldClpModel.getRegisitrarActividadPlanUsuarioRemoteModel();
+		BaseModel<?> newModel = oldClpModel.getRegistrarActividadPlanUsuarioRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -1461,8 +1461,8 @@ public class ClpSerializer {
 		}
 
 		if (oldModelClassName.equals(
-					"com.hitss.layer.model.impl.RegisitrarActividadPlanUsuarioImpl")) {
-			return translateOutputRegisitrarActividadPlanUsuario(oldModel);
+					"com.hitss.layer.model.impl.RegistrarActividadPlanUsuarioImpl")) {
+			return translateOutputRegistrarActividadPlanUsuario(oldModel);
 		}
 		else if (oldModelClassName.endsWith("Clp")) {
 			try {
@@ -1934,8 +1934,8 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
-					"com.hitss.layer.NoSuchRegisitrarActividadPlanUsuarioException")) {
-			return new com.hitss.layer.NoSuchRegisitrarActividadPlanUsuarioException();
+					"com.hitss.layer.NoSuchRegistrarActividadPlanUsuarioException")) {
+			return new com.hitss.layer.NoSuchRegistrarActividadPlanUsuarioException();
 		}
 
 		if (className.equals("com.hitss.layer.NoSuchRespuestaException")) {
@@ -2209,13 +2209,13 @@ public class ClpSerializer {
 		return newModel;
 	}
 
-	public static Object translateOutputRegisitrarActividadPlanUsuario(
+	public static Object translateOutputRegistrarActividadPlanUsuario(
 		BaseModel<?> oldModel) {
-		RegisitrarActividadPlanUsuarioClp newModel = new RegisitrarActividadPlanUsuarioClp();
+		RegistrarActividadPlanUsuarioClp newModel = new RegistrarActividadPlanUsuarioClp();
 
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
-		newModel.setRegisitrarActividadPlanUsuarioRemoteModel(oldModel);
+		newModel.setRegistrarActividadPlanUsuarioRemoteModel(oldModel);
 
 		return newModel;
 	}

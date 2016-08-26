@@ -89,19 +89,32 @@ public interface PrioridadGrupoUsuariosModel extends BaseModel<PrioridadGrupoUsu
 		long solicitudEvaluacionDesempennoId);
 
 	/**
-	 * Returns the responsable grupo of this prioridad grupo usuarios.
+	 * Returns the lider grupo of this prioridad grupo usuarios.
 	 *
-	 * @return the responsable grupo of this prioridad grupo usuarios
+	 * @return the lider grupo of this prioridad grupo usuarios
 	 */
-	@AutoEscape
-	public String getResponsableGrupo();
+	public long getLiderGrupo();
 
 	/**
-	 * Sets the responsable grupo of this prioridad grupo usuarios.
+	 * Sets the lider grupo of this prioridad grupo usuarios.
 	 *
-	 * @param responsableGrupo the responsable grupo of this prioridad grupo usuarios
+	 * @param liderGrupo the lider grupo of this prioridad grupo usuarios
 	 */
-	public void setResponsableGrupo(String responsableGrupo);
+	public void setLiderGrupo(long liderGrupo);
+
+	/**
+	 * Returns the gerente area of this prioridad grupo usuarios.
+	 *
+	 * @return the gerente area of this prioridad grupo usuarios
+	 */
+	public long getGerenteArea();
+
+	/**
+	 * Sets the gerente area of this prioridad grupo usuarios.
+	 *
+	 * @param gerenteArea the gerente area of this prioridad grupo usuarios
+	 */
+	public void setGerenteArea(long gerenteArea);
 
 	/**
 	 * Returns the grupo usuario of this prioridad grupo usuarios.

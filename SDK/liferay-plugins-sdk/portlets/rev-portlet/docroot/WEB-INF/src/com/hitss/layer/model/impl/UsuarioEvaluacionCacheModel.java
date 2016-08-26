@@ -35,7 +35,7 @@ public class UsuarioEvaluacionCacheModel implements CacheModel<UsuarioEvaluacion
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{actividadCronogramaId=");
 		sb.append(actividadCronogramaId);
@@ -43,6 +43,8 @@ public class UsuarioEvaluacionCacheModel implements CacheModel<UsuarioEvaluacion
 		sb.append(usuarioId);
 		sb.append(", evaluacionId=");
 		sb.append(evaluacionId);
+		sb.append(", nota=");
+		sb.append(nota);
 		sb.append("}");
 
 		return sb.toString();
@@ -55,6 +57,7 @@ public class UsuarioEvaluacionCacheModel implements CacheModel<UsuarioEvaluacion
 		usuarioEvaluacionImpl.setActividadCronogramaId(actividadCronogramaId);
 		usuarioEvaluacionImpl.setUsuarioId(usuarioId);
 		usuarioEvaluacionImpl.setEvaluacionId(evaluacionId);
+		usuarioEvaluacionImpl.setNota(nota);
 
 		usuarioEvaluacionImpl.resetOriginalValues();
 
@@ -66,6 +69,7 @@ public class UsuarioEvaluacionCacheModel implements CacheModel<UsuarioEvaluacion
 		actividadCronogramaId = objectInput.readLong();
 		usuarioId = objectInput.readLong();
 		evaluacionId = objectInput.readLong();
+		nota = objectInput.readInt();
 	}
 
 	@Override
@@ -74,9 +78,11 @@ public class UsuarioEvaluacionCacheModel implements CacheModel<UsuarioEvaluacion
 		objectOutput.writeLong(actividadCronogramaId);
 		objectOutput.writeLong(usuarioId);
 		objectOutput.writeLong(evaluacionId);
+		objectOutput.writeInt(nota);
 	}
 
 	public long actividadCronogramaId;
 	public long usuarioId;
 	public long evaluacionId;
+	public int nota;
 }

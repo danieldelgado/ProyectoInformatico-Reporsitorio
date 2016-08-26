@@ -54,8 +54,8 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		sb.append(descripcion);
 		sb.append(", estado=");
 		sb.append(estado);
-		sb.append(", apruebaEntrevista=");
-		sb.append(apruebaEntrevista);
+		sb.append(", apruebaFase=");
+		sb.append(apruebaFase);
 		sb.append(", puntuacion=");
 		sb.append(puntuacion);
 		sb.append(", salario=");
@@ -99,7 +99,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		}
 
 		fasePostulacionImpl.setEstado(estado);
-		fasePostulacionImpl.setApruebaEntrevista(apruebaEntrevista);
+		fasePostulacionImpl.setApruebaFase(apruebaFase);
 		fasePostulacionImpl.setPuntuacion(puntuacion);
 		fasePostulacionImpl.setSalario(salario);
 		fasePostulacionImpl.setActivo(activo);
@@ -135,7 +135,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		fechaFase = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		estado = objectInput.readLong();
-		apruebaEntrevista = objectInput.readBoolean();
+		apruebaFase = objectInput.readBoolean();
 		puntuacion = objectInput.readInt();
 		salario = objectInput.readDouble();
 		activo = objectInput.readBoolean();
@@ -162,7 +162,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		}
 
 		objectOutput.writeLong(estado);
-		objectOutput.writeBoolean(apruebaEntrevista);
+		objectOutput.writeBoolean(apruebaFase);
 		objectOutput.writeInt(puntuacion);
 		objectOutput.writeDouble(salario);
 		objectOutput.writeBoolean(activo);
@@ -179,7 +179,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 	public long fechaFase;
 	public String descripcion;
 	public long estado;
-	public boolean apruebaEntrevista;
+	public boolean apruebaFase;
 	public int puntuacion;
 	public double salario;
 	public boolean activo;

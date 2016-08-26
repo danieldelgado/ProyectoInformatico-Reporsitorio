@@ -32,6 +32,6 @@ public abstract class UsuarioEvaluacionActionableDynamicQuery
 
 		setClassLoader(com.hitss.layer.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("primaryKey.usuarioId");
+		setPrimaryKeyPropertyName("usuarioId");
 	}
 }

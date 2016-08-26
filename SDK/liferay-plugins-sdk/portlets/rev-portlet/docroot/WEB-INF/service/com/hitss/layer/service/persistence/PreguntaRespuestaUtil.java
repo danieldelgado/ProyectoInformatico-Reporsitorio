@@ -138,7 +138,7 @@ public class PreguntaRespuestaUtil {
 	* @return the new pregunta respuesta
 	*/
 	public static com.hitss.layer.model.PreguntaRespuesta create(
-		PreguntaRespuestaPK preguntaRespuestaPK) {
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK) {
 		return getPersistence().create(preguntaRespuestaPK);
 	}
 
@@ -151,7 +151,7 @@ public class PreguntaRespuestaUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.PreguntaRespuesta remove(
-		PreguntaRespuestaPK preguntaRespuestaPK)
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK)
 		throws com.hitss.layer.NoSuchPreguntaRespuestaException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().remove(preguntaRespuestaPK);
@@ -172,7 +172,7 @@ public class PreguntaRespuestaUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.PreguntaRespuesta findByPrimaryKey(
-		PreguntaRespuestaPK preguntaRespuestaPK)
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK)
 		throws com.hitss.layer.NoSuchPreguntaRespuestaException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(preguntaRespuestaPK);
@@ -186,7 +186,7 @@ public class PreguntaRespuestaUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.PreguntaRespuesta fetchByPrimaryKey(
-		PreguntaRespuestaPK preguntaRespuestaPK)
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(preguntaRespuestaPK);
 	}

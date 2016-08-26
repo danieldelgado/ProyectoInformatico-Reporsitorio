@@ -243,7 +243,7 @@
 			</basic>
 			<basic name="descripcion" />
 			<basic name="estado" />
-			<basic name="apruebaEntrevista" />
+			<basic name="apruebaFase" />
 			<basic name="puntuacion" />
 			<basic name="salario" />
 			<basic name="activo" />
@@ -443,7 +443,8 @@
 		<attributes>
 			<id name="prioridadGrupoUsuariosId" />
 			<basic name="solicitudEvaluacionDesempennoId" />
-			<basic name="responsableGrupo" />
+			<basic name="liderGrupo" />
+			<basic name="gerenteArea" />
 			<basic name="grupoUsuario" />
 			<basic name="orden" />
 			<basic name="activo" />
@@ -483,8 +484,8 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.hitss.layer.model.impl.RegisitrarActividadPlanUsuarioModelImpl">
-		<id-class class="com.hitss.layer.service.persistence.RegisitrarActividadPlanUsuarioPK" />
+	<mapped-superclass class="com.hitss.layer.model.impl.RegistrarActividadPlanUsuarioModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK" />
 		<attributes>
 			<id name="actividadPlanId" />
 			<id name="regisitrarActividadPlanUsuariocoId" />
@@ -631,11 +632,11 @@
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.UsuarioEvaluacionModelImpl">
-		<id-class class="com.hitss.layer.service.persistence.UsuarioEvaluacionPK" />
 		<attributes>
 			<id name="usuarioId" />
-			<id name="evaluacionId" />
 			<basic name="actividadCronogramaId" />
+			<basic name="evaluacionId" />
+			<basic name="nota" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -758,7 +759,7 @@
 		<table name="Referencia" />
 		<attributes />
 	</entity>
-	<entity class="com.hitss.layer.model.impl.RegisitrarActividadPlanUsuarioImpl" name="RegisitrarActividadPlanUsuario">
+	<entity class="com.hitss.layer.model.impl.RegistrarActividadPlanUsuarioImpl" name="RegistrarActividadPlanUsuario">
 		<table name="RegisitrarActividadPlanUsuario" />
 		<attributes />
 	</entity>

@@ -14,8 +14,6 @@
 
 package com.hitss.layer.model;
 
-import com.hitss.layer.service.persistence.UsuarioEvaluacionPK;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -35,6 +33,7 @@ public class UsuarioEvaluacionSoap implements Serializable {
 		soapModel.setActividadCronogramaId(model.getActividadCronogramaId());
 		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setEvaluacionId(model.getEvaluacionId());
+		soapModel.setNota(model.getNota());
 
 		return soapModel;
 	}
@@ -82,13 +81,12 @@ public class UsuarioEvaluacionSoap implements Serializable {
 	public UsuarioEvaluacionSoap() {
 	}
 
-	public UsuarioEvaluacionPK getPrimaryKey() {
-		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
+	public long getPrimaryKey() {
+		return _usuarioId;
 	}
 
-	public void setPrimaryKey(UsuarioEvaluacionPK pk) {
-		setUsuarioId(pk.usuarioId);
-		setEvaluacionId(pk.evaluacionId);
+	public void setPrimaryKey(long pk) {
+		setUsuarioId(pk);
 	}
 
 	public long getActividadCronogramaId() {
@@ -115,7 +113,16 @@ public class UsuarioEvaluacionSoap implements Serializable {
 		_evaluacionId = evaluacionId;
 	}
 
+	public int getNota() {
+		return _nota;
+	}
+
+	public void setNota(int nota) {
+		_nota = nota;
+	}
+
 	private long _actividadCronogramaId;
 	private long _usuarioId;
 	private long _evaluacionId;
+	private int _nota;
 }

@@ -147,7 +147,7 @@ create table FasePostulacion (
 	fechaFase DATE null,
 	descripcion VARCHAR(75) null,
 	estado LONG,
-	apruebaEntrevista BOOLEAN,
+	apruebaFase BOOLEAN,
 	puntuacion INTEGER,
 	salario DOUBLE,
 	activo BOOLEAN,
@@ -283,7 +283,8 @@ create table PreguntaRespuesta (
 create table PrioridadGrupoUsuarios (
 	prioridadGrupoUsuariosId LONG not null primary key,
 	solicitudEvaluacionDesempennoId LONG,
-	responsableGrupo VARCHAR(75) null,
+	liderGrupo LONG,
+	gerenteArea LONG,
 	grupoUsuario VARCHAR(75) null,
 	orden INTEGER,
 	activo BOOLEAN,
@@ -427,9 +428,9 @@ create table Usuario (
 
 create table UsuarioEvaluacion (
 	actividadCronogramaId LONG,
-	usuarioId LONG not null,
-	evaluacionId LONG not null,
-	primary key (usuarioId, evaluacionId)
+	usuarioId LONG not null primary key,
+	evaluacionId LONG,
+	nota INTEGER
 );
 
 create table UsuarioRequisito (

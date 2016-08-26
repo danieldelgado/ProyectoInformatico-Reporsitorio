@@ -34,15 +34,11 @@ public class UsuarioEvaluacionLocalServiceClp
 
 		_methodName1 = "createUsuarioEvaluacion";
 
-		_methodParameterTypes1 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes1 = new String[] { "long" };
 
 		_methodName2 = "deleteUsuarioEvaluacion";
 
-		_methodParameterTypes2 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes2 = new String[] { "long" };
 
 		_methodName3 = "deleteUsuarioEvaluacion";
 
@@ -88,15 +84,11 @@ public class UsuarioEvaluacionLocalServiceClp
 
 		_methodName10 = "fetchUsuarioEvaluacion";
 
-		_methodParameterTypes10 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes10 = new String[] { "long" };
 
 		_methodName11 = "getUsuarioEvaluacion";
 
-		_methodParameterTypes11 = new String[] {
-				"com.hitss.layer.service.persistence.UsuarioEvaluacionPK"
-			};
+		_methodParameterTypes11 = new String[] { "long" };
 
 		_methodName12 = "getPersistedModel";
 
@@ -158,15 +150,12 @@ public class UsuarioEvaluacionLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion createUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK) {
+		long usuarioId) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1,
-					new Object[] {
-						ClpSerializer.translateInput(usuarioEvaluacionPK)
-					});
+					_methodParameterTypes1, new Object[] { usuarioId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -185,17 +174,14 @@ public class UsuarioEvaluacionLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion deleteUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
-					new Object[] {
-						ClpSerializer.translateInput(usuarioEvaluacionPK)
-					});
+					_methodParameterTypes2, new Object[] { usuarioId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -450,16 +436,13 @@ public class UsuarioEvaluacionLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion fetchUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
-					new Object[] {
-						ClpSerializer.translateInput(usuarioEvaluacionPK)
-					});
+					_methodParameterTypes10, new Object[] { usuarioId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -482,17 +465,14 @@ public class UsuarioEvaluacionLocalServiceClp
 
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion getUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
-					new Object[] {
-						ClpSerializer.translateInput(usuarioEvaluacionPK)
-					});
+					_methodParameterTypes11, new Object[] { usuarioId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

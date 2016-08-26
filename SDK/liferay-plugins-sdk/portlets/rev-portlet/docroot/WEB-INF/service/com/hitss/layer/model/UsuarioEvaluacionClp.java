@@ -16,7 +16,6 @@ package com.hitss.layer.model;
 
 import com.hitss.layer.service.ClpSerializer;
 import com.hitss.layer.service.UsuarioEvaluacionLocalServiceUtil;
-import com.hitss.layer.service.persistence.UsuarioEvaluacionPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -51,24 +50,23 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 	}
 
 	@Override
-	public UsuarioEvaluacionPK getPrimaryKey() {
-		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
+	public long getPrimaryKey() {
+		return _usuarioId;
 	}
 
 	@Override
-	public void setPrimaryKey(UsuarioEvaluacionPK primaryKey) {
-		setUsuarioId(primaryKey.usuarioId);
-		setEvaluacionId(primaryKey.evaluacionId);
+	public void setPrimaryKey(long primaryKey) {
+		setUsuarioId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
+		return _usuarioId;
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((UsuarioEvaluacionPK)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -78,6 +76,7 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("evaluacionId", getEvaluacionId());
+		attributes.put("nota", getNota());
 
 		return attributes;
 	}
@@ -101,6 +100,12 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 
 		if (evaluacionId != null) {
 			setEvaluacionId(evaluacionId);
+		}
+
+		Integer nota = (Integer)attributes.get("nota");
+
+		if (nota != null) {
+			setNota(nota);
 		}
 	}
 
@@ -168,6 +173,29 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 				Method method = clazz.getMethod("setEvaluacionId", long.class);
 
 				method.invoke(_usuarioEvaluacionRemoteModel, evaluacionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getNota() {
+		return _nota;
+	}
+
+	@Override
+	public void setNota(int nota) {
+		_nota = nota;
+
+		if (_usuarioEvaluacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _usuarioEvaluacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setNota", int.class);
+
+				method.invoke(_usuarioEvaluacionRemoteModel, nota);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -249,15 +277,24 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 		clone.setActividadCronogramaId(getActividadCronogramaId());
 		clone.setUsuarioId(getUsuarioId());
 		clone.setEvaluacionId(getEvaluacionId());
+		clone.setNota(getNota());
 
 		return clone;
 	}
 
 	@Override
 	public int compareTo(UsuarioEvaluacion usuarioEvaluacion) {
-		UsuarioEvaluacionPK primaryKey = usuarioEvaluacion.getPrimaryKey();
+		long primaryKey = usuarioEvaluacion.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -272,9 +309,9 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 
 		UsuarioEvaluacionClp usuarioEvaluacion = (UsuarioEvaluacionClp)obj;
 
-		UsuarioEvaluacionPK primaryKey = usuarioEvaluacion.getPrimaryKey();
+		long primaryKey = usuarioEvaluacion.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -288,12 +325,12 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{actividadCronogramaId=");
 		sb.append(getActividadCronogramaId());
@@ -301,6 +338,8 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 		sb.append(getUsuarioId());
 		sb.append(", evaluacionId=");
 		sb.append(getEvaluacionId());
+		sb.append(", nota=");
+		sb.append(getNota());
 		sb.append("}");
 
 		return sb.toString();
@@ -308,7 +347,7 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(16);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.UsuarioEvaluacion");
@@ -326,6 +365,10 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 			"<column><column-name>evaluacionId</column-name><column-value><![CDATA[");
 		sb.append(getEvaluacionId());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>nota</column-name><column-value><![CDATA[");
+		sb.append(getNota());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -335,6 +378,7 @@ public class UsuarioEvaluacionClp extends BaseModelImpl<UsuarioEvaluacion>
 	private long _actividadCronogramaId;
 	private long _usuarioId;
 	private long _evaluacionId;
+	private int _nota;
 	private BaseModel<?> _usuarioEvaluacionRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

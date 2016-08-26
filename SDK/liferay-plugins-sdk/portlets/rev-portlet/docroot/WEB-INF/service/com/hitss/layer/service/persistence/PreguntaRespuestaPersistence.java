@@ -60,7 +60,7 @@ public interface PreguntaRespuestaPersistence extends BasePersistence<PreguntaRe
 	* @return the new pregunta respuesta
 	*/
 	public com.hitss.layer.model.PreguntaRespuesta create(
-		PreguntaRespuestaPK preguntaRespuestaPK);
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK);
 
 	/**
 	* Removes the pregunta respuesta with the primary key from the database. Also notifies the appropriate model listeners.
@@ -71,7 +71,7 @@ public interface PreguntaRespuestaPersistence extends BasePersistence<PreguntaRe
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.PreguntaRespuesta remove(
-		PreguntaRespuestaPK preguntaRespuestaPK)
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK)
 		throws com.hitss.layer.NoSuchPreguntaRespuestaException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -88,7 +88,7 @@ public interface PreguntaRespuestaPersistence extends BasePersistence<PreguntaRe
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.PreguntaRespuesta findByPrimaryKey(
-		PreguntaRespuestaPK preguntaRespuestaPK)
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK)
 		throws com.hitss.layer.NoSuchPreguntaRespuestaException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -100,7 +100,7 @@ public interface PreguntaRespuestaPersistence extends BasePersistence<PreguntaRe
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.PreguntaRespuesta fetchByPrimaryKey(
-		PreguntaRespuestaPK preguntaRespuestaPK)
+		com.hitss.layer.service.persistence.PreguntaRespuestaPK preguntaRespuestaPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

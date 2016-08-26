@@ -61,23 +61,23 @@ public interface UsuarioEvaluacionLocalService extends BaseLocalService,
 	/**
 	* Creates a new usuario evaluacion with the primary key. Does not add the usuario evaluacion to the database.
 	*
-	* @param usuarioEvaluacionPK the primary key for the new usuario evaluacion
+	* @param usuarioId the primary key for the new usuario evaluacion
 	* @return the new usuario evaluacion
 	*/
 	public com.hitss.layer.model.UsuarioEvaluacion createUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK);
+		long usuarioId);
 
 	/**
 	* Deletes the usuario evaluacion with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	* @param usuarioId the primary key of the usuario evaluacion
 	* @return the usuario evaluacion that was removed
 	* @throws PortalException if a usuario evaluacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.hitss.layer.model.UsuarioEvaluacion deleteUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -172,20 +172,20 @@ public interface UsuarioEvaluacionLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.UsuarioEvaluacion fetchUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the usuario evaluacion with the primary key.
 	*
-	* @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	* @param usuarioId the primary key of the usuario evaluacion
 	* @return the usuario evaluacion
 	* @throws PortalException if a usuario evaluacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.UsuarioEvaluacion getUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

@@ -17,7 +17,6 @@ package com.hitss.layer.model.impl;
 import com.hitss.layer.model.UsuarioEvaluacion;
 import com.hitss.layer.model.UsuarioEvaluacionModel;
 import com.hitss.layer.model.UsuarioEvaluacionSoap;
-import com.hitss.layer.service.persistence.UsuarioEvaluacionPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
@@ -26,6 +25,10 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
@@ -61,12 +64,13 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "actividadCronogramaId", Types.BIGINT },
 			{ "usuarioId", Types.BIGINT },
-			{ "evaluacionId", Types.BIGINT }
+			{ "evaluacionId", Types.BIGINT },
+			{ "nota", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table UsuarioEvaluacion (actividadCronogramaId LONG,usuarioId LONG not null,evaluacionId LONG not null,primary key (usuarioId, evaluacionId))";
+	public static final String TABLE_SQL_CREATE = "create table UsuarioEvaluacion (actividadCronogramaId LONG,usuarioId LONG not null primary key,evaluacionId LONG,nota INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table UsuarioEvaluacion";
-	public static final String ORDER_BY_JPQL = " ORDER BY usuarioEvaluacion.id.usuarioId ASC, usuarioEvaluacion.id.evaluacionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY UsuarioEvaluacion.usuarioId ASC, UsuarioEvaluacion.evaluacionId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY usuarioEvaluacion.usuarioId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY UsuarioEvaluacion.usuarioId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -94,6 +98,7 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 		model.setActividadCronogramaId(soapModel.getActividadCronogramaId());
 		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setEvaluacionId(soapModel.getEvaluacionId());
+		model.setNota(soapModel.getNota());
 
 		return model;
 	}
@@ -126,24 +131,23 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 	}
 
 	@Override
-	public UsuarioEvaluacionPK getPrimaryKey() {
-		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
+	public long getPrimaryKey() {
+		return _usuarioId;
 	}
 
 	@Override
-	public void setPrimaryKey(UsuarioEvaluacionPK primaryKey) {
-		setUsuarioId(primaryKey.usuarioId);
-		setEvaluacionId(primaryKey.evaluacionId);
+	public void setPrimaryKey(long primaryKey) {
+		setUsuarioId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new UsuarioEvaluacionPK(_usuarioId, _evaluacionId);
+		return _usuarioId;
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((UsuarioEvaluacionPK)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -163,6 +167,7 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("evaluacionId", getEvaluacionId());
+		attributes.put("nota", getNota());
 
 		return attributes;
 	}
@@ -186,6 +191,12 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 
 		if (evaluacionId != null) {
 			setEvaluacionId(evaluacionId);
+		}
+
+		Integer nota = (Integer)attributes.get("nota");
+
+		if (nota != null) {
+			setNota(nota);
 		}
 	}
 
@@ -222,6 +233,30 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 		_evaluacionId = evaluacionId;
 	}
 
+	@JSON
+	@Override
+	public int getNota() {
+		return _nota;
+	}
+
+	@Override
+	public void setNota(int nota) {
+		_nota = nota;
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			UsuarioEvaluacion.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
+	}
+
 	@Override
 	public UsuarioEvaluacion toEscapedModel() {
 		if (_escapedModel == null) {
@@ -239,6 +274,7 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 		usuarioEvaluacionImpl.setActividadCronogramaId(getActividadCronogramaId());
 		usuarioEvaluacionImpl.setUsuarioId(getUsuarioId());
 		usuarioEvaluacionImpl.setEvaluacionId(getEvaluacionId());
+		usuarioEvaluacionImpl.setNota(getNota());
 
 		usuarioEvaluacionImpl.resetOriginalValues();
 
@@ -247,9 +283,17 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 
 	@Override
 	public int compareTo(UsuarioEvaluacion usuarioEvaluacion) {
-		UsuarioEvaluacionPK primaryKey = usuarioEvaluacion.getPrimaryKey();
+		long primaryKey = usuarioEvaluacion.getPrimaryKey();
 
-		return getPrimaryKey().compareTo(primaryKey);
+		if (getPrimaryKey() < primaryKey) {
+			return -1;
+		}
+		else if (getPrimaryKey() > primaryKey) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 	@Override
@@ -264,9 +308,9 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 
 		UsuarioEvaluacion usuarioEvaluacion = (UsuarioEvaluacion)obj;
 
-		UsuarioEvaluacionPK primaryKey = usuarioEvaluacion.getPrimaryKey();
+		long primaryKey = usuarioEvaluacion.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -276,7 +320,7 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -293,12 +337,14 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 
 		usuarioEvaluacionCacheModel.evaluacionId = getEvaluacionId();
 
+		usuarioEvaluacionCacheModel.nota = getNota();
+
 		return usuarioEvaluacionCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("{actividadCronogramaId=");
 		sb.append(getActividadCronogramaId());
@@ -306,6 +352,8 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 		sb.append(getUsuarioId());
 		sb.append(", evaluacionId=");
 		sb.append(getEvaluacionId());
+		sb.append(", nota=");
+		sb.append(getNota());
 		sb.append("}");
 
 		return sb.toString();
@@ -313,7 +361,7 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(16);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.UsuarioEvaluacion");
@@ -331,6 +379,10 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 			"<column><column-name>evaluacionId</column-name><column-value><![CDATA[");
 		sb.append(getEvaluacionId());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>nota</column-name><column-value><![CDATA[");
+		sb.append(getNota());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -344,5 +396,6 @@ public class UsuarioEvaluacionModelImpl extends BaseModelImpl<UsuarioEvaluacion>
 	private long _actividadCronogramaId;
 	private long _usuarioId;
 	private long _evaluacionId;
+	private int _nota;
 	private UsuarioEvaluacion _escapedModel;
 }

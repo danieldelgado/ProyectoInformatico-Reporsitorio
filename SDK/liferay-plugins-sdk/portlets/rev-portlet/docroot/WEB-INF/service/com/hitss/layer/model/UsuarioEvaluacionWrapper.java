@@ -52,6 +52,7 @@ public class UsuarioEvaluacionWrapper implements UsuarioEvaluacion,
 		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("evaluacionId", getEvaluacionId());
+		attributes.put("nota", getNota());
 
 		return attributes;
 	}
@@ -76,6 +77,12 @@ public class UsuarioEvaluacionWrapper implements UsuarioEvaluacion,
 		if (evaluacionId != null) {
 			setEvaluacionId(evaluacionId);
 		}
+
+		Integer nota = (Integer)attributes.get("nota");
+
+		if (nota != null) {
+			setNota(nota);
+		}
 	}
 
 	/**
@@ -84,7 +91,7 @@ public class UsuarioEvaluacionWrapper implements UsuarioEvaluacion,
 	* @return the primary key of this usuario evaluacion
 	*/
 	@Override
-	public com.hitss.layer.service.persistence.UsuarioEvaluacionPK getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _usuarioEvaluacion.getPrimaryKey();
 	}
 
@@ -94,8 +101,7 @@ public class UsuarioEvaluacionWrapper implements UsuarioEvaluacion,
 	* @param primaryKey the primary key of this usuario evaluacion
 	*/
 	@Override
-	public void setPrimaryKey(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		_usuarioEvaluacion.setPrimaryKey(primaryKey);
 	}
 
@@ -157,6 +163,26 @@ public class UsuarioEvaluacionWrapper implements UsuarioEvaluacion,
 	@Override
 	public void setEvaluacionId(long evaluacionId) {
 		_usuarioEvaluacion.setEvaluacionId(evaluacionId);
+	}
+
+	/**
+	* Returns the nota of this usuario evaluacion.
+	*
+	* @return the nota of this usuario evaluacion
+	*/
+	@Override
+	public int getNota() {
+		return _usuarioEvaluacion.getNota();
+	}
+
+	/**
+	* Sets the nota of this usuario evaluacion.
+	*
+	* @param nota the nota of this usuario evaluacion
+	*/
+	@Override
+	public void setNota(int nota) {
+		_usuarioEvaluacion.setNota(nota);
 	}
 
 	@Override

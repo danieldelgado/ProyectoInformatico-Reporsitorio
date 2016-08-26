@@ -67,7 +67,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "prioridadGrupoUsuariosId", Types.BIGINT },
 			{ "solicitudEvaluacionDesempennoId", Types.BIGINT },
-			{ "responsableGrupo", Types.VARCHAR },
+			{ "liderGrupo", Types.BIGINT },
+			{ "gerenteArea", Types.BIGINT },
 			{ "grupoUsuario", Types.VARCHAR },
 			{ "orden", Types.INTEGER },
 			{ "activo", Types.BOOLEAN },
@@ -76,7 +77,7 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PrioridadGrupoUsuarios (prioridadGrupoUsuariosId LONG not null primary key,solicitudEvaluacionDesempennoId LONG,responsableGrupo VARCHAR(75) null,grupoUsuario VARCHAR(75) null,orden INTEGER,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table PrioridadGrupoUsuarios (prioridadGrupoUsuariosId LONG not null primary key,solicitudEvaluacionDesempennoId LONG,liderGrupo LONG,gerenteArea LONG,grupoUsuario VARCHAR(75) null,orden INTEGER,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table PrioridadGrupoUsuarios";
 	public static final String ORDER_BY_JPQL = " ORDER BY prioridadGrupoUsuarios.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY PrioridadGrupoUsuarios.fechamodifica ASC";
@@ -107,7 +108,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 		model.setPrioridadGrupoUsuariosId(soapModel.getPrioridadGrupoUsuariosId());
 		model.setSolicitudEvaluacionDesempennoId(soapModel.getSolicitudEvaluacionDesempennoId());
-		model.setResponsableGrupo(soapModel.getResponsableGrupo());
+		model.setLiderGrupo(soapModel.getLiderGrupo());
+		model.setGerenteArea(soapModel.getGerenteArea());
 		model.setGrupoUsuario(soapModel.getGrupoUsuario());
 		model.setOrden(soapModel.getOrden());
 		model.setActivo(soapModel.getActivo());
@@ -183,7 +185,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		attributes.put("prioridadGrupoUsuariosId", getPrioridadGrupoUsuariosId());
 		attributes.put("solicitudEvaluacionDesempennoId",
 			getSolicitudEvaluacionDesempennoId());
-		attributes.put("responsableGrupo", getResponsableGrupo());
+		attributes.put("liderGrupo", getLiderGrupo());
+		attributes.put("gerenteArea", getGerenteArea());
 		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("orden", getOrden());
 		attributes.put("activo", getActivo());
@@ -211,10 +214,16 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 			setSolicitudEvaluacionDesempennoId(solicitudEvaluacionDesempennoId);
 		}
 
-		String responsableGrupo = (String)attributes.get("responsableGrupo");
+		Long liderGrupo = (Long)attributes.get("liderGrupo");
 
-		if (responsableGrupo != null) {
-			setResponsableGrupo(responsableGrupo);
+		if (liderGrupo != null) {
+			setLiderGrupo(liderGrupo);
+		}
+
+		Long gerenteArea = (Long)attributes.get("gerenteArea");
+
+		if (gerenteArea != null) {
+			setGerenteArea(gerenteArea);
 		}
 
 		String grupoUsuario = (String)attributes.get("grupoUsuario");
@@ -285,18 +294,24 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 	@JSON
 	@Override
-	public String getResponsableGrupo() {
-		if (_responsableGrupo == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _responsableGrupo;
-		}
+	public long getLiderGrupo() {
+		return _liderGrupo;
 	}
 
 	@Override
-	public void setResponsableGrupo(String responsableGrupo) {
-		_responsableGrupo = responsableGrupo;
+	public void setLiderGrupo(long liderGrupo) {
+		_liderGrupo = liderGrupo;
+	}
+
+	@JSON
+	@Override
+	public long getGerenteArea() {
+		return _gerenteArea;
+	}
+
+	@Override
+	public void setGerenteArea(long gerenteArea) {
+		_gerenteArea = gerenteArea;
 	}
 
 	@JSON
@@ -415,7 +430,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 		prioridadGrupoUsuariosImpl.setPrioridadGrupoUsuariosId(getPrioridadGrupoUsuariosId());
 		prioridadGrupoUsuariosImpl.setSolicitudEvaluacionDesempennoId(getSolicitudEvaluacionDesempennoId());
-		prioridadGrupoUsuariosImpl.setResponsableGrupo(getResponsableGrupo());
+		prioridadGrupoUsuariosImpl.setLiderGrupo(getLiderGrupo());
+		prioridadGrupoUsuariosImpl.setGerenteArea(getGerenteArea());
 		prioridadGrupoUsuariosImpl.setGrupoUsuario(getGrupoUsuario());
 		prioridadGrupoUsuariosImpl.setOrden(getOrden());
 		prioridadGrupoUsuariosImpl.setActivo(getActivo());
@@ -482,13 +498,9 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 		prioridadGrupoUsuariosCacheModel.solicitudEvaluacionDesempennoId = getSolicitudEvaluacionDesempennoId();
 
-		prioridadGrupoUsuariosCacheModel.responsableGrupo = getResponsableGrupo();
+		prioridadGrupoUsuariosCacheModel.liderGrupo = getLiderGrupo();
 
-		String responsableGrupo = prioridadGrupoUsuariosCacheModel.responsableGrupo;
-
-		if ((responsableGrupo != null) && (responsableGrupo.length() == 0)) {
-			prioridadGrupoUsuariosCacheModel.responsableGrupo = null;
-		}
+		prioridadGrupoUsuariosCacheModel.gerenteArea = getGerenteArea();
 
 		prioridadGrupoUsuariosCacheModel.grupoUsuario = getGrupoUsuario();
 
@@ -529,14 +541,16 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{prioridadGrupoUsuariosId=");
 		sb.append(getPrioridadGrupoUsuariosId());
 		sb.append(", solicitudEvaluacionDesempennoId=");
 		sb.append(getSolicitudEvaluacionDesempennoId());
-		sb.append(", responsableGrupo=");
-		sb.append(getResponsableGrupo());
+		sb.append(", liderGrupo=");
+		sb.append(getLiderGrupo());
+		sb.append(", gerenteArea=");
+		sb.append(getGerenteArea());
 		sb.append(", grupoUsuario=");
 		sb.append(getGrupoUsuario());
 		sb.append(", orden=");
@@ -558,7 +572,7 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.PrioridadGrupoUsuarios");
@@ -573,8 +587,12 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		sb.append(getSolicitudEvaluacionDesempennoId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>responsableGrupo</column-name><column-value><![CDATA[");
-		sb.append(getResponsableGrupo());
+			"<column><column-name>liderGrupo</column-name><column-value><![CDATA[");
+		sb.append(getLiderGrupo());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>gerenteArea</column-name><column-value><![CDATA[");
+		sb.append(getGerenteArea());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>grupoUsuario</column-name><column-value><![CDATA[");
@@ -616,7 +634,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		};
 	private long _prioridadGrupoUsuariosId;
 	private long _solicitudEvaluacionDesempennoId;
-	private String _responsableGrupo;
+	private long _liderGrupo;
+	private long _gerenteArea;
 	private String _grupoUsuario;
 	private int _orden;
 	private boolean _activo;

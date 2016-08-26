@@ -48,29 +48,29 @@ public class UsuarioEvaluacionLocalServiceWrapper
 	/**
 	* Creates a new usuario evaluacion with the primary key. Does not add the usuario evaluacion to the database.
 	*
-	* @param usuarioEvaluacionPK the primary key for the new usuario evaluacion
+	* @param usuarioId the primary key for the new usuario evaluacion
 	* @return the new usuario evaluacion
 	*/
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion createUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK) {
-		return _usuarioEvaluacionLocalService.createUsuarioEvaluacion(usuarioEvaluacionPK);
+		long usuarioId) {
+		return _usuarioEvaluacionLocalService.createUsuarioEvaluacion(usuarioId);
 	}
 
 	/**
 	* Deletes the usuario evaluacion with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	* @param usuarioId the primary key of the usuario evaluacion
 	* @return the usuario evaluacion that was removed
 	* @throws PortalException if a usuario evaluacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion deleteUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _usuarioEvaluacionLocalService.deleteUsuarioEvaluacion(usuarioEvaluacionPK);
+		return _usuarioEvaluacionLocalService.deleteUsuarioEvaluacion(usuarioId);
 	}
 
 	/**
@@ -187,25 +187,25 @@ public class UsuarioEvaluacionLocalServiceWrapper
 
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion fetchUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _usuarioEvaluacionLocalService.fetchUsuarioEvaluacion(usuarioEvaluacionPK);
+		return _usuarioEvaluacionLocalService.fetchUsuarioEvaluacion(usuarioId);
 	}
 
 	/**
 	* Returns the usuario evaluacion with the primary key.
 	*
-	* @param usuarioEvaluacionPK the primary key of the usuario evaluacion
+	* @param usuarioId the primary key of the usuario evaluacion
 	* @return the usuario evaluacion
 	* @throws PortalException if a usuario evaluacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.hitss.layer.model.UsuarioEvaluacion getUsuarioEvaluacion(
-		com.hitss.layer.service.persistence.UsuarioEvaluacionPK usuarioEvaluacionPK)
+		long usuarioId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _usuarioEvaluacionLocalService.getUsuarioEvaluacion(usuarioEvaluacionPK);
+		return _usuarioEvaluacionLocalService.getUsuarioEvaluacion(usuarioId);
 	}
 
 	@Override

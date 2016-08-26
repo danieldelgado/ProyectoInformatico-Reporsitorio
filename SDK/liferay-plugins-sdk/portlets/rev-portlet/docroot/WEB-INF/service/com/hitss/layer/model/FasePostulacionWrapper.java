@@ -57,7 +57,7 @@ public class FasePostulacionWrapper implements FasePostulacion,
 		attributes.put("fechaFase", getFechaFase());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
-		attributes.put("apruebaEntrevista", getApruebaEntrevista());
+		attributes.put("apruebaFase", getApruebaFase());
 		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("salario", getSalario());
 		attributes.put("activo", getActivo());
@@ -114,10 +114,10 @@ public class FasePostulacionWrapper implements FasePostulacion,
 			setEstado(estado);
 		}
 
-		Boolean apruebaEntrevista = (Boolean)attributes.get("apruebaEntrevista");
+		Boolean apruebaFase = (Boolean)attributes.get("apruebaFase");
 
-		if (apruebaEntrevista != null) {
-			setApruebaEntrevista(apruebaEntrevista);
+		if (apruebaFase != null) {
+			setApruebaFase(apruebaFase);
 		}
 
 		Integer puntuacion = (Integer)attributes.get("puntuacion");
@@ -324,33 +324,33 @@ public class FasePostulacionWrapper implements FasePostulacion,
 	}
 
 	/**
-	* Returns the aprueba entrevista of this fase postulacion.
+	* Returns the aprueba fase of this fase postulacion.
 	*
-	* @return the aprueba entrevista of this fase postulacion
+	* @return the aprueba fase of this fase postulacion
 	*/
 	@Override
-	public boolean getApruebaEntrevista() {
-		return _fasePostulacion.getApruebaEntrevista();
+	public boolean getApruebaFase() {
+		return _fasePostulacion.getApruebaFase();
 	}
 
 	/**
-	* Returns <code>true</code> if this fase postulacion is aprueba entrevista.
+	* Returns <code>true</code> if this fase postulacion is aprueba fase.
 	*
-	* @return <code>true</code> if this fase postulacion is aprueba entrevista; <code>false</code> otherwise
+	* @return <code>true</code> if this fase postulacion is aprueba fase; <code>false</code> otherwise
 	*/
 	@Override
-	public boolean isApruebaEntrevista() {
-		return _fasePostulacion.isApruebaEntrevista();
+	public boolean isApruebaFase() {
+		return _fasePostulacion.isApruebaFase();
 	}
 
 	/**
-	* Sets whether this fase postulacion is aprueba entrevista.
+	* Sets whether this fase postulacion is aprueba fase.
 	*
-	* @param apruebaEntrevista the aprueba entrevista of this fase postulacion
+	* @param apruebaFase the aprueba fase of this fase postulacion
 	*/
 	@Override
-	public void setApruebaEntrevista(boolean apruebaEntrevista) {
-		_fasePostulacion.setApruebaEntrevista(apruebaEntrevista);
+	public void setApruebaFase(boolean apruebaFase) {
+		_fasePostulacion.setApruebaFase(apruebaFase);
 	}
 
 	/**

@@ -134,7 +134,7 @@
 		<field name="fechaFase" type="Date" />
 		<field name="descripcion" type="String" />
 		<field name="estado" type="long" />
-		<field name="apruebaEntrevista" type="boolean" />
+		<field name="apruebaFase" type="boolean" />
 		<field name="puntuacion" type="int" />
 		<field name="salario" type="double" />
 		<field name="activo" type="boolean" />
@@ -242,7 +242,8 @@
 	<model name="com.hitss.layer.model.PrioridadGrupoUsuarios">
 		<field name="prioridadGrupoUsuariosId" type="long" />
 		<field name="solicitudEvaluacionDesempennoId" type="long" />
-		<field name="responsableGrupo" type="String" />
+		<field name="liderGrupo" type="long" />
+		<field name="gerenteArea" type="long" />
 		<field name="grupoUsuario" type="String" />
 		<field name="orden" type="int" />
 		<field name="activo" type="boolean" />
@@ -264,7 +265,7 @@
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
 	</model>
-	<model name="com.hitss.layer.model.RegisitrarActividadPlanUsuario">
+	<model name="com.hitss.layer.model.RegistrarActividadPlanUsuario">
 		<field name="actividadPlanId" type="long" />
 		<field name="regisitrarActividadPlanUsuariocoId" type="long" />
 		<field name="usuarioId" type="long" />
@@ -352,6 +353,7 @@
 		<field name="actividadCronogramaId" type="long" />
 		<field name="usuarioId" type="long" />
 		<field name="evaluacionId" type="long" />
+		<field name="nota" type="int" />
 	</model>
 	<model name="com.hitss.layer.model.UsuarioRequisito">
 		<field name="userId" type="long" />

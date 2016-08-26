@@ -78,7 +78,8 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 		attributes.put("prioridadGrupoUsuariosId", getPrioridadGrupoUsuariosId());
 		attributes.put("solicitudEvaluacionDesempennoId",
 			getSolicitudEvaluacionDesempennoId());
-		attributes.put("responsableGrupo", getResponsableGrupo());
+		attributes.put("liderGrupo", getLiderGrupo());
+		attributes.put("gerenteArea", getGerenteArea());
 		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("orden", getOrden());
 		attributes.put("activo", getActivo());
@@ -106,10 +107,16 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 			setSolicitudEvaluacionDesempennoId(solicitudEvaluacionDesempennoId);
 		}
 
-		String responsableGrupo = (String)attributes.get("responsableGrupo");
+		Long liderGrupo = (Long)attributes.get("liderGrupo");
 
-		if (responsableGrupo != null) {
-			setResponsableGrupo(responsableGrupo);
+		if (liderGrupo != null) {
+			setLiderGrupo(liderGrupo);
+		}
+
+		Long gerenteArea = (Long)attributes.get("gerenteArea");
+
+		if (gerenteArea != null) {
+			setGerenteArea(gerenteArea);
 		}
 
 		String grupoUsuario = (String)attributes.get("grupoUsuario");
@@ -207,23 +214,44 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 	}
 
 	@Override
-	public String getResponsableGrupo() {
-		return _responsableGrupo;
+	public long getLiderGrupo() {
+		return _liderGrupo;
 	}
 
 	@Override
-	public void setResponsableGrupo(String responsableGrupo) {
-		_responsableGrupo = responsableGrupo;
+	public void setLiderGrupo(long liderGrupo) {
+		_liderGrupo = liderGrupo;
 
 		if (_prioridadGrupoUsuariosRemoteModel != null) {
 			try {
 				Class<?> clazz = _prioridadGrupoUsuariosRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setResponsableGrupo",
-						String.class);
+				Method method = clazz.getMethod("setLiderGrupo", long.class);
 
-				method.invoke(_prioridadGrupoUsuariosRemoteModel,
-					responsableGrupo);
+				method.invoke(_prioridadGrupoUsuariosRemoteModel, liderGrupo);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getGerenteArea() {
+		return _gerenteArea;
+	}
+
+	@Override
+	public void setGerenteArea(long gerenteArea) {
+		_gerenteArea = gerenteArea;
+
+		if (_prioridadGrupoUsuariosRemoteModel != null) {
+			try {
+				Class<?> clazz = _prioridadGrupoUsuariosRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setGerenteArea", long.class);
+
+				method.invoke(_prioridadGrupoUsuariosRemoteModel, gerenteArea);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -471,7 +499,8 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 
 		clone.setPrioridadGrupoUsuariosId(getPrioridadGrupoUsuariosId());
 		clone.setSolicitudEvaluacionDesempennoId(getSolicitudEvaluacionDesempennoId());
-		clone.setResponsableGrupo(getResponsableGrupo());
+		clone.setLiderGrupo(getLiderGrupo());
+		clone.setGerenteArea(getGerenteArea());
 		clone.setGrupoUsuario(getGrupoUsuario());
 		clone.setOrden(getOrden());
 		clone.setActivo(getActivo());
@@ -530,14 +559,16 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{prioridadGrupoUsuariosId=");
 		sb.append(getPrioridadGrupoUsuariosId());
 		sb.append(", solicitudEvaluacionDesempennoId=");
 		sb.append(getSolicitudEvaluacionDesempennoId());
-		sb.append(", responsableGrupo=");
-		sb.append(getResponsableGrupo());
+		sb.append(", liderGrupo=");
+		sb.append(getLiderGrupo());
+		sb.append(", gerenteArea=");
+		sb.append(getGerenteArea());
 		sb.append(", grupoUsuario=");
 		sb.append(getGrupoUsuario());
 		sb.append(", orden=");
@@ -559,7 +590,7 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.PrioridadGrupoUsuarios");
@@ -574,8 +605,12 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 		sb.append(getSolicitudEvaluacionDesempennoId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>responsableGrupo</column-name><column-value><![CDATA[");
-		sb.append(getResponsableGrupo());
+			"<column><column-name>liderGrupo</column-name><column-value><![CDATA[");
+		sb.append(getLiderGrupo());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>gerenteArea</column-name><column-value><![CDATA[");
+		sb.append(getGerenteArea());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>grupoUsuario</column-name><column-value><![CDATA[");
@@ -613,7 +648,8 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 
 	private long _prioridadGrupoUsuariosId;
 	private long _solicitudEvaluacionDesempennoId;
-	private String _responsableGrupo;
+	private long _liderGrupo;
+	private long _gerenteArea;
 	private String _grupoUsuario;
 	private int _orden;
 	private boolean _activo;

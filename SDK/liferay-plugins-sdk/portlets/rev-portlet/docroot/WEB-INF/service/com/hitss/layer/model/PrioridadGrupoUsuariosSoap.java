@@ -34,7 +34,8 @@ public class PrioridadGrupoUsuariosSoap implements Serializable {
 
 		soapModel.setPrioridadGrupoUsuariosId(model.getPrioridadGrupoUsuariosId());
 		soapModel.setSolicitudEvaluacionDesempennoId(model.getSolicitudEvaluacionDesempennoId());
-		soapModel.setResponsableGrupo(model.getResponsableGrupo());
+		soapModel.setLiderGrupo(model.getLiderGrupo());
+		soapModel.setGerenteArea(model.getGerenteArea());
 		soapModel.setGrupoUsuario(model.getGrupoUsuario());
 		soapModel.setOrden(model.getOrden());
 		soapModel.setActivo(model.getActivo());
@@ -114,12 +115,20 @@ public class PrioridadGrupoUsuariosSoap implements Serializable {
 		_solicitudEvaluacionDesempennoId = solicitudEvaluacionDesempennoId;
 	}
 
-	public String getResponsableGrupo() {
-		return _responsableGrupo;
+	public long getLiderGrupo() {
+		return _liderGrupo;
 	}
 
-	public void setResponsableGrupo(String responsableGrupo) {
-		_responsableGrupo = responsableGrupo;
+	public void setLiderGrupo(long liderGrupo) {
+		_liderGrupo = liderGrupo;
+	}
+
+	public long getGerenteArea() {
+		return _gerenteArea;
+	}
+
+	public void setGerenteArea(long gerenteArea) {
+		_gerenteArea = gerenteArea;
 	}
 
 	public String getGrupoUsuario() {
@@ -184,7 +193,8 @@ public class PrioridadGrupoUsuariosSoap implements Serializable {
 
 	private long _prioridadGrupoUsuariosId;
 	private long _solicitudEvaluacionDesempennoId;
-	private String _responsableGrupo;
+	private long _liderGrupo;
+	private long _gerenteArea;
 	private String _grupoUsuario;
 	private int _orden;
 	private boolean _activo;

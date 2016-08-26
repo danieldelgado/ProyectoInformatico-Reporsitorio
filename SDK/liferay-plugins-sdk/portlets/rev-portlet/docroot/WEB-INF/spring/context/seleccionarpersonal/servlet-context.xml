@@ -10,7 +10,7 @@
 
 	<!-- Desde donde tiene que escanear -->
 	<context:component-scan
-		base-package="com.hitss.reclutamiento.controller.SeleccionarPersonalController" />
+		base-package="com.hitss.rev.controller.SeleccionarPersonalController" />
 
 
 	<bean id="portletModeHandlerMapping"

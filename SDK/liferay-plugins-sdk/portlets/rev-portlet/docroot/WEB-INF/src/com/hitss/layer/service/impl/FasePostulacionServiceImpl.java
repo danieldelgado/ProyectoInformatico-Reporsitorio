@@ -19,7 +19,7 @@ import java.util.List;
 import com.hitss.layer.model.FasePostulacion;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.base.FasePostulacionServiceBaseImpl;
-import com.hitss.reclutamiento.controller.ProgramaEntrevistaController;
+import com.hitss.rev.controller.ProgramaEntrevistaController;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;

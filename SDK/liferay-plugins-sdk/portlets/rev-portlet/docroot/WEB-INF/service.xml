@@ -290,7 +290,7 @@
 		<column name="fechaFase" type="Date" />
 		<column name="descripcion" type="String" />
 		<column name="estado" type="long" />
-		<column name="apruebaEntrevista" type="boolean" />
+		<column name="apruebaFase" type="boolean" />
 		<column name="puntuacion" type="int" />
 		<column name="salario" type="double" />
 
@@ -528,7 +528,8 @@
 	<entity name="PrioridadGrupoUsuarios" table="PrioridadGrupoUsuarios" local-service="true" remote-service="true">
 		<column name="prioridadGrupoUsuariosId" type="long" primary="true" id-type="increment" />
 		<column name="solicitudEvaluacionDesempennoId" type="long" />
-		<column name="responsableGrupo" type="String" />
+		<column name="liderGrupo" type="long" />
+		<column name="gerenteArea" type="long" />
 		<column name="grupoUsuario" type="String" />
 		<column name="orden" type="int" />
 
@@ -613,7 +614,7 @@
 		</order>
 	</entity>
 
-	<entity name="RegisitrarActividadPlanUsuario" table="RegisitrarActividadPlanUsuario" local-service="true" remote-service="true">
+	<entity name="RegistrarActividadPlanUsuario" table="RegisitrarActividadPlanUsuario" local-service="true" remote-service="true">
 		<column name="actividadPlanId" type="long" primary="true" />
 		<column name="regisitrarActividadPlanUsuariocoId" type="long" primary="true"  id-type="increment" />
 		<column name="usuarioId" type="long" />
@@ -655,7 +656,8 @@
 	<entity name="UsuarioEvaluacion" table="UsuarioEvaluacion" local-service="true" remote-service="true">
 		<column name="actividadCronogramaId" type="long" />
 		<column name="usuarioId" type="long" primary="true" />
-		<column name="evaluacionId" type="long" primary="true" />
+		<column name="evaluacionId" type="long" />
+		<column name="nota" type="int" />
 
 	</entity>
 

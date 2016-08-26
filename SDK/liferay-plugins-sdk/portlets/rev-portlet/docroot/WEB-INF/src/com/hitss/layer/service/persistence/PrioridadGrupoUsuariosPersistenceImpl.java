@@ -332,7 +332,8 @@ public class PrioridadGrupoUsuariosPersistenceImpl extends BasePersistenceImpl<P
 
 		prioridadGrupoUsuariosImpl.setPrioridadGrupoUsuariosId(prioridadGrupoUsuarios.getPrioridadGrupoUsuariosId());
 		prioridadGrupoUsuariosImpl.setSolicitudEvaluacionDesempennoId(prioridadGrupoUsuarios.getSolicitudEvaluacionDesempennoId());
-		prioridadGrupoUsuariosImpl.setResponsableGrupo(prioridadGrupoUsuarios.getResponsableGrupo());
+		prioridadGrupoUsuariosImpl.setLiderGrupo(prioridadGrupoUsuarios.getLiderGrupo());
+		prioridadGrupoUsuariosImpl.setGerenteArea(prioridadGrupoUsuarios.getGerenteArea());
 		prioridadGrupoUsuariosImpl.setGrupoUsuario(prioridadGrupoUsuarios.getGrupoUsuario());
 		prioridadGrupoUsuariosImpl.setOrden(prioridadGrupoUsuarios.getOrden());
 		prioridadGrupoUsuariosImpl.setActivo(prioridadGrupoUsuarios.isActivo());
