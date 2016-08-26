@@ -56,11 +56,11 @@ public class FasePostulacionLocalServiceImpl
 		
 	
 		DynamicQuery subQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"child");
-		subQuery.setProjection(ProjectionFactoryUtil.max("child.fechacreamodifica"));
+		subQuery.setProjection(ProjectionFactoryUtil.max("child.fechamodifica"));
 		subQuery.setLimit(0, 1);
 
         DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
-        dynamicQuery.add(PropertyFactoryUtil.forName("fase.fechacreamodifica").eq(subQuery));
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.fechamodifica").eq(subQuery));
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").eq(solicitud));
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));;
 		

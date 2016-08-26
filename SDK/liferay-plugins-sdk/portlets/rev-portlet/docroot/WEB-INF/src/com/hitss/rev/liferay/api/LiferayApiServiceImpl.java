@@ -44,7 +44,6 @@ import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleResource;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil;
-import com.liferay.util.LocalizationUtil;
 
 @SuppressWarnings("unchecked")
 @Service("LiferayApiService")
@@ -184,70 +183,23 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 	}
 
 	@Override
-	public String registrarPublicacionContenido(long userId, long groupId, long solicitudRequerimientoId, String proyecto, long categoriaPuestoId, String especialidad,
+	public String registrarPublicacionContenido(long userId, long groupId, long solicitudRequerimientoId, String[] tagsEtiquetas, String proyecto, long categoriaPuestoId, String especialidad,
 			long tiempoContrato, long tipoNegocio, long prioridad, Date fechaLimite, long presupuestoMaximo, long presupuestoMinimo, long cliente, String descripcion,
 			HttpServletRequest request) {
 		JournalArticle journalArticle = null;
 		try {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
-
-			AssetCategory tag = AssetCategoryLocalServiceUtil.getAssetCategory(categoriaPuestoId);
-			List<String> strutureName = new ArrayList<>();
-			strutureName.add("");
-
-			List<String> templateName = new ArrayList<>();
-			strutureName.add("");
-
-			long[] strutureIds = getStructureIdByName(strutureName);
-			long[] templateIds = getTemplateIdByName(templateName);
-
+			AssetCategory tag = AssetCategoryLocalServiceUtil.getAssetCategory(categoriaPuestoId);			
 			String title = tag.getName() + " " + proyecto;
-
 			Locale locale = LocaleUtil.getDefault();
-
 			Map<Locale, String> titleMap = new HashMap<Locale, String>();
-			titleMap.put(locale, title);
-//			descripcion = "	<?xml version='1.0' encoding='UTF-8'?> " + descripcion;
-			
-			descripcion = "<html><body>"+ descripcion + "</body></html>";
-			
-			Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
-			descriptionMap.put(locale, descripcion);
-
-
-			// journalArticle = JournalArticleLocalServiceUtil.addArticle(
-			// userId,
-			// groupId,
-			// 0, 0, //classNameId, classPK,
-			// "test-article", //articleId,
-			// false, //autoArticleId,
-			// JournalArticleConstants.VERSION_DEFAULT,
-			// titleMap,
-			// null, //descriptionMap,
-			// descripcion,
-			// "general", // type,
-			// strutureIds[0],
-			// null, // templateId,
-			// StringPool.BLANK, //layoutUuid,
-			// 1, 1, 1970, 0, 0, // displayDateMonth, displayDateDay,
-			// displayDateYear,
-			// // displayDateHour, displayDateMinute,
-			// 0, 0, 0, 0, 0, true, // expirationDateMonth, expirationDateDay,
-			// // expirationDateYear, expirationDateHour,
-			// //expirationDateMinute, neverExpire,
-			// 0, 0, 0, 0, 0, true, // reviewDateMonth, reviewDateDay,
-			// reviewDateYear,
-			// //reviewDateHour, reviewDateMinute, neverReview,
-			// true, // indexable,
-			// false, StringPool.BLANK, null, // smallImage, smallImageURL,
-			// smallImageFile,
-			// null, StringPool.BLANK, // images, articleURL,
-			// serviceContext
-			// );
-
-			journalArticle = JournalArticleLocalServiceUtil.addArticle(userId, groupId, 0, titleMap, descriptionMap, descripcion, null, // type,
-					null, // templateId,
-					null);
+			titleMap.put(locale, title);			
+			descripcion = getContent(descripcion);
+			journalArticle = JournalArticleLocalServiceUtil.addArticle(userId, groupId, 0, titleMap, null, descripcion, StringPool.BLANK,
+					StringPool.BLANK, 
+					serviceContext);			
+			long[] assetCategoryIds = {categoriaPuestoId};
+			JournalArticleLocalServiceUtil.updateAsset(userId, journalArticle, assetCategoryIds, tagsEtiquetas, null);						
 			return journalArticle.getArticleId();
 		} catch (PortalException e) {
 			System.err.println("Failed to add aticle.1");
@@ -261,29 +213,11 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 
 	}
 
+	public String getContent(String content){
+		return "<?xml version=\"1.0\"?><root available-locales=\"es_ES\" default-locale=\"es_ES\"><static-content language-id=\"es_ES\"><![CDATA["+content+"]]></static-content></root>";
+	}
+
 	
-
-	// try {
-	//
-	// List<User> users = UserLocalServiceUtil.getUsers(0,
-	// UserLocalServiceUtil.getUsersCount());
-	// ServiceContext serviceContext =
-	// ServiceContextFactory.getInstance(request);
-	// String notificationText = "test notificacion";
-	// for (User user : users) {
-	// JSONObject payloadJSON = JSONFactoryUtil.createJSONObject();
-	// payloadJSON.put("userId", user.getUserId());
-	// // payloadJSON.put("customEntityId",user.getUserId());
-	// payloadJSON.put("notificationText", notificationText);
-	// UserNotificationEventLocalServiceUtil.addUserNotificationEvent(user.getUserId(),
-	// BarraUsuarioNotificacionHandler.PORTLET_ID, (new Date()).getTime(),
-	// user.getUserId(), payloadJSON.toString(), false, serviceContext);
-	// }
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	//
-	// }
-
 	public static List<JournalArticle> getSelectedWebContents(List<AssetEntry> assetEntries) {
 		List<JournalArticle> journalArticles = new ArrayList<JournalArticle>();
 		JournalArticleResource journalArticleResource = null;
@@ -351,12 +285,14 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 
 	public static long[] getStructureIdByName(List<String> structureNames) {
 		long[] allStructureIds = new long[structureNames.size()];
+		Locale locale = LocaleUtil.getDefault();
 		try {
 			List<DDMStructure> ddmStructures = DDMStructureLocalServiceUtil.getDDMStructures(0, DDMStructureLocalServiceUtil.getDDMStructuresCount());
 			int counter = 0;
 			for (DDMStructure structure : ddmStructures) {
-				for (String name : structureNames) {
-					if (structure.getName(Locale.ENGLISH).equalsIgnoreCase(name)) {
+				for (String name : structureNames) {					
+					System.out.println(structure.getStructureKey());				
+					if (structure.getName(locale).equalsIgnoreCase(name)) {		
 						allStructureIds[counter] = structure.getStructureId();
 						counter++;
 						continue;
@@ -371,12 +307,14 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 
 	public static long[] getTemplateIdByName(List<String> structureNames) {
 		long[] allStructureIds = new long[structureNames.size()];
+		Locale locale = LocaleUtil.getDefault();
 		try {
 			List<DDMTemplate> ddmsTemplates = DDMTemplateLocalServiceUtil.getDDMTemplates(0, DDMStructureLocalServiceUtil.getDDMStructuresCount());
 			int counter = 0;
 			for (DDMTemplate structure : ddmsTemplates) {
-				for (String name : structureNames) {
-					if (structure.getName(Locale.ENGLISH).equalsIgnoreCase(name)) {
+				for (String name : structureNames) {			
+					System.out.println(structure.getTemplateKey());
+					if (structure.getName(locale).equalsIgnoreCase(name)) {	
 						allStructureIds[counter] = structure.getTemplateId();
 						counter++;
 						continue;

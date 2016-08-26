@@ -17,7 +17,7 @@ public interface LiferayApiService {
 	ComboBean getCategoria(long idcategoria);
 	AssetTag getTagByName(String name);
 	AssetTag nuevaEtiqueta(String requisito, User user);
-	String registrarPublicacionContenido(long userId, long groupId,long solicitudRequerimientoId,  String proyecto , long categoriaPuestoId, String especialidad, long tiempoContrato, long tipoNegocio, long prioridad,
+	String registrarPublicacionContenido(long userId, long groupId,long solicitudRequerimientoId,String[] tagsEtiquetas,  String proyecto , long categoriaPuestoId, String especialidad, long tiempoContrato, long tipoNegocio, long prioridad,
 			Date fechaLimite, long presupuestoMaximo, long presupuestoMinimo, long cliente, String descripcion, HttpServletRequest request);
 
 //	List<User> listarPostu

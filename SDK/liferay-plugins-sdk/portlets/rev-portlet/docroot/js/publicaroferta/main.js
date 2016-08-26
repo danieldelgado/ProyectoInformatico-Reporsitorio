@@ -328,14 +328,64 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 		requistoMap['tipoRequisito'] = tipoRequisito;
 
 		var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
+	
 		var html = "";
 		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
 
+		
 		$(listaRequisitos).append(html);
 
 	}
 }
 
+
+function listarRequisitosDetalle(requisitoEtiquetaBeans) {
+	init();
+	var html = "";
+	if (requisitoEtiquetaBeans != "") {
+		var lista = $.parseJSON(requisitoEtiquetaBeans);
+				
+		$.each(lista, function(index, object) {
+			var exigible = false;
+			if (object['exigibleText'] == undefined) {
+				exigible = object['exigible'];
+			} else {
+				exigible = object['exigibleText'];
+			}
+			html += addRequisitoFilaDetalle(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+		});
+	}
+	return html
+}
+
+function addRequisitoFilaDetalle(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
+	var exigileValue = exigile;
+	if (exigile == true) {
+		exigile = "Si";
+	} else {
+		exigile = "No";
+	}
+
+	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
+
+		var requistoMap = {};
+		requistoMap['requisito'] = requisito;
+		requistoMap['nivel'] = nivel;
+		requistoMap['exigibleText'] = exigileValue;
+
+		requistoMap['tipoRequisito'] = tipoRequisito;
+
+		var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
+	
+		var html = "";
+		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
+
+		return html;
+
+	}
+
+	return "";
+}
 
 
 AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {

@@ -8,7 +8,6 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,21 +82,14 @@ public class PublicarOfertaController  extends RevController {
 	public void publicarOfertaLaboral(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 		_log.info("publicarOfertaLaboral");
 		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
-		User user = td.getUser();
-		
+		User user = td.getUser();		
 		HttpServletRequest h = PortalUtil.getHttpServletRequest(resourceRequest);
-		
-		System.out.println(resourceRequest.getParameterMap());
-		System.out.println(h.getParameterMap());
-		
-		
 		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
 		String descripcion = ParamUtil.get(resourceRequest, "editor_descripcion", "");
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
 			_log.info("solicitudRequerimientoId:"+solicitudRequerimientoId);
 			_log.info("descripcion:"+descripcion);
-			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, descripcion, user, true, h);
-			
+			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId,td.getScopeGroupId(), descripcion, user, true, h);			
 			_log.info("result:"+result);
 			try {
 				JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
@@ -115,7 +107,7 @@ public class PublicarOfertaController  extends RevController {
 		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
 
-			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, null, user, false, null);
+			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId,td.getScopeGroupId(), null, user, false, null);
 			
 			_log.info("result:"+result);
 			try {

@@ -193,13 +193,15 @@ public abstract class RevServiceImpl {
 			solicitudRequerimientoBean.setStrresponsableRRHH(UserLocalServiceUtil.getUser(sr.getResponsableRRHH()).getFullName());
 			solicitudRequerimientoBean.setPrioridad(sr.getPrioridad());
 			solicitudRequerimientoBean.setTiempoContrato(sr.getTiempoContrato());
+			solicitudRequerimientoBean.setStrtiempoContrato(parametroService.getParametro(sr.getTiempoContrato()).getValor());
 			solicitudRequerimientoBean.setTipoNegocio(sr.getTipoNegocio());
+			solicitudRequerimientoBean.setStrtipoNegocio(parametroService.getParametro(sr.getTipoNegocio()).getValor());
 			solicitudRequerimientoBean.setCliente(sr.getCliente());
 			solicitudRequerimientoBean.setEspecialidad(sr.getEspecialidad());
 			solicitudRequerimientoBean.setProyecto(sr.getProyecto());
 			solicitudRequerimientoBean.setEstado(sr.getEstado());
 
-			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);			
+			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = getRequisitos(solicitudRequerimientoBean);			
 			_log.info("listaSolicitudRequerimientoRequisitosExitentes");
 			_log.info(listaSolicitudRequerimientoRequisitosExitentes);
 			
@@ -218,6 +220,11 @@ public abstract class RevServiceImpl {
 
 		return null;
 	}
+	
+	public List<RequisitoEtiquetaBean> getRequisitos(SolicitudRequerimientoBean solicitudRequerimientoBean){
+		List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);			
+		return listaSolicitudRequerimientoRequisitosExitentes;
+	}
 
 	public List<ComboBean> getListarEtiquetas(String filtro) {
 		return liferayContentService.getListarEtiquetas(filtro);
@@ -235,6 +242,16 @@ public abstract class RevServiceImpl {
 	public List<ParametroBean> getListaTipoRequisito() {
 		List<ParametroBean> listaTiempoContrato = parametroService.getListaParametroGrupo(Constantes.PARAMETRO_PADRE_TIPO_REQUISITO);
 		return listaTiempoContrato;
+	}
+
+	public String[] getRequistosToTags(List<RequisitoEtiquetaBean> listaRequisitoEtiquetaBeans) {
+		String[] t = new String[listaRequisitoEtiquetaBeans.size()];
+		RequisitoEtiquetaBean r = null;
+		for (int i = 0; i < listaRequisitoEtiquetaBeans.size(); i++) {
+			r = listaRequisitoEtiquetaBeans.get(i);			
+			t[i] = liferayContentService.getEtiqueta(r.getTagId()).getValue();					
+		}		
+		return t;
 	}
 	
 	

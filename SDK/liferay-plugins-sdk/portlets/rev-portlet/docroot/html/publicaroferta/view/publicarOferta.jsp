@@ -88,17 +88,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="row-fluid">
-
-					<fieldset>
-						<legend>Vista previa de la publicación</legend>
-
-
-
-
-					</fieldset>
-
-				</div>
 				<div class="row">
 					<div class="offset5 span2">
 						<aui:button-row>
@@ -122,19 +111,17 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		inicializarFormularioPublicarOferta();
-		listarRequisitos('${requisitoEtiquetaBeans}');
-
 	});
 
 	function <portlet:namespace />initEditor() {
-		return '';
+		return '<div class="container"><div class="offset1 span10"><div class="row-fluid" id=""><div class="" id=""><div class="span12" id=""><label for="" class="control-label" id=""> Puesto: </label></div><div class="controls span12"><div class="input-prepend"><label for="" class="control-label" id=""> ${solicitudReclutamiento.strpuesto}</label></div></div><div class="span12"><label> Tiempo Contrato: </label></div><div class="span12"><div class="input-prepend"><label for="" class="control-label" id=""> ${solicitudReclutamiento.strtiempoContrato}</label></div></div><div class="span12"><label> Tipo de Negocio: </label></div><div class="span12"><div class="input-prepend"><label for="" class="control-label" id=""> ${solicitudReclutamiento.strtipoNegocio}</label></div></div><div class="span12"><label> Especialidad: </label></div><div class="span12"><div class="input-prepend"><label for="" class="control-label" id=""> ${solicitudReclutamiento.especialidad} </label></div></div></div></div><div class="row"><fieldset><legend> Lista de requisitos </legend></fieldset><div class="container-fluid"><div><div id=""><table class="table table-hover table-bordered"><thead><tr class="cabecera"><th>Requisito</th><th>Nivel</th><th>Exigile</th><th>Tipo Requisito</th></tr></thead><tbody id="<portlet:namespace/>listaRequisitos">'
+				+ listarRequisitosDetalle('${requisitoEtiquetaBeans}') + '</tbody></table></div></div></div></div></div></div>';
 	}
 
-	function <portlet:namespace />extractCodeFromEditor( htmlcontent ) {
-		htmlcontent = window.<portlet:namespace />editor.getHTML();		
+	function <portlet:namespace />extractCodeFromEditor(htmlcontent) {
+		htmlcontent = window.<portlet:namespace />editor.getHTML();
 		return htmlcontent;
 	}
-	
 </script>
 
 

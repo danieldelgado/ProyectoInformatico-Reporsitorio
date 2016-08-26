@@ -33,7 +33,7 @@ public interface PublicarOfertaService {
 
 	List<ParametroBean> getAreas();
 
-	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, String descripcion,User user, boolean publicar , HttpServletRequest request);
+	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, Long scopeGroupId, String descripcion,User user, boolean publicar , HttpServletRequest request);
 
 
 }
