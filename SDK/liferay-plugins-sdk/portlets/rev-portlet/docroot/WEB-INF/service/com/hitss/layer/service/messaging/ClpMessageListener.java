@@ -29,8 +29,6 @@ import com.hitss.layer.service.DetalleRepuestaReclutamientoLocalServiceUtil;
 import com.hitss.layer.service.DetalleRepuestaReclutamientoServiceUtil;
 import com.hitss.layer.service.EstudioLocalServiceUtil;
 import com.hitss.layer.service.EstudioServiceUtil;
-import com.hitss.layer.service.EtiquetaRelacionadaLocalServiceUtil;
-import com.hitss.layer.service.EtiquetaRelacionadaServiceUtil;
 import com.hitss.layer.service.EvaluacionLocalServiceUtil;
 import com.hitss.layer.service.EvaluacionPreguntaLocalServiceUtil;
 import com.hitss.layer.service.EvaluacionPreguntaServiceUtil;
@@ -117,9 +115,6 @@ public class ClpMessageListener extends BaseMessageListener {
 			EstudioLocalServiceUtil.clearService();
 
 			EstudioServiceUtil.clearService();
-			EtiquetaRelacionadaLocalServiceUtil.clearService();
-
-			EtiquetaRelacionadaServiceUtil.clearService();
 			EvaluacionLocalServiceUtil.clearService();
 
 			EvaluacionServiceUtil.clearService();

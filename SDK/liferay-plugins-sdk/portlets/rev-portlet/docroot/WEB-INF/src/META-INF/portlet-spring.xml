@@ -22,9 +22,6 @@
 	<bean id="com.hitss.layer.service.EstudioLocalService" class="com.hitss.layer.service.impl.EstudioLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.EstudioService" class="com.hitss.layer.service.impl.EstudioServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.EstudioPersistence" class="com.hitss.layer.service.persistence.EstudioPersistenceImpl" parent="basePersistence" />
-	<bean id="com.hitss.layer.service.EtiquetaRelacionadaLocalService" class="com.hitss.layer.service.impl.EtiquetaRelacionadaLocalServiceImpl" />
-	<bean id="com.hitss.layer.service.EtiquetaRelacionadaService" class="com.hitss.layer.service.impl.EtiquetaRelacionadaServiceImpl" />
-	<bean id="com.hitss.layer.service.persistence.EtiquetaRelacionadaPersistence" class="com.hitss.layer.service.persistence.EtiquetaRelacionadaPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.EvaluacionLocalService" class="com.hitss.layer.service.impl.EvaluacionLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.EvaluacionService" class="com.hitss.layer.service.impl.EvaluacionServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.EvaluacionPersistence" class="com.hitss.layer.service.persistence.EvaluacionPersistenceImpl" parent="basePersistence" />

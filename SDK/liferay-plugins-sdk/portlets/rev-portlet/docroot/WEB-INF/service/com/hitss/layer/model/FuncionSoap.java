@@ -33,7 +33,7 @@ public class FuncionSoap implements Serializable {
 
 		soapModel.setFuncionId(model.getFuncionId());
 		soapModel.setDescripcion(model.getDescripcion());
-		soapModel.setEtiqueta(model.getEtiqueta());
+		soapModel.setEtiquetaId(model.getEtiquetaId());
 		soapModel.setExigible(model.getExigible());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
@@ -108,12 +108,12 @@ public class FuncionSoap implements Serializable {
 		_descripcion = descripcion;
 	}
 
-	public long getEtiqueta() {
-		return _etiqueta;
+	public long getEtiquetaId() {
+		return _etiquetaId;
 	}
 
-	public void setEtiqueta(long etiqueta) {
-		_etiqueta = etiqueta;
+	public void setEtiquetaId(long etiquetaId) {
+		_etiquetaId = etiquetaId;
 	}
 
 	public boolean getExigible() {
@@ -174,7 +174,7 @@ public class FuncionSoap implements Serializable {
 
 	private long _funcionId;
 	private String _descripcion;
-	private long _etiqueta;
+	private long _etiquetaId;
 	private boolean _exigible;
 	private boolean _activo;
 	private long _usuariocrea;

@@ -110,13 +110,13 @@ public class ReferenciaLocalServiceClpInvoker {
 				"com.hitss.layer.model.Referencia"
 			};
 
-		_methodName216 = "getBeanIdentifier";
+		_methodName210 = "getBeanIdentifier";
 
-		_methodParameterTypes216 = new String[] {  };
+		_methodParameterTypes210 = new String[] {  };
 
-		_methodName217 = "setBeanIdentifier";
+		_methodName211 = "setBeanIdentifier";
 
-		_methodParameterTypes217 = new String[] { "java.lang.String" };
+		_methodParameterTypes211 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -208,13 +208,13 @@ public class ReferenciaLocalServiceClpInvoker {
 			return ReferenciaLocalServiceUtil.updateReferencia((com.hitss.layer.model.Referencia)arguments[0]);
 		}
 
-		if (_methodName216.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
+		if (_methodName210.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes210, parameterTypes)) {
 			return ReferenciaLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName217.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes217, parameterTypes)) {
+		if (_methodName211.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes211, parameterTypes)) {
 			ReferenciaLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -255,8 +255,8 @@ public class ReferenciaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName216;
-	private String[] _methodParameterTypes216;
-	private String _methodName217;
-	private String[] _methodParameterTypes217;
+	private String _methodName210;
+	private String[] _methodParameterTypes210;
+	private String _methodName211;
+	private String[] _methodParameterTypes211;
 }

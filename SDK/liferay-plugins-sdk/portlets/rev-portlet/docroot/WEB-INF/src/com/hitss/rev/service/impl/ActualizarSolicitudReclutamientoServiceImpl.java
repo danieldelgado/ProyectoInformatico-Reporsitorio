@@ -169,7 +169,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 					if (sreq.getTagId() == reqAct.getTagId()) {						
 						reqAct.setNuevo(false);		
 						rsr = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoByIds(solicitudRequerimiento.getSolicitudRequerimientoId(), reqAct.getTagId());
-						reqAct.setUsuariocrea(rsr.getUsuariocrea());
+						reqAct.setUsuariomodifica(rsr.getUsuariocrea());
 						reqAct.setFechacreamodifica(rsr.getFechamodifica());
 					}
 				}

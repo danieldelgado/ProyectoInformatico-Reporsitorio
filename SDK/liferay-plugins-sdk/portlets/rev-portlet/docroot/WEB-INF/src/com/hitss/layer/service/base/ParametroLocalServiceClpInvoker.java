@@ -100,29 +100,29 @@ public class ParametroLocalServiceClpInvoker {
 
 		_methodParameterTypes15 = new String[] { "com.hitss.layer.model.Parametro" };
 
-		_methodName216 = "getBeanIdentifier";
+		_methodName210 = "getBeanIdentifier";
+
+		_methodParameterTypes210 = new String[] {  };
+
+		_methodName211 = "setBeanIdentifier";
+
+		_methodParameterTypes211 = new String[] { "java.lang.String" };
+
+		_methodName216 = "newInstance";
 
 		_methodParameterTypes216 = new String[] {  };
 
-		_methodName217 = "setBeanIdentifier";
+		_methodName217 = "getParametros";
 
-		_methodParameterTypes217 = new String[] { "java.lang.String" };
+		_methodParameterTypes217 = new String[] {  };
 
-		_methodName222 = "newInstance";
+		_methodName218 = "findByparametroPadre";
 
-		_methodParameterTypes222 = new String[] {  };
+		_methodParameterTypes218 = new String[] { "long" };
 
-		_methodName223 = "getParametros";
+		_methodName219 = "findByValor";
 
-		_methodParameterTypes223 = new String[] {  };
-
-		_methodName224 = "findByparametroPadre";
-
-		_methodParameterTypes224 = new String[] { "long" };
-
-		_methodName225 = "findByValor";
-
-		_methodParameterTypes225 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes219 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -214,35 +214,35 @@ public class ParametroLocalServiceClpInvoker {
 			return ParametroLocalServiceUtil.updateParametro((com.hitss.layer.model.Parametro)arguments[0]);
 		}
 
-		if (_methodName216.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
+		if (_methodName210.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes210, parameterTypes)) {
 			return ParametroLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName217.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes217, parameterTypes)) {
+		if (_methodName211.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes211, parameterTypes)) {
 			ParametroLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName222.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes222, parameterTypes)) {
+		if (_methodName216.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
 			return ParametroLocalServiceUtil.newInstance();
 		}
 
-		if (_methodName223.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes223, parameterTypes)) {
+		if (_methodName217.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes217, parameterTypes)) {
 			return ParametroLocalServiceUtil.getParametros();
 		}
 
-		if (_methodName224.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
+		if (_methodName218.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes218, parameterTypes)) {
 			return ParametroLocalServiceUtil.findByparametroPadre(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName225.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes225, parameterTypes)) {
+		if (_methodName219.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes219, parameterTypes)) {
 			return ParametroLocalServiceUtil.findByValor(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
@@ -282,16 +282,16 @@ public class ParametroLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
+	private String _methodName210;
+	private String[] _methodParameterTypes210;
+	private String _methodName211;
+	private String[] _methodParameterTypes211;
 	private String _methodName216;
 	private String[] _methodParameterTypes216;
 	private String _methodName217;
 	private String[] _methodParameterTypes217;
-	private String _methodName222;
-	private String[] _methodParameterTypes222;
-	private String _methodName223;
-	private String[] _methodParameterTypes223;
-	private String _methodName224;
-	private String[] _methodParameterTypes224;
-	private String _methodName225;
-	private String[] _methodParameterTypes225;
+	private String _methodName218;
+	private String[] _methodParameterTypes218;
+	private String _methodName219;
+	private String[] _methodParameterTypes219;
 }

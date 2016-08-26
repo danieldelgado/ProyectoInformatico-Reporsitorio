@@ -160,20 +160,6 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.hitss.layer.model.impl.EtiquetaRelacionadaModelImpl">
-		<attributes>
-			<id name="etiquetaRelacionadaId" />
-			<basic name="tabla" />
-			<basic name="registroId" />
-			<basic name="etiqueta" />
-			<basic name="tagId" />
-			<basic name="groupId" />
-			<basic name="companyId" />
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.EvaluacionModelImpl">
 		<attributes>
 			<id name="evaluacionId" />
@@ -289,7 +275,7 @@
 		<attributes>
 			<id name="funcionId" />
 			<basic name="descripcion" />
-			<basic name="etiqueta" />
+			<basic name="etiquetaId" />
 			<basic name="exigible" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
@@ -693,10 +679,6 @@
 	</entity>
 	<entity class="com.hitss.layer.model.impl.EstudioImpl" name="Estudio">
 		<table name="Estudio" />
-		<attributes />
-	</entity>
-	<entity class="com.hitss.layer.model.impl.EtiquetaRelacionadaImpl" name="EtiquetaRelacionada">
-		<table name="EtiquetaRelacionada" />
 		<attributes />
 	</entity>
 	<entity class="com.hitss.layer.model.impl.EvaluacionImpl" name="Evaluacion">

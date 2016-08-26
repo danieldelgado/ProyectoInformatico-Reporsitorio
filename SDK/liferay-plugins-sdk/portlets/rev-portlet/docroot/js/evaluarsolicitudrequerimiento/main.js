@@ -416,7 +416,7 @@ function listarRequisitos(requisitoEtiquetaBeans) {
 
 	init();
 
-	/*if (requisitoEtiquetaBeans != "") {
+	if (requisitoEtiquetaBeans != "") {
 		var lista = $.parseJSON(requisitoEtiquetaBeans);
 		$.each(lista, function(index, object) {
 			var exigible = false;
@@ -427,7 +427,7 @@ function listarRequisitos(requisitoEtiquetaBeans) {
 			}
 			addRequisitoFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
 		});
-	}*/
+	}
 }
 
 function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {

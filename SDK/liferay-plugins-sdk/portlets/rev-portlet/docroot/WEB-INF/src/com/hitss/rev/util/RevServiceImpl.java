@@ -195,6 +195,9 @@ public abstract class RevServiceImpl {
 			solicitudRequerimientoBean.setEstado(sr.getEstado());
 
 			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);			
+			_log.info("listaSolicitudRequerimientoRequisitosExitentes");
+			_log.info(listaSolicitudRequerimientoRequisitosExitentes);
+			
 			solicitudRequerimientoBean.setRequisitoEtiquetaBeans(listaSolicitudRequerimientoRequisitosExitentes);
 			
 			

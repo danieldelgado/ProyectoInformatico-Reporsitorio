@@ -27,7 +27,7 @@ import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
 
 @SuppressWarnings("unchecked")
-@Service("LiferayContentService")
+@Service("LiferayApiService")
 public class LiferayApiServiceImpl implements LiferayApiService {
 
 	private static Log _log = LogFactoryUtil.getLog(LiferayApiServiceImpl.class);

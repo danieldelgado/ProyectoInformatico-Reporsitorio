@@ -856,7 +856,7 @@ public class FuncionPersistenceImpl extends BasePersistenceImpl<Funcion>
 
 		funcionImpl.setFuncionId(funcion.getFuncionId());
 		funcionImpl.setDescripcion(funcion.getDescripcion());
-		funcionImpl.setEtiqueta(funcion.getEtiqueta());
+		funcionImpl.setEtiquetaId(funcion.getEtiquetaId());
 		funcionImpl.setExigible(funcion.isExigible());
 		funcionImpl.setActivo(funcion.isActivo());
 		funcionImpl.setUsuariocrea(funcion.getUsuariocrea());

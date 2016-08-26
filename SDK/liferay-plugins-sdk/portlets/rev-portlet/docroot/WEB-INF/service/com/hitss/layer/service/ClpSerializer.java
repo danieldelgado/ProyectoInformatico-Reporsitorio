@@ -21,7 +21,6 @@ import com.hitss.layer.model.CronogramaClp;
 import com.hitss.layer.model.DetalleRepuestaEvaluacionClp;
 import com.hitss.layer.model.DetalleRepuestaReclutamientoClp;
 import com.hitss.layer.model.EstudioClp;
-import com.hitss.layer.model.EtiquetaRelacionadaClp;
 import com.hitss.layer.model.EvaluacionClp;
 import com.hitss.layer.model.EvaluacionPreguntaClp;
 import com.hitss.layer.model.ExperienciaClp;
@@ -160,10 +159,6 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(EstudioClp.class.getName())) {
 			return translateInputEstudio(oldModel);
-		}
-
-		if (oldModelClassName.equals(EtiquetaRelacionadaClp.class.getName())) {
-			return translateInputEtiquetaRelacionada(oldModel);
 		}
 
 		if (oldModelClassName.equals(EvaluacionClp.class.getName())) {
@@ -344,17 +339,6 @@ public class ClpSerializer {
 		EstudioClp oldClpModel = (EstudioClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getEstudioRemoteModel();
-
-		newModel.setModelAttributes(oldClpModel.getModelAttributes());
-
-		return newModel;
-	}
-
-	public static Object translateInputEtiquetaRelacionada(
-		BaseModel<?> oldModel) {
-		EtiquetaRelacionadaClp oldClpModel = (EtiquetaRelacionadaClp)oldModel;
-
-		BaseModel<?> newModel = oldClpModel.getEtiquetaRelacionadaRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -837,43 +821,6 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals("com.hitss.layer.model.impl.EstudioImpl")) {
 			return translateOutputEstudio(oldModel);
-		}
-		else if (oldModelClassName.endsWith("Clp")) {
-			try {
-				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
-
-				Method getClpSerializerClassMethod = oldModelClass.getMethod(
-						"getClpSerializerClass");
-
-				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
-
-				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
-
-				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
-						BaseModel.class);
-
-				Class<?> oldModelModelClass = oldModel.getModelClass();
-
-				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
-						oldModelModelClass.getSimpleName() + "RemoteModel");
-
-				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
-
-				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
-						oldRemoteModel);
-
-				return newModel;
-			}
-			catch (Throwable t) {
-				if (_log.isInfoEnabled()) {
-					_log.info("Unable to translate " + oldModelClassName, t);
-				}
-			}
-		}
-
-		if (oldModelClassName.equals(
-					"com.hitss.layer.model.impl.EtiquetaRelacionadaImpl")) {
-			return translateOutputEtiquetaRelacionada(oldModel);
 		}
 		else if (oldModelClassName.endsWith("Clp")) {
 			try {
@@ -1865,11 +1812,6 @@ public class ClpSerializer {
 			return new com.hitss.layer.NoSuchEstudioException();
 		}
 
-		if (className.equals(
-					"com.hitss.layer.NoSuchEtiquetaRelacionadaException")) {
-			return new com.hitss.layer.NoSuchEtiquetaRelacionadaException();
-		}
-
 		if (className.equals("com.hitss.layer.NoSuchEvaluacionException")) {
 			return new com.hitss.layer.NoSuchEvaluacionException();
 		}
@@ -2041,17 +1983,6 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setEstudioRemoteModel(oldModel);
-
-		return newModel;
-	}
-
-	public static Object translateOutputEtiquetaRelacionada(
-		BaseModel<?> oldModel) {
-		EtiquetaRelacionadaClp newModel = new EtiquetaRelacionadaClp();
-
-		newModel.setModelAttributes(oldModel.getModelAttributes());
-
-		newModel.setEtiquetaRelacionadaRemoteModel(oldModel);
 
 		return newModel;
 	}

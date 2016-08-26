@@ -72,7 +72,7 @@
 
 		<column name="solicitudRequerimientos" type="Collection" entity="SolicitudRequerimiento" mapping-table="SolicitudRequerimientoFuncion" />
 		<column name="descripcion" type="String" />
-		<column name="etiqueta" type="long" />
+		<column name="etiquetaId" type="long" />
 		<column name="exigible" type="boolean" />
 
 		<column name="activo" type="boolean" />
@@ -470,20 +470,6 @@
 		</order>
 	</entity>
 
-	<entity name="EtiquetaRelacionada" table="EtiquetaRelacionada" local-service="true" remote-service="true">
-		<column name="etiquetaRelacionadaId" type="long" primary="true" id-type="increment" />
-		<column name="tabla" type="String" />
-		<column name="registroId" type="long" />
-		<column name="etiqueta" type="long" />
-		<column name="tagId" type="long" />
-		<column name="groupId" type="long" />
-		<column name="companyId" type="long" />
-
-
-		<order by="asc">
-			<order-column name="etiqueta" />
-		</order>
-	</entity>
 
 
 	<entity name="Observaciones" table="Observaciones" local-service="true" remote-service="true">

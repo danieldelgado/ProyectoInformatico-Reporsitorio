@@ -176,7 +176,7 @@ create table FichaIngreso (
 create table Funcion (
 	funcionId LONG not null primary key,
 	descripcion VARCHAR(75) null,
-	etiqueta LONG,
+	etiquetaId LONG,
 	exigible BOOLEAN,
 	activo BOOLEAN,
 	usuariocrea LONG,

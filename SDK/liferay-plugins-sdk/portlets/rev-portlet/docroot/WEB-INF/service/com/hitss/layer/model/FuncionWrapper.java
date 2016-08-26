@@ -51,7 +51,7 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 
 		attributes.put("funcionId", getFuncionId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("etiqueta", getEtiqueta());
+		attributes.put("etiquetaId", getEtiquetaId());
 		attributes.put("exigible", getExigible());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
@@ -76,10 +76,10 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 			setDescripcion(descripcion);
 		}
 
-		Long etiqueta = (Long)attributes.get("etiqueta");
+		Long etiquetaId = (Long)attributes.get("etiquetaId");
 
-		if (etiqueta != null) {
-			setEtiqueta(etiqueta);
+		if (etiquetaId != null) {
+			setEtiquetaId(etiquetaId);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -180,23 +180,23 @@ public class FuncionWrapper implements Funcion, ModelWrapper<Funcion> {
 	}
 
 	/**
-	* Returns the etiqueta of this funcion.
+	* Returns the etiqueta ID of this funcion.
 	*
-	* @return the etiqueta of this funcion
+	* @return the etiqueta ID of this funcion
 	*/
 	@Override
-	public long getEtiqueta() {
-		return _funcion.getEtiqueta();
+	public long getEtiquetaId() {
+		return _funcion.getEtiquetaId();
 	}
 
 	/**
-	* Sets the etiqueta of this funcion.
+	* Sets the etiqueta ID of this funcion.
 	*
-	* @param etiqueta the etiqueta of this funcion
+	* @param etiquetaId the etiqueta ID of this funcion
 	*/
 	@Override
-	public void setEtiqueta(long etiqueta) {
-		_funcion.setEtiqueta(etiqueta);
+	public void setEtiquetaId(long etiquetaId) {
+		_funcion.setEtiquetaId(etiquetaId);
 	}
 
 	/**

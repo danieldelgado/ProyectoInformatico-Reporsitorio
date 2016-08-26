@@ -23,7 +23,6 @@ import com.hitss.layer.service.persistence.CronogramaPersistence;
 import com.hitss.layer.service.persistence.DetalleRepuestaEvaluacionPersistence;
 import com.hitss.layer.service.persistence.DetalleRepuestaReclutamientoPersistence;
 import com.hitss.layer.service.persistence.EstudioPersistence;
-import com.hitss.layer.service.persistence.EtiquetaRelacionadaPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPreguntaPersistence;
 import com.hitss.layer.service.persistence.ExperienciaPersistence;
@@ -706,63 +705,6 @@ public abstract class ObservacionesLocalServiceBaseImpl
 	 */
 	public void setEstudioPersistence(EstudioPersistence estudioPersistence) {
 		this.estudioPersistence = estudioPersistence;
-	}
-
-	/**
-	 * Returns the etiqueta relacionada local service.
-	 *
-	 * @return the etiqueta relacionada local service
-	 */
-	public com.hitss.layer.service.EtiquetaRelacionadaLocalService getEtiquetaRelacionadaLocalService() {
-		return etiquetaRelacionadaLocalService;
-	}
-
-	/**
-	 * Sets the etiqueta relacionada local service.
-	 *
-	 * @param etiquetaRelacionadaLocalService the etiqueta relacionada local service
-	 */
-	public void setEtiquetaRelacionadaLocalService(
-		com.hitss.layer.service.EtiquetaRelacionadaLocalService etiquetaRelacionadaLocalService) {
-		this.etiquetaRelacionadaLocalService = etiquetaRelacionadaLocalService;
-	}
-
-	/**
-	 * Returns the etiqueta relacionada remote service.
-	 *
-	 * @return the etiqueta relacionada remote service
-	 */
-	public com.hitss.layer.service.EtiquetaRelacionadaService getEtiquetaRelacionadaService() {
-		return etiquetaRelacionadaService;
-	}
-
-	/**
-	 * Sets the etiqueta relacionada remote service.
-	 *
-	 * @param etiquetaRelacionadaService the etiqueta relacionada remote service
-	 */
-	public void setEtiquetaRelacionadaService(
-		com.hitss.layer.service.EtiquetaRelacionadaService etiquetaRelacionadaService) {
-		this.etiquetaRelacionadaService = etiquetaRelacionadaService;
-	}
-
-	/**
-	 * Returns the etiqueta relacionada persistence.
-	 *
-	 * @return the etiqueta relacionada persistence
-	 */
-	public EtiquetaRelacionadaPersistence getEtiquetaRelacionadaPersistence() {
-		return etiquetaRelacionadaPersistence;
-	}
-
-	/**
-	 * Sets the etiqueta relacionada persistence.
-	 *
-	 * @param etiquetaRelacionadaPersistence the etiqueta relacionada persistence
-	 */
-	public void setEtiquetaRelacionadaPersistence(
-		EtiquetaRelacionadaPersistence etiquetaRelacionadaPersistence) {
-		this.etiquetaRelacionadaPersistence = etiquetaRelacionadaPersistence;
 	}
 
 	/**
@@ -2309,12 +2251,6 @@ public abstract class ObservacionesLocalServiceBaseImpl
 	protected com.hitss.layer.service.EstudioService estudioService;
 	@BeanReference(type = EstudioPersistence.class)
 	protected EstudioPersistence estudioPersistence;
-	@BeanReference(type = com.hitss.layer.service.EtiquetaRelacionadaLocalService.class)
-	protected com.hitss.layer.service.EtiquetaRelacionadaLocalService etiquetaRelacionadaLocalService;
-	@BeanReference(type = com.hitss.layer.service.EtiquetaRelacionadaService.class)
-	protected com.hitss.layer.service.EtiquetaRelacionadaService etiquetaRelacionadaService;
-	@BeanReference(type = EtiquetaRelacionadaPersistence.class)
-	protected EtiquetaRelacionadaPersistence etiquetaRelacionadaPersistence;
 	@BeanReference(type = com.hitss.layer.service.EvaluacionLocalService.class)
 	protected com.hitss.layer.service.EvaluacionLocalService evaluacionLocalService;
 	@BeanReference(type = com.hitss.layer.service.EvaluacionService.class)

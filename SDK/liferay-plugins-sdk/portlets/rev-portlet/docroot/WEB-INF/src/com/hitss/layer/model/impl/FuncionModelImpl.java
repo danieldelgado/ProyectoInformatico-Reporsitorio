@@ -67,7 +67,7 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "funcionId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
-			{ "etiqueta", Types.BIGINT },
+			{ "etiquetaId", Types.BIGINT },
 			{ "exigible", Types.BOOLEAN },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
@@ -75,7 +75,7 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Funcion (funcionId LONG not null primary key,descripcion VARCHAR(75) null,etiqueta LONG,exigible BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Funcion (funcionId LONG not null primary key,descripcion VARCHAR(75) null,etiquetaId LONG,exigible BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Funcion";
 	public static final String ORDER_BY_JPQL = " ORDER BY funcion.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Funcion.fechamodifica ASC";
@@ -109,7 +109,7 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 		model.setFuncionId(soapModel.getFuncionId());
 		model.setDescripcion(soapModel.getDescripcion());
-		model.setEtiqueta(soapModel.getEtiqueta());
+		model.setEtiquetaId(soapModel.getEtiquetaId());
 		model.setExigible(soapModel.getExigible());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
@@ -195,7 +195,7 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 		attributes.put("funcionId", getFuncionId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("etiqueta", getEtiqueta());
+		attributes.put("etiquetaId", getEtiquetaId());
 		attributes.put("exigible", getExigible());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
@@ -220,10 +220,10 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 			setDescripcion(descripcion);
 		}
 
-		Long etiqueta = (Long)attributes.get("etiqueta");
+		Long etiquetaId = (Long)attributes.get("etiquetaId");
 
-		if (etiqueta != null) {
-			setEtiqueta(etiqueta);
+		if (etiquetaId != null) {
+			setEtiquetaId(etiquetaId);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -302,13 +302,13 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 	@JSON
 	@Override
-	public long getEtiqueta() {
-		return _etiqueta;
+	public long getEtiquetaId() {
+		return _etiquetaId;
 	}
 
 	@Override
-	public void setEtiqueta(long etiqueta) {
-		_etiqueta = etiqueta;
+	public void setEtiquetaId(long etiquetaId) {
+		_etiquetaId = etiquetaId;
 	}
 
 	@JSON
@@ -422,7 +422,7 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 
 		funcionImpl.setFuncionId(getFuncionId());
 		funcionImpl.setDescripcion(getDescripcion());
-		funcionImpl.setEtiqueta(getEtiqueta());
+		funcionImpl.setEtiquetaId(getEtiquetaId());
 		funcionImpl.setExigible(getExigible());
 		funcionImpl.setActivo(getActivo());
 		funcionImpl.setUsuariocrea(getUsuariocrea());
@@ -499,7 +499,7 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 			funcionCacheModel.descripcion = null;
 		}
 
-		funcionCacheModel.etiqueta = getEtiqueta();
+		funcionCacheModel.etiquetaId = getEtiquetaId();
 
 		funcionCacheModel.exigible = getExigible();
 
@@ -538,8 +538,8 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 		sb.append(getFuncionId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
-		sb.append(", etiqueta=");
-		sb.append(getEtiqueta());
+		sb.append(", etiquetaId=");
+		sb.append(getEtiquetaId());
 		sb.append(", exigible=");
 		sb.append(getExigible());
 		sb.append(", activo=");
@@ -574,8 +574,8 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>etiqueta</column-name><column-value><![CDATA[");
-		sb.append(getEtiqueta());
+			"<column><column-name>etiquetaId</column-name><column-value><![CDATA[");
+		sb.append(getEtiquetaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>exigible</column-name><column-value><![CDATA[");
@@ -614,7 +614,7 @@ public class FuncionModelImpl extends BaseModelImpl<Funcion>
 	private long _funcionId;
 	private String _descripcion;
 	private String _originalDescripcion;
-	private long _etiqueta;
+	private long _etiquetaId;
 	private boolean _exigible;
 	private boolean _activo;
 	private long _usuariocrea;

@@ -89,18 +89,18 @@ public interface FuncionModel extends BaseModel<Funcion> {
 	public void setDescripcion(String descripcion);
 
 	/**
-	 * Returns the etiqueta of this funcion.
+	 * Returns the etiqueta ID of this funcion.
 	 *
-	 * @return the etiqueta of this funcion
+	 * @return the etiqueta ID of this funcion
 	 */
-	public long getEtiqueta();
+	public long getEtiquetaId();
 
 	/**
-	 * Sets the etiqueta of this funcion.
+	 * Sets the etiqueta ID of this funcion.
 	 *
-	 * @param etiqueta the etiqueta of this funcion
+	 * @param etiquetaId the etiqueta ID of this funcion
 	 */
-	public void setEtiqueta(long etiqueta);
+	public void setEtiquetaId(long etiquetaId);
 
 	/**
 	 * Returns the exigible of this funcion.

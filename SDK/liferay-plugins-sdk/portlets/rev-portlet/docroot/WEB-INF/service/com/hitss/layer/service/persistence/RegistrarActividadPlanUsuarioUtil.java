@@ -141,7 +141,7 @@ public class RegistrarActividadPlanUsuarioUtil {
 	* @return the new registrar actividad plan usuario
 	*/
 	public static com.hitss.layer.model.RegistrarActividadPlanUsuario create(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK) {
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK) {
 		return getPersistence().create(registrarActividadPlanUsuarioPK);
 	}
 
@@ -154,7 +154,7 @@ public class RegistrarActividadPlanUsuarioUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.RegistrarActividadPlanUsuario remove(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
 		throws com.hitss.layer.NoSuchRegistrarActividadPlanUsuarioException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().remove(registrarActividadPlanUsuarioPK);
@@ -175,7 +175,7 @@ public class RegistrarActividadPlanUsuarioUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.RegistrarActividadPlanUsuario findByPrimaryKey(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
 		throws com.hitss.layer.NoSuchRegistrarActividadPlanUsuarioException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(registrarActividadPlanUsuarioPK);
@@ -189,7 +189,7 @@ public class RegistrarActividadPlanUsuarioUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.RegistrarActividadPlanUsuario fetchByPrimaryKey(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .fetchByPrimaryKey(registrarActividadPlanUsuarioPK);

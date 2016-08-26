@@ -62,6 +62,8 @@ public class SolicitudRequerimientoRequisitoServiceImpl implements SolicitudRequ
 		try {
 			RequisitoEtiquetaBean re = null;
 			List<SolicitudRequerimientoRequisito> listaSolicitudRequerimientoRequisitosExitentes = SolicitudRequerimientoRequisitoLocalServiceUtil.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimiento.getSolicitudRequerimientoId());
+			_log.info("listaSolicitudRequerimientoRequisitosExitentes");
+			_log.info(listaSolicitudRequerimientoRequisitosExitentes);
 			for (SolicitudRequerimientoRequisito solicitudRequerimientoRequisito : listaSolicitudRequerimientoRequisitosExitentes) {
 				re =  new RequisitoEtiquetaBean();
 				re.setSolicitudRequerimientoId(solicitudRequerimientoRequisito.getSolicitudRequerimientoId());

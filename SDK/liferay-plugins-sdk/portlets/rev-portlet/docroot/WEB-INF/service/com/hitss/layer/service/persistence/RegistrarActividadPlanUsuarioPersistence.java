@@ -61,7 +61,7 @@ public interface RegistrarActividadPlanUsuarioPersistence
 	* @return the new registrar actividad plan usuario
 	*/
 	public com.hitss.layer.model.RegistrarActividadPlanUsuario create(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK);
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK);
 
 	/**
 	* Removes the registrar actividad plan usuario with the primary key from the database. Also notifies the appropriate model listeners.
@@ -72,7 +72,7 @@ public interface RegistrarActividadPlanUsuarioPersistence
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.RegistrarActividadPlanUsuario remove(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
 		throws com.hitss.layer.NoSuchRegistrarActividadPlanUsuarioException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -89,7 +89,7 @@ public interface RegistrarActividadPlanUsuarioPersistence
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.RegistrarActividadPlanUsuario findByPrimaryKey(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
 		throws com.hitss.layer.NoSuchRegistrarActividadPlanUsuarioException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -101,7 +101,7 @@ public interface RegistrarActividadPlanUsuarioPersistence
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.hitss.layer.model.RegistrarActividadPlanUsuario fetchByPrimaryKey(
-		RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
+		com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK registrarActividadPlanUsuarioPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

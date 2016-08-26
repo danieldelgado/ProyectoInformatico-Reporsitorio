@@ -9,7 +9,6 @@
 	<import class="com.hitss.layer.model.DetalleRepuestaEvaluacion" />
 	<import class="com.hitss.layer.model.DetalleRepuestaReclutamiento" />
 	<import class="com.hitss.layer.model.Estudio" />
-	<import class="com.hitss.layer.model.EtiquetaRelacionada" />
 	<import class="com.hitss.layer.model.Evaluacion" />
 	<import class="com.hitss.layer.model.EvaluacionPregunta" />
 	<import class="com.hitss.layer.model.Experiencia" />
@@ -140,18 +139,6 @@
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.hitss.layer.model.impl.EtiquetaRelacionadaImpl" table="EtiquetaRelacionada">
-		<cache usage="read-write" />
-		<id name="etiquetaRelacionadaId" type="long">
-			<generator class="increment" />
-		</id>
-		<property name="tabla" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="registroId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="etiqueta" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="tagId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
 	<class name="com.hitss.layer.model.impl.EvaluacionImpl" table="Evaluacion">
 		<cache usage="read-write" />
 		<id name="evaluacionId" type="long">
@@ -234,7 +221,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="etiqueta" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="etiquetaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="exigible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />

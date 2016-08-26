@@ -87,15 +87,6 @@
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
 	</model>
-	<model name="com.hitss.layer.model.EtiquetaRelacionada">
-		<field name="etiquetaRelacionadaId" type="long" />
-		<field name="tabla" type="String" />
-		<field name="registroId" type="long" />
-		<field name="etiqueta" type="long" />
-		<field name="tagId" type="long" />
-		<field name="groupId" type="long" />
-		<field name="companyId" type="long" />
-	</model>
 	<model name="com.hitss.layer.model.Evaluacion">
 		<field name="evaluacionId" type="long" />
 		<field name="enfoque" type="long" />
@@ -160,7 +151,7 @@
 	<model name="com.hitss.layer.model.Funcion">
 		<field name="funcionId" type="long" />
 		<field name="descripcion" type="String" />
-		<field name="etiqueta" type="long" />
+		<field name="etiquetaId" type="long" />
 		<field name="exigible" type="boolean" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />

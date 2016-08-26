@@ -177,28 +177,28 @@ public class SolicitudRequerimientoLocalServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] { "long", "long[][]" };
 
-		_methodName232 = "getBeanIdentifier";
+		_methodName226 = "getBeanIdentifier";
+
+		_methodParameterTypes226 = new String[] {  };
+
+		_methodName227 = "setBeanIdentifier";
+
+		_methodParameterTypes227 = new String[] { "java.lang.String" };
+
+		_methodName232 = "newInstance";
 
 		_methodParameterTypes232 = new String[] {  };
 
-		_methodName233 = "setBeanIdentifier";
+		_methodName233 = "listaSolicitudRequerimientoCount";
 
-		_methodParameterTypes233 = new String[] { "java.lang.String" };
-
-		_methodName238 = "newInstance";
-
-		_methodParameterTypes238 = new String[] {  };
-
-		_methodName239 = "listaSolicitudRequerimientoCount";
-
-		_methodParameterTypes239 = new String[] {
+		_methodParameterTypes233 = new String[] {
 				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
 				"java.util.Date"
 			};
 
-		_methodName240 = "listaSolicitudRequerimiento";
+		_methodName234 = "listaSolicitudRequerimiento";
 
-		_methodParameterTypes240 = new String[] {
+		_methodParameterTypes234 = new String[] {
 				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
 				"java.util.Date", "int", "int", "java.lang.String",
 				"java.lang.String"
@@ -409,31 +409,31 @@ public class SolicitudRequerimientoLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName232.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes232, parameterTypes)) {
+		if (_methodName226.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes226, parameterTypes)) {
 			return SolicitudRequerimientoLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName233.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes233, parameterTypes)) {
+		if (_methodName227.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes227, parameterTypes)) {
 			SolicitudRequerimientoLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName238.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes238, parameterTypes)) {
+		if (_methodName232.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes232, parameterTypes)) {
 			return SolicitudRequerimientoLocalServiceUtil.newInstance();
 		}
 
-		if (_methodName239.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes239, parameterTypes)) {
+		if (_methodName233.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes233, parameterTypes)) {
 			return SolicitudRequerimientoLocalServiceUtil.listaSolicitudRequerimientoCount((com.hitss.layer.model.SolicitudRequerimiento)arguments[0],
 				(java.util.Date)arguments[1], (java.util.Date)arguments[2]);
 		}
 
-		if (_methodName240.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes240, parameterTypes)) {
+		if (_methodName234.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes234, parameterTypes)) {
 			return SolicitudRequerimientoLocalServiceUtil.listaSolicitudRequerimiento((com.hitss.layer.model.SolicitudRequerimiento)arguments[0],
 				(java.util.Date)arguments[1], (java.util.Date)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -508,14 +508,14 @@ public class SolicitudRequerimientoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
+	private String _methodName226;
+	private String[] _methodParameterTypes226;
+	private String _methodName227;
+	private String[] _methodParameterTypes227;
 	private String _methodName232;
 	private String[] _methodParameterTypes232;
 	private String _methodName233;
 	private String[] _methodParameterTypes233;
-	private String _methodName238;
-	private String[] _methodParameterTypes238;
-	private String _methodName239;
-	private String[] _methodParameterTypes239;
-	private String _methodName240;
-	private String[] _methodParameterTypes240;
+	private String _methodName234;
+	private String[] _methodParameterTypes234;
 }
