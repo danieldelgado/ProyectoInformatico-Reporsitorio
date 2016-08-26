@@ -177,7 +177,7 @@ function getDialogAprobar() {
 	html += '<div class="offset1 span10">';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
-	html += '<div class="span5"><label>Presupuesto Maximo:</label></div>';
+	html += '<div class="span5"><label>Presupuesto Minimo:</label></div>';
 	html += '<div class="span5">';
 	html += '<input id="" name="" class="presupuestoMinimo"  type="text" />';
 	html += '</div>';
@@ -186,7 +186,7 @@ function getDialogAprobar() {
 	html += '<p><label class="msgpresupuestominimo text-error" style="display: none;">Ingresar el presupuesto minimo</label></p>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
-	html += '<div class="span5"><label>Presupuesto Minimo:</label></div>';
+	html += '<div class="span5"><label>Presupuesto Maximo:</label></div>';
 	html += '<div class="span5">';
 	html += '<input id="" name="" type="text" class="presupuestoMaximo" />';
 	html += '</div>';
