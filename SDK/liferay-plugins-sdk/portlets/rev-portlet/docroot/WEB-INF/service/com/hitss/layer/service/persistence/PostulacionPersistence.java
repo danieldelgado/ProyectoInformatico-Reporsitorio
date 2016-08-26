@@ -44,7 +44,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.Postulacion> findByBy_S(
+	public java.util.List<com.hitss.layer.model.Postulacion> findByS(
 		long solicitudRequerimientoId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -61,7 +61,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.Postulacion> findByBy_S(
+	public java.util.List<com.hitss.layer.model.Postulacion> findByS(
 		long solicitudRequerimientoId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -79,7 +79,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the ordered range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.Postulacion> findByBy_S(
+	public java.util.List<com.hitss.layer.model.Postulacion> findByS(
 		long solicitudRequerimientoId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -93,7 +93,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion findByBy_S_First(
+	public com.hitss.layer.model.Postulacion findByS_First(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
@@ -107,7 +107,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the first matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion fetchByBy_S_First(
+	public com.hitss.layer.model.Postulacion fetchByS_First(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -121,7 +121,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion findByBy_S_Last(
+	public com.hitss.layer.model.Postulacion findByS_Last(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
@@ -135,7 +135,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the last matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion fetchByBy_S_Last(
+	public com.hitss.layer.model.Postulacion fetchByS_Last(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -150,7 +150,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a postulacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion[] findByBy_S_PrevAndNext(
+	public com.hitss.layer.model.Postulacion[] findByS_PrevAndNext(
 		com.hitss.layer.service.persistence.PostulacionPK postulacionPK,
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -163,7 +163,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @param solicitudRequerimientoId the solicitud requerimiento ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByBy_S(long solicitudRequerimientoId)
+	public void removeByS(long solicitudRequerimientoId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -173,7 +173,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the number of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByBy_S(long solicitudRequerimientoId)
+	public int countByS(long solicitudRequerimientoId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -184,7 +184,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.Postulacion> findByBy_S_U(
+	public java.util.List<com.hitss.layer.model.Postulacion> findByS_U(
 		long solicitudRequerimientoId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -202,7 +202,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.Postulacion> findByBy_S_U(
+	public java.util.List<com.hitss.layer.model.Postulacion> findByS_U(
 		long solicitudRequerimientoId, long usuarioId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -221,7 +221,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the ordered range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.Postulacion> findByBy_S_U(
+	public java.util.List<com.hitss.layer.model.Postulacion> findByS_U(
 		long solicitudRequerimientoId, long usuarioId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -236,7 +236,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion findByBy_S_U_First(
+	public com.hitss.layer.model.Postulacion findByS_U_First(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
@@ -251,7 +251,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the first matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion fetchByBy_S_U_First(
+	public com.hitss.layer.model.Postulacion fetchByS_U_First(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -266,7 +266,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion findByBy_S_U_Last(
+	public com.hitss.layer.model.Postulacion findByS_U_Last(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
@@ -281,7 +281,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the last matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion fetchByBy_S_U_Last(
+	public com.hitss.layer.model.Postulacion fetchByS_U_Last(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -297,7 +297,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a postulacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.Postulacion[] findByBy_S_U_PrevAndNext(
+	public com.hitss.layer.model.Postulacion[] findByS_U_PrevAndNext(
 		com.hitss.layer.service.persistence.PostulacionPK postulacionPK,
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -311,7 +311,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @param usuarioId the usuario ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByBy_S_U(long solicitudRequerimientoId, long usuarioId)
+	public void removeByS_U(long solicitudRequerimientoId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -322,7 +322,7 @@ public interface PostulacionPersistence extends BasePersistence<Postulacion> {
 	* @return the number of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByBy_S_U(long solicitudRequerimientoId, long usuarioId)
+	public int countByS_U(long solicitudRequerimientoId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

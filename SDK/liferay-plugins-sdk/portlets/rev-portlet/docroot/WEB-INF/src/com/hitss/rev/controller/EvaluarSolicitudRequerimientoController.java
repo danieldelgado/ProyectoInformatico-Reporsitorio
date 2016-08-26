@@ -1,7 +1,6 @@
 package com.hitss.rev.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -15,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
-import com.hitss.rev.bean.ParametroBean;
-import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
-import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.service.EvaluarSolicitudRequerimientoService;
 import com.hitss.rev.service.impl.EvaluarSolicitudRequerimientoServiceImpl;
 import com.hitss.rev.util.Constantes;
@@ -74,6 +70,11 @@ public class EvaluarSolicitudRequerimientoController  extends RevController {
 		super.listarPuestosCategorias(resourceRequest, resourceResponse, (RevServiceImpl) evaluarSolicitudRequerimientoService);
 	}
 
+	@RenderMapping(params = "action=verDetalleSolicitud")
+	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {
+		_log.debug("actualizarSolicitud");		
+		return super.verDetalleSolicitud(request, response, model, (RevServiceImpl) evaluarSolicitudRequerimientoService);
+	}
 
 	@ResourceMapping(value = "aprobarSolicitud")
 	public void aprobarSolicitud(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
@@ -119,47 +120,6 @@ public class EvaluarSolicitudRequerimientoController  extends RevController {
 		}
 	}
 
-	@RenderMapping(params = "action=verDetalleSolicitud")
-	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {
-		_log.debug("actualizarSolicitud");
-
-		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-
-		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
-		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
-		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
-			System.out.println(evaluarSolicitudRequerimientoService);
-			SolicitudRequerimientoBean solicitudReclutamiento = evaluarSolicitudRequerimientoService.getSolicitudRequerimiento(solicitudRequerimientoId);
-			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
-			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
-		}
-
-		List<PuestoBean> listaPuestoBeans = evaluarSolicitudRequerimientoService.getListaPuestos(td.getSiteGroup().getGroupId(), null);
-		model.addAttribute("listaPuestoBeans", listaPuestoBeans);
-
-		List<UsuarioBean> listaUsuarioBeans = evaluarSolicitudRequerimientoService.getListaResponsable(td.getCompanyId(), td.getCompanyGroupId());
-		model.addAttribute("listaUsuarioBeans", listaUsuarioBeans);
-
-		List<ParametroBean> listaTiempoContrato = evaluarSolicitudRequerimientoService.getTiempoContrato();
-		model.addAttribute("listaTiempoContrato", listaTiempoContrato);
-
-		List<ParametroBean> listaTipoNegocio = evaluarSolicitudRequerimientoService.getTipoNegocio();
-		model.addAttribute("listaTipoNegocio", listaTipoNegocio);
-
-		List<ParametroBean> listaClientes = evaluarSolicitudRequerimientoService.getClientes();
-		model.addAttribute("listaClientes", listaClientes);
-
-		List<ParametroBean> listaAreas = evaluarSolicitudRequerimientoService.getAreas();
-		model.addAttribute("listaAreas", listaAreas);
-
-		List<ParametroBean> listaNiveles = evaluarSolicitudRequerimientoService.getListaNiveles();
-		model.addAttribute("listaNiveles", listaNiveles);
-
-		List<ParametroBean> listaTipoRequisito = evaluarSolicitudRequerimientoService.getListaTipoRequisito();
-		model.addAttribute("listaTipoRequisito", listaTipoRequisito);
-
-		return "detalleSolicitud";
-	}
 	
 }
  

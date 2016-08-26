@@ -45,9 +45,9 @@
 			<finder-column name="estado" />
 		</finder>
 	</entity>
-	
-	
-	
+
+
+
 	<entity name="FichaIngreso" table="FichaIngreso" local-service="true" remote-service="true">
 		<column name="fichaingresoId" type="long" primary="true" id-type="increment" />
 		<column name="solicitudRequerimientoId" type="long" primary="true" />
@@ -271,10 +271,10 @@
 			<order-column name="fechamodifica" />
 		</order>
 
-		<finder name="By_S" return-type="Collection" where="activo=true">
+		<finder name="S" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 		</finder>
-		<finder name="By_S_U" return-type="Collection" where="activo=true">
+		<finder name="S_U" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 			<finder-column name="usuarioId" />
 		</finder>
@@ -307,12 +307,12 @@
 			<order-column name="fechamodifica" />
 		</order>
 
-		<finder name="By_S_F_U" return-type="Collection" where="activo=true">
+		<finder name="S_F_U" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 			<finder-column name="fasePostulacionId" />
 			<finder-column name="usuarioId" />
 		</finder>
-		<finder name="By_S_LF" return-type="Collection" where="activo=true">
+		<finder name="S_LF" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 			<finder-column name="fasePostulacionId" />
 		</finder>
@@ -486,11 +486,16 @@
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
 		<column name="fechamodifica" type="Date" />
-
+		
 
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		
+		<finder name="R_T" return-type="Observaciones" where="activo=true">
+			<finder-column name="tabla" />
+			<finder-column name="registroId" />
+		</finder>
 	</entity>
 
 	<entity name="SolicitudEvaluacionDesempenno" table="SolicitudEvaluacionDesempenno" local-service="true" remote-service="true">
@@ -554,7 +559,7 @@
 
 	<entity name="ActividadCronograma" table="ActividadCronograma" local-service="true" remote-service="true">
 		<column name="cronogramaId" type="long" primary="true" />
-		<column name="actividadCronogramaId" type="long" primary="true"  id-type="increment"  />
+		<column name="actividadCronogramaId" type="long" primary="true" id-type="increment" />
 		<column name="descripcion" type="String" />
 		<column name="fechaInicio" type="Date" />
 		<column name="fechaFin" type="Date" />
@@ -569,7 +574,7 @@
 		<column name="aprobadoLider" type="long" />
 		<column name="usuarioGerenteId" type="long" />
 		<column name="usuarioLiderId" type="long" />
-		
+
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -583,7 +588,7 @@
 
 	<entity name="ActividadPlan" table="ActividadPlan" local-service="true" remote-service="true">
 		<column name="actividadCronogramaId" type="long" primary="true" />
-		<column name="actividadPlanId" type="long" primary="true"  id-type="increment" />
+		<column name="actividadPlanId" type="long" primary="true" id-type="increment" />
 		<column name="planAccionId" type="long" />
 		<column name="actividad" type="String" />
 		<column name="evidencia" type="String" />
@@ -602,9 +607,9 @@
 
 	<entity name="RegistrarActividadPlanUsuario" table="RegisitrarActividadPlanUsuario" local-service="true" remote-service="true">
 		<column name="actividadPlanId" type="long" primary="true" />
-		<column name="regisitrarActividadPlanUsuariocoId" type="long" primary="true"  id-type="increment" />
+		<column name="regisitrarActividadPlanUsuariocoId" type="long" primary="true" id-type="increment" />
 		<column name="usuarioId" type="long" />
-		
+
 		<column name="cumplio" type="long" />
 		<column name="actividad" type="String" />
 

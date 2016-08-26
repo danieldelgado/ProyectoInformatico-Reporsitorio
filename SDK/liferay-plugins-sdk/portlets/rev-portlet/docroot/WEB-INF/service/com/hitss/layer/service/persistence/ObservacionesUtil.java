@@ -111,6 +111,79 @@ public class ObservacionesUtil {
 	}
 
 	/**
+	* Returns the observaciones where tabla = &#63; and registroId = &#63; or throws a {@link com.hitss.layer.NoSuchObservacionesException} if it could not be found.
+	*
+	* @param tabla the tabla
+	* @param registroId the registro ID
+	* @return the matching observaciones
+	* @throws com.hitss.layer.NoSuchObservacionesException if a matching observaciones could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Observaciones findByR_T(
+		java.lang.String tabla, long registroId)
+		throws com.hitss.layer.NoSuchObservacionesException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByR_T(tabla, registroId);
+	}
+
+	/**
+	* Returns the observaciones where tabla = &#63; and registroId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param tabla the tabla
+	* @param registroId the registro ID
+	* @return the matching observaciones, or <code>null</code> if a matching observaciones could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Observaciones fetchByR_T(
+		java.lang.String tabla, long registroId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByR_T(tabla, registroId);
+	}
+
+	/**
+	* Returns the observaciones where tabla = &#63; and registroId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param tabla the tabla
+	* @param registroId the registro ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching observaciones, or <code>null</code> if a matching observaciones could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Observaciones fetchByR_T(
+		java.lang.String tabla, long registroId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByR_T(tabla, registroId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the observaciones where tabla = &#63; and registroId = &#63; from the database.
+	*
+	* @param tabla the tabla
+	* @param registroId the registro ID
+	* @return the observaciones that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Observaciones removeByR_T(
+		java.lang.String tabla, long registroId)
+		throws com.hitss.layer.NoSuchObservacionesException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByR_T(tabla, registroId);
+	}
+
+	/**
+	* Returns the number of observacioneses where tabla = &#63; and registroId = &#63;.
+	*
+	* @param tabla the tabla
+	* @param registroId the registro ID
+	* @return the number of matching observacioneses
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_T(java.lang.String tabla, long registroId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByR_T(tabla, registroId);
+	}
+
+	/**
 	* Caches the observaciones in the entity cache if it is enabled.
 	*
 	* @param observaciones the observaciones

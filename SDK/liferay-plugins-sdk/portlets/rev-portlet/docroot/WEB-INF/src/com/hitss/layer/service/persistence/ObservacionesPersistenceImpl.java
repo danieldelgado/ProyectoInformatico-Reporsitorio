@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,8 +36,10 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -82,6 +85,276 @@ public class ObservacionesPersistenceImpl extends BasePersistenceImpl<Observacio
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(ObservacionesModelImpl.ENTITY_CACHE_ENABLED,
 			ObservacionesModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_R_T = new FinderPath(ObservacionesModelImpl.ENTITY_CACHE_ENABLED,
+			ObservacionesModelImpl.FINDER_CACHE_ENABLED,
+			ObservacionesImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByR_T",
+			new String[] { String.class.getName(), Long.class.getName() },
+			ObservacionesModelImpl.TABLA_COLUMN_BITMASK |
+			ObservacionesModelImpl.REGISTROID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_R_T = new FinderPath(ObservacionesModelImpl.ENTITY_CACHE_ENABLED,
+			ObservacionesModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_T",
+			new String[] { String.class.getName(), Long.class.getName() });
+
+	/**
+	 * Returns the observaciones where tabla = &#63; and registroId = &#63; or throws a {@link com.hitss.layer.NoSuchObservacionesException} if it could not be found.
+	 *
+	 * @param tabla the tabla
+	 * @param registroId the registro ID
+	 * @return the matching observaciones
+	 * @throws com.hitss.layer.NoSuchObservacionesException if a matching observaciones could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Observaciones findByR_T(String tabla, long registroId)
+		throws NoSuchObservacionesException, SystemException {
+		Observaciones observaciones = fetchByR_T(tabla, registroId);
+
+		if (observaciones == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("tabla=");
+			msg.append(tabla);
+
+			msg.append(", registroId=");
+			msg.append(registroId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchObservacionesException(msg.toString());
+		}
+
+		return observaciones;
+	}
+
+	/**
+	 * Returns the observaciones where tabla = &#63; and registroId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param tabla the tabla
+	 * @param registroId the registro ID
+	 * @return the matching observaciones, or <code>null</code> if a matching observaciones could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Observaciones fetchByR_T(String tabla, long registroId)
+		throws SystemException {
+		return fetchByR_T(tabla, registroId, true);
+	}
+
+	/**
+	 * Returns the observaciones where tabla = &#63; and registroId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param tabla the tabla
+	 * @param registroId the registro ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching observaciones, or <code>null</code> if a matching observaciones could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Observaciones fetchByR_T(String tabla, long registroId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { tabla, registroId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_R_T,
+					finderArgs, this);
+		}
+
+		if (result instanceof Observaciones) {
+			Observaciones observaciones = (Observaciones)result;
+
+			if (!Validator.equals(tabla, observaciones.getTabla()) ||
+					(registroId != observaciones.getRegistroId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_OBSERVACIONES_WHERE);
+
+			boolean bindTabla = false;
+
+			if (tabla == null) {
+				query.append(_FINDER_COLUMN_R_T_TABLA_1);
+			}
+			else if (tabla.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_R_T_TABLA_3);
+			}
+			else {
+				bindTabla = true;
+
+				query.append(_FINDER_COLUMN_R_T_TABLA_2);
+			}
+
+			query.append(_FINDER_COLUMN_R_T_REGISTROID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindTabla) {
+					qPos.add(tabla);
+				}
+
+				qPos.add(registroId);
+
+				List<Observaciones> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_T,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"ObservacionesPersistenceImpl.fetchByR_T(String, long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Observaciones observaciones = list.get(0);
+
+					result = observaciones;
+
+					cacheResult(observaciones);
+
+					if ((observaciones.getTabla() == null) ||
+							!observaciones.getTabla().equals(tabla) ||
+							(observaciones.getRegistroId() != registroId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_T,
+							finderArgs, observaciones);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_T,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Observaciones)result;
+		}
+	}
+
+	/**
+	 * Removes the observaciones where tabla = &#63; and registroId = &#63; from the database.
+	 *
+	 * @param tabla the tabla
+	 * @param registroId the registro ID
+	 * @return the observaciones that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Observaciones removeByR_T(String tabla, long registroId)
+		throws NoSuchObservacionesException, SystemException {
+		Observaciones observaciones = findByR_T(tabla, registroId);
+
+		return remove(observaciones);
+	}
+
+	/**
+	 * Returns the number of observacioneses where tabla = &#63; and registroId = &#63;.
+	 *
+	 * @param tabla the tabla
+	 * @param registroId the registro ID
+	 * @return the number of matching observacioneses
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByR_T(String tabla, long registroId)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_R_T;
+
+		Object[] finderArgs = new Object[] { tabla, registroId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_OBSERVACIONES_WHERE);
+
+			boolean bindTabla = false;
+
+			if (tabla == null) {
+				query.append(_FINDER_COLUMN_R_T_TABLA_1);
+			}
+			else if (tabla.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_R_T_TABLA_3);
+			}
+			else {
+				bindTabla = true;
+
+				query.append(_FINDER_COLUMN_R_T_TABLA_2);
+			}
+
+			query.append(_FINDER_COLUMN_R_T_REGISTROID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindTabla) {
+					qPos.add(tabla);
+				}
+
+				qPos.add(registroId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_R_T_TABLA_1 = "observaciones.tabla IS NULL AND ";
+	private static final String _FINDER_COLUMN_R_T_TABLA_2 = "observaciones.tabla = ? AND ";
+	private static final String _FINDER_COLUMN_R_T_TABLA_3 = "(observaciones.tabla IS NULL OR observaciones.tabla = '') AND ";
+	private static final String _FINDER_COLUMN_R_T_REGISTROID_2 = "observaciones.registroId = ? AND observaciones.activo=true";
 
 	public ObservacionesPersistenceImpl() {
 		setModelClass(Observaciones.class);
@@ -96,6 +369,10 @@ public class ObservacionesPersistenceImpl extends BasePersistenceImpl<Observacio
 	public void cacheResult(Observaciones observaciones) {
 		EntityCacheUtil.putResult(ObservacionesModelImpl.ENTITY_CACHE_ENABLED,
 			ObservacionesImpl.class, observaciones.getPrimaryKey(),
+			observaciones);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_T,
+			new Object[] { observaciones.getTabla(), observaciones.getRegistroId() },
 			observaciones);
 
 		observaciones.resetOriginalValues();
@@ -154,6 +431,8 @@ public class ObservacionesPersistenceImpl extends BasePersistenceImpl<Observacio
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(observaciones);
 	}
 
 	@Override
@@ -164,6 +443,58 @@ public class ObservacionesPersistenceImpl extends BasePersistenceImpl<Observacio
 		for (Observaciones observaciones : observacioneses) {
 			EntityCacheUtil.removeResult(ObservacionesModelImpl.ENTITY_CACHE_ENABLED,
 				ObservacionesImpl.class, observaciones.getPrimaryKey());
+
+			clearUniqueFindersCache(observaciones);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(Observaciones observaciones) {
+		if (observaciones.isNew()) {
+			Object[] args = new Object[] {
+					observaciones.getTabla(), observaciones.getRegistroId()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_T, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_T, args,
+				observaciones);
+		}
+		else {
+			ObservacionesModelImpl observacionesModelImpl = (ObservacionesModelImpl)observaciones;
+
+			if ((observacionesModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_R_T.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						observaciones.getTabla(), observaciones.getRegistroId()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_T, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_T, args,
+					observaciones);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(Observaciones observaciones) {
+		ObservacionesModelImpl observacionesModelImpl = (ObservacionesModelImpl)observaciones;
+
+		Object[] args = new Object[] {
+				observaciones.getTabla(), observaciones.getRegistroId()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_T, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_T, args);
+
+		if ((observacionesModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_R_T.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					observacionesModelImpl.getOriginalTabla(),
+					observacionesModelImpl.getOriginalRegistroId()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_T, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_T, args);
 		}
 	}
 
@@ -302,13 +633,16 @@ public class ObservacionesPersistenceImpl extends BasePersistenceImpl<Observacio
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !ObservacionesModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		EntityCacheUtil.putResult(ObservacionesModelImpl.ENTITY_CACHE_ENABLED,
 			ObservacionesImpl.class, observaciones.getPrimaryKey(),
 			observaciones);
+
+		clearUniqueFindersCache(observaciones);
+		cacheUniqueFindersCache(observaciones);
 
 		return observaciones;
 	}
@@ -642,9 +976,12 @@ public class ObservacionesPersistenceImpl extends BasePersistenceImpl<Observacio
 	}
 
 	private static final String _SQL_SELECT_OBSERVACIONES = "SELECT observaciones FROM Observaciones observaciones";
+	private static final String _SQL_SELECT_OBSERVACIONES_WHERE = "SELECT observaciones FROM Observaciones observaciones WHERE ";
 	private static final String _SQL_COUNT_OBSERVACIONES = "SELECT COUNT(observaciones) FROM Observaciones observaciones";
+	private static final String _SQL_COUNT_OBSERVACIONES_WHERE = "SELECT COUNT(observaciones) FROM Observaciones observaciones WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "observaciones.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Observaciones exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Observaciones exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(ObservacionesPersistenceImpl.class);

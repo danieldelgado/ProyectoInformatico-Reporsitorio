@@ -113,6 +113,10 @@ public class ObservacionesLocalServiceClpInvoker {
 		_methodName211 = "setBeanIdentifier";
 
 		_methodParameterTypes211 = new String[] { "java.lang.String" };
+
+		_methodName216 = "getObservacion";
+
+		_methodParameterTypes216 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +220,12 @@ public class ObservacionesLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName216.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes216, parameterTypes)) {
+			return ObservacionesLocalServiceUtil.getObservacion(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +265,6 @@ public class ObservacionesLocalServiceClpInvoker {
 	private String[] _methodParameterTypes210;
 	private String _methodName211;
 	private String[] _methodParameterTypes211;
+	private String _methodName216;
+	private String[] _methodParameterTypes216;
 }

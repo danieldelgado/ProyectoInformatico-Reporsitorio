@@ -275,6 +275,13 @@ public class ObservacionesLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.hitss.layer.model.Observaciones getObservacion(
+		long registroId, java.lang.String tabla)
+		throws com.hitss.layer.NoSuchObservacionesException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getObservacion(registroId, tabla);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

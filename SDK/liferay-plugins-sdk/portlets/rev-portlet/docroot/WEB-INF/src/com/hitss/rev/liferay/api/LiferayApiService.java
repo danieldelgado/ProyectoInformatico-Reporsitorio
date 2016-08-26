@@ -1,6 +1,9 @@
 package com.hitss.rev.liferay.api;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.hitss.rev.bean.ComboBean;
 import com.liferay.portal.model.User;
@@ -14,6 +17,8 @@ public interface LiferayApiService {
 	ComboBean getCategoria(long idcategoria);
 	AssetTag getTagByName(String name);
 	AssetTag nuevaEtiqueta(String requisito, User user);
+	String registrarPublicacionContenido(long userId, long groupId,long solicitudRequerimientoId,  String proyecto , long categoriaPuestoId, String especialidad, long tiempoContrato, long tipoNegocio, long prioridad,
+			Date fechaLimite, long presupuestoMaximo, long presupuestoMinimo, long cliente, String descripcion, HttpServletRequest request);
 
 //	List<User> listarPostu
 	

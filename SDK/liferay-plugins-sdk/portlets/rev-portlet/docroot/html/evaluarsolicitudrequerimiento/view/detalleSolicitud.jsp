@@ -62,7 +62,8 @@
 		<div class="contenedorAlerta"></div>
 		<div class="offset1 span10">
 			<form id="<portlet:namespace/>actualizarSolicitud" name="<portlet:namespace/>actualizarSolicitud" class="formulario">
-				<input id="<portlet:namespace/>solicitudRequerimientoId" name="<portlet:namespace/>solicitudRequerimientoId" type="hidden" value="${solicitudReclutamiento.solicitudRequerimientoId }" />
+				<input id="<portlet:namespace/>solicitudRequerimientoId" name="<portlet:namespace/>solicitudRequerimientoId" type="hidden"
+					value="${solicitudReclutamiento.solicitudRequerimientoId }" />
 				<div class="row-fluid">
 					<div class="span5">
 						<div class="control-group">
@@ -88,7 +89,8 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<input class="span12" id="<portlet:namespace/>cantidadRecursos" name="<portlet:namespace/>cantidadRecursos" type="text" value="${solicitudReclutamiento.cantidadRecursos}"  disabled="disabled"/>
+									<input class="span12" id="<portlet:namespace/>cantidadRecursos" name="<portlet:namespace/>cantidadRecursos" type="text"
+										value="${solicitudReclutamiento.cantidadRecursos}" disabled="disabled" />
 								</div>
 							</div>
 						</div>
@@ -116,9 +118,9 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${solicitudReclutamiento.strfechaLimite}" id="<portlet:namespace/>fechaLimite"
-										name="<portlet:namespace/>fechaLimite" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;"  disabled="disabled"/> <input id="<portlet:namespace/>fechaLimiteVal"
-										name="<portlet:namespace/>fechaLimiteVal" type="hidden" value="${solicitudReclutamiento.strfechaLimite}" />
+									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${solicitudReclutamiento.strfechaLimite}"
+										id="<portlet:namespace/>fechaLimite" name="<portlet:namespace/>fechaLimite" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;" disabled="disabled" />
+									<input id="<portlet:namespace/>fechaLimiteVal" name="<portlet:namespace/>fechaLimiteVal" type="hidden" value="${solicitudReclutamiento.strfechaLimite}" />
 								</div>
 							</div>
 						</div>
@@ -129,7 +131,8 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<input class="span12" id="<portlet:namespace/>proyecto" name="<portlet:namespace/>proyecto" type="text" value="${solicitudReclutamiento.proyecto}"  disabled="disabled"/>
+									<input class="span12" id="<portlet:namespace/>proyecto" name="<portlet:namespace/>proyecto" type="text" value="${solicitudReclutamiento.proyecto}"
+										disabled="disabled" />
 								</div>
 							</div>
 						</div>
@@ -206,18 +209,32 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<input class="span12" id="<portlet:namespace/>especialidad" name="<portlet:namespace/>especialidad" type="text" value="${solicitudReclutamiento.especialidad}"  disabled="disabled"/>
+									<input class="span12" id="<portlet:namespace/>especialidad" name="<portlet:namespace/>especialidad" type="text" value="${solicitudReclutamiento.especialidad}"
+										disabled="disabled" />
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<c:if test="${ not empty  solicitudReclutamiento.observacionBean }">
+					<div class="span12 alert alert-error">
+						<div class="span12">
+							<label> <liferay-ui:message key="actualizarreclutamiento.form.observacion" />:
+							</label>
+						</div>
+						<div class="span12">
+							<div class="input-prepend">
+								<div>${solicitudReclutamiento.observacionBean.descripcion}</div>
+							</div>
+						</div>
+					</div>
+				</c:if>
 				<div class="row">
 					<fieldset>
 						<legend> Lista de requisitos </legend>
 					</fieldset>
 					<div class="container-fluid">
-						<div>						
+						<div>
 							<div id="">
 								<table class="table table-hover table-bordered">
 									<thead>
@@ -238,7 +255,7 @@
 				</div>
 				<div class="row">
 					<div class="offset5 span2">
-						<aui:button-row>							
+						<aui:button-row>
 							<a class="btn btn-primary" href="${regresar}"> <liferay-ui:message key="general.form.opciones.salir" />
 							</a>
 						</aui:button-row>

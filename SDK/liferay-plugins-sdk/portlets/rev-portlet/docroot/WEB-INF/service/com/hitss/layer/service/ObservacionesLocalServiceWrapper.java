@@ -288,6 +288,14 @@ public class ObservacionesLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
+	public com.hitss.layer.model.Observaciones getObservacion(long registroId,
+		java.lang.String tabla)
+		throws com.hitss.layer.NoSuchObservacionesException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _observacionesLocalService.getObservacion(registroId, tabla);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

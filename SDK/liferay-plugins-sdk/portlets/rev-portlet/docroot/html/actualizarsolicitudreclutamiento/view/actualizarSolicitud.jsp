@@ -61,7 +61,8 @@
 		<div class="contenedorAlerta"></div>
 		<div class="offset1 span10">
 			<form id="<portlet:namespace/>actualizarSolicitud" name="<portlet:namespace/>actualizarSolicitud" class="formulario">
-				<input id="<portlet:namespace/>solicitudRequerimientoId" name="<portlet:namespace/>solicitudRequerimientoId" type="hidden" value="${solicitudReclutamiento.solicitudRequerimientoId }" />
+				<input id="<portlet:namespace/>solicitudRequerimientoId" name="<portlet:namespace/>solicitudRequerimientoId" type="hidden"
+					value="${solicitudReclutamiento.solicitudRequerimientoId }" />
 				<div class="row-fluid">
 					<div class="span5">
 						<div class="control-group">
@@ -87,7 +88,8 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<input class="span12" id="<portlet:namespace/>cantidadRecursos" name="<portlet:namespace/>cantidadRecursos" type="text" value="${solicitudReclutamiento.cantidadRecursos}" />
+									<input class="span12" id="<portlet:namespace/>cantidadRecursos" name="<portlet:namespace/>cantidadRecursos" type="text"
+										value="${solicitudReclutamiento.cantidadRecursos}" />
 								</div>
 							</div>
 						</div>
@@ -115,9 +117,9 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${solicitudReclutamiento.strfechaLimite}" id="<portlet:namespace/>fechaLimite"
-										name="<portlet:namespace/>fechaLimite" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;" /> <input id="<portlet:namespace/>fechaLimiteVal"
-										name="<portlet:namespace/>fechaLimiteVal" type="hidden" value="${solicitudReclutamiento.strfechaLimite}" />
+									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${solicitudReclutamiento.strfechaLimite}"
+										id="<portlet:namespace/>fechaLimite" name="<portlet:namespace/>fechaLimite" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;" /> <input
+										id="<portlet:namespace/>fechaLimiteVal" name="<portlet:namespace/>fechaLimiteVal" type="hidden" value="${solicitudReclutamiento.strfechaLimite}" />
 								</div>
 							</div>
 						</div>
@@ -210,6 +212,20 @@
 							</div>
 						</div>
 					</div>
+
+					<c:if test="${ not empty  solicitudReclutamiento.observacionBean }">
+						<div class="span12 alert alert-error">
+							<div class="span12">
+								<label> <liferay-ui:message key="actualizarreclutamiento.form.observacion" />:
+								</label>
+							</div>
+							<div class="span12">
+								<div class="input-prepend">
+									<div>${solicitudReclutamiento.observacionBean.descripcion}</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
 				</div>
 				<div class="row">
 					<fieldset>

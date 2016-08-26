@@ -22,7 +22,6 @@ import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.service.EvaluarFichaIngresoService;
-import com.hitss.rev.service.EvaluarSolicitudRequerimientoService;
 import com.hitss.rev.service.impl.EvaluarSolicitudRequerimientoServiceImpl;
 import com.hitss.rev.util.JsonUtil;
 import com.liferay.portal.kernel.log.Log;

@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 
 import com.hitss.layer.model.SolicitudRequerimiento;
@@ -28,13 +30,15 @@ public class PublicarOfertaServiceImpl  extends RevServiceImpl implements Public
 	
 	@Override
 	public Map<String, Object> publicarOfertaLaboral(
-			Long solicitudRequerimientoId, String descripcion, User user, boolean publicar ) {
+			Long solicitudRequerimientoId, String descripcion, User user, boolean publicar , HttpServletRequest request) {
 		SolicitudRequerimientoBean solicitudRequerimientoBean = new SolicitudRequerimientoBean();	
 		Map<String, Object> result = new HashMap<String, Object>();	
 		try {
 			SolicitudRequerimiento sr = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudRequerimientoId);
-			if(publicar){
-				sr.setDescripcionPublicacion(descripcion);
+			if(publicar){				
+				String articuleId = liferayContentService.registrarPublicacionContenido(user.getUserId(),user.getGroupId(),sr.getSolicitudRequerimientoId(),sr.getProyecto(),sr.getCategoriaPuestoId(),sr.getEspecialidad(),sr.getTiempoContrato(),sr.getTipoNegocio(),sr.getPrioridad(),sr.getFechaLimite(),sr.getPresupuestoMaximo(),sr.getPresupuestoMinimo(),sr.getCliente(),descripcion, request);
+				_log.info(articuleId);
+				sr.setDescripcionPublicacion(articuleId);
 				sr.setEstado(Constantes.PARAMETRO_PUBLICADO);
 				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("publicar.oferta.mensaje.publicar"), String.valueOf(sr.getSolicitudRequerimientoId())));
 			}else{
@@ -44,7 +48,7 @@ public class PublicarOfertaServiceImpl  extends RevServiceImpl implements Public
 			sr.setFechamodifica(new Date());
 			sr.setUsuariomodifica(user.getUserId());
 			sr.setNew(false);
-			SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sr);
+//			SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sr);
 			solicitudRequerimientoBean = getSolicitudRequerimiento(solicitudRequerimientoId);
 			result.put("objeto", solicitudRequerimientoBean);
 			result.put("respuesta", Constantes.TRANSACCION_OK);

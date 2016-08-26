@@ -88,7 +88,12 @@ public class ObservacionesModelImpl extends BaseModelImpl<Observaciones>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.Observaciones"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.Observaciones"),
+			true);
+	public static long REGISTROID_COLUMN_BITMASK = 1L;
+	public static long TABLA_COLUMN_BITMASK = 2L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -286,7 +291,17 @@ public class ObservacionesModelImpl extends BaseModelImpl<Observaciones>
 
 	@Override
 	public void setTabla(String tabla) {
+		_columnBitmask |= TABLA_COLUMN_BITMASK;
+
+		if (_originalTabla == null) {
+			_originalTabla = _tabla;
+		}
+
 		_tabla = tabla;
+	}
+
+	public String getOriginalTabla() {
+		return GetterUtil.getString(_originalTabla);
 	}
 
 	@JSON
@@ -297,7 +312,19 @@ public class ObservacionesModelImpl extends BaseModelImpl<Observaciones>
 
 	@Override
 	public void setRegistroId(long registroId) {
+		_columnBitmask |= REGISTROID_COLUMN_BITMASK;
+
+		if (!_setOriginalRegistroId) {
+			_setOriginalRegistroId = true;
+
+			_originalRegistroId = _registroId;
+		}
+
 		_registroId = registroId;
+	}
+
+	public long getOriginalRegistroId() {
+		return _originalRegistroId;
 	}
 
 	@JSON
@@ -357,7 +384,13 @@ public class ObservacionesModelImpl extends BaseModelImpl<Observaciones>
 
 	@Override
 	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
 		_fechamodifica = fechamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -445,6 +478,15 @@ public class ObservacionesModelImpl extends BaseModelImpl<Observaciones>
 
 	@Override
 	public void resetOriginalValues() {
+		ObservacionesModelImpl observacionesModelImpl = this;
+
+		observacionesModelImpl._originalTabla = observacionesModelImpl._tabla;
+
+		observacionesModelImpl._originalRegistroId = observacionesModelImpl._registroId;
+
+		observacionesModelImpl._setOriginalRegistroId = false;
+
+		observacionesModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -582,11 +624,15 @@ public class ObservacionesModelImpl extends BaseModelImpl<Observaciones>
 	private long _observacionId;
 	private String _descripcion;
 	private String _tabla;
+	private String _originalTabla;
 	private long _registroId;
+	private long _originalRegistroId;
+	private boolean _setOriginalRegistroId;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private Observaciones _escapedModel;
 }

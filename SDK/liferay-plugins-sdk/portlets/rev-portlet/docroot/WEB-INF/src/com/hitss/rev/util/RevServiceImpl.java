@@ -13,12 +13,14 @@ import com.hitss.layer.model.SolicitudRequerimiento;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.UsuarioLocalServiceUtil;
 import com.hitss.rev.bean.ComboBean;
+import com.hitss.rev.bean.ObservacionBean;
 import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.RequisitoEtiquetaBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.liferay.api.LiferayApiService;
+import com.hitss.rev.service.ObservacionService;
 import com.hitss.rev.service.ParametroService;
 import com.hitss.rev.service.SolicitudRequerimientoRequisitoService;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -41,6 +43,9 @@ public abstract class RevServiceImpl {
 
 	@Autowired
 	protected LiferayApiService liferayContentService;
+	
+	@Autowired
+	protected ObservacionService observacionService;
 
 	public List<ParametroBean> getTiempoContrato() {
 		List<ParametroBean> listaTiempoContrato = parametroService.getListaParametroGrupo(Constantes.PARAMETRO_PADRE_TIEMPO_CONTRATO);
@@ -200,6 +205,10 @@ public abstract class RevServiceImpl {
 			
 			solicitudRequerimientoBean.setRequisitoEtiquetaBeans(listaSolicitudRequerimientoRequisitosExitentes);
 			
+			if(sr.getEstado() == Constantes.PARAMETRO_OBSERVADO){
+				ObservacionBean observacionBean = observacionService.getObservacion(solicitudRequerimientoId, SolicitudRequerimiento.class.getName());
+				solicitudRequerimientoBean.setObservacionBean(observacionBean);
+			}
 			
 			return solicitudRequerimientoBean;
 

@@ -3,6 +3,8 @@ create index IX_26884404 on FasePostulacion (solicitudRequerimientoId, fasePostu
 
 create index IX_AC085D73 on Funcion (descripcion);
 
+create index IX_21DC64CB on Observaciones (tabla, registroId);
+
 create index IX_E0052BA5 on Parametro (parametroIdpadre);
 create index IX_9CDF672F on Parametro (parametroIdpadre, valor);
 

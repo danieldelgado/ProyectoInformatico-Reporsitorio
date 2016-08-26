@@ -256,17 +256,10 @@ function publicarOfertaLaboral(){
 		
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
-
-	
-	var editor_descripcion = $("#cke_" + inputFristnamespace + "editor");
-	
-		
-	var descripcion = $("#" + inputFristnamespace + "descripcion");
-	
-	$(descripcion).val(  $(editor_descripcion).text() );
-	
-	
+	var editor_descripcion = window[inputFristnamespace + "extractCodeFromEditor"]("");
+//	console.log(encodeURIComponent(editor_descripcion));
 	var dataSend = $(formPublicarOferta).serialize();
+	dataSend=dataSend + "&editor_descripcion="+editor_descripcion;	
 	
 	$.ajax({
 		type : "POST",

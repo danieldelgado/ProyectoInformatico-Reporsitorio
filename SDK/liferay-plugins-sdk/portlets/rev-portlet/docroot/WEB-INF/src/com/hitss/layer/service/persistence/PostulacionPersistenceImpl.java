@@ -82,24 +82,24 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_BY_S = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_S = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, PostulacionImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByBy_S",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByS",
 			new String[] {
 				Long.class.getName(),
 				
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, PostulacionImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByBy_S",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByS",
 			new String[] { Long.class.getName() },
 			PostulacionModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
 			PostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_BY_S = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_S = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByS",
 			new String[] { Long.class.getName() });
 
 	/**
@@ -110,9 +110,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Postulacion> findByBy_S(long solicitudRequerimientoId)
+	public List<Postulacion> findByS(long solicitudRequerimientoId)
 		throws SystemException {
-		return findByBy_S(solicitudRequerimientoId, QueryUtil.ALL_POS,
+		return findByS(solicitudRequerimientoId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
@@ -130,9 +130,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Postulacion> findByBy_S(long solicitudRequerimientoId,
-		int start, int end) throws SystemException {
-		return findByBy_S(solicitudRequerimientoId, start, end, null);
+	public List<Postulacion> findByS(long solicitudRequerimientoId, int start,
+		int end) throws SystemException {
+		return findByS(solicitudRequerimientoId, start, end, null);
 	}
 
 	/**
@@ -150,9 +150,8 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Postulacion> findByBy_S(long solicitudRequerimientoId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	public List<Postulacion> findByS(long solicitudRequerimientoId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -160,11 +159,11 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S;
 			finderArgs = new Object[] { solicitudRequerimientoId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_BY_S;
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_S;
 			finderArgs = new Object[] {
 					solicitudRequerimientoId,
 					
@@ -198,7 +197,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 			query.append(_SQL_SELECT_POSTULACION_WHERE);
 
-			query.append(_FINDER_COLUMN_BY_S_SOLICITUDREQUERIMIENTOID_2);
+			query.append(_FINDER_COLUMN_S_SOLICITUDREQUERIMIENTOID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -262,10 +261,10 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion findByBy_S_First(long solicitudRequerimientoId,
+	public Postulacion findByS_First(long solicitudRequerimientoId,
 		OrderByComparator orderByComparator)
 		throws NoSuchPostulacionException, SystemException {
-		Postulacion postulacion = fetchByBy_S_First(solicitudRequerimientoId,
+		Postulacion postulacion = fetchByS_First(solicitudRequerimientoId,
 				orderByComparator);
 
 		if (postulacion != null) {
@@ -293,9 +292,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion fetchByBy_S_First(long solicitudRequerimientoId,
+	public Postulacion fetchByS_First(long solicitudRequerimientoId,
 		OrderByComparator orderByComparator) throws SystemException {
-		List<Postulacion> list = findByBy_S(solicitudRequerimientoId, 0, 1,
+		List<Postulacion> list = findByS(solicitudRequerimientoId, 0, 1,
 				orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -315,10 +314,10 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion findByBy_S_Last(long solicitudRequerimientoId,
+	public Postulacion findByS_Last(long solicitudRequerimientoId,
 		OrderByComparator orderByComparator)
 		throws NoSuchPostulacionException, SystemException {
-		Postulacion postulacion = fetchByBy_S_Last(solicitudRequerimientoId,
+		Postulacion postulacion = fetchByS_Last(solicitudRequerimientoId,
 				orderByComparator);
 
 		if (postulacion != null) {
@@ -346,16 +345,16 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion fetchByBy_S_Last(long solicitudRequerimientoId,
+	public Postulacion fetchByS_Last(long solicitudRequerimientoId,
 		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByBy_S(solicitudRequerimientoId);
+		int count = countByS(solicitudRequerimientoId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<Postulacion> list = findByBy_S(solicitudRequerimientoId,
-				count - 1, count, orderByComparator);
+		List<Postulacion> list = findByS(solicitudRequerimientoId, count - 1,
+				count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -375,7 +374,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion[] findByBy_S_PrevAndNext(PostulacionPK postulacionPK,
+	public Postulacion[] findByS_PrevAndNext(PostulacionPK postulacionPK,
 		long solicitudRequerimientoId, OrderByComparator orderByComparator)
 		throws NoSuchPostulacionException, SystemException {
 		Postulacion postulacion = findByPrimaryKey(postulacionPK);
@@ -387,12 +386,12 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 			Postulacion[] array = new PostulacionImpl[3];
 
-			array[0] = getByBy_S_PrevAndNext(session, postulacion,
+			array[0] = getByS_PrevAndNext(session, postulacion,
 					solicitudRequerimientoId, orderByComparator, true);
 
 			array[1] = postulacion;
 
-			array[2] = getByBy_S_PrevAndNext(session, postulacion,
+			array[2] = getByS_PrevAndNext(session, postulacion,
 					solicitudRequerimientoId, orderByComparator, false);
 
 			return array;
@@ -405,7 +404,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		}
 	}
 
-	protected Postulacion getByBy_S_PrevAndNext(Session session,
+	protected Postulacion getByS_PrevAndNext(Session session,
 		Postulacion postulacion, long solicitudRequerimientoId,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
@@ -420,7 +419,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 		query.append(_SQL_SELECT_POSTULACION_WHERE);
 
-		query.append(_FINDER_COLUMN_BY_S_SOLICITUDREQUERIMIENTOID_2);
+		query.append(_FINDER_COLUMN_S_SOLICITUDREQUERIMIENTOID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -517,9 +516,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByBy_S(long solicitudRequerimientoId)
+	public void removeByS(long solicitudRequerimientoId)
 		throws SystemException {
-		for (Postulacion postulacion : findByBy_S(solicitudRequerimientoId,
+		for (Postulacion postulacion : findByS(solicitudRequerimientoId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(postulacion);
 		}
@@ -533,9 +532,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByBy_S(long solicitudRequerimientoId)
+	public int countByS(long solicitudRequerimientoId)
 		throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_BY_S;
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_S;
 
 		Object[] finderArgs = new Object[] { solicitudRequerimientoId };
 
@@ -547,7 +546,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 			query.append(_SQL_COUNT_POSTULACION_WHERE);
 
-			query.append(_FINDER_COLUMN_BY_S_SOLICITUDREQUERIMIENTOID_2);
+			query.append(_FINDER_COLUMN_S_SOLICITUDREQUERIMIENTOID_2);
 
 			String sql = query.toString();
 
@@ -579,27 +578,26 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_BY_S_SOLICITUDREQUERIMIENTOID_2 = "postulacion.id.solicitudRequerimientoId = ? AND postulacion.activo=true";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_BY_S_U = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
+	private static final String _FINDER_COLUMN_S_SOLICITUDREQUERIMIENTOID_2 = "postulacion.id.solicitudRequerimientoId = ? AND postulacion.activo=true";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_S_U = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, PostulacionImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByBy_S_U",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByS_U",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S_U =
-		new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S_U = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, PostulacionImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByBy_S_U",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByS_U",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			PostulacionModelImpl.SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK |
 			PostulacionModelImpl.USUARIOID_COLUMN_BITMASK |
 			PostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_BY_S_U = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_S_U = new FinderPath(PostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			PostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBy_S_U",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByS_U",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
@@ -611,9 +609,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Postulacion> findByBy_S_U(long solicitudRequerimientoId,
+	public List<Postulacion> findByS_U(long solicitudRequerimientoId,
 		long usuarioId) throws SystemException {
-		return findByBy_S_U(solicitudRequerimientoId, usuarioId,
+		return findByS_U(solicitudRequerimientoId, usuarioId,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -632,10 +630,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Postulacion> findByBy_S_U(long solicitudRequerimientoId,
+	public List<Postulacion> findByS_U(long solicitudRequerimientoId,
 		long usuarioId, int start, int end) throws SystemException {
-		return findByBy_S_U(solicitudRequerimientoId, usuarioId, start, end,
-			null);
+		return findByS_U(solicitudRequerimientoId, usuarioId, start, end, null);
 	}
 
 	/**
@@ -654,7 +651,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Postulacion> findByBy_S_U(long solicitudRequerimientoId,
+	public List<Postulacion> findByS_U(long solicitudRequerimientoId,
 		long usuarioId, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		boolean pagination = true;
@@ -664,11 +661,11 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S_U;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S_U;
 			finderArgs = new Object[] { solicitudRequerimientoId, usuarioId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_BY_S_U;
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_S_U;
 			finderArgs = new Object[] {
 					solicitudRequerimientoId, usuarioId,
 					
@@ -703,9 +700,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 			query.append(_SQL_SELECT_POSTULACION_WHERE);
 
-			query.append(_FINDER_COLUMN_BY_S_U_SOLICITUDREQUERIMIENTOID_2);
+			query.append(_FINDER_COLUMN_S_U_SOLICITUDREQUERIMIENTOID_2);
 
-			query.append(_FINDER_COLUMN_BY_S_U_USUARIOID_2);
+			query.append(_FINDER_COLUMN_S_U_USUARIOID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -772,10 +769,10 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion findByBy_S_U_First(long solicitudRequerimientoId,
+	public Postulacion findByS_U_First(long solicitudRequerimientoId,
 		long usuarioId, OrderByComparator orderByComparator)
 		throws NoSuchPostulacionException, SystemException {
-		Postulacion postulacion = fetchByBy_S_U_First(solicitudRequerimientoId,
+		Postulacion postulacion = fetchByS_U_First(solicitudRequerimientoId,
 				usuarioId, orderByComparator);
 
 		if (postulacion != null) {
@@ -807,11 +804,11 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion fetchByBy_S_U_First(long solicitudRequerimientoId,
+	public Postulacion fetchByS_U_First(long solicitudRequerimientoId,
 		long usuarioId, OrderByComparator orderByComparator)
 		throws SystemException {
-		List<Postulacion> list = findByBy_S_U(solicitudRequerimientoId,
-				usuarioId, 0, 1, orderByComparator);
+		List<Postulacion> list = findByS_U(solicitudRequerimientoId, usuarioId,
+				0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -831,10 +828,10 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion findByBy_S_U_Last(long solicitudRequerimientoId,
+	public Postulacion findByS_U_Last(long solicitudRequerimientoId,
 		long usuarioId, OrderByComparator orderByComparator)
 		throws NoSuchPostulacionException, SystemException {
-		Postulacion postulacion = fetchByBy_S_U_Last(solicitudRequerimientoId,
+		Postulacion postulacion = fetchByS_U_Last(solicitudRequerimientoId,
 				usuarioId, orderByComparator);
 
 		if (postulacion != null) {
@@ -866,17 +863,17 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion fetchByBy_S_U_Last(long solicitudRequerimientoId,
+	public Postulacion fetchByS_U_Last(long solicitudRequerimientoId,
 		long usuarioId, OrderByComparator orderByComparator)
 		throws SystemException {
-		int count = countByBy_S_U(solicitudRequerimientoId, usuarioId);
+		int count = countByS_U(solicitudRequerimientoId, usuarioId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<Postulacion> list = findByBy_S_U(solicitudRequerimientoId,
-				usuarioId, count - 1, count, orderByComparator);
+		List<Postulacion> list = findByS_U(solicitudRequerimientoId, usuarioId,
+				count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -897,7 +894,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Postulacion[] findByBy_S_U_PrevAndNext(PostulacionPK postulacionPK,
+	public Postulacion[] findByS_U_PrevAndNext(PostulacionPK postulacionPK,
 		long solicitudRequerimientoId, long usuarioId,
 		OrderByComparator orderByComparator)
 		throws NoSuchPostulacionException, SystemException {
@@ -910,12 +907,12 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 			Postulacion[] array = new PostulacionImpl[3];
 
-			array[0] = getByBy_S_U_PrevAndNext(session, postulacion,
+			array[0] = getByS_U_PrevAndNext(session, postulacion,
 					solicitudRequerimientoId, usuarioId, orderByComparator, true);
 
 			array[1] = postulacion;
 
-			array[2] = getByBy_S_U_PrevAndNext(session, postulacion,
+			array[2] = getByS_U_PrevAndNext(session, postulacion,
 					solicitudRequerimientoId, usuarioId, orderByComparator,
 					false);
 
@@ -929,7 +926,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		}
 	}
 
-	protected Postulacion getByBy_S_U_PrevAndNext(Session session,
+	protected Postulacion getByS_U_PrevAndNext(Session session,
 		Postulacion postulacion, long solicitudRequerimientoId, long usuarioId,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
@@ -944,9 +941,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 		query.append(_SQL_SELECT_POSTULACION_WHERE);
 
-		query.append(_FINDER_COLUMN_BY_S_U_SOLICITUDREQUERIMIENTOID_2);
+		query.append(_FINDER_COLUMN_S_U_SOLICITUDREQUERIMIENTOID_2);
 
-		query.append(_FINDER_COLUMN_BY_S_U_USUARIOID_2);
+		query.append(_FINDER_COLUMN_S_U_USUARIOID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -1046,9 +1043,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByBy_S_U(long solicitudRequerimientoId, long usuarioId)
+	public void removeByS_U(long solicitudRequerimientoId, long usuarioId)
 		throws SystemException {
-		for (Postulacion postulacion : findByBy_S_U(solicitudRequerimientoId,
+		for (Postulacion postulacion : findByS_U(solicitudRequerimientoId,
 				usuarioId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(postulacion);
 		}
@@ -1063,9 +1060,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByBy_S_U(long solicitudRequerimientoId, long usuarioId)
+	public int countByS_U(long solicitudRequerimientoId, long usuarioId)
 		throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_BY_S_U;
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_S_U;
 
 		Object[] finderArgs = new Object[] { solicitudRequerimientoId, usuarioId };
 
@@ -1077,9 +1074,9 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 			query.append(_SQL_COUNT_POSTULACION_WHERE);
 
-			query.append(_FINDER_COLUMN_BY_S_U_SOLICITUDREQUERIMIENTOID_2);
+			query.append(_FINDER_COLUMN_S_U_SOLICITUDREQUERIMIENTOID_2);
 
-			query.append(_FINDER_COLUMN_BY_S_U_USUARIOID_2);
+			query.append(_FINDER_COLUMN_S_U_USUARIOID_2);
 
 			String sql = query.toString();
 
@@ -1113,9 +1110,8 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_BY_S_U_SOLICITUDREQUERIMIENTOID_2 =
-		"postulacion.id.solicitudRequerimientoId = ? AND ";
-	private static final String _FINDER_COLUMN_BY_S_U_USUARIOID_2 = "postulacion.id.usuarioId = ? AND postulacion.activo=true";
+	private static final String _FINDER_COLUMN_S_U_SOLICITUDREQUERIMIENTOID_2 = "postulacion.id.solicitudRequerimientoId = ? AND ";
+	private static final String _FINDER_COLUMN_S_U_USUARIOID_2 = "postulacion.id.usuarioId = ? AND postulacion.activo=true";
 
 	public PostulacionPersistenceImpl() {
 		setModelClass(Postulacion.class);
@@ -1342,33 +1338,33 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 
 		else {
 			if ((postulacionModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S.getColumnBitmask()) != 0) {
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						postulacionModelImpl.getOriginalSolicitudRequerimientoId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BY_S, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S,
 					args);
 
 				args = new Object[] {
 						postulacionModelImpl.getSolicitudRequerimientoId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BY_S, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S,
 					args);
 			}
 
 			if ((postulacionModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S_U.getColumnBitmask()) != 0) {
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						postulacionModelImpl.getOriginalSolicitudRequerimientoId(),
 						postulacionModelImpl.getOriginalUsuarioId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BY_S_U, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S_U,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_S_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S_U,
 					args);
 
 				args = new Object[] {
@@ -1376,8 +1372,8 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 						postulacionModelImpl.getUsuarioId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BY_S_U, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_BY_S_U,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_S_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S_U,
 					args);
 			}
 		}

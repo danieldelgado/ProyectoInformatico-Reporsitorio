@@ -117,10 +117,10 @@ public class PostulacionUtil {
 	* @return the matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.hitss.layer.model.Postulacion> findByBy_S(
+	public static java.util.List<com.hitss.layer.model.Postulacion> findByS(
 		long solicitudRequerimientoId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByBy_S(solicitudRequerimientoId);
+		return getPersistence().findByS(solicitudRequerimientoId);
 	}
 
 	/**
@@ -136,10 +136,10 @@ public class PostulacionUtil {
 	* @return the range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.hitss.layer.model.Postulacion> findByBy_S(
+	public static java.util.List<com.hitss.layer.model.Postulacion> findByS(
 		long solicitudRequerimientoId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByBy_S(solicitudRequerimientoId, start, end);
+		return getPersistence().findByS(solicitudRequerimientoId, start, end);
 	}
 
 	/**
@@ -156,12 +156,12 @@ public class PostulacionUtil {
 	* @return the ordered range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.hitss.layer.model.Postulacion> findByBy_S(
+	public static java.util.List<com.hitss.layer.model.Postulacion> findByS(
 		long solicitudRequerimientoId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S(solicitudRequerimientoId, start, end,
+				   .findByS(solicitudRequerimientoId, start, end,
 			orderByComparator);
 	}
 
@@ -174,13 +174,13 @@ public class PostulacionUtil {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion findByBy_S_First(
+	public static com.hitss.layer.model.Postulacion findByS_First(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_First(solicitudRequerimientoId, orderByComparator);
+				   .findByS_First(solicitudRequerimientoId, orderByComparator);
 	}
 
 	/**
@@ -191,13 +191,12 @@ public class PostulacionUtil {
 	* @return the first matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion fetchByBy_S_First(
+	public static com.hitss.layer.model.Postulacion fetchByS_First(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByBy_S_First(solicitudRequerimientoId,
-			orderByComparator);
+				   .fetchByS_First(solicitudRequerimientoId, orderByComparator);
 	}
 
 	/**
@@ -209,13 +208,13 @@ public class PostulacionUtil {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion findByBy_S_Last(
+	public static com.hitss.layer.model.Postulacion findByS_Last(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_Last(solicitudRequerimientoId, orderByComparator);
+				   .findByS_Last(solicitudRequerimientoId, orderByComparator);
 	}
 
 	/**
@@ -226,12 +225,12 @@ public class PostulacionUtil {
 	* @return the last matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion fetchByBy_S_Last(
+	public static com.hitss.layer.model.Postulacion fetchByS_Last(
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByBy_S_Last(solicitudRequerimientoId, orderByComparator);
+				   .fetchByS_Last(solicitudRequerimientoId, orderByComparator);
 	}
 
 	/**
@@ -244,14 +243,14 @@ public class PostulacionUtil {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a postulacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion[] findByBy_S_PrevAndNext(
+	public static com.hitss.layer.model.Postulacion[] findByS_PrevAndNext(
 		com.hitss.layer.service.persistence.PostulacionPK postulacionPK,
 		long solicitudRequerimientoId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_PrevAndNext(postulacionPK,
+				   .findByS_PrevAndNext(postulacionPK,
 			solicitudRequerimientoId, orderByComparator);
 	}
 
@@ -261,9 +260,9 @@ public class PostulacionUtil {
 	* @param solicitudRequerimientoId the solicitud requerimiento ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByBy_S(long solicitudRequerimientoId)
+	public static void removeByS(long solicitudRequerimientoId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByBy_S(solicitudRequerimientoId);
+		getPersistence().removeByS(solicitudRequerimientoId);
 	}
 
 	/**
@@ -273,9 +272,9 @@ public class PostulacionUtil {
 	* @return the number of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByBy_S(long solicitudRequerimientoId)
+	public static int countByS(long solicitudRequerimientoId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByBy_S(solicitudRequerimientoId);
+		return getPersistence().countByS(solicitudRequerimientoId);
 	}
 
 	/**
@@ -286,10 +285,10 @@ public class PostulacionUtil {
 	* @return the matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.hitss.layer.model.Postulacion> findByBy_S_U(
+	public static java.util.List<com.hitss.layer.model.Postulacion> findByS_U(
 		long solicitudRequerimientoId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByBy_S_U(solicitudRequerimientoId, usuarioId);
+		return getPersistence().findByS_U(solicitudRequerimientoId, usuarioId);
 	}
 
 	/**
@@ -306,11 +305,11 @@ public class PostulacionUtil {
 	* @return the range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.hitss.layer.model.Postulacion> findByBy_S_U(
+	public static java.util.List<com.hitss.layer.model.Postulacion> findByS_U(
 		long solicitudRequerimientoId, long usuarioId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_U(solicitudRequerimientoId, usuarioId, start, end);
+				   .findByS_U(solicitudRequerimientoId, usuarioId, start, end);
 	}
 
 	/**
@@ -328,13 +327,13 @@ public class PostulacionUtil {
 	* @return the ordered range of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.hitss.layer.model.Postulacion> findByBy_S_U(
+	public static java.util.List<com.hitss.layer.model.Postulacion> findByS_U(
 		long solicitudRequerimientoId, long usuarioId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_U(solicitudRequerimientoId, usuarioId, start,
-			end, orderByComparator);
+				   .findByS_U(solicitudRequerimientoId, usuarioId, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -347,13 +346,13 @@ public class PostulacionUtil {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion findByBy_S_U_First(
+	public static com.hitss.layer.model.Postulacion findByS_U_First(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_U_First(solicitudRequerimientoId, usuarioId,
+				   .findByS_U_First(solicitudRequerimientoId, usuarioId,
 			orderByComparator);
 	}
 
@@ -366,12 +365,12 @@ public class PostulacionUtil {
 	* @return the first matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion fetchByBy_S_U_First(
+	public static com.hitss.layer.model.Postulacion fetchByS_U_First(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByBy_S_U_First(solicitudRequerimientoId, usuarioId,
+				   .fetchByS_U_First(solicitudRequerimientoId, usuarioId,
 			orderByComparator);
 	}
 
@@ -385,13 +384,13 @@ public class PostulacionUtil {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion findByBy_S_U_Last(
+	public static com.hitss.layer.model.Postulacion findByS_U_Last(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_U_Last(solicitudRequerimientoId, usuarioId,
+				   .findByS_U_Last(solicitudRequerimientoId, usuarioId,
 			orderByComparator);
 	}
 
@@ -404,12 +403,12 @@ public class PostulacionUtil {
 	* @return the last matching postulacion, or <code>null</code> if a matching postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion fetchByBy_S_U_Last(
+	public static com.hitss.layer.model.Postulacion fetchByS_U_Last(
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .fetchByBy_S_U_Last(solicitudRequerimientoId, usuarioId,
+				   .fetchByS_U_Last(solicitudRequerimientoId, usuarioId,
 			orderByComparator);
 	}
 
@@ -424,14 +423,14 @@ public class PostulacionUtil {
 	* @throws com.hitss.layer.NoSuchPostulacionException if a postulacion with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Postulacion[] findByBy_S_U_PrevAndNext(
+	public static com.hitss.layer.model.Postulacion[] findByS_U_PrevAndNext(
 		com.hitss.layer.service.persistence.PostulacionPK postulacionPK,
 		long solicitudRequerimientoId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchPostulacionException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByBy_S_U_PrevAndNext(postulacionPK,
+				   .findByS_U_PrevAndNext(postulacionPK,
 			solicitudRequerimientoId, usuarioId, orderByComparator);
 	}
 
@@ -442,10 +441,9 @@ public class PostulacionUtil {
 	* @param usuarioId the usuario ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByBy_S_U(long solicitudRequerimientoId,
-		long usuarioId)
+	public static void removeByS_U(long solicitudRequerimientoId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByBy_S_U(solicitudRequerimientoId, usuarioId);
+		getPersistence().removeByS_U(solicitudRequerimientoId, usuarioId);
 	}
 
 	/**
@@ -456,11 +454,9 @@ public class PostulacionUtil {
 	* @return the number of matching postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByBy_S_U(long solicitudRequerimientoId,
-		long usuarioId)
+	public static int countByS_U(long solicitudRequerimientoId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByBy_S_U(solicitudRequerimientoId, usuarioId);
+		return getPersistence().countByS_U(solicitudRequerimientoId, usuarioId);
 	}
 
 	/**

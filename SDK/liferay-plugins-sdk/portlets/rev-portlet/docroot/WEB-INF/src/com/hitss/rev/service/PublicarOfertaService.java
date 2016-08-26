@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
@@ -31,7 +33,7 @@ public interface PublicarOfertaService {
 
 	List<ParametroBean> getAreas();
 
-	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, String descripcion,User user, boolean publicar );
+	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, String descripcion,User user, boolean publicar , HttpServletRequest request);
 
 
 }

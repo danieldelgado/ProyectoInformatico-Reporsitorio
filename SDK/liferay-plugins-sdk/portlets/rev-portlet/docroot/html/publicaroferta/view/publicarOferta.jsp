@@ -83,7 +83,7 @@
 							</div>
 							<div class="span12">
 								<liferay-ui:input-editor />
-								<input name="<portlet:namespace />htmlCodeFromEditorPlacedHere" type="hidden" value="" />
+								<textarea name="<portlet:namespace />descripcion" rows="" cols="" style="display: none;" disabled="disabled"></textarea>
 							</div>
 						</div>
 					</div>
@@ -130,20 +130,11 @@
 		return '';
 	}
 
-	function <portlet:namespace />extractCodeFromEditor() {
-
-		console.log("1");
-		console.log(window.<portlet:namespace />editor.getHTML());
-		console.log("2");
-		console.log($('#<portlet:namespace />htmlCodeFromEditorPlacedHere'));
-		
-		var html = "'" + window.<portlet:namespace />editor.getHTML() + "'"; 
-		var greeting = $('#<portlet:namespace />htmlCodeFromEditorPlacedHere').val( window.<portlet:namespace />editor.getHTML() );
-		console.log("3");
-		console.log(greeting);
-	
-
+	function <portlet:namespace />extractCodeFromEditor( htmlcontent ) {
+		htmlcontent = window.<portlet:namespace />editor.getHTML();		
+		return htmlcontent;
 	}
+	
 </script>
 
 

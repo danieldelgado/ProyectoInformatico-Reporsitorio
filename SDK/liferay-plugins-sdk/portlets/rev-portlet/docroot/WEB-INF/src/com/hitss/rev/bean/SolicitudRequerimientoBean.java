@@ -51,6 +51,9 @@ public class SolicitudRequerimientoBean {
 	private String strfechacreamodifica;
 	private List<RequisitoEtiquetaBean> requisitoEtiquetaBeans;
 	
+	private ObservacionBean observacionBean;
+	
+	
 	public SolicitudRequerimientoBean() {
 	}
 
@@ -412,6 +415,14 @@ public class SolicitudRequerimientoBean {
 
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
+	}
+
+	public ObservacionBean getObservacionBean() {
+		return observacionBean;
+	}
+
+	public void setObservacionBean(ObservacionBean observacionBean) {
+		this.observacionBean = observacionBean;
 	}
 
 	

@@ -14,7 +14,11 @@
 
 package com.hitss.layer.service.impl;
 
+import com.hitss.layer.NoSuchObservacionesException;
+import com.hitss.layer.model.Observaciones;
 import com.hitss.layer.service.base.ObservacionesLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.ObservacionesUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the observaciones local service.
@@ -32,9 +36,12 @@ import com.hitss.layer.service.base.ObservacionesLocalServiceBaseImpl;
  */
 public class ObservacionesLocalServiceImpl
 	extends ObservacionesLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.hitss.layer.service.ObservacionesLocalServiceUtil} to access the observaciones local service.
-	 */
+	
+
+	public Observaciones getObservacion(long registroId, String tabla) throws NoSuchObservacionesException, SystemException {
+		return  ObservacionesUtil.findByR_T(tabla, registroId);
+	}
+	
+	
+	
 }

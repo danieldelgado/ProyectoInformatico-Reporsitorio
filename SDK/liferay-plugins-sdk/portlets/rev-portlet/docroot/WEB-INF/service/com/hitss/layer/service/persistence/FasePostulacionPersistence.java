@@ -46,7 +46,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.FasePostulacion> findByBy_S_F_U(
+	public java.util.List<com.hitss.layer.model.FasePostulacion> findByS_F_U(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -65,7 +65,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the range of matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.FasePostulacion> findByBy_S_F_U(
+	public java.util.List<com.hitss.layer.model.FasePostulacion> findByS_F_U(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId,
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -86,7 +86,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the ordered range of matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.FasePostulacion> findByBy_S_F_U(
+	public java.util.List<com.hitss.layer.model.FasePostulacion> findByS_F_U(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -103,7 +103,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion findByBy_S_F_U_First(
+	public com.hitss.layer.model.FasePostulacion findByS_F_U_First(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchFasePostulacionException,
@@ -119,7 +119,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the first matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion fetchByBy_S_F_U_First(
+	public com.hitss.layer.model.FasePostulacion fetchByS_F_U_First(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -135,7 +135,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion findByBy_S_F_U_Last(
+	public com.hitss.layer.model.FasePostulacion findByS_F_U_Last(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchFasePostulacionException,
@@ -151,7 +151,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the last matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion fetchByBy_S_F_U_Last(
+	public com.hitss.layer.model.FasePostulacion fetchByS_F_U_Last(
 		long solicitudRequerimientoId, long fasePostulacionId, long usuarioId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -164,7 +164,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @param usuarioId the usuario ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByBy_S_F_U(long solicitudRequerimientoId,
+	public void removeByS_F_U(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -177,7 +177,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the number of matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByBy_S_F_U(long solicitudRequerimientoId,
+	public int countByS_F_U(long solicitudRequerimientoId,
 		long fasePostulacionId, long usuarioId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -189,7 +189,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.FasePostulacion> findByBy_S_LF(
+	public java.util.List<com.hitss.layer.model.FasePostulacion> findByS_LF(
 		long solicitudRequerimientoId, long fasePostulacionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -207,7 +207,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the range of matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.FasePostulacion> findByBy_S_LF(
+	public java.util.List<com.hitss.layer.model.FasePostulacion> findByS_LF(
 		long solicitudRequerimientoId, long fasePostulacionId, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -226,7 +226,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the ordered range of matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.hitss.layer.model.FasePostulacion> findByBy_S_LF(
+	public java.util.List<com.hitss.layer.model.FasePostulacion> findByS_LF(
 		long solicitudRequerimientoId, long fasePostulacionId, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -242,7 +242,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion findByBy_S_LF_First(
+	public com.hitss.layer.model.FasePostulacion findByS_LF_First(
 		long solicitudRequerimientoId, long fasePostulacionId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchFasePostulacionException,
@@ -257,7 +257,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the first matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion fetchByBy_S_LF_First(
+	public com.hitss.layer.model.FasePostulacion fetchByS_LF_First(
 		long solicitudRequerimientoId, long fasePostulacionId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -272,7 +272,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion findByBy_S_LF_Last(
+	public com.hitss.layer.model.FasePostulacion findByS_LF_Last(
 		long solicitudRequerimientoId, long fasePostulacionId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.hitss.layer.NoSuchFasePostulacionException,
@@ -287,7 +287,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the last matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.hitss.layer.model.FasePostulacion fetchByBy_S_LF_Last(
+	public com.hitss.layer.model.FasePostulacion fetchByS_LF_Last(
 		long solicitudRequerimientoId, long fasePostulacionId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -299,7 +299,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @param fasePostulacionId the fase postulacion ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByBy_S_LF(long solicitudRequerimientoId,
+	public void removeByS_LF(long solicitudRequerimientoId,
 		long fasePostulacionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -311,8 +311,7 @@ public interface FasePostulacionPersistence extends BasePersistence<FasePostulac
 	* @return the number of matching fase postulacions
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByBy_S_LF(long solicitudRequerimientoId,
-		long fasePostulacionId)
+	public int countByS_LF(long solicitudRequerimientoId, long fasePostulacionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

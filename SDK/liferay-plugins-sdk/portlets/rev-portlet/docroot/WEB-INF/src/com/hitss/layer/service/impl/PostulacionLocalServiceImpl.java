@@ -43,7 +43,7 @@ public class PostulacionLocalServiceImpl extends PostulacionLocalServiceBaseImpl
 	 */
 	
 	public List<Postulacion> listaPostulacionedsSolicitud(long solicitudRequerimientoId) throws SystemException{			
-		List<Postulacion>  lista = PostulacionUtil.findByBy_S(solicitudRequerimientoId);
+		List<Postulacion>  lista = PostulacionUtil.findByS(solicitudRequerimientoId);
 		return lista;
 	}
 	

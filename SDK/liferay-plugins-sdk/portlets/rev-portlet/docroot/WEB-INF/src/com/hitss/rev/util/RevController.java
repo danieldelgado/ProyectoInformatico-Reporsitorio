@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import com.hitss.rev.bean.ComboBean;
 import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
+import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -137,6 +138,46 @@ public abstract class RevController {
 		} catch (IOException e) {
 			_log.error("e:" + e.getLocalizedMessage(), e);
 		}
+	}
+	
+	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
+		_log.debug("actualizarSolicitud");
+
+		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+
+		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
+		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
+		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
+			SolicitudRequerimientoBean solicitudReclutamiento = service.getSolicitudRequerimiento(solicitudRequerimientoId);
+			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
+			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
+		}
+
+		List<PuestoBean> listaPuestoBeans = service.getListaPuestos(td.getSiteGroup().getGroupId(), null);
+		model.addAttribute("listaPuestoBeans", listaPuestoBeans);
+
+		List<UsuarioBean> listaUsuarioBeans = service.getListaResponsable(td.getCompanyId(), td.getCompanyGroupId());
+		model.addAttribute("listaUsuarioBeans", listaUsuarioBeans);
+
+		List<ParametroBean> listaTiempoContrato = service.getTiempoContrato();
+		model.addAttribute("listaTiempoContrato", listaTiempoContrato);
+
+		List<ParametroBean> listaTipoNegocio = service.getTipoNegocio();
+		model.addAttribute("listaTipoNegocio", listaTipoNegocio);
+
+		List<ParametroBean> listaClientes = service.getClientes();
+		model.addAttribute("listaClientes", listaClientes);
+
+		List<ParametroBean> listaAreas = service.getAreas();
+		model.addAttribute("listaAreas", listaAreas);
+
+		List<ParametroBean> listaNiveles = service.getListaNiveles();
+		model.addAttribute("listaNiveles", listaNiveles);
+
+		List<ParametroBean> listaTipoRequisito = service.getListaTipoRequisito();
+		model.addAttribute("listaTipoRequisito", listaTipoRequisito);
+
+		return "detalleSolicitud";
 	}
 	
 
