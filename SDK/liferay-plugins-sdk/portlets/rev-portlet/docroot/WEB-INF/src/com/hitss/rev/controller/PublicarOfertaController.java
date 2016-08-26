@@ -24,6 +24,7 @@ import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.service.PublicarOfertaService;
 import com.hitss.rev.util.JsonUtil;
+import com.hitss.rev.util.RevController;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -35,7 +36,7 @@ import com.liferay.portal.util.PortalUtil;
 
 @Controller("publicarOfertaController")
 @RequestMapping(value = "VIEW")
-public class PublicarOfertaController {
+public class PublicarOfertaController  extends RevController {
 
 	private static Log _log = LogFactoryUtil.getLog(PublicarOfertaController.class);
 
@@ -116,14 +117,14 @@ public class PublicarOfertaController {
 		String campoOrden = ParamUtil.get(resourceRequest, "campoOrden", "");
 		_log.debug("campoOrden:" + campoOrden);
 
-		Map<String, Object> result = publicarOfertaService.listarSolicitudesRequermiento(puestoId, fechaRegistroInicio, fechaRegistrFin, responsable, tiempoContrato, filas,
-				pagina, orden, campoOrden);
+		Map<String, Object> result = publicarOfertaService.listarSolicitudesRequermiento(puestoId, fechaRegistroInicio, fechaRegistrFin, responsable, tiempoContrato, filas, pagina, orden, campoOrden);
 		try {
 			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
 		} catch (IOException e) {
 			_log.error("e:" + e.getLocalizedMessage(), e);
 		}
 	}
+
 
 	@RenderMapping(params = "action=verDetalleSolicitud")
 	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {

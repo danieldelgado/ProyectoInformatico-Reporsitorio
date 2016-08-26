@@ -18,8 +18,8 @@ import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
+import com.hitss.rev.liferay.api.LiferayApiService;
 import com.hitss.rev.service.ActualizarSolicitudRequerimientoService;
-import com.hitss.rev.service.LiferayContentService;
 import com.hitss.rev.service.ParametroService;
 import com.hitss.rev.service.SolicitudRequerimientoRequisitoService;
 import com.hitss.rev.util.Constantes;
@@ -42,7 +42,7 @@ public class ActualizarSolicitudRequerimientoServiceImpl implements ActualizarSo
 	private ParametroService parametroService;
 
 	@Autowired
-	private LiferayContentService liferayContentService;
+	private LiferayApiService liferayContentService;
 
 	@Autowired
 	private SolicitudRequerimientoRequisitoService solicitudRequerimientoRequisitoService;

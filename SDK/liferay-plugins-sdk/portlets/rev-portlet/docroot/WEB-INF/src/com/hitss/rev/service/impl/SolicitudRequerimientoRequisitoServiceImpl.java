@@ -11,7 +11,7 @@ import com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalServiceUtil;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK;
 import com.hitss.rev.bean.RequisitoEtiquetaBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
-import com.hitss.rev.service.LiferayContentService;
+import com.hitss.rev.liferay.api.LiferayApiService;
 import com.hitss.rev.service.ParametroService;
 import com.hitss.rev.service.SolicitudRequerimientoRequisitoService;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -28,7 +28,7 @@ public class SolicitudRequerimientoRequisitoServiceImpl implements SolicitudRequ
 	private ParametroService parametroService;
 
 	@Autowired
-	private LiferayContentService liferayContentService;
+	private LiferayApiService liferayContentService;
 	
 	@Override
 	public List<RequisitoEtiquetaBean> getListaSolicitudRequerimientoRequisitosExitentesBeans(SolicitudRequerimientoBean solicitudRequerimiento) {

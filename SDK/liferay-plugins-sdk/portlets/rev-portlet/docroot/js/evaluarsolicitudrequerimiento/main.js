@@ -223,6 +223,7 @@ function cargarModals() {
 
 	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
 		if (A.one('#' + inputFristnamespace + 'modalAaprobar') != null) {
+			var btnBuscar = $("#" + inputFristnamespace + "btnBuscar");
 			modalAaprobar = new A.Modal({
 				bodyContent : getDialogAprobar(),
 				centered : true,
@@ -300,11 +301,14 @@ function cargarModals() {
 									console.log(data["solicitudRequerimientoId"]);
 									modalAaprobar.hide();
 									var contenedorAlerta = $(".contenedorAlerta");
+									console.log(contenedorAlerta);
 									var defaultUrl = $("#" + inputFristnamespace + "defaultUrl").val();
 									console.log(defaultUrl);
 									mostrarAlerta(contenedorAlerta, "Solicitud Aprobada", "Solicitud aprobada :" + data.solicitudRequerimientoId, "alert-success", function() {
+										console.log("mostrarAlerta");
 										setTimeout(function() {
 											//window.location = defaultUrl;
+											$(btnBuscar).click();
 										}, 1500);
 									});
 								}
@@ -315,8 +319,9 @@ function cargarModals() {
 				}
 			} ]);
 		}
-
+		
 		if (A.one('#' + inputFristnamespace + 'modalRechazar') != null) {
+			var btnBuscar = $("#" + inputFristnamespace + "btnBuscar");
 			modalRechazar = new A.Modal({
 				bodyContent : getDialogRechazar(),
 				centered : true,
@@ -375,7 +380,8 @@ function cargarModals() {
 									var defaultUrl = $("#" + inputFristnamespace + "defaultUrl").val();
 									mostrarAlerta(contenedorAlerta, "Solicitud Rechazada", "Solicitud rechazada :" + data.solicitudRequerimientoId, "alert-success", function() {
 										setTimeout(function() {
-											window.location = defaultUrl;
+											$(btnBuscar).click();
+//											window.location = defaultUrl;
 										}, 1500);
 									});
 								}

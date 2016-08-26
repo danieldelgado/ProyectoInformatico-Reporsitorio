@@ -1,10 +1,7 @@
 package com.hitss.rev.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -26,6 +23,8 @@ import com.hitss.rev.service.EvaluarSolicitudRequerimientoService;
 import com.hitss.rev.service.impl.EvaluarSolicitudRequerimientoServiceImpl;
 import com.hitss.rev.util.Constantes;
 import com.hitss.rev.util.JsonUtil;
+import com.hitss.rev.util.RevController;
+import com.hitss.rev.util.RevServiceImpl;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -38,7 +37,7 @@ import com.liferay.portal.util.PortalUtil;
 
 @Controller("evaluarSolicitudRequerimientoController")
 @RequestMapping(value = "VIEW")
-public class EvaluarSolicitudRequerimientoController {
+public class EvaluarSolicitudRequerimientoController  extends RevController {
 
 	private static Log _log = LogFactoryUtil.getLog(EvaluarSolicitudRequerimientoServiceImpl.class);
 	
@@ -48,84 +47,31 @@ public class EvaluarSolicitudRequerimientoController {
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("defaultView");
-		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		List<PuestoBean> listaPuestoBeans = evaluarSolicitudRequerimientoService.getListaPuestos(td.getSiteGroup().getGroupId(), null);
-		model.addAttribute("listaPuestoBeans", listaPuestoBeans);
-		List<UsuarioBean> listaUsuarioBeans = evaluarSolicitudRequerimientoService.getListaResponsable(td.getCompanyId(), td.getCompanyGroupId());
-		model.addAttribute("listaUsuarioBeans", listaUsuarioBeans);
-		List<ParametroBean> listaTiempoContrato = evaluarSolicitudRequerimientoService.getTiempoContrato();
-		model.addAttribute("listaTiempoContrato", listaTiempoContrato);
-
-		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
-		_log.debug("solicitudRequerimientoId defaultView :" + solicitudRequerimientoId);
-		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
-			model.addAttribute("solicitudRequerimientoId", solicitudRequerimientoId);
-			String mensaje = ParamUtil.get(request, "mensaje", "");
-			_log.debug("mensaje defaultView :" + mensaje);
-			model.addAttribute("mensaje", mensaje);
-			String titulo = ParamUtil.get(request, "titulo", "");
-			_log.debug("titulo:" + titulo);
-			model.addAttribute("titulo", titulo);
-		}
-
-
-		return "view";
-
+		return super.defaultView(request, response, model, (RevServiceImpl) evaluarSolicitudRequerimientoService);
 	}
-	
-	
+
 	@RenderMapping(params = "action=default")
 	public String irDefault(RenderRequest request, RenderResponse response, Model model) {
-		return defaultView(request, response, model);
+		_log.debug("irDefault");
+		return super.irDefault(request, response, model, (RevServiceImpl) evaluarSolicitudRequerimientoService);
 	}
 
 	@ResourceMapping(value = "listarSolicitudesReclutamiento")
 	public void listarSolicitudesReclutamiento(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
-		_log.debug("listarSolicitudesRelutamiento");
+		_log.debug("listarSolicitudesReclutamiento");
+		super.listarSolicitudesReclutamiento(resourceRequest, resourceResponse, (RevServiceImpl) evaluarSolicitudRequerimientoService);
+	}
+	
+	@ResourceMapping(value = "listarEtiquetas")
+	public void listarEtiquetas(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		_log.debug("listarEtiquetas");
+		super.listarEtiquetas(resourceRequest, resourceResponse, (RevServiceImpl) evaluarSolicitudRequerimientoService);
+	}
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-		Long puestoId = ParamUtil.getLong(resourceRequest, "puestoId");
-		_log.debug("puestoId:" + puestoId);
-
-		Date fechaRegistroInicio = null;
-		String fechaRegistroInicioVal = ParamUtil.get(resourceRequest, "fechaRegistroInicioVal", "");
-		if (Validator.isNotNull(fechaRegistroInicioVal)) {
-			fechaRegistroInicio = ParamUtil.getDate(resourceRequest, "fechaRegistroInicioVal", sdf);
-		}
-		_log.debug("fechaRegistroInicio:" + fechaRegistroInicio);
-
-		Date fechaRegistrFin = null;
-		String fechaRegistroFinVal = ParamUtil.get(resourceRequest, "fechaRegistroFinVal", "");
-		if (Validator.isNotNull(fechaRegistroFinVal)) {
-			fechaRegistrFin = ParamUtil.getDate(resourceRequest, "fechaRegistroFinVal", sdf);
-		}
-		_log.debug("fechaRegistrFin:" + fechaRegistrFin);
-
-		int responsable = ParamUtil.getInteger(resourceRequest, "responsable");
-		_log.debug("responsable:" + responsable);
-
-		int tiempoContrato = ParamUtil.getInteger(resourceRequest, "tiempoContrato");
-		_log.debug("tiempoContrato:" + tiempoContrato);
-
-		int filas = ParamUtil.getInteger(resourceRequest, "filas");
-		_log.debug("filas:" + filas);
-
-		int pagina = ParamUtil.getInteger(resourceRequest, "pagina");
-		_log.debug("pagina:" + pagina);
-
-		String orden = ParamUtil.get(resourceRequest, "orden", "");
-		_log.debug("orden:" + orden);
-
-		String campoOrden = ParamUtil.get(resourceRequest, "campoOrden", "");
-		_log.debug("campoOrden:" + campoOrden);
-
-		Map<String, Object> result = evaluarSolicitudRequerimientoService.listarSolicitudesRequermiento(puestoId, fechaRegistroInicio, fechaRegistrFin, responsable, tiempoContrato, filas, pagina, orden, campoOrden);
-		try {
-			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
-		} catch (IOException e) {
-			_log.error("e:" + e.getLocalizedMessage(), e);
-		}
+	@ResourceMapping(value = "listarPuestosCategorias")
+	public void listarPuestosCategorias(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		_log.debug("listarPuestosCategorias");
+		super.listarPuestosCategorias(resourceRequest, resourceResponse, (RevServiceImpl) evaluarSolicitudRequerimientoService);
 	}
 
 
@@ -182,6 +128,7 @@ public class EvaluarSolicitudRequerimientoController {
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
 		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
+			System.out.println(evaluarSolicitudRequerimientoService);
 			SolicitudRequerimientoBean solicitudReclutamiento = evaluarSolicitudRequerimientoService.getSolicitudRequerimiento(solicitudRequerimientoId);
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
 			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));

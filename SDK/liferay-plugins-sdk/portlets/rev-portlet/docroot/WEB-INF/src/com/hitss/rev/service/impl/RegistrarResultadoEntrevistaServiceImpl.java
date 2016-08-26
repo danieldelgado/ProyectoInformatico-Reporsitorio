@@ -18,7 +18,7 @@ import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
-import com.hitss.rev.service.LiferayContentService;
+import com.hitss.rev.liferay.api.LiferayApiService;
 import com.hitss.rev.service.ParametroService;
 import com.hitss.rev.service.RegistrarResultadoEntrevistaService;
 import com.hitss.rev.service.SolicitudRequerimientoRequisitoService;
@@ -40,7 +40,7 @@ public class RegistrarResultadoEntrevistaServiceImpl implements RegistrarResulta
 	private ParametroService parametroService;
 
 	@Autowired
-	private LiferayContentService liferayContentService;
+	private LiferayApiService liferayContentService;
 
 	@Autowired
 	private SolicitudRequerimientoRequisitoService solicitudRequerimientoRequisitoService;
