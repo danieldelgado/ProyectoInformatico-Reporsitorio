@@ -8,9 +8,12 @@ select * from users_groups;
 -- 31234 colaborador
 select * from usuario where userId in (select ur.userId from users_roles ur where ur.roleId in ('28611'));
 
+select * from fichaingreso;
 
 select * from postulacion;
+update postulacion set fechacrea='2016-08-26 05:22:43' , fechamodifica = '2016-08-26 05:22:43';
 select * from fasepostulacion;
+update fasepostulacion set fechacrea='2016-08-26 05:22:43' , fechamodifica = '2016-08-26 05:22:43';
 INSERT INTO fasepostulacion 
 (`fasePostulacionId`, `solicitudRequerimientoId`, `usuarioId`, `tipoFase`, `fechaFase`, `descripcion`, `estado`, `activo`, `usuariocrea`, `fechacrea`, `usuariomodifica`) VALUES 
 ('2', '1', '22248', '78', '2016-05-07 07:05:10', 'Inicio de la evalucion', '71', '1', '22248', '2016-05-07 07:05:10', '22248') ,

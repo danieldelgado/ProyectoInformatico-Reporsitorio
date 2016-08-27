@@ -1,7 +1,8 @@
 select * from SolicitudRequerimiento;
 SET SQL_SAFE_UPDATES = 0;
-update SolicitudRequerimiento set estado = 75;
-select * from 
+update SolicitudRequerimiento set estado = 76;
+update SolicitudRequerimiento set activo = 0;
+update SolicitudRequerimiento set fechacrea='2016-08-26 05:22:43' , fechamodifica = '2016-08-26 05:22:43';
 
 
 select * from respuesta;
