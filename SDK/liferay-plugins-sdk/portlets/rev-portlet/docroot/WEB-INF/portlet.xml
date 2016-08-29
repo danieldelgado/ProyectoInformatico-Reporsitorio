@@ -125,6 +125,36 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
+		<portlet-name>PostularOfertaLaboral</portlet-name>
+		<display-name>PostularOfertaLaboral</display-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/spring/context/postularofertalaboral/servlet-context.xml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>PostularOfertaLaboral</title>
+			<short-title>PostularOfertaLaboral</short-title>
+			<keywords>PostularOfertaLaboral</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
 		<portlet-name>ProgramaEntrevista</portlet-name>
 		<display-name>ProgramaEntrevista</display-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>

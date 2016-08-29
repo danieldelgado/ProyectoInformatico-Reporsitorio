@@ -40,6 +40,18 @@
 		<css-class-wrapper>EvaluarFichaIngreso-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
+		<portlet-name>PostularOfertaLaboral</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/postularofertalaboral/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/postularofertalaboral/main.js</footer-portlet-javascript>
+		<css-class-wrapper>PostlarOfertaLaboral-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
 		<portlet-name>ProgramaEntrevista</portlet-name>
 		<icon>/icon.png</icon>
 		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>

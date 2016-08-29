@@ -3,13 +3,16 @@
 
 <display>
 	<category name="REV HITSS">
-		<portlet id="ActualizarSolicitudReclutamiento" ></portlet>
-		<portlet id="ActualizarSolicitudRequerimiento" ></portlet>
-		<portlet id="EvaluarFichaIngreso" ></portlet>
-		<portlet id="EvaluarSolicitudRequerimiento" ></portlet>
-		<portlet id="ProgramaEntrevista" ></portlet>
-		<portlet id="PublicarOferta" ></portlet>
+		<portlet id="ActualizarSolicitudReclutamiento"></portlet>
+		<portlet id="ActualizarSolicitudRequerimiento"></portlet>
+		<portlet id="EvaluarFichaIngreso"></portlet>
+		<portlet id="EvaluarSolicitudRequerimiento"></portlet>
+		<portlet id="ProgramaEntrevista"></portlet>
+		<portlet id="PublicarOferta"></portlet>
 		<portlet id="RegistrarResultadoEntrevista"></portlet>
-		<portlet id="SeleccionarPersonal" ></portlet>
+		<portlet id="SeleccionarPersonal"></portlet>
+	</category>
+	<category name="Portal Reclutamiento">
+		<portlet id="PostularOfertaLaboral"></portlet>
 	</category>
 </display>
