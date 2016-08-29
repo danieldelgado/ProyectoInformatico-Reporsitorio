@@ -4,9 +4,11 @@
 	<author>Danielle Delgado</author>
 	<namespace>rec</namespace>
 
-	<entity name="SolicitudRequerimiento" table="SolicitudRequerimiento" local-service="true" remote-service="true">
+	<entity name="SolicitudRequerimiento" table="SolicitudRequerimiento"
+		local-service="true" remote-service="true">
 
-		<column name="solicitudRequerimientoId" type="long" primary="true" id-type="increment" />
+		<column name="solicitudRequerimientoId" type="long" primary="true"
+			id-type="increment" />
 		<column name="areaSolicitante" type="long" />
 		<column name="cantidadRecursos" type="int" />
 		<column name="responsableRRHH" type="long" />
@@ -29,7 +31,6 @@
 		<column name="proyecto" type="String" />
 		<column name="tiporeclutamiento" type="long" />
 		<column name="estado" type="long" />
-		<column name="funciones" type="Collection" entity="Funcion" mapping-table="SolicitudRequerimientoFuncion" />
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
@@ -38,7 +39,8 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
-		<finder name="SolicitudRequerimientoId" return-type="Collection" where="activo=true">
+		<finder name="SolicitudRequerimientoId" return-type="Collection"
+			where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 		</finder>
 		<finder name="Estado" return-type="Collection" where="activo=true">
@@ -48,11 +50,13 @@
 
 
 
-	<entity name="FichaIngreso" table="FichaIngreso" local-service="true" remote-service="true">
-		<column name="fichaingresoId" type="long" primary="true" id-type="increment" />
+	<entity name="FichaIngreso" table="FichaIngreso" local-service="true"
+		remote-service="true">
+		<column name="fichaingresoId" type="long" primary="true"
+			id-type="increment" />
 		<column name="solicitudRequerimientoId" type="long" primary="true" />
 		<column name="userId" type="long" />
-		<column name="requieroEquipoTecnico" type="boolean" />
+		<column name="equipoTecnico" type="boolean" />
 		<column name="reemplazo" type="boolean" />
 		<column name="aprobacionFichaIngresoCapitalHumano" type="boolean" />
 		<column name="aprobacionFichaIngresoOperaciones" type="boolean" />
@@ -67,33 +71,39 @@
 		</order>
 	</entity>
 
-	<entity name="Funcion" table="Funcion" local-service="true" remote-service="true">
+
+	<entity name="SolicitudRequerimientoFuncion" table="SolicitudRequerimientoFuncion"
+		local-service="true" remote-service="true">
+		<column name="solicitudFuncionId" type="long" primary="true" />
 		<column name="funcionId" type="long" primary="true" />
-
-		<column name="solicitudRequerimientos" type="Collection" entity="SolicitudRequerimiento" mapping-table="SolicitudRequerimientoFuncion" />
-		<column name="descripcion" type="String" />
-		<column name="etiquetaId" type="long" />
 		<column name="exigible" type="boolean" />
-
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
 		<column name="fechamodifica" type="Date" />
-
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
-
-
-		<finder name="filtroDescripcion" return-type="Collection" where="activo=true">
-			<finder-column name="descripcion" comparator="LIKE" />
+		<finder name="S_F" return-type="Collection" where="activo=true">
+			<finder-column name="solicitudFuncionId" />
+			<finder-column name="funcionId" />
 		</finder>
-
-
+		<finder name="S_F_ALL" return-type="Collection" where="">
+			<finder-column name="solicitudFuncionId" />
+			<finder-column name="funcionId" />
+		</finder>
+		<finder name="S" return-type="Collection" where="activo=true">
+			<finder-column name="solicitudFuncionId" />
+		</finder>
+		<finder name="S_All" return-type="Collection">
+			<finder-column name="solicitudFuncionId" />
+		</finder>
 	</entity>
 
-	<entity name="SolicitudRequerimientoRequisito" table="SolicitudRequerimientoRequisito" local-service="true" remote-service="true">
+
+	<entity name="SolicitudRequerimientoRequisito" table="SolicitudRequerimientoRequisito"
+		local-service="true" remote-service="true">
 		<column name="solicitudRequerimientoId" type="long" primary="true" />
 		<column name="tagId" type="long" primary="true" />
 		<column name="nivel" type="long" />
@@ -133,8 +143,8 @@
 
 	</entity>
 
-
-	<entity name="UsuarioRequisito" table="UsuarioRequisito" local-service="true" remote-service="true">
+	<entity name="UsuarioRequisito" table="UsuarioRequisito"
+		local-service="true" remote-service="true">
 
 		<column name="userId" type="long" primary="true" />
 		<column name="tagId" type="long" primary="true" />
@@ -155,7 +165,51 @@
 		</order>
 	</entity>
 
-	<entity name="Usuario" table="Usuario" local-service="true" remote-service="true">
+	<entity name="UsuarioFuncion" table="UsuarioFuncion"
+		local-service="true" remote-service="true">
+		<column name="userId" type="long" primary="true" />
+		<column name="funcionId" type="long" primary="true" />
+		<column name="exigible" type="boolean" />
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechamodifica" type="Date" />
+		<order by="asc">
+			<order-column name="fechamodifica" />
+		</order>
+	</entity>
+
+	<entity name="Funcion" table="Funcion" local-service="true"
+		remote-service="true">
+		<column name="funcionId" type="long" primary="true" id-type="increment" />
+		<column name="descripcion" type="String" />
+
+		<column name="exigible" type="boolean" />
+
+		<column name="activo" type="boolean" />
+		<column name="usuariocrea" type="long" />
+		<column name="fechacrea" type="Date" />
+		<column name="usuariomodifica" type="long" />
+		<column name="fechamodifica" type="Date" />
+		<order by="asc">
+			<order-column name="fechamodifica" />
+		</order>
+
+		<finder name="F_Activo" return-type="Collection">
+			<finder-column name="activo" />
+		</finder>
+		<finder name="D_Activo" return-type="Collection" where="activo=true" >
+			<finder-column name="descripcion" comparator="LIKE"></finder-column>
+		</finder>
+		
+
+
+	</entity>
+
+
+	<entity name="Usuario" table="Usuario" local-service="true"
+		remote-service="true">
 
 		<column name="userId" type="long" primary="true" />
 
@@ -169,13 +223,16 @@
 			<order-column name="fechamodifica" />
 		</order>
 
-		<finder name="UsuariosSeleccionados" return-type="Collection" where="activo=true">
-			<finder-column name="userId" arrayable-operator="OR" comparator="=" />
+		<finder name="UsuariosSeleccionados" return-type="Collection"
+			where="activo=true">
+			<finder-column name="userId" arrayable-operator="OR"
+				comparator="=" />
 		</finder>
 
 	</entity>
 
-	<entity name="Referencia" table="Referencia" local-service="true" remote-service="true">
+	<entity name="Referencia" table="Referencia" local-service="true"
+		remote-service="true">
 
 		<column name="referenciaId" type="long" primary="true" id-type="increment" />
 		<column name="usuarioId" type="long" primary="true" />
@@ -195,7 +252,8 @@
 		</order>
 	</entity>
 
-	<entity name="Estudio" table="Estudio" local-service="true" remote-service="true">
+	<entity name="Estudio" table="Estudio" local-service="true"
+		remote-service="true">
 
 		<column name="estudioId" type="long" primary="true" id-type="increment" />
 		<column name="usuarioId" type="long" />
@@ -213,9 +271,11 @@
 		</order>
 	</entity>
 
-	<entity name="Experiencia" table="Experiencia" local-service="true" remote-service="true">
+	<entity name="Experiencia" table="Experiencia" local-service="true"
+		remote-service="true">
 
-		<column name="experienciaId" type="long" primary="true" id-type="increment" />
+		<column name="experienciaId" type="long" primary="true"
+			id-type="increment" />
 		<column name="usuarioId" type="long" />
 		<column name="descripcion" type="String" />
 		<column name="empresa" type="String" />
@@ -234,7 +294,8 @@
 		</order>
 	</entity>
 
-	<entity name="Contrato" table="Contrato" local-service="true" remote-service="true">
+	<entity name="Contrato" table="Contrato" local-service="true"
+		remote-service="true">
 
 		<column name="contratoId" type="long" primary="true" id-type="increment" />
 		<column name="usuarioId" type="long" />
@@ -253,7 +314,8 @@
 		</order>
 	</entity>
 
-	<entity name="Postulacion" table="Postulacion" local-service="true" remote-service="true">
+	<entity name="Postulacion" table="Postulacion" local-service="true"
+		remote-service="true">
 
 		<column name="solicitudRequerimientoId" type="long" primary="true" />
 		<column name="usuarioId" type="long" primary="true" />
@@ -281,9 +343,11 @@
 
 	</entity>
 
-	<entity name="FasePostulacion" table="FasePostulacion" local-service="true" remote-service="true">
+	<entity name="FasePostulacion" table="FasePostulacion"
+		local-service="true" remote-service="true">
 
-		<column name="fasePostulacionId" type="long" primary="true" id-type="increment" />
+		<column name="fasePostulacionId" type="long" primary="true"
+			id-type="increment" />
 		<column name="solicitudRequerimientoId" type="long" />
 		<column name="usuarioId" type="long" />
 		<column name="tipoFase" type="long" />
@@ -301,7 +365,8 @@
 		<column name="fechamodifica" type="Date" />
 
 
-		<column name="evaluaciones" type="Collection" entity="Evaluacion" mapping-table="FasePostulacionEvaluacion" />
+		<column name="evaluaciones" type="Collection" entity="Evaluacion"
+			mapping-table="FasePostulacionEvaluacion" />
 
 		<order by="asc">
 			<order-column name="fechamodifica" />
@@ -321,8 +386,10 @@
 
 	</entity>
 
-	<entity name="DetalleRepuestaReclutamiento" table="DetalleRepuestaReclutamiento" local-service="true" remote-service="true">
-		<column name="detalleRepsuestaId" type="long" primary="true" id-type="increment" />
+	<entity name="DetalleRepuestaReclutamiento" table="DetalleRepuestaReclutamiento"
+		local-service="true" remote-service="true">
+		<column name="detalleRepsuestaId" type="long" primary="true"
+			id-type="increment" />
 		<column name="usuarioId" type="long" primary="true" />
 		<column name="evaluacionId" type="long" primary="true" />
 		<column name="descripcion" type="String" />
@@ -330,7 +397,8 @@
 		<column name="respuestaSeleccionada" type="int" />
 	</entity>
 
-	<entity name="Evaluacion" table="Evaluacion" local-service="true" remote-service="true">
+	<entity name="Evaluacion" table="Evaluacion" local-service="true"
+		remote-service="true">
 		<column name="evaluacionId" type="long" primary="true" id-type="increment" />
 		<column name="enfoque" type="long" />
 		<column name="puestoCategoriaEvaluacion" type="long" />
@@ -344,7 +412,8 @@
 
 
 
-		<column name="fasepostulacion" type="Collection" entity="FasePostulacion" mapping-table="FasePostulacionEvaluacion" />
+		<column name="fasepostulacion" type="Collection" entity="FasePostulacion"
+			mapping-table="FasePostulacionEvaluacion" />
 
 
 		<order by="asc">
@@ -354,7 +423,8 @@
 
 	</entity>
 
-	<entity name="EvaluacionPregunta" table="EvaluacionPregunta" local-service="true" remote-service="true">
+	<entity name="EvaluacionPregunta" table="EvaluacionPregunta"
+		local-service="true" remote-service="true">
 
 		<column name="evaluacionId" type="long" primary="true" />
 		<column name="preguntaId" type="long" primary="true"></column>
@@ -367,7 +437,8 @@
 
 
 
-	<entity name="Pregunta" table="Pregunta" local-service="true" remote-service="true">
+	<entity name="Pregunta" table="Pregunta" local-service="true"
+		remote-service="true">
 		<column name="preguntaId" type="long" primary="true" id-type="increment" />
 		<column name="descripcion" type="String" />
 
@@ -379,7 +450,8 @@
 		<column name="fechamodifica" type="Date" />
 
 
-		<column name="respuestas" type="Collection" entity="Respuesta" mapping-table="PreguntaRespuesta" />
+		<column name="respuestas" type="Collection" entity="Respuesta"
+			mapping-table="PreguntaRespuesta" />
 
 		<order by="asc">
 			<order-column name="fechamodifica" />
@@ -388,7 +460,8 @@
 	</entity>
 
 
-	<entity name="PreguntaRespuesta" table="PreguntaRespuesta" local-service="true" remote-service="true">
+	<entity name="PreguntaRespuesta" table="PreguntaRespuesta"
+		local-service="true" remote-service="true">
 
 		<column name="preguntaId" type="long" primary="true" />
 		<column name="respuestaId" type="long" primary="true"></column>
@@ -396,7 +469,8 @@
 	</entity>
 
 
-	<entity name="Respuesta" table="Respuesta" local-service="true" remote-service="true">
+	<entity name="Respuesta" table="Respuesta" local-service="true"
+		remote-service="true">
 		<column name="respuestaId" type="long" primary="true" id-type="increment" />
 		<column name="descripcion" type="String" />
 		<column name="correcta" type="boolean" />
@@ -408,7 +482,8 @@
 		<column name="usuariomodifica" type="long" />
 		<column name="fechamodifica" type="Date" />
 
-		<column name="preguntas" type="Collection" entity="Pregunta" mapping-table="PreguntaRespuesta" />
+		<column name="preguntas" type="Collection" entity="Pregunta"
+			mapping-table="PreguntaRespuesta" />
 
 		<order by="asc">
 			<order-column name="fechamodifica" />
@@ -419,7 +494,8 @@
 
 
 
-	<entity name="Parametro" table="Parametro" local-service="true" remote-service="true">
+	<entity name="Parametro" table="Parametro" local-service="true"
+		remote-service="true">
 		<column name="parametroId" type="long" primary="true" id-type="increment" />
 		<column name="parametroIdpadre" type="long" />
 
@@ -451,8 +527,10 @@
 
 	</entity>
 
-	<entity name="LogOperaciones" table="LogOperaciones" local-service="true" remote-service="true">
-		<column name="logOperacionesId" type="long" primary="true" id-type="increment" />
+	<entity name="LogOperaciones" table="LogOperaciones"
+		local-service="true" remote-service="true">
+		<column name="logOperacionesId" type="long" primary="true"
+			id-type="increment" />
 		<column name="tipoActividad" type="long" />
 		<column name="actividad" type="String" />
 		<column name="usuario" type="String" />
@@ -472,8 +550,10 @@
 
 
 
-	<entity name="Observaciones" table="Observaciones" local-service="true" remote-service="true">
-		<column name="observacionId" type="long" primary="true" id-type="increment" />
+	<entity name="Observaciones" table="Observaciones"
+		local-service="true" remote-service="true">
+		<column name="observacionId" type="long" primary="true"
+			id-type="increment" />
 		<column name="descripcion" type="String" />
 		<column name="tabla" type="String" />
 		<column name="registroId" type="long" />
@@ -486,20 +566,22 @@
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
 		<column name="fechamodifica" type="Date" />
-		
+
 
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
-		
+
 		<finder name="R_T" return-type="Observaciones" where="activo=true">
 			<finder-column name="tabla" />
 			<finder-column name="registroId" />
 		</finder>
 	</entity>
 
-	<entity name="SolicitudEvaluacionDesempenno" table="SolicitudEvaluacionDesempenno" local-service="true" remote-service="true">
-		<column name="solicitudEvaluacionDesempennoId" type="long" primary="true" id-type="increment" />
+	<entity name="SolicitudEvaluacionDesempenno" table="SolicitudEvaluacionDesempenno"
+		local-service="true" remote-service="true">
+		<column name="solicitudEvaluacionDesempennoId" type="long"
+			primary="true" id-type="increment" />
 		<column name="descripcion" type="String" />
 		<column name="fechaInicio" type="Date" />
 		<column name="estado" type="long" />
@@ -516,8 +598,10 @@
 		</order>
 	</entity>
 
-	<entity name="PrioridadGrupoUsuarios" table="PrioridadGrupoUsuarios" local-service="true" remote-service="true">
-		<column name="prioridadGrupoUsuariosId" type="long" primary="true" id-type="increment" />
+	<entity name="PrioridadGrupoUsuarios" table="PrioridadGrupoUsuarios"
+		local-service="true" remote-service="true">
+		<column name="prioridadGrupoUsuariosId" type="long" primary="true"
+			id-type="increment" />
 		<column name="solicitudEvaluacionDesempennoId" type="long" />
 		<column name="liderGrupo" type="long" />
 		<column name="gerenteArea" type="long" />
@@ -537,7 +621,8 @@
 		</order>
 	</entity>
 
-	<entity name="Cronograma" table="Cronograma" local-service="true" remote-service="true">
+	<entity name="Cronograma" table="Cronograma" local-service="true"
+		remote-service="true">
 		<column name="cronogramaId" type="long" primary="true" />
 		<column name="solicitudEvaluacionDesempennoId" type="long" />
 		<column name="descripcion" type="String" />
@@ -557,9 +642,11 @@
 		</order>
 	</entity>
 
-	<entity name="ActividadCronograma" table="ActividadCronograma" local-service="true" remote-service="true">
+	<entity name="ActividadCronograma" table="ActividadCronograma"
+		local-service="true" remote-service="true">
 		<column name="cronogramaId" type="long" primary="true" />
-		<column name="actividadCronogramaId" type="long" primary="true" id-type="increment" />
+		<column name="actividadCronogramaId" type="long" primary="true"
+			id-type="increment" />
 		<column name="descripcion" type="String" />
 		<column name="fechaInicio" type="Date" />
 		<column name="fechaFin" type="Date" />
@@ -586,9 +673,11 @@
 		</order>
 	</entity>
 
-	<entity name="ActividadPlan" table="ActividadPlan" local-service="true" remote-service="true">
+	<entity name="ActividadPlan" table="ActividadPlan"
+		local-service="true" remote-service="true">
 		<column name="actividadCronogramaId" type="long" primary="true" />
-		<column name="actividadPlanId" type="long" primary="true" id-type="increment" />
+		<column name="actividadPlanId" type="long" primary="true"
+			id-type="increment" />
 		<column name="planAccionId" type="long" />
 		<column name="actividad" type="String" />
 		<column name="evidencia" type="String" />
@@ -605,13 +694,16 @@
 		</order>
 	</entity>
 
-	<entity name="RegistrarActividadPlanUsuario" table="RegisitrarActividadPlanUsuario" local-service="true" remote-service="true">
+	<entity name="RegistrarActividadPlanUsuario" table="RegisitrarActividadPlanUsuario"
+		local-service="true" remote-service="true">
 		<column name="actividadPlanId" type="long" primary="true" />
-		<column name="regisitrarActividadPlanUsuariocoId" type="long" primary="true" id-type="increment" />
+		<column name="regisitrarActividadPlanUsuariocoId" type="long"
+			primary="true" id-type="increment" />
 		<column name="usuarioId" type="long" />
 
 		<column name="cumplio" type="long" />
 		<column name="actividad" type="String" />
+		<column name="puntuacion" type="int" />
 
 
 		<column name="activo" type="boolean" />
@@ -625,7 +717,8 @@
 		</order>
 	</entity>
 
-	<entity name="InformeRetroalimentacion" table="InformeRetroalimentacion" local-service="true" remote-service="true">
+	<entity name="InformeRetroalimentacion" table="InformeRetroalimentacion"
+		local-service="true" remote-service="true">
 		<column name="informeRetroalimentacionId" type="long" primary="true" />
 		<column name="regisitrarActividadPlanUsuariocoId" type="long" />
 		<column name="usuario" type="long" />
@@ -644,7 +737,8 @@
 		</order>
 	</entity>
 
-	<entity name="UsuarioEvaluacion" table="UsuarioEvaluacion" local-service="true" remote-service="true">
+	<entity name="UsuarioEvaluacion" table="UsuarioEvaluacion"
+		local-service="true" remote-service="true">
 		<column name="actividadCronogramaId" type="long" />
 		<column name="usuarioId" type="long" primary="true" />
 		<column name="evaluacionId" type="long" />
@@ -652,7 +746,8 @@
 
 	</entity>
 
-	<entity name="DetalleRepuestaEvaluacion" table="DetalleRepuestaEvaluacion" local-service="true" remote-service="true">
+	<entity name="DetalleRepuestaEvaluacion" table="DetalleRepuestaEvaluacion"
+		local-service="true" remote-service="true">
 		<column name="detalleRepuestaEvaluacionId" type="long" primary="true" />
 		<column name="evaluacionId" primary="true" type="long" />
 		<column name="usuarioId" type="long" primary="true" />

@@ -36,7 +36,7 @@ public class FichaIngresoSoap implements Serializable {
 		soapModel.setFichaingresoId(model.getFichaingresoId());
 		soapModel.setSolicitudRequerimientoId(model.getSolicitudRequerimientoId());
 		soapModel.setUserId(model.getUserId());
-		soapModel.setRequieroEquipoTecnico(model.getRequieroEquipoTecnico());
+		soapModel.setEquipoTecnico(model.getEquipoTecnico());
 		soapModel.setReemplazo(model.getReemplazo());
 		soapModel.setAprobacionFichaIngresoCapitalHumano(model.getAprobacionFichaIngresoCapitalHumano());
 		soapModel.setAprobacionFichaIngresoOperaciones(model.getAprobacionFichaIngresoOperaciones());
@@ -122,16 +122,16 @@ public class FichaIngresoSoap implements Serializable {
 		_userId = userId;
 	}
 
-	public boolean getRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
+	public boolean getEquipoTecnico() {
+		return _equipoTecnico;
 	}
 
-	public boolean isRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
+	public boolean isEquipoTecnico() {
+		return _equipoTecnico;
 	}
 
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico) {
-		_requieroEquipoTecnico = requieroEquipoTecnico;
+	public void setEquipoTecnico(boolean equipoTecnico) {
+		_equipoTecnico = equipoTecnico;
 	}
 
 	public boolean getReemplazo() {
@@ -219,7 +219,7 @@ public class FichaIngresoSoap implements Serializable {
 	private long _fichaingresoId;
 	private long _solicitudRequerimientoId;
 	private long _userId;
-	private boolean _requieroEquipoTecnico;
+	private boolean _equipoTecnico;
 	private boolean _reemplazo;
 	private boolean _aprobacionFichaIngresoCapitalHumano;
 	private boolean _aprobacionFichaIngresoOperaciones;

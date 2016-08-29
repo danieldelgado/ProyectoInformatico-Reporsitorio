@@ -181,19 +181,6 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		return models;
 	}
 
-	public static final String MAPPING_TABLE_REC_SOLICITUDREQUERIMIENTOFUNCION_NAME =
-		"rec_SolicitudRequerimientoFuncion";
-	public static final Object[][] MAPPING_TABLE_REC_SOLICITUDREQUERIMIENTOFUNCION_COLUMNS =
-		{
-			{ "funcionId", Types.BIGINT },
-			{ "solicitudRequerimientoId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_REC_SOLICITUDREQUERIMIENTOFUNCION_SQL_CREATE =
-		"create table rec_SolicitudRequerimientoFuncion (funcionId LONG not null,solicitudRequerimientoId LONG not null,primary key (funcionId, solicitudRequerimientoId))";
-	public static final boolean FINDER_CACHE_ENABLED_REC_SOLICITUDREQUERIMIENTOFUNCION =
-		GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.rec_SolicitudRequerimientoFuncion"),
-			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.hitss.layer.model.SolicitudRequerimiento"));
 

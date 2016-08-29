@@ -19,7 +19,6 @@ import com.hitss.layer.model.SolicitudRequerimiento;
 import com.hitss.layer.model.impl.SolicitudRequerimientoImpl;
 import com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl;
 
-import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -36,7 +35,6 @@ import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -44,16 +42,12 @@ import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.portal.service.persistence.impl.TableMapper;
-import com.liferay.portal.service.persistence.impl.TableMapperFactory;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The persistence implementation for the solicitud requerimiento service.
@@ -1116,8 +1110,6 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		throws SystemException {
 		solicitudRequerimiento = toUnwrappedModel(solicitudRequerimiento);
 
-		solicitudRequerimientoToFuncionTableMapper.deleteLeftPrimaryKeyTableMappings(solicitudRequerimiento.getPrimaryKey());
-
 		Session session = null;
 
 		try {
@@ -1549,294 +1541,6 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 	}
 
 	/**
-	 * Returns all the funcions associated with the solicitud requerimiento.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @return the funcions associated with the solicitud requerimiento
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<com.hitss.layer.model.Funcion> getFuncions(long pk)
-		throws SystemException {
-		return getFuncions(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-	}
-
-	/**
-	 * Returns a range of all the funcions associated with the solicitud requerimiento.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param start the lower bound of the range of solicitud requerimientos
-	 * @param end the upper bound of the range of solicitud requerimientos (not inclusive)
-	 * @return the range of funcions associated with the solicitud requerimiento
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<com.hitss.layer.model.Funcion> getFuncions(long pk, int start,
-		int end) throws SystemException {
-		return getFuncions(pk, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the funcions associated with the solicitud requerimiento.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param start the lower bound of the range of solicitud requerimientos
-	 * @param end the upper bound of the range of solicitud requerimientos (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of funcions associated with the solicitud requerimiento
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<com.hitss.layer.model.Funcion> getFuncions(long pk, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		return solicitudRequerimientoToFuncionTableMapper.getRightBaseModels(pk,
-			start, end, orderByComparator);
-	}
-
-	/**
-	 * Returns the number of funcions associated with the solicitud requerimiento.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @return the number of funcions associated with the solicitud requerimiento
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int getFuncionsSize(long pk) throws SystemException {
-		long[] pks = solicitudRequerimientoToFuncionTableMapper.getRightPrimaryKeys(pk);
-
-		return pks.length;
-	}
-
-	/**
-	 * Returns <code>true</code> if the funcion is associated with the solicitud requerimiento.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcionPK the primary key of the funcion
-	 * @return <code>true</code> if the funcion is associated with the solicitud requerimiento; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public boolean containsFuncion(long pk, long funcionPK)
-		throws SystemException {
-		return solicitudRequerimientoToFuncionTableMapper.containsTableMapping(pk,
-			funcionPK);
-	}
-
-	/**
-	 * Returns <code>true</code> if the solicitud requerimiento has any funcions associated with it.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento to check for associations with funcions
-	 * @return <code>true</code> if the solicitud requerimiento has any funcions associated with it; <code>false</code> otherwise
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public boolean containsFuncions(long pk) throws SystemException {
-		if (getFuncionsSize(pk) > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	/**
-	 * Adds an association between the solicitud requerimiento and the funcion. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcionPK the primary key of the funcion
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addFuncion(long pk, long funcionPK) throws SystemException {
-		solicitudRequerimientoToFuncionTableMapper.addTableMapping(pk, funcionPK);
-	}
-
-	/**
-	 * Adds an association between the solicitud requerimiento and the funcion. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcion the funcion
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addFuncion(long pk, com.hitss.layer.model.Funcion funcion)
-		throws SystemException {
-		solicitudRequerimientoToFuncionTableMapper.addTableMapping(pk,
-			funcion.getPrimaryKey());
-	}
-
-	/**
-	 * Adds an association between the solicitud requerimiento and the funcions. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcionPKs the primary keys of the funcions
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addFuncions(long pk, long[] funcionPKs)
-		throws SystemException {
-		for (long funcionPK : funcionPKs) {
-			solicitudRequerimientoToFuncionTableMapper.addTableMapping(pk,
-				funcionPK);
-		}
-	}
-
-	/**
-	 * Adds an association between the solicitud requerimiento and the funcions. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcions the funcions
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void addFuncions(long pk,
-		List<com.hitss.layer.model.Funcion> funcions) throws SystemException {
-		for (com.hitss.layer.model.Funcion funcion : funcions) {
-			solicitudRequerimientoToFuncionTableMapper.addTableMapping(pk,
-				funcion.getPrimaryKey());
-		}
-	}
-
-	/**
-	 * Clears all associations between the solicitud requerimiento and its funcions. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento to clear the associated funcions from
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void clearFuncions(long pk) throws SystemException {
-		solicitudRequerimientoToFuncionTableMapper.deleteLeftPrimaryKeyTableMappings(pk);
-	}
-
-	/**
-	 * Removes the association between the solicitud requerimiento and the funcion. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcionPK the primary key of the funcion
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeFuncion(long pk, long funcionPK)
-		throws SystemException {
-		solicitudRequerimientoToFuncionTableMapper.deleteTableMapping(pk,
-			funcionPK);
-	}
-
-	/**
-	 * Removes the association between the solicitud requerimiento and the funcion. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcion the funcion
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeFuncion(long pk, com.hitss.layer.model.Funcion funcion)
-		throws SystemException {
-		solicitudRequerimientoToFuncionTableMapper.deleteTableMapping(pk,
-			funcion.getPrimaryKey());
-	}
-
-	/**
-	 * Removes the association between the solicitud requerimiento and the funcions. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcionPKs the primary keys of the funcions
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeFuncions(long pk, long[] funcionPKs)
-		throws SystemException {
-		for (long funcionPK : funcionPKs) {
-			solicitudRequerimientoToFuncionTableMapper.deleteTableMapping(pk,
-				funcionPK);
-		}
-	}
-
-	/**
-	 * Removes the association between the solicitud requerimiento and the funcions. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcions the funcions
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void removeFuncions(long pk,
-		List<com.hitss.layer.model.Funcion> funcions) throws SystemException {
-		for (com.hitss.layer.model.Funcion funcion : funcions) {
-			solicitudRequerimientoToFuncionTableMapper.deleteTableMapping(pk,
-				funcion.getPrimaryKey());
-		}
-	}
-
-	/**
-	 * Sets the funcions associated with the solicitud requerimiento, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcionPKs the primary keys of the funcions to be associated with the solicitud requerimiento
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void setFuncions(long pk, long[] funcionPKs)
-		throws SystemException {
-		Set<Long> newFuncionPKsSet = SetUtil.fromArray(funcionPKs);
-		Set<Long> oldFuncionPKsSet = SetUtil.fromArray(solicitudRequerimientoToFuncionTableMapper.getRightPrimaryKeys(
-					pk));
-
-		Set<Long> removeFuncionPKsSet = new HashSet<Long>(oldFuncionPKsSet);
-
-		removeFuncionPKsSet.removeAll(newFuncionPKsSet);
-
-		for (long removeFuncionPK : removeFuncionPKsSet) {
-			solicitudRequerimientoToFuncionTableMapper.deleteTableMapping(pk,
-				removeFuncionPK);
-		}
-
-		newFuncionPKsSet.removeAll(oldFuncionPKsSet);
-
-		for (long newFuncionPK : newFuncionPKsSet) {
-			solicitudRequerimientoToFuncionTableMapper.addTableMapping(pk,
-				newFuncionPK);
-		}
-	}
-
-	/**
-	 * Sets the funcions associated with the solicitud requerimiento, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-	 *
-	 * @param pk the primary key of the solicitud requerimiento
-	 * @param funcions the funcions to be associated with the solicitud requerimiento
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public void setFuncions(long pk,
-		List<com.hitss.layer.model.Funcion> funcions) throws SystemException {
-		try {
-			long[] funcionPKs = new long[funcions.size()];
-
-			for (int i = 0; i < funcions.size(); i++) {
-				com.hitss.layer.model.Funcion funcion = funcions.get(i);
-
-				funcionPKs[i] = funcion.getPrimaryKey();
-			}
-
-			setFuncions(pk, funcionPKs);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			FinderCacheUtil.clearCache(SolicitudRequerimientoModelImpl.MAPPING_TABLE_REC_SOLICITUDREQUERIMIENTOFUNCION_NAME);
-		}
-	}
-
-	/**
 	 * Initializes the solicitud requerimiento persistence.
 	 */
 	public void afterPropertiesSet() {
@@ -1859,10 +1563,6 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 				_log.error(e);
 			}
 		}
-
-		solicitudRequerimientoToFuncionTableMapper = TableMapperFactory.getTableMapper("rec_SolicitudRequerimientoFuncion",
-				"solicitudRequerimientoId", "funcionId", this,
-				funcionPersistence);
 	}
 
 	public void destroy() {
@@ -1870,14 +1570,8 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		TableMapperFactory.removeTableMapper(
-			"rec_SolicitudRequerimientoFuncion");
 	}
 
-	@BeanReference(type = FuncionPersistence.class)
-	protected FuncionPersistence funcionPersistence;
-	protected TableMapper<SolicitudRequerimiento, com.hitss.layer.model.Funcion> solicitudRequerimientoToFuncionTableMapper;
 	private static final String _SQL_SELECT_SOLICITUDREQUERIMIENTO = "SELECT solicitudRequerimiento FROM SolicitudRequerimiento solicitudRequerimiento";
 	private static final String _SQL_SELECT_SOLICITUDREQUERIMIENTO_WHERE = "SELECT solicitudRequerimiento FROM SolicitudRequerimiento solicitudRequerimiento WHERE ";
 	private static final String _SQL_COUNT_SOLICITUDREQUERIMIENTO = "SELECT COUNT(solicitudRequerimiento) FROM SolicitudRequerimiento solicitudRequerimiento";

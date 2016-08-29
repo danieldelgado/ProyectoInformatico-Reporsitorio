@@ -322,7 +322,7 @@ public class FichaIngresoPersistenceImpl extends BasePersistenceImpl<FichaIngres
 		fichaIngresoImpl.setFichaingresoId(fichaIngreso.getFichaingresoId());
 		fichaIngresoImpl.setSolicitudRequerimientoId(fichaIngreso.getSolicitudRequerimientoId());
 		fichaIngresoImpl.setUserId(fichaIngreso.getUserId());
-		fichaIngresoImpl.setRequieroEquipoTecnico(fichaIngreso.isRequieroEquipoTecnico());
+		fichaIngresoImpl.setEquipoTecnico(fichaIngreso.isEquipoTecnico());
 		fichaIngresoImpl.setReemplazo(fichaIngreso.isReemplazo());
 		fichaIngresoImpl.setAprobacionFichaIngresoCapitalHumano(fichaIngreso.isAprobacionFichaIngresoCapitalHumano());
 		fichaIngresoImpl.setAprobacionFichaIngresoOperaciones(fichaIngreso.isAprobacionFichaIngresoOperaciones());

@@ -232,127 +232,6 @@ public interface FuncionLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, com.hitss.layer.model.Funcion funcion)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, long[] funcionIds)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void addSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId,
-		java.util.List<com.hitss.layer.model.Funcion> Funcions)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void clearSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, com.hitss.layer.model.Funcion funcion)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, long[] funcionIds)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId,
-		java.util.List<com.hitss.layer.model.Funcion> Funcions)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSolicitudRequerimientoFuncionsCount(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public void setSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, long[] funcionIds)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
@@ -370,4 +249,8 @@ public interface FuncionLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public java.util.List<com.hitss.layer.model.Funcion> findByDescripcion(
+		java.lang.String descripcion)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -40,9 +40,11 @@ import com.hitss.layer.model.RegistrarActividadPlanUsuarioClp;
 import com.hitss.layer.model.RespuestaClp;
 import com.hitss.layer.model.SolicitudEvaluacionDesempennoClp;
 import com.hitss.layer.model.SolicitudRequerimientoClp;
+import com.hitss.layer.model.SolicitudRequerimientoFuncionClp;
 import com.hitss.layer.model.SolicitudRequerimientoRequisitoClp;
 import com.hitss.layer.model.UsuarioClp;
 import com.hitss.layer.model.UsuarioEvaluacionClp;
+import com.hitss.layer.model.UsuarioFuncionClp;
 import com.hitss.layer.model.UsuarioRequisitoClp;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -241,6 +243,11 @@ public class ClpSerializer {
 		}
 
 		if (oldModelClassName.equals(
+					SolicitudRequerimientoFuncionClp.class.getName())) {
+			return translateInputSolicitudRequerimientoFuncion(oldModel);
+		}
+
+		if (oldModelClassName.equals(
 					SolicitudRequerimientoRequisitoClp.class.getName())) {
 			return translateInputSolicitudRequerimientoRequisito(oldModel);
 		}
@@ -251,6 +258,10 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(UsuarioEvaluacionClp.class.getName())) {
 			return translateInputUsuarioEvaluacion(oldModel);
+		}
+
+		if (oldModelClassName.equals(UsuarioFuncionClp.class.getName())) {
+			return translateInputUsuarioFuncion(oldModel);
 		}
 
 		if (oldModelClassName.equals(UsuarioRequisitoClp.class.getName())) {
@@ -540,6 +551,17 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputSolicitudRequerimientoFuncion(
+		BaseModel<?> oldModel) {
+		SolicitudRequerimientoFuncionClp oldClpModel = (SolicitudRequerimientoFuncionClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getSolicitudRequerimientoFuncionRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInputSolicitudRequerimientoRequisito(
 		BaseModel<?> oldModel) {
 		SolicitudRequerimientoRequisitoClp oldClpModel = (SolicitudRequerimientoRequisitoClp)oldModel;
@@ -565,6 +587,16 @@ public class ClpSerializer {
 		UsuarioEvaluacionClp oldClpModel = (UsuarioEvaluacionClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getUsuarioEvaluacionRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputUsuarioFuncion(BaseModel<?> oldModel) {
+		UsuarioFuncionClp oldClpModel = (UsuarioFuncionClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getUsuarioFuncionRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -1555,6 +1587,43 @@ public class ClpSerializer {
 		}
 
 		if (oldModelClassName.equals(
+					"com.hitss.layer.model.impl.SolicitudRequerimientoFuncionImpl")) {
+			return translateOutputSolicitudRequerimientoFuncion(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
+
+		if (oldModelClassName.equals(
 					"com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl")) {
 			return translateOutputSolicitudRequerimientoRequisito(oldModel);
 		}
@@ -1630,6 +1699,43 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.hitss.layer.model.impl.UsuarioEvaluacionImpl")) {
 			return translateOutputUsuarioEvaluacion(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.hitss.layer.model.impl.UsuarioFuncionImpl")) {
+			return translateOutputUsuarioFuncion(oldModel);
 		}
 		else if (oldModelClassName.endsWith("Clp")) {
 			try {
@@ -1895,6 +2001,11 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.hitss.layer.NoSuchSolicitudRequerimientoFuncionException")) {
+			return new com.hitss.layer.NoSuchSolicitudRequerimientoFuncionException();
+		}
+
+		if (className.equals(
 					"com.hitss.layer.NoSuchSolicitudRequerimientoRequisitoException")) {
 			return new com.hitss.layer.NoSuchSolicitudRequerimientoRequisitoException();
 		}
@@ -1905,6 +2016,10 @@ public class ClpSerializer {
 
 		if (className.equals("com.hitss.layer.NoSuchUsuarioEvaluacionException")) {
 			return new com.hitss.layer.NoSuchUsuarioEvaluacionException();
+		}
+
+		if (className.equals("com.hitss.layer.NoSuchUsuarioFuncionException")) {
+			return new com.hitss.layer.NoSuchUsuarioFuncionException();
 		}
 
 		if (className.equals("com.hitss.layer.NoSuchUsuarioRequisitoException")) {
@@ -2183,6 +2298,17 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateOutputSolicitudRequerimientoFuncion(
+		BaseModel<?> oldModel) {
+		SolicitudRequerimientoFuncionClp newModel = new SolicitudRequerimientoFuncionClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setSolicitudRequerimientoFuncionRemoteModel(oldModel);
+
+		return newModel;
+	}
+
 	public static Object translateOutputSolicitudRequerimientoRequisito(
 		BaseModel<?> oldModel) {
 		SolicitudRequerimientoRequisitoClp newModel = new SolicitudRequerimientoRequisitoClp();
@@ -2210,6 +2336,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setUsuarioEvaluacionRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputUsuarioFuncion(BaseModel<?> oldModel) {
+		UsuarioFuncionClp newModel = new UsuarioFuncionClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setUsuarioFuncionRemoteModel(oldModel);
 
 		return newModel;
 	}

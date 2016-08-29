@@ -7,12 +7,20 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.hitss.layer.model.Funcion;
 import com.hitss.layer.model.SolicitudRequerimiento;
+import com.hitss.layer.model.SolicitudRequerimientoFuncion;
 import com.hitss.layer.model.SolicitudRequerimientoRequisito;
+import com.hitss.layer.model.impl.FuncionImpl;
+import com.hitss.layer.model.impl.SolicitudRequerimientoFuncionImpl;
 import com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl;
+import com.hitss.layer.service.FuncionLocalServiceUtil;
+import com.hitss.layer.service.SolicitudRequerimientoFuncionLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalServiceUtil;
+import com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPK;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK;
+import com.hitss.rev.bean.FuncionEtiquetaBean;
 import com.hitss.rev.bean.RequisitoEtiquetaBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.service.ActualizarSolicitudReclutamientoService;
@@ -36,7 +44,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 
 	
 	@Override
-	public Map<String, Object> guardarSolicitudReclutamiento(SolicitudRequerimientoBean solicitudRequerimiento, User user) {
+	public Map<String, Object> guardarSolicitudReclutamiento(SolicitudRequerimientoBean solicitudRequerimiento, User user, long scopeGroupId) {
 		_log.debug("guardarSolicitudReclutamiento:");
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
@@ -65,7 +73,8 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 					sRequerimiento.setEstado(parametroService.getParametro(Constantes.PARAMETRO_REGISTRADO).getParametroId());
 					sRequerimiento = SolicitudRequerimientoLocalServiceUtil.updateSolicitudRequerimiento(sRequerimiento);
 					solicitudRequerimiento.setSolicitudRequerimientoId(sRequerimiento.getSolicitudRequerimientoId());
-					registrarRequisitosEtiquetas(solicitudRequerimiento, user);
+					registrarRequisitosEtiquetas(solicitudRequerimiento, user,scopeGroupId);
+					registrarFuncionEtiquetas(solicitudRequerimiento, user,scopeGroupId);
 					_log.debug("Actualizado:" + sRequerimiento.getSolicitudRequerimientoId());
 					result.put("respuesta", Constantes.TRANSACCION_OK);
 					result.put("objeto", solicitudRequerimiento);
@@ -102,7 +111,8 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 				sRequerimiento.setFechamodifica(new Date());
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.addSolicitudRequerimiento(sRequerimiento);
 				solicitudRequerimiento.setSolicitudRequerimientoId(sRequerimiento.getSolicitudRequerimientoId());
-				registrarRequisitosEtiquetas(solicitudRequerimiento, user);
+				registrarRequisitosEtiquetas(solicitudRequerimiento, user,scopeGroupId);
+				registrarFuncionEtiquetas(solicitudRequerimiento, user,scopeGroupId);
 				_log.debug("Nuevo:" + sRequerimiento.getSolicitudRequerimientoId());
 				result.put("respuesta", Constantes.TRANSACCION_OK);
 				result.put("objeto", solicitudRequerimiento);
@@ -117,7 +127,105 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 		return result;
 	}
 
-	private void registrarRequisitosEtiquetas(SolicitudRequerimientoBean solicitudRequerimiento, User user) {
+	private void registrarFuncionEtiquetas(
+			SolicitudRequerimientoBean solicitudRequerimiento, User user, long scopeGroupId) {
+		try {
+			List<com.hitss.layer.model.Funcion> lstemp = null;
+			Funcion funcion = null;
+			List<FuncionEtiquetaBean> requisitoEtiquetaBeans = solicitudRequerimiento.getFuncionEtiquetaBeans();
+			List<FuncionEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoFuncionsExitentesBeans(solicitudRequerimiento);
+			boolean exite = false;
+			for (FuncionEtiquetaBean funcionBean : requisitoEtiquetaBeans) {
+				funcionBean.setActivo(true);
+				System.out.println(Validator.isNull(funcionBean.getFuncionId()));
+				System.out.println(Validator.isNull(Validator.equals(funcionBean.getFuncionId(), 0)));
+				if (Validator.isNull(funcionBean.getFuncionId()) || Validator.equals(funcionBean.getFuncionId(), 0)) {
+					lstemp = FuncionLocalServiceUtil.findByDescripcion(funcionBean.getFuncion());
+					if(!lstemp.isEmpty()){
+						funcion = lstemp.get(0);
+						if (Validator.isNotNull(funcion)) {
+							funcionBean.setFuncionId(funcion.getFuncionId());
+						}
+					}
+				}
+				if (Validator.isNotNull(funcionBean.getFuncionId())) {
+					for (FuncionEtiquetaBean reqExite : listaSolicitudRequerimientoRequisitosExitentes) {
+						if (funcionBean.getFuncionId() == reqExite.getFuncionId()) {
+							exite = true;
+						}
+					}
+					if (exite) {
+						if (exite) {
+							funcionBean.setNuevo(false);
+						}
+						exite = false;
+						continue;
+					}
+				} else {
+					funcion =  new FuncionImpl();
+					funcion.setNew(true);
+					funcion.setDescripcion(funcionBean.getFuncion());
+					funcion.setActivo(true);			
+					funcion.setExigible(funcionBean.isExigible());
+					funcion.setUsuariocrea(user.getUserId());
+					funcion.setFechacrea(new Date());
+					funcion.setUsuariomodifica(user.getUserId());
+					funcion.setFechamodifica(new Date());
+					funcion = FuncionLocalServiceUtil.addFuncion(funcion);
+					if (Validator.isNotNull(funcion)) {
+						funcionBean.setFuncionId(funcion.getFuncionId());
+						funcionBean.setActivo(true);
+					}
+				}
+			}
+			List<SolicitudRequerimientoFuncion> lista = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoFuncionsExitentes(solicitudRequerimiento);
+			for (SolicitudRequerimientoFuncion sreq : lista) {
+				sreq.setActivo(false);
+				sreq.setUsuariomodifica(user.getUserId());
+				sreq.setFechamodifica(new Date());
+				SolicitudRequerimientoFuncionLocalServiceUtil.updateSolicitudRequerimientoFuncion(sreq);
+			}
+			
+			SolicitudRequerimientoFuncion rsr = null;
+			for (FuncionEtiquetaBean reqAct : requisitoEtiquetaBeans) {
+				SolicitudRequerimientoFuncionPK solicitudRequerimientoRequisitoPK = new SolicitudRequerimientoFuncionPK(solicitudRequerimiento.getSolicitudRequerimientoId(), reqAct.getFuncionId());
+				SolicitudRequerimientoFuncion requerimientoRequisito = new SolicitudRequerimientoFuncionImpl();
+				reqAct.setNuevo(true);
+				for (SolicitudRequerimientoFuncion sreq : lista) {
+					if (sreq.getFuncionId() == reqAct.getFuncionId()) {						
+						reqAct.setNuevo(false);		
+						rsr = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoFuncionByIds(solicitudRequerimiento.getSolicitudRequerimientoId(), reqAct.getFuncionId());
+						reqAct.setUsuariomodifica(rsr.getUsuariocrea());
+						reqAct.setFechacreamodifica(rsr.getFechamodifica());
+					}
+				}
+				requerimientoRequisito.setPrimaryKey(solicitudRequerimientoRequisitoPK);
+				if(reqAct.getExigibleText().equals("true")){
+					requerimientoRequisito.setExigible(true);
+				}else{
+					requerimientoRequisito.setExigible(false);					
+				}
+				requerimientoRequisito.setActivo(reqAct.isActivo());
+				if (reqAct.isNuevo()) {
+					requerimientoRequisito.setUsuariocrea(user.getUserId());
+					requerimientoRequisito.setFechacrea(new Date());
+					requerimientoRequisito.setUsuariomodifica(user.getUserId());
+					requerimientoRequisito.setFechamodifica(new Date());
+					SolicitudRequerimientoFuncionLocalServiceUtil.addSolicitudRequerimientoFuncion(requerimientoRequisito);
+				} else {
+					requerimientoRequisito.setUsuariocrea(reqAct.getUsuariocrea());
+					requerimientoRequisito.setFechacrea(reqAct.getFechacrea());
+					requerimientoRequisito.setUsuariomodifica(user.getUserId());
+					requerimientoRequisito.setFechamodifica(new Date());
+					SolicitudRequerimientoFuncionLocalServiceUtil.updateSolicitudRequerimientoFuncion(requerimientoRequisito);
+				}
+			}
+		} catch (SystemException  e) {
+			_log.error("registrarFuncionEtiquetas:" + e.getMessage(), e);
+		}
+	}
+
+	private void registrarRequisitosEtiquetas(SolicitudRequerimientoBean solicitudRequerimiento, User user, long scopeGroupId) {
 		try {
 			AssetTag tag = null;
 			List<RequisitoEtiquetaBean> requisitoEtiquetaBeans = solicitudRequerimiento.getRequisitoEtiquetaBeans();
@@ -145,7 +253,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 						continue;
 					}
 				} else {
-					tag = liferayContentService.nuevaEtiqueta(reqAct.getRequisito(), user);
+					tag = liferayContentService.nuevaEtiqueta(reqAct.getRequisito(), user,scopeGroupId);
 					if (Validator.isNotNull(tag)) {
 						reqAct.setTagId(tag.getTagId());
 						reqAct.setActivo(true);

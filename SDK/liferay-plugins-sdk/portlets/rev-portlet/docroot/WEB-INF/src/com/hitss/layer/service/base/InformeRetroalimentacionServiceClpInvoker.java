@@ -24,24 +24,24 @@ import java.util.Arrays;
  */
 public class InformeRetroalimentacionServiceClpInvoker {
 	public InformeRetroalimentacionServiceClpInvoker() {
-		_methodName194 = "getBeanIdentifier";
+		_methodName206 = "getBeanIdentifier";
 
-		_methodParameterTypes194 = new String[] {  };
+		_methodParameterTypes206 = new String[] {  };
 
-		_methodName195 = "setBeanIdentifier";
+		_methodName207 = "setBeanIdentifier";
 
-		_methodParameterTypes195 = new String[] { "java.lang.String" };
+		_methodParameterTypes207 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName194.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes194, parameterTypes)) {
+		if (_methodName206.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes206, parameterTypes)) {
 			return InformeRetroalimentacionServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName195.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes195, parameterTypes)) {
+		if (_methodName207.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes207, parameterTypes)) {
 			InformeRetroalimentacionServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -50,8 +50,8 @@ public class InformeRetroalimentacionServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName194;
-	private String[] _methodParameterTypes194;
-	private String _methodName195;
-	private String[] _methodParameterTypes195;
+	private String _methodName206;
+	private String[] _methodParameterTypes206;
+	private String _methodName207;
+	private String[] _methodParameterTypes207;
 }

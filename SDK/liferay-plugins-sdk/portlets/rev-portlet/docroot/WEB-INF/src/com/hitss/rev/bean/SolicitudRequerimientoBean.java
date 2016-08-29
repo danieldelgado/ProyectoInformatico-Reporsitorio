@@ -50,6 +50,7 @@ public class SolicitudRequerimientoBean {
 	private Date fechacreamodifica;
 	private String strfechacreamodifica;
 	private List<RequisitoEtiquetaBean> requisitoEtiquetaBeans;
+	private List<FuncionEtiquetaBean> funcionEtiquetaBeans;
 	
 	private ObservacionBean observacionBean;
 	
@@ -423,6 +424,14 @@ public class SolicitudRequerimientoBean {
 
 	public void setObservacionBean(ObservacionBean observacionBean) {
 		this.observacionBean = observacionBean;
+	}
+
+	public List<FuncionEtiquetaBean> getFuncionEtiquetaBeans() {
+		return funcionEtiquetaBeans;
+	}
+
+	public void setFuncionEtiquetaBeans(List<FuncionEtiquetaBean> funcionEtiquetaBeans) {
+		this.funcionEtiquetaBeans = funcionEtiquetaBeans;
 	}
 
 	

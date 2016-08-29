@@ -28,9 +28,11 @@
 	<import class="com.hitss.layer.model.Respuesta" />
 	<import class="com.hitss.layer.model.SolicitudEvaluacionDesempenno" />
 	<import class="com.hitss.layer.model.SolicitudRequerimiento" />
+	<import class="com.hitss.layer.model.SolicitudRequerimientoFuncion" />
 	<import class="com.hitss.layer.model.SolicitudRequerimientoRequisito" />
 	<import class="com.hitss.layer.model.Usuario" />
 	<import class="com.hitss.layer.model.UsuarioEvaluacion" />
+	<import class="com.hitss.layer.model.UsuarioFuncion" />
 	<import class="com.hitss.layer.model.UsuarioRequisito" />
 	<class name="com.hitss.layer.model.impl.ActividadCronogramaImpl" table="ActividadCronograma">
 		<cache usage="read-write" />
@@ -205,7 +207,7 @@
 			<key-property name="solicitudRequerimientoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		</composite-id>
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="requieroEquipoTecnico" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="equipoTecnico" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="reemplazo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="aprobacionFichaIngresoCapitalHumano" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="aprobacionFichaIngresoOperaciones" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
@@ -218,10 +220,9 @@
 	<class name="com.hitss.layer.model.impl.FuncionImpl" table="Funcion">
 		<cache usage="read-write" />
 		<id name="funcionId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="etiquetaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="exigible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -362,6 +363,7 @@
 		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="cumplio" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="actividad" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="puntuacion" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
@@ -428,6 +430,19 @@
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
+	<class name="com.hitss.layer.model.impl.SolicitudRequerimientoFuncionImpl" table="SolicitudRequerimientoFuncion">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPK">
+			<key-property name="solicitudFuncionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="funcionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="exigible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
+		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
+	</class>
 	<class name="com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl" table="SolicitudRequerimientoRequisito">
 		<cache usage="read-write" />
 		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK">
@@ -463,6 +478,19 @@
 		<property name="actividadCronogramaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="evaluacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="nota" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.hitss.layer.model.impl.UsuarioFuncionImpl" table="UsuarioFuncion">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.UsuarioFuncionPK">
+			<key-property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="funcionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="exigible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
+		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.UsuarioRequisitoImpl" table="UsuarioRequisito">
 		<cache usage="read-write" />

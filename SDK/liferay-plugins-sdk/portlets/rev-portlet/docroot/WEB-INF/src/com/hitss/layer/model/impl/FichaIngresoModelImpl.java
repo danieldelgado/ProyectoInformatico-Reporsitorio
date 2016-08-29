@@ -66,7 +66,7 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 			{ "fichaingresoId", Types.BIGINT },
 			{ "solicitudRequerimientoId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
-			{ "requieroEquipoTecnico", Types.BOOLEAN },
+			{ "equipoTecnico", Types.BOOLEAN },
 			{ "reemplazo", Types.BOOLEAN },
 			{ "aprobacionFichaIngresoCapitalHumano", Types.BOOLEAN },
 			{ "aprobacionFichaIngresoOperaciones", Types.BOOLEAN },
@@ -76,7 +76,7 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table FichaIngreso (fichaingresoId LONG not null,solicitudRequerimientoId LONG not null,userId LONG,requieroEquipoTecnico BOOLEAN,reemplazo BOOLEAN,aprobacionFichaIngresoCapitalHumano BOOLEAN,aprobacionFichaIngresoOperaciones BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (fichaingresoId, solicitudRequerimientoId))";
+	public static final String TABLE_SQL_CREATE = "create table FichaIngreso (fichaingresoId LONG not null,solicitudRequerimientoId LONG not null,userId LONG,equipoTecnico BOOLEAN,reemplazo BOOLEAN,aprobacionFichaIngresoCapitalHumano BOOLEAN,aprobacionFichaIngresoOperaciones BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (fichaingresoId, solicitudRequerimientoId))";
 	public static final String TABLE_SQL_DROP = "drop table FichaIngreso";
 	public static final String ORDER_BY_JPQL = " ORDER BY fichaIngreso.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY FichaIngreso.fechamodifica ASC";
@@ -107,7 +107,7 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 		model.setFichaingresoId(soapModel.getFichaingresoId());
 		model.setSolicitudRequerimientoId(soapModel.getSolicitudRequerimientoId());
 		model.setUserId(soapModel.getUserId());
-		model.setRequieroEquipoTecnico(soapModel.getRequieroEquipoTecnico());
+		model.setEquipoTecnico(soapModel.getEquipoTecnico());
 		model.setReemplazo(soapModel.getReemplazo());
 		model.setAprobacionFichaIngresoCapitalHumano(soapModel.getAprobacionFichaIngresoCapitalHumano());
 		model.setAprobacionFichaIngresoOperaciones(soapModel.getAprobacionFichaIngresoOperaciones());
@@ -184,7 +184,7 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 		attributes.put("fichaingresoId", getFichaingresoId());
 		attributes.put("solicitudRequerimientoId", getSolicitudRequerimientoId());
 		attributes.put("userId", getUserId());
-		attributes.put("requieroEquipoTecnico", getRequieroEquipoTecnico());
+		attributes.put("equipoTecnico", getEquipoTecnico());
 		attributes.put("reemplazo", getReemplazo());
 		attributes.put("aprobacionFichaIngresoCapitalHumano",
 			getAprobacionFichaIngresoCapitalHumano());
@@ -220,11 +220,10 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 			setUserId(userId);
 		}
 
-		Boolean requieroEquipoTecnico = (Boolean)attributes.get(
-				"requieroEquipoTecnico");
+		Boolean equipoTecnico = (Boolean)attributes.get("equipoTecnico");
 
-		if (requieroEquipoTecnico != null) {
-			setRequieroEquipoTecnico(requieroEquipoTecnico);
+		if (equipoTecnico != null) {
+			setEquipoTecnico(equipoTecnico);
 		}
 
 		Boolean reemplazo = (Boolean)attributes.get("reemplazo");
@@ -323,18 +322,18 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 
 	@JSON
 	@Override
-	public boolean getRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
+	public boolean getEquipoTecnico() {
+		return _equipoTecnico;
 	}
 
 	@Override
-	public boolean isRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
+	public boolean isEquipoTecnico() {
+		return _equipoTecnico;
 	}
 
 	@Override
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico) {
-		_requieroEquipoTecnico = requieroEquipoTecnico;
+	public void setEquipoTecnico(boolean equipoTecnico) {
+		_equipoTecnico = equipoTecnico;
 	}
 
 	@JSON
@@ -464,7 +463,7 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 		fichaIngresoImpl.setFichaingresoId(getFichaingresoId());
 		fichaIngresoImpl.setSolicitudRequerimientoId(getSolicitudRequerimientoId());
 		fichaIngresoImpl.setUserId(getUserId());
-		fichaIngresoImpl.setRequieroEquipoTecnico(getRequieroEquipoTecnico());
+		fichaIngresoImpl.setEquipoTecnico(getEquipoTecnico());
 		fichaIngresoImpl.setReemplazo(getReemplazo());
 		fichaIngresoImpl.setAprobacionFichaIngresoCapitalHumano(getAprobacionFichaIngresoCapitalHumano());
 		fichaIngresoImpl.setAprobacionFichaIngresoOperaciones(getAprobacionFichaIngresoOperaciones());
@@ -534,7 +533,7 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 
 		fichaIngresoCacheModel.userId = getUserId();
 
-		fichaIngresoCacheModel.requieroEquipoTecnico = getRequieroEquipoTecnico();
+		fichaIngresoCacheModel.equipoTecnico = getEquipoTecnico();
 
 		fichaIngresoCacheModel.reemplazo = getReemplazo();
 
@@ -579,8 +578,8 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 		sb.append(getSolicitudRequerimientoId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", requieroEquipoTecnico=");
-		sb.append(getRequieroEquipoTecnico());
+		sb.append(", equipoTecnico=");
+		sb.append(getEquipoTecnico());
 		sb.append(", reemplazo=");
 		sb.append(getReemplazo());
 		sb.append(", aprobacionFichaIngresoCapitalHumano=");
@@ -623,8 +622,8 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>requieroEquipoTecnico</column-name><column-value><![CDATA[");
-		sb.append(getRequieroEquipoTecnico());
+			"<column><column-name>equipoTecnico</column-name><column-value><![CDATA[");
+		sb.append(getEquipoTecnico());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>reemplazo</column-name><column-value><![CDATA[");
@@ -672,7 +671,7 @@ public class FichaIngresoModelImpl extends BaseModelImpl<FichaIngreso>
 	private long _solicitudRequerimientoId;
 	private long _userId;
 	private String _userUuid;
-	private boolean _requieroEquipoTecnico;
+	private boolean _equipoTecnico;
 	private boolean _reemplazo;
 	private boolean _aprobacionFichaIngresoCapitalHumano;
 	private boolean _aprobacionFichaIngresoOperaciones;

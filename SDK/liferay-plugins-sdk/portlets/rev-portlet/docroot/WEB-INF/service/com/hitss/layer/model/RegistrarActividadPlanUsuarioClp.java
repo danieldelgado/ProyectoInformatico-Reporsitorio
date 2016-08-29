@@ -85,6 +85,7 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("cumplio", getCumplio());
 		attributes.put("actividad", getActividad());
+		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -125,6 +126,12 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 
 		if (actividad != null) {
 			setActividad(actividad);
+		}
+
+		Integer puntuacion = (Integer)attributes.get("puntuacion");
+
+		if (puntuacion != null) {
+			setPuntuacion(puntuacion);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -272,6 +279,30 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 
 				method.invoke(_registrarActividadPlanUsuarioRemoteModel,
 					actividad);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getPuntuacion() {
+		return _puntuacion;
+	}
+
+	@Override
+	public void setPuntuacion(int puntuacion) {
+		_puntuacion = puntuacion;
+
+		if (_registrarActividadPlanUsuarioRemoteModel != null) {
+			try {
+				Class<?> clazz = _registrarActividadPlanUsuarioRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setPuntuacion", int.class);
+
+				method.invoke(_registrarActividadPlanUsuarioRemoteModel,
+					puntuacion);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -479,6 +510,7 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 		clone.setUsuarioId(getUsuarioId());
 		clone.setCumplio(getCumplio());
 		clone.setActividad(getActividad());
+		clone.setPuntuacion(getPuntuacion());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -536,7 +568,7 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{actividadPlanId=");
 		sb.append(getActividadPlanId());
@@ -548,6 +580,8 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 		sb.append(getCumplio());
 		sb.append(", actividad=");
 		sb.append(getActividad());
+		sb.append(", puntuacion=");
+		sb.append(getPuntuacion());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -565,7 +599,7 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.RegistrarActividadPlanUsuario");
@@ -590,6 +624,10 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 		sb.append(
 			"<column><column-name>actividad</column-name><column-value><![CDATA[");
 		sb.append(getActividad());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>puntuacion</column-name><column-value><![CDATA[");
+		sb.append(getPuntuacion());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -622,6 +660,7 @@ public class RegistrarActividadPlanUsuarioClp extends BaseModelImpl<RegistrarAct
 	private long _usuarioId;
 	private long _cumplio;
 	private String _actividad;
+	private int _puntuacion;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

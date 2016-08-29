@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
+import com.hitss.rev.bean.FuncionEtiquetaBean;
 import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.RequisitoEtiquetaBean;
@@ -70,6 +71,12 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 		_log.debug("listarEtiquetas");
 		super.listarEtiquetas(resourceRequest, resourceResponse, (RevServiceImpl) actualizarSolicitudReclutamientoService);
 	}
+	
+	@ResourceMapping(value = "listarFunciones")
+	public void listarFunciones(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		_log.debug("listarFunciones");
+		super.listarFunciones(resourceRequest, resourceResponse, (RevServiceImpl) actualizarSolicitudReclutamientoService);
+	}
 
 	@ResourceMapping(value = "listarPuestosCategorias")
 	public void listarPuestosCategorias(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
@@ -77,6 +84,11 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 		super.listarPuestosCategorias(resourceRequest, resourceResponse, (RevServiceImpl) actualizarSolicitudReclutamientoService);
 	}
 
+	@RenderMapping(params = "action=verDetalleSolicitud")
+	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {
+		_log.debug("actualizarSolicitud");		
+		return super.verDetalleSolicitud(request, response, model, (RevServiceImpl) actualizarSolicitudReclutamientoService);
+	}
 	@RenderMapping(params = "action=actualizarSolicitud")
 	public String iractualizarSolicitud(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("actualizarSolicitud");
@@ -89,7 +101,8 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 			SolicitudRequerimientoBean solicitudReclutamiento = actualizarSolicitudReclutamientoService.getSolicitudRequerimiento(solicitudRequerimientoId);
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
 			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
-		}
+			model.addAttribute("funcionEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getFuncionEtiquetaBeans()));
+			}
 
 		List<PuestoBean> listaPuestoBeans = actualizarSolicitudReclutamientoService.getListaPuestos(td.getSiteGroup().getGroupId(), null);
 		model.addAttribute("listaPuestoBeans", listaPuestoBeans);
@@ -162,7 +175,8 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 		_log.debug("especialidad:" + especialidad);
 
 		String requisitosLista = ParamUtil.get(resourceRequest, "requisitosList", "");
-
+		String funcionList = ParamUtil.get(resourceRequest, "funcionList", "");
+		
 		SolicitudRequerimientoBean solicitudRequerimiento = new SolicitudRequerimientoBean();
 		solicitudRequerimiento.setSolicitudRequerimientoId(solicitudRequerimientoId);
 		solicitudRequerimiento.setPuestoId(puestoId);
@@ -179,8 +193,11 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 		List<RequisitoEtiquetaBean> lista = (List<RequisitoEtiquetaBean>) JsonUtil.getJsonObject(requisitosLista, new com.google.gson.reflect.TypeToken<List<RequisitoEtiquetaBean>>() {
 		});
 		solicitudRequerimiento.setRequisitoEtiquetaBeans(lista);
+		List<FuncionEtiquetaBean> listafuncion = (List<FuncionEtiquetaBean>) JsonUtil.getJsonObject(funcionList, new com.google.gson.reflect.TypeToken<List<FuncionEtiquetaBean>>() {
+		});
+		solicitudRequerimiento.setFuncionEtiquetaBeans(listafuncion);
 
-		Map<String, Object> result = actualizarSolicitudReclutamientoService.guardarSolicitudReclutamiento(solicitudRequerimiento, user);
+		Map<String, Object> result = actualizarSolicitudReclutamientoService.guardarSolicitudReclutamiento(solicitudRequerimiento, user,td.getScopeGroupId());
 		if (Validator.isNotNull(result)) {
 			_log.debug("result:" + result);
 			try {

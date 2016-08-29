@@ -160,7 +160,7 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 	}
 
 	@Override
-	public AssetTag nuevaEtiqueta(String requisito, User user) {
+	public AssetTag nuevaEtiqueta(String requisito, User user,long scopeGroupId) {
 		AssetTag t = null;
 		try {
 			Long id = CounterLocalServiceUtil.increment(AssetTag.class.getName());
@@ -168,7 +168,7 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 			t.setNew(true);
 			t.setUserName(user.getFullName());
 			t.setName(requisito);
-			t.setGroupId(user.getGroupId());
+			t.setGroupId(scopeGroupId);
 			t.setCompanyId(user.getCompanyId());
 			t.setCreateDate(new Date());
 			t.setModifiedDate(new Date());
@@ -176,7 +176,7 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 			t.setUserUuid(user.getUuid());
 			t = AssetTagLocalServiceUtil.addAssetTag(t);
 			return t;
-		} catch (SystemException | PortalException e) {
+		} catch (SystemException  e) {
 			_log.error("nuevaEtiqueta:" + e.getMessage(), e);
 		}
 		return null;

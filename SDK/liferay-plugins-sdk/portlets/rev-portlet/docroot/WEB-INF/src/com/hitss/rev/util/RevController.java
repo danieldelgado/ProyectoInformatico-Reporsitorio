@@ -117,16 +117,6 @@ public abstract class RevController {
 		}
 	}
 	
-	public void listarEtiquetas(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
-		String requisito = ParamUtil.get(resourceRequest, "requisito", "");
-		_log.debug("requisito:" + requisito);
-		List<ComboBean> listaRequisitos = service.getListarEtiquetas(requisito);
-		try {
-			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaRequisitos);
-		} catch (IOException e) {
-			_log.error("e:" + e.getLocalizedMessage(), e);
-		}
-	}
 	
 	public void listarPuestosCategorias(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
 		String filtro = ParamUtil.get(resourceRequest, "filtro", "");
@@ -151,6 +141,7 @@ public abstract class RevController {
 			SolicitudRequerimientoBean solicitudReclutamiento = service.getSolicitudRequerimiento(solicitudRequerimientoId);
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
 			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
+			model.addAttribute("funcionEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getFuncionEtiquetaBeans()));
 		}
 
 		List<PuestoBean> listaPuestoBeans = service.getListaPuestos(td.getSiteGroup().getGroupId(), null);
@@ -178,6 +169,30 @@ public abstract class RevController {
 		model.addAttribute("listaTipoRequisito", listaTipoRequisito);
 
 		return "detalleSolicitud";
+	}
+
+	public void listarEtiquetas(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
+		String requisito = ParamUtil.get(resourceRequest, "requisito", "");
+		_log.debug("requisito:" + requisito);
+		List<ComboBean> listaRequisitos = service.getListarEtiquetas(requisito);
+		try {
+			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaRequisitos);
+		} catch (IOException e) {
+			_log.error("e:" + e.getLocalizedMessage(), e);
+		}
+	}
+	public void listarFunciones(ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse,
+			RevServiceImpl service) {
+		
+		String funcion = ParamUtil.get(resourceRequest, "funcion", "");
+		_log.debug("funcion:" + funcion);
+		List<ComboBean> listaFunciones = service.getFuncionsByDescripcion(funcion);
+		try {
+			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaFunciones);
+		} catch (IOException e) {
+			_log.error("e:" + e.getLocalizedMessage(), e);
+		}		
 	}
 	
 

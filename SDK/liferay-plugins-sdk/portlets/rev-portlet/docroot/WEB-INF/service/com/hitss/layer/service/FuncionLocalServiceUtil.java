@@ -248,180 +248,6 @@ public class FuncionLocalServiceUtil {
 	}
 
 	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void addSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addSolicitudRequerimientoFuncion(solicitudRequerimientoId,
-			funcionId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void addSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, com.hitss.layer.model.Funcion funcion)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addSolicitudRequerimientoFuncion(solicitudRequerimientoId, funcion);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void addSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, long[] funcionIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addSolicitudRequerimientoFuncions(solicitudRequerimientoId,
-			funcionIds);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void addSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId,
-		java.util.List<com.hitss.layer.model.Funcion> Funcions)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.addSolicitudRequerimientoFuncions(solicitudRequerimientoId,
-			Funcions);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void clearSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.clearSolicitudRequerimientoFuncions(solicitudRequerimientoId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void deleteSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.deleteSolicitudRequerimientoFuncion(solicitudRequerimientoId,
-			funcionId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void deleteSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, com.hitss.layer.model.Funcion funcion)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.deleteSolicitudRequerimientoFuncion(solicitudRequerimientoId,
-			funcion);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void deleteSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, long[] funcionIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.deleteSolicitudRequerimientoFuncions(solicitudRequerimientoId,
-			funcionIds);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void deleteSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId,
-		java.util.List<com.hitss.layer.model.Funcion> Funcions)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.deleteSolicitudRequerimientoFuncions(solicitudRequerimientoId,
-			Funcions);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getSolicitudRequerimientoFuncions(solicitudRequerimientoId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getSolicitudRequerimientoFuncions(solicitudRequerimientoId,
-			start, end);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.hitss.layer.model.Funcion> getSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getSolicitudRequerimientoFuncions(solicitudRequerimientoId,
-			start, end, orderByComparator);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int getSolicitudRequerimientoFuncionsCount(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getSolicitudRequerimientoFuncionsCount(solicitudRequerimientoId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static boolean hasSolicitudRequerimientoFuncion(
-		long solicitudRequerimientoId, long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .hasSolicitudRequerimientoFuncion(solicitudRequerimientoId,
-			funcionId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static boolean hasSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .hasSolicitudRequerimientoFuncions(solicitudRequerimientoId);
-	}
-
-	/**
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void setSolicitudRequerimientoFuncions(
-		long solicitudRequerimientoId, long[] funcionIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.setSolicitudRequerimientoFuncions(solicitudRequerimientoId,
-			funcionIds);
-	}
-
-	/**
 	* Returns the Spring bean ID for this bean.
 	*
 	* @return the Spring bean ID for this bean
@@ -443,6 +269,12 @@ public class FuncionLocalServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static java.util.List<com.hitss.layer.model.Funcion> findByDescripcion(
+		java.lang.String descripcion)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByDescripcion(descripcion);
 	}
 
 	public static void clearService() {

@@ -45,8 +45,8 @@ public class FichaIngresoCacheModel implements CacheModel<FichaIngreso>,
 		sb.append(solicitudRequerimientoId);
 		sb.append(", userId=");
 		sb.append(userId);
-		sb.append(", requieroEquipoTecnico=");
-		sb.append(requieroEquipoTecnico);
+		sb.append(", equipoTecnico=");
+		sb.append(equipoTecnico);
 		sb.append(", reemplazo=");
 		sb.append(reemplazo);
 		sb.append(", aprobacionFichaIngresoCapitalHumano=");
@@ -75,7 +75,7 @@ public class FichaIngresoCacheModel implements CacheModel<FichaIngreso>,
 		fichaIngresoImpl.setFichaingresoId(fichaingresoId);
 		fichaIngresoImpl.setSolicitudRequerimientoId(solicitudRequerimientoId);
 		fichaIngresoImpl.setUserId(userId);
-		fichaIngresoImpl.setRequieroEquipoTecnico(requieroEquipoTecnico);
+		fichaIngresoImpl.setEquipoTecnico(equipoTecnico);
 		fichaIngresoImpl.setReemplazo(reemplazo);
 		fichaIngresoImpl.setAprobacionFichaIngresoCapitalHumano(aprobacionFichaIngresoCapitalHumano);
 		fichaIngresoImpl.setAprobacionFichaIngresoOperaciones(aprobacionFichaIngresoOperaciones);
@@ -108,7 +108,7 @@ public class FichaIngresoCacheModel implements CacheModel<FichaIngreso>,
 		fichaingresoId = objectInput.readLong();
 		solicitudRequerimientoId = objectInput.readLong();
 		userId = objectInput.readLong();
-		requieroEquipoTecnico = objectInput.readBoolean();
+		equipoTecnico = objectInput.readBoolean();
 		reemplazo = objectInput.readBoolean();
 		aprobacionFichaIngresoCapitalHumano = objectInput.readBoolean();
 		aprobacionFichaIngresoOperaciones = objectInput.readBoolean();
@@ -125,7 +125,7 @@ public class FichaIngresoCacheModel implements CacheModel<FichaIngreso>,
 		objectOutput.writeLong(fichaingresoId);
 		objectOutput.writeLong(solicitudRequerimientoId);
 		objectOutput.writeLong(userId);
-		objectOutput.writeBoolean(requieroEquipoTecnico);
+		objectOutput.writeBoolean(equipoTecnico);
 		objectOutput.writeBoolean(reemplazo);
 		objectOutput.writeBoolean(aprobacionFichaIngresoCapitalHumano);
 		objectOutput.writeBoolean(aprobacionFichaIngresoOperaciones);
@@ -139,7 +139,7 @@ public class FichaIngresoCacheModel implements CacheModel<FichaIngreso>,
 	public long fichaingresoId;
 	public long solicitudRequerimientoId;
 	public long userId;
-	public boolean requieroEquipoTecnico;
+	public boolean equipoTecnico;
 	public boolean reemplazo;
 	public boolean aprobacionFichaIngresoCapitalHumano;
 	public boolean aprobacionFichaIngresoOperaciones;

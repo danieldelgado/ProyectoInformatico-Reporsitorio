@@ -134,6 +134,20 @@ public interface RegistrarActividadPlanUsuarioModel extends BaseModel<RegistrarA
 	public void setActividad(String actividad);
 
 	/**
+	 * Returns the puntuacion of this registrar actividad plan usuario.
+	 *
+	 * @return the puntuacion of this registrar actividad plan usuario
+	 */
+	public int getPuntuacion();
+
+	/**
+	 * Sets the puntuacion of this registrar actividad plan usuario.
+	 *
+	 * @param puntuacion the puntuacion of this registrar actividad plan usuario
+	 */
+	public void setPuntuacion(int puntuacion);
+
+	/**
 	 * Returns the activo of this registrar actividad plan usuario.
 	 *
 	 * @return the activo of this registrar actividad plan usuario

@@ -252,7 +252,7 @@
 			<id name="fichaingresoId" />
 			<id name="solicitudRequerimientoId" />
 			<basic name="userId" />
-			<basic name="requieroEquipoTecnico" />
+			<basic name="equipoTecnico" />
 			<basic name="reemplazo" />
 			<basic name="aprobacionFichaIngresoCapitalHumano" />
 			<basic name="aprobacionFichaIngresoOperaciones" />
@@ -275,7 +275,6 @@
 		<attributes>
 			<id name="funcionId" />
 			<basic name="descripcion" />
-			<basic name="etiquetaId" />
 			<basic name="exigible" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
@@ -478,6 +477,7 @@
 			<basic name="usuarioId" />
 			<basic name="cumplio" />
 			<basic name="actividad" />
+			<basic name="puntuacion" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
 			<basic name="fechacrea">
@@ -576,6 +576,26 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.SolicitudRequerimientoFuncionModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPK" />
+		<attributes>
+			<id name="solicitudFuncionId" />
+			<id name="funcionId" />
+			<basic name="exigible" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoModelImpl">
 		<id-class class="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPK" />
 		<attributes>
@@ -626,6 +646,27 @@
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.UsuarioFuncionModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.UsuarioFuncionPK" />
+		<attributes>
+			<id name="userId" />
+			<id name="funcionId" />
+			<basic name="exigible" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.UsuarioRequisitoModelImpl">
@@ -757,6 +798,10 @@
 		<table name="SolicitudRequerimiento" />
 		<attributes />
 	</entity>
+	<entity class="com.hitss.layer.model.impl.SolicitudRequerimientoFuncionImpl" name="SolicitudRequerimientoFuncion">
+		<table name="SolicitudRequerimientoFuncion" />
+		<attributes />
+	</entity>
 	<entity class="com.hitss.layer.model.impl.SolicitudRequerimientoRequisitoImpl" name="SolicitudRequerimientoRequisito">
 		<table name="SolicitudRequerimientoRequisito" />
 		<attributes />
@@ -767,6 +812,10 @@
 	</entity>
 	<entity class="com.hitss.layer.model.impl.UsuarioEvaluacionImpl" name="UsuarioEvaluacion">
 		<table name="UsuarioEvaluacion" />
+		<attributes />
+	</entity>
+	<entity class="com.hitss.layer.model.impl.UsuarioFuncionImpl" name="UsuarioFuncion">
+		<table name="UsuarioFuncion" />
 		<attributes />
 	</entity>
 	<entity class="com.hitss.layer.model.impl.UsuarioRequisitoImpl" name="UsuarioRequisito">

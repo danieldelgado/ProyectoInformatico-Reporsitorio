@@ -76,7 +76,6 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 		attributes.put("funcionId", getFuncionId());
 		attributes.put("descripcion", getDescripcion());
-		attributes.put("etiquetaId", getEtiquetaId());
 		attributes.put("exigible", getExigible());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
@@ -99,12 +98,6 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 		if (descripcion != null) {
 			setDescripcion(descripcion);
-		}
-
-		Long etiquetaId = (Long)attributes.get("etiquetaId");
-
-		if (etiquetaId != null) {
-			setEtiquetaId(etiquetaId);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -183,29 +176,6 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 				Method method = clazz.getMethod("setDescripcion", String.class);
 
 				method.invoke(_funcionRemoteModel, descripcion);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getEtiquetaId() {
-		return _etiquetaId;
-	}
-
-	@Override
-	public void setEtiquetaId(long etiquetaId) {
-		_etiquetaId = etiquetaId;
-
-		if (_funcionRemoteModel != null) {
-			try {
-				Class<?> clazz = _funcionRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setEtiquetaId", long.class);
-
-				method.invoke(_funcionRemoteModel, etiquetaId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -432,7 +402,6 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 		clone.setFuncionId(getFuncionId());
 		clone.setDescripcion(getDescripcion());
-		clone.setEtiquetaId(getEtiquetaId());
 		clone.setExigible(getExigible());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
@@ -490,14 +459,12 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{funcionId=");
 		sb.append(getFuncionId());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
-		sb.append(", etiquetaId=");
-		sb.append(getEtiquetaId());
 		sb.append(", exigible=");
 		sb.append(getExigible());
 		sb.append(", activo=");
@@ -517,7 +484,7 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Funcion");
@@ -530,10 +497,6 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
 		sb.append(getDescripcion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>etiquetaId</column-name><column-value><![CDATA[");
-		sb.append(getEtiquetaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>exigible</column-name><column-value><![CDATA[");
@@ -567,7 +530,6 @@ public class FuncionClp extends BaseModelImpl<Funcion> implements Funcion {
 
 	private long _funcionId;
 	private String _descripcion;
-	private long _etiquetaId;
 	private boolean _exigible;
 	private boolean _activo;
 	private long _usuariocrea;

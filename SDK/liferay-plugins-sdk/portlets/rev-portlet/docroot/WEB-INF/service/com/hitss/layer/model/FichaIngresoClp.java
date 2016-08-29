@@ -81,7 +81,7 @@ public class FichaIngresoClp extends BaseModelImpl<FichaIngreso>
 		attributes.put("fichaingresoId", getFichaingresoId());
 		attributes.put("solicitudRequerimientoId", getSolicitudRequerimientoId());
 		attributes.put("userId", getUserId());
-		attributes.put("requieroEquipoTecnico", getRequieroEquipoTecnico());
+		attributes.put("equipoTecnico", getEquipoTecnico());
 		attributes.put("reemplazo", getReemplazo());
 		attributes.put("aprobacionFichaIngresoCapitalHumano",
 			getAprobacionFichaIngresoCapitalHumano());
@@ -117,11 +117,10 @@ public class FichaIngresoClp extends BaseModelImpl<FichaIngreso>
 			setUserId(userId);
 		}
 
-		Boolean requieroEquipoTecnico = (Boolean)attributes.get(
-				"requieroEquipoTecnico");
+		Boolean equipoTecnico = (Boolean)attributes.get("equipoTecnico");
 
-		if (requieroEquipoTecnico != null) {
-			setRequieroEquipoTecnico(requieroEquipoTecnico);
+		if (equipoTecnico != null) {
+			setEquipoTecnico(equipoTecnico);
 		}
 
 		Boolean reemplazo = (Boolean)attributes.get("reemplazo");
@@ -256,27 +255,27 @@ public class FichaIngresoClp extends BaseModelImpl<FichaIngreso>
 	}
 
 	@Override
-	public boolean getRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
+	public boolean getEquipoTecnico() {
+		return _equipoTecnico;
 	}
 
 	@Override
-	public boolean isRequieroEquipoTecnico() {
-		return _requieroEquipoTecnico;
+	public boolean isEquipoTecnico() {
+		return _equipoTecnico;
 	}
 
 	@Override
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico) {
-		_requieroEquipoTecnico = requieroEquipoTecnico;
+	public void setEquipoTecnico(boolean equipoTecnico) {
+		_equipoTecnico = equipoTecnico;
 
 		if (_fichaIngresoRemoteModel != null) {
 			try {
 				Class<?> clazz = _fichaIngresoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setRequieroEquipoTecnico",
+				Method method = clazz.getMethod("setEquipoTecnico",
 						boolean.class);
 
-				method.invoke(_fichaIngresoRemoteModel, requieroEquipoTecnico);
+				method.invoke(_fichaIngresoRemoteModel, equipoTecnico);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -566,7 +565,7 @@ public class FichaIngresoClp extends BaseModelImpl<FichaIngreso>
 		clone.setFichaingresoId(getFichaingresoId());
 		clone.setSolicitudRequerimientoId(getSolicitudRequerimientoId());
 		clone.setUserId(getUserId());
-		clone.setRequieroEquipoTecnico(getRequieroEquipoTecnico());
+		clone.setEquipoTecnico(getEquipoTecnico());
 		clone.setReemplazo(getReemplazo());
 		clone.setAprobacionFichaIngresoCapitalHumano(getAprobacionFichaIngresoCapitalHumano());
 		clone.setAprobacionFichaIngresoOperaciones(getAprobacionFichaIngresoOperaciones());
@@ -634,8 +633,8 @@ public class FichaIngresoClp extends BaseModelImpl<FichaIngreso>
 		sb.append(getSolicitudRequerimientoId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", requieroEquipoTecnico=");
-		sb.append(getRequieroEquipoTecnico());
+		sb.append(", equipoTecnico=");
+		sb.append(getEquipoTecnico());
 		sb.append(", reemplazo=");
 		sb.append(getReemplazo());
 		sb.append(", aprobacionFichaIngresoCapitalHumano=");
@@ -678,8 +677,8 @@ public class FichaIngresoClp extends BaseModelImpl<FichaIngreso>
 		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>requieroEquipoTecnico</column-name><column-value><![CDATA[");
-		sb.append(getRequieroEquipoTecnico());
+			"<column><column-name>equipoTecnico</column-name><column-value><![CDATA[");
+		sb.append(getEquipoTecnico());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>reemplazo</column-name><column-value><![CDATA[");
@@ -723,7 +722,7 @@ public class FichaIngresoClp extends BaseModelImpl<FichaIngreso>
 	private long _solicitudRequerimientoId;
 	private long _userId;
 	private String _userUuid;
-	private boolean _requieroEquipoTecnico;
+	private boolean _equipoTecnico;
 	private boolean _reemplazo;
 	private boolean _aprobacionFichaIngresoCapitalHumano;
 	private boolean _aprobacionFichaIngresoOperaciones;

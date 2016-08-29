@@ -119,25 +119,25 @@ public interface FichaIngresoModel extends BaseModel<FichaIngreso> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Returns the requiero equipo tecnico of this ficha ingreso.
+	 * Returns the equipo tecnico of this ficha ingreso.
 	 *
-	 * @return the requiero equipo tecnico of this ficha ingreso
+	 * @return the equipo tecnico of this ficha ingreso
 	 */
-	public boolean getRequieroEquipoTecnico();
+	public boolean getEquipoTecnico();
 
 	/**
-	 * Returns <code>true</code> if this ficha ingreso is requiero equipo tecnico.
+	 * Returns <code>true</code> if this ficha ingreso is equipo tecnico.
 	 *
-	 * @return <code>true</code> if this ficha ingreso is requiero equipo tecnico; <code>false</code> otherwise
+	 * @return <code>true</code> if this ficha ingreso is equipo tecnico; <code>false</code> otherwise
 	 */
-	public boolean isRequieroEquipoTecnico();
+	public boolean isEquipoTecnico();
 
 	/**
-	 * Sets whether this ficha ingreso is requiero equipo tecnico.
+	 * Sets whether this ficha ingreso is equipo tecnico.
 	 *
-	 * @param requieroEquipoTecnico the requiero equipo tecnico of this ficha ingreso
+	 * @param equipoTecnico the equipo tecnico of this ficha ingreso
 	 */
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico);
+	public void setEquipoTecnico(boolean equipoTecnico);
 
 	/**
 	 * Returns the reemplazo of this ficha ingreso.

@@ -15,7 +15,9 @@
 <portlet:renderURL var="nuevaSolicitud">
 	<portlet:param name="action" value="actualizarSolicitud" />
 </portlet:renderURL>
-
+<portlet:renderURL var="verDetalleSolicitud">
+	<portlet:param name="action" value="verDetalleSolicitud" />
+</portlet:renderURL>
 <portlet:resourceURL var="listarSolicitudesReclutamiento" id="listarSolicitudesReclutamiento" />
 <portlet:resourceURL var="anularSolicitud" id="anularSolicitud" />
 
@@ -23,6 +25,7 @@
 <input id="<portlet:namespace/>listarSolicitudesReclutamiento" type="hidden" value="${listarSolicitudesReclutamiento}" />
 <input id="<portlet:namespace/>modificarSolicitudUrl" type="hidden" value="${nuevaSolicitud}" />
 <input id="<portlet:namespace/>anularSolicitudUrl" type="hidden" value="${anularSolicitud}" />
+<input id="<portlet:namespace/>verDetalleSolicitudUrl" type="hidden" value="${verDetalleSolicitud}" />
 
 <input id="<portlet:namespace/>pagina" type="hidden" value="1" />
 <input id="<portlet:namespace/>filas" type="hidden" value="10" />
@@ -41,6 +44,7 @@
 
 <input id="<portlet:namespace/>listaOpcionModificar" type="hidden" value="<liferay-ui:message key="general.form.opciones.editar" />" />
 <input id="<portlet:namespace/>listaOpcionAnular" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.opciones.anular" />" />
+<input id="<portlet:namespace/>listaOpcionVerDetalle" type="hidden" value="<liferay-ui:message key="general.form.opciones.ver.detalle" />" />
 
 <input id="<portlet:namespace/>msgAceptar" type="hidden" value="<liferay-ui:message key="general.form.opciones.aceptar" />" />
 <input id="<portlet:namespace/>msgCancelar" type="hidden" value="<liferay-ui:message key="general.form.opciones.cancelar" />" />

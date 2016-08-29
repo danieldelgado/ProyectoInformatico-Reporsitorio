@@ -53,7 +53,7 @@ public class FichaIngresoWrapper implements FichaIngreso,
 		attributes.put("fichaingresoId", getFichaingresoId());
 		attributes.put("solicitudRequerimientoId", getSolicitudRequerimientoId());
 		attributes.put("userId", getUserId());
-		attributes.put("requieroEquipoTecnico", getRequieroEquipoTecnico());
+		attributes.put("equipoTecnico", getEquipoTecnico());
 		attributes.put("reemplazo", getReemplazo());
 		attributes.put("aprobacionFichaIngresoCapitalHumano",
 			getAprobacionFichaIngresoCapitalHumano());
@@ -89,11 +89,10 @@ public class FichaIngresoWrapper implements FichaIngreso,
 			setUserId(userId);
 		}
 
-		Boolean requieroEquipoTecnico = (Boolean)attributes.get(
-				"requieroEquipoTecnico");
+		Boolean equipoTecnico = (Boolean)attributes.get("equipoTecnico");
 
-		if (requieroEquipoTecnico != null) {
-			setRequieroEquipoTecnico(requieroEquipoTecnico);
+		if (equipoTecnico != null) {
+			setEquipoTecnico(equipoTecnico);
 		}
 
 		Boolean reemplazo = (Boolean)attributes.get("reemplazo");
@@ -251,33 +250,33 @@ public class FichaIngresoWrapper implements FichaIngreso,
 	}
 
 	/**
-	* Returns the requiero equipo tecnico of this ficha ingreso.
+	* Returns the equipo tecnico of this ficha ingreso.
 	*
-	* @return the requiero equipo tecnico of this ficha ingreso
+	* @return the equipo tecnico of this ficha ingreso
 	*/
 	@Override
-	public boolean getRequieroEquipoTecnico() {
-		return _fichaIngreso.getRequieroEquipoTecnico();
+	public boolean getEquipoTecnico() {
+		return _fichaIngreso.getEquipoTecnico();
 	}
 
 	/**
-	* Returns <code>true</code> if this ficha ingreso is requiero equipo tecnico.
+	* Returns <code>true</code> if this ficha ingreso is equipo tecnico.
 	*
-	* @return <code>true</code> if this ficha ingreso is requiero equipo tecnico; <code>false</code> otherwise
+	* @return <code>true</code> if this ficha ingreso is equipo tecnico; <code>false</code> otherwise
 	*/
 	@Override
-	public boolean isRequieroEquipoTecnico() {
-		return _fichaIngreso.isRequieroEquipoTecnico();
+	public boolean isEquipoTecnico() {
+		return _fichaIngreso.isEquipoTecnico();
 	}
 
 	/**
-	* Sets whether this ficha ingreso is requiero equipo tecnico.
+	* Sets whether this ficha ingreso is equipo tecnico.
 	*
-	* @param requieroEquipoTecnico the requiero equipo tecnico of this ficha ingreso
+	* @param equipoTecnico the equipo tecnico of this ficha ingreso
 	*/
 	@Override
-	public void setRequieroEquipoTecnico(boolean requieroEquipoTecnico) {
-		_fichaIngreso.setRequieroEquipoTecnico(requieroEquipoTecnico);
+	public void setEquipoTecnico(boolean equipoTecnico) {
+		_fichaIngreso.setEquipoTecnico(equipoTecnico);
 	}
 
 	/**

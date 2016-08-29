@@ -39,6 +39,7 @@ public class RegistrarActividadPlanUsuarioSoap implements Serializable {
 		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setCumplio(model.getCumplio());
 		soapModel.setActividad(model.getActividad());
+		soapModel.setPuntuacion(model.getPuntuacion());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -142,6 +143,14 @@ public class RegistrarActividadPlanUsuarioSoap implements Serializable {
 		_actividad = actividad;
 	}
 
+	public int getPuntuacion() {
+		return _puntuacion;
+	}
+
+	public void setPuntuacion(int puntuacion) {
+		_puntuacion = puntuacion;
+	}
+
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -191,6 +200,7 @@ public class RegistrarActividadPlanUsuarioSoap implements Serializable {
 	private long _usuarioId;
 	private long _cumplio;
 	private String _actividad;
+	private int _puntuacion;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

@@ -20,20 +20,20 @@ import com.hitss.layer.service.base.FuncionServiceBaseImpl;
  * The implementation of the funcion remote service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.rec.hitss.layer.service.FuncionService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.hitss.layer.service.FuncionService} interface.
  *
  * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
- * @author Crossfire
- * @see com.rec.hitss.layer.service.base.FuncionServiceBaseImpl
- * @see com.rec.hitss.layer.service.FuncionServiceUtil
+ * @author Danielle Delgado
+ * @see com.hitss.layer.service.base.FuncionServiceBaseImpl
+ * @see com.hitss.layer.service.FuncionServiceUtil
  */
 public class FuncionServiceImpl extends FuncionServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.FuncionServiceUtil} to access the funcion remote service.
+	 * Never reference this interface directly. Always use {@link com.hitss.layer.service.FuncionServiceUtil} to access the funcion remote service.
 	 */
 }

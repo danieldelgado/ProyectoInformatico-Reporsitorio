@@ -1,6 +1,7 @@
 var modalAaprobar, modalRechazar, urlevaluar = null;
 var inputFristnamespace = null;
 
+var listaFuncionMap = [];
 $(document).ready(function() {
 	init();
 });
@@ -454,4 +455,83 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 		$(listaRequisitos).append(html);
 
 	}
+}
+
+function listarFuncions(funcionEtiquetaBeans) {
+	console.log(funcionEtiquetaBeans);
+	if (funcionEtiquetaBeans != "") {
+		var lista = $.parseJSON(funcionEtiquetaBeans);
+		console.log(lista);
+		$.each(lista, function(index, object) {
+			var exigible = false;
+			if (object['exigibleText'] == undefined) {
+				exigible = object['exigible'];
+			} else {
+				exigible = object['exigibleText'];
+			}
+			addFuncionFila(object['funcion'], exigible);
+		});
+	}
+}
+
+function addFuncionFila(funcion, exigile) {
+	console.log("addFuncionFila");
+	var exigileValue = exigile;
+	if (exigile == true) {
+		exigile = "Si";
+	} else {
+		exigile = "No";
+	}
+
+	if (funcion != "") {
+		var b = validarExitenteFuncion(funcion);
+
+		if (b) {
+
+			var funcionMap = {};
+			funcionMap['funcion'] = funcion;
+			funcionMap['exigibleText'] = exigileValue;
+			listaFuncionMap.push(funcionMap);
+
+			var listaFuncions = $("#" + inputFristnamespace + "listaFuncions");
+			console.log("listaFuncions");
+			console.log(listaFuncions);
+			var html = "";
+			html += "<tr>" + "<td>" + funcion + "</td>" + "<td>" + exigile + "</td>" ;			
+			if(false){
+				html += "<td>" + "<a class='btn btn-primary eliminarFuncion' data='"
+				+ funcion + "' href='javascript:void(0);'>Eliminar</a>"
+				+ "</td>";
+			}
+			html += "</tr>";
+
+			console.log(html);
+			$(listaFuncions).append(html);
+			$(".eliminarFuncion").unbind("click");
+			$(".eliminarFuncion").click(function() {
+				var id = $(this).attr("data");
+				var tr = $(this).parent().parent();
+				removerFuncionItem(id, tr);
+			});
+		}
+	}
+}
+
+function validarExitenteFuncion(funcion) {
+	var result = true;
+	$.each(listaFuncionMap, function(index, object) {
+		if (object['funcion'] == funcion) {
+			result = false;
+		}
+	});
+	return result;
+}
+
+function removerFuncionItem(id, tr) {
+	$.each(listaFuncionMap, function(index, object) {
+		if (object['funcion'] == id) {
+			listaFuncionMap.splice(index, 1);
+		}
+	});
+	$(tr).remove();
 }

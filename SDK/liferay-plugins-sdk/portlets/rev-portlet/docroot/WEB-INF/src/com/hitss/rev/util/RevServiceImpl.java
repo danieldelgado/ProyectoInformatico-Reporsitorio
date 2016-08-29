@@ -9,10 +9,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hitss.layer.model.Funcion;
 import com.hitss.layer.model.SolicitudRequerimiento;
+import com.hitss.layer.service.FuncionLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.UsuarioLocalServiceUtil;
 import com.hitss.rev.bean.ComboBean;
+import com.hitss.rev.bean.FuncionEtiquetaBean;
 import com.hitss.rev.bean.ObservacionBean;
 import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
@@ -110,6 +113,7 @@ public abstract class RevServiceImpl {
 				List<SolicitudRequerimiento> listaSolicitudRequerimientos = SolicitudRequerimientoLocalServiceUtil.listaSolicitudRequerimiento(solicitudRequerimiento, fechaRegistroInicio, fechaRegistrFin, init, fin, orden, campoOrden);
 				SolicitudRequerimientoBean solicitudRequerimientoBean = null;
 				lista = new ArrayList<SolicitudRequerimientoBean>();
+				ParametroBean p = null;
 				for (SolicitudRequerimiento sr : listaSolicitudRequerimientos) {
 					solicitudRequerimientoBean = new SolicitudRequerimientoBean();
 					solicitudRequerimientoBean.setSolicitudRequerimientoId(sr.getSolicitudRequerimientoId());
@@ -117,7 +121,15 @@ public abstract class RevServiceImpl {
 					solicitudRequerimientoBean.setStrpuesto(liferayContentService.getCategoria(sr.getCategoriaPuestoId()).getValue());
 					solicitudRequerimientoBean.setCantidadRecursos(sr.getCantidadRecursos());
 					solicitudRequerimientoBean.setAreaSolicitante(sr.getAreaSolicitante());
-					solicitudRequerimientoBean.setStrareaSolicitante(parametroService.getParametro(sr.getAreaSolicitante()).getValor());
+					if (Validator.isNotNull(sr.getAreaSolicitante())) {
+						p = parametroService.getParametro(sr
+								.getAreaSolicitante());
+						solicitudRequerimientoBean
+								.setStrareaSolicitante(p
+										.getValor());
+					}	else{
+						solicitudRequerimientoBean.setStrareaSolicitante("Sin definir");
+					}
 					solicitudRequerimientoBean.setFechaLimite(sr.getFechaLimite());
 					solicitudRequerimientoBean.setStrfechaLimite(sdf.format(sr.getFechaLimite()));
 					solicitudRequerimientoBean.setFechacrea(sr.getFechacrea());
@@ -204,8 +216,13 @@ public abstract class RevServiceImpl {
 			List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = getRequisitos(solicitudRequerimientoBean);			
 			_log.info("listaSolicitudRequerimientoRequisitosExitentes");
 			_log.info(listaSolicitudRequerimientoRequisitosExitentes);
-			
+
+			List<FuncionEtiquetaBean> listaSolicitudRequerimientoFuncionsExitentes = getFuncions(solicitudRequerimientoBean);			
+			_log.info("listaSolicitudRequerimientoFuncionsExitentes");
+			_log.info(listaSolicitudRequerimientoFuncionsExitentes);
+
 			solicitudRequerimientoBean.setRequisitoEtiquetaBeans(listaSolicitudRequerimientoRequisitosExitentes);
+			solicitudRequerimientoBean.setFuncionEtiquetaBeans(listaSolicitudRequerimientoFuncionsExitentes);
 			
 			if(sr.getEstado() == Constantes.PARAMETRO_OBSERVADO){
 				ObservacionBean observacionBean = observacionService.getObservacion(solicitudRequerimientoId, SolicitudRequerimiento.class.getName());
@@ -221,6 +238,12 @@ public abstract class RevServiceImpl {
 		return null;
 	}
 	
+	public List<FuncionEtiquetaBean> getFuncions(
+			SolicitudRequerimientoBean solicitudRequerimientoBean) {
+		List<FuncionEtiquetaBean> listaSolicitudRequerimientoFuncionsExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoFuncionActivo(solicitudRequerimientoBean);			
+		return listaSolicitudRequerimientoFuncionsExitentes;
+	}
+
 	public List<RequisitoEtiquetaBean> getRequisitos(SolicitudRequerimientoBean solicitudRequerimientoBean){
 		List<RequisitoEtiquetaBean> listaSolicitudRequerimientoRequisitosExitentes = solicitudRequerimientoRequisitoService.getListaSolicitudRequerimientoRequisitoActivo(solicitudRequerimientoBean);			
 		return listaSolicitudRequerimientoRequisitosExitentes;
@@ -253,6 +276,25 @@ public abstract class RevServiceImpl {
 		}		
 		return t;
 	}
-	
+
+	public List<ComboBean> getFuncionsByDescripcion(String funcion) {
+		ComboBean c = null;
+		try {
+			List<ComboBean> l =  new ArrayList<ComboBean>();
+			List<Funcion> lista = FuncionLocalServiceUtil.findByDescripcion(funcion);
+			for (Funcion f : lista) {
+				c =  new ComboBean();
+				c.setId(f.getFuncionId());
+				c.setValue(f.getDescripcion());
+				c.setDatos(f.getDescripcion());
+				l.add(c);
+			}
+			return l;
+		} catch (SystemException e) {
+			_log.error("Error al getFuncionsByDescripcion " + e.getMessage(), e);
+		}
+		return null;
+	}
+
 	
 }

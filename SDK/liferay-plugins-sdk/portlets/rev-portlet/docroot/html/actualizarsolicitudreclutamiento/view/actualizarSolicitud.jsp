@@ -18,12 +18,14 @@
 
 <portlet:resourceURL var="actualizarSolicitud" id="actualizarSolicitud" />
 <portlet:resourceURL var="listarEtiquetas" id="listarEtiquetas" />
+<portlet:resourceURL var="listarFunciones" id="listarFunciones" />
 <portlet:renderURL var="regresar">
 	<portlet:param name="action" value="default" />
 </portlet:renderURL>
 <input id="<portlet:namespace/>actualizarUrl" type="hidden" value="${actualizarSolicitud}" />
 <input id="<portlet:namespace/>listarSolicitudesUrl" type="hidden" value="${regresar}" />
 <input id="<portlet:namespace/>listarEtiquetasUrl" type="hidden" value="${listarEtiquetas}" />
+<input id="<portlet:namespace/>listarFuncionesUrl" type="hidden" value="${listarFunciones}" />
 
 <input id="<portlet:namespace/>msgpuesto" type="hidden" value="<liferay-ui:message key="actualizarreclutamiento.valid.mensaje.puesto" />" />
 <input id="<portlet:namespace/>msgcantidadrecursos" type="hidden" value="<liferay-ui:message key="actualizarreclutamiento.valid.mensaje.cantidad.recursos" />" />
@@ -306,9 +308,63 @@
 									</tbody>
 								</table>
 							</div>
+							
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+					<fieldset>
+						<legend> Lista de funciones </legend>
+					</fieldset>
+					<div class="container-fluid">
+						<div>
+							<div>
+								<div class="span1">
+									<label> <liferay-ui:message key="actualizarreclutamiento.form.funcion" />:
+									</label>
+								</div>
+								<div class="span2">
+									<div class="input-prepend">
+										<input id="<portlet:namespace/>funcion" name="<portlet:namespace/>funcion" class="span12" type="text">
+									</div>
+								</div>
+								<div class="span1">
+									<label> <liferay-ui:message key="actualizarreclutamiento.form.exigile" />:
+									</label>
+								</div>
+								<div class="span1">
+									<div class="input-prepend">
+										<input id="<portlet:namespace/>exigilefuncion" name="<portlet:namespace/>exigilefuncion" class="" type="checkbox">
+									</div>
+								</div>
+								<div class="span1">
+									<div class="input-prepend">
+										<button id="<portlet:namespace/>btnAgregarFuncion" class="btn btn-primary span12" type="button">
+											<liferay-ui:message key="general.form.opciones.agregar" />
+										</button>
+									</div>
+								</div>
+							</div>
+							<div id="">
+								<table class="table table-hover table-bordered">
+									<thead>
+										<tr class="cabecera">
+											<th><liferay-ui:message key="actualizarreclutamiento.form.funcion" /></th>
+											<th><liferay-ui:message key="actualizarreclutamiento.form.exigile" /></th>
+											<th><liferay-ui:message key="listasolicitudreclutamiento.lista.opciones" /></th>
+										</tr>
+									</thead>
+									<tbody id="<portlet:namespace/>listaFuncions">
+
+									</tbody>
+								</table>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="offset5 span2">
 						<aui:button-row>
@@ -332,6 +388,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		inicializarFormularioRegistro();
-		listarRequisitos('${requisitoEtiquetaBeans}');
+		listarRequisitos('${requisitoEtiquetaBeans}',true);
+		listarFuncions('${funcionEtiquetaBeans}',true);
 	});
 </script>

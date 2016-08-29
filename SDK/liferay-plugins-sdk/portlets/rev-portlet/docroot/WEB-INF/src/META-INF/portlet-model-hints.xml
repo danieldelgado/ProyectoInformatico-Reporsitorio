@@ -138,7 +138,7 @@
 		<field name="fichaingresoId" type="long" />
 		<field name="solicitudRequerimientoId" type="long" />
 		<field name="userId" type="long" />
-		<field name="requieroEquipoTecnico" type="boolean" />
+		<field name="equipoTecnico" type="boolean" />
 		<field name="reemplazo" type="boolean" />
 		<field name="aprobacionFichaIngresoCapitalHumano" type="boolean" />
 		<field name="aprobacionFichaIngresoOperaciones" type="boolean" />
@@ -151,7 +151,6 @@
 	<model name="com.hitss.layer.model.Funcion">
 		<field name="funcionId" type="long" />
 		<field name="descripcion" type="String" />
-		<field name="etiquetaId" type="long" />
 		<field name="exigible" type="boolean" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
@@ -262,6 +261,7 @@
 		<field name="usuarioId" type="long" />
 		<field name="cumplio" type="long" />
 		<field name="actividad" type="String" />
+		<field name="puntuacion" type="int" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -319,6 +319,16 @@
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
 	</model>
+	<model name="com.hitss.layer.model.SolicitudRequerimientoFuncion">
+		<field name="solicitudFuncionId" type="long" />
+		<field name="funcionId" type="long" />
+		<field name="exigible" type="boolean" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechamodifica" type="Date" />
+	</model>
 	<model name="com.hitss.layer.model.SolicitudRequerimientoRequisito">
 		<field name="solicitudRequerimientoId" type="long" />
 		<field name="tagId" type="long" />
@@ -345,6 +355,16 @@
 		<field name="usuarioId" type="long" />
 		<field name="evaluacionId" type="long" />
 		<field name="nota" type="int" />
+	</model>
+	<model name="com.hitss.layer.model.UsuarioFuncion">
+		<field name="userId" type="long" />
+		<field name="funcionId" type="long" />
+		<field name="exigible" type="boolean" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechamodifica" type="Date" />
 	</model>
 	<model name="com.hitss.layer.model.UsuarioRequisito">
 		<field name="userId" type="long" />

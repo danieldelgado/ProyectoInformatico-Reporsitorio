@@ -108,99 +108,28 @@ public class SolicitudRequerimientoLocalServiceClp
 				"com.hitss.layer.model.SolicitudRequerimiento"
 			};
 
-		_methodName16 = "addFuncionSolicitudRequerimiento";
+		_methodName16 = "getBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] { "long", "long" };
+		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "addFuncionSolicitudRequerimiento";
+		_methodName17 = "setBeanIdentifier";
 
-		_methodParameterTypes17 = new String[] {
-				"long", "com.hitss.layer.model.SolicitudRequerimiento"
-			};
+		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName18 = "addFuncionSolicitudRequerimientos";
+		_methodName19 = "newInstance";
 
-		_methodParameterTypes18 = new String[] { "long", "long[][]" };
+		_methodParameterTypes19 = new String[] {  };
 
-		_methodName19 = "addFuncionSolicitudRequerimientos";
+		_methodName20 = "listaSolicitudRequerimientoCount";
 
-		_methodParameterTypes19 = new String[] { "long", "java.util.List" };
-
-		_methodName20 = "clearFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes20 = new String[] { "long" };
-
-		_methodName21 = "deleteFuncionSolicitudRequerimiento";
-
-		_methodParameterTypes21 = new String[] { "long", "long" };
-
-		_methodName22 = "deleteFuncionSolicitudRequerimiento";
-
-		_methodParameterTypes22 = new String[] {
-				"long", "com.hitss.layer.model.SolicitudRequerimiento"
-			};
-
-		_methodName23 = "deleteFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes23 = new String[] { "long", "long[][]" };
-
-		_methodName24 = "deleteFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes24 = new String[] { "long", "java.util.List" };
-
-		_methodName25 = "getFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes25 = new String[] { "long" };
-
-		_methodName26 = "getFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes26 = new String[] { "long", "int", "int" };
-
-		_methodName27 = "getFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes27 = new String[] {
-				"long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
-
-		_methodName28 = "getFuncionSolicitudRequerimientosCount";
-
-		_methodParameterTypes28 = new String[] { "long" };
-
-		_methodName29 = "hasFuncionSolicitudRequerimiento";
-
-		_methodParameterTypes29 = new String[] { "long", "long" };
-
-		_methodName30 = "hasFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes30 = new String[] { "long" };
-
-		_methodName31 = "setFuncionSolicitudRequerimientos";
-
-		_methodParameterTypes31 = new String[] { "long", "long[][]" };
-
-		_methodName32 = "getBeanIdentifier";
-
-		_methodParameterTypes32 = new String[] {  };
-
-		_methodName33 = "setBeanIdentifier";
-
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
-
-		_methodName35 = "newInstance";
-
-		_methodParameterTypes35 = new String[] {  };
-
-		_methodName36 = "listaSolicitudRequerimientoCount";
-
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
 				"java.util.Date"
 			};
 
-		_methodName37 = "listaSolicitudRequerimiento";
+		_methodName21 = "listaSolicitudRequerimiento";
 
-		_methodParameterTypes37 = new String[] {
+		_methodParameterTypes21 = new String[] {
 				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
 				"java.util.Date", "int", "int", "java.lang.String",
 				"java.lang.String"
@@ -718,482 +647,12 @@ public class SolicitudRequerimientoLocalServiceClp
 	}
 
 	@Override
-	public void addFuncionSolicitudRequerimiento(long funcionId,
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName16,
-				_methodParameterTypes16,
-				new Object[] { funcionId, solicitudRequerimientoId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void addFuncionSolicitudRequerimiento(long funcionId,
-		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName17,
-				_methodParameterTypes17,
-				new Object[] {
-					funcionId,
-					
-				ClpSerializer.translateInput(solicitudRequerimiento)
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void addFuncionSolicitudRequerimientos(long funcionId,
-		long[] solicitudRequerimientoIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName18,
-				_methodParameterTypes18,
-				new Object[] {
-					funcionId,
-					
-				ClpSerializer.translateInput(solicitudRequerimientoIds)
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void addFuncionSolicitudRequerimientos(long funcionId,
-		java.util.List<com.hitss.layer.model.SolicitudRequerimiento> SolicitudRequerimientos)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
-				new Object[] {
-					funcionId,
-					
-				ClpSerializer.translateInput(SolicitudRequerimientos)
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void clearFuncionSolicitudRequerimientos(long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20, new Object[] { funcionId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void deleteFuncionSolicitudRequerimiento(long funcionId,
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21,
-				new Object[] { funcionId, solicitudRequerimientoId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void deleteFuncionSolicitudRequerimiento(long funcionId,
-		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
-				new Object[] {
-					funcionId,
-					
-				ClpSerializer.translateInput(solicitudRequerimiento)
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void deleteFuncionSolicitudRequerimientos(long funcionId,
-		long[] solicitudRequerimientoIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23,
-				new Object[] {
-					funcionId,
-					
-				ClpSerializer.translateInput(solicitudRequerimientoIds)
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void deleteFuncionSolicitudRequerimientos(long funcionId,
-		java.util.List<com.hitss.layer.model.SolicitudRequerimiento> SolicitudRequerimientos)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
-				new Object[] {
-					funcionId,
-					
-				ClpSerializer.translateInput(SolicitudRequerimientos)
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public java.util.List<com.hitss.layer.model.SolicitudRequerimiento> getFuncionSolicitudRequerimientos(
-		long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25, new Object[] { funcionId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.hitss.layer.model.SolicitudRequerimiento>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.hitss.layer.model.SolicitudRequerimiento> getFuncionSolicitudRequerimientos(
-		long funcionId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
-					new Object[] { funcionId, start, end });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.hitss.layer.model.SolicitudRequerimiento>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.hitss.layer.model.SolicitudRequerimiento> getFuncionSolicitudRequerimientos(
-		long funcionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
-					new Object[] {
-						funcionId,
-						
-					start,
-						
-					end,
-						
-					ClpSerializer.translateInput(orderByComparator)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.hitss.layer.model.SolicitudRequerimiento>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public int getFuncionSolicitudRequerimientosCount(long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28, new Object[] { funcionId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	@Override
-	public boolean hasFuncionSolicitudRequerimiento(long funcionId,
-		long solicitudRequerimientoId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
-					new Object[] { funcionId, solicitudRequerimientoId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Boolean)returnObj).booleanValue();
-	}
-
-	@Override
-	public boolean hasFuncionSolicitudRequerimientos(long funcionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30, new Object[] { funcionId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Boolean)returnObj).booleanValue();
-	}
-
-	@Override
-	public void setFuncionSolicitudRequerimientos(long funcionId,
-		long[] solicitudRequerimientoIds)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName31,
-				_methodParameterTypes31,
-				new Object[] {
-					funcionId,
-					
-				ClpSerializer.translateInput(solicitudRequerimientoIds)
-				});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1213,8 +672,8 @@ public class SolicitudRequerimientoLocalServiceClp
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName33,
-				_methodParameterTypes33,
+			_invokableLocalService.invokeMethod(_methodName17,
+				_methodParameterTypes17,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -1242,8 +701,8 @@ public class SolicitudRequerimientoLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName35,
-					_methodParameterTypes35, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1269,8 +728,8 @@ public class SolicitudRequerimientoLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName36,
-					_methodParameterTypes36,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] {
 						ClpSerializer.translateInput(solicitudRequerimiento),
 						
@@ -1312,8 +771,8 @@ public class SolicitudRequerimientoLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName37,
-					_methodParameterTypes37,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] {
 						ClpSerializer.translateInput(solicitudRequerimiento),
 						
@@ -1390,42 +849,10 @@ public class SolicitudRequerimientoLocalServiceClp
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName18;
-	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
-	private String _methodName29;
-	private String[] _methodParameterTypes29;
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
-	private String _methodName35;
-	private String[] _methodParameterTypes35;
-	private String _methodName36;
-	private String[] _methodParameterTypes36;
-	private String _methodName37;
-	private String[] _methodParameterTypes37;
 }

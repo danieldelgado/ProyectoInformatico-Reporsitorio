@@ -343,6 +343,7 @@ public class RegistrarActividadPlanUsuarioPersistenceImpl
 		registrarActividadPlanUsuarioImpl.setUsuarioId(registrarActividadPlanUsuario.getUsuarioId());
 		registrarActividadPlanUsuarioImpl.setCumplio(registrarActividadPlanUsuario.getCumplio());
 		registrarActividadPlanUsuarioImpl.setActividad(registrarActividadPlanUsuario.getActividad());
+		registrarActividadPlanUsuarioImpl.setPuntuacion(registrarActividadPlanUsuario.getPuntuacion());
 		registrarActividadPlanUsuarioImpl.setActivo(registrarActividadPlanUsuario.isActivo());
 		registrarActividadPlanUsuarioImpl.setUsuariocrea(registrarActividadPlanUsuario.getUsuariocrea());
 		registrarActividadPlanUsuarioImpl.setFechacrea(registrarActividadPlanUsuario.getFechacrea());

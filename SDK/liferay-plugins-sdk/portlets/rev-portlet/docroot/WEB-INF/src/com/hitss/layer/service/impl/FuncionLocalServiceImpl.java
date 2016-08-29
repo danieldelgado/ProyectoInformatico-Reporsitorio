@@ -14,26 +14,32 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.Funcion;
 import com.hitss.layer.service.base.FuncionLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.FuncionUtil;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * The implementation of the funcion local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.rec.hitss.layer.service.FuncionLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.hitss.layer.service.FuncionLocalService} interface.
  *
  * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
- * @author Crossfire
- * @see com.rec.hitss.layer.service.base.FuncionLocalServiceBaseImpl
- * @see com.rec.hitss.layer.service.FuncionLocalServiceUtil
+ * @author Danielle Delgado
+ * @see com.hitss.layer.service.base.FuncionLocalServiceBaseImpl
+ * @see com.hitss.layer.service.FuncionLocalServiceUtil
  */
 public class FuncionLocalServiceImpl extends FuncionLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.FuncionLocalServiceUtil} to access the funcion local service.
-	 */
+	
+	public List<Funcion> findByDescripcion(String descripcion) throws SystemException {
+		return FuncionUtil.findByD_Activo(StringPool.PERCENT + descripcion + StringPool.PERCENT);
+	}
+	
 }

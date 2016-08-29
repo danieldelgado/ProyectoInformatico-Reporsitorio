@@ -65,12 +65,16 @@ import com.hitss.layer.service.RespuestaLocalServiceUtil;
 import com.hitss.layer.service.RespuestaServiceUtil;
 import com.hitss.layer.service.SolicitudEvaluacionDesempennoLocalServiceUtil;
 import com.hitss.layer.service.SolicitudEvaluacionDesempennoServiceUtil;
+import com.hitss.layer.service.SolicitudRequerimientoFuncionLocalServiceUtil;
+import com.hitss.layer.service.SolicitudRequerimientoFuncionServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoRequisitoServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoServiceUtil;
 import com.hitss.layer.service.UsuarioEvaluacionLocalServiceUtil;
 import com.hitss.layer.service.UsuarioEvaluacionServiceUtil;
+import com.hitss.layer.service.UsuarioFuncionLocalServiceUtil;
+import com.hitss.layer.service.UsuarioFuncionServiceUtil;
 import com.hitss.layer.service.UsuarioLocalServiceUtil;
 import com.hitss.layer.service.UsuarioRequisitoLocalServiceUtil;
 import com.hitss.layer.service.UsuarioRequisitoServiceUtil;
@@ -172,6 +176,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			SolicitudRequerimientoLocalServiceUtil.clearService();
 
 			SolicitudRequerimientoServiceUtil.clearService();
+			SolicitudRequerimientoFuncionLocalServiceUtil.clearService();
+
+			SolicitudRequerimientoFuncionServiceUtil.clearService();
 			SolicitudRequerimientoRequisitoLocalServiceUtil.clearService();
 
 			SolicitudRequerimientoRequisitoServiceUtil.clearService();
@@ -181,6 +188,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			UsuarioEvaluacionLocalServiceUtil.clearService();
 
 			UsuarioEvaluacionServiceUtil.clearService();
+			UsuarioFuncionLocalServiceUtil.clearService();
+
+			UsuarioFuncionServiceUtil.clearService();
 			UsuarioRequisitoLocalServiceUtil.clearService();
 
 			UsuarioRequisitoServiceUtil.clearService();

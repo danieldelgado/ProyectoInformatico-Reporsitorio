@@ -80,6 +80,9 @@
 	<bean id="com.hitss.layer.service.SolicitudRequerimientoLocalService" class="com.hitss.layer.service.impl.SolicitudRequerimientoLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.SolicitudRequerimientoService" class="com.hitss.layer.service.impl.SolicitudRequerimientoServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.SolicitudRequerimientoPersistence" class="com.hitss.layer.service.persistence.SolicitudRequerimientoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.SolicitudRequerimientoFuncionLocalService" class="com.hitss.layer.service.impl.SolicitudRequerimientoFuncionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.SolicitudRequerimientoFuncionService" class="com.hitss.layer.service.impl.SolicitudRequerimientoFuncionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPersistence" class="com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService" class="com.hitss.layer.service.impl.SolicitudRequerimientoRequisitoLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.SolicitudRequerimientoRequisitoService" class="com.hitss.layer.service.impl.SolicitudRequerimientoRequisitoServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistence" class="com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistenceImpl" parent="basePersistence" />
@@ -89,6 +92,9 @@
 	<bean id="com.hitss.layer.service.UsuarioEvaluacionLocalService" class="com.hitss.layer.service.impl.UsuarioEvaluacionLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.UsuarioEvaluacionService" class="com.hitss.layer.service.impl.UsuarioEvaluacionServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.UsuarioEvaluacionPersistence" class="com.hitss.layer.service.persistence.UsuarioEvaluacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.UsuarioFuncionLocalService" class="com.hitss.layer.service.impl.UsuarioFuncionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.UsuarioFuncionService" class="com.hitss.layer.service.impl.UsuarioFuncionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.UsuarioFuncionPersistence" class="com.hitss.layer.service.persistence.UsuarioFuncionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.UsuarioRequisitoLocalService" class="com.hitss.layer.service.impl.UsuarioRequisitoLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.UsuarioRequisitoService" class="com.hitss.layer.service.impl.UsuarioRequisitoServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.UsuarioRequisitoPersistence" class="com.hitss.layer.service.persistence.UsuarioRequisitoPersistenceImpl" parent="basePersistence" />

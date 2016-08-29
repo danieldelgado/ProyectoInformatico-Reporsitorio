@@ -254,6 +254,28 @@
 					</div>
 				</div>
 				<div class="row">
+					<fieldset>
+						<legend> Lista de funciones </legend>
+					</fieldset>
+					<div class="container-fluid">
+						<div>
+							<div id="">
+								<table class="table table-hover table-bordered">
+									<thead>
+										<tr class="cabecera">
+											<th><liferay-ui:message key="actualizarreclutamiento.form.funcion" /></th>
+											<th><liferay-ui:message key="actualizarreclutamiento.form.exigile" /></th>
+										</tr>
+									</thead>
+									<tbody id="<portlet:namespace/>listaFuncions">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
 					<div class="offset5 span2">
 						<aui:button-row>
 							<a class="btn btn-primary" href="${regresar}"> <liferay-ui:message key="general.form.opciones.salir" />
@@ -269,5 +291,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		listarRequisitos('${requisitoEtiquetaBeans}');
+		listarFuncions('${funcionEtiquetaBeans}');
 	});
 </script>

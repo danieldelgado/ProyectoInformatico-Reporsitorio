@@ -15,7 +15,7 @@ public interface ActualizarSolicitudReclutamientoService {
 
 	List<PuestoBean> getListaPuestos(long groupId, String filtroCategoria);
 
-	Map<String, Object> guardarSolicitudReclutamiento(SolicitudRequerimientoBean solicitudRequerimiento, User user);
+	Map<String, Object> guardarSolicitudReclutamiento(SolicitudRequerimientoBean solicitudRequerimiento, User user, long scopeGroupId);
 
 	List<UsuarioBean> getListaResponsable(long companyId, long companyGroupId);
 

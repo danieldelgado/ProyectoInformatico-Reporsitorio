@@ -38,7 +38,7 @@ public class RegistrarActividadPlanUsuarioCacheModel implements CacheModel<Regis
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{actividadPlanId=");
 		sb.append(actividadPlanId);
@@ -50,6 +50,8 @@ public class RegistrarActividadPlanUsuarioCacheModel implements CacheModel<Regis
 		sb.append(cumplio);
 		sb.append(", actividad=");
 		sb.append(actividad);
+		sb.append(", puntuacion=");
+		sb.append(puntuacion);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -81,6 +83,7 @@ public class RegistrarActividadPlanUsuarioCacheModel implements CacheModel<Regis
 			registrarActividadPlanUsuarioImpl.setActividad(actividad);
 		}
 
+		registrarActividadPlanUsuarioImpl.setPuntuacion(puntuacion);
 		registrarActividadPlanUsuarioImpl.setActivo(activo);
 		registrarActividadPlanUsuarioImpl.setUsuariocrea(usuariocrea);
 
@@ -113,6 +116,7 @@ public class RegistrarActividadPlanUsuarioCacheModel implements CacheModel<Regis
 		usuarioId = objectInput.readLong();
 		cumplio = objectInput.readLong();
 		actividad = objectInput.readUTF();
+		puntuacion = objectInput.readInt();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -135,6 +139,7 @@ public class RegistrarActividadPlanUsuarioCacheModel implements CacheModel<Regis
 			objectOutput.writeUTF(actividad);
 		}
 
+		objectOutput.writeInt(puntuacion);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -147,6 +152,7 @@ public class RegistrarActividadPlanUsuarioCacheModel implements CacheModel<Regis
 	public long usuarioId;
 	public long cumplio;
 	public String actividad;
+	public int puntuacion;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

@@ -42,9 +42,11 @@ import com.hitss.layer.service.persistence.ReferenciaPersistence;
 import com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPersistence;
 import com.hitss.layer.service.persistence.RespuestaPersistence;
 import com.hitss.layer.service.persistence.SolicitudEvaluacionDesempennoPersistence;
+import com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPersistence;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoPersistence;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistence;
 import com.hitss.layer.service.persistence.UsuarioEvaluacionPersistence;
+import com.hitss.layer.service.persistence.UsuarioFuncionPersistence;
 import com.hitss.layer.service.persistence.UsuarioPersistence;
 import com.hitss.layer.service.persistence.UsuarioRequisitoPersistence;
 
@@ -1807,6 +1809,63 @@ public abstract class CronogramaLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the solicitud requerimiento funcion local service.
+	 *
+	 * @return the solicitud requerimiento funcion local service
+	 */
+	public com.hitss.layer.service.SolicitudRequerimientoFuncionLocalService getSolicitudRequerimientoFuncionLocalService() {
+		return solicitudRequerimientoFuncionLocalService;
+	}
+
+	/**
+	 * Sets the solicitud requerimiento funcion local service.
+	 *
+	 * @param solicitudRequerimientoFuncionLocalService the solicitud requerimiento funcion local service
+	 */
+	public void setSolicitudRequerimientoFuncionLocalService(
+		com.hitss.layer.service.SolicitudRequerimientoFuncionLocalService solicitudRequerimientoFuncionLocalService) {
+		this.solicitudRequerimientoFuncionLocalService = solicitudRequerimientoFuncionLocalService;
+	}
+
+	/**
+	 * Returns the solicitud requerimiento funcion remote service.
+	 *
+	 * @return the solicitud requerimiento funcion remote service
+	 */
+	public com.hitss.layer.service.SolicitudRequerimientoFuncionService getSolicitudRequerimientoFuncionService() {
+		return solicitudRequerimientoFuncionService;
+	}
+
+	/**
+	 * Sets the solicitud requerimiento funcion remote service.
+	 *
+	 * @param solicitudRequerimientoFuncionService the solicitud requerimiento funcion remote service
+	 */
+	public void setSolicitudRequerimientoFuncionService(
+		com.hitss.layer.service.SolicitudRequerimientoFuncionService solicitudRequerimientoFuncionService) {
+		this.solicitudRequerimientoFuncionService = solicitudRequerimientoFuncionService;
+	}
+
+	/**
+	 * Returns the solicitud requerimiento funcion persistence.
+	 *
+	 * @return the solicitud requerimiento funcion persistence
+	 */
+	public SolicitudRequerimientoFuncionPersistence getSolicitudRequerimientoFuncionPersistence() {
+		return solicitudRequerimientoFuncionPersistence;
+	}
+
+	/**
+	 * Sets the solicitud requerimiento funcion persistence.
+	 *
+	 * @param solicitudRequerimientoFuncionPersistence the solicitud requerimiento funcion persistence
+	 */
+	public void setSolicitudRequerimientoFuncionPersistence(
+		SolicitudRequerimientoFuncionPersistence solicitudRequerimientoFuncionPersistence) {
+		this.solicitudRequerimientoFuncionPersistence = solicitudRequerimientoFuncionPersistence;
+	}
+
+	/**
 	 * Returns the solicitud requerimiento requisito local service.
 	 *
 	 * @return the solicitud requerimiento requisito local service
@@ -1974,6 +2033,63 @@ public abstract class CronogramaLocalServiceBaseImpl
 	public void setUsuarioEvaluacionPersistence(
 		UsuarioEvaluacionPersistence usuarioEvaluacionPersistence) {
 		this.usuarioEvaluacionPersistence = usuarioEvaluacionPersistence;
+	}
+
+	/**
+	 * Returns the usuario funcion local service.
+	 *
+	 * @return the usuario funcion local service
+	 */
+	public com.hitss.layer.service.UsuarioFuncionLocalService getUsuarioFuncionLocalService() {
+		return usuarioFuncionLocalService;
+	}
+
+	/**
+	 * Sets the usuario funcion local service.
+	 *
+	 * @param usuarioFuncionLocalService the usuario funcion local service
+	 */
+	public void setUsuarioFuncionLocalService(
+		com.hitss.layer.service.UsuarioFuncionLocalService usuarioFuncionLocalService) {
+		this.usuarioFuncionLocalService = usuarioFuncionLocalService;
+	}
+
+	/**
+	 * Returns the usuario funcion remote service.
+	 *
+	 * @return the usuario funcion remote service
+	 */
+	public com.hitss.layer.service.UsuarioFuncionService getUsuarioFuncionService() {
+		return usuarioFuncionService;
+	}
+
+	/**
+	 * Sets the usuario funcion remote service.
+	 *
+	 * @param usuarioFuncionService the usuario funcion remote service
+	 */
+	public void setUsuarioFuncionService(
+		com.hitss.layer.service.UsuarioFuncionService usuarioFuncionService) {
+		this.usuarioFuncionService = usuarioFuncionService;
+	}
+
+	/**
+	 * Returns the usuario funcion persistence.
+	 *
+	 * @return the usuario funcion persistence
+	 */
+	public UsuarioFuncionPersistence getUsuarioFuncionPersistence() {
+		return usuarioFuncionPersistence;
+	}
+
+	/**
+	 * Sets the usuario funcion persistence.
+	 *
+	 * @param usuarioFuncionPersistence the usuario funcion persistence
+	 */
+	public void setUsuarioFuncionPersistence(
+		UsuarioFuncionPersistence usuarioFuncionPersistence) {
+		this.usuarioFuncionPersistence = usuarioFuncionPersistence;
 	}
 
 	/**
@@ -2367,6 +2483,12 @@ public abstract class CronogramaLocalServiceBaseImpl
 	protected com.hitss.layer.service.SolicitudRequerimientoService solicitudRequerimientoService;
 	@BeanReference(type = SolicitudRequerimientoPersistence.class)
 	protected SolicitudRequerimientoPersistence solicitudRequerimientoPersistence;
+	@BeanReference(type = com.hitss.layer.service.SolicitudRequerimientoFuncionLocalService.class)
+	protected com.hitss.layer.service.SolicitudRequerimientoFuncionLocalService solicitudRequerimientoFuncionLocalService;
+	@BeanReference(type = com.hitss.layer.service.SolicitudRequerimientoFuncionService.class)
+	protected com.hitss.layer.service.SolicitudRequerimientoFuncionService solicitudRequerimientoFuncionService;
+	@BeanReference(type = SolicitudRequerimientoFuncionPersistence.class)
+	protected SolicitudRequerimientoFuncionPersistence solicitudRequerimientoFuncionPersistence;
 	@BeanReference(type = com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService.class)
 	protected com.hitss.layer.service.SolicitudRequerimientoRequisitoLocalService solicitudRequerimientoRequisitoLocalService;
 	@BeanReference(type = com.hitss.layer.service.SolicitudRequerimientoRequisitoService.class)
@@ -2385,6 +2507,12 @@ public abstract class CronogramaLocalServiceBaseImpl
 	protected com.hitss.layer.service.UsuarioEvaluacionService usuarioEvaluacionService;
 	@BeanReference(type = UsuarioEvaluacionPersistence.class)
 	protected UsuarioEvaluacionPersistence usuarioEvaluacionPersistence;
+	@BeanReference(type = com.hitss.layer.service.UsuarioFuncionLocalService.class)
+	protected com.hitss.layer.service.UsuarioFuncionLocalService usuarioFuncionLocalService;
+	@BeanReference(type = com.hitss.layer.service.UsuarioFuncionService.class)
+	protected com.hitss.layer.service.UsuarioFuncionService usuarioFuncionService;
+	@BeanReference(type = UsuarioFuncionPersistence.class)
+	protected UsuarioFuncionPersistence usuarioFuncionPersistence;
 	@BeanReference(type = com.hitss.layer.service.UsuarioRequisitoLocalService.class)
 	protected com.hitss.layer.service.UsuarioRequisitoLocalService usuarioRequisitoLocalService;
 	@BeanReference(type = com.hitss.layer.service.UsuarioRequisitoService.class)

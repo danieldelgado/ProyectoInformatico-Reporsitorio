@@ -67,13 +67,14 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 			{ "usuarioId", Types.BIGINT },
 			{ "cumplio", Types.BIGINT },
 			{ "actividad", Types.VARCHAR },
+			{ "puntuacion", Types.INTEGER },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table RegisitrarActividadPlanUsuario (actividadPlanId LONG not null,regisitrarActividadPlanUsuariocoId LONG not null,usuarioId LONG,cumplio LONG,actividad VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (actividadPlanId, regisitrarActividadPlanUsuariocoId))";
+	public static final String TABLE_SQL_CREATE = "create table RegisitrarActividadPlanUsuario (actividadPlanId LONG not null,regisitrarActividadPlanUsuariocoId LONG not null,usuarioId LONG,cumplio LONG,actividad VARCHAR(75) null,puntuacion INTEGER,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (actividadPlanId, regisitrarActividadPlanUsuariocoId))";
 	public static final String TABLE_SQL_DROP = "drop table RegisitrarActividadPlanUsuario";
 	public static final String ORDER_BY_JPQL = " ORDER BY registrarActividadPlanUsuario.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY RegisitrarActividadPlanUsuario.fechamodifica ASC";
@@ -107,6 +108,7 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setCumplio(soapModel.getCumplio());
 		model.setActividad(soapModel.getActividad());
+		model.setPuntuacion(soapModel.getPuntuacion());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -186,6 +188,7 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("cumplio", getCumplio());
 		attributes.put("actividad", getActividad());
+		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -226,6 +229,12 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 
 		if (actividad != null) {
 			setActividad(actividad);
+		}
+
+		Integer puntuacion = (Integer)attributes.get("puntuacion");
+
+		if (puntuacion != null) {
+			setPuntuacion(puntuacion);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -322,6 +331,17 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 
 	@JSON
 	@Override
+	public int getPuntuacion() {
+		return _puntuacion;
+	}
+
+	@Override
+	public void setPuntuacion(int puntuacion) {
+		_puntuacion = puntuacion;
+	}
+
+	@JSON
+	@Override
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -399,6 +419,7 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 		registrarActividadPlanUsuarioImpl.setUsuarioId(getUsuarioId());
 		registrarActividadPlanUsuarioImpl.setCumplio(getCumplio());
 		registrarActividadPlanUsuarioImpl.setActividad(getActividad());
+		registrarActividadPlanUsuarioImpl.setPuntuacion(getPuntuacion());
 		registrarActividadPlanUsuarioImpl.setActivo(getActivo());
 		registrarActividadPlanUsuarioImpl.setUsuariocrea(getUsuariocrea());
 		registrarActividadPlanUsuarioImpl.setFechacrea(getFechacrea());
@@ -477,6 +498,8 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 			registrarActividadPlanUsuarioCacheModel.actividad = null;
 		}
 
+		registrarActividadPlanUsuarioCacheModel.puntuacion = getPuntuacion();
+
 		registrarActividadPlanUsuarioCacheModel.activo = getActivo();
 
 		registrarActividadPlanUsuarioCacheModel.usuariocrea = getUsuariocrea();
@@ -506,7 +529,7 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{actividadPlanId=");
 		sb.append(getActividadPlanId());
@@ -518,6 +541,8 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 		sb.append(getCumplio());
 		sb.append(", actividad=");
 		sb.append(getActividad());
+		sb.append(", puntuacion=");
+		sb.append(getPuntuacion());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -535,7 +560,7 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.RegistrarActividadPlanUsuario");
@@ -560,6 +585,10 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 		sb.append(
 			"<column><column-name>actividad</column-name><column-value><![CDATA[");
 		sb.append(getActividad());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>puntuacion</column-name><column-value><![CDATA[");
+		sb.append(getPuntuacion());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -596,6 +625,7 @@ public class RegistrarActividadPlanUsuarioModelImpl extends BaseModelImpl<Regist
 	private long _usuarioId;
 	private long _cumplio;
 	private String _actividad;
+	private int _puntuacion;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

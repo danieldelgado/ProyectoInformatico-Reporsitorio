@@ -4,6 +4,7 @@ var modalconfirmacion = null;
 var filtrafecharegistro = true;
 
 var listarequisitosMap = [];
+var listaFuncionMap = [];
 
 $(document).ready(function() {
 	init();
@@ -24,10 +25,12 @@ function inicializarFormularioBusqueda() {
 
 	var modificarSolicitudUrl = $("#" + inputFristnamespace + "modificarSolicitudUrl").val();
 	var anularSolicitudUrl = $("#" + inputFristnamespace + "anularSolicitudUrl").val();
+	var verDetalleSolicitudUrl = $("#" + inputFristnamespace + "verDetalleSolicitudUrl").val();
 
 	var urls = {
 		"modificarSolicitud" : modificarSolicitudUrl,
-		"anularSolicitud" : anularSolicitudUrl
+		"anularSolicitud" : anularSolicitudUrl,
+		"verDetalleSolicitudUrl" : verDetalleSolicitudUrl
 	};
 
 	listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);
@@ -58,6 +61,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 
 	var listaOpcionModificar = $("#" + inputFristnamespace + "listaOpcionModificar").val();
 	var listaOpcionAnular = $("#" + inputFristnamespace + "listaOpcionAnular").val();
+	var listaOpcionVerDetalle = $("#" + inputFristnamespace + "listaOpcionVerDetalle").val();
 
 	$.ajax({
 		type : "POST",
@@ -116,8 +120,10 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 					html += '		<a class="btn btn-primary" href="' + urls["modificarSolicitud"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionModificar + ' </a>';
 				}
 				if (value.estado == 48) {
-					html += '		<a class="btn btn-primary anular" data="' + value.solicitudRequerimientoId + '" href="javacript:void();">' + listaOpcionAnular + ' </a>';
+					html += '		<a class="btn btn-primary anular" data="' + value.solicitudRequerimientoId + '" href="javascript:void();">' + listaOpcionAnular + ' </a>';
 				}
+				html += '		<a class="btn btn-primary" href="' + urls["verDetalleSolicitudUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionVerDetalle + ' </a>';
+				
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';
@@ -256,9 +262,13 @@ function inicializarFormularioRegistro() {
 	// var inputespecialidad = inputFristnamespace + "especialidad";
 
 	var btnAgregar = $("#" + inputFristnamespace + "btnAgregar");
+	var btnAgregarFuncion = $("#" + inputFristnamespace + "btnAgregarFuncion");
 
 	$(btnAgregar).click(function() {
 		agregarRequisitos();
+	});
+	$(btnAgregarFuncion).click(function() {
+		agregarFuncion();
 	});
 
 	var rules = {};
@@ -378,12 +388,20 @@ function agregarRequisitos() {
 	var exigile = $("#" + inputFristnamespace + "exigile").prop("checked");
 	var tipoRequisito = $("#" + inputFristnamespace + "tipoRequisito option:selected").val();
 	var tipoRequisitotext = $("#" + inputFristnamespace + "tipoRequisito option:selected").text();
-	addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext);
+	addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext,true);
 }
 
-function listarRequisitos(requisitoEtiquetaBeans) {
+function agregarFuncion() {
+	var funcion = $("#" + inputFristnamespace + "funcion").val();
+	var exigilefuncion = $("#" + inputFristnamespace + "exigilefuncion").prop("checked");
+	addFuncionFila(funcion, exigilefuncion,true);
+}
+
+function listarRequisitos(requisitoEtiquetaBeans,opciones) {
+	console.log(requisitoEtiquetaBeans);
 	if (requisitoEtiquetaBeans != "") {
 		var lista = $.parseJSON(requisitoEtiquetaBeans);
+		console.log(lista);
 		$.each(lista, function(index, object) {
 			var exigible = false;
 			if (object['exigibleText'] == undefined) {
@@ -391,12 +409,13 @@ function listarRequisitos(requisitoEtiquetaBeans) {
 			} else {
 				exigible = object['exigibleText'];
 			}
-			addRequisitoFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+			addRequisitoFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText'],opciones);
 		});
 	}
 }
 
-function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
+function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext,opciones) {
+	console.log("addRequisitoFila");
 	var exigileValue = exigile;
 	if (exigile == true) {
 		exigile = "Si";
@@ -418,10 +437,22 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 			listarequisitosMap.push(requistoMap);
 
 			var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
+			console.log("listaRequisitos");
+			console.log(listaRequisitos);
 			var html = "";
-			html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</td>" + "<td>" + "<a class='btn btn-primary eliminar' data='" + requisito + "' href='javascript:void(0);'>Eliminar</a>"
-					+ "</td>" + "</tr>";
+			html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText
+					+ "</td>" + "<td>" + exigile + "</td>" + "<td>"
+					+ tipoRequisitotext + "</td>";
+			
+			if(opciones){
+				html += "<td>" + "<a class='btn btn-primary eliminar' data='"
+				+ requisito + "' href='javascript:void(0);'>Eliminar</a>"
+				+ "</td>";
+			}
 
+			html += "</tr>";
+
+			console.log(html);
 			$(listaRequisitos).append(html);
 			$(".eliminar").unbind("click");
 			$(".eliminar").click(function() {
@@ -452,8 +483,89 @@ function validarExitenteRequisito(requisito) {
 	return result;
 }
 
+function listarFuncions(funcionEtiquetaBeans,opciones) {
+	console.log(funcionEtiquetaBeans);
+	if (funcionEtiquetaBeans != "") {
+		var lista = $.parseJSON(funcionEtiquetaBeans);
+		console.log(lista);
+		$.each(lista, function(index, object) {
+			var exigible = false;
+			if (object['exigibleText'] == undefined) {
+				exigible = object['exigible'];
+			} else {
+				exigible = object['exigibleText'];
+			}
+			addFuncionFila(object['funcion'], exigible,opciones);
+		});
+	}
+}
+
+function addFuncionFila(funcion, exigile,opciones) {
+	console.log("addFuncionFila");
+	var exigileValue = exigile;
+	if (exigile == true) {
+		exigile = "Si";
+	} else {
+		exigile = "No";
+	}
+
+	if (funcion != "") {
+		var b = validarExitenteFuncion(funcion);
+
+		if (b) {
+
+			var funcionMap = {};
+			funcionMap['funcion'] = funcion;
+			funcionMap['exigibleText'] = exigileValue;
+			listaFuncionMap.push(funcionMap);
+
+			var listaFuncions = $("#" + inputFristnamespace + "listaFuncions");
+			console.log("listaFuncions");
+			console.log(listaFuncions);
+			var html = "";
+			html += "<tr>" + "<td>" + funcion + "</td>" + "<td>" + exigile + "</td>" ;			
+			if(opciones){
+				html += "<td>" + "<a class='btn btn-primary eliminarFuncion' data='"
+				+ funcion + "' href='javascript:void(0);'>Eliminar</a>"
+				+ "</td>";
+			}
+			html += "</tr>";
+
+			console.log(html);
+			$(listaFuncions).append(html);
+			$(".eliminarFuncion").unbind("click");
+			$(".eliminarFuncion").click(function() {
+				var id = $(this).attr("data");
+				var tr = $(this).parent().parent();
+				removerFuncionItem(id, tr);
+			});
+		}
+	}
+}
+function validarExitenteFuncion(funcion) {
+	var result = true;
+	$.each(listaFuncionMap, function(index, object) {
+		if (object['funcion'] == funcion) {
+			result = false;
+		}
+	});
+	return result;
+}
+
+function removerFuncionItem(id, tr) {
+	$.each(listaFuncionMap, function(index, object) {
+		if (object['funcion'] == id) {
+			listaFuncionMap.splice(index, 1);
+		}
+	});
+	$(tr).remove();
+}
+
+
 function registrarSolicitud() {
 	init();
+	var listasCorrectas = true;
+	var contenedorAlerta = $(".contenedorAlerta");
 	var formActualizarSolicitud = $("#" + inputFristnamespace + "actualizarSolicitud");
 	var actualizarUrl = $("#" + inputFristnamespace + "actualizarUrl").val();
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
@@ -462,35 +574,59 @@ function registrarSolicitud() {
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
 
-	var dataSend = $(formActualizarSolicitud).serialize();
-	dataSend = dataSend + "&" + inputFristnamespace + "requisitosList=" + JSON.stringify(listarequisitosMap) + "";
+//	console.log("registrarSolicitud");
+//	console.log(listarequisitosMap);
+//	console.log(listarequisitosMap.length);
+//	console.log($.map(listarequisitosMap, function() { return 1; }).length);
+//	console.log($.map(listaFuncionMap, function() { return 1; }).length);
+	
+	
+	if( listarequisitosMap.length == 0 ){
+		mostrarAlerta(contenedorAlerta, "Requisito", "Ingrese al menos un requisito", "alert-error", null);
+		listasCorrectas = false;
+		modalconfirmacion.hide();
+	}
+//	console.log(listaFuncionMap);
+//	console.log(listaFuncionMap.length);
+	
+	if( listaFuncionMap.length == 0 ){
+		mostrarAlerta(contenedorAlerta, "Función", "Ingrese al menos una función", "alert-error", null);
+		listasCorrectas = false;
+		modalconfirmacion.hide();
+	}
+	
+	if(listasCorrectas){
+		var dataSend = $(formActualizarSolicitud).serialize();
+		dataSend = dataSend + "&" + inputFristnamespace + "requisitosList=" + JSON.stringify(listarequisitosMap) + "";
+		dataSend = dataSend + "&" + inputFristnamespace + "funcionList=" + JSON.stringify(listaFuncionMap) + "";
 
-	$.ajax({
-		type : "POST",
-		url : actualizarUrl,
-		data : dataSend,
-		success : function(data) {
-			modalconfirmacion.hide();
-			data = $.parseJSON(data);
-			var objeto = data["objeto"];
-			var respuesta = data["respuesta"];
-			var mensaje = data["mensaje"];
-			var contenedorAlerta = $(".contenedorAlerta");
-			listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
-			listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
-			listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
-			if (respuesta == 1) {
-				$(btnGuardar).attr("disabled", "disabled");
-				mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
-					setTimeout(function() {
-						window.location = listarSolicitudesUrl;
-					}, 1500);
-				});
-			} else {
-				mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+		$.ajax({
+			type : "POST",
+			url : actualizarUrl,
+			data : dataSend,
+			success : function(data) {
+				modalconfirmacion.hide();
+				data = $.parseJSON(data);
+				var objeto = data["objeto"];
+				var respuesta = data["respuesta"];
+				var mensaje = data["mensaje"];
+				listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
+				listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
+				listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
+				if (respuesta == 1) {
+					$(btnGuardar).attr("disabled", "disabled");
+					mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+						setTimeout(function() {
+							window.location = listarSolicitudesUrl;
+						}, 1500);
+					});
+				} else {
+					mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+				}
 			}
-		}
-	});
+		});
+	}
+	
 }
 
 AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
@@ -522,6 +658,7 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 					on : {
 						success : function() {
 							var data = this.get('responseData');
+							console.log("datar:"+data);
 							testData = data;
 						}
 					}
@@ -530,8 +667,46 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 				return testData;
 			},
 		});
-
 	}
+	
+	
+	if (A.one('#' + inputFristnamespace + 'funcion') != null) {
+		var testData2;
+		var inputfuncion = inputFristnamespace + 'funcion';
+		var autocompleteFuncionUrl = A.one('#' + inputFristnamespace + 'listarFuncionesUrl').get('value');
+
+		new A.AutoCompleteList({
+			allowBrowserAutocomplete : 'true',
+			activateFirstItem : 'true',
+			inputNode : '#' + inputfuncion,
+			resultTextLocator : 'value',
+			render : 'true',
+			resultHighlighter : 'phraseMatch',
+			resultFilters : [ 'phraseMatch' ],
+			source : function() {
+				var inputValue = A.one('#' + inputFristnamespace + 'funcion').get('value');
+				var datasend = {};
+				datasend[inputFristnamespace + 'funcion'] = inputValue;
+				var myAjax2Request = A.io.request(autocompleteFuncionUrl, {
+					dataType : 'json',
+					method : 'POST',
+					data : datasend,
+					autoLoad : false,
+					sync : false,
+					on : {
+						success : function() {
+							var data = this.get('responseData');
+							console.log("dataf:"+data);
+							testData2 = data;
+						}
+					}
+				});
+				myAjax2Request.start();
+				return testData2;
+			},
+		});
+	}
+	
 	if (A.one('#' + inputFristnamespace + 'fechaRegistroInicio') != null) {
 		new A.DatePicker({
 			trigger : '#' + inputFristnamespace + 'fechaRegistroInicio',

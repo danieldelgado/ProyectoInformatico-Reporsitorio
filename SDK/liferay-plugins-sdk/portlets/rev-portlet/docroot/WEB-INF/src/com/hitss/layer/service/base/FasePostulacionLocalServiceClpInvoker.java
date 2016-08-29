@@ -177,17 +177,17 @@ public class FasePostulacionLocalServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] { "long", "long[][]" };
 
-		_methodName226 = "getBeanIdentifier";
+		_methodName238 = "getBeanIdentifier";
 
-		_methodParameterTypes226 = new String[] {  };
+		_methodParameterTypes238 = new String[] {  };
 
-		_methodName227 = "setBeanIdentifier";
+		_methodName239 = "setBeanIdentifier";
 
-		_methodParameterTypes227 = new String[] { "java.lang.String" };
+		_methodParameterTypes239 = new String[] { "java.lang.String" };
 
-		_methodName232 = "getLastPostulacion";
+		_methodName244 = "getLastPostulacion";
 
-		_methodParameterTypes232 = new String[] {
+		_methodParameterTypes244 = new String[] {
 				"java.lang.Long", "java.lang.Long"
 			};
 	}
@@ -396,20 +396,20 @@ public class FasePostulacionLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName226.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes226, parameterTypes)) {
+		if (_methodName238.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes238, parameterTypes)) {
 			return FasePostulacionLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName227.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes227, parameterTypes)) {
+		if (_methodName239.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes239, parameterTypes)) {
 			FasePostulacionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName232.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes232, parameterTypes)) {
+		if (_methodName244.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes244, parameterTypes)) {
 			return FasePostulacionLocalServiceUtil.getLastPostulacion((java.lang.Long)arguments[0],
 				(java.lang.Long)arguments[1]);
 		}
@@ -481,10 +481,10 @@ public class FasePostulacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
-	private String _methodName226;
-	private String[] _methodParameterTypes226;
-	private String _methodName227;
-	private String[] _methodParameterTypes227;
-	private String _methodName232;
-	private String[] _methodParameterTypes232;
+	private String _methodName238;
+	private String[] _methodParameterTypes238;
+	private String _methodName239;
+	private String[] _methodParameterTypes239;
+	private String _methodName244;
+	private String[] _methodParameterTypes244;
 }

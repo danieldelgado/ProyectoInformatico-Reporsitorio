@@ -58,6 +58,7 @@ public class RegistrarActividadPlanUsuarioWrapper
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("cumplio", getCumplio());
 		attributes.put("actividad", getActividad());
+		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -98,6 +99,12 @@ public class RegistrarActividadPlanUsuarioWrapper
 
 		if (actividad != null) {
 			setActividad(actividad);
+		}
+
+		Integer puntuacion = (Integer)attributes.get("puntuacion");
+
+		if (puntuacion != null) {
+			setPuntuacion(puntuacion);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -251,6 +258,26 @@ public class RegistrarActividadPlanUsuarioWrapper
 	@Override
 	public void setActividad(java.lang.String actividad) {
 		_registrarActividadPlanUsuario.setActividad(actividad);
+	}
+
+	/**
+	* Returns the puntuacion of this registrar actividad plan usuario.
+	*
+	* @return the puntuacion of this registrar actividad plan usuario
+	*/
+	@Override
+	public int getPuntuacion() {
+		return _registrarActividadPlanUsuario.getPuntuacion();
+	}
+
+	/**
+	* Sets the puntuacion of this registrar actividad plan usuario.
+	*
+	* @param puntuacion the puntuacion of this registrar actividad plan usuario
+	*/
+	@Override
+	public void setPuntuacion(int puntuacion) {
+		_registrarActividadPlanUsuario.setPuntuacion(puntuacion);
 	}
 
 	/**

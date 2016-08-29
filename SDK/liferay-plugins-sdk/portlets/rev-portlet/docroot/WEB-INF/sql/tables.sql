@@ -161,7 +161,7 @@ create table FichaIngreso (
 	fichaingresoId LONG not null,
 	solicitudRequerimientoId LONG not null,
 	userId LONG,
-	requieroEquipoTecnico BOOLEAN,
+	equipoTecnico BOOLEAN,
 	reemplazo BOOLEAN,
 	aprobacionFichaIngresoCapitalHumano BOOLEAN,
 	aprobacionFichaIngresoOperaciones BOOLEAN,
@@ -176,7 +176,6 @@ create table FichaIngreso (
 create table Funcion (
 	funcionId LONG not null primary key,
 	descripcion VARCHAR(75) null,
-	etiquetaId LONG,
 	exigible BOOLEAN,
 	activo BOOLEAN,
 	usuariocrea LONG,
@@ -326,6 +325,7 @@ create table RegisitrarActividadPlanUsuario (
 	usuarioId LONG,
 	cumplio LONG,
 	actividad VARCHAR(75) null,
+	puntuacion INTEGER,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
@@ -402,6 +402,18 @@ create table SolicitudRequerimiento (
 	fechamodifica DATE null
 );
 
+create table SolicitudRequerimientoFuncion (
+	solicitudFuncionId LONG not null,
+	funcionId LONG not null,
+	exigible BOOLEAN,
+	activo BOOLEAN,
+	usuariocrea LONG,
+	fechacrea DATE null,
+	usuariomodifica LONG,
+	fechamodifica DATE null,
+	primary key (solicitudFuncionId, funcionId)
+);
+
 create table SolicitudRequerimientoRequisito (
 	solicitudRequerimientoId LONG not null,
 	tagId LONG not null,
@@ -431,6 +443,18 @@ create table UsuarioEvaluacion (
 	usuarioId LONG not null primary key,
 	evaluacionId LONG,
 	nota INTEGER
+);
+
+create table UsuarioFuncion (
+	userId LONG not null,
+	funcionId LONG not null,
+	exigible BOOLEAN,
+	activo BOOLEAN,
+	usuariocrea LONG,
+	fechacrea DATE null,
+	usuariomodifica LONG,
+	fechamodifica DATE null,
+	primary key (userId, funcionId)
 );
 
 create table UsuarioRequisito (
