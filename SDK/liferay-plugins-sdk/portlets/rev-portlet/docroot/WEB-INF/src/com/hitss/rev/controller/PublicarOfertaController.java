@@ -42,13 +42,13 @@ public class PublicarOfertaController  extends RevController {
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("defaultView");
-		return super.defaultView(request, response, model, (RevServiceImpl) publicarOfertaService);
+		return super.defaultViewReclutamiento(request, response, model, (RevServiceImpl) publicarOfertaService);
 	}
 
 	@RenderMapping(params = "action=default")
 	public String irDefault(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("irDefault");
-		return super.irDefault(request, response, model, (RevServiceImpl) publicarOfertaService);
+		return super.irDefaultReclutamiento(request, response, model, (RevServiceImpl) publicarOfertaService);
 	}
 
 	@ResourceMapping(value = "listarSolicitudesReclutamiento")
@@ -61,7 +61,7 @@ public class PublicarOfertaController  extends RevController {
 	@RenderMapping(params = "action=verDetalleSolicitud")
 	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("actualizarSolicitud");		
-		return super.verDetalleSolicitud(request, response, model, (RevServiceImpl) publicarOfertaService);
+		return super.verDetalleSolicitudReclutamiento(request, response, model, (RevServiceImpl) publicarOfertaService);
 	}
 
 	@RenderMapping(params = "action=publicarOferta")

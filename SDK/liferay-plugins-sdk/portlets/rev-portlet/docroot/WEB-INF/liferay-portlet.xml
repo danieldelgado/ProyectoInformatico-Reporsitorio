@@ -111,6 +111,95 @@
 		<footer-portlet-javascript>/js/evaluarsolicitudrequerimiento/main.js</footer-portlet-javascript>
 		<css-class-wrapper>EvaluarSolicitudRequerimiento-portlet</css-class-wrapper>
 	</portlet>
+	
+	
+	
+	<portlet>
+		<portlet-name>ActualizarCronograma</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/actualizarcronograma/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/actualizarcronograma/main.js</footer-portlet-javascript>
+		<css-class-wrapper>ActualizarCronograma-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>ActualizarPlanAccion</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/actualizarplanaccion/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/actualizarplanaccion/main.js</footer-portlet-javascript>
+		<css-class-wrapper>ActualizarPlanAccion-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>ActualizarSolicitudEvaluacion</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/actualizarsolicitudevaluacion/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/actualizarsolicitudevaluacion/main.js</footer-portlet-javascript>
+		<css-class-wrapper>ActualizarSolicitudEvaluacion-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>EvaluarCronograma</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/evaluarcronograma/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/evaluarcronograma/main.js</footer-portlet-javascript>
+		<css-class-wrapper>EvaluarCronograma-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>EvaluarPlanAccion</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/evaluarplanaccion/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/evaluarplanaccion/main.js</footer-portlet-javascript>
+		<css-class-wrapper>EvaluarPlanAccion-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>RegistrarAvance</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/registraravance/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/registraravance/main.js</footer-portlet-javascript>
+		<css-class-wrapper>RegistrarAvance-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>RegistrarInformeRetroalimentacion</portlet-name>
+		<icon>/icon.png</icon>
+		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
+		<use-default-template>false</use-default-template>
+		<instanceable>true</instanceable>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<header-portlet-css>/css/registrarinformeretroalimentacion/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/registrarinformeretroalimentacion/main.js</footer-portlet-javascript>
+		<css-class-wrapper>RegistrarInformeRetroalimentacion-portlet</css-class-wrapper>
+	</portlet>
+	
+	
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

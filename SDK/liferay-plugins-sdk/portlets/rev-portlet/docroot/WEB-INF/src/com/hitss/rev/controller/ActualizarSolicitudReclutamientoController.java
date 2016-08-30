@@ -51,13 +51,13 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("defaultView");
-		return super.defaultView(request, response, model, (RevServiceImpl) actualizarSolicitudReclutamientoService);
+		return super.defaultViewReclutamiento(request, response, model, (RevServiceImpl) actualizarSolicitudReclutamientoService);
 	}
 
 	@RenderMapping(params = "action=default")
 	public String irDefault(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("irDefault");
-		return super.irDefault(request, response, model, (RevServiceImpl) actualizarSolicitudReclutamientoService);
+		return super.irDefaultReclutamiento(request, response, model, (RevServiceImpl) actualizarSolicitudReclutamientoService);
 	}
 
 	@ResourceMapping(value = "listarSolicitudesReclutamiento")
@@ -87,7 +87,7 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 	@RenderMapping(params = "action=verDetalleSolicitud")
 	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("actualizarSolicitud");		
-		return super.verDetalleSolicitud(request, response, model, (RevServiceImpl) actualizarSolicitudReclutamientoService);
+		return super.verDetalleSolicitudReclutamiento(request, response, model, (RevServiceImpl) actualizarSolicitudReclutamientoService);
 	}
 	@RenderMapping(params = "action=actualizarSolicitud")
 	public String iractualizarSolicitud(RenderRequest request, RenderResponse response, Model model) {

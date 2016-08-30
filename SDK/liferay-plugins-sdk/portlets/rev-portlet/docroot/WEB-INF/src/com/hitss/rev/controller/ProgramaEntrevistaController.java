@@ -38,13 +38,13 @@ public class ProgramaEntrevistaController extends RevController {
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("defaultView");
-		return super.defaultView(request, response, model, (RevServiceImpl) programaEntrevistaService);
+		return super.defaultViewReclutamiento(request, response, model, (RevServiceImpl) programaEntrevistaService);
 	}
 
 	@RenderMapping(params = "action=default")
 	public String irDefault(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("irDefault");
-		return super.irDefault(request, response, model, (RevServiceImpl) programaEntrevistaService);
+		return super.irDefaultReclutamiento(request, response, model, (RevServiceImpl) programaEntrevistaService);
 	}
 
 
@@ -58,7 +58,7 @@ public class ProgramaEntrevistaController extends RevController {
 	@RenderMapping(params = "action=verDetalleSolicitud")
 	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model) {
 		_log.debug("actualizarSolicitud");		
-		return super.verDetalleSolicitud(request, response, model, (RevServiceImpl) programaEntrevistaService);
+		return super.verDetalleSolicitudReclutamiento(request, response, model, (RevServiceImpl) programaEntrevistaService);
 	}
 	
 	@RenderMapping(params = "action=listarPostulantes")

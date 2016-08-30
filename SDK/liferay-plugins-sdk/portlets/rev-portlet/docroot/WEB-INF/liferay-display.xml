@@ -2,15 +2,23 @@
 <!DOCTYPE display PUBLIC "-//Liferay//DTD Display 6.2.0//EN" "http://www.liferay.com/dtd/liferay-display_6_2_0.dtd">
 
 <display>
-	<category name="REV HITSS">
+	<category name="REV HITSS Reclutamiento">
 		<portlet id="ActualizarSolicitudReclutamiento"></portlet>
-		<portlet id="ActualizarSolicitudRequerimiento"></portlet>
 		<portlet id="EvaluarFichaIngreso"></portlet>
 		<portlet id="EvaluarSolicitudRequerimiento"></portlet>
 		<portlet id="ProgramaEntrevista"></portlet>
 		<portlet id="PublicarOferta"></portlet>
 		<portlet id="RegistrarResultadoEntrevista"></portlet>
 		<portlet id="SeleccionarPersonal"></portlet>
+	</category>
+	<category name="REV HITSS Evaluación">
+		<portlet id="ActualizarCronograma"></portlet>
+		<portlet id="ActualizarPlanAccion"></portlet>
+		<portlet id="ActualizarSolicitudEvaluacion"></portlet>
+		<portlet id="EvaluarCronograma"></portlet>
+		<portlet id="EvaluarPlanAccion"></portlet>
+		<portlet id="RegistrarAvance"></portlet>
+		<portlet id="RegistrarInformeRetroalimentacion"></portlet>
 	</category>
 	<category name="Portal Reclutamiento">
 		<portlet id="PostularOfertaLaboral"></portlet>

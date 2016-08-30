@@ -30,7 +30,7 @@ public abstract class RevController {
 
 	private static Log _log = LogFactoryUtil.getLog(RevController.class);
 	
-	public String defaultView(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
+	public String defaultViewReclutamiento(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
 		_log.debug("defaultView");
 		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		List<PuestoBean> listaPuestoBeans = service.getListaPuestos(td.getSiteGroup().getGroupId(), null);
@@ -55,7 +55,7 @@ public abstract class RevController {
 		return "view";
 	}
 	
-	public String irDefault(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
+	public String irDefaultReclutamiento(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
 		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
 		String mensaje = ParamUtil.get(request, "mensaje", "");
@@ -65,7 +65,7 @@ public abstract class RevController {
 		response.addProperty("solicitudRequerimientoId", String.valueOf(solicitudRequerimientoId));
 		response.addProperty("titulo", titulo);
 		response.addProperty("mensaje", mensaje);
-		return defaultView(request, response, model,service);
+		return defaultViewReclutamiento(request, response, model,service);
 	}
 	
 	
@@ -130,7 +130,7 @@ public abstract class RevController {
 		}
 	}
 	
-	public String verDetalleSolicitud(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
+	public String verDetalleSolicitudReclutamiento(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
 		_log.debug("actualizarSolicitud");
 
 		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
