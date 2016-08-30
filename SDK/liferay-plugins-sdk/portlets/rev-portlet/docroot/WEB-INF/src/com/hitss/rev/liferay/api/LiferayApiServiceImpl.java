@@ -199,7 +199,7 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 					StringPool.BLANK, 
 					serviceContext);			
 			long[] assetCategoryIds = {categoriaPuestoId};
-			JournalArticleLocalServiceUtil.updateAsset(userId, journalArticle, assetCategoryIds, tagsEtiquetas, null);						
+			JournalArticleLocalServiceUtil.updateAsset(userId, journalArticle, assetCategoryIds, null, null);						
 			return journalArticle.getArticleId();
 		} catch (PortalException e) {
 			System.err.println("Failed to add aticle.1");
