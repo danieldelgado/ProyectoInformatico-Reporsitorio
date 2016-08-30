@@ -215,21 +215,21 @@
 		</security-role-ref>
 	</portlet>
 	<portlet>
-		<portlet-name>RegistrarResultadoEntrevista</portlet-name>
-		<display-name>RegistrarResultadoEntrevista</display-name>
+		<portlet-name>RegistrarResultadoPostulante</portlet-name>
+		<display-name>RegistrarResultadoPostulante</display-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/spring/context/registrarresultadoentrevista/servlet-context.xml</value>
+			<value>/WEB-INF/spring/context/registrarresultadopostulante/servlet-context.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>RegistrarResultadoEntrevista</title>
-			<short-title>RegistrarResultadoEntrevista</short-title>
-			<keywords>RegistrarResultadoEntrevista</keywords>
+			<title>RegistrarResultadoPostulante</title>
+			<short-title>RegistrarResultadoPostulante</short-title>
+			<keywords>RegistrarResultadoPostulante</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

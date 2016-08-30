@@ -10,12 +10,10 @@ import com.hitss.rev.bean.UsuarioBean;
 
 public interface SeleccionarPersonalService {
 	List<PuestoBean> getListaPuestos(long groupId, String object);
-
 	List<UsuarioBean> getListaResponsable(long companyId, long companyGroupId);
-
 	List<ParametroBean> getTiempoContrato();
-
 	Map<String, Object> listarSolicitudesRequermiento(Long puestoId, Date fechaRegistroInicio, Date fechaRegistrFin, int responsable, int tiempoContrato, int filas, int pagina, String orden, String campoOrden);
 
-
+	void selectPersonal();
+	
 }

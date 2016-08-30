@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
-@Controller("registrarResultadoEntrevistaController")
+import com.hitss.rev.util.RevController;
+
+@Controller("registrarResultadoPotulanteController")
 @RequestMapping(value = "VIEW")
-public class RegistrarResultadoEntrevistaController {
+public class RegistrarResultadoPotulanteController extends RevController{
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 

@@ -76,16 +76,16 @@
 		<css-class-wrapper>PublicarOferta-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>RegistrarResultadoEntrevista</portlet-name>
+		<portlet-name>RegistrarResultadoPostulante</portlet-name>
 		<icon>/icon.png</icon>
 		<user-notification-definitions>com/hitss/rev/liferay/api/dockbar-user-notification-definitions.xml</user-notification-definitions>
 		<user-notification-handler-class>com.hitss.rev.liferay.api.BarraUsuarioNotificacionHandler</user-notification-handler-class>
 		<use-default-template>false</use-default-template>
 		<instanceable>true</instanceable>
 		<requires-namespaced-parameters>false</requires-namespaced-parameters>
-		<header-portlet-css>/css/registrarresultadoentrevista/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/registrarresultadoentrevista/main.js</footer-portlet-javascript>
-		<css-class-wrapper>RegistrarResultadoEntrevista-portlet</css-class-wrapper>
+		<header-portlet-css>/css/registrarresultadopostulante/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/registrarresultadopostulante/main.js</footer-portlet-javascript>
+		<css-class-wrapper>RegistrarResultadoPostulante-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>SeleccionarPersonal</portlet-name>
