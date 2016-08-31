@@ -132,6 +132,10 @@ public class SolicitudRequerimientoLocalServiceClpInvoker {
 				"java.util.Date", "int", "int", "java.lang.String",
 				"java.lang.String"
 			};
+
+		_methodName232 = "getSolicitudRequerimientoByContenido";
+
+		_methodParameterTypes232 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -255,6 +259,11 @@ public class SolicitudRequerimientoLocalServiceClpInvoker {
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
 		}
 
+		if (_methodName232.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes232, parameterTypes)) {
+			return SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimientoByContenido(((Long)arguments[0]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -300,4 +309,6 @@ public class SolicitudRequerimientoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes229;
 	private String _methodName230;
 	private String[] _methodParameterTypes230;
+	private String _methodName232;
+	private String[] _methodParameterTypes232;
 }

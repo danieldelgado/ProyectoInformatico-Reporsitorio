@@ -16,9 +16,12 @@ package com.hitss.layer.service.impl;
 
 import java.util.List;
 
+import com.hitss.layer.NoSuchSolicitudRequerimientoException;
+import com.hitss.layer.model.SolicitudRequerimiento;
 import com.hitss.layer.model.SolicitudRequerimientoFuncion;
 import com.hitss.layer.service.base.SolicitudRequerimientoFuncionLocalServiceBaseImpl;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionUtil;
+import com.hitss.layer.service.persistence.SolicitudRequerimientoUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 
 /**
@@ -55,5 +58,7 @@ public class SolicitudRequerimientoFuncionLocalServiceImpl
 	public List<SolicitudRequerimientoFuncion> getListaSolicitudRequerimientoFuncionActivo(long solicitudRequerimientoId) throws SystemException{
 		return SolicitudRequerimientoFuncionUtil.findByS(solicitudRequerimientoId);
 	}
+
+	
 	
 }

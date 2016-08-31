@@ -183,7 +183,7 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 	}
 
 	@Override
-	public String registrarPublicacionContenido(long userId, long groupId, long solicitudRequerimientoId, String[] tagsEtiquetas, String proyecto, long categoriaPuestoId, String especialidad,
+	public long registrarPublicacionContenido(long userId, long groupId, long solicitudRequerimientoId, String[] tagsEtiquetas, String proyecto, long categoriaPuestoId, String especialidad,
 			long tiempoContrato, long tipoNegocio, long prioridad, Date fechaLimite, long presupuestoMaximo, long presupuestoMinimo, long cliente, String descripcion,
 			HttpServletRequest request) {
 		JournalArticle journalArticle = null;
@@ -199,8 +199,11 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 					StringPool.BLANK, 
 					serviceContext);			
 			long[] assetCategoryIds = {categoriaPuestoId};
+			
+			journalArticle.setDescription(especialidad);
+			
 			JournalArticleLocalServiceUtil.updateAsset(userId, journalArticle, assetCategoryIds, null, null);						
-			return journalArticle.getArticleId();
+			return journalArticle.getResourcePrimKey();
 		} catch (PortalException e) {
 			System.err.println("Failed to add aticle.1");
 			_log.error(e.getMessage(), e);
@@ -209,7 +212,7 @@ public class LiferayApiServiceImpl implements LiferayApiService {
 			_log.error(e.getMessage(), e);
 		}
 
-		return null;
+		return 0;
 
 	}
 

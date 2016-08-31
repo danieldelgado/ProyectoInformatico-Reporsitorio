@@ -304,8 +304,7 @@
 		<field name="meta" type="String" />
 		<field name="fechameta" type="Date" />
 		<field name="prioridad" type="long" />
-		<field name="motivo" type="String" />
-		<field name="descripcionPublicacion" type="String" />
+		<field name="contenidoId" type="String" />
 		<field name="modalidadjornada" type="long" />
 		<field name="modalidadcontrato" type="long" />
 		<field name="lugarTrabajo" type="String" />

@@ -46,8 +46,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		soapModel.setMeta(model.getMeta());
 		soapModel.setFechameta(model.getFechameta());
 		soapModel.setPrioridad(model.getPrioridad());
-		soapModel.setMotivo(model.getMotivo());
-		soapModel.setDescripcionPublicacion(model.getDescripcionPublicacion());
+		soapModel.setContenidoId(model.getContenidoId());
 		soapModel.setModalidadjornada(model.getModalidadjornada());
 		soapModel.setModalidadcontrato(model.getModalidadcontrato());
 		soapModel.setLugarTrabajo(model.getLugarTrabajo());
@@ -227,20 +226,12 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		_prioridad = prioridad;
 	}
 
-	public String getMotivo() {
-		return _motivo;
+	public String getContenidoId() {
+		return _contenidoId;
 	}
 
-	public void setMotivo(String motivo) {
-		_motivo = motivo;
-	}
-
-	public String getDescripcionPublicacion() {
-		return _descripcionPublicacion;
-	}
-
-	public void setDescripcionPublicacion(String descripcionPublicacion) {
-		_descripcionPublicacion = descripcionPublicacion;
+	public void setContenidoId(String contenidoId) {
+		_contenidoId = contenidoId;
 	}
 
 	public long getModalidadjornada() {
@@ -357,8 +348,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 	private String _meta;
 	private Date _fechameta;
 	private long _prioridad;
-	private String _motivo;
-	private String _descripcionPublicacion;
+	private String _contenidoId;
 	private long _modalidadjornada;
 	private long _modalidadcontrato;
 	private String _lugarTrabajo;

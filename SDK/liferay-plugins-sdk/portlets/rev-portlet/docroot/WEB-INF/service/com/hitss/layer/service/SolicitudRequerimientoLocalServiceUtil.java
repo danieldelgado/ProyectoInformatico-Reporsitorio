@@ -302,6 +302,13 @@ public class SolicitudRequerimientoLocalServiceUtil {
 			fechaRegistroInicio, fechaRegistrFin, inicio, fin, orden, campoOrden);
 	}
 
+	public static com.hitss.layer.model.SolicitudRequerimiento getSolicitudRequerimientoByContenido(
+		long articulo)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getSolicitudRequerimientoByContenido(articulo);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

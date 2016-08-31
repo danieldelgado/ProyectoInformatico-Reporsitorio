@@ -268,4 +268,10 @@ public interface SolicitudRequerimientoLocalService extends BaseLocalService,
 		int inicio, int fin, java.lang.String orden, java.lang.String campoOrden)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.kernel.search.ParseException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.hitss.layer.model.SolicitudRequerimiento getSolicitudRequerimientoByContenido(
+		long articulo)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

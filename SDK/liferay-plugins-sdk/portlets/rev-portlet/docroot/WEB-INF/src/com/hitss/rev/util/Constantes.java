@@ -31,12 +31,20 @@ public class Constantes {
 	public static final long PARAMETRO_TERMINADO = 63 ;
 	public static final long PARAMETRO_ANULADO = 64 ;
 	public static final long PARAMETRO_PUBLICADO=75;
-			
-	public static final long PARAMETRO_FASE_POSTULADO = 70 ;
-	public static final long PARAMETRO_FASE_EN_PROCESO = 71 ;
-	public static final long PARAMETRO_FASE_TERMINADO = 72 ;
-	public static final long PARAMETRO_FASE_CANCELADO = 73 ;
 
+	public static final long PARAMETRO_ESTADO_POSTULADO = 70 ;
+	public static final long PARAMETRO_ESTADO_EN_PROCESO = 71 ;
+	public static final long PARAMETRO_ESTADO_TERMINADO = 72 ;
+	public static final long PARAMETRO_ESTADO_CANCELADO = 73 ;
+
+	public static final long PARAMETRO_FASE_PSICOLOGICA = 78 ;
+	public static final long PARAMETRO_FASE_TECNICA = 79 ;
+	public static final long PARAMETRO_FASE_ENTREV_COORDINADOR = 80 ;
+	public static final long PARAMETRO_FASE_ENTREV_GERENTE_AREA = 81 ;
+
+	public static final long PARAMETRO_TIPO_EVALUACION_PSICOLOGICA= 83 ;
+	public static final long PARAMETRO_TIPO_EVALUACION_TECNICA = 84 ;
+	
 	public static final boolean ACTIVO = true ;
 	public static final boolean INACTIVO = false ;
 	public static final boolean SOLICITUD_APROBADA = true;

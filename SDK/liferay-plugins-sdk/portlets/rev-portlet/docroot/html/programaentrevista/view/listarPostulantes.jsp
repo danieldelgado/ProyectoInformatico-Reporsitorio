@@ -44,28 +44,14 @@
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.nombre" /></th>
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.fechapostulacion" /></th>
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.disponibilidad" /></th>
-							<th><liferay-ui:message key="programar.entevistas.lista.postulante.fase" /></th>
+							<th>Interno</th>
+							<th>Fase de Postulación</th>
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.estado" /></th>
 							<th><liferay-ui:message key="listasolicitudreclutamiento.lista.opciones" /></th>
 						</tr>
 					</thead>
 					<tbody id="<portlet:namespace/>listaPostulantes">
-						<tr>
-							<td>Programador Java Junior</td>
-							<td>5</td>
-							<td>Claro Ecuador</td>
-							<td>IVAN Usuario01 QUIROZ</td>
-							<td>27/04/2016</td>
-							<td><a class="btn btn-primary" href="${programarEntrevista}"> programarEntrevista </a></td>
-						</tr>
-						<tr>
-							<td>Programador Java Junior</td>
-							<td>5</td>
-							<td>Claro Ecuador</td>
-							<td>IVAN Usuario01 QUIROZ</td>
-							<td>27/04/2016</td>
-							<td><a class="btn btn-primary" href="${programarEntrevista}"> programarEntrevista </a></td>
-						</tr>
+						
 					</tbody>
 				</table>
 
@@ -76,6 +62,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		inicializarListaPotulantes('${requisitoEtiquetaBeans}');
+		inicializarListaPotulantes('${listaUsuarios}');
 	});
 </script>

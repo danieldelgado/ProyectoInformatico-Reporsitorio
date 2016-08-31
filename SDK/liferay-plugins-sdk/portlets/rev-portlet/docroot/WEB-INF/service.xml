@@ -22,8 +22,7 @@
 		<column name="meta" type="String" />
 		<column name="fechameta" type="Date" />
 		<column name="prioridad" type="long" />
-		<column name="motivo" type="String" />
-		<column name="descripcionPublicacion" type="String" />
+		<column name="contenidoId" type="String" />
 		<column name="modalidadjornada" type="long" />
 		<column name="modalidadcontrato" type="long" />
 		<column name="lugarTrabajo" type="String" />
@@ -39,6 +38,9 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		<finder name="C" return-type="SolicitudRequerimiento" where="activo=true">
+			<finder-column name="contenidoId" />
+		</finder>
 		<finder name="SolicitudRequerimientoId" return-type="Collection"
 			where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />

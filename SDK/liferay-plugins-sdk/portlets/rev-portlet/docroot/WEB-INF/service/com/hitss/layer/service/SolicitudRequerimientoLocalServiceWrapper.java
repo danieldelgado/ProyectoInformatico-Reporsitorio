@@ -316,6 +316,14 @@ public class SolicitudRequerimientoLocalServiceWrapper
 			fechaRegistroInicio, fechaRegistrFin, inicio, fin, orden, campoOrden);
 	}
 
+	@Override
+	public com.hitss.layer.model.SolicitudRequerimiento getSolicitudRequerimientoByContenido(
+		long articulo)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _solicitudRequerimientoLocalService.getSolicitudRequerimientoByContenido(articulo);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

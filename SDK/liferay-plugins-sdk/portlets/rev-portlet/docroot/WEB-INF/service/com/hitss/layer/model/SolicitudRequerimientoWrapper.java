@@ -65,8 +65,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 		attributes.put("meta", getMeta());
 		attributes.put("fechameta", getFechameta());
 		attributes.put("prioridad", getPrioridad());
-		attributes.put("motivo", getMotivo());
-		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
+		attributes.put("contenidoId", getContenidoId());
 		attributes.put("modalidadjornada", getModalidadjornada());
 		attributes.put("modalidadcontrato", getModalidadcontrato());
 		attributes.put("lugarTrabajo", getLugarTrabajo());
@@ -170,17 +169,10 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 			setPrioridad(prioridad);
 		}
 
-		String motivo = (String)attributes.get("motivo");
+		String contenidoId = (String)attributes.get("contenidoId");
 
-		if (motivo != null) {
-			setMotivo(motivo);
-		}
-
-		String descripcionPublicacion = (String)attributes.get(
-				"descripcionPublicacion");
-
-		if (descripcionPublicacion != null) {
-			setDescripcionPublicacion(descripcionPublicacion);
+		if (contenidoId != null) {
+			setContenidoId(contenidoId);
 		}
 
 		Long modalidadjornada = (Long)attributes.get("modalidadjornada");
@@ -557,44 +549,23 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	}
 
 	/**
-	* Returns the motivo of this solicitud requerimiento.
+	* Returns the contenido ID of this solicitud requerimiento.
 	*
-	* @return the motivo of this solicitud requerimiento
+	* @return the contenido ID of this solicitud requerimiento
 	*/
 	@Override
-	public java.lang.String getMotivo() {
-		return _solicitudRequerimiento.getMotivo();
+	public java.lang.String getContenidoId() {
+		return _solicitudRequerimiento.getContenidoId();
 	}
 
 	/**
-	* Sets the motivo of this solicitud requerimiento.
+	* Sets the contenido ID of this solicitud requerimiento.
 	*
-	* @param motivo the motivo of this solicitud requerimiento
+	* @param contenidoId the contenido ID of this solicitud requerimiento
 	*/
 	@Override
-	public void setMotivo(java.lang.String motivo) {
-		_solicitudRequerimiento.setMotivo(motivo);
-	}
-
-	/**
-	* Returns the descripcion publicacion of this solicitud requerimiento.
-	*
-	* @return the descripcion publicacion of this solicitud requerimiento
-	*/
-	@Override
-	public java.lang.String getDescripcionPublicacion() {
-		return _solicitudRequerimiento.getDescripcionPublicacion();
-	}
-
-	/**
-	* Sets the descripcion publicacion of this solicitud requerimiento.
-	*
-	* @param descripcionPublicacion the descripcion publicacion of this solicitud requerimiento
-	*/
-	@Override
-	public void setDescripcionPublicacion(
-		java.lang.String descripcionPublicacion) {
-		_solicitudRequerimiento.setDescripcionPublicacion(descripcionPublicacion);
+	public void setContenidoId(java.lang.String contenidoId) {
+		_solicitudRequerimiento.setContenidoId(contenidoId);
 	}
 
 	/**

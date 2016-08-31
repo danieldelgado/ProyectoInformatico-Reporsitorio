@@ -38,7 +38,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(solicitudRequerimientoId);
@@ -68,10 +68,8 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		sb.append(fechameta);
 		sb.append(", prioridad=");
 		sb.append(prioridad);
-		sb.append(", motivo=");
-		sb.append(motivo);
-		sb.append(", descripcionPublicacion=");
-		sb.append(descripcionPublicacion);
+		sb.append(", contenidoId=");
+		sb.append(contenidoId);
 		sb.append(", modalidadjornada=");
 		sb.append(modalidadjornada);
 		sb.append(", modalidadcontrato=");
@@ -146,18 +144,11 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 
 		solicitudRequerimientoImpl.setPrioridad(prioridad);
 
-		if (motivo == null) {
-			solicitudRequerimientoImpl.setMotivo(StringPool.BLANK);
+		if (contenidoId == null) {
+			solicitudRequerimientoImpl.setContenidoId(StringPool.BLANK);
 		}
 		else {
-			solicitudRequerimientoImpl.setMotivo(motivo);
-		}
-
-		if (descripcionPublicacion == null) {
-			solicitudRequerimientoImpl.setDescripcionPublicacion(StringPool.BLANK);
-		}
-		else {
-			solicitudRequerimientoImpl.setDescripcionPublicacion(descripcionPublicacion);
+			solicitudRequerimientoImpl.setContenidoId(contenidoId);
 		}
 
 		solicitudRequerimientoImpl.setModalidadjornada(modalidadjornada);
@@ -221,8 +212,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		meta = objectInput.readUTF();
 		fechameta = objectInput.readLong();
 		prioridad = objectInput.readLong();
-		motivo = objectInput.readUTF();
-		descripcionPublicacion = objectInput.readUTF();
+		contenidoId = objectInput.readUTF();
 		modalidadjornada = objectInput.readLong();
 		modalidadcontrato = objectInput.readLong();
 		lugarTrabajo = objectInput.readUTF();
@@ -268,18 +258,11 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		objectOutput.writeLong(fechameta);
 		objectOutput.writeLong(prioridad);
 
-		if (motivo == null) {
+		if (contenidoId == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(motivo);
-		}
-
-		if (descripcionPublicacion == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(descripcionPublicacion);
+			objectOutput.writeUTF(contenidoId);
 		}
 
 		objectOutput.writeLong(modalidadjornada);
@@ -324,8 +307,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	public String meta;
 	public long fechameta;
 	public long prioridad;
-	public String motivo;
-	public String descripcionPublicacion;
+	public String contenidoId;
 	public long modalidadjornada;
 	public long modalidadcontrato;
 	public String lugarTrabajo;

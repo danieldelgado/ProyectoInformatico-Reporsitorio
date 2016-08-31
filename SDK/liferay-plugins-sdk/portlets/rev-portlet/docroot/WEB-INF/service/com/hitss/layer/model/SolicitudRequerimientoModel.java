@@ -258,34 +258,19 @@ public interface SolicitudRequerimientoModel extends BaseModel<SolicitudRequerim
 	public void setPrioridad(long prioridad);
 
 	/**
-	 * Returns the motivo of this solicitud requerimiento.
+	 * Returns the contenido ID of this solicitud requerimiento.
 	 *
-	 * @return the motivo of this solicitud requerimiento
+	 * @return the contenido ID of this solicitud requerimiento
 	 */
 	@AutoEscape
-	public String getMotivo();
+	public String getContenidoId();
 
 	/**
-	 * Sets the motivo of this solicitud requerimiento.
+	 * Sets the contenido ID of this solicitud requerimiento.
 	 *
-	 * @param motivo the motivo of this solicitud requerimiento
+	 * @param contenidoId the contenido ID of this solicitud requerimiento
 	 */
-	public void setMotivo(String motivo);
-
-	/**
-	 * Returns the descripcion publicacion of this solicitud requerimiento.
-	 *
-	 * @return the descripcion publicacion of this solicitud requerimiento
-	 */
-	@AutoEscape
-	public String getDescripcionPublicacion();
-
-	/**
-	 * Sets the descripcion publicacion of this solicitud requerimiento.
-	 *
-	 * @param descripcionPublicacion the descripcion publicacion of this solicitud requerimiento
-	 */
-	public void setDescripcionPublicacion(String descripcionPublicacion);
+	public void setContenidoId(String contenidoId);
 
 	/**
 	 * Returns the modalidadjornada of this solicitud requerimiento.

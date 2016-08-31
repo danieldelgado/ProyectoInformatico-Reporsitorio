@@ -41,8 +41,8 @@ public class PublicarOfertaServiceImpl  extends RevServiceImpl implements Public
 			if(publicar){		
 				List<RequisitoEtiquetaBean> listaRequisitoEtiquetaBeans = getRequisitos(solicitudRequerimientoBean);				
 				String[] tagsEtiquetas = super.getRequistosToTags(listaRequisitoEtiquetaBeans);			
-				String articuleId = liferayContentService.registrarPublicacionContenido(user.getUserId(),scopeGroupId,sr.getSolicitudRequerimientoId(), tagsEtiquetas ,sr.getProyecto(),sr.getCategoriaPuestoId(),sr.getEspecialidad(),sr.getTiempoContrato(),sr.getTipoNegocio(),sr.getPrioridad(),sr.getFechaLimite(),sr.getPresupuestoMaximo(),sr.getPresupuestoMinimo(),sr.getCliente(),descripcion, request);
-				sr.setDescripcionPublicacion(articuleId);
+				long articuleresourceId = liferayContentService.registrarPublicacionContenido(user.getUserId(),scopeGroupId,sr.getSolicitudRequerimientoId(), tagsEtiquetas ,sr.getProyecto(),sr.getCategoriaPuestoId(),sr.getEspecialidad(),sr.getTiempoContrato(),sr.getTipoNegocio(),sr.getPrioridad(),sr.getFechaLimite(),sr.getPresupuestoMaximo(),sr.getPresupuestoMinimo(),sr.getCliente(),descripcion, request);
+				sr.setContenidoId(String.valueOf(articuleresourceId));
 				sr.setEstado(Constantes.PARAMETRO_PUBLICADO);
 				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("publicar.oferta.mensaje.publicar"), String.valueOf(sr.getSolicitudRequerimientoId())));
 			}else{

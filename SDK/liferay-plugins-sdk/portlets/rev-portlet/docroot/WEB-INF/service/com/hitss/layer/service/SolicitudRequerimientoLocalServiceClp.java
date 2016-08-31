@@ -134,6 +134,10 @@ public class SolicitudRequerimientoLocalServiceClp
 				"java.util.Date", "int", "int", "java.lang.String",
 				"java.lang.String"
 			};
+
+		_methodName22 = "getSolicitudRequerimientoByContenido";
+
+		_methodParameterTypes22 = new String[] { "long" };
 	}
 
 	@Override
@@ -812,6 +816,40 @@ public class SolicitudRequerimientoLocalServiceClp
 		return (java.util.List<com.hitss.layer.model.SolicitudRequerimiento>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public com.hitss.layer.model.SolicitudRequerimiento getSolicitudRequerimientoByContenido(
+		long articulo)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] { articulo });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.hitss.layer.NoSuchSolicitudRequerimientoException) {
+				throw (com.hitss.layer.NoSuchSolicitudRequerimientoException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.hitss.layer.model.SolicitudRequerimiento)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -855,4 +893,6 @@ public class SolicitudRequerimientoLocalServiceClp
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

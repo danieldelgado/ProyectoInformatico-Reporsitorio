@@ -415,8 +415,7 @@
 		<property name="meta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="fechameta" type="org.hibernate.type.TimestampType" />
 		<property name="prioridad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="descripcionPublicacion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contenidoId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="modalidadjornada" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="modalidadcontrato" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="lugarTrabajo" type="com.liferay.portal.dao.orm.hibernate.StringType" />

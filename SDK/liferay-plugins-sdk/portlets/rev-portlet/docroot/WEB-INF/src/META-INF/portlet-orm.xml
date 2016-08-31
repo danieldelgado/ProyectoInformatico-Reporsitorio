@@ -553,8 +553,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="prioridad" />
-			<basic name="motivo" />
-			<basic name="descripcionPublicacion" />
+			<basic name="contenidoId" />
 			<basic name="modalidadjornada" />
 			<basic name="modalidadcontrato" />
 			<basic name="lugarTrabajo" />

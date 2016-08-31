@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -84,6 +85,256 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_C = new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
+			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED,
+			SolicitudRequerimientoImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByC", new String[] { String.class.getName() },
+			SolicitudRequerimientoModelImpl.CONTENIDOID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_C = new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
+			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC",
+			new String[] { String.class.getName() });
+
+	/**
+	 * Returns the solicitud requerimiento where contenidoId = &#63; or throws a {@link com.hitss.layer.NoSuchSolicitudRequerimientoException} if it could not be found.
+	 *
+	 * @param contenidoId the contenido ID
+	 * @return the matching solicitud requerimiento
+	 * @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a matching solicitud requerimiento could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento findByC(String contenidoId)
+		throws NoSuchSolicitudRequerimientoException, SystemException {
+		SolicitudRequerimiento solicitudRequerimiento = fetchByC(contenidoId);
+
+		if (solicitudRequerimiento == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("contenidoId=");
+			msg.append(contenidoId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchSolicitudRequerimientoException(msg.toString());
+		}
+
+		return solicitudRequerimiento;
+	}
+
+	/**
+	 * Returns the solicitud requerimiento where contenidoId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param contenidoId the contenido ID
+	 * @return the matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento fetchByC(String contenidoId)
+		throws SystemException {
+		return fetchByC(contenidoId, true);
+	}
+
+	/**
+	 * Returns the solicitud requerimiento where contenidoId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param contenidoId the contenido ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento fetchByC(String contenidoId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { contenidoId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C,
+					finderArgs, this);
+		}
+
+		if (result instanceof SolicitudRequerimiento) {
+			SolicitudRequerimiento solicitudRequerimiento = (SolicitudRequerimiento)result;
+
+			if (!Validator.equals(contenidoId,
+						solicitudRequerimiento.getContenidoId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_SOLICITUDREQUERIMIENTO_WHERE);
+
+			boolean bindContenidoId = false;
+
+			if (contenidoId == null) {
+				query.append(_FINDER_COLUMN_C_CONTENIDOID_1);
+			}
+			else if (contenidoId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_CONTENIDOID_3);
+			}
+			else {
+				bindContenidoId = true;
+
+				query.append(_FINDER_COLUMN_C_CONTENIDOID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindContenidoId) {
+					qPos.add(contenidoId);
+				}
+
+				List<SolicitudRequerimiento> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"SolicitudRequerimientoPersistenceImpl.fetchByC(String, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					SolicitudRequerimiento solicitudRequerimiento = list.get(0);
+
+					result = solicitudRequerimiento;
+
+					cacheResult(solicitudRequerimiento);
+
+					if ((solicitudRequerimiento.getContenidoId() == null) ||
+							!solicitudRequerimiento.getContenidoId()
+													   .equals(contenidoId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C,
+							finderArgs, solicitudRequerimiento);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (SolicitudRequerimiento)result;
+		}
+	}
+
+	/**
+	 * Removes the solicitud requerimiento where contenidoId = &#63; from the database.
+	 *
+	 * @param contenidoId the contenido ID
+	 * @return the solicitud requerimiento that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento removeByC(String contenidoId)
+		throws NoSuchSolicitudRequerimientoException, SystemException {
+		SolicitudRequerimiento solicitudRequerimiento = findByC(contenidoId);
+
+		return remove(solicitudRequerimiento);
+	}
+
+	/**
+	 * Returns the number of solicitud requerimientos where contenidoId = &#63;.
+	 *
+	 * @param contenidoId the contenido ID
+	 * @return the number of matching solicitud requerimientos
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByC(String contenidoId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_C;
+
+		Object[] finderArgs = new Object[] { contenidoId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_SOLICITUDREQUERIMIENTO_WHERE);
+
+			boolean bindContenidoId = false;
+
+			if (contenidoId == null) {
+				query.append(_FINDER_COLUMN_C_CONTENIDOID_1);
+			}
+			else if (contenidoId.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_CONTENIDOID_3);
+			}
+			else {
+				bindContenidoId = true;
+
+				query.append(_FINDER_COLUMN_C_CONTENIDOID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindContenidoId) {
+					qPos.add(contenidoId);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_C_CONTENIDOID_1 = "solicitudRequerimiento.contenidoId IS NULL AND solicitudRequerimiento.activo=true";
+	private static final String _FINDER_COLUMN_C_CONTENIDOID_2 = "solicitudRequerimiento.contenidoId = ? AND solicitudRequerimiento.activo=true";
+	private static final String _FINDER_COLUMN_C_CONTENIDOID_3 = "(solicitudRequerimiento.contenidoId IS NULL OR solicitudRequerimiento.contenidoId = '') AND solicitudRequerimiento.activo=true";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_SOLICITUDREQUERIMIENTOID =
 		new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
 			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED,
@@ -960,6 +1211,10 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 			SolicitudRequerimientoImpl.class,
 			solicitudRequerimiento.getPrimaryKey(), solicitudRequerimiento);
 
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C,
+			new Object[] { solicitudRequerimiento.getContenidoId() },
+			solicitudRequerimiento);
+
 		solicitudRequerimiento.resetOriginalValues();
 	}
 
@@ -1019,6 +1274,8 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(solicitudRequerimiento);
 	}
 
 	@Override
@@ -1030,6 +1287,55 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 			EntityCacheUtil.removeResult(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
 				SolicitudRequerimientoImpl.class,
 				solicitudRequerimiento.getPrimaryKey());
+
+			clearUniqueFindersCache(solicitudRequerimiento);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(
+		SolicitudRequerimiento solicitudRequerimiento) {
+		if (solicitudRequerimiento.isNew()) {
+			Object[] args = new Object[] { solicitudRequerimiento.getContenidoId() };
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C, args,
+				solicitudRequerimiento);
+		}
+		else {
+			SolicitudRequerimientoModelImpl solicitudRequerimientoModelImpl = (SolicitudRequerimientoModelImpl)solicitudRequerimiento;
+
+			if ((solicitudRequerimientoModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						solicitudRequerimiento.getContenidoId()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C, args,
+					solicitudRequerimiento);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(
+		SolicitudRequerimiento solicitudRequerimiento) {
+		SolicitudRequerimientoModelImpl solicitudRequerimientoModelImpl = (SolicitudRequerimientoModelImpl)solicitudRequerimiento;
+
+		Object[] args = new Object[] { solicitudRequerimiento.getContenidoId() };
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C, args);
+
+		if ((solicitudRequerimientoModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_C.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					solicitudRequerimientoModelImpl.getOriginalContenidoId()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C, args);
 		}
 	}
 
@@ -1219,6 +1525,9 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 			SolicitudRequerimientoImpl.class,
 			solicitudRequerimiento.getPrimaryKey(), solicitudRequerimiento);
 
+		clearUniqueFindersCache(solicitudRequerimiento);
+		cacheUniqueFindersCache(solicitudRequerimiento);
+
 		return solicitudRequerimiento;
 	}
 
@@ -1247,8 +1556,7 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		solicitudRequerimientoImpl.setMeta(solicitudRequerimiento.getMeta());
 		solicitudRequerimientoImpl.setFechameta(solicitudRequerimiento.getFechameta());
 		solicitudRequerimientoImpl.setPrioridad(solicitudRequerimiento.getPrioridad());
-		solicitudRequerimientoImpl.setMotivo(solicitudRequerimiento.getMotivo());
-		solicitudRequerimientoImpl.setDescripcionPublicacion(solicitudRequerimiento.getDescripcionPublicacion());
+		solicitudRequerimientoImpl.setContenidoId(solicitudRequerimiento.getContenidoId());
 		solicitudRequerimientoImpl.setModalidadjornada(solicitudRequerimiento.getModalidadjornada());
 		solicitudRequerimientoImpl.setModalidadcontrato(solicitudRequerimiento.getModalidadcontrato());
 		solicitudRequerimientoImpl.setLugarTrabajo(solicitudRequerimiento.getLugarTrabajo());

@@ -16,6 +16,7 @@ create index IX_24B38389 on Puesto (descripcion);
 
 create index IX_BF01054 on Requisito (descripcion);
 
+create index IX_EAA29C7D on SolicitudRequerimiento (contenidoId);
 create index IX_96963AE1 on SolicitudRequerimiento (estado);
 create index IX_48953397 on SolicitudRequerimiento (solicitudRequerimientoId);
 

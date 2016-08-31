@@ -1,28 +1,23 @@
 package com.hitss.rev.bean;
 
-public class UsuarioBean {
+import java.io.Serializable;
 
-	private long userId;
+public class UsuarioBean implements Serializable{
+
+	private long userId;	
 	private String fullname;
-	
 	private String fechaPostulacion;
 	private String disponibilidad;
+	private String interno;
 	private String fasePostulacion;
 	private String estado;
-	
-	
 	public long getUserId() {
 		return userId;
 	}
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public String getFullname() {
-		return fullname;
-	}
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
+	
 	public String getFechaPostulacion() {
 		return fechaPostulacion;
 	}
@@ -34,6 +29,12 @@ public class UsuarioBean {
 	}
 	public void setDisponibilidad(String disponibilidad) {
 		this.disponibilidad = disponibilidad;
+	}
+	public String getInterno() {
+		return interno;
+	}
+	public void setInterno(String interno) {
+		this.interno = interno;
 	}
 	public String getFasePostulacion() {
 		return fasePostulacion;
@@ -47,6 +48,15 @@ public class UsuarioBean {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	
+	
+	
 	
 	
 	

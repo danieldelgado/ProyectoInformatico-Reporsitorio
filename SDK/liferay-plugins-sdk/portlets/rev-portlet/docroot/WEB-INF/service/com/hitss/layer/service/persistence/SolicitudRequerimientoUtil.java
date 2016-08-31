@@ -113,6 +113,74 @@ public class SolicitudRequerimientoUtil {
 	}
 
 	/**
+	* Returns the solicitud requerimiento where contenidoId = &#63; or throws a {@link com.hitss.layer.NoSuchSolicitudRequerimientoException} if it could not be found.
+	*
+	* @param contenidoId the contenido ID
+	* @return the matching solicitud requerimiento
+	* @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a matching solicitud requerimiento could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento findByC(
+		java.lang.String contenidoId)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC(contenidoId);
+	}
+
+	/**
+	* Returns the solicitud requerimiento where contenidoId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param contenidoId the contenido ID
+	* @return the matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento fetchByC(
+		java.lang.String contenidoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByC(contenidoId);
+	}
+
+	/**
+	* Returns the solicitud requerimiento where contenidoId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param contenidoId the contenido ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento fetchByC(
+		java.lang.String contenidoId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByC(contenidoId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the solicitud requerimiento where contenidoId = &#63; from the database.
+	*
+	* @param contenidoId the contenido ID
+	* @return the solicitud requerimiento that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento removeByC(
+		java.lang.String contenidoId)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByC(contenidoId);
+	}
+
+	/**
+	* Returns the number of solicitud requerimientos where contenidoId = &#63;.
+	*
+	* @param contenidoId the contenido ID
+	* @return the number of matching solicitud requerimientos
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC(java.lang.String contenidoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC(contenidoId);
+	}
+
+	/**
 	* Returns all the solicitud requerimientos where solicitudRequerimientoId = &#63;.
 	*
 	* @param solicitudRequerimientoId the solicitud requerimiento ID

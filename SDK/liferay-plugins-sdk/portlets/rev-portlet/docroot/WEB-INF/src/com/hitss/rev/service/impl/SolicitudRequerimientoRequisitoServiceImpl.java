@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hitss.layer.model.Funcion;
 import com.hitss.layer.model.SolicitudRequerimientoFuncion;
 import com.hitss.layer.model.SolicitudRequerimientoRequisito;
 import com.hitss.layer.service.FuncionLocalServiceUtil;
@@ -35,7 +34,7 @@ public class SolicitudRequerimientoRequisitoServiceImpl implements SolicitudRequ
 
 	@Autowired
 	private LiferayApiService liferayContentService;
-	
+		
 	
 	@Override
 	public List<RequisitoEtiquetaBean> getListaSolicitudRequerimientoRequisitosExitentesBeans(SolicitudRequerimientoBean solicitudRequerimiento) {

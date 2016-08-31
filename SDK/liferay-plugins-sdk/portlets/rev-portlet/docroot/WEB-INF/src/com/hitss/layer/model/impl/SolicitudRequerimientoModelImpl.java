@@ -79,8 +79,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "meta", Types.VARCHAR },
 			{ "fechameta", Types.TIMESTAMP },
 			{ "prioridad", Types.BIGINT },
-			{ "motivo", Types.VARCHAR },
-			{ "descripcionPublicacion", Types.VARCHAR },
+			{ "contenidoId", Types.VARCHAR },
 			{ "modalidadjornada", Types.BIGINT },
 			{ "modalidadcontrato", Types.BIGINT },
 			{ "lugarTrabajo", Types.VARCHAR },
@@ -94,7 +93,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,fechameta DATE null,prioridad LONG,motivo VARCHAR(75) null,descripcionPublicacion VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,fechameta DATE null,prioridad LONG,contenidoId VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table SolicitudRequerimiento";
 	public static final String ORDER_BY_JPQL = " ORDER BY solicitudRequerimiento.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SolicitudRequerimiento.fechamodifica ASC";
@@ -110,9 +109,10 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.hitss.layer.model.SolicitudRequerimiento"),
 			true);
-	public static long ESTADO_COLUMN_BITMASK = 1L;
-	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 2L;
-	public static long FECHAMODIFICA_COLUMN_BITMASK = 4L;
+	public static long CONTENIDOID_COLUMN_BITMASK = 1L;
+	public static long ESTADO_COLUMN_BITMASK = 2L;
+	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 4L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -142,8 +142,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		model.setMeta(soapModel.getMeta());
 		model.setFechameta(soapModel.getFechameta());
 		model.setPrioridad(soapModel.getPrioridad());
-		model.setMotivo(soapModel.getMotivo());
-		model.setDescripcionPublicacion(soapModel.getDescripcionPublicacion());
+		model.setContenidoId(soapModel.getContenidoId());
 		model.setModalidadjornada(soapModel.getModalidadjornada());
 		model.setModalidadcontrato(soapModel.getModalidadcontrato());
 		model.setLugarTrabajo(soapModel.getLugarTrabajo());
@@ -235,8 +234,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		attributes.put("meta", getMeta());
 		attributes.put("fechameta", getFechameta());
 		attributes.put("prioridad", getPrioridad());
-		attributes.put("motivo", getMotivo());
-		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
+		attributes.put("contenidoId", getContenidoId());
 		attributes.put("modalidadjornada", getModalidadjornada());
 		attributes.put("modalidadcontrato", getModalidadcontrato());
 		attributes.put("lugarTrabajo", getLugarTrabajo());
@@ -340,17 +338,10 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			setPrioridad(prioridad);
 		}
 
-		String motivo = (String)attributes.get("motivo");
+		String contenidoId = (String)attributes.get("contenidoId");
 
-		if (motivo != null) {
-			setMotivo(motivo);
-		}
-
-		String descripcionPublicacion = (String)attributes.get(
-				"descripcionPublicacion");
-
-		if (descripcionPublicacion != null) {
-			setDescripcionPublicacion(descripcionPublicacion);
+		if (contenidoId != null) {
+			setContenidoId(contenidoId);
 		}
 
 		Long modalidadjornada = (Long)attributes.get("modalidadjornada");
@@ -604,34 +595,28 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@JSON
 	@Override
-	public String getMotivo() {
-		if (_motivo == null) {
+	public String getContenidoId() {
+		if (_contenidoId == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _motivo;
+			return _contenidoId;
 		}
 	}
 
 	@Override
-	public void setMotivo(String motivo) {
-		_motivo = motivo;
+	public void setContenidoId(String contenidoId) {
+		_columnBitmask |= CONTENIDOID_COLUMN_BITMASK;
+
+		if (_originalContenidoId == null) {
+			_originalContenidoId = _contenidoId;
+		}
+
+		_contenidoId = contenidoId;
 	}
 
-	@JSON
-	@Override
-	public String getDescripcionPublicacion() {
-		if (_descripcionPublicacion == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _descripcionPublicacion;
-		}
-	}
-
-	@Override
-	public void setDescripcionPublicacion(String descripcionPublicacion) {
-		_descripcionPublicacion = descripcionPublicacion;
+	public String getOriginalContenidoId() {
+		return GetterUtil.getString(_originalContenidoId);
 	}
 
 	@JSON
@@ -840,8 +825,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		solicitudRequerimientoImpl.setMeta(getMeta());
 		solicitudRequerimientoImpl.setFechameta(getFechameta());
 		solicitudRequerimientoImpl.setPrioridad(getPrioridad());
-		solicitudRequerimientoImpl.setMotivo(getMotivo());
-		solicitudRequerimientoImpl.setDescripcionPublicacion(getDescripcionPublicacion());
+		solicitudRequerimientoImpl.setContenidoId(getContenidoId());
 		solicitudRequerimientoImpl.setModalidadjornada(getModalidadjornada());
 		solicitudRequerimientoImpl.setModalidadcontrato(getModalidadcontrato());
 		solicitudRequerimientoImpl.setLugarTrabajo(getLugarTrabajo());
@@ -909,6 +893,8 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 		solicitudRequerimientoModelImpl._setOriginalSolicitudRequerimientoId = false;
 
+		solicitudRequerimientoModelImpl._originalContenidoId = solicitudRequerimientoModelImpl._contenidoId;
+
 		solicitudRequerimientoModelImpl._originalEstado = solicitudRequerimientoModelImpl._estado;
 
 		solicitudRequerimientoModelImpl._setOriginalEstado = false;
@@ -974,21 +960,12 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 		solicitudRequerimientoCacheModel.prioridad = getPrioridad();
 
-		solicitudRequerimientoCacheModel.motivo = getMotivo();
+		solicitudRequerimientoCacheModel.contenidoId = getContenidoId();
 
-		String motivo = solicitudRequerimientoCacheModel.motivo;
+		String contenidoId = solicitudRequerimientoCacheModel.contenidoId;
 
-		if ((motivo != null) && (motivo.length() == 0)) {
-			solicitudRequerimientoCacheModel.motivo = null;
-		}
-
-		solicitudRequerimientoCacheModel.descripcionPublicacion = getDescripcionPublicacion();
-
-		String descripcionPublicacion = solicitudRequerimientoCacheModel.descripcionPublicacion;
-
-		if ((descripcionPublicacion != null) &&
-				(descripcionPublicacion.length() == 0)) {
-			solicitudRequerimientoCacheModel.descripcionPublicacion = null;
+		if ((contenidoId != null) && (contenidoId.length() == 0)) {
+			solicitudRequerimientoCacheModel.contenidoId = null;
 		}
 
 		solicitudRequerimientoCacheModel.modalidadjornada = getModalidadjornada();
@@ -1046,7 +1023,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1076,10 +1053,8 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		sb.append(getFechameta());
 		sb.append(", prioridad=");
 		sb.append(getPrioridad());
-		sb.append(", motivo=");
-		sb.append(getMotivo());
-		sb.append(", descripcionPublicacion=");
-		sb.append(getDescripcionPublicacion());
+		sb.append(", contenidoId=");
+		sb.append(getContenidoId());
 		sb.append(", modalidadjornada=");
 		sb.append(getModalidadjornada());
 		sb.append(", modalidadcontrato=");
@@ -1111,7 +1086,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(88);
+		StringBundler sb = new StringBundler(85);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1174,12 +1149,8 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		sb.append(getPrioridad());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>motivo</column-name><column-value><![CDATA[");
-		sb.append(getMotivo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>descripcionPublicacion</column-name><column-value><![CDATA[");
-		sb.append(getDescripcionPublicacion());
+			"<column><column-name>contenidoId</column-name><column-value><![CDATA[");
+		sb.append(getContenidoId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modalidadjornada</column-name><column-value><![CDATA[");
@@ -1255,8 +1226,8 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	private String _meta;
 	private Date _fechameta;
 	private long _prioridad;
-	private String _motivo;
-	private String _descripcionPublicacion;
+	private String _contenidoId;
+	private String _originalContenidoId;
 	private long _modalidadjornada;
 	private long _modalidadcontrato;
 	private String _lugarTrabajo;

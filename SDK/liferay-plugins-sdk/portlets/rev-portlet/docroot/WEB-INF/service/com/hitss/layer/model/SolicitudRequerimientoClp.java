@@ -89,8 +89,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		attributes.put("meta", getMeta());
 		attributes.put("fechameta", getFechameta());
 		attributes.put("prioridad", getPrioridad());
-		attributes.put("motivo", getMotivo());
-		attributes.put("descripcionPublicacion", getDescripcionPublicacion());
+		attributes.put("contenidoId", getContenidoId());
 		attributes.put("modalidadjornada", getModalidadjornada());
 		attributes.put("modalidadcontrato", getModalidadcontrato());
 		attributes.put("lugarTrabajo", getLugarTrabajo());
@@ -194,17 +193,10 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 			setPrioridad(prioridad);
 		}
 
-		String motivo = (String)attributes.get("motivo");
+		String contenidoId = (String)attributes.get("contenidoId");
 
-		if (motivo != null) {
-			setMotivo(motivo);
-		}
-
-		String descripcionPublicacion = (String)attributes.get(
-				"descripcionPublicacion");
-
-		if (descripcionPublicacion != null) {
-			setDescripcionPublicacion(descripcionPublicacion);
+		if (contenidoId != null) {
+			setContenidoId(contenidoId);
 		}
 
 		Long modalidadjornada = (Long)attributes.get("modalidadjornada");
@@ -612,46 +604,21 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	}
 
 	@Override
-	public String getMotivo() {
-		return _motivo;
+	public String getContenidoId() {
+		return _contenidoId;
 	}
 
 	@Override
-	public void setMotivo(String motivo) {
-		_motivo = motivo;
+	public void setContenidoId(String contenidoId) {
+		_contenidoId = contenidoId;
 
 		if (_solicitudRequerimientoRemoteModel != null) {
 			try {
 				Class<?> clazz = _solicitudRequerimientoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setMotivo", String.class);
+				Method method = clazz.getMethod("setContenidoId", String.class);
 
-				method.invoke(_solicitudRequerimientoRemoteModel, motivo);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public String getDescripcionPublicacion() {
-		return _descripcionPublicacion;
-	}
-
-	@Override
-	public void setDescripcionPublicacion(String descripcionPublicacion) {
-		_descripcionPublicacion = descripcionPublicacion;
-
-		if (_solicitudRequerimientoRemoteModel != null) {
-			try {
-				Class<?> clazz = _solicitudRequerimientoRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setDescripcionPublicacion",
-						String.class);
-
-				method.invoke(_solicitudRequerimientoRemoteModel,
-					descripcionPublicacion);
+				method.invoke(_solicitudRequerimientoRemoteModel, contenidoId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -1034,8 +1001,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		clone.setMeta(getMeta());
 		clone.setFechameta(getFechameta());
 		clone.setPrioridad(getPrioridad());
-		clone.setMotivo(getMotivo());
-		clone.setDescripcionPublicacion(getDescripcionPublicacion());
+		clone.setContenidoId(getContenidoId());
 		clone.setModalidadjornada(getModalidadjornada());
 		clone.setModalidadcontrato(getModalidadcontrato());
 		clone.setLugarTrabajo(getLugarTrabajo());
@@ -1099,7 +1065,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1129,10 +1095,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getFechameta());
 		sb.append(", prioridad=");
 		sb.append(getPrioridad());
-		sb.append(", motivo=");
-		sb.append(getMotivo());
-		sb.append(", descripcionPublicacion=");
-		sb.append(getDescripcionPublicacion());
+		sb.append(", contenidoId=");
+		sb.append(getContenidoId());
 		sb.append(", modalidadjornada=");
 		sb.append(getModalidadjornada());
 		sb.append(", modalidadcontrato=");
@@ -1164,7 +1128,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(88);
+		StringBundler sb = new StringBundler(85);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1227,12 +1191,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getPrioridad());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>motivo</column-name><column-value><![CDATA[");
-		sb.append(getMotivo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>descripcionPublicacion</column-name><column-value><![CDATA[");
-		sb.append(getDescripcionPublicacion());
+			"<column><column-name>contenidoId</column-name><column-value><![CDATA[");
+		sb.append(getContenidoId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>modalidadjornada</column-name><column-value><![CDATA[");
@@ -1302,8 +1262,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	private String _meta;
 	private Date _fechameta;
 	private long _prioridad;
-	private String _motivo;
-	private String _descripcionPublicacion;
+	private String _contenidoId;
 	private long _modalidadjornada;
 	private long _modalidadcontrato;
 	private String _lugarTrabajo;

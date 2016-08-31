@@ -158,43 +158,34 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 function inicializarListaPotulantes(listaPostulantes) {
 	init();
-	
+	console.log(listaPostulantes);
 	if (listaPostulantes != "") {
-		var lista = $.parseJSON(listaPostulantes);
-		
-		$.each(lista, function(index, object) {
-			var exigible = false;			
-			addPostulanteFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+		var lista = $.parseJSON(listaPostulantes);		
+		$.each(listaPostulantes, function(index, object) {		
+			addPostulanteFila(	object );
 		});
 		
 	}	
 }
 
 
-function addPostulanteFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
-	var exigileValue = exigile;
-	if (exigile == true) {
-		exigile = "Si";
-	} else {
-		exigile = "No";
-	}
+function addPostulanteFila(o) {
+	console.log("-------------------------------");
+	console.log(o);
 
-	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
+	var listaRequisitos = $("#" + inputFristnamespace + "listaPostulantes");
+	var html = "";
+	html += "<tr>" + 
+	"<td>" + object['fullname'] + "</td>" + 
+	"<td>" + object['fechaPostulacion'] + "</td>" + 
+	"<td>" + object['disponibilidad'] + "</td>" + 
+	"<td>" + object['interno'] + "</td>" + 
+	"<td>" + object['fasePostulacion'] + "</td>" + 
+	"<td>" + object['estado'] + "</td>" + 
+	"<td>" + "" + "</td>" + 
+	"</tr>";
+	$(listaRequisitos).append(html);
 
-		var requistoMap = {};
-		requistoMap['requisito'] = requisito;
-		requistoMap['nivel'] = nivel;
-		requistoMap['exigibleText'] = exigileValue;
-
-		requistoMap['tipoRequisito'] = tipoRequisito;
-
-		var listaRequisitos = $("#" + inputFristnamespace + "listaPostulantes");
-		var html = "";
-		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
-
-		$(listaRequisitos).append(html);
-
-	}
 }
 
 function inicializarFormularioProgramacionEntrevista() {

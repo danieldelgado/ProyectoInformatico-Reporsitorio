@@ -46,8 +46,7 @@ public class EvaluarSolicitudRequerimientoServiceImpl extends RevServiceImpl imp
 				o.setUsuariomodifica(user.getUserId());
 				o.setFechamodifica(new Date());
 				ObservacionesLocalServiceUtil.addObservaciones(o);
-				sr.setEstado(Constantes.PARAMETRO_OBSERVADO);
-				sr.setMotivo(motivoRechazo);				
+				sr.setEstado(Constantes.PARAMETRO_OBSERVADO);		
 			}
 			sr.setNew(false);
 			sr.setUsuariomodifica(user.getUserId());

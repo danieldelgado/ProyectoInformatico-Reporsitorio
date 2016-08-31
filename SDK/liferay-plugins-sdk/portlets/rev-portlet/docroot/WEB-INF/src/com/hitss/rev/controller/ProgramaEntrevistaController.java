@@ -16,6 +16,7 @@ import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.service.ProgramarEntrevistaService;
+import com.hitss.rev.util.JsonUtil;
 import com.hitss.rev.util.RevController;
 import com.hitss.rev.util.RevServiceImpl;
 import com.liferay.portal.kernel.log.Log;
@@ -67,7 +68,8 @@ public class ProgramaEntrevistaController extends RevController {
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
 		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
 		List<UsuarioBean> listaUsuarios = programaEntrevistaService.getListaPostulantes(td.getCompanyId(),td.getCompanyGroupId(),solicitudRequerimientoId);
-		model.addAttribute("listaUsuarios", listaUsuarios);
+		model.addAttribute("listaUsuarios",JsonUtil.getJsonString(listaUsuarios));
+	
 		return "listarPostulantes";
 	}
 	
