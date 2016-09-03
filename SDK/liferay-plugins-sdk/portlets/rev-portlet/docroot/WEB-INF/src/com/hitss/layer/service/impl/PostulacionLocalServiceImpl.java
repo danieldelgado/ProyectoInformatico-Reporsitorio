@@ -14,7 +14,6 @@
 
 package com.hitss.layer.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -103,7 +102,7 @@ public class PostulacionLocalServiceImpl extends PostulacionLocalServiceBaseImpl
 	}
 		
 	private DynamicQuery query(SolicitudRequerimiento solicitudRequerimiento, Date fechaRegistroInicio, Date fechaRegistrFin, String orden, String campoOrden) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		DynamicQuery subQuery = DynamicQueryFactoryUtil.forClass(SolicitudRequerimiento.class,"child");	
 		subQuery.setProjection(ProjectionFactoryUtil.property("child.solicitudRequerimientoId"));		
 		if(Validator.isNotNull(solicitudRequerimiento)) {

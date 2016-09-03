@@ -100,9 +100,9 @@ public class RegistrarResultadoPotulanteController extends RevController{
 	}
 	
 	@RenderMapping(params = "action=irregistrarProceso")
-	public void irregistrarProceso(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+	public String irregistrarProceso(RenderRequest resourceRequest, RenderResponse resourceResponse) {
 		_log.info("irregistrarProceso");
-
+		return "procesoPostulante";
 	}
 
 	@ResourceMapping(value = "registrarProceso")
@@ -112,9 +112,9 @@ public class RegistrarResultadoPotulanteController extends RevController{
 	}
 	
 	@RenderMapping(params = "action=irnoAsistio")
-	public void irnoAsistio(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+	public String irnoAsistio(RenderRequest resourceRequest, RenderResponse resourceResponse) {
 		_log.info("noAsistio");
-
+		return "noAsistio";
 	}
 
 	@ResourceMapping(value = "noAsistio")

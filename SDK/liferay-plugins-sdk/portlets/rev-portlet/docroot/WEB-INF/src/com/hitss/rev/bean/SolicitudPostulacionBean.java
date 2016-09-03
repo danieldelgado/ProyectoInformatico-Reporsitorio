@@ -14,16 +14,16 @@ public class SolicitudPostulacionBean {
 	private String	postulante; // fullname
 	private long	fasePostulante;
 	private String strFasePostulacion;
-	private Date	fechaPostulación;
-	private String	strfechaPostulación;
-	private Date	fechaPsicológica;
-	private String strfechaPsicológica;
+	private Date	fechaPostulacion;
+	private String	strfechaPostulacion;
+	private Date	fechaPsicologica;
+	private String strfechaPsicologica;
 	private Date	fechaTecnica;
 	private String strfechaTecnica;
 	private Date	fechaRRHH;
 	private String strfechaRRHH;
-	private Date	fechaGerenteÁrea;
-	private String strfechaGerenteÁrea;
+	private Date	fechaGerenteArea;
+	private String strfechaGerenteArea;
 	
 	public long getUserId() {
 		return userId;
@@ -85,23 +85,29 @@ public class SolicitudPostulacionBean {
 	public void setStrFasePostulacion(String strFasePostulacion) {
 		this.strFasePostulacion = strFasePostulacion;
 	}
-	public Date getFechaPostulación() {
-		return fechaPostulación;
+	public Date getFechaPostulacion() {
+		return fechaPostulacion;
 	}
-	public void setFechaPostulación(Date fechaPostulación) {
-		this.fechaPostulación = fechaPostulación;
+	public void setFechaPostulacion(Date fechaPostulacion) {
+		this.fechaPostulacion = fechaPostulacion;
 	}
-	public Date getFechaPsicológica() {
-		return fechaPsicológica;
+	public String getStrfechaPostulacion() {
+		return strfechaPostulacion;
 	}
-	public void setFechaPsicológica(Date fechaPsicológica) {
-		this.fechaPsicológica = fechaPsicológica;
+	public void setStrfechaPostulacion(String strfechaPostulacion) {
+		this.strfechaPostulacion = strfechaPostulacion;
 	}
-	public String getStrfechaPsicológica() {
-		return strfechaPsicológica;
+	public Date getFechaPsicologica() {
+		return fechaPsicologica;
 	}
-	public void setStrfechaPsicológica(String strfechaPsicológica) {
-		this.strfechaPsicológica = strfechaPsicológica;
+	public void setFechaPsicologica(Date fechaPsicologica) {
+		this.fechaPsicologica = fechaPsicologica;
+	}
+	public String getStrfechaPsicologica() {
+		return strfechaPsicologica;
+	}
+	public void setStrfechaPsicologica(String strfechaPsicologica) {
+		this.strfechaPsicologica = strfechaPsicologica;
 	}
 	public Date getFechaTecnica() {
 		return fechaTecnica;
@@ -127,24 +133,17 @@ public class SolicitudPostulacionBean {
 	public void setStrfechaRRHH(String strfechaRRHH) {
 		this.strfechaRRHH = strfechaRRHH;
 	}
-	public Date getFechaGerenteÁrea() {
-		return fechaGerenteÁrea;
+	public Date getFechaGerenteArea() {
+		return fechaGerenteArea;
 	}
-	public void setFechaGerenteÁrea(Date fechaGerenteÁrea) {
-		this.fechaGerenteÁrea = fechaGerenteÁrea;
+	public void setFechaGerenteArea(Date fechaGerenteArea) {
+		this.fechaGerenteArea = fechaGerenteArea;
 	}
-	public String getStrfechaGerenteÁrea() {
-		return strfechaGerenteÁrea;
+	public String getStrfechaGerenteArea() {
+		return strfechaGerenteArea;
 	}
-	public void setStrfechaGerenteÁrea(String strfechaGerenteÁrea) {
-		this.strfechaGerenteÁrea = strfechaGerenteÁrea;
+	public void setStrfechaGerenteArea(String strfechaGerenteArea) {
+		this.strfechaGerenteArea = strfechaGerenteArea;
 	}
-	public String getStrfechaPostulación() {
-		return strfechaPostulación;
-	}
-	public void setStrfechaPostulación(String strfechaPostulación) {
-		this.strfechaPostulación = strfechaPostulación;
-	}
-
 
 }

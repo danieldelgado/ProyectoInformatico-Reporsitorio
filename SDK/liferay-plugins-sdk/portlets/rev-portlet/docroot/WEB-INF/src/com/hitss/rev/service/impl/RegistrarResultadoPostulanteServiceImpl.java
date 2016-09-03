@@ -105,13 +105,13 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 						if (Validator.isNotNull(disponibildad)) {
 							solicitudPostulacionBean.setDisponibilidad(Util.getStrFecha(disponibildad));
 						}
-						solicitudPostulacionBean.setStrfechaPostulación(sdf.format(postulacion.getFechaPostulacion()));
+						solicitudPostulacionBean.setStrfechaPostulacion(sdf.format(postulacion.getFechaPostulacion()));
 					}
 
 					fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
 							Constantes.PARAMETRO_FASE_PSICOLOGICA);
 					if (Validator.isNotNull(fase)) {
-						solicitudPostulacionBean.setStrfechaPsicológica(sdf.format(fase.getFechaFase()));
+						solicitudPostulacionBean.setStrfechaPsicologica(sdf.format(fase.getFechaFase()));
 
 						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
 
@@ -144,7 +144,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
 							Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
 					if (Validator.isNotNull(fase)) {
-						solicitudPostulacionBean.setStrfechaGerenteÁrea(sdf.format(fase.getFechaFase()));
+						solicitudPostulacionBean.setStrfechaGerenteArea(sdf.format(fase.getFechaFase()));
 						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
 
 						if (diferenciasTiempo > 0) {
