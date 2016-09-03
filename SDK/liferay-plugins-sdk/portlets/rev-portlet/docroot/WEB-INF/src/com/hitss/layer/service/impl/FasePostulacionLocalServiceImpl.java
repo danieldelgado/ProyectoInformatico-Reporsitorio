@@ -16,9 +16,11 @@ package com.hitss.layer.service.impl;
 
 import java.util.List;
 
+import com.hitss.layer.NoSuchFasePostulacionException;
 import com.hitss.layer.model.FasePostulacion;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.base.FasePostulacionLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.FasePostulacionUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
@@ -62,8 +64,7 @@ public class FasePostulacionLocalServiceImpl
         DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.fechamodifica").eq(subQuery));
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").eq(solicitud));
-        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));;
-		
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));
 		
         try {
 			List<FasePostulacion> lstfasePostulacion = FasePostulacionLocalServiceUtil.dynamicQuery(dynamicQuery);
@@ -76,6 +77,35 @@ public class FasePostulacionLocalServiceImpl
         
 		return null;
 	}
+	
+	
+	
+	public List<FasePostulacion> listaFasesPostulacion( Long solicitud, Long usuario ) {
+		
+        DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").eq(solicitud));
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));
+		
+		
+        try {
+			List<FasePostulacion> lstfasePostulacion = FasePostulacionLocalServiceUtil.dynamicQuery(dynamicQuery);
+			return lstfasePostulacion;		
+		} catch (SystemException e) {
+			_log.error("FasePostulacionServiceImpl listaFasesPostulacion: "+e.getLocalizedMessage(),e);
+		}      
+        
+		return null;
+	}
+	
+	public FasePostulacion getFasePostuacionByTipo(long solicitudId, long userId, long tipo) {
+		try {
+			return FasePostulacionUtil.findByS_U_T(solicitudId, userId, tipo);
+		} catch (NoSuchFasePostulacionException | SystemException e) {
+			_log.error("FasePostulacionServiceImpl getFasePostuacionByTipo: "+e.getLocalizedMessage(),e);
+		}
+		return null;
+	}
+	
 	
 	
 }

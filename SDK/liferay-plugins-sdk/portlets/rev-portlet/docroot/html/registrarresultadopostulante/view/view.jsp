@@ -13,33 +13,38 @@
 <liferay-theme:defineObjects />
 
 <portlet:resourceURL var="listarSolicitudesReclutamiento" id="listarSolicitudesReclutamiento" />
-<portlet:resourceURL var="aprobarSolicitud" id="aprobarSolicitud" />
-<portlet:resourceURL var="rechazarSolicitud" id="rechazarSolicitud" />
-<portlet:resourceURL var="verDetalleSolicitud" id="verDetalleSolicitud" />
+<portlet:renderURL var="irregistrarProceso">
+	<portlet:param name="action" value="irregistrarProceso" />
+</portlet:renderURL>
+
+<portlet:renderURL var="irnoAsistio">
+	<portlet:param name="action" value="irnoAsistio" />
+</portlet:renderURL>
+
 
 <input type="hidden" value="<portlet:namespace/>" />
 <input id="<portlet:namespace/>listarSolicitudesReclutamiento" type="hidden" value="${listarSolicitudesReclutamiento}" />
-<input id="<portlet:namespace/>aprobarSolicitudUrl" type="hidden" value="${aprobarSolicitud}" />
-<input id="<portlet:namespace/>rechazarSolicitudUrl" type="hidden" value="${rechazarSolicitud}" />
-<input id="<portlet:namespace/>verDetalleSolicitudUrl" type="hidden" value="${verDetalleSolicitud}" />
+<input id="<portlet:namespace/>registrarProcesoUrl" type="hidden" value="${irregistrarProceso}" />
+<input id="<portlet:namespace/>noAsistioUrl" type="hidden" value="${irnoAsistio}" />
 
 <input id="<portlet:namespace/>pagina" type="hidden" value="1" />
-<input id="<portlet:namespace/>filas" type="hidden" value="10" />
+<input id="<portlet:namespace/>filas" type="hidden" value="12" />
 
 <input id="<portlet:namespace/>listapuesto" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.puesto" />" />
-<input id="<portlet:namespace/>listacantidad" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.cantidad" />" />
-<input id="<portlet:namespace/>listaareaSolicitante" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.areaSolicitante" />" />
-<input id="<portlet:namespace/>listaresponsableRRHH" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.responsableRRHH" />" />
-<input id="<portlet:namespace/>listafechalimite" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.fechalimite" />" />
-<input id="<portlet:namespace/>listatiempocontrato" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.tiempocontrato" />" />
-<input id="<portlet:namespace/>listacliente" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.cliente" />" />
-<input id="<portlet:namespace/>listaprioridad" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.prioridad" />" />
-<input id="<portlet:namespace/>listaestado" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.estado" />" />
+<input id="<portlet:namespace/>listadisponibilidad" type="hidden" value="Disponiilidad" />
+<input id="<portlet:namespace/>listatipopostulante" type="hidden" value="Tipo Postulante" />
+<input id="<portlet:namespace/>listapostulante" type="hidden" value="Postulante" />
+<input id="<portlet:namespace/>listafasepostulante" type="hidden" value="Fase Postulante" />
+<input id="<portlet:namespace/>listafechapostulacion" type="hidden" value="Fecha Postulación" />
+<input id="<portlet:namespace/>listafechapsicologica" type="hidden" value="Fecha Psicológica" />
+<input id="<portlet:namespace/>listafechatecnica" type="hidden" value="Fecha Técnica" />
+<input id="<portlet:namespace/>listafecharrhh" type="hidden" value="Fecha RRHH" />
+<input id="<portlet:namespace/>listafechagerentearea" type="hidden" value="Fecha Gerente de Área" />
 <input id="<portlet:namespace/>listaopciones" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.opciones" />" />
 
-<input id="<portlet:namespace/>listaOpcionAprobar" type="hidden" value="<liferay-ui:message key="general.form.opciones.aprobar" />" />
-<input id="<portlet:namespace/>listaOpcionRechazar" type="hidden" value="<liferay-ui:message key="general.form.opciones.rechazar" />" />
-<input id="<portlet:namespace/>listaOpcionVerDetalle" type="hidden" value="<liferay-ui:message key="general.form.opciones.ver.detalle" />" />
+
+<input id="<portlet:namespace/>listaOpcionRegistrarProceso" type="hidden" value="Registrar Proceso" />
+<input id="<portlet:namespace/>listaOpcionNoAsistio" type="hidden" value="No Asistio" />
 
 <input id="<portlet:namespace/>msgAceptar" type="hidden" value="<liferay-ui:message key="general.form.opciones.aceptar" />" />
 <input id="<portlet:namespace/>msgCancelar" type="hidden" value="<liferay-ui:message key="general.form.opciones.cancelar" />" />

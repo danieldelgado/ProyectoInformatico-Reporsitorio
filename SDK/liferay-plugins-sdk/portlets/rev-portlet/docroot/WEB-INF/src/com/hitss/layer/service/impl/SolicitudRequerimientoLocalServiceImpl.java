@@ -97,7 +97,7 @@ public class SolicitudRequerimientoLocalServiceImpl
 		}		
 		if(Validator.isNotNull(fechaRegistroInicio)&&Validator.isNotNull(fechaRegistrFin)) {
 			if (Validator.isNotNull(fechaRegistroInicio) && Validator.isNotNull(fechaRegistrFin)) {
-				query.add(RestrictionsFactoryUtil.between("fechamodifica", fechaRegistroInicio, fechaRegistrFin ));
+				query.add(RestrictionsFactoryUtil.between("fechacrea", fechaRegistroInicio, fechaRegistrFin ));
 			}
 		}
 		query.add(PropertyFactoryUtil.forName("activo").eq(true));

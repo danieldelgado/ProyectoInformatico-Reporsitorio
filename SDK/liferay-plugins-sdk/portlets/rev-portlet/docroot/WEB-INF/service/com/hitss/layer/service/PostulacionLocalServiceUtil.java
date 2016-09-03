@@ -282,6 +282,31 @@ public class PostulacionLocalServiceUtil {
 				   .listaPostulacionedsSolicitud(solicitudRequerimientoId);
 	}
 
+	public static java.util.List<com.hitss.layer.model.Postulacion> getPostulacionBySolicitudRequerimeinto() {
+		return getService().getPostulacionBySolicitudRequerimeinto();
+	}
+
+	public static long listaSolicitudRequerimientoByPostulacionCount(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return getService()
+				   .listaSolicitudRequerimientoByPostulacionCount(solicitudRequerimiento,
+			fechaRegistroInicio, fechaRegistrFin);
+	}
+
+	public static java.util.List<com.hitss.layer.model.Postulacion> listaSolicitudRequerimientoByPostulacion(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin,
+		int inicio, int fin, java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return getService()
+				   .listaSolicitudRequerimientoByPostulacion(solicitudRequerimiento,
+			fechaRegistroInicio, fechaRegistrFin, inicio, fin, orden, campoOrden);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

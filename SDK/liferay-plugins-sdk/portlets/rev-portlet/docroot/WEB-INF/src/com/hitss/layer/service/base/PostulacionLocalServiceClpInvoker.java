@@ -125,6 +125,25 @@ public class PostulacionLocalServiceClpInvoker {
 		_methodName228 = "listaPostulacionedsSolicitud";
 
 		_methodParameterTypes228 = new String[] { "long" };
+
+		_methodName229 = "getPostulacionBySolicitudRequerimeinto";
+
+		_methodParameterTypes229 = new String[] {  };
+
+		_methodName230 = "listaSolicitudRequerimientoByPostulacionCount";
+
+		_methodParameterTypes230 = new String[] {
+				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
+				"java.util.Date"
+			};
+
+		_methodName231 = "listaSolicitudRequerimientoByPostulacion";
+
+		_methodParameterTypes231 = new String[] {
+				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
+				"java.util.Date", "int", "int", "java.lang.String",
+				"java.lang.String"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -233,6 +252,26 @@ public class PostulacionLocalServiceClpInvoker {
 			return PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(((Long)arguments[0]).longValue());
 		}
 
+		if (_methodName229.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes229, parameterTypes)) {
+			return PostulacionLocalServiceUtil.getPostulacionBySolicitudRequerimeinto();
+		}
+
+		if (_methodName230.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes230, parameterTypes)) {
+			return PostulacionLocalServiceUtil.listaSolicitudRequerimientoByPostulacionCount((com.hitss.layer.model.SolicitudRequerimiento)arguments[0],
+				(java.util.Date)arguments[1], (java.util.Date)arguments[2]);
+		}
+
+		if (_methodName231.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes231, parameterTypes)) {
+			return PostulacionLocalServiceUtil.listaSolicitudRequerimientoByPostulacion((com.hitss.layer.model.SolicitudRequerimiento)arguments[0],
+				(java.util.Date)arguments[1], (java.util.Date)arguments[2],
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue(),
+				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -274,4 +313,10 @@ public class PostulacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes223;
 	private String _methodName228;
 	private String[] _methodParameterTypes228;
+	private String _methodName229;
+	private String[] _methodParameterTypes229;
+	private String _methodName230;
+	private String[] _methodParameterTypes230;
+	private String _methodName231;
+	private String[] _methodParameterTypes231;
 }

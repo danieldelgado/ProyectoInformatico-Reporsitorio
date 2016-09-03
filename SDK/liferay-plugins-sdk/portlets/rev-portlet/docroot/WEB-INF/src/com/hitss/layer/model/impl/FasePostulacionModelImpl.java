@@ -99,8 +99,9 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 			true);
 	public static long FASEPOSTULACIONID_COLUMN_BITMASK = 1L;
 	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 2L;
-	public static long USUARIOID_COLUMN_BITMASK = 4L;
-	public static long FECHAMODIFICA_COLUMN_BITMASK = 8L;
+	public static long TIPOFASE_COLUMN_BITMASK = 4L;
+	public static long USUARIOID_COLUMN_BITMASK = 8L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -397,7 +398,19 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public void setTipoFase(long tipoFase) {
+		_columnBitmask |= TIPOFASE_COLUMN_BITMASK;
+
+		if (!_setOriginalTipoFase) {
+			_setOriginalTipoFase = true;
+
+			_originalTipoFase = _tipoFase;
+		}
+
 		_tipoFase = tipoFase;
+	}
+
+	public long getOriginalTipoFase() {
+		return _originalTipoFase;
 	}
 
 	@JSON
@@ -647,6 +660,10 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 		fasePostulacionModelImpl._setOriginalUsuarioId = false;
 
+		fasePostulacionModelImpl._originalTipoFase = fasePostulacionModelImpl._tipoFase;
+
+		fasePostulacionModelImpl._setOriginalTipoFase = false;
+
 		fasePostulacionModelImpl._columnBitmask = 0;
 	}
 
@@ -841,6 +858,8 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 	private long _originalUsuarioId;
 	private boolean _setOriginalUsuarioId;
 	private long _tipoFase;
+	private long _originalTipoFase;
+	private boolean _setOriginalTipoFase;
 	private Date _fechaFase;
 	private String _descripcion;
 	private long _estado;

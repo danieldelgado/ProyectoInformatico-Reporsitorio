@@ -14,18 +14,30 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.Postulacion;
+import com.hitss.layer.model.SolicitudRequerimiento;
+import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.base.PreguntaLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.PostulacionUtil;
+import com.hitss.layer.service.persistence.SolicitudRequerimientoUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the pregunta local service.
- *
+ * 
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.rec.hitss.layer.service.PreguntaLocalService} interface.
- *
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.rec.hitss.layer.service.PreguntaLocalService} interface.
+ * 
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
- *
+ * 
  * @author Crossfire
  * @see com.rec.hitss.layer.service.base.PreguntaLocalServiceBaseImpl
  * @see com.rec.hitss.layer.service.PreguntaLocalServiceUtil
@@ -33,13 +45,10 @@ import com.hitss.layer.service.base.PreguntaLocalServiceBaseImpl;
 public class PreguntaLocalServiceImpl extends PreguntaLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.PreguntaLocalServiceUtil} to access the pregunta local service.
+	 * 
+	 * Never reference this interface directly. Always use {@link
+	 * com.rec.hitss.layer.service.PreguntaLocalServiceUtil} to access the
+	 * pregunta local service.
 	 */
-	
-	
-	
-	
-	
-	
+
 }

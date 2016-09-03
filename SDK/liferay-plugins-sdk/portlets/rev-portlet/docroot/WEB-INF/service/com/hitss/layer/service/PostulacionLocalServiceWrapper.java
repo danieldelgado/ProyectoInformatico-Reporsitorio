@@ -294,6 +294,32 @@ public class PostulacionLocalServiceWrapper implements PostulacionLocalService,
 		return _postulacionLocalService.listaPostulacionedsSolicitud(solicitudRequerimientoId);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.Postulacion> getPostulacionBySolicitudRequerimeinto() {
+		return _postulacionLocalService.getPostulacionBySolicitudRequerimeinto();
+	}
+
+	@Override
+	public long listaSolicitudRequerimientoByPostulacionCount(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return _postulacionLocalService.listaSolicitudRequerimientoByPostulacionCount(solicitudRequerimiento,
+			fechaRegistroInicio, fechaRegistrFin);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.Postulacion> listaSolicitudRequerimientoByPostulacion(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin,
+		int inicio, int fin, java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return _postulacionLocalService.listaSolicitudRequerimientoByPostulacion(solicitudRequerimiento,
+			fechaRegistroInicio, fechaRegistrFin, inicio, fin, orden, campoOrden);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

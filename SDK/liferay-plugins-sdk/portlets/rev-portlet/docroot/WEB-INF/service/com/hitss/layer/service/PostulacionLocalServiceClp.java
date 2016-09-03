@@ -126,6 +126,25 @@ public class PostulacionLocalServiceClp implements PostulacionLocalService {
 		_methodName19 = "listaPostulacionedsSolicitud";
 
 		_methodParameterTypes19 = new String[] { "long" };
+
+		_methodName20 = "getPostulacionBySolicitudRequerimeinto";
+
+		_methodParameterTypes20 = new String[] {  };
+
+		_methodName21 = "listaSolicitudRequerimientoByPostulacionCount";
+
+		_methodParameterTypes21 = new String[] {
+				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
+				"java.util.Date"
+			};
+
+		_methodName22 = "listaSolicitudRequerimientoByPostulacion";
+
+		_methodParameterTypes22 = new String[] {
+				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
+				"java.util.Date", "int", "int", "java.lang.String",
+				"java.lang.String"
+			};
 	}
 
 	@Override
@@ -712,6 +731,122 @@ public class PostulacionLocalServiceClp implements PostulacionLocalService {
 		return (java.util.List<com.hitss.layer.model.Postulacion>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.Postulacion> getPostulacionBySolicitudRequerimeinto() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.Postulacion>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public long listaSolicitudRequerimientoByPostulacionCount(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] {
+						ClpSerializer.translateInput(solicitudRequerimiento),
+						
+					ClpSerializer.translateInput(fechaRegistroInicio),
+						
+					ClpSerializer.translateInput(fechaRegistrFin)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.search.ParseException) {
+				throw (com.liferay.portal.kernel.search.ParseException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.Postulacion> listaSolicitudRequerimientoByPostulacion(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin,
+		int inicio, int fin, java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] {
+						ClpSerializer.translateInput(solicitudRequerimiento),
+						
+					ClpSerializer.translateInput(fechaRegistroInicio),
+						
+					ClpSerializer.translateInput(fechaRegistrFin),
+						
+					inicio,
+						
+					fin,
+						
+					ClpSerializer.translateInput(orden),
+						
+					ClpSerializer.translateInput(campoOrden)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.search.ParseException) {
+				throw (com.liferay.portal.kernel.search.ParseException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.Postulacion>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -751,4 +886,10 @@ public class PostulacionLocalServiceClp implements PostulacionLocalService {
 	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

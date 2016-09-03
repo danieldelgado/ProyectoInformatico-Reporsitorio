@@ -190,6 +190,16 @@ public class FasePostulacionLocalServiceClpInvoker {
 		_methodParameterTypes244 = new String[] {
 				"java.lang.Long", "java.lang.Long"
 			};
+
+		_methodName245 = "listaFasesPostulacion";
+
+		_methodParameterTypes245 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
+
+		_methodName246 = "getFasePostuacionByTipo";
+
+		_methodParameterTypes246 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -414,6 +424,19 @@ public class FasePostulacionLocalServiceClpInvoker {
 				(java.lang.Long)arguments[1]);
 		}
 
+		if (_methodName245.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes245, parameterTypes)) {
+			return FasePostulacionLocalServiceUtil.listaFasesPostulacion((java.lang.Long)arguments[0],
+				(java.lang.Long)arguments[1]);
+		}
+
+		if (_methodName246.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes246, parameterTypes)) {
+			return FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -487,4 +510,8 @@ public class FasePostulacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes239;
 	private String _methodName244;
 	private String[] _methodParameterTypes244;
+	private String _methodName245;
+	private String[] _methodParameterTypes245;
+	private String _methodName246;
+	private String[] _methodParameterTypes246;
 }

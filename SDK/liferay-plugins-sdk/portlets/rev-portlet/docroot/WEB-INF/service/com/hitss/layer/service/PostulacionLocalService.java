@@ -257,4 +257,20 @@ public interface PostulacionLocalService extends BaseLocalService,
 	public java.util.List<com.hitss.layer.model.Postulacion> listaPostulacionedsSolicitud(
 		long solicitudRequerimientoId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.Postulacion> getPostulacionBySolicitudRequerimeinto();
+
+	public long listaSolicitudRequerimientoByPostulacionCount(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException;
+
+	public java.util.List<com.hitss.layer.model.Postulacion> listaSolicitudRequerimientoByPostulacion(
+		com.hitss.layer.model.SolicitudRequerimiento solicitudRequerimiento,
+		java.util.Date fechaRegistroInicio, java.util.Date fechaRegistrFin,
+		int inicio, int fin, java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException;
 }

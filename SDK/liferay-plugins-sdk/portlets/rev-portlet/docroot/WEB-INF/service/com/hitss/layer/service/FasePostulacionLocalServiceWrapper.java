@@ -466,6 +466,20 @@ public class FasePostulacionLocalServiceWrapper
 			usuario);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> listaFasesPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		return _fasePostulacionLocalService.listaFasesPostulacion(solicitud,
+			usuario);
+	}
+
+	@Override
+	public com.hitss.layer.model.FasePostulacion getFasePostuacionByTipo(
+		long solicitudId, long userId, long tipo) {
+		return _fasePostulacionLocalService.getFasePostuacionByTipo(solicitudId,
+			userId, tipo);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

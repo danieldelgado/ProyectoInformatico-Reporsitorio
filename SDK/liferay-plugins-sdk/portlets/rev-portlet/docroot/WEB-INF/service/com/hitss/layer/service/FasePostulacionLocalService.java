@@ -373,4 +373,11 @@ public interface FasePostulacionLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.FasePostulacion getLastPostulacion(
 		java.lang.Long solicitud, java.lang.Long usuario);
+
+	public java.util.List<com.hitss.layer.model.FasePostulacion> listaFasesPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.hitss.layer.model.FasePostulacion getFasePostuacionByTipo(
+		long solicitudId, long userId, long tipo);
 }

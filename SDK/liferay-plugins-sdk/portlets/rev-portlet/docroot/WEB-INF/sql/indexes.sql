@@ -1,5 +1,8 @@
+create index IX_E5011B05 on FasePostulacion (fasePostulacionId);
+create index IX_E49423F9 on FasePostulacion (fasePostulacionId, solicitudRequerimientoId, usuarioId, tipoFase);
 create index IX_31601335 on FasePostulacion (solicitudRequerimientoId, fasePostulacionId);
 create index IX_26884404 on FasePostulacion (solicitudRequerimientoId, fasePostulacionId, usuarioId);
+create index IX_3DD5C436 on FasePostulacion (solicitudRequerimientoId, usuarioId, tipoFase);
 
 create index IX_905E65EE on Funcion (activo);
 create index IX_AC085D73 on Funcion (descripcion);
@@ -16,6 +19,7 @@ create index IX_24B38389 on Puesto (descripcion);
 
 create index IX_BF01054 on Requisito (descripcion);
 
+create index IX_A926BE0B on SolicitudRequerimiento (activo);
 create index IX_EAA29C7D on SolicitudRequerimiento (contenidoId);
 create index IX_96963AE1 on SolicitudRequerimiento (estado);
 create index IX_48953397 on SolicitudRequerimiento (solicitudRequerimientoId);

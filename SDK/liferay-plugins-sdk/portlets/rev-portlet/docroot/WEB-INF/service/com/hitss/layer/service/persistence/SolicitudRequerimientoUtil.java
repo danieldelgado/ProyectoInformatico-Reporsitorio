@@ -498,6 +498,166 @@ public class SolicitudRequerimientoUtil {
 	}
 
 	/**
+	* Returns all the solicitud requerimientos where activo = &#63;.
+	*
+	* @param activo the activo
+	* @return the matching solicitud requerimientos
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.SolicitudRequerimiento> findByA(
+		boolean activo)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA(activo);
+	}
+
+	/**
+	* Returns a range of all the solicitud requerimientos where activo = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param activo the activo
+	* @param start the lower bound of the range of solicitud requerimientos
+	* @param end the upper bound of the range of solicitud requerimientos (not inclusive)
+	* @return the range of matching solicitud requerimientos
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.SolicitudRequerimiento> findByA(
+		boolean activo, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA(activo, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the solicitud requerimientos where activo = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param activo the activo
+	* @param start the lower bound of the range of solicitud requerimientos
+	* @param end the upper bound of the range of solicitud requerimientos (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching solicitud requerimientos
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.SolicitudRequerimiento> findByA(
+		boolean activo, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA(activo, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first solicitud requerimiento in the ordered set where activo = &#63;.
+	*
+	* @param activo the activo
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching solicitud requerimiento
+	* @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a matching solicitud requerimiento could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento findByA_First(
+		boolean activo,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA_First(activo, orderByComparator);
+	}
+
+	/**
+	* Returns the first solicitud requerimiento in the ordered set where activo = &#63;.
+	*
+	* @param activo the activo
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento fetchByA_First(
+		boolean activo,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByA_First(activo, orderByComparator);
+	}
+
+	/**
+	* Returns the last solicitud requerimiento in the ordered set where activo = &#63;.
+	*
+	* @param activo the activo
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching solicitud requerimiento
+	* @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a matching solicitud requerimiento could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento findByA_Last(
+		boolean activo,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA_Last(activo, orderByComparator);
+	}
+
+	/**
+	* Returns the last solicitud requerimiento in the ordered set where activo = &#63;.
+	*
+	* @param activo the activo
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento fetchByA_Last(
+		boolean activo,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByA_Last(activo, orderByComparator);
+	}
+
+	/**
+	* Returns the solicitud requerimientos before and after the current solicitud requerimiento in the ordered set where activo = &#63;.
+	*
+	* @param solicitudRequerimientoId the primary key of the current solicitud requerimiento
+	* @param activo the activo
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next solicitud requerimiento
+	* @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a solicitud requerimiento with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.SolicitudRequerimiento[] findByA_PrevAndNext(
+		long solicitudRequerimientoId, boolean activo,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchSolicitudRequerimientoException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByA_PrevAndNext(solicitudRequerimientoId, activo,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the solicitud requerimientos where activo = &#63; from the database.
+	*
+	* @param activo the activo
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByA(boolean activo)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByA(activo);
+	}
+
+	/**
+	* Returns the number of solicitud requerimientos where activo = &#63;.
+	*
+	* @param activo the activo
+	* @return the number of matching solicitud requerimientos
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByA(boolean activo)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByA(activo);
+	}
+
+	/**
 	* Caches the solicitud requerimiento in the entity cache if it is enabled.
 	*
 	* @param solicitudRequerimiento the solicitud requerimiento

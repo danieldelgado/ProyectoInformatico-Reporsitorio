@@ -434,6 +434,16 @@ public class FasePostulacionLocalServiceUtil {
 		return getService().getLastPostulacion(solicitud, usuario);
 	}
 
+	public static java.util.List<com.hitss.layer.model.FasePostulacion> listaFasesPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		return getService().listaFasesPostulacion(solicitud, usuario);
+	}
+
+	public static com.hitss.layer.model.FasePostulacion getFasePostuacionByTipo(
+		long solicitudId, long userId, long tipo) {
+		return getService().getFasePostuacionByTipo(solicitudId, userId, tipo);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

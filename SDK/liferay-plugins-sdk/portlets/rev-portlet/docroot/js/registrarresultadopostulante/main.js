@@ -17,14 +17,12 @@ function inicializarFormularioBusqueda() {
 	var pagina = $("#" + inputFristnamespace + "pagina").val();
 	var filas = $("#" + inputFristnamespace + "filas").val();
 
-	var aprobarSolicitudUrl = $("#" + inputFristnamespace + "aprobarSolicitudUrl").val();
-	var rechazarSolicitudUrl = $("#" + inputFristnamespace + "rechazarSolicitudUrl").val();
-	var verDetalleSolicitudUrl = $("#" + inputFristnamespace + "verDetalleSolicitudUrl").val();
+	var registrarProcesoUrl = $("#" + inputFristnamespace + "registrarProcesoUrl").val();
+	var noAsistioUrl = $("#" + inputFristnamespace + "noAsistioUrl").val();
 
 	var urls = {
-		"aprobarSolicitudUrl" : aprobarSolicitudUrl,
-		"rechazarSolicitudUrl" : rechazarSolicitudUrl,
-		"verDetalleSolicitudUrl" : verDetalleSolicitudUrl
+		"registrarProcesoUrl" : registrarProcesoUrl,
+		"noAsistioUrl" : noAsistioUrl
 	};
 
 	listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);
@@ -43,19 +41,19 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 	$(paginacion).html("");
 
 	var listapuesto = $("#" + inputFristnamespace + "listapuesto").val();
-	var listacantidad = $("#" + inputFristnamespace + "listacantidad").val();
-	var listaareaSolicitante = $("#" + inputFristnamespace + "listaareaSolicitante").val();
-	var listaresponsableRRHH = $("#" + inputFristnamespace + "listaresponsableRRHH").val();
-	var listafechalimite = $("#" + inputFristnamespace + "listafechalimite").val();
-	var listatiempocontrato = $("#" + inputFristnamespace + "listatiempocontrato").val();
-	var listacliente = $("#" + inputFristnamespace + "listacliente").val();
-	var listaprioridad = $("#" + inputFristnamespace + "listaprioridad").val();
-	var listaestado = $("#" + inputFristnamespace + "listaestado").val();
+	var listadisponibilidad = $("#" + inputFristnamespace + "listadisponibilidad").val();
+	var listatipopostulante = $("#" + inputFristnamespace + "listatipopostulante").val();
+	var listapostulante = $("#" + inputFristnamespace + "listapostulante").val();
+	var listafasepostulante = $("#" + inputFristnamespace + "listafasepostulante").val();
+	var listafechapostulacion = $("#" + inputFristnamespace + "listafechapostulacion").val();
+	var listafechapsicologica = $("#" + inputFristnamespace + "listafechapsicologica").val();
+	var listafechatecnica = $("#" + inputFristnamespace + "listafechatecnica").val();
+	var listafecharrhh = $("#" + inputFristnamespace + "listafecharrhh").val();
+	var listafechagerentearea = $("#" + inputFristnamespace + "listafechagerentearea").val();
 	var listaopciones = $("#" + inputFristnamespace + "listaopciones").val();
 
-	var listaOpcionAprobar = $("#" + inputFristnamespace + "listaOpcionAprobar").val();
-	var listaOpcionRechazar = $("#" + inputFristnamespace + "listaOpcionRechazar").val();
-	var listaOpcionVerDetalle = $("#" + inputFristnamespace + "listaOpcionVerDetalle").val();
+	var listaOpcionRegistrarProceso = $("#" + inputFristnamespace + "listaOpcionRegistrarProceso").val();
+	var listaOpcionNoAsistio = $("#" + inputFristnamespace + "listaOpcionNoAsistio").val();
 
 	$.ajax({
 		type : "POST",
@@ -69,14 +67,15 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			html += '<tr class="cabecera">';
 			html += '<th>#</th>';
 			html += '<th>' + listapuesto + '</th>';
-			html += '<th>' + listacantidad + '</th>';
-			html += '<th>' + listaareaSolicitante + '</th>';
-			html += '<th>' + listaresponsableRRHH + '</th>';
-			html += '<th>' + listafechalimite + '</th>';
-			html += '<th>' + listatiempocontrato + '</th>';
-			html += '<th>' + listacliente + '</th>';
-			html += '<th>' + listaprioridad + '</th>';
-			html += '<th>' + listaestado + '</th>';
+			html += '<th>' + listadisponibilidad + '</th>';
+			html += '<th>' + listatipopostulante + '</th>';
+			html += '<th>' + listapostulante + '</th>';
+			html += '<th>' + listafasepostulante + '</th>';
+			html += '<th>' + listafechapostulacion + '</th>';
+			html += '<th>' + listafechapsicologica + '</th>';
+			html += '<th>' + listafechatecnica + '</th>';
+			html += '<th>' + listafecharrhh + '</th>';
+			html += '<th>' + listafechagerentearea + '</th>';
 			html += '<th>' + listaopciones + '</th>';
 			html += '</tr>';
 			html += '</thead>';
@@ -90,19 +89,19 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + +count + '</td>';
 
 				html += '<td>' + value.strpuesto + '</td>';
-				html += '<td>' + value.cantidadRecursos + '</td>';
-				html += '<td>' + value.strareaSolicitante + '</td>';
-				html += '<td>' + value.strresponsableRRHH + '</td>';
-				html += '<td>' + value.strfechaLimite + '</td>';
-				html += '<td>' + value.strtiempoContrato + '</td>';
-				html += '<td>' + value.strcliente + '</td>';
-				html += '<td>' + value.strprioridad + '</td>';
-				html += '<td>' + value.strestado + '</td>';
+				html += '<td>' + value.disponibilidad + '</td>';
+				html += '<td>' + value.strTipoPostulante + '</td>';
+				html += '<td>' + value.postulante + '</td>';
+				html += '<td>' + value.strFasePostulacion + '</td>';
+				html += '<td>' + value.strfechaPostulación + '</td>';	
+				html += '<td>' + value.strfechaPsicológica + '</td>';
+				html += '<td>' + value.strfechaTecnica + '</td>';
+				html += '<td>' + value.strfechaRRHH + '</td>';
+				html += '<td>' + value.strfechaGerenteÁrea + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				html += '		<a class="btn btn-primary" href="' + urls["aprobarSolicitudUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionAprobar + ' </a>';
-				html += '		<a class="btn btn-primary" href="' + urls["rechazarSolicitudUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionRechazar + ' </a>';
-				html += '		<a class="btn btn-primary" href="' + urls["verDetalleSolicitudUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionVerDetalle + ' </a>';
+				html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
+				html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';

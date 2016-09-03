@@ -1195,6 +1195,499 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 	}
 
 	private static final String _FINDER_COLUMN_ESTADO_ESTADO_2 = "solicitudRequerimiento.estado = ? AND solicitudRequerimiento.activo=true";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_A = new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
+			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED,
+			SolicitudRequerimientoImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByA",
+			new String[] {
+				Boolean.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A = new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
+			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED,
+			SolicitudRequerimientoImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByA",
+			new String[] { Boolean.class.getName() },
+			SolicitudRequerimientoModelImpl.ACTIVO_COLUMN_BITMASK |
+			SolicitudRequerimientoModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_A = new FinderPath(SolicitudRequerimientoModelImpl.ENTITY_CACHE_ENABLED,
+			SolicitudRequerimientoModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA",
+			new String[] { Boolean.class.getName() });
+
+	/**
+	 * Returns all the solicitud requerimientos where activo = &#63;.
+	 *
+	 * @param activo the activo
+	 * @return the matching solicitud requerimientos
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SolicitudRequerimiento> findByA(boolean activo)
+		throws SystemException {
+		return findByA(activo, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the solicitud requerimientos where activo = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param activo the activo
+	 * @param start the lower bound of the range of solicitud requerimientos
+	 * @param end the upper bound of the range of solicitud requerimientos (not inclusive)
+	 * @return the range of matching solicitud requerimientos
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SolicitudRequerimiento> findByA(boolean activo, int start,
+		int end) throws SystemException {
+		return findByA(activo, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the solicitud requerimientos where activo = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.SolicitudRequerimientoModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param activo the activo
+	 * @param start the lower bound of the range of solicitud requerimientos
+	 * @param end the upper bound of the range of solicitud requerimientos (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching solicitud requerimientos
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SolicitudRequerimiento> findByA(boolean activo, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A;
+			finderArgs = new Object[] { activo };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_A;
+			finderArgs = new Object[] { activo, start, end, orderByComparator };
+		}
+
+		List<SolicitudRequerimiento> list = (List<SolicitudRequerimiento>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (SolicitudRequerimiento solicitudRequerimiento : list) {
+				if ((activo != solicitudRequerimiento.getActivo())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_SOLICITUDREQUERIMIENTO_WHERE);
+
+			query.append(_FINDER_COLUMN_A_ACTIVO_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(SolicitudRequerimientoModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(activo);
+
+				if (!pagination) {
+					list = (List<SolicitudRequerimiento>)QueryUtil.list(q,
+							getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<SolicitudRequerimiento>(list);
+				}
+				else {
+					list = (List<SolicitudRequerimiento>)QueryUtil.list(q,
+							getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first solicitud requerimiento in the ordered set where activo = &#63;.
+	 *
+	 * @param activo the activo
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching solicitud requerimiento
+	 * @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a matching solicitud requerimiento could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento findByA_First(boolean activo,
+		OrderByComparator orderByComparator)
+		throws NoSuchSolicitudRequerimientoException, SystemException {
+		SolicitudRequerimiento solicitudRequerimiento = fetchByA_First(activo,
+				orderByComparator);
+
+		if (solicitudRequerimiento != null) {
+			return solicitudRequerimiento;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("activo=");
+		msg.append(activo);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSolicitudRequerimientoException(msg.toString());
+	}
+
+	/**
+	 * Returns the first solicitud requerimiento in the ordered set where activo = &#63;.
+	 *
+	 * @param activo the activo
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento fetchByA_First(boolean activo,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<SolicitudRequerimiento> list = findByA(activo, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last solicitud requerimiento in the ordered set where activo = &#63;.
+	 *
+	 * @param activo the activo
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching solicitud requerimiento
+	 * @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a matching solicitud requerimiento could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento findByA_Last(boolean activo,
+		OrderByComparator orderByComparator)
+		throws NoSuchSolicitudRequerimientoException, SystemException {
+		SolicitudRequerimiento solicitudRequerimiento = fetchByA_Last(activo,
+				orderByComparator);
+
+		if (solicitudRequerimiento != null) {
+			return solicitudRequerimiento;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("activo=");
+		msg.append(activo);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSolicitudRequerimientoException(msg.toString());
+	}
+
+	/**
+	 * Returns the last solicitud requerimiento in the ordered set where activo = &#63;.
+	 *
+	 * @param activo the activo
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching solicitud requerimiento, or <code>null</code> if a matching solicitud requerimiento could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento fetchByA_Last(boolean activo,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByA(activo);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<SolicitudRequerimiento> list = findByA(activo, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the solicitud requerimientos before and after the current solicitud requerimiento in the ordered set where activo = &#63;.
+	 *
+	 * @param solicitudRequerimientoId the primary key of the current solicitud requerimiento
+	 * @param activo the activo
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next solicitud requerimiento
+	 * @throws com.hitss.layer.NoSuchSolicitudRequerimientoException if a solicitud requerimiento with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SolicitudRequerimiento[] findByA_PrevAndNext(
+		long solicitudRequerimientoId, boolean activo,
+		OrderByComparator orderByComparator)
+		throws NoSuchSolicitudRequerimientoException, SystemException {
+		SolicitudRequerimiento solicitudRequerimiento = findByPrimaryKey(solicitudRequerimientoId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SolicitudRequerimiento[] array = new SolicitudRequerimientoImpl[3];
+
+			array[0] = getByA_PrevAndNext(session, solicitudRequerimiento,
+					activo, orderByComparator, true);
+
+			array[1] = solicitudRequerimiento;
+
+			array[2] = getByA_PrevAndNext(session, solicitudRequerimiento,
+					activo, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected SolicitudRequerimiento getByA_PrevAndNext(Session session,
+		SolicitudRequerimiento solicitudRequerimiento, boolean activo,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SOLICITUDREQUERIMIENTO_WHERE);
+
+		query.append(_FINDER_COLUMN_A_ACTIVO_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(SolicitudRequerimientoModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(activo);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(solicitudRequerimiento);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SolicitudRequerimiento> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the solicitud requerimientos where activo = &#63; from the database.
+	 *
+	 * @param activo the activo
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByA(boolean activo) throws SystemException {
+		for (SolicitudRequerimiento solicitudRequerimiento : findByA(activo,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(solicitudRequerimiento);
+		}
+	}
+
+	/**
+	 * Returns the number of solicitud requerimientos where activo = &#63;.
+	 *
+	 * @param activo the activo
+	 * @return the number of matching solicitud requerimientos
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByA(boolean activo) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_A;
+
+		Object[] finderArgs = new Object[] { activo };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_SOLICITUDREQUERIMIENTO_WHERE);
+
+			query.append(_FINDER_COLUMN_A_ACTIVO_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(activo);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_A_ACTIVO_2 = "solicitudRequerimiento.activo = ?";
 
 	public SolicitudRequerimientoPersistenceImpl() {
 		setModelClass(SolicitudRequerimiento.class);
@@ -1517,6 +2010,23 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ESTADO, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ESTADO,
+					args);
+			}
+
+			if ((solicitudRequerimientoModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						solicitudRequerimientoModelImpl.getOriginalActivo()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A,
+					args);
+
+				args = new Object[] { solicitudRequerimientoModelImpl.getActivo() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A,
 					args);
 			}
 		}

@@ -109,10 +109,11 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.hitss.layer.model.SolicitudRequerimiento"),
 			true);
-	public static long CONTENIDOID_COLUMN_BITMASK = 1L;
-	public static long ESTADO_COLUMN_BITMASK = 2L;
-	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 4L;
-	public static long FECHAMODIFICA_COLUMN_BITMASK = 8L;
+	public static long ACTIVO_COLUMN_BITMASK = 1L;
+	public static long CONTENIDOID_COLUMN_BITMASK = 2L;
+	public static long ESTADO_COLUMN_BITMASK = 4L;
+	public static long SOLICITUDREQUERIMIENTOID_COLUMN_BITMASK = 8L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -731,7 +732,19 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public void setActivo(boolean activo) {
+		_columnBitmask |= ACTIVO_COLUMN_BITMASK;
+
+		if (!_setOriginalActivo) {
+			_setOriginalActivo = true;
+
+			_originalActivo = _activo;
+		}
+
 		_activo = activo;
+	}
+
+	public boolean getOriginalActivo() {
+		return _originalActivo;
 	}
 
 	@JSON
@@ -898,6 +911,10 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		solicitudRequerimientoModelImpl._originalEstado = solicitudRequerimientoModelImpl._estado;
 
 		solicitudRequerimientoModelImpl._setOriginalEstado = false;
+
+		solicitudRequerimientoModelImpl._originalActivo = solicitudRequerimientoModelImpl._activo;
+
+		solicitudRequerimientoModelImpl._setOriginalActivo = false;
 
 		solicitudRequerimientoModelImpl._columnBitmask = 0;
 	}
@@ -1238,6 +1255,8 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	private long _originalEstado;
 	private boolean _setOriginalEstado;
 	private boolean _activo;
+	private boolean _originalActivo;
+	private boolean _setOriginalActivo;
 	private long _usuariocrea;
 	private Date _fechacrea;
 	private long _usuariomodifica;

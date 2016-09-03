@@ -48,6 +48,9 @@
 		<finder name="Estado" return-type="Collection" where="activo=true">
 			<finder-column name="estado" />
 		</finder>
+		<finder name="A" return-type="Collection" >
+			<finder-column name="activo" />
+		</finder>
 	</entity>
 
 
@@ -336,8 +339,9 @@
 		</order>
 
 		<finder name="S" return-type="Collection" where="activo=true">
-			<finder-column name="solicitudRequerimientoId" />
+			<finder-column name="solicitudRequerimientoId" arrayable-operator="OR" />
 		</finder>
+		
 		<finder name="S_U" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 			<finder-column name="usuarioId" />
@@ -379,10 +383,19 @@
 			<finder-column name="fasePostulacionId" />
 			<finder-column name="usuarioId" />
 		</finder>
-		<finder name="S_LF" return-type="Collection" where="activo=true">
+		<finder name="S_L_F" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 			<finder-column name="fasePostulacionId" />
 		</finder>
+		<finder name="S_U_T" return-type="FasePostulacion" where="activo=true">
+			<finder-column name="solicitudRequerimientoId" />
+			<finder-column name="usuarioId" />
+			<finder-column name="tipoFase" />
+		</finder>
+		<finder name="F" return-type="FasePostulacion" where="activo=true">
+			<finder-column name="fasePostulacionId" />
+		</finder>
+		
 
 
 
