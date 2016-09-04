@@ -14,15 +14,19 @@
 <liferay-theme:defineObjects />
 
 <portlet:renderURL var="programarEntrevista">
-	<portlet:param name="action" value="programarEntrevista" />
+	<portlet:param name="action" value="irprogramarEntrevista" />
+</portlet:renderURL>
+<portlet:renderURL var="detallePostulante">
+	<portlet:param name="action" value="irdetallePostulante" />
 </portlet:renderURL>
 <input type="hidden" value="<portlet:namespace/>" />
 <input id="<portlet:namespace/>programarEntrevistaUrl" type="hidden" value="${programarEntrevista}" />
+<input id="<portlet:namespace/>detallePostulanteUrl" type="hidden" value="${detallePostulante}" />
 
 
 
 <fieldset>
-	<legend>Lista de Postulantes al requerimiento</legend>
+	<legend>Lista de Postulantes del requerimiento</legend>
 	<div class="container">
 		<div class="contenedorAlerta">
 			<c:if test="${not empty mensaje}">

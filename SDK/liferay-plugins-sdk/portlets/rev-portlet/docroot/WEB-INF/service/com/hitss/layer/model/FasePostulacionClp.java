@@ -82,6 +82,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		attributes.put("fechaFase", getFechaFase());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("asistio", getAsistio());
 		attributes.put("apruebaFase", getApruebaFase());
 		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("salario", getSalario());
@@ -137,6 +138,12 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Boolean asistio = (Boolean)attributes.get("asistio");
+
+		if (asistio != null) {
+			setAsistio(asistio);
 		}
 
 		Boolean apruebaFase = (Boolean)attributes.get("apruebaFase");
@@ -345,6 +352,34 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 				Method method = clazz.getMethod("setEstado", long.class);
 
 				method.invoke(_fasePostulacionRemoteModel, estado);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public boolean getAsistio() {
+		return _asistio;
+	}
+
+	@Override
+	public boolean isAsistio() {
+		return _asistio;
+	}
+
+	@Override
+	public void setAsistio(boolean asistio) {
+		_asistio = asistio;
+
+		if (_fasePostulacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _fasePostulacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setAsistio", boolean.class);
+
+				method.invoke(_fasePostulacionRemoteModel, asistio);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -624,6 +659,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		clone.setFechaFase(getFechaFase());
 		clone.setDescripcion(getDescripcion());
 		clone.setEstado(getEstado());
+		clone.setAsistio(getAsistio());
 		clone.setApruebaFase(getApruebaFase());
 		clone.setPuntuacion(getPuntuacion());
 		clone.setSalario(getSalario());
@@ -683,7 +719,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{fasePostulacionId=");
 		sb.append(getFasePostulacionId());
@@ -699,6 +735,8 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		sb.append(getDescripcion());
 		sb.append(", estado=");
 		sb.append(getEstado());
+		sb.append(", asistio=");
+		sb.append(getAsistio());
 		sb.append(", apruebaFase=");
 		sb.append(getApruebaFase());
 		sb.append(", puntuacion=");
@@ -722,7 +760,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.FasePostulacion");
@@ -755,6 +793,10 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 		sb.append(
 			"<column><column-name>estado</column-name><column-value><![CDATA[");
 		sb.append(getEstado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>asistio</column-name><column-value><![CDATA[");
+		sb.append(getAsistio());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>apruebaFase</column-name><column-value><![CDATA[");
@@ -801,6 +843,7 @@ public class FasePostulacionClp extends BaseModelImpl<FasePostulacion>
 	private Date _fechaFase;
 	private String _descripcion;
 	private long _estado;
+	private boolean _asistio;
 	private boolean _apruebaFase;
 	private int _puntuacion;
 	private double _salario;

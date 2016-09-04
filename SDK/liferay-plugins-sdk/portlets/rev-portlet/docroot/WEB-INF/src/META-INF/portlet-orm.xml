@@ -229,6 +229,7 @@
 			</basic>
 			<basic name="descripcion" />
 			<basic name="estado" />
+			<basic name="asistio" />
 			<basic name="apruebaFase" />
 			<basic name="puntuacion" />
 			<basic name="salario" />

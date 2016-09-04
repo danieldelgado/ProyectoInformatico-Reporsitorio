@@ -191,6 +191,7 @@
 		<property name="fechaFase" type="org.hibernate.type.TimestampType" />
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="asistio" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="apruebaFase" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="puntuacion" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="salario" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />

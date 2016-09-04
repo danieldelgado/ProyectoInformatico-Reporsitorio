@@ -147,6 +147,7 @@ create table FasePostulacion (
 	fechaFase DATE null,
 	descripcion VARCHAR(75) null,
 	estado LONG,
+	asistio BOOLEAN,
 	apruebaFase BOOLEAN,
 	puntuacion INTEGER,
 	salario DOUBLE,

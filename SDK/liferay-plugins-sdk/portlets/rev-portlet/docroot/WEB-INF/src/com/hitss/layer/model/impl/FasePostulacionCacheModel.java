@@ -38,7 +38,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{fasePostulacionId=");
 		sb.append(fasePostulacionId);
@@ -54,6 +54,8 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		sb.append(descripcion);
 		sb.append(", estado=");
 		sb.append(estado);
+		sb.append(", asistio=");
+		sb.append(asistio);
 		sb.append(", apruebaFase=");
 		sb.append(apruebaFase);
 		sb.append(", puntuacion=");
@@ -99,6 +101,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		}
 
 		fasePostulacionImpl.setEstado(estado);
+		fasePostulacionImpl.setAsistio(asistio);
 		fasePostulacionImpl.setApruebaFase(apruebaFase);
 		fasePostulacionImpl.setPuntuacion(puntuacion);
 		fasePostulacionImpl.setSalario(salario);
@@ -135,6 +138,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		fechaFase = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		estado = objectInput.readLong();
+		asistio = objectInput.readBoolean();
 		apruebaFase = objectInput.readBoolean();
 		puntuacion = objectInput.readInt();
 		salario = objectInput.readDouble();
@@ -162,6 +166,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 		}
 
 		objectOutput.writeLong(estado);
+		objectOutput.writeBoolean(asistio);
 		objectOutput.writeBoolean(apruebaFase);
 		objectOutput.writeInt(puntuacion);
 		objectOutput.writeDouble(salario);
@@ -179,6 +184,7 @@ public class FasePostulacionCacheModel implements CacheModel<FasePostulacion>,
 	public long fechaFase;
 	public String descripcion;
 	public long estado;
+	public boolean asistio;
 	public boolean apruebaFase;
 	public int puntuacion;
 	public double salario;

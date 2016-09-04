@@ -125,6 +125,7 @@
 		<field name="fechaFase" type="Date" />
 		<field name="descripcion" type="String" />
 		<field name="estado" type="long" />
+		<field name="asistio" type="boolean" />
 		<field name="apruebaFase" type="boolean" />
 		<field name="puntuacion" type="int" />
 		<field name="salario" type="double" />

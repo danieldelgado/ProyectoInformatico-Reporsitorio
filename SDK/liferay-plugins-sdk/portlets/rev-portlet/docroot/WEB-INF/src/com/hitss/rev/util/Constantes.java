@@ -31,6 +31,8 @@ public class Constantes {
 	public static final long PARAMETRO_TERMINADO = 63 ;
 	public static final long PARAMETRO_ANULADO = 64 ;
 	public static final long PARAMETRO_PUBLICADO=75;
+	public static final long PARAMETRO_EN_PROCESO=93;
+	public static final long PARAMETRO_PLAN_ACCION=94;
 
 	public static final long PARAMETRO_ESTADO_POSTULADO = 70 ;
 	public static final long PARAMETRO_ESTADO_EN_PROCESO = 71 ;

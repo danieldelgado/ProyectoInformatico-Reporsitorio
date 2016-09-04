@@ -1,4 +1,8 @@
 
+var formvalid = false;
+var modalconfirmacion = null;
+var inputFristnamespace = null;
+
 $(document).ready(function() {
 	init();
 });
@@ -158,20 +162,18 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 function inicializarListaPotulantes(listaPostulantes) {
 	init();
-	console.log(listaPostulantes);
 	if (listaPostulantes != "") {
-		var lista = $.parseJSON(listaPostulantes);		
-		$.each(listaPostulantes, function(index, object) {		
+		var lista = $.parseJSON(listaPostulantes);	
+		$.each(lista, function(index, object) {		
 			addPostulanteFila(	object );
-		});
-		
+		});		
 	}	
 }
 
 
-function addPostulanteFila(o) {
-	console.log("-------------------------------");
-	console.log(o);
+function addPostulanteFila(object) {
+	var programarEntrevistaUrl = $("#" + inputFristnamespace + "programarEntrevistaUrl").val();
+	var detallePostulanteUrl = $("#" + inputFristnamespace + "detallePostulanteUrl").val();
 
 	var listaRequisitos = $("#" + inputFristnamespace + "listaPostulantes");
 	var html = "";
@@ -182,16 +184,255 @@ function addPostulanteFila(o) {
 	"<td>" + object['interno'] + "</td>" + 
 	"<td>" + object['fasePostulacion'] + "</td>" + 
 	"<td>" + object['estado'] + "</td>" + 
-	"<td>" + "" + "</td>" + 
-	"</tr>";
+	"<td>" + "";
+	
+	html += '	<div class="btn-group">';
+	html += '		<a class="btn btn-primary" href="' + programarEntrevistaUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '">Programar Entrevista </a>';
+	html += '		<a class="btn btn-primary" href="' + detallePostulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Ver detalle </a>';
+	html += '	</div>';
+	
+	html += "</td>"
+	
+	html +="</tr>";
 	$(listaRequisitos).append(html);
 
 }
 
 function inicializarFormularioProgramacionEntrevista() {
+	init();
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		init();
+
+		if (A.one('#' + inputFristnamespace + 'fechaEvaluacionPsicologica') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaEvaluacionPsicologica',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {		
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();		
+						A.one('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+//						var d = new Date(event.newSelection);
+//						var day = d.getDate();
+//						var monthIndex = d.getMonth();
+//						var year = d.getFullYear();
+//						A.one('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+//					
+//						if (validarFecharSimple(inputFristnamespace + 'fechaEvaluacionPsicologicaVal', inputFristnamespace + 'fechaEvaluacionPsicologicaVal')) {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							$(contenedorAlerta).html("");
+//						} else {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+//						}
+					}
+				}
+			});
+		}
+
+		if (A.one('#' + inputFristnamespace + 'fechaEvaluacionTecnica') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaEvaluacionTecnica',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {		
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						A.one('#' + inputFristnamespace + 'fechaEvaluacionTecnicaVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+//						var d = new Date(event.newSelection);
+//						var day = d.getDate();
+//						var monthIndex = d.getMonth();
+//						var year = d.getFullYear();
+//						A.one('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+//					
+//						if (validarFecharSimple(inputFristnamespace + 'fechaEvaluacionPsicologicaVal', inputFristnamespace + 'fechaEvaluacionPsicologicaVal')) {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							$(contenedorAlerta).html("");
+//						} else {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+//						}
+					}
+				}
+			});
+		}
+
+		if (A.one('#' + inputFristnamespace + 'fechaEvaluacionEntreCoordRRHH') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaEvaluacionEntreCoordRRHH',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {		
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();		
+						A.one('#' + inputFristnamespace + 'fechaEvaluacionEntreCoordRRHHVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					
+//						var d = new Date(event.newSelection);
+//						var day = d.getDate();
+//						var monthIndex = d.getMonth();
+//						var year = d.getFullYear();
+//						A.one('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+//					
+//						if (validarFecharSimple(inputFristnamespace + 'fechaEvaluacionPsicologicaVal', inputFristnamespace + 'fechaEvaluacionPsicologicaVal')) {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							$(contenedorAlerta).html("");
+//						} else {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+//						}
+					}
+				}
+			});
+		}
+
+		if (A.one('#' + inputFristnamespace + 'fechaEvaluacionEntreGerenteArea') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaEvaluacionEntreGerenteArea',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {		
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();		
+						A.one('#' + inputFristnamespace + 'fechaEvaluacionEntreGerenteAreaVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+										
+//						var d = new Date(event.newSelection);
+//						var day = d.getDate();
+//						var monthIndex = d.getMonth();
+//						var year = d.getFullYear();
+//						A.one('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+//					
+//						if (validarFecharSimple(inputFristnamespace + 'fechaEvaluacionPsicologicaVal', inputFristnamespace + 'fechaEvaluacionPsicologicaVal')) {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							$(contenedorAlerta).html("");
+//						} else {
+//							var contenedorAlerta = $(".contenedorAlerta");
+//							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+//						}
+					}
+				}
+			});
+		}
+		
+		
+		if (A.one('#' + inputFristnamespace + 'modal') != null) {
+			var popupconfirmartitulo = "Confirmar Programación";
+			var popupconfirmarMensage = "Confirma la programación del postulante";
+			var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+			var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+
+			modalconfirmacion = new A.Modal({
+				bodyContent : popupconfirmarMensage,
+				centered : true,
+				destroyOnHide : false,
+				headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+				modal : true,
+				render : '#' + inputFristnamespace + 'modal',
+				resizable : false,
+				visible : false,
+				width : 305
+			}).render();
+
+			modalconfirmacion.addToolbar([ {				
+				label : msgAceptar,
+				on : {
+					click : function() {
+						console.log("msgAceptar");
+						if (formvalid) {
+							registrarProgramacion();
+						}
+				}
+			}
+			}, {
+				label : msgCancelar,
+				on : {
+					click : function() {
+						console.log("msgCancelar");
+						modalconfirmacion.hide();
+					}
+				}
+			} ]);
+		}
+				
+	});
 	
+	$(btnGuardar).click(function() {
+		console.log(btnGuardar);
+		formvalid = true;
+//		formvalid = $(formActualizarSolicitud).valid();
+		if(formvalid){
+			console.log("show");
+			modalconfirmacion.show();
+		}
+		
+	});
 }
 
+
+function registrarProgramacion(){
+	init();
+	var contenedorAlerta = $(".contenedorAlerta");
+	var formprogramarEntrevista = $("#" + inputFristnamespace + "programarEntrevista");
+	var guardarProgramacionEntrevistaUrl = $("#" + inputFristnamespace + "guardarProgramacionEntrevistaUrl").val();
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var listarPostulantesUrl = $("#" + inputFristnamespace + "listarPostulantesUrl").val();
+	
+	console.log(formprogramarEntrevista);
+	
+	var dataSend = $(formprogramarEntrevista).serialize();
+	
+	console.log(dataSend);
+
+	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
+	var msgError = $("#" + inputFristnamespace + "msgError").val();
+	
+	$.ajax({
+		type : "POST",
+		url : guardarProgramacionEntrevistaUrl,
+		data : dataSend,
+		success : function(data) {
+			console.log(data);
+			modalconfirmacion.hide();
+			data = $.parseJSON(data);
+			var objeto = data["objeto"];
+			var respuesta = data["respuesta"];
+			var mensaje = data["mensaje"];
+			listarPostulantesUrl += "&titulo=" + encodeURI(popupMensaje);
+			listarPostulantesUrl += "&mensaje=" + encodeURI(mensaje);
+			if (respuesta == 1) {
+				$(btnGuardar).attr("disabled", "disabled");
+				mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+					setTimeout(function() {
+						window.location = listarPostulantesUrl;
+					}, 1500);
+				});
+			} else {
+				mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+			}
+		}
+	});
+	
+}
 
 
 

@@ -15,5 +15,6 @@ public interface SeleccionarPersonalService {
 	Map<String, Object> listarSolicitudesRequermiento(Long puestoId, Date fechaRegistroInicio, Date fechaRegistrFin, int responsable, int tiempoContrato, int filas, int pagina, String orden, String campoOrden);
 
 	void selectPersonal();
-	
+	List<UsuarioBean> getListaPostulantes(long companyId, long companyGroupId, Long solicitudRequerimientoId);
+
 }

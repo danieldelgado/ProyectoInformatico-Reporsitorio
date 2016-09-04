@@ -36,8 +36,8 @@ public class PostularOfertaLaboralController extends RevController{
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 		_log.info("defaultView");
-		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
-		User user = td.getUser();
+//		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+//		User user = td.getUser();
 		List<OfertalLaboral> lista = postularOfertaLaboralService.getListaOfertaLaboral(0, 0, 0);
 		model.addAttribute("listaOfertalLaboral", lista);
 		return "view";

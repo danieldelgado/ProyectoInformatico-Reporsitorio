@@ -159,6 +159,27 @@ public interface FasePostulacionModel extends BaseModel<FasePostulacion> {
 	public void setEstado(long estado);
 
 	/**
+	 * Returns the asistio of this fase postulacion.
+	 *
+	 * @return the asistio of this fase postulacion
+	 */
+	public boolean getAsistio();
+
+	/**
+	 * Returns <code>true</code> if this fase postulacion is asistio.
+	 *
+	 * @return <code>true</code> if this fase postulacion is asistio; <code>false</code> otherwise
+	 */
+	public boolean isAsistio();
+
+	/**
+	 * Sets whether this fase postulacion is asistio.
+	 *
+	 * @param asistio the asistio of this fase postulacion
+	 */
+	public void setAsistio(boolean asistio);
+
+	/**
 	 * Returns the aprueba fase of this fase postulacion.
 	 *
 	 * @return the aprueba fase of this fase postulacion

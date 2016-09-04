@@ -26,13 +26,20 @@ import com.hitss.rev.liferay.api.LiferayApiService;
 import com.hitss.rev.service.ObservacionService;
 import com.hitss.rev.service.ParametroService;
 import com.hitss.rev.service.SolicitudRequerimientoRequisitoService;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.asset.model.AssetTag;
+import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 
 public abstract class RevServiceImpl {
 
@@ -293,6 +300,28 @@ public abstract class RevServiceImpl {
 		} catch (SystemException e) {
 			_log.error("Error al getFuncionsByDescripcion " + e.getMessage(), e);
 		}
+		return null;
+	}
+
+	public List<ComboBean> getEstados() {
+//		_log.debug("getListarRequisitosTags");
+//		_log.debug("filtro:" + filtro);
+//		List<ComboBean> listaComboBeans = new ArrayList<ComboBean>();
+//		try {
+//			DynamicQuery query = DynamicQueryFactoryUtil.forClass(AssetTag.class, PortalClassLoaderUtil.getClassLoader());
+//			query.add(PropertyFactoryUtil.forName("name").like(StringPool.PERCENT + filtro + StringPool.PERCENT));
+//			List<AssetTag> etiquetas = AssetTagLocalServiceUtil.dynamicQuery(query);
+//			_log.debug(etiquetas);
+//			ComboBean c = null;
+//			for (AssetTag assetTag : etiquetas) {
+//				c = new ComboBean();
+//				c.setId(assetTag.getTagId());
+//				c.setValue(assetTag.getName());
+//				listaComboBeans.add(c);
+//			}
+//		} catch (SystemException e) {
+//			_log.error("listarPuesto:" + e.getMessage(), e);
+//		}
 		return null;
 	}
 

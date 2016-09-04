@@ -3,11 +3,13 @@ package com.hitss.rev.controller;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
+import com.hitss.rev.service.RegistrarAvanceService;
 import com.hitss.rev.util.RevController;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -19,6 +21,10 @@ public class RegistrarAvanceController extends RevController {
 
 	private static Log _log = LogFactoryUtil.getLog(RegistrarAvanceController.class);
 
+
+	@Autowired
+	private RegistrarAvanceService registrarAvanceService;
+	
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
 		_log.info("defaultView");

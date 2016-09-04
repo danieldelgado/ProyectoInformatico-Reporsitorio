@@ -57,6 +57,7 @@ public class FasePostulacionWrapper implements FasePostulacion,
 		attributes.put("fechaFase", getFechaFase());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("asistio", getAsistio());
 		attributes.put("apruebaFase", getApruebaFase());
 		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("salario", getSalario());
@@ -112,6 +113,12 @@ public class FasePostulacionWrapper implements FasePostulacion,
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Boolean asistio = (Boolean)attributes.get("asistio");
+
+		if (asistio != null) {
+			setAsistio(asistio);
 		}
 
 		Boolean apruebaFase = (Boolean)attributes.get("apruebaFase");
@@ -321,6 +328,36 @@ public class FasePostulacionWrapper implements FasePostulacion,
 	@Override
 	public void setEstado(long estado) {
 		_fasePostulacion.setEstado(estado);
+	}
+
+	/**
+	* Returns the asistio of this fase postulacion.
+	*
+	* @return the asistio of this fase postulacion
+	*/
+	@Override
+	public boolean getAsistio() {
+		return _fasePostulacion.getAsistio();
+	}
+
+	/**
+	* Returns <code>true</code> if this fase postulacion is asistio.
+	*
+	* @return <code>true</code> if this fase postulacion is asistio; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isAsistio() {
+		return _fasePostulacion.isAsistio();
+	}
+
+	/**
+	* Sets whether this fase postulacion is asistio.
+	*
+	* @param asistio the asistio of this fase postulacion
+	*/
+	@Override
+	public void setAsistio(boolean asistio) {
+		_fasePostulacion.setAsistio(asistio);
 	}
 
 	/**

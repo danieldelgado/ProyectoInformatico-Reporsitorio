@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class UsuarioBean implements Serializable{
 
+	private long solicitudId;	
 	private long userId;	
 	private String fullname;
 	private String fechaPostulacion;
@@ -53,6 +54,12 @@ public class UsuarioBean implements Serializable{
 	}
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+	public long getSolicitudId() {
+		return solicitudId;
+	}
+	public void setSolicitudId(long solicitudId) {
+		this.solicitudId = solicitudId;
 	}
 	
 	

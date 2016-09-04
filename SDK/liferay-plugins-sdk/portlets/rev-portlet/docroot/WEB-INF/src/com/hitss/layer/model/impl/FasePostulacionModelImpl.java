@@ -72,6 +72,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 			{ "fechaFase", Types.TIMESTAMP },
 			{ "descripcion", Types.VARCHAR },
 			{ "estado", Types.BIGINT },
+			{ "asistio", Types.BOOLEAN },
 			{ "apruebaFase", Types.BOOLEAN },
 			{ "puntuacion", Types.INTEGER },
 			{ "salario", Types.DOUBLE },
@@ -81,7 +82,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table FasePostulacion (fasePostulacionId LONG not null primary key,solicitudRequerimientoId LONG,usuarioId LONG,tipoFase LONG,fechaFase DATE null,descripcion VARCHAR(75) null,estado LONG,apruebaFase BOOLEAN,puntuacion INTEGER,salario DOUBLE,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table FasePostulacion (fasePostulacionId LONG not null primary key,solicitudRequerimientoId LONG,usuarioId LONG,tipoFase LONG,fechaFase DATE null,descripcion VARCHAR(75) null,estado LONG,asistio BOOLEAN,apruebaFase BOOLEAN,puntuacion INTEGER,salario DOUBLE,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table FasePostulacion";
 	public static final String ORDER_BY_JPQL = " ORDER BY fasePostulacion.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY FasePostulacion.fechamodifica ASC";
@@ -123,6 +124,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 		model.setFechaFase(soapModel.getFechaFase());
 		model.setDescripcion(soapModel.getDescripcion());
 		model.setEstado(soapModel.getEstado());
+		model.setAsistio(soapModel.getAsistio());
 		model.setApruebaFase(soapModel.getApruebaFase());
 		model.setPuntuacion(soapModel.getPuntuacion());
 		model.setSalario(soapModel.getSalario());
@@ -215,6 +217,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 		attributes.put("fechaFase", getFechaFase());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("estado", getEstado());
+		attributes.put("asistio", getAsistio());
 		attributes.put("apruebaFase", getApruebaFase());
 		attributes.put("puntuacion", getPuntuacion());
 		attributes.put("salario", getSalario());
@@ -270,6 +273,12 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 		if (estado != null) {
 			setEstado(estado);
+		}
+
+		Boolean asistio = (Boolean)attributes.get("asistio");
+
+		if (asistio != null) {
+			setAsistio(asistio);
 		}
 
 		Boolean apruebaFase = (Boolean)attributes.get("apruebaFase");
@@ -453,6 +462,22 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@JSON
 	@Override
+	public boolean getAsistio() {
+		return _asistio;
+	}
+
+	@Override
+	public boolean isAsistio() {
+		return _asistio;
+	}
+
+	@Override
+	public void setAsistio(boolean asistio) {
+		_asistio = asistio;
+	}
+
+	@JSON
+	@Override
 	public boolean getApruebaFase() {
 		return _apruebaFase;
 	}
@@ -589,6 +614,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 		fasePostulacionImpl.setFechaFase(getFechaFase());
 		fasePostulacionImpl.setDescripcion(getDescripcion());
 		fasePostulacionImpl.setEstado(getEstado());
+		fasePostulacionImpl.setAsistio(getAsistio());
 		fasePostulacionImpl.setApruebaFase(getApruebaFase());
 		fasePostulacionImpl.setPuntuacion(getPuntuacion());
 		fasePostulacionImpl.setSalario(getSalario());
@@ -698,6 +724,8 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 		fasePostulacionCacheModel.estado = getEstado();
 
+		fasePostulacionCacheModel.asistio = getAsistio();
+
 		fasePostulacionCacheModel.apruebaFase = getApruebaFase();
 
 		fasePostulacionCacheModel.puntuacion = getPuntuacion();
@@ -733,7 +761,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{fasePostulacionId=");
 		sb.append(getFasePostulacionId());
@@ -749,6 +777,8 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 		sb.append(getDescripcion());
 		sb.append(", estado=");
 		sb.append(getEstado());
+		sb.append(", asistio=");
+		sb.append(getAsistio());
 		sb.append(", apruebaFase=");
 		sb.append(getApruebaFase());
 		sb.append(", puntuacion=");
@@ -772,7 +802,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.FasePostulacion");
@@ -805,6 +835,10 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 		sb.append(
 			"<column><column-name>estado</column-name><column-value><![CDATA[");
 		sb.append(getEstado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>asistio</column-name><column-value><![CDATA[");
+		sb.append(getAsistio());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>apruebaFase</column-name><column-value><![CDATA[");
@@ -863,6 +897,7 @@ public class FasePostulacionModelImpl extends BaseModelImpl<FasePostulacion>
 	private Date _fechaFase;
 	private String _descripcion;
 	private long _estado;
+	private boolean _asistio;
 	private boolean _apruebaFase;
 	private int _puntuacion;
 	private double _salario;

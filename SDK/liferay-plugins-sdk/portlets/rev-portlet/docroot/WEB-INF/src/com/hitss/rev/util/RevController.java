@@ -54,6 +54,27 @@ public abstract class RevController {
 
 		return "view";
 	}
+	public String defaultViewEvaluacion(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
+		_log.debug("defaultView");
+		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		
+
+		List<ComboBean> lstEstados = service.getEstados();
+		model.addAttribute("lstEstados", lstEstados);
+		
+		Long solicitudEvaluacionId = ParamUtil.getLong(request, "solicitudEvaluacionId");
+		_log.debug("solicitudEvaluacionId defaultView :" + solicitudEvaluacionId);
+		if (Validator.isNotNull(solicitudEvaluacionId) || solicitudEvaluacionId > 0) {
+			model.addAttribute("solicitudEvaluacionId", solicitudEvaluacionId);
+			String mensaje = ParamUtil.get(request, "mensaje", "");
+			_log.debug("mensaje defaultView :" + mensaje);
+			model.addAttribute("mensaje", mensaje);
+			String titulo = ParamUtil.get(request, "titulo", "");
+			_log.debug("titulo:" + titulo);
+			model.addAttribute("titulo", titulo);
+		}
+		return "view";
+	}
 	
 	public String irDefaultReclutamiento(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");

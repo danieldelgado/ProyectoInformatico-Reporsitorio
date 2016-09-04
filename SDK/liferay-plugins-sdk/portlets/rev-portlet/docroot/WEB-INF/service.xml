@@ -360,6 +360,7 @@
 		<column name="fechaFase" type="Date" />
 		<column name="descripcion" type="String" />
 		<column name="estado" type="long" />
+		<column name="asistio" type="boolean" />
 		<column name="apruebaFase" type="boolean" />
 		<column name="puntuacion" type="int" />
 		<column name="salario" type="double" />

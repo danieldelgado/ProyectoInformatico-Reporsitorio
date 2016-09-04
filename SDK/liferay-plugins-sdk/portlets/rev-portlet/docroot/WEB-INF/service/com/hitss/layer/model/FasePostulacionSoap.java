@@ -38,6 +38,7 @@ public class FasePostulacionSoap implements Serializable {
 		soapModel.setFechaFase(model.getFechaFase());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setEstado(model.getEstado());
+		soapModel.setAsistio(model.getAsistio());
 		soapModel.setApruebaFase(model.getApruebaFase());
 		soapModel.setPuntuacion(model.getPuntuacion());
 		soapModel.setSalario(model.getSalario());
@@ -156,6 +157,18 @@ public class FasePostulacionSoap implements Serializable {
 		_estado = estado;
 	}
 
+	public boolean getAsistio() {
+		return _asistio;
+	}
+
+	public boolean isAsistio() {
+		return _asistio;
+	}
+
+	public void setAsistio(boolean asistio) {
+		_asistio = asistio;
+	}
+
 	public boolean getApruebaFase() {
 		return _apruebaFase;
 	}
@@ -235,6 +248,7 @@ public class FasePostulacionSoap implements Serializable {
 	private Date _fechaFase;
 	private String _descripcion;
 	private long _estado;
+	private boolean _asistio;
 	private boolean _apruebaFase;
 	private int _puntuacion;
 	private double _salario;
