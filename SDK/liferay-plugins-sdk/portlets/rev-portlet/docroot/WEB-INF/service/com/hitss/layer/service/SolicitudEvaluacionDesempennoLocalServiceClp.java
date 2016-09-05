@@ -115,6 +115,21 @@ public class SolicitudEvaluacionDesempennoLocalServiceClp
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "listaSolicitudEvaluacionCount";
+
+		_methodParameterTypes19 = new String[] {
+				"com.hitss.layer.model.SolicitudEvaluacionDesempenno",
+				"java.util.Date", "java.util.Date"
+			};
+
+		_methodName20 = "listaSolicitudEvaluacion";
+
+		_methodParameterTypes20 = new String[] {
+				"com.hitss.layer.model.SolicitudEvaluacionDesempenno",
+				"java.util.Date", "java.util.Date", "int", "int",
+				"java.lang.String", "java.lang.String"
+			};
 	}
 
 	@Override
@@ -680,6 +695,100 @@ public class SolicitudEvaluacionDesempennoLocalServiceClp
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public long listaSolicitudEvaluacionCount(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio, java.util.Date fechaEvaluacionFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] {
+						ClpSerializer.translateInput(solicitudEvaluacion),
+						
+					ClpSerializer.translateInput(fechaEvaluacionInicio),
+						
+					ClpSerializer.translateInput(fechaEvaluacionFin)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.search.ParseException) {
+				throw (com.liferay.portal.kernel.search.ParseException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.SolicitudEvaluacionDesempenno> listaSolicitudEvaluacion(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio,
+		java.util.Date fechaEvaluacionFin, int inicio, int fin,
+		java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] {
+						ClpSerializer.translateInput(solicitudEvaluacion),
+						
+					ClpSerializer.translateInput(fechaEvaluacionInicio),
+						
+					ClpSerializer.translateInput(fechaEvaluacionFin),
+						
+					inicio,
+						
+					fin,
+						
+					ClpSerializer.translateInput(orden),
+						
+					ClpSerializer.translateInput(campoOrden)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.search.ParseException) {
+				throw (com.liferay.portal.kernel.search.ParseException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.SolicitudEvaluacionDesempenno>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -717,4 +826,8 @@ public class SolicitudEvaluacionDesempennoLocalServiceClp
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

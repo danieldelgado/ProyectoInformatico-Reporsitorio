@@ -6,3 +6,8 @@ function init() {
 	inputFristnamespace = $("input[type=hidden]").first().val();
 }
 
+
+function inicializarFormularioBusqueda() {
+	init();
+
+}

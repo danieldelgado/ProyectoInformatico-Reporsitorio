@@ -282,6 +282,29 @@ public class SolicitudEvaluacionDesempennoLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static long listaSolicitudEvaluacionCount(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio, java.util.Date fechaEvaluacionFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return getService()
+				   .listaSolicitudEvaluacionCount(solicitudEvaluacion,
+			fechaEvaluacionInicio, fechaEvaluacionFin);
+	}
+
+	public static java.util.List<com.hitss.layer.model.SolicitudEvaluacionDesempenno> listaSolicitudEvaluacion(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio,
+		java.util.Date fechaEvaluacionFin, int inicio, int fin,
+		java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return getService()
+				   .listaSolicitudEvaluacion(solicitudEvaluacion,
+			fechaEvaluacionInicio, fechaEvaluacionFin, inicio, fin, orden,
+			campoOrden);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

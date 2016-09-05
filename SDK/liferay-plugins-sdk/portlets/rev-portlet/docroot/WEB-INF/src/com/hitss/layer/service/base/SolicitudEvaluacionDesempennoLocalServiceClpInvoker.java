@@ -113,6 +113,21 @@ public class SolicitudEvaluacionDesempennoLocalServiceClpInvoker {
 		_methodName223 = "setBeanIdentifier";
 
 		_methodParameterTypes223 = new String[] { "java.lang.String" };
+
+		_methodName228 = "listaSolicitudEvaluacionCount";
+
+		_methodParameterTypes228 = new String[] {
+				"com.hitss.layer.model.SolicitudEvaluacionDesempenno",
+				"java.util.Date", "java.util.Date"
+			};
+
+		_methodName229 = "listaSolicitudEvaluacion";
+
+		_methodParameterTypes229 = new String[] {
+				"com.hitss.layer.model.SolicitudEvaluacionDesempenno",
+				"java.util.Date", "java.util.Date", "int", "int",
+				"java.lang.String", "java.lang.String"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +231,21 @@ public class SolicitudEvaluacionDesempennoLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName228.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes228, parameterTypes)) {
+			return SolicitudEvaluacionDesempennoLocalServiceUtil.listaSolicitudEvaluacionCount((com.hitss.layer.model.SolicitudEvaluacionDesempenno)arguments[0],
+				(java.util.Date)arguments[1], (java.util.Date)arguments[2]);
+		}
+
+		if (_methodName229.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes229, parameterTypes)) {
+			return SolicitudEvaluacionDesempennoLocalServiceUtil.listaSolicitudEvaluacion((com.hitss.layer.model.SolicitudEvaluacionDesempenno)arguments[0],
+				(java.util.Date)arguments[1], (java.util.Date)arguments[2],
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue(),
+				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +285,8 @@ public class SolicitudEvaluacionDesempennoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes222;
 	private String _methodName223;
 	private String[] _methodParameterTypes223;
+	private String _methodName228;
+	private String[] _methodParameterTypes228;
+	private String _methodName229;
+	private String[] _methodParameterTypes229;
 }

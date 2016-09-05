@@ -253,4 +253,18 @@ public interface SolicitudEvaluacionDesempennoLocalService
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public long listaSolicitudEvaluacionCount(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio, java.util.Date fechaEvaluacionFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException;
+
+	public java.util.List<com.hitss.layer.model.SolicitudEvaluacionDesempenno> listaSolicitudEvaluacion(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio,
+		java.util.Date fechaEvaluacionFin, int inicio, int fin,
+		java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException;
 }

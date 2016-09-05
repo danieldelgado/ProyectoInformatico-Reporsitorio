@@ -290,6 +290,29 @@ public class SolicitudEvaluacionDesempennoLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public long listaSolicitudEvaluacionCount(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio, java.util.Date fechaEvaluacionFin)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return _solicitudEvaluacionDesempennoLocalService.listaSolicitudEvaluacionCount(solicitudEvaluacion,
+			fechaEvaluacionInicio, fechaEvaluacionFin);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.SolicitudEvaluacionDesempenno> listaSolicitudEvaluacion(
+		com.hitss.layer.model.SolicitudEvaluacionDesempenno solicitudEvaluacion,
+		java.util.Date fechaEvaluacionInicio,
+		java.util.Date fechaEvaluacionFin, int inicio, int fin,
+		java.lang.String orden, java.lang.String campoOrden)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.kernel.search.ParseException {
+		return _solicitudEvaluacionDesempennoLocalService.listaSolicitudEvaluacion(solicitudEvaluacion,
+			fechaEvaluacionInicio, fechaEvaluacionFin, inicio, fin, orden,
+			campoOrden);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

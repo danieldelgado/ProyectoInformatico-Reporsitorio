@@ -54,11 +54,11 @@ public abstract class RevController {
 
 		return "view";
 	}
+	
 	public String defaultViewEvaluacion(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
 		_log.debug("defaultView");
 		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		
-
 		List<ComboBean> lstEstados = service.getEstados();
 		model.addAttribute("lstEstados", lstEstados);
 		
@@ -89,6 +89,18 @@ public abstract class RevController {
 		return defaultViewReclutamiento(request, response, model,service);
 	}
 	
+	public String irDefaultEvaluacion(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
+		Long solicitudEvaluacionId = ParamUtil.getLong(request, "solicitudEvaluacionId");
+		_log.debug("solicitudEvaluacionId:" + solicitudEvaluacionId);
+		String mensaje = ParamUtil.get(request, "mensaje", "");
+		_log.debug("mensaje:" + mensaje);
+		String titulo = ParamUtil.get(request, "titulo", "");
+		_log.debug("titulo:" + titulo);
+		response.addProperty("solicitudEvaluacionId", String.valueOf(solicitudEvaluacionId));
+		response.addProperty("titulo", titulo);
+		response.addProperty("mensaje", mensaje);
+		return defaultViewReclutamiento(request, response, model,service);
+	}
 	
 	public void listarSolicitudesReclutamiento(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
 		_log.debug("listarSolicitudesRelutamiento");
@@ -138,6 +150,50 @@ public abstract class RevController {
 		}
 	}
 	
+	public void listarSolicitudesEvaluacion(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
+		_log.info("listarSolicitudesEvaluacion");
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+		String descripcion = ParamUtil.get(resourceRequest, "descripcion","");
+		_log.info("descripcion:" + descripcion);
+
+		Date fechaEvaluacionInicio = null;
+		String fechaEvaluacionInicioVal = ParamUtil.get(resourceRequest, "fechaEvaluacionInicioVal", "");
+		if (Validator.isNotNull(fechaEvaluacionInicioVal)) {
+			fechaEvaluacionInicio = ParamUtil.getDate(resourceRequest, "fechaEvaluacionInicioVal", sdf);
+		}
+		_log.info("fechaEvaluacionInicio:" + fechaEvaluacionInicio);
+
+		Date fechaEvaluacionFin = null;
+		String fechaEvaluacionFinVal = ParamUtil.get(resourceRequest, "fechaEvaluacionFinVal", "");
+		if (Validator.isNotNull(fechaEvaluacionFinVal)) {
+			fechaEvaluacionFin = ParamUtil.getDate(resourceRequest, "fechaEvaluacionFinVal", sdf);
+		}
+		_log.info("fechaEvaluacionFin:" + fechaEvaluacionFin);
+
+		long estado = ParamUtil.getInteger(resourceRequest, "estado");
+		_log.debug("estado:" + estado);
+
+		int filas = ParamUtil.getInteger(resourceRequest, "filas");
+		_log.debug("filas:" + filas);
+
+		int pagina = ParamUtil.getInteger(resourceRequest, "pagina");
+		_log.debug("pagina:" + pagina);
+
+		String orden = ParamUtil.get(resourceRequest, "orden", "");
+		_log.debug("orden:" + orden);
+
+		String campoOrden = ParamUtil.get(resourceRequest, "campoOrden", "");
+		_log.debug("campoOrden:" + campoOrden);
+
+		Map<String, Object> result = service.listarSolicitudesEvaluacion(descripcion, fechaEvaluacionInicio, fechaEvaluacionFin, estado, filas, pagina, orden, campoOrden);
+		try {
+			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
+		} catch (IOException e) {
+			_log.error("e:" + e.getLocalizedMessage(), e);
+		}
+	}
 	
 	public void listarPuestosCategorias(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
 		String filtro = ParamUtil.get(resourceRequest, "filtro", "");
