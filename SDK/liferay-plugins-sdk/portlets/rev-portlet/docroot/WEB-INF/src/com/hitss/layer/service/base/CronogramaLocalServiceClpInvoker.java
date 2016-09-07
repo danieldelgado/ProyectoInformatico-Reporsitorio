@@ -109,6 +109,10 @@ public class CronogramaLocalServiceClpInvoker {
 		_methodName223 = "setBeanIdentifier";
 
 		_methodParameterTypes223 = new String[] { "java.lang.String" };
+
+		_methodName228 = "getCronogramaBySolicitud";
+
+		_methodParameterTypes228 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -212,6 +216,11 @@ public class CronogramaLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName228.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes228, parameterTypes)) {
+			return CronogramaLocalServiceUtil.getCronogramaBySolicitud((java.lang.Long)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -251,4 +260,6 @@ public class CronogramaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes222;
 	private String _methodName223;
 	private String[] _methodParameterTypes223;
+	private String _methodName228;
+	private String[] _methodParameterTypes228;
 }

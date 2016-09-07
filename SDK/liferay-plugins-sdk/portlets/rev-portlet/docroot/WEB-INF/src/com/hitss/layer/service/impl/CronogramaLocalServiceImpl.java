@@ -14,7 +14,11 @@
 
 package com.hitss.layer.service.impl;
 
+import com.hitss.layer.NoSuchCronogramaException;
+import com.hitss.layer.model.Cronograma;
 import com.hitss.layer.service.base.CronogramaLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.CronogramaUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the cronograma local service.
@@ -36,4 +40,10 @@ public class CronogramaLocalServiceImpl extends CronogramaLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.hitss.layer.service.CronogramaLocalServiceUtil} to access the cronograma local service.
 	 */
+	
+	public Cronograma getCronogramaBySolicitud(Long solicitudId) throws NoSuchCronogramaException, SystemException{
+		return CronogramaUtil.findByS(solicitudId);
+	}
+	
+	
 }

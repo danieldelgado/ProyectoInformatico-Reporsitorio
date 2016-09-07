@@ -121,6 +121,18 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 		_methodName223 = "setBeanIdentifier";
 
 		_methodParameterTypes223 = new String[] { "java.lang.String" };
+
+		_methodName228 = "getListaActividadCronogramaByActividadCronogramaGrupo";
+
+		_methodParameterTypes228 = new String[] {
+				"java.lang.Long", "java.lang.Long", "java.lang.Long"
+			};
+
+		_methodName229 = "getListaActividadCronogramaByCronogramaGrupo";
+
+		_methodParameterTypes229 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,6 +236,18 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName228.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes228, parameterTypes)) {
+			return ActividadCronogramaLocalServiceUtil.getListaActividadCronogramaByActividadCronogramaGrupo((java.lang.Long)arguments[0],
+				(java.lang.Long)arguments[1], (java.lang.Long)arguments[2]);
+		}
+
+		if (_methodName229.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes229, parameterTypes)) {
+			return ActividadCronogramaLocalServiceUtil.getListaActividadCronogramaByCronogramaGrupo((java.lang.Long)arguments[0],
+				(java.lang.Long)arguments[1]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -263,4 +287,8 @@ public class ActividadCronogramaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes222;
 	private String _methodName223;
 	private String[] _methodParameterTypes223;
+	private String _methodName228;
+	private String[] _methodParameterTypes228;
+	private String _methodName229;
+	private String[] _methodParameterTypes229;
 }

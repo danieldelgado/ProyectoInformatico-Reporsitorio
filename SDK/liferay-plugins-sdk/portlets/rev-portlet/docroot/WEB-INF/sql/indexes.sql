@@ -1,3 +1,8 @@
+create index IX_8C88CC16 on ActividadCronograma (actividadCronogramaId, cronogramaId, grupoUsuario);
+create index IX_B57B7D3D on ActividadCronograma (cronogramaId, grupoUsuario);
+
+create index IX_54815BAD on Cronograma (solicitudEvaluacionDesempennoId);
+
 create index IX_E5011B05 on FasePostulacion (fasePostulacionId);
 create index IX_E49423F9 on FasePostulacion (fasePostulacionId, solicitudRequerimientoId, usuarioId, tipoFase);
 create index IX_31601335 on FasePostulacion (solicitudRequerimientoId, fasePostulacionId);
@@ -14,6 +19,8 @@ create index IX_9CDF672F on Parametro (parametroIdpadre, valor);
 
 create index IX_CFC74745 on Postulacion (solicitudRequerimientoId);
 create index IX_E272E5F4 on Postulacion (solicitudRequerimientoId, usuarioId);
+
+create index IX_D6434D50 on PrioridadGrupoUsuarios (solicitudEvaluacionDesempennoId);
 
 create index IX_24B38389 on Puesto (descripcion);
 

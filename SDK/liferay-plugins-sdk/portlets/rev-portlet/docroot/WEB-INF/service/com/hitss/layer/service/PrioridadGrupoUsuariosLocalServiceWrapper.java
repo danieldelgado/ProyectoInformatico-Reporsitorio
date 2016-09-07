@@ -290,6 +290,12 @@ public class PrioridadGrupoUsuariosLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.PrioridadGrupoUsuarios> getListaPrioridadGrupoUsuariosBySolicitud(
+		java.lang.Long solicitudId) {
+		return _prioridadGrupoUsuariosLocalService.getListaPrioridadGrupoUsuariosBySolicitud(solicitudId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

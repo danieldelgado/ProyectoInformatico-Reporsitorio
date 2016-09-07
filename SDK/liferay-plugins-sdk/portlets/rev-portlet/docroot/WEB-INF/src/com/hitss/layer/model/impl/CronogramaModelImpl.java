@@ -89,7 +89,11 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.Cronograma"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.Cronograma"),
+			true);
+	public static long SOLICITUDEVALUACIONDESEMPENNOID_COLUMN_BITMASK = 1L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -278,7 +282,19 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 	@Override
 	public void setSolicitudEvaluacionDesempennoId(
 		long solicitudEvaluacionDesempennoId) {
+		_columnBitmask |= SOLICITUDEVALUACIONDESEMPENNOID_COLUMN_BITMASK;
+
+		if (!_setOriginalSolicitudEvaluacionDesempennoId) {
+			_setOriginalSolicitudEvaluacionDesempennoId = true;
+
+			_originalSolicitudEvaluacionDesempennoId = _solicitudEvaluacionDesempennoId;
+		}
+
 		_solicitudEvaluacionDesempennoId = solicitudEvaluacionDesempennoId;
+	}
+
+	public long getOriginalSolicitudEvaluacionDesempennoId() {
+		return _originalSolicitudEvaluacionDesempennoId;
 	}
 
 	@JSON
@@ -376,7 +392,13 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 
 	@Override
 	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
 		_fechamodifica = fechamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -465,6 +487,13 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 
 	@Override
 	public void resetOriginalValues() {
+		CronogramaModelImpl cronogramaModelImpl = this;
+
+		cronogramaModelImpl._originalSolicitudEvaluacionDesempennoId = cronogramaModelImpl._solicitudEvaluacionDesempennoId;
+
+		cronogramaModelImpl._setOriginalSolicitudEvaluacionDesempennoId = false;
+
+		cronogramaModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -603,6 +632,8 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 		};
 	private long _cronogramaId;
 	private long _solicitudEvaluacionDesempennoId;
+	private long _originalSolicitudEvaluacionDesempennoId;
+	private boolean _setOriginalSolicitudEvaluacionDesempennoId;
 	private String _descripcion;
 	private long _estado;
 	private int _aprobacionCronograma;
@@ -611,5 +642,6 @@ public class CronogramaModelImpl extends BaseModelImpl<Cronograma>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private Cronograma _escapedModel;
 }

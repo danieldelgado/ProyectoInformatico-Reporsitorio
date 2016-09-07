@@ -50,8 +50,9 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("cronogramaId", getCronogramaId());
 		attributes.put("actividadCronogramaId", getActividadCronogramaId());
+		attributes.put("cronogramaId", getCronogramaId());
+		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
@@ -59,7 +60,6 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 		attributes.put("estado", getEstado());
 		attributes.put("fechaInicioEvaluacion", getFechaInicioEvaluacion());
 		attributes.put("fechaFinEvaluacion", getFechaFinEvaluacion());
-		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("tipoActividad", getTipoActividad());
 		attributes.put("aprobadoColaborador", getAprobadoColaborador());
 		attributes.put("jerarquiaEvaluar", getJerarquiaEvaluar());
@@ -77,17 +77,23 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long actividadCronogramaId = (Long)attributes.get(
+				"actividadCronogramaId");
+
+		if (actividadCronogramaId != null) {
+			setActividadCronogramaId(actividadCronogramaId);
+		}
+
 		Long cronogramaId = (Long)attributes.get("cronogramaId");
 
 		if (cronogramaId != null) {
 			setCronogramaId(cronogramaId);
 		}
 
-		Long actividadCronogramaId = (Long)attributes.get(
-				"actividadCronogramaId");
+		Long grupoUsuario = (Long)attributes.get("grupoUsuario");
 
-		if (actividadCronogramaId != null) {
-			setActividadCronogramaId(actividadCronogramaId);
+		if (grupoUsuario != null) {
+			setGrupoUsuario(grupoUsuario);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -132,12 +138,6 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 
 		if (fechaFinEvaluacion != null) {
 			setFechaFinEvaluacion(fechaFinEvaluacion);
-		}
-
-		Long grupoUsuario = (Long)attributes.get("grupoUsuario");
-
-		if (grupoUsuario != null) {
-			setGrupoUsuario(grupoUsuario);
 		}
 
 		Long tipoActividad = (Long)attributes.get("tipoActividad");
@@ -229,6 +229,26 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	}
 
 	/**
+	* Returns the actividad cronograma ID of this actividad cronograma.
+	*
+	* @return the actividad cronograma ID of this actividad cronograma
+	*/
+	@Override
+	public long getActividadCronogramaId() {
+		return _actividadCronograma.getActividadCronogramaId();
+	}
+
+	/**
+	* Sets the actividad cronograma ID of this actividad cronograma.
+	*
+	* @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
+	*/
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronograma.setActividadCronogramaId(actividadCronogramaId);
+	}
+
+	/**
 	* Returns the cronograma ID of this actividad cronograma.
 	*
 	* @return the cronograma ID of this actividad cronograma
@@ -249,23 +269,23 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	}
 
 	/**
-	* Returns the actividad cronograma ID of this actividad cronograma.
+	* Returns the grupo usuario of this actividad cronograma.
 	*
-	* @return the actividad cronograma ID of this actividad cronograma
+	* @return the grupo usuario of this actividad cronograma
 	*/
 	@Override
-	public long getActividadCronogramaId() {
-		return _actividadCronograma.getActividadCronogramaId();
+	public long getGrupoUsuario() {
+		return _actividadCronograma.getGrupoUsuario();
 	}
 
 	/**
-	* Sets the actividad cronograma ID of this actividad cronograma.
+	* Sets the grupo usuario of this actividad cronograma.
 	*
-	* @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
+	* @param grupoUsuario the grupo usuario of this actividad cronograma
 	*/
 	@Override
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronograma.setActividadCronogramaId(actividadCronogramaId);
+	public void setGrupoUsuario(long grupoUsuario) {
+		_actividadCronograma.setGrupoUsuario(grupoUsuario);
 	}
 
 	/**
@@ -416,26 +436,6 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	@Override
 	public void setFechaFinEvaluacion(java.util.Date fechaFinEvaluacion) {
 		_actividadCronograma.setFechaFinEvaluacion(fechaFinEvaluacion);
-	}
-
-	/**
-	* Returns the grupo usuario of this actividad cronograma.
-	*
-	* @return the grupo usuario of this actividad cronograma
-	*/
-	@Override
-	public long getGrupoUsuario() {
-		return _actividadCronograma.getGrupoUsuario();
-	}
-
-	/**
-	* Sets the grupo usuario of this actividad cronograma.
-	*
-	* @param grupoUsuario the grupo usuario of this actividad cronograma
-	*/
-	@Override
-	public void setGrupoUsuario(long grupoUsuario) {
-		_actividadCronograma.setGrupoUsuario(grupoUsuario);
 	}
 
 	/**

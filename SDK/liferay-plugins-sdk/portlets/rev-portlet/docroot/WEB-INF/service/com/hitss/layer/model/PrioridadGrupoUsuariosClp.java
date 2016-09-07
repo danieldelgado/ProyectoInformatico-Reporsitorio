@@ -19,7 +19,6 @@ import com.hitss.layer.service.PrioridadGrupoUsuariosLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -516,8 +515,15 @@ public class PrioridadGrupoUsuariosClp extends BaseModelImpl<PrioridadGrupoUsuar
 	public int compareTo(PrioridadGrupoUsuarios prioridadGrupoUsuarios) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechamodifica(),
-				prioridadGrupoUsuarios.getFechamodifica());
+		if (getOrden() < prioridadGrupoUsuarios.getOrden()) {
+			value = -1;
+		}
+		else if (getOrden() > prioridadGrupoUsuarios.getOrden()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;

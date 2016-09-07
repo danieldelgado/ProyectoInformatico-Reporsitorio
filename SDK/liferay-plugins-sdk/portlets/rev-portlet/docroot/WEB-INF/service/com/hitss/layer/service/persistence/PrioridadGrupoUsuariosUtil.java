@@ -113,6 +113,177 @@ public class PrioridadGrupoUsuariosUtil {
 	}
 
 	/**
+	* Returns all the prioridad grupo usuarioses where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @return the matching prioridad grupo usuarioses
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.PrioridadGrupoUsuarios> findByS(
+		long solicitudEvaluacionDesempennoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByS(solicitudEvaluacionDesempennoId);
+	}
+
+	/**
+	* Returns a range of all the prioridad grupo usuarioses where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.PrioridadGrupoUsuariosModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param start the lower bound of the range of prioridad grupo usuarioses
+	* @param end the upper bound of the range of prioridad grupo usuarioses (not inclusive)
+	* @return the range of matching prioridad grupo usuarioses
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.PrioridadGrupoUsuarios> findByS(
+		long solicitudEvaluacionDesempennoId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByS(solicitudEvaluacionDesempennoId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the prioridad grupo usuarioses where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.PrioridadGrupoUsuariosModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param start the lower bound of the range of prioridad grupo usuarioses
+	* @param end the upper bound of the range of prioridad grupo usuarioses (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching prioridad grupo usuarioses
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.PrioridadGrupoUsuarios> findByS(
+		long solicitudEvaluacionDesempennoId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByS(solicitudEvaluacionDesempennoId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first prioridad grupo usuarios in the ordered set where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching prioridad grupo usuarios
+	* @throws com.hitss.layer.NoSuchPrioridadGrupoUsuariosException if a matching prioridad grupo usuarios could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.PrioridadGrupoUsuarios findByS_First(
+		long solicitudEvaluacionDesempennoId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchPrioridadGrupoUsuariosException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByS_First(solicitudEvaluacionDesempennoId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first prioridad grupo usuarios in the ordered set where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching prioridad grupo usuarios, or <code>null</code> if a matching prioridad grupo usuarios could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.PrioridadGrupoUsuarios fetchByS_First(
+		long solicitudEvaluacionDesempennoId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByS_First(solicitudEvaluacionDesempennoId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last prioridad grupo usuarios in the ordered set where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching prioridad grupo usuarios
+	* @throws com.hitss.layer.NoSuchPrioridadGrupoUsuariosException if a matching prioridad grupo usuarios could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.PrioridadGrupoUsuarios findByS_Last(
+		long solicitudEvaluacionDesempennoId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchPrioridadGrupoUsuariosException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByS_Last(solicitudEvaluacionDesempennoId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last prioridad grupo usuarios in the ordered set where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching prioridad grupo usuarios, or <code>null</code> if a matching prioridad grupo usuarios could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.PrioridadGrupoUsuarios fetchByS_Last(
+		long solicitudEvaluacionDesempennoId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByS_Last(solicitudEvaluacionDesempennoId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the prioridad grupo usuarioses before and after the current prioridad grupo usuarios in the ordered set where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param prioridadGrupoUsuariosId the primary key of the current prioridad grupo usuarios
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next prioridad grupo usuarios
+	* @throws com.hitss.layer.NoSuchPrioridadGrupoUsuariosException if a prioridad grupo usuarios with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.PrioridadGrupoUsuarios[] findByS_PrevAndNext(
+		long prioridadGrupoUsuariosId, long solicitudEvaluacionDesempennoId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchPrioridadGrupoUsuariosException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByS_PrevAndNext(prioridadGrupoUsuariosId,
+			solicitudEvaluacionDesempennoId, orderByComparator);
+	}
+
+	/**
+	* Removes all the prioridad grupo usuarioses where solicitudEvaluacionDesempennoId = &#63; from the database.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByS(long solicitudEvaluacionDesempennoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByS(solicitudEvaluacionDesempennoId);
+	}
+
+	/**
+	* Returns the number of prioridad grupo usuarioses where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @return the number of matching prioridad grupo usuarioses
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByS(long solicitudEvaluacionDesempennoId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByS(solicitudEvaluacionDesempennoId);
+	}
+
+	/**
 	* Caches the prioridad grupo usuarios in the entity cache if it is enabled.
 	*
 	* @param prioridadGrupoUsuarios the prioridad grupo usuarios

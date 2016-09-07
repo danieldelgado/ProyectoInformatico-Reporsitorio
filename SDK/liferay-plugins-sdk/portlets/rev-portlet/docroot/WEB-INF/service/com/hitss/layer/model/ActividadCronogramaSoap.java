@@ -33,8 +33,9 @@ public class ActividadCronogramaSoap implements Serializable {
 	public static ActividadCronogramaSoap toSoapModel(ActividadCronograma model) {
 		ActividadCronogramaSoap soapModel = new ActividadCronogramaSoap();
 
-		soapModel.setCronogramaId(model.getCronogramaId());
 		soapModel.setActividadCronogramaId(model.getActividadCronogramaId());
+		soapModel.setCronogramaId(model.getCronogramaId());
+		soapModel.setGrupoUsuario(model.getGrupoUsuario());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setFechaInicio(model.getFechaInicio());
 		soapModel.setFechaFin(model.getFechaFin());
@@ -42,7 +43,6 @@ public class ActividadCronogramaSoap implements Serializable {
 		soapModel.setEstado(model.getEstado());
 		soapModel.setFechaInicioEvaluacion(model.getFechaInicioEvaluacion());
 		soapModel.setFechaFinEvaluacion(model.getFechaFinEvaluacion());
-		soapModel.setGrupoUsuario(model.getGrupoUsuario());
 		soapModel.setTipoActividad(model.getTipoActividad());
 		soapModel.setAprobadoColaborador(model.getAprobadoColaborador());
 		soapModel.setJerarquiaEvaluar(model.getJerarquiaEvaluar());
@@ -102,12 +102,20 @@ public class ActividadCronogramaSoap implements Serializable {
 	}
 
 	public ActividadCronogramaPK getPrimaryKey() {
-		return new ActividadCronogramaPK(_cronogramaId, _actividadCronogramaId);
+		return new ActividadCronogramaPK(_actividadCronogramaId, _cronogramaId);
 	}
 
 	public void setPrimaryKey(ActividadCronogramaPK pk) {
-		setCronogramaId(pk.cronogramaId);
 		setActividadCronogramaId(pk.actividadCronogramaId);
+		setCronogramaId(pk.cronogramaId);
+	}
+
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
 	}
 
 	public long getCronogramaId() {
@@ -118,12 +126,12 @@ public class ActividadCronogramaSoap implements Serializable {
 		_cronogramaId = cronogramaId;
 	}
 
-	public long getActividadCronogramaId() {
-		return _actividadCronogramaId;
+	public long getGrupoUsuario() {
+		return _grupoUsuario;
 	}
 
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronogramaId = actividadCronogramaId;
+	public void setGrupoUsuario(long grupoUsuario) {
+		_grupoUsuario = grupoUsuario;
 	}
 
 	public String getDescripcion() {
@@ -184,14 +192,6 @@ public class ActividadCronogramaSoap implements Serializable {
 
 	public void setFechaFinEvaluacion(Date fechaFinEvaluacion) {
 		_fechaFinEvaluacion = fechaFinEvaluacion;
-	}
-
-	public long getGrupoUsuario() {
-		return _grupoUsuario;
-	}
-
-	public void setGrupoUsuario(long grupoUsuario) {
-		_grupoUsuario = grupoUsuario;
 	}
 
 	public long getTipoActividad() {
@@ -286,8 +286,9 @@ public class ActividadCronogramaSoap implements Serializable {
 		_fechamodifica = fechamodifica;
 	}
 
-	private long _cronogramaId;
 	private long _actividadCronogramaId;
+	private long _cronogramaId;
+	private long _grupoUsuario;
 	private String _descripcion;
 	private Date _fechaInicio;
 	private Date _fechaFin;
@@ -295,7 +296,6 @@ public class ActividadCronogramaSoap implements Serializable {
 	private long _estado;
 	private Date _fechaInicioEvaluacion;
 	private Date _fechaFinEvaluacion;
-	private long _grupoUsuario;
 	private long _tipoActividad;
 	private long _aprobadoColaborador;
 	private long _jerarquiaEvaluar;

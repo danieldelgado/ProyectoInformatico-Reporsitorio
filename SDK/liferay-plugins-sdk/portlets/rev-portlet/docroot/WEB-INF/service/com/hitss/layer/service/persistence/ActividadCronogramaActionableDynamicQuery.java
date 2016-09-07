@@ -33,6 +33,6 @@ public abstract class ActividadCronogramaActionableDynamicQuery
 
 		setClassLoader(com.hitss.layer.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("primaryKey.cronogramaId");
+		setPrimaryKeyPropertyName("primaryKey.actividadCronogramaId");
 	}
 }

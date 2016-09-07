@@ -17,7 +17,8 @@
 <portlet:resourceURL var="listarSolicitudesEvaluacion" id="listarSolicitudesEvaluacion" />
 
 <input type="hidden" value="<portlet:namespace/>" />
-<input id="<portlet:namespace/>listarSolicitudesEvaluacion" type="hidden" value="${listarSolicitudesEvaluacion}" />
+<input id="<portlet:namespace/>listarSolicitudesEvaluacionUrl" type="hidden" value="${listarSolicitudesEvaluacion}" />
+<input id="<portlet:namespace/>crearCronogramaUrl" type="hidden" value="${crearCronograma}" />
 
 
 <input id="<portlet:namespace/>pagina" type="hidden" value="1" />

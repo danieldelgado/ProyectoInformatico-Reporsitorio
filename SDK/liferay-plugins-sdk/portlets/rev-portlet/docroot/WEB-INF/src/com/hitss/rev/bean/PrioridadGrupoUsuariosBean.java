@@ -1,14 +1,20 @@
 package com.hitss.rev.bean;
 
+import java.io.Serializable;
 
-public class PrioridadGrupoUsuariosBean {
+
+public class PrioridadGrupoUsuariosBean implements Serializable{
 
 	private long prioridadGrupoUsuariosId;
 	private long solicitudEvaluacionId;
 	private long liderGrupo;
 	private long liderGerenteArea;
 	private long grupoUsuario;
+	private String strgrupoUsuario;
 	private int order;
+
+	private ActividadCronogramaBean actividadCronogramaBean;
+	
 	public long getPrioridadGrupoUsuariosId() {
 		return prioridadGrupoUsuariosId;
 	}
@@ -44,6 +50,18 @@ public class PrioridadGrupoUsuariosBean {
 	}
 	public void setOrder(int order) {
 		this.order = order;
+	}
+	public String getStrgrupoUsuario() {
+		return strgrupoUsuario;
+	}
+	public void setStrgrupoUsuario(String strgrupoUsuario) {
+		this.strgrupoUsuario = strgrupoUsuario;
+	}
+	public ActividadCronogramaBean getActividadCronogramaBean() {
+		return actividadCronogramaBean;
+	}
+	public void setActividadCronogramaBean(ActividadCronogramaBean actividadCronogramaBean) {
+		this.actividadCronogramaBean = actividadCronogramaBean;
 	}
 	
 	

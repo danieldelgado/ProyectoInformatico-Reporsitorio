@@ -159,16 +159,16 @@ public abstract class RevController {
 		_log.info("descripcion:" + descripcion);
 
 		Date fechaEvaluacionInicio = null;
-		String fechaEvaluacionInicioVal = ParamUtil.get(resourceRequest, "fechaEvaluacionInicioVal", "");
+		String fechaEvaluacionInicioVal = ParamUtil.get(resourceRequest, "fechaRegistroInicioVal", "");
 		if (Validator.isNotNull(fechaEvaluacionInicioVal)) {
-			fechaEvaluacionInicio = ParamUtil.getDate(resourceRequest, "fechaEvaluacionInicioVal", sdf);
+			fechaEvaluacionInicio = ParamUtil.getDate(resourceRequest, "fechaRegistroInicioVal", sdf);
 		}
 		_log.info("fechaEvaluacionInicio:" + fechaEvaluacionInicio);
 
 		Date fechaEvaluacionFin = null;
-		String fechaEvaluacionFinVal = ParamUtil.get(resourceRequest, "fechaEvaluacionFinVal", "");
+		String fechaEvaluacionFinVal = ParamUtil.get(resourceRequest, "fechaRegistroFinVal", "");
 		if (Validator.isNotNull(fechaEvaluacionFinVal)) {
-			fechaEvaluacionFin = ParamUtil.getDate(resourceRequest, "fechaEvaluacionFinVal", sdf);
+			fechaEvaluacionFin = ParamUtil.getDate(resourceRequest, "fechaRegistroFinVal", sdf);
 		}
 		_log.info("fechaEvaluacionFin:" + fechaEvaluacionFin);
 

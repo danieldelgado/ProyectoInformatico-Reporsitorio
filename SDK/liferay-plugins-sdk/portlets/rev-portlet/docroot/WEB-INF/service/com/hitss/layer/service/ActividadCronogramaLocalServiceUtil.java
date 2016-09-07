@@ -275,6 +275,23 @@ public class ActividadCronogramaLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.hitss.layer.model.ActividadCronograma> getListaActividadCronogramaByActividadCronogramaGrupo(
+		java.lang.Long actividadCronogramaId, java.lang.Long cronogramaId,
+		java.lang.Long grupoUsuario)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getListaActividadCronogramaByActividadCronogramaGrupo(actividadCronogramaId,
+			cronogramaId, grupoUsuario);
+	}
+
+	public static java.util.List<com.hitss.layer.model.ActividadCronograma> getListaActividadCronogramaByCronogramaGrupo(
+		java.lang.Long cronogramaId, java.lang.Long grupoUsuario)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getListaActividadCronogramaByCronogramaGrupo(cronogramaId,
+			grupoUsuario);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

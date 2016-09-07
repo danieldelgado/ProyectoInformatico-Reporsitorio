@@ -275,6 +275,13 @@ public class CronogramaLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.hitss.layer.model.Cronograma getCronogramaBySolicitud(
+		java.lang.Long solicitudId)
+		throws com.hitss.layer.NoSuchCronogramaException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getCronogramaBySolicitud(solicitudId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

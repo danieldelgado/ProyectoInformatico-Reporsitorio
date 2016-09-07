@@ -277,6 +277,12 @@ public class PrioridadGrupoUsuariosLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.hitss.layer.model.PrioridadGrupoUsuarios> getListaPrioridadGrupoUsuariosBySolicitud(
+		java.lang.Long solicitudId) {
+		return getService()
+				   .getListaPrioridadGrupoUsuariosBySolicitud(solicitudId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

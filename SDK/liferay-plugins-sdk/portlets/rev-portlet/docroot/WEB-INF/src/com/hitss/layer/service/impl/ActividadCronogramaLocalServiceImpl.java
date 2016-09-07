@@ -14,7 +14,12 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.ActividadCronograma;
 import com.hitss.layer.service.base.ActividadCronogramaLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.ActividadCronogramaUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the actividad cronograma local service.
@@ -36,5 +41,16 @@ public class ActividadCronogramaLocalServiceImpl
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this interface directly. Always use {@link com.hitss.layer.service.ActividadCronogramaLocalServiceUtil} to access the actividad cronograma local service.
-	 */
+	 */  
+	 
+	 public List<ActividadCronograma> getListaActividadCronogramaByActividadCronogramaGrupo(Long actividadCronogramaId, Long cronogramaId,Long  grupoUsuario) throws SystemException{
+		 return ActividadCronogramaUtil.findByA_C_G(actividadCronogramaId, cronogramaId, grupoUsuario);
+	 }
+	 
+	 public List<ActividadCronograma> getListaActividadCronogramaByCronogramaGrupo( Long cronogramaId,Long  grupoUsuario) throws SystemException{
+		 return ActividadCronogramaUtil.findByC_G( cronogramaId, grupoUsuario);
+	 }
+	 
+	 
+	 
 }

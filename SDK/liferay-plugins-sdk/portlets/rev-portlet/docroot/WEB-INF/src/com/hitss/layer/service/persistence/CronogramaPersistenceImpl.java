@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,6 +36,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
@@ -80,6 +82,225 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(CronogramaModelImpl.ENTITY_CACHE_ENABLED,
 			CronogramaModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_S = new FinderPath(CronogramaModelImpl.ENTITY_CACHE_ENABLED,
+			CronogramaModelImpl.FINDER_CACHE_ENABLED, CronogramaImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByS",
+			new String[] { Long.class.getName() },
+			CronogramaModelImpl.SOLICITUDEVALUACIONDESEMPENNOID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_S = new FinderPath(CronogramaModelImpl.ENTITY_CACHE_ENABLED,
+			CronogramaModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByS",
+			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns the cronograma where solicitudEvaluacionDesempennoId = &#63; or throws a {@link com.hitss.layer.NoSuchCronogramaException} if it could not be found.
+	 *
+	 * @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	 * @return the matching cronograma
+	 * @throws com.hitss.layer.NoSuchCronogramaException if a matching cronograma could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Cronograma findByS(long solicitudEvaluacionDesempennoId)
+		throws NoSuchCronogramaException, SystemException {
+		Cronograma cronograma = fetchByS(solicitudEvaluacionDesempennoId);
+
+		if (cronograma == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("solicitudEvaluacionDesempennoId=");
+			msg.append(solicitudEvaluacionDesempennoId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchCronogramaException(msg.toString());
+		}
+
+		return cronograma;
+	}
+
+	/**
+	 * Returns the cronograma where solicitudEvaluacionDesempennoId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	 * @return the matching cronograma, or <code>null</code> if a matching cronograma could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Cronograma fetchByS(long solicitudEvaluacionDesempennoId)
+		throws SystemException {
+		return fetchByS(solicitudEvaluacionDesempennoId, true);
+	}
+
+	/**
+	 * Returns the cronograma where solicitudEvaluacionDesempennoId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching cronograma, or <code>null</code> if a matching cronograma could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Cronograma fetchByS(long solicitudEvaluacionDesempennoId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { solicitudEvaluacionDesempennoId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_S,
+					finderArgs, this);
+		}
+
+		if (result instanceof Cronograma) {
+			Cronograma cronograma = (Cronograma)result;
+
+			if ((solicitudEvaluacionDesempennoId != cronograma.getSolicitudEvaluacionDesempennoId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_CRONOGRAMA_WHERE);
+
+			query.append(_FINDER_COLUMN_S_SOLICITUDEVALUACIONDESEMPENNOID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(solicitudEvaluacionDesempennoId);
+
+				List<Cronograma> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_S,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"CronogramaPersistenceImpl.fetchByS(long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					Cronograma cronograma = list.get(0);
+
+					result = cronograma;
+
+					cacheResult(cronograma);
+
+					if ((cronograma.getSolicitudEvaluacionDesempennoId() != solicitudEvaluacionDesempennoId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_S,
+							finderArgs, cronograma);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_S, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (Cronograma)result;
+		}
+	}
+
+	/**
+	 * Removes the cronograma where solicitudEvaluacionDesempennoId = &#63; from the database.
+	 *
+	 * @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	 * @return the cronograma that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Cronograma removeByS(long solicitudEvaluacionDesempennoId)
+		throws NoSuchCronogramaException, SystemException {
+		Cronograma cronograma = findByS(solicitudEvaluacionDesempennoId);
+
+		return remove(cronograma);
+	}
+
+	/**
+	 * Returns the number of cronogramas where solicitudEvaluacionDesempennoId = &#63;.
+	 *
+	 * @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	 * @return the number of matching cronogramas
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByS(long solicitudEvaluacionDesempennoId)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_S;
+
+		Object[] finderArgs = new Object[] { solicitudEvaluacionDesempennoId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_CRONOGRAMA_WHERE);
+
+			query.append(_FINDER_COLUMN_S_SOLICITUDEVALUACIONDESEMPENNOID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(solicitudEvaluacionDesempennoId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_S_SOLICITUDEVALUACIONDESEMPENNOID_2 =
+		"cronograma.solicitudEvaluacionDesempennoId = ? AND cronograma.activo=true";
 
 	public CronogramaPersistenceImpl() {
 		setModelClass(Cronograma.class);
@@ -94,6 +315,10 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 	public void cacheResult(Cronograma cronograma) {
 		EntityCacheUtil.putResult(CronogramaModelImpl.ENTITY_CACHE_ENABLED,
 			CronogramaImpl.class, cronograma.getPrimaryKey(), cronograma);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_S,
+			new Object[] { cronograma.getSolicitudEvaluacionDesempennoId() },
+			cronograma);
 
 		cronograma.resetOriginalValues();
 	}
@@ -151,6 +376,8 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(cronograma);
 	}
 
 	@Override
@@ -161,6 +388,56 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 		for (Cronograma cronograma : cronogramas) {
 			EntityCacheUtil.removeResult(CronogramaModelImpl.ENTITY_CACHE_ENABLED,
 				CronogramaImpl.class, cronograma.getPrimaryKey());
+
+			clearUniqueFindersCache(cronograma);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(Cronograma cronograma) {
+		if (cronograma.isNew()) {
+			Object[] args = new Object[] {
+					cronograma.getSolicitudEvaluacionDesempennoId()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_S, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_S, args, cronograma);
+		}
+		else {
+			CronogramaModelImpl cronogramaModelImpl = (CronogramaModelImpl)cronograma;
+
+			if ((cronogramaModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						cronograma.getSolicitudEvaluacionDesempennoId()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_S, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_S, args,
+					cronograma);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(Cronograma cronograma) {
+		CronogramaModelImpl cronogramaModelImpl = (CronogramaModelImpl)cronograma;
+
+		Object[] args = new Object[] {
+				cronograma.getSolicitudEvaluacionDesempennoId()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_S, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_S, args);
+
+		if ((cronogramaModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_S.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					cronogramaModelImpl.getOriginalSolicitudEvaluacionDesempennoId()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_S, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_S, args);
 		}
 	}
 
@@ -298,12 +575,15 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-		if (isNew) {
+		if (isNew || !CronogramaModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		EntityCacheUtil.putResult(CronogramaModelImpl.ENTITY_CACHE_ENABLED,
 			CronogramaImpl.class, cronograma.getPrimaryKey(), cronograma);
+
+		clearUniqueFindersCache(cronograma);
+		cacheUniqueFindersCache(cronograma);
 
 		return cronograma;
 	}
@@ -638,9 +918,12 @@ public class CronogramaPersistenceImpl extends BasePersistenceImpl<Cronograma>
 	}
 
 	private static final String _SQL_SELECT_CRONOGRAMA = "SELECT cronograma FROM Cronograma cronograma";
+	private static final String _SQL_SELECT_CRONOGRAMA_WHERE = "SELECT cronograma FROM Cronograma cronograma WHERE ";
 	private static final String _SQL_COUNT_CRONOGRAMA = "SELECT COUNT(cronograma) FROM Cronograma cronograma";
+	private static final String _SQL_COUNT_CRONOGRAMA_WHERE = "SELECT COUNT(cronograma) FROM Cronograma cronograma WHERE ";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "cronograma.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Cronograma exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Cronograma exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(CronogramaPersistenceImpl.class);

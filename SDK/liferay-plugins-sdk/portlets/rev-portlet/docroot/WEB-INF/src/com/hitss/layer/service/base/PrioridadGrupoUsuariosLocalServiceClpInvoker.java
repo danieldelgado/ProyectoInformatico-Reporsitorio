@@ -113,6 +113,10 @@ public class PrioridadGrupoUsuariosLocalServiceClpInvoker {
 		_methodName223 = "setBeanIdentifier";
 
 		_methodParameterTypes223 = new String[] { "java.lang.String" };
+
+		_methodName228 = "getListaPrioridadGrupoUsuariosBySolicitud";
+
+		_methodParameterTypes228 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +220,11 @@ public class PrioridadGrupoUsuariosLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName228.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes228, parameterTypes)) {
+			return PrioridadGrupoUsuariosLocalServiceUtil.getListaPrioridadGrupoUsuariosBySolicitud((java.lang.Long)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +264,6 @@ public class PrioridadGrupoUsuariosLocalServiceClpInvoker {
 	private String[] _methodParameterTypes222;
 	private String _methodName223;
 	private String[] _methodParameterTypes223;
+	private String _methodName228;
+	private String[] _methodParameterTypes228;
 }

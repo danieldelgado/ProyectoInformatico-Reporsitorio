@@ -2,6 +2,7 @@ package com.hitss.rev.util;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +100,7 @@ public abstract class RevServiceImpl {
 		Map<String, Object> result = new HashMap<String, Object>();
 //		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		List<SolicitudEvaluacionBean> lista = null;
+		Calendar calendar = Calendar.getInstance();
 		SolicitudEvaluacionDesempenno solicitudEvaluacionDesempenno = new SolicitudEvaluacionDesempennoImpl();
 		solicitudEvaluacionDesempenno.setDescripcion(descripcion);
 		solicitudEvaluacionDesempenno.setEstado(estado);
@@ -124,6 +126,9 @@ public abstract class RevServiceImpl {
 					solicitudEvaluacionBean.setSolicitudEvaluacionId(sr.getSolicitudEvaluacionDesempennoId());
 					solicitudEvaluacionBean.setDescripcion(sr.getDescripcion());
 					solicitudEvaluacionBean.setFechaInicioEvaluacion(sr.getFechaInicio());
+					solicitudEvaluacionBean.setStrfechaInicioEvaluacion(Util.getStrFecha(sr.getFechaInicio()));					
+					calendar.add(Calendar.DAY_OF_MONTH, 30);
+					solicitudEvaluacionBean.setStrfechaFinalizacionEvaluacion(Util.getStrFecha( calendar.getTime()));
 					solicitudEvaluacionBean.setEstado(sr.getEstado());
 					solicitudEvaluacionBean.setStrestado(parametroService.getParametro(sr.getEstado()).getValor());
 					lista.add(solicitudEvaluacionBean);

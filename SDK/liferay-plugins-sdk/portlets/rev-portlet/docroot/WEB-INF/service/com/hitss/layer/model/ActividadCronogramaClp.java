@@ -54,18 +54,18 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 
 	@Override
 	public ActividadCronogramaPK getPrimaryKey() {
-		return new ActividadCronogramaPK(_cronogramaId, _actividadCronogramaId);
+		return new ActividadCronogramaPK(_actividadCronogramaId, _cronogramaId);
 	}
 
 	@Override
 	public void setPrimaryKey(ActividadCronogramaPK primaryKey) {
-		setCronogramaId(primaryKey.cronogramaId);
 		setActividadCronogramaId(primaryKey.actividadCronogramaId);
+		setCronogramaId(primaryKey.cronogramaId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new ActividadCronogramaPK(_cronogramaId, _actividadCronogramaId);
+		return new ActividadCronogramaPK(_actividadCronogramaId, _cronogramaId);
 	}
 
 	@Override
@@ -77,8 +77,9 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("cronogramaId", getCronogramaId());
 		attributes.put("actividadCronogramaId", getActividadCronogramaId());
+		attributes.put("cronogramaId", getCronogramaId());
+		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
@@ -86,7 +87,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		attributes.put("estado", getEstado());
 		attributes.put("fechaInicioEvaluacion", getFechaInicioEvaluacion());
 		attributes.put("fechaFinEvaluacion", getFechaFinEvaluacion());
-		attributes.put("grupoUsuario", getGrupoUsuario());
 		attributes.put("tipoActividad", getTipoActividad());
 		attributes.put("aprobadoColaborador", getAprobadoColaborador());
 		attributes.put("jerarquiaEvaluar", getJerarquiaEvaluar());
@@ -104,17 +104,23 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long actividadCronogramaId = (Long)attributes.get(
+				"actividadCronogramaId");
+
+		if (actividadCronogramaId != null) {
+			setActividadCronogramaId(actividadCronogramaId);
+		}
+
 		Long cronogramaId = (Long)attributes.get("cronogramaId");
 
 		if (cronogramaId != null) {
 			setCronogramaId(cronogramaId);
 		}
 
-		Long actividadCronogramaId = (Long)attributes.get(
-				"actividadCronogramaId");
+		Long grupoUsuario = (Long)attributes.get("grupoUsuario");
 
-		if (actividadCronogramaId != null) {
-			setActividadCronogramaId(actividadCronogramaId);
+		if (grupoUsuario != null) {
+			setGrupoUsuario(grupoUsuario);
 		}
 
 		String descripcion = (String)attributes.get("descripcion");
@@ -159,12 +165,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 
 		if (fechaFinEvaluacion != null) {
 			setFechaFinEvaluacion(fechaFinEvaluacion);
-		}
-
-		Long grupoUsuario = (Long)attributes.get("grupoUsuario");
-
-		if (grupoUsuario != null) {
-			setGrupoUsuario(grupoUsuario);
 		}
 
 		Long tipoActividad = (Long)attributes.get("tipoActividad");
@@ -235,6 +235,31 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	}
 
 	@Override
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
+
+		if (_actividadCronogramaRemoteModel != null) {
+			try {
+				Class<?> clazz = _actividadCronogramaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setActividadCronogramaId",
+						long.class);
+
+				method.invoke(_actividadCronogramaRemoteModel,
+					actividadCronogramaId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public long getCronogramaId() {
 		return _cronogramaId;
 	}
@@ -258,23 +283,21 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	}
 
 	@Override
-	public long getActividadCronogramaId() {
-		return _actividadCronogramaId;
+	public long getGrupoUsuario() {
+		return _grupoUsuario;
 	}
 
 	@Override
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronogramaId = actividadCronogramaId;
+	public void setGrupoUsuario(long grupoUsuario) {
+		_grupoUsuario = grupoUsuario;
 
 		if (_actividadCronogramaRemoteModel != null) {
 			try {
 				Class<?> clazz = _actividadCronogramaRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setActividadCronogramaId",
-						long.class);
+				Method method = clazz.getMethod("setGrupoUsuario", long.class);
 
-				method.invoke(_actividadCronogramaRemoteModel,
-					actividadCronogramaId);
+				method.invoke(_actividadCronogramaRemoteModel, grupoUsuario);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -447,29 +470,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 
 				method.invoke(_actividadCronogramaRemoteModel,
 					fechaFinEvaluacion);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getGrupoUsuario() {
-		return _grupoUsuario;
-	}
-
-	@Override
-	public void setGrupoUsuario(long grupoUsuario) {
-		_grupoUsuario = grupoUsuario;
-
-		if (_actividadCronogramaRemoteModel != null) {
-			try {
-				Class<?> clazz = _actividadCronogramaRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setGrupoUsuario", long.class);
-
-				method.invoke(_actividadCronogramaRemoteModel, grupoUsuario);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -810,8 +810,9 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	public Object clone() {
 		ActividadCronogramaClp clone = new ActividadCronogramaClp();
 
-		clone.setCronogramaId(getCronogramaId());
 		clone.setActividadCronogramaId(getActividadCronogramaId());
+		clone.setCronogramaId(getCronogramaId());
+		clone.setGrupoUsuario(getGrupoUsuario());
 		clone.setDescripcion(getDescripcion());
 		clone.setFechaInicio(getFechaInicio());
 		clone.setFechaFin(getFechaFin());
@@ -819,7 +820,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		clone.setEstado(getEstado());
 		clone.setFechaInicioEvaluacion(getFechaInicioEvaluacion());
 		clone.setFechaFinEvaluacion(getFechaFinEvaluacion());
-		clone.setGrupoUsuario(getGrupoUsuario());
 		clone.setTipoActividad(getTipoActividad());
 		clone.setAprobadoColaborador(getAprobadoColaborador());
 		clone.setJerarquiaEvaluar(getJerarquiaEvaluar());
@@ -884,10 +884,12 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	public String toString() {
 		StringBundler sb = new StringBundler(43);
 
-		sb.append("{cronogramaId=");
-		sb.append(getCronogramaId());
-		sb.append(", actividadCronogramaId=");
+		sb.append("{actividadCronogramaId=");
 		sb.append(getActividadCronogramaId());
+		sb.append(", cronogramaId=");
+		sb.append(getCronogramaId());
+		sb.append(", grupoUsuario=");
+		sb.append(getGrupoUsuario());
 		sb.append(", descripcion=");
 		sb.append(getDescripcion());
 		sb.append(", fechaInicio=");
@@ -902,8 +904,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		sb.append(getFechaInicioEvaluacion());
 		sb.append(", fechaFinEvaluacion=");
 		sb.append(getFechaFinEvaluacion());
-		sb.append(", grupoUsuario=");
-		sb.append(getGrupoUsuario());
 		sb.append(", tipoActividad=");
 		sb.append(getTipoActividad());
 		sb.append(", aprobadoColaborador=");
@@ -940,12 +940,16 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		sb.append("</model-name>");
 
 		sb.append(
+			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
+		sb.append(getActividadCronogramaId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>cronogramaId</column-name><column-value><![CDATA[");
 		sb.append(getCronogramaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
-		sb.append(getActividadCronogramaId());
+			"<column><column-name>grupoUsuario</column-name><column-value><![CDATA[");
+		sb.append(getGrupoUsuario());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
@@ -974,10 +978,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		sb.append(
 			"<column><column-name>fechaFinEvaluacion</column-name><column-value><![CDATA[");
 		sb.append(getFechaFinEvaluacion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>grupoUsuario</column-name><column-value><![CDATA[");
-		sb.append(getGrupoUsuario());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>tipoActividad</column-name><column-value><![CDATA[");
@@ -1029,8 +1029,9 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		return sb.toString();
 	}
 
-	private long _cronogramaId;
 	private long _actividadCronogramaId;
+	private long _cronogramaId;
+	private long _grupoUsuario;
 	private String _descripcion;
 	private Date _fechaInicio;
 	private Date _fechaFin;
@@ -1038,7 +1039,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	private long _estado;
 	private Date _fechaInicioEvaluacion;
 	private Date _fechaFinEvaluacion;
-	private long _grupoUsuario;
 	private long _tipoActividad;
 	private long _aprobadoColaborador;
 	private long _jerarquiaEvaluar;

@@ -1,5 +1,7 @@
 package com.hitss.rev.controller;
 
+import java.util.List;
+
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -12,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
+import com.hitss.rev.bean.ActividadCronogramaBean;
+import com.hitss.rev.bean.PrioridadGrupoUsuariosBean;
 import com.hitss.rev.service.ActualizarCronogramaService;
+import com.hitss.rev.util.JsonUtil;
 import com.hitss.rev.util.RevController;
 import com.hitss.rev.util.RevServiceImpl;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 @Controller("actualizarCronogramaController")
 @RequestMapping(value = "VIEW")
@@ -38,7 +44,8 @@ public class ActualizarCronogramaController extends RevController {
 		_log.info("irDefault");
 		return super.irDefaultEvaluacion(request, response, model, (RevServiceImpl) actualizarCronogramaService);
 	}
-
+	
+	
 	@ResourceMapping(value = "listarSolicitudesEvaluacion")
 	public void listarSolicitudesEvaluacion(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 		_log.info("listarSolicitudesEvaluacion");
@@ -46,5 +53,54 @@ public class ActualizarCronogramaController extends RevController {
 	}
 	
 	
+	@RenderMapping(params = "action=crearCronograma")
+	public String crearCronograma(RenderRequest request, RenderResponse response, Model model) {
+		_log.info("crearCronograma");
+		Long solicitudEvaluacionId = ParamUtil.getLong(request, "solicitudEvaluacionId");
+		_log.info("solicitudEvaluacionId:"+solicitudEvaluacionId);		
+		List<PrioridadGrupoUsuariosBean> listPrioridadGrupoUsuariosBeans = actualizarCronogramaService.getListaPrioridadGrupoUsuariosBySolicitud(solicitudEvaluacionId);
+		model.addAttribute("listPrioridadGrupoUsuariosBeans", JsonUtil.getJsonString(listPrioridadGrupoUsuariosBeans));
+		return "listaPrioridad";
+	}
+	
+	@RenderMapping(params = "action=planificar")
+	public String planificar(RenderRequest request, RenderResponse response, Model model) {
+		_log.info("planificar");
+		System.out.println(request.getParameterMap());
+		Long solicitudEvaluacionId = ParamUtil.getLong(request, "solicitudEvaluacionId");
+		_log.info("solicitudEvaluacionId:"+solicitudEvaluacionId);	
+		Long prioridadGrupoUsuariosId = ParamUtil.getLong(request, "prioridadGrupoUsuariosId");
+		_log.info("prioridadGrupoUsuariosId:"+prioridadGrupoUsuariosId);	
+		Long cronograma = ParamUtil.getLong(request, "cronograma");
+		_log.info("cronograma:"+cronograma);	
+		Long actividadCronogramaId = ParamUtil.getLong(request, "actividadCronogramaId");
+		_log.info("actividadCronogramaId:"+actividadCronogramaId);	
+		Long grupoUsuario = ParamUtil.getLong(request, "grupoUsuario");
+		_log.info("grupoUsuario:"+grupoUsuario);	
+		
+		ActividadCronogramaBean actividadCronogramaBean = actualizarCronogramaService.getActividadCronograma(solicitudEvaluacionId,prioridadGrupoUsuariosId,cronograma,actividadCronogramaId,grupoUsuario);
+		model.addAttribute("actividadCronograma", actividadCronogramaBean);
+		model.addAttribute("solicitudEvaluacionId", solicitudEvaluacionId);
+		model.addAttribute("prioridadGrupoUsuariosId", prioridadGrupoUsuariosId);
+		model.addAttribute("cronograma", cronograma);
+		model.addAttribute("actividadCronogramaId", actividadCronogramaId);
+		model.addAttribute("grupoUsuario", grupoUsuario);
+		
+		
+		
+		return "planificar";
+	}
+	
+	
+	@ResourceMapping(value = "guardarPlanificar")
+	public void guardarPlanificar(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
+		_log.info("guardarPlanificar");
+		
+		
+		
+		
+		
+	}
+		
 	
 }

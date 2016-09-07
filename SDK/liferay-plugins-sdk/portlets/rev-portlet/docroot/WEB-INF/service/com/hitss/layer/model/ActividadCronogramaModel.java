@@ -62,6 +62,20 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	public void setPrimaryKey(ActividadCronogramaPK primaryKey);
 
 	/**
+	 * Returns the actividad cronograma ID of this actividad cronograma.
+	 *
+	 * @return the actividad cronograma ID of this actividad cronograma
+	 */
+	public long getActividadCronogramaId();
+
+	/**
+	 * Sets the actividad cronograma ID of this actividad cronograma.
+	 *
+	 * @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
+	 */
+	public void setActividadCronogramaId(long actividadCronogramaId);
+
+	/**
 	 * Returns the cronograma ID of this actividad cronograma.
 	 *
 	 * @return the cronograma ID of this actividad cronograma
@@ -76,18 +90,18 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	public void setCronogramaId(long cronogramaId);
 
 	/**
-	 * Returns the actividad cronograma ID of this actividad cronograma.
+	 * Returns the grupo usuario of this actividad cronograma.
 	 *
-	 * @return the actividad cronograma ID of this actividad cronograma
+	 * @return the grupo usuario of this actividad cronograma
 	 */
-	public long getActividadCronogramaId();
+	public long getGrupoUsuario();
 
 	/**
-	 * Sets the actividad cronograma ID of this actividad cronograma.
+	 * Sets the grupo usuario of this actividad cronograma.
 	 *
-	 * @param actividadCronogramaId the actividad cronograma ID of this actividad cronograma
+	 * @param grupoUsuario the grupo usuario of this actividad cronograma
 	 */
-	public void setActividadCronogramaId(long actividadCronogramaId);
+	public void setGrupoUsuario(long grupoUsuario);
 
 	/**
 	 * Returns the descripcion of this actividad cronograma.
@@ -194,20 +208,6 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	 * @param fechaFinEvaluacion the fecha fin evaluacion of this actividad cronograma
 	 */
 	public void setFechaFinEvaluacion(Date fechaFinEvaluacion);
-
-	/**
-	 * Returns the grupo usuario of this actividad cronograma.
-	 *
-	 * @return the grupo usuario of this actividad cronograma
-	 */
-	public long getGrupoUsuario();
-
-	/**
-	 * Sets the grupo usuario of this actividad cronograma.
-	 *
-	 * @param grupoUsuario the grupo usuario of this actividad cronograma
-	 */
-	public void setGrupoUsuario(long grupoUsuario);
 
 	/**
 	 * Returns the tipo actividad of this actividad cronograma.

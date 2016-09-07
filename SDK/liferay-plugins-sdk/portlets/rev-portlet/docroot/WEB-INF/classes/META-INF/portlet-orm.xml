@@ -10,8 +10,9 @@
 	<mapped-superclass class="com.hitss.layer.model.impl.ActividadCronogramaModelImpl">
 		<id-class class="com.hitss.layer.service.persistence.ActividadCronogramaPK" />
 		<attributes>
-			<id name="cronogramaId" />
 			<id name="actividadCronogramaId" />
+			<id name="cronogramaId" />
+			<basic name="grupoUsuario" />
 			<basic name="descripcion" />
 			<basic name="fechaInicio">
 				<temporal>TIMESTAMP</temporal>
@@ -27,7 +28,6 @@
 			<basic name="fechaFinEvaluacion">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="grupoUsuario" />
 			<basic name="tipoActividad" />
 			<basic name="aprobadoColaborador" />
 			<basic name="jerarquiaEvaluar" />

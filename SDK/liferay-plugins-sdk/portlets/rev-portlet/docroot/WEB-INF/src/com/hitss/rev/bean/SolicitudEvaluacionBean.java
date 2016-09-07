@@ -8,6 +8,7 @@ public class SolicitudEvaluacionBean {
 	private String descripcion;
 	private Date fechaInicioEvaluacion;
 	private String strfechaInicioEvaluacion;
+	private String strfechaFinalizacionEvaluacion;
 	private long estado;
 	private String strestado;
 	
@@ -46,6 +47,13 @@ public class SolicitudEvaluacionBean {
 	}
 	public void setStrestado(String strestado) {
 		this.strestado = strestado;
+	}
+	public String getStrfechaFinalizacionEvaluacion() {
+		return strfechaFinalizacionEvaluacion;
+	}
+	public void setStrfechaFinalizacionEvaluacion(
+			String strfechaFinalizacionEvaluacion) {
+		this.strfechaFinalizacionEvaluacion = strfechaFinalizacionEvaluacion;
 	}
 	
 	

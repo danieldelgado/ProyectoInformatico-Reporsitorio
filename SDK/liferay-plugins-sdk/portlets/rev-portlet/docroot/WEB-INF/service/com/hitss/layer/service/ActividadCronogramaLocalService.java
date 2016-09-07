@@ -253,4 +253,15 @@ public interface ActividadCronogramaLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.ActividadCronograma> getListaActividadCronogramaByActividadCronogramaGrupo(
+		java.lang.Long actividadCronogramaId, java.lang.Long cronogramaId,
+		java.lang.Long grupoUsuario)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.ActividadCronograma> getListaActividadCronogramaByCronogramaGrupo(
+		java.lang.Long cronogramaId, java.lang.Long grupoUsuario)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

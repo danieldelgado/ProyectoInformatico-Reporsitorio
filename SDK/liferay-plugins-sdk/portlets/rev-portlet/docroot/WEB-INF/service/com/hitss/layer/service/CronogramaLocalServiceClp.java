@@ -110,6 +110,10 @@ public class CronogramaLocalServiceClp implements CronogramaLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "getCronogramaBySolicitud";
+
+		_methodParameterTypes19 = new String[] { "java.lang.Long" };
 	}
 
 	@Override
@@ -658,6 +662,41 @@ public class CronogramaLocalServiceClp implements CronogramaLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public com.hitss.layer.model.Cronograma getCronogramaBySolicitud(
+		java.lang.Long solicitudId)
+		throws com.hitss.layer.NoSuchCronogramaException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] { ClpSerializer.translateInput(solicitudId) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.hitss.layer.NoSuchCronogramaException) {
+				throw (com.hitss.layer.NoSuchCronogramaException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.hitss.layer.model.Cronograma)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -695,4 +734,6 @@ public class CronogramaLocalServiceClp implements CronogramaLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
 }

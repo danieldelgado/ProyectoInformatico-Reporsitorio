@@ -38,6 +38,64 @@ public interface CronogramaPersistence extends BasePersistence<Cronograma> {
 	 */
 
 	/**
+	* Returns the cronograma where solicitudEvaluacionDesempennoId = &#63; or throws a {@link com.hitss.layer.NoSuchCronogramaException} if it could not be found.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @return the matching cronograma
+	* @throws com.hitss.layer.NoSuchCronogramaException if a matching cronograma could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.hitss.layer.model.Cronograma findByS(
+		long solicitudEvaluacionDesempennoId)
+		throws com.hitss.layer.NoSuchCronogramaException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the cronograma where solicitudEvaluacionDesempennoId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @return the matching cronograma, or <code>null</code> if a matching cronograma could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.hitss.layer.model.Cronograma fetchByS(
+		long solicitudEvaluacionDesempennoId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the cronograma where solicitudEvaluacionDesempennoId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching cronograma, or <code>null</code> if a matching cronograma could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.hitss.layer.model.Cronograma fetchByS(
+		long solicitudEvaluacionDesempennoId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the cronograma where solicitudEvaluacionDesempennoId = &#63; from the database.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @return the cronograma that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.hitss.layer.model.Cronograma removeByS(
+		long solicitudEvaluacionDesempennoId)
+		throws com.hitss.layer.NoSuchCronogramaException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of cronogramas where solicitudEvaluacionDesempennoId = &#63;.
+	*
+	* @param solicitudEvaluacionDesempennoId the solicitud evaluacion desempenno ID
+	* @return the number of matching cronogramas
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByS(long solicitudEvaluacionDesempennoId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Caches the cronograma in the entity cache if it is enabled.
 	*
 	* @param cronograma the cronograma

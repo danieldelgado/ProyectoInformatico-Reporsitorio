@@ -1,9 +1,10 @@
 package com.hitss.rev.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class ActividadCronogramaBean {
+public class ActividadCronogramaBean implements Serializable{
 
 	private long cronogramaId;
 	private long actividadCronogramaId;
@@ -29,7 +30,9 @@ public class ActividadCronogramaBean {
 	private long jerarquiaEvaluar;
 	private long aprobardoLider;
 	private long usuarioGerenteId;
+	private String strGerenteArea;
 	private long usuarioLiderId;
+	private String strUsuarioLider;
 	public long getCronogramaId() {
 		return cronogramaId;
 	}
@@ -155,6 +158,18 @@ public class ActividadCronogramaBean {
 	}
 	public void setUsuarioLiderId(long usuarioLiderId) {
 		this.usuarioLiderId = usuarioLiderId;
+	}
+	public String getStrUsuarioLider() {
+		return strUsuarioLider;
+	}
+	public void setStrUsuarioLider(String strUsuarioLider) {
+		this.strUsuarioLider = strUsuarioLider;
+	}
+	public String getStrGerenteArea() {
+		return strGerenteArea;
+	}
+	public void setStrGerenteArea(String strGerenteArea) {
+		this.strGerenteArea = strGerenteArea;
 	}
 	
 	

@@ -25,22 +25,14 @@ import java.io.Serializable;
  */
 public class ActividadCronogramaPK implements Comparable<ActividadCronogramaPK>,
 	Serializable {
-	public long cronogramaId;
 	public long actividadCronogramaId;
+	public long cronogramaId;
 
 	public ActividadCronogramaPK() {
 	}
 
-	public ActividadCronogramaPK(long cronogramaId, long actividadCronogramaId) {
-		this.cronogramaId = cronogramaId;
+	public ActividadCronogramaPK(long actividadCronogramaId, long cronogramaId) {
 		this.actividadCronogramaId = actividadCronogramaId;
-	}
-
-	public long getCronogramaId() {
-		return cronogramaId;
-	}
-
-	public void setCronogramaId(long cronogramaId) {
 		this.cronogramaId = cronogramaId;
 	}
 
@@ -52,6 +44,14 @@ public class ActividadCronogramaPK implements Comparable<ActividadCronogramaPK>,
 		this.actividadCronogramaId = actividadCronogramaId;
 	}
 
+	public long getCronogramaId() {
+		return cronogramaId;
+	}
+
+	public void setCronogramaId(long cronogramaId) {
+		this.cronogramaId = cronogramaId;
+	}
+
 	@Override
 	public int compareTo(ActividadCronogramaPK pk) {
 		if (pk == null) {
@@ -60,10 +60,10 @@ public class ActividadCronogramaPK implements Comparable<ActividadCronogramaPK>,
 
 		int value = 0;
 
-		if (cronogramaId < pk.cronogramaId) {
+		if (actividadCronogramaId < pk.actividadCronogramaId) {
 			value = -1;
 		}
-		else if (cronogramaId > pk.cronogramaId) {
+		else if (actividadCronogramaId > pk.actividadCronogramaId) {
 			value = 1;
 		}
 		else {
@@ -74,10 +74,10 @@ public class ActividadCronogramaPK implements Comparable<ActividadCronogramaPK>,
 			return value;
 		}
 
-		if (actividadCronogramaId < pk.actividadCronogramaId) {
+		if (cronogramaId < pk.cronogramaId) {
 			value = -1;
 		}
-		else if (actividadCronogramaId > pk.actividadCronogramaId) {
+		else if (cronogramaId > pk.cronogramaId) {
 			value = 1;
 		}
 		else {
@@ -103,8 +103,8 @@ public class ActividadCronogramaPK implements Comparable<ActividadCronogramaPK>,
 
 		ActividadCronogramaPK pk = (ActividadCronogramaPK)obj;
 
-		if ((cronogramaId == pk.cronogramaId) &&
-				(actividadCronogramaId == pk.actividadCronogramaId)) {
+		if ((actividadCronogramaId == pk.actividadCronogramaId) &&
+				(cronogramaId == pk.cronogramaId)) {
 			return true;
 		}
 		else {
@@ -114,8 +114,8 @@ public class ActividadCronogramaPK implements Comparable<ActividadCronogramaPK>,
 
 	@Override
 	public int hashCode() {
-		return (String.valueOf(cronogramaId) +
-		String.valueOf(actividadCronogramaId)).hashCode();
+		return (String.valueOf(actividadCronogramaId) +
+		String.valueOf(cronogramaId)).hashCode();
 	}
 
 	@Override
@@ -124,15 +124,15 @@ public class ActividadCronogramaPK implements Comparable<ActividadCronogramaPK>,
 
 		sb.append(StringPool.OPEN_CURLY_BRACE);
 
-		sb.append("cronogramaId");
-		sb.append(StringPool.EQUAL);
-		sb.append(cronogramaId);
-
-		sb.append(StringPool.COMMA);
-		sb.append(StringPool.SPACE);
 		sb.append("actividadCronogramaId");
 		sb.append(StringPool.EQUAL);
 		sb.append(actividadCronogramaId);
+
+		sb.append(StringPool.COMMA);
+		sb.append(StringPool.SPACE);
+		sb.append("cronogramaId");
+		sb.append(StringPool.EQUAL);
+		sb.append(cronogramaId);
 
 		sb.append(StringPool.CLOSE_CURLY_BRACE);
 

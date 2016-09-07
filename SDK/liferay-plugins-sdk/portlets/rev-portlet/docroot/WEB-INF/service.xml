@@ -633,14 +633,20 @@
 		<column name="fechamodifica" type="Date" />
 
 		<order by="asc">
-			<order-column name="fechamodifica" />
+			<order-column name="orden" />
 		</order>
+		
+		
+		<finder name="S" return-type="Collection" where="activo=true">
+			<finder-column name="solicitudEvaluacionDesempennoId" />
+		</finder>
+		
 	</entity>
 
 	<entity name="Cronograma" table="Cronograma" local-service="true"
 		remote-service="true">
 		<column name="cronogramaId" type="long" primary="true" />
-		<column name="solicitudEvaluacionDesempennoId" type="long" />
+		<column name="solicitudEvaluacionDesempennoId" type="long"  />
 		<column name="descripcion" type="String" />
 		<column name="estado" type="long" />
 		<column name="aprobacionCronograma" type="int" />
@@ -656,13 +662,18 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		<finder name="S" return-type="Cronograma" where="activo=true">
+			<finder-column name="solicitudEvaluacionDesempennoId" />
+		</finder>
 	</entity>
 
 	<entity name="ActividadCronograma" table="ActividadCronograma"
 		local-service="true" remote-service="true">
-		<column name="cronogramaId" type="long" primary="true" />
 		<column name="actividadCronogramaId" type="long" primary="true"
 			id-type="increment" />
+		<column name="cronogramaId" type="long" primary="true" />
+		<column name="grupoUsuario" type="long" />
+		
 		<column name="descripcion" type="String" />
 		<column name="fechaInicio" type="Date" />
 		<column name="fechaFin" type="Date" />
@@ -670,7 +681,6 @@
 		<column name="estado" type="long" />
 		<column name="fechaInicioEvaluacion" type="Date" />
 		<column name="fechaFinEvaluacion" type="Date" />
-		<column name="grupoUsuario" type="long" />
 		<column name="tipoActividad" type="long" />
 		<column name="aprobadoColaborador" type="long" />
 		<column name="jerarquiaEvaluar" type="long" />
@@ -687,6 +697,18 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		
+		<finder name="A_C_G" return-type="Collection" where="activo=true">
+			<finder-column name="actividadCronogramaId" />
+			<finder-column name="cronogramaId" />
+			<finder-column name="grupoUsuario" />
+		</finder>
+		
+		<finder name="C_G" return-type="Collection" where="activo=true">
+			<finder-column name="cronogramaId" />
+			<finder-column name="grupoUsuario" />
+		</finder>
+		
 	</entity>
 
 	<entity name="ActividadPlan" table="ActividadPlan"

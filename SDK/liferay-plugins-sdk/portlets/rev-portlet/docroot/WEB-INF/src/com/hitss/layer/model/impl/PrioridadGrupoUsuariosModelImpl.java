@@ -20,7 +20,6 @@ import com.hitss.layer.model.PrioridadGrupoUsuariosSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -79,8 +78,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		};
 	public static final String TABLE_SQL_CREATE = "create table PrioridadGrupoUsuarios (prioridadGrupoUsuariosId LONG not null primary key,solicitudEvaluacionDesempennoId LONG,liderGrupo LONG,gerenteArea LONG,grupoUsuario VARCHAR(75) null,orden INTEGER,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table PrioridadGrupoUsuarios";
-	public static final String ORDER_BY_JPQL = " ORDER BY prioridadGrupoUsuarios.fechamodifica ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY PrioridadGrupoUsuarios.fechamodifica ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY prioridadGrupoUsuarios.orden ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY PrioridadGrupoUsuarios.orden ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -90,7 +89,11 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.PrioridadGrupoUsuarios"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.PrioridadGrupoUsuarios"),
+			true);
+	public static long SOLICITUDEVALUACIONDESEMPENNOID_COLUMN_BITMASK = 1L;
+	public static long ORDEN_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -289,7 +292,19 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 	@Override
 	public void setSolicitudEvaluacionDesempennoId(
 		long solicitudEvaluacionDesempennoId) {
+		_columnBitmask |= SOLICITUDEVALUACIONDESEMPENNOID_COLUMN_BITMASK;
+
+		if (!_setOriginalSolicitudEvaluacionDesempennoId) {
+			_setOriginalSolicitudEvaluacionDesempennoId = true;
+
+			_originalSolicitudEvaluacionDesempennoId = _solicitudEvaluacionDesempennoId;
+		}
+
 		_solicitudEvaluacionDesempennoId = solicitudEvaluacionDesempennoId;
+	}
+
+	public long getOriginalSolicitudEvaluacionDesempennoId() {
+		return _originalSolicitudEvaluacionDesempennoId;
 	}
 
 	@JSON
@@ -338,6 +353,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 	@Override
 	public void setOrden(int orden) {
+		_columnBitmask = -1L;
+
 		_orden = orden;
 	}
 
@@ -401,6 +418,10 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		_fechamodifica = fechamodifica;
 	}
 
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
@@ -449,8 +470,15 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 	public int compareTo(PrioridadGrupoUsuarios prioridadGrupoUsuarios) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getFechamodifica(),
-				prioridadGrupoUsuarios.getFechamodifica());
+		if (getOrden() < prioridadGrupoUsuarios.getOrden()) {
+			value = -1;
+		}
+		else if (getOrden() > prioridadGrupoUsuarios.getOrden()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -488,6 +516,13 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 
 	@Override
 	public void resetOriginalValues() {
+		PrioridadGrupoUsuariosModelImpl prioridadGrupoUsuariosModelImpl = this;
+
+		prioridadGrupoUsuariosModelImpl._originalSolicitudEvaluacionDesempennoId = prioridadGrupoUsuariosModelImpl._solicitudEvaluacionDesempennoId;
+
+		prioridadGrupoUsuariosModelImpl._setOriginalSolicitudEvaluacionDesempennoId = false;
+
+		prioridadGrupoUsuariosModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -634,6 +669,8 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 		};
 	private long _prioridadGrupoUsuariosId;
 	private long _solicitudEvaluacionDesempennoId;
+	private long _originalSolicitudEvaluacionDesempennoId;
+	private boolean _setOriginalSolicitudEvaluacionDesempennoId;
 	private long _liderGrupo;
 	private long _gerenteArea;
 	private String _grupoUsuario;
@@ -643,5 +680,6 @@ public class PrioridadGrupoUsuariosModelImpl extends BaseModelImpl<PrioridadGrup
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private PrioridadGrupoUsuarios _escapedModel;
 }

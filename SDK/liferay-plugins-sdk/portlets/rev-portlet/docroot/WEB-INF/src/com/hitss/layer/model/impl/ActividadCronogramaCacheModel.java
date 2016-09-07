@@ -40,10 +40,12 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	public String toString() {
 		StringBundler sb = new StringBundler(43);
 
-		sb.append("{cronogramaId=");
-		sb.append(cronogramaId);
-		sb.append(", actividadCronogramaId=");
+		sb.append("{actividadCronogramaId=");
 		sb.append(actividadCronogramaId);
+		sb.append(", cronogramaId=");
+		sb.append(cronogramaId);
+		sb.append(", grupoUsuario=");
+		sb.append(grupoUsuario);
 		sb.append(", descripcion=");
 		sb.append(descripcion);
 		sb.append(", fechaInicio=");
@@ -58,8 +60,6 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		sb.append(fechaInicioEvaluacion);
 		sb.append(", fechaFinEvaluacion=");
 		sb.append(fechaFinEvaluacion);
-		sb.append(", grupoUsuario=");
-		sb.append(grupoUsuario);
 		sb.append(", tipoActividad=");
 		sb.append(tipoActividad);
 		sb.append(", aprobadoColaborador=");
@@ -91,8 +91,9 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	public ActividadCronograma toEntityModel() {
 		ActividadCronogramaImpl actividadCronogramaImpl = new ActividadCronogramaImpl();
 
-		actividadCronogramaImpl.setCronogramaId(cronogramaId);
 		actividadCronogramaImpl.setActividadCronogramaId(actividadCronogramaId);
+		actividadCronogramaImpl.setCronogramaId(cronogramaId);
+		actividadCronogramaImpl.setGrupoUsuario(grupoUsuario);
 
 		if (descripcion == null) {
 			actividadCronogramaImpl.setDescripcion(StringPool.BLANK);
@@ -134,7 +135,6 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 					fechaFinEvaluacion));
 		}
 
-		actividadCronogramaImpl.setGrupoUsuario(grupoUsuario);
 		actividadCronogramaImpl.setTipoActividad(tipoActividad);
 		actividadCronogramaImpl.setAprobadoColaborador(aprobadoColaborador);
 		actividadCronogramaImpl.setJerarquiaEvaluar(jerarquiaEvaluar);
@@ -167,8 +167,9 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		cronogramaId = objectInput.readLong();
 		actividadCronogramaId = objectInput.readLong();
+		cronogramaId = objectInput.readLong();
+		grupoUsuario = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		fechaInicio = objectInput.readLong();
 		fechaFin = objectInput.readLong();
@@ -176,7 +177,6 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		estado = objectInput.readLong();
 		fechaInicioEvaluacion = objectInput.readLong();
 		fechaFinEvaluacion = objectInput.readLong();
-		grupoUsuario = objectInput.readLong();
 		tipoActividad = objectInput.readLong();
 		aprobadoColaborador = objectInput.readLong();
 		jerarquiaEvaluar = objectInput.readLong();
@@ -193,8 +193,9 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(cronogramaId);
 		objectOutput.writeLong(actividadCronogramaId);
+		objectOutput.writeLong(cronogramaId);
+		objectOutput.writeLong(grupoUsuario);
 
 		if (descripcion == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -209,7 +210,6 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		objectOutput.writeLong(estado);
 		objectOutput.writeLong(fechaInicioEvaluacion);
 		objectOutput.writeLong(fechaFinEvaluacion);
-		objectOutput.writeLong(grupoUsuario);
 		objectOutput.writeLong(tipoActividad);
 		objectOutput.writeLong(aprobadoColaborador);
 		objectOutput.writeLong(jerarquiaEvaluar);
@@ -223,8 +223,9 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		objectOutput.writeLong(fechamodifica);
 	}
 
-	public long cronogramaId;
 	public long actividadCronogramaId;
+	public long cronogramaId;
+	public long grupoUsuario;
 	public String descripcion;
 	public long fechaInicio;
 	public long fechaFin;
@@ -232,7 +233,6 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	public long estado;
 	public long fechaInicioEvaluacion;
 	public long fechaFinEvaluacion;
-	public long grupoUsuario;
 	public long tipoActividad;
 	public long aprobadoColaborador;
 	public long jerarquiaEvaluar;

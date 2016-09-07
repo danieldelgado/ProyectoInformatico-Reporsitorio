@@ -14,7 +14,14 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.PrioridadGrupoUsuarios;
 import com.hitss.layer.service.base.PrioridadGrupoUsuariosLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.PrioridadGrupoUsuariosUtil;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * The implementation of the prioridad grupo usuarios local service.
@@ -37,4 +44,19 @@ public class PrioridadGrupoUsuariosLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.hitss.layer.service.PrioridadGrupoUsuariosLocalServiceUtil} to access the prioridad grupo usuarios local service.
 	 */
+
+	private static Log _log = LogFactoryUtil.getLog(PrioridadGrupoUsuariosLocalServiceImpl.class);
+	
+	public List<PrioridadGrupoUsuarios> getListaPrioridadGrupoUsuariosBySolicitud(Long solicitudId){
+		List<PrioridadGrupoUsuarios>  l = null;
+		try {
+			_log.info("getListaPrioridadGrupoUsuariosBySolicitud:"+solicitudId);
+			l = PrioridadGrupoUsuariosUtil.findByS(solicitudId);
+		} catch (SystemException e) {
+			_log.error("getListaPrioridadGrupoUsuariosBySolicitud:" + e.getLocalizedMessage(), e);
+		}
+		return l;
+	}
+	
+	
 }

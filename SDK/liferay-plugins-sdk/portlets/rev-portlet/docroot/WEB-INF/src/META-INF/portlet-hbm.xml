@@ -37,9 +37,10 @@
 	<class name="com.hitss.layer.model.impl.ActividadCronogramaImpl" table="ActividadCronograma">
 		<cache usage="read-write" />
 		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.ActividadCronogramaPK">
-			<key-property name="cronogramaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 			<key-property name="actividadCronogramaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="cronogramaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		</composite-id>
+		<property name="grupoUsuario" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="fechaInicio" type="org.hibernate.type.TimestampType" />
 		<property name="fechaFin" type="org.hibernate.type.TimestampType" />
@@ -47,7 +48,6 @@
 		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechaInicioEvaluacion" type="org.hibernate.type.TimestampType" />
 		<property name="fechaFinEvaluacion" type="org.hibernate.type.TimestampType" />
-		<property name="grupoUsuario" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="tipoActividad" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="aprobadoColaborador" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="jerarquiaEvaluar" type="com.liferay.portal.dao.orm.hibernate.LongType" />

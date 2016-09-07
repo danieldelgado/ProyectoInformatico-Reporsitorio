@@ -1,6 +1,7 @@
 create table ActividadCronograma (
-	cronogramaId LONG not null,
 	actividadCronogramaId LONG not null,
+	cronogramaId LONG not null,
+	grupoUsuario LONG,
 	descripcion VARCHAR(75) null,
 	fechaInicio DATE null,
 	fechaFin DATE null,
@@ -8,7 +9,6 @@ create table ActividadCronograma (
 	estado LONG,
 	fechaInicioEvaluacion DATE null,
 	fechaFinEvaluacion DATE null,
-	grupoUsuario LONG,
 	tipoActividad LONG,
 	aprobadoColaborador LONG,
 	jerarquiaEvaluar LONG,
@@ -20,7 +20,7 @@ create table ActividadCronograma (
 	fechacrea DATE null,
 	usuariomodifica LONG,
 	fechamodifica DATE null,
-	primary key (cronogramaId, actividadCronogramaId)
+	primary key (actividadCronogramaId, cronogramaId)
 );
 
 create table ActividadPlan (

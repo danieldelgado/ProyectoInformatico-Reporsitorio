@@ -283,6 +283,14 @@ public class CronogramaLocalServiceWrapper implements CronogramaLocalService,
 			arguments);
 	}
 
+	@Override
+	public com.hitss.layer.model.Cronograma getCronogramaBySolicitud(
+		java.lang.Long solicitudId)
+		throws com.hitss.layer.NoSuchCronogramaException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _cronogramaLocalService.getCronogramaBySolicitud(solicitudId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

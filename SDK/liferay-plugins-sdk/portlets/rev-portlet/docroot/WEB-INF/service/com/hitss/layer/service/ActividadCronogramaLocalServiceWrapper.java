@@ -290,6 +290,23 @@ public class ActividadCronogramaLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.ActividadCronograma> getListaActividadCronogramaByActividadCronogramaGrupo(
+		java.lang.Long actividadCronogramaId, java.lang.Long cronogramaId,
+		java.lang.Long grupoUsuario)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _actividadCronogramaLocalService.getListaActividadCronogramaByActividadCronogramaGrupo(actividadCronogramaId,
+			cronogramaId, grupoUsuario);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.ActividadCronograma> getListaActividadCronogramaByCronogramaGrupo(
+		java.lang.Long cronogramaId, java.lang.Long grupoUsuario)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _actividadCronogramaLocalService.getListaActividadCronogramaByCronogramaGrupo(cronogramaId,
+			grupoUsuario);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

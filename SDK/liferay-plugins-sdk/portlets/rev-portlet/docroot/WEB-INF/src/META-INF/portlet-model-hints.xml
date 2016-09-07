@@ -2,8 +2,9 @@
 
 <model-hints>
 	<model name="com.hitss.layer.model.ActividadCronograma">
-		<field name="cronogramaId" type="long" />
 		<field name="actividadCronogramaId" type="long" />
+		<field name="cronogramaId" type="long" />
+		<field name="grupoUsuario" type="long" />
 		<field name="descripcion" type="String" />
 		<field name="fechaInicio" type="Date" />
 		<field name="fechaFin" type="Date" />
@@ -11,7 +12,6 @@
 		<field name="estado" type="long" />
 		<field name="fechaInicioEvaluacion" type="Date" />
 		<field name="fechaFinEvaluacion" type="Date" />
-		<field name="grupoUsuario" type="long" />
 		<field name="tipoActividad" type="long" />
 		<field name="aprobadoColaborador" type="long" />
 		<field name="jerarquiaEvaluar" type="long" />

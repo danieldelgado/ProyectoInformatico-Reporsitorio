@@ -42,8 +42,8 @@
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
-										${ colaborador }
-					<c:if test="${ !colaborador }">					
+										${ bcol }
+					<c:if test="${ !bcol }">					
 						<div class="span12">
 							<div>
 								<div class="span5">
