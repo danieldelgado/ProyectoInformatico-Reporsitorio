@@ -1,6 +1,6 @@
 var inputFristnamespace = null;
 var formvalid = false;
-
+var modalconfirmacion = null;
 
 $(document).ready(function() {
 	init();
@@ -33,6 +33,75 @@ function inicializarFormularioBusqueda() {
 		listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);
 		// }
 	});
+	
+
+
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		init();
+		
+		if (A.one('#' + inputFristnamespace + 'fechaRegistroInicio') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaRegistroInicio',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						// var btnBuscar = $("#" + inputFristnamespace +
+						// "btnBuscar");
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+						A.one('#' + inputFristnamespace + 'fechaRegistroInicioVal').set('value', fecha);
+						console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
+						if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
+							var contenedorAlerta = $(".contenedorAlerta");
+							$(contenedorAlerta).html("");
+						} else {
+							var contenedorAlerta = $(".contenedorAlerta");
+							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+						}
+					}
+				}
+			});
+		}
+		
+		if (A.one('#' + inputFristnamespace + 'fechaRegistroFin') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaRegistroFin',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						// var btnBuscar = $("#" + inputFristnamespace +
+						// "btnBuscar");
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+						A.one('#' + inputFristnamespace + 'fechaRegistroFinVal').set('value', fecha);
+						console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
+						if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
+							var contenedorAlerta = $(".contenedorAlerta");
+							$(contenedorAlerta).html("");
+						} else {
+							var contenedorAlerta = $(".contenedorAlerta");
+							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+						}
+					}
+				}
+			});
+		}
+		
+		
+	});
+	
 
 }
 
@@ -199,3 +268,117 @@ function addPostulanteFila(object) {
 	$(listaRequisitos).append(html);
 
 }
+
+
+
+function inicializarFormularioSeleccion() {
+	init();
+	var formseleccionarPostulante = $("#" + inputFristnamespace + "seleccionarPostulante");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+//	var seleccionarPostulanteUrl = $("#" + inputFristnamespace + "seleccionarPostulanteUrl").val();
+	
+//	var dataSend = $(formseleccionarPostulante).serialize();
+	
+	
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		init();
+
+		if (A.one('#' + inputFristnamespace + 'modal') != null) {
+			var popupconfirmartitulo = "Seleccionar Postulante";
+			var popupconfirmarMensage = "Confirmar la selección del postulante";
+			var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+			var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+
+			modalconfirmacion = new A.Modal({
+				bodyContent : popupconfirmarMensage,
+				centered : true,
+				destroyOnHide : false,
+				headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+				modal : true,
+				render : '#' + inputFristnamespace + 'modal',
+				resizable : false,
+				visible : false,
+				width : 305
+			}).render();
+
+			modalconfirmacion.addToolbar([ 
+			{
+				label : msgAceptar,
+				on : {
+					click : function() {
+//						if (formvalid) {
+						seleccionarPersonal();
+//						}
+					}
+				}
+				
+			}, {
+				label : msgCancelar,
+				on : {
+					click : function() {
+						modalconfirmacion.hide();
+					}
+				}
+			} 
+			
+			
+			
+			]);
+		}
+		if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
+			A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
+				console.log("btgardar");
+//				if (formvalid) {
+					modalconfirmacion.show();
+//				}
+			});
+		}
+	});
+
+	
+	
+}
+
+function seleccionarPersonal() {
+	init();
+	var formseleccionarPostulante = $("#" + inputFristnamespace + "seleccionarPostulante");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var seleccionarPostulanteUrl = $("#" + inputFristnamespace + "seleccionarPostulanteUrl").val();
+	
+	var dataSend = $(formseleccionarPostulante).serialize();
+	
+	$.ajax({
+	type : "POST",
+	url : seleccionarPostulanteUrl,
+	data : dataSend,
+	success : function(data) {
+		modalconfirmacion.hide();
+		console.log(data);
+		
+//		data = $.parseJSON(data);
+//		var objeto = data["objeto"];
+//		var respuesta = data["respuesta"];
+//		var mensaje = data["mensaje"];
+//		var contenedorAlerta = $(".contenedorAlerta");
+//		listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
+//		console.log(popupMensaje);
+//		listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
+//		console.log(mensaje);
+//		listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
+//		if (respuesta == 1) {
+//			$(btnGuardar).attr("disabled", "disabled");
+//			mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+//				setTimeout(function() {
+//					window.location = listarSolicitudesUrl;
+//				}, 1500);
+//			});
+//		} else {
+//			mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+//		}
+	}
+});
+
+}
+
+
+	

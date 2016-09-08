@@ -17,6 +17,7 @@ package com.hitss.layer.service.base;
 import com.hitss.layer.model.SolicitudRequerimiento;
 import com.hitss.layer.service.SolicitudRequerimientoService;
 import com.hitss.layer.service.persistence.ActividadCronogramaPersistence;
+import com.hitss.layer.service.persistence.ActividadPlanAccionUsuarioPersistence;
 import com.hitss.layer.service.persistence.ActividadPlanPersistence;
 import com.hitss.layer.service.persistence.ContratoPersistence;
 import com.hitss.layer.service.persistence.CronogramaPersistence;
@@ -39,7 +40,6 @@ import com.hitss.layer.service.persistence.PreguntaPersistence;
 import com.hitss.layer.service.persistence.PreguntaRespuestaPersistence;
 import com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistence;
 import com.hitss.layer.service.persistence.ReferenciaPersistence;
-import com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPersistence;
 import com.hitss.layer.service.persistence.RespuestaPersistence;
 import com.hitss.layer.service.persistence.SolicitudEvaluacionDesempennoPersistence;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPersistence;
@@ -193,6 +193,63 @@ public abstract class SolicitudRequerimientoServiceBaseImpl
 	public void setActividadPlanPersistence(
 		ActividadPlanPersistence actividadPlanPersistence) {
 		this.actividadPlanPersistence = actividadPlanPersistence;
+	}
+
+	/**
+	 * Returns the actividad plan accion usuario local service.
+	 *
+	 * @return the actividad plan accion usuario local service
+	 */
+	public com.hitss.layer.service.ActividadPlanAccionUsuarioLocalService getActividadPlanAccionUsuarioLocalService() {
+		return actividadPlanAccionUsuarioLocalService;
+	}
+
+	/**
+	 * Sets the actividad plan accion usuario local service.
+	 *
+	 * @param actividadPlanAccionUsuarioLocalService the actividad plan accion usuario local service
+	 */
+	public void setActividadPlanAccionUsuarioLocalService(
+		com.hitss.layer.service.ActividadPlanAccionUsuarioLocalService actividadPlanAccionUsuarioLocalService) {
+		this.actividadPlanAccionUsuarioLocalService = actividadPlanAccionUsuarioLocalService;
+	}
+
+	/**
+	 * Returns the actividad plan accion usuario remote service.
+	 *
+	 * @return the actividad plan accion usuario remote service
+	 */
+	public com.hitss.layer.service.ActividadPlanAccionUsuarioService getActividadPlanAccionUsuarioService() {
+		return actividadPlanAccionUsuarioService;
+	}
+
+	/**
+	 * Sets the actividad plan accion usuario remote service.
+	 *
+	 * @param actividadPlanAccionUsuarioService the actividad plan accion usuario remote service
+	 */
+	public void setActividadPlanAccionUsuarioService(
+		com.hitss.layer.service.ActividadPlanAccionUsuarioService actividadPlanAccionUsuarioService) {
+		this.actividadPlanAccionUsuarioService = actividadPlanAccionUsuarioService;
+	}
+
+	/**
+	 * Returns the actividad plan accion usuario persistence.
+	 *
+	 * @return the actividad plan accion usuario persistence
+	 */
+	public ActividadPlanAccionUsuarioPersistence getActividadPlanAccionUsuarioPersistence() {
+		return actividadPlanAccionUsuarioPersistence;
+	}
+
+	/**
+	 * Sets the actividad plan accion usuario persistence.
+	 *
+	 * @param actividadPlanAccionUsuarioPersistence the actividad plan accion usuario persistence
+	 */
+	public void setActividadPlanAccionUsuarioPersistence(
+		ActividadPlanAccionUsuarioPersistence actividadPlanAccionUsuarioPersistence) {
+		this.actividadPlanAccionUsuarioPersistence = actividadPlanAccionUsuarioPersistence;
 	}
 
 	/**
@@ -1350,63 +1407,6 @@ public abstract class SolicitudRequerimientoServiceBaseImpl
 	}
 
 	/**
-	 * Returns the registrar actividad plan usuario local service.
-	 *
-	 * @return the registrar actividad plan usuario local service
-	 */
-	public com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService getRegistrarActividadPlanUsuarioLocalService() {
-		return registrarActividadPlanUsuarioLocalService;
-	}
-
-	/**
-	 * Sets the registrar actividad plan usuario local service.
-	 *
-	 * @param registrarActividadPlanUsuarioLocalService the registrar actividad plan usuario local service
-	 */
-	public void setRegistrarActividadPlanUsuarioLocalService(
-		com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService registrarActividadPlanUsuarioLocalService) {
-		this.registrarActividadPlanUsuarioLocalService = registrarActividadPlanUsuarioLocalService;
-	}
-
-	/**
-	 * Returns the registrar actividad plan usuario remote service.
-	 *
-	 * @return the registrar actividad plan usuario remote service
-	 */
-	public com.hitss.layer.service.RegistrarActividadPlanUsuarioService getRegistrarActividadPlanUsuarioService() {
-		return registrarActividadPlanUsuarioService;
-	}
-
-	/**
-	 * Sets the registrar actividad plan usuario remote service.
-	 *
-	 * @param registrarActividadPlanUsuarioService the registrar actividad plan usuario remote service
-	 */
-	public void setRegistrarActividadPlanUsuarioService(
-		com.hitss.layer.service.RegistrarActividadPlanUsuarioService registrarActividadPlanUsuarioService) {
-		this.registrarActividadPlanUsuarioService = registrarActividadPlanUsuarioService;
-	}
-
-	/**
-	 * Returns the registrar actividad plan usuario persistence.
-	 *
-	 * @return the registrar actividad plan usuario persistence
-	 */
-	public RegistrarActividadPlanUsuarioPersistence getRegistrarActividadPlanUsuarioPersistence() {
-		return registrarActividadPlanUsuarioPersistence;
-	}
-
-	/**
-	 * Sets the registrar actividad plan usuario persistence.
-	 *
-	 * @param registrarActividadPlanUsuarioPersistence the registrar actividad plan usuario persistence
-	 */
-	public void setRegistrarActividadPlanUsuarioPersistence(
-		RegistrarActividadPlanUsuarioPersistence registrarActividadPlanUsuarioPersistence) {
-		this.registrarActividadPlanUsuarioPersistence = registrarActividadPlanUsuarioPersistence;
-	}
-
-	/**
 	 * Returns the respuesta local service.
 	 *
 	 * @return the respuesta local service
@@ -2101,6 +2101,12 @@ public abstract class SolicitudRequerimientoServiceBaseImpl
 	protected com.hitss.layer.service.ActividadPlanService actividadPlanService;
 	@BeanReference(type = ActividadPlanPersistence.class)
 	protected ActividadPlanPersistence actividadPlanPersistence;
+	@BeanReference(type = com.hitss.layer.service.ActividadPlanAccionUsuarioLocalService.class)
+	protected com.hitss.layer.service.ActividadPlanAccionUsuarioLocalService actividadPlanAccionUsuarioLocalService;
+	@BeanReference(type = com.hitss.layer.service.ActividadPlanAccionUsuarioService.class)
+	protected com.hitss.layer.service.ActividadPlanAccionUsuarioService actividadPlanAccionUsuarioService;
+	@BeanReference(type = ActividadPlanAccionUsuarioPersistence.class)
+	protected ActividadPlanAccionUsuarioPersistence actividadPlanAccionUsuarioPersistence;
 	@BeanReference(type = com.hitss.layer.service.ContratoLocalService.class)
 	protected com.hitss.layer.service.ContratoLocalService contratoLocalService;
 	@BeanReference(type = com.hitss.layer.service.ContratoService.class)
@@ -2223,12 +2229,6 @@ public abstract class SolicitudRequerimientoServiceBaseImpl
 	protected com.hitss.layer.service.ReferenciaService referenciaService;
 	@BeanReference(type = ReferenciaPersistence.class)
 	protected ReferenciaPersistence referenciaPersistence;
-	@BeanReference(type = com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService.class)
-	protected com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalService registrarActividadPlanUsuarioLocalService;
-	@BeanReference(type = com.hitss.layer.service.RegistrarActividadPlanUsuarioService.class)
-	protected com.hitss.layer.service.RegistrarActividadPlanUsuarioService registrarActividadPlanUsuarioService;
-	@BeanReference(type = RegistrarActividadPlanUsuarioPersistence.class)
-	protected RegistrarActividadPlanUsuarioPersistence registrarActividadPlanUsuarioPersistence;
 	@BeanReference(type = com.hitss.layer.service.RespuestaLocalService.class)
 	protected com.hitss.layer.service.RespuestaLocalService respuestaLocalService;
 	@BeanReference(type = com.hitss.layer.service.RespuestaService.class)

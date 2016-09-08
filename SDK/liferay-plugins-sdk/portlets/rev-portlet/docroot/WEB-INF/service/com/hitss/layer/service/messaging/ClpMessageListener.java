@@ -16,6 +16,8 @@ package com.hitss.layer.service.messaging;
 
 import com.hitss.layer.service.ActividadCronogramaLocalServiceUtil;
 import com.hitss.layer.service.ActividadCronogramaServiceUtil;
+import com.hitss.layer.service.ActividadPlanAccionUsuarioLocalServiceUtil;
+import com.hitss.layer.service.ActividadPlanAccionUsuarioServiceUtil;
 import com.hitss.layer.service.ActividadPlanLocalServiceUtil;
 import com.hitss.layer.service.ActividadPlanServiceUtil;
 import com.hitss.layer.service.ClpSerializer;
@@ -59,8 +61,6 @@ import com.hitss.layer.service.PrioridadGrupoUsuariosLocalServiceUtil;
 import com.hitss.layer.service.PrioridadGrupoUsuariosServiceUtil;
 import com.hitss.layer.service.ReferenciaLocalServiceUtil;
 import com.hitss.layer.service.ReferenciaServiceUtil;
-import com.hitss.layer.service.RegistrarActividadPlanUsuarioLocalServiceUtil;
-import com.hitss.layer.service.RegistrarActividadPlanUsuarioServiceUtil;
 import com.hitss.layer.service.RespuestaLocalServiceUtil;
 import com.hitss.layer.service.RespuestaServiceUtil;
 import com.hitss.layer.service.SolicitudEvaluacionDesempennoLocalServiceUtil;
@@ -104,6 +104,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			ActividadPlanLocalServiceUtil.clearService();
 
 			ActividadPlanServiceUtil.clearService();
+			ActividadPlanAccionUsuarioLocalServiceUtil.clearService();
+
+			ActividadPlanAccionUsuarioServiceUtil.clearService();
 			ContratoLocalServiceUtil.clearService();
 
 			ContratoServiceUtil.clearService();
@@ -164,9 +167,6 @@ public class ClpMessageListener extends BaseMessageListener {
 			ReferenciaLocalServiceUtil.clearService();
 
 			ReferenciaServiceUtil.clearService();
-			RegistrarActividadPlanUsuarioLocalServiceUtil.clearService();
-
-			RegistrarActividadPlanUsuarioServiceUtil.clearService();
 			RespuestaLocalServiceUtil.clearService();
 
 			RespuestaServiceUtil.clearService();

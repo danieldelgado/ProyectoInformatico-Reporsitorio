@@ -24,8 +24,8 @@ create table ActividadCronograma (
 );
 
 create table ActividadPlan (
-	actividadCronogramaId LONG not null,
 	actividadPlanId LONG not null,
+	actividadCronogramaId LONG not null,
 	planAccionId LONG,
 	actividad VARCHAR(75) null,
 	evidencia VARCHAR(75) null,
@@ -34,7 +34,22 @@ create table ActividadPlan (
 	fechacrea DATE null,
 	usuariomodifica LONG,
 	fechamodifica DATE null,
-	primary key (actividadCronogramaId, actividadPlanId)
+	primary key (actividadPlanId, actividadCronogramaId)
+);
+
+create table ActividadPlanAccionUsuario (
+	actividadPlanAccionUsuariocoId LONG not null,
+	actividadPlanId LONG not null,
+	usuarioId LONG,
+	cumplio LONG,
+	actividad VARCHAR(75) null,
+	puntuacion INTEGER,
+	activo BOOLEAN,
+	usuariocrea LONG,
+	fechacrea DATE null,
+	usuariomodifica LONG,
+	fechamodifica DATE null,
+	primary key (actividadPlanAccionUsuariocoId, actividadPlanId)
 );
 
 create table Contrato (

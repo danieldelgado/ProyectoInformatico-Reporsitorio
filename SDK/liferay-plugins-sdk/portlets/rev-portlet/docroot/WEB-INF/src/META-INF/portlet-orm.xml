@@ -51,11 +51,34 @@
 	<mapped-superclass class="com.hitss.layer.model.impl.ActividadPlanModelImpl">
 		<id-class class="com.hitss.layer.service.persistence.ActividadPlanPK" />
 		<attributes>
-			<id name="actividadCronogramaId" />
 			<id name="actividadPlanId" />
+			<id name="actividadCronogramaId" />
 			<basic name="planAccionId" />
 			<basic name="actividad" />
 			<basic name="evidencia" />
+			<basic name="activo" />
+			<basic name="usuariocrea" />
+			<basic name="fechacrea">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="usuariomodifica" />
+			<basic name="fechamodifica">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.hitss.layer.model.impl.ActividadPlanAccionUsuarioModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.ActividadPlanAccionUsuarioPK" />
+		<attributes>
+			<id name="actividadPlanAccionUsuariocoId" />
+			<id name="actividadPlanId" />
+			<basic name="usuarioId" />
+			<basic name="cumplio" />
+			<basic name="actividad" />
+			<basic name="puntuacion" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
 			<basic name="fechacrea">
@@ -470,29 +493,6 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.hitss.layer.model.impl.RegistrarActividadPlanUsuarioModelImpl">
-		<id-class class="com.hitss.layer.service.persistence.RegistrarActividadPlanUsuarioPK" />
-		<attributes>
-			<id name="actividadPlanId" />
-			<id name="regisitrarActividadPlanUsuariocoId" />
-			<basic name="usuarioId" />
-			<basic name="cumplio" />
-			<basic name="actividad" />
-			<basic name="puntuacion" />
-			<basic name="activo" />
-			<basic name="usuariocrea" />
-			<basic name="fechacrea">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="usuariomodifica" />
-			<basic name="fechamodifica">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<transient name="modelAttributes" />
-			<transient name="primaryKey" />
-			<transient name="primaryKeyObj" />
-		</attributes>
-	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.RespuestaModelImpl">
 		<attributes>
 			<id name="respuestaId" />
@@ -702,6 +702,10 @@
 		<table name="ActividadPlan" />
 		<attributes />
 	</entity>
+	<entity class="com.hitss.layer.model.impl.ActividadPlanAccionUsuarioImpl" name="ActividadPlanAccionUsuario">
+		<table name="ActividadPlanAccionUsuario" />
+		<attributes />
+	</entity>
 	<entity class="com.hitss.layer.model.impl.ContratoImpl" name="Contrato">
 		<table name="Contrato" />
 		<attributes />
@@ -780,10 +784,6 @@
 	</entity>
 	<entity class="com.hitss.layer.model.impl.ReferenciaImpl" name="Referencia">
 		<table name="Referencia" />
-		<attributes />
-	</entity>
-	<entity class="com.hitss.layer.model.impl.RegistrarActividadPlanUsuarioImpl" name="RegistrarActividadPlanUsuario">
-		<table name="RegisitrarActividadPlanUsuario" />
 		<attributes />
 	</entity>
 	<entity class="com.hitss.layer.model.impl.RespuestaImpl" name="Respuesta">

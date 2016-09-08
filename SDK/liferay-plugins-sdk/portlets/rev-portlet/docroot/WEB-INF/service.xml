@@ -645,7 +645,7 @@
 
 	<entity name="Cronograma" table="Cronograma" local-service="true"
 		remote-service="true">
-		<column name="cronogramaId" type="long" primary="true" />
+		<column name="cronogramaId" type="long" primary="true" id-type="increment"/>
 		<column name="solicitudEvaluacionDesempennoId" type="long"  />
 		<column name="descripcion" type="String" />
 		<column name="estado" type="long" />
@@ -669,8 +669,7 @@
 
 	<entity name="ActividadCronograma" table="ActividadCronograma"
 		local-service="true" remote-service="true">
-		<column name="actividadCronogramaId" type="long" primary="true"
-			id-type="increment" />
+		<column name="actividadCronogramaId" type="long" primary="true" id-type="increment" />
 		<column name="cronogramaId" type="long" primary="true" />
 		<column name="grupoUsuario" type="long" />
 		
@@ -713,9 +712,9 @@
 
 	<entity name="ActividadPlan" table="ActividadPlan"
 		local-service="true" remote-service="true">
-		<column name="actividadCronogramaId" type="long" primary="true" />
 		<column name="actividadPlanId" type="long" primary="true"
 			id-type="increment" />
+		<column name="actividadCronogramaId" type="long" primary="true" />
 		<column name="planAccionId" type="long" />
 		<column name="actividad" type="String" />
 		<column name="evidencia" type="String" />
@@ -732,11 +731,11 @@
 		</order>
 	</entity>
 
-	<entity name="RegistrarActividadPlanUsuario" table="RegisitrarActividadPlanUsuario"
+	<entity name="ActividadPlanAccionUsuario" table="ActividadPlanAccionUsuario"
 		local-service="true" remote-service="true">
-		<column name="actividadPlanId" type="long" primary="true" />
-		<column name="regisitrarActividadPlanUsuariocoId" type="long"
+		<column name="actividadPlanAccionUsuariocoId" type="long"
 			primary="true" id-type="increment" />
+		<column name="actividadPlanId" type="long" primary="true" />
 		<column name="usuarioId" type="long" />
 
 		<column name="cumplio" type="long" />

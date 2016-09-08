@@ -53,6 +53,9 @@ public class Constantes {
 	public static final boolean SOLICITUD_RECHAZADA = false;
 	
 
+	public static final int APROBADO_OK  = 1 ;
+	public static final int APROBADO_NO_OK = 0 ;
+
 	public static final String VOCABULARIO_PUESTO = "Puestos";
 	
 	

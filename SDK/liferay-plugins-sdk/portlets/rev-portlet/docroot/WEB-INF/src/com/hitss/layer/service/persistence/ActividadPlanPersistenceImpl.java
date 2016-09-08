@@ -323,8 +323,8 @@ public class ActividadPlanPersistenceImpl extends BasePersistenceImpl<ActividadP
 		actividadPlanImpl.setNew(actividadPlan.isNew());
 		actividadPlanImpl.setPrimaryKey(actividadPlan.getPrimaryKey());
 
-		actividadPlanImpl.setActividadCronogramaId(actividadPlan.getActividadCronogramaId());
 		actividadPlanImpl.setActividadPlanId(actividadPlan.getActividadPlanId());
+		actividadPlanImpl.setActividadCronogramaId(actividadPlan.getActividadCronogramaId());
 		actividadPlanImpl.setPlanAccionId(actividadPlan.getPlanAccionId());
 		actividadPlanImpl.setActividad(actividadPlan.getActividad());
 		actividadPlanImpl.setEvidencia(actividadPlan.getEvidencia());

@@ -94,6 +94,44 @@ public abstract class RevServiceImpl {
 		return listaUsuarioBeans;
 	}
 
+	
+	public List<UsuarioBean> getListaGerenteArea(long companyId, long companyGroupId) {
+		List<UsuarioBean> listaUsuarioBeans = new ArrayList<UsuarioBean>();
+		try {
+			UsuarioBean ub = null;
+			List<User> listaUser = UsuarioLocalServiceUtil.listarUsuariosByRole(companyId, companyGroupId, "GERENTE DE AREA");
+			_log.debug("listaUser:" + listaUser);
+			for (User u : listaUser) {
+				ub = new UsuarioBean();
+				ub.setUserId(u.getUserId());
+				ub.setFullname(u.getFullName());
+				listaUsuarioBeans.add(ub);
+			}
+		} catch (PortalException | SystemException e) {
+			_log.error("getListaResponsable:" + e.getMessage(), e);
+		}
+		return listaUsuarioBeans;
+	}
+	
+	public List<UsuarioBean> getListaLideres(long companyId, long companyGroupId) {
+		List<UsuarioBean> listaUsuarioBeans = new ArrayList<UsuarioBean>();
+		try {
+			UsuarioBean ub = null;
+			List<User> listaUser = UsuarioLocalServiceUtil.listarUsuariosByRole(companyId, companyGroupId, "COLABORADOR");
+			_log.debug("listaUser:" + listaUser);
+			for (User u : listaUser) {
+				ub = new UsuarioBean();
+				ub.setUserId(u.getUserId());
+				ub.setFullname(u.getFullName());
+				listaUsuarioBeans.add(ub);
+			}
+		} catch (PortalException | SystemException e) {
+			_log.error("getListaResponsable:" + e.getMessage(), e);
+		}
+		return listaUsuarioBeans;
+	}
+	
+
 	public Map<String, Object> listarSolicitudesEvaluacion(String descripcion,
 			Date fechaEvaluacionInicio, Date fechaEvaluacionFin, long estado,
 			int filas, int pagina, String orden, String campoOrden) {
@@ -160,6 +198,14 @@ public abstract class RevServiceImpl {
 		int records = 0;
 		Long count = null;
 		try {
+
+			if(Validator.isNotNull(fechaRegistrFin)){
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(fechaRegistrFin);
+				cal.add(Calendar.DAY_OF_MONTH, 1);
+				fechaRegistrFin = cal.getTime();
+			}
+			
 			count = SolicitudRequerimientoLocalServiceUtil.listaSolicitudRequerimientoCount(solicitudRequerimiento, fechaRegistroInicio, fechaRegistrFin);
 			if (count != null && count > 0) {
 				int c = count.intValue();
@@ -189,10 +235,12 @@ public abstract class RevServiceImpl {
 					}	else{
 						solicitudRequerimientoBean.setStrareaSolicitante("Sin definir");
 					}
-					solicitudRequerimientoBean.setFechaLimite(sr.getFechaLimite());
-					solicitudRequerimientoBean.setStrfechaLimite(sdf.format(sr.getFechaLimite()));
 					solicitudRequerimientoBean.setFechacrea(sr.getFechacrea());
 					solicitudRequerimientoBean.setStrfechacrea(sdf.format(sr.getFechacrea()));
+					
+					solicitudRequerimientoBean.setFechaLimite(sr.getFechaLimite());
+					solicitudRequerimientoBean.setStrfechaLimite(sdf.format(sr.getFechaLimite()));
+					
 					solicitudRequerimientoBean.setResponsableRRHH(sr.getResponsableRRHH());
 					solicitudRequerimientoBean.setEspecialidad(sr.getEspecialidad());
 					solicitudRequerimientoBean.setProyecto(sr.getProyecto());
@@ -211,7 +259,9 @@ public abstract class RevServiceImpl {
 					solicitudRequerimientoBean.setStrcliente(parametroService.getParametro(sr.getCliente()).getValor());
 					solicitudRequerimientoBean.setEstado(sr.getEstado());
 					solicitudRequerimientoBean.setStrestado(parametroService.getParametro(sr.getEstado()).getValor());
+					
 					lista.add(solicitudRequerimientoBean);
+					
 				}
 			}
 		} catch (SystemException | PortalException e) {

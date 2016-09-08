@@ -62,8 +62,8 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	 */
 	public static final String TABLE_NAME = "ActividadPlan";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "actividadCronogramaId", Types.BIGINT },
 			{ "actividadPlanId", Types.BIGINT },
+			{ "actividadCronogramaId", Types.BIGINT },
 			{ "planAccionId", Types.BIGINT },
 			{ "actividad", Types.VARCHAR },
 			{ "evidencia", Types.VARCHAR },
@@ -73,7 +73,7 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table ActividadPlan (actividadCronogramaId LONG not null,actividadPlanId LONG not null,planAccionId LONG,actividad VARCHAR(75) null,evidencia VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (actividadCronogramaId, actividadPlanId))";
+	public static final String TABLE_SQL_CREATE = "create table ActividadPlan (actividadPlanId LONG not null,actividadCronogramaId LONG not null,planAccionId LONG,actividad VARCHAR(75) null,evidencia VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (actividadPlanId, actividadCronogramaId))";
 	public static final String TABLE_SQL_DROP = "drop table ActividadPlan";
 	public static final String ORDER_BY_JPQL = " ORDER BY actividadPlan.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY ActividadPlan.fechamodifica ASC";
@@ -101,8 +101,8 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 		ActividadPlan model = new ActividadPlanImpl();
 
-		model.setActividadCronogramaId(soapModel.getActividadCronogramaId());
 		model.setActividadPlanId(soapModel.getActividadPlanId());
+		model.setActividadCronogramaId(soapModel.getActividadCronogramaId());
 		model.setPlanAccionId(soapModel.getPlanAccionId());
 		model.setActividad(soapModel.getActividad());
 		model.setEvidencia(soapModel.getEvidencia());
@@ -143,18 +143,18 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public ActividadPlanPK getPrimaryKey() {
-		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
+		return new ActividadPlanPK(_actividadPlanId, _actividadCronogramaId);
 	}
 
 	@Override
 	public void setPrimaryKey(ActividadPlanPK primaryKey) {
-		setActividadCronogramaId(primaryKey.actividadCronogramaId);
 		setActividadPlanId(primaryKey.actividadPlanId);
+		setActividadCronogramaId(primaryKey.actividadCronogramaId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
+		return new ActividadPlanPK(_actividadPlanId, _actividadCronogramaId);
 	}
 
 	@Override
@@ -176,8 +176,8 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("actividadPlanId", getActividadPlanId());
+		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("planAccionId", getPlanAccionId());
 		attributes.put("actividad", getActividad());
 		attributes.put("evidencia", getEvidencia());
@@ -192,17 +192,17 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
+
+		if (actividadPlanId != null) {
+			setActividadPlanId(actividadPlanId);
+		}
+
 		Long actividadCronogramaId = (Long)attributes.get(
 				"actividadCronogramaId");
 
 		if (actividadCronogramaId != null) {
 			setActividadCronogramaId(actividadCronogramaId);
-		}
-
-		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
-
-		if (actividadPlanId != null) {
-			setActividadPlanId(actividadPlanId);
 		}
 
 		Long planAccionId = (Long)attributes.get("planAccionId");
@@ -256,17 +256,6 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 
 	@JSON
 	@Override
-	public long getActividadCronogramaId() {
-		return _actividadCronogramaId;
-	}
-
-	@Override
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronogramaId = actividadCronogramaId;
-	}
-
-	@JSON
-	@Override
 	public long getActividadPlanId() {
 		return _actividadPlanId;
 	}
@@ -274,6 +263,17 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	@Override
 	public void setActividadPlanId(long actividadPlanId) {
 		_actividadPlanId = actividadPlanId;
+	}
+
+	@JSON
+	@Override
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
 	}
 
 	@JSON
@@ -393,8 +393,8 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	public Object clone() {
 		ActividadPlanImpl actividadPlanImpl = new ActividadPlanImpl();
 
-		actividadPlanImpl.setActividadCronogramaId(getActividadCronogramaId());
 		actividadPlanImpl.setActividadPlanId(getActividadPlanId());
+		actividadPlanImpl.setActividadCronogramaId(getActividadCronogramaId());
 		actividadPlanImpl.setPlanAccionId(getPlanAccionId());
 		actividadPlanImpl.setActividad(getActividad());
 		actividadPlanImpl.setEvidencia(getEvidencia());
@@ -458,9 +458,9 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	public CacheModel<ActividadPlan> toCacheModel() {
 		ActividadPlanCacheModel actividadPlanCacheModel = new ActividadPlanCacheModel();
 
-		actividadPlanCacheModel.actividadCronogramaId = getActividadCronogramaId();
-
 		actividadPlanCacheModel.actividadPlanId = getActividadPlanId();
+
+		actividadPlanCacheModel.actividadCronogramaId = getActividadCronogramaId();
 
 		actividadPlanCacheModel.planAccionId = getPlanAccionId();
 
@@ -511,10 +511,10 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
-		sb.append("{actividadCronogramaId=");
-		sb.append(getActividadCronogramaId());
-		sb.append(", actividadPlanId=");
+		sb.append("{actividadPlanId=");
 		sb.append(getActividadPlanId());
+		sb.append(", actividadCronogramaId=");
+		sb.append(getActividadCronogramaId());
 		sb.append(", planAccionId=");
 		sb.append(getPlanAccionId());
 		sb.append(", actividad=");
@@ -545,12 +545,12 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
-		sb.append(getActividadCronogramaId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>actividadPlanId</column-name><column-value><![CDATA[");
 		sb.append(getActividadPlanId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
+		sb.append(getActividadCronogramaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>planAccionId</column-name><column-value><![CDATA[");
@@ -594,8 +594,8 @@ public class ActividadPlanModelImpl extends BaseModelImpl<ActividadPlan>
 	private static Class<?>[] _escapedModelInterfaces = new Class[] {
 			ActividadPlan.class
 		};
-	private long _actividadCronogramaId;
 	private long _actividadPlanId;
+	private long _actividadCronogramaId;
 	private long _planAccionId;
 	private String _actividad;
 	private String _evidencia;

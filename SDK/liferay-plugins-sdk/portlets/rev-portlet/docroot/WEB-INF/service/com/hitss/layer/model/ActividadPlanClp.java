@@ -54,18 +54,18 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public ActividadPlanPK getPrimaryKey() {
-		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
+		return new ActividadPlanPK(_actividadPlanId, _actividadCronogramaId);
 	}
 
 	@Override
 	public void setPrimaryKey(ActividadPlanPK primaryKey) {
-		setActividadCronogramaId(primaryKey.actividadCronogramaId);
 		setActividadPlanId(primaryKey.actividadPlanId);
+		setActividadCronogramaId(primaryKey.actividadCronogramaId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
+		return new ActividadPlanPK(_actividadPlanId, _actividadCronogramaId);
 	}
 
 	@Override
@@ -77,8 +77,8 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("actividadPlanId", getActividadPlanId());
+		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("planAccionId", getPlanAccionId());
 		attributes.put("actividad", getActividad());
 		attributes.put("evidencia", getEvidencia());
@@ -93,17 +93,17 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
+
+		if (actividadPlanId != null) {
+			setActividadPlanId(actividadPlanId);
+		}
+
 		Long actividadCronogramaId = (Long)attributes.get(
 				"actividadCronogramaId");
 
 		if (actividadCronogramaId != null) {
 			setActividadCronogramaId(actividadCronogramaId);
-		}
-
-		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
-
-		if (actividadPlanId != null) {
-			setActividadPlanId(actividadPlanId);
 		}
 
 		Long planAccionId = (Long)attributes.get("planAccionId");
@@ -156,6 +156,29 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 	}
 
 	@Override
+	public long getActividadPlanId() {
+		return _actividadPlanId;
+	}
+
+	@Override
+	public void setActividadPlanId(long actividadPlanId) {
+		_actividadPlanId = actividadPlanId;
+
+		if (_actividadPlanRemoteModel != null) {
+			try {
+				Class<?> clazz = _actividadPlanRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setActividadPlanId", long.class);
+
+				method.invoke(_actividadPlanRemoteModel, actividadPlanId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public long getActividadCronogramaId() {
 		return _actividadCronogramaId;
 	}
@@ -172,29 +195,6 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 						long.class);
 
 				method.invoke(_actividadPlanRemoteModel, actividadCronogramaId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getActividadPlanId() {
-		return _actividadPlanId;
-	}
-
-	@Override
-	public void setActividadPlanId(long actividadPlanId) {
-		_actividadPlanId = actividadPlanId;
-
-		if (_actividadPlanRemoteModel != null) {
-			try {
-				Class<?> clazz = _actividadPlanRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setActividadPlanId", long.class);
-
-				method.invoke(_actividadPlanRemoteModel, actividadPlanId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -461,8 +461,8 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 	public Object clone() {
 		ActividadPlanClp clone = new ActividadPlanClp();
 
-		clone.setActividadCronogramaId(getActividadCronogramaId());
 		clone.setActividadPlanId(getActividadPlanId());
+		clone.setActividadCronogramaId(getActividadCronogramaId());
 		clone.setPlanAccionId(getPlanAccionId());
 		clone.setActividad(getActividad());
 		clone.setEvidencia(getEvidencia());
@@ -524,10 +524,10 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
-		sb.append("{actividadCronogramaId=");
-		sb.append(getActividadCronogramaId());
-		sb.append(", actividadPlanId=");
+		sb.append("{actividadPlanId=");
 		sb.append(getActividadPlanId());
+		sb.append(", actividadCronogramaId=");
+		sb.append(getActividadCronogramaId());
 		sb.append(", planAccionId=");
 		sb.append(getPlanAccionId());
 		sb.append(", actividad=");
@@ -558,12 +558,12 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
-		sb.append(getActividadCronogramaId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>actividadPlanId</column-name><column-value><![CDATA[");
 		sb.append(getActividadPlanId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>actividadCronogramaId</column-name><column-value><![CDATA[");
+		sb.append(getActividadCronogramaId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>planAccionId</column-name><column-value><![CDATA[");
@@ -603,8 +603,8 @@ public class ActividadPlanClp extends BaseModelImpl<ActividadPlan>
 		return sb.toString();
 	}
 
-	private long _actividadCronogramaId;
 	private long _actividadPlanId;
+	private long _actividadCronogramaId;
 	private long _planAccionId;
 	private String _actividad;
 	private String _evidencia;

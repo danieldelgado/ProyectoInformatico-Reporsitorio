@@ -25,11 +25,24 @@
 		<field name="fechamodifica" type="Date" />
 	</model>
 	<model name="com.hitss.layer.model.ActividadPlan">
-		<field name="actividadCronogramaId" type="long" />
 		<field name="actividadPlanId" type="long" />
+		<field name="actividadCronogramaId" type="long" />
 		<field name="planAccionId" type="long" />
 		<field name="actividad" type="String" />
 		<field name="evidencia" type="String" />
+		<field name="activo" type="boolean" />
+		<field name="usuariocrea" type="long" />
+		<field name="fechacrea" type="Date" />
+		<field name="usuariomodifica" type="long" />
+		<field name="fechamodifica" type="Date" />
+	</model>
+	<model name="com.hitss.layer.model.ActividadPlanAccionUsuario">
+		<field name="actividadPlanAccionUsuariocoId" type="long" />
+		<field name="actividadPlanId" type="long" />
+		<field name="usuarioId" type="long" />
+		<field name="cumplio" type="long" />
+		<field name="actividad" type="String" />
+		<field name="puntuacion" type="int" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -250,19 +263,6 @@
 		<field name="telefono" type="String" />
 		<field name="responsable" type="String" />
 		<field name="motivo" type="String" />
-		<field name="activo" type="boolean" />
-		<field name="usuariocrea" type="long" />
-		<field name="fechacrea" type="Date" />
-		<field name="usuariomodifica" type="long" />
-		<field name="fechamodifica" type="Date" />
-	</model>
-	<model name="com.hitss.layer.model.RegistrarActividadPlanUsuario">
-		<field name="actividadPlanId" type="long" />
-		<field name="regisitrarActividadPlanUsuariocoId" type="long" />
-		<field name="usuarioId" type="long" />
-		<field name="cumplio" type="long" />
-		<field name="actividad" type="String" />
-		<field name="puntuacion" type="int" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />

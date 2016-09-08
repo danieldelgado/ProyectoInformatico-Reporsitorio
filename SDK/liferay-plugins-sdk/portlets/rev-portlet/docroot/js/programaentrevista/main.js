@@ -37,6 +37,75 @@ function inicializarFormularioBusqueda() {
 		listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);
 		// }
 	});
+	
+	
+
+
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		init();
+		
+		if (A.one('#' + inputFristnamespace + 'fechaRegistroInicio') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaRegistroInicio',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						// var btnBuscar = $("#" + inputFristnamespace +
+						// "btnBuscar");
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+						A.one('#' + inputFristnamespace + 'fechaRegistroInicioVal').set('value', fecha);
+						console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
+						if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
+							var contenedorAlerta = $(".contenedorAlerta");
+							$(contenedorAlerta).html("");
+						} else {
+							var contenedorAlerta = $(".contenedorAlerta");
+							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+						}
+					}
+				}
+			});
+		}
+		
+		if (A.one('#' + inputFristnamespace + 'fechaRegistroFin') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaRegistroFin',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						// var btnBuscar = $("#" + inputFristnamespace +
+						// "btnBuscar");
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+						A.one('#' + inputFristnamespace + 'fechaRegistroFinVal').set('value', fecha);
+						console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
+						if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
+							var contenedorAlerta = $(".contenedorAlerta");
+							$(contenedorAlerta).html("");
+						} else {
+							var contenedorAlerta = $(".contenedorAlerta");
+							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+						}
+					}
+				}
+			});
+		}
+		
+		
+	});
 
 }
 

@@ -40,10 +40,10 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
-		sb.append("{actividadCronogramaId=");
-		sb.append(actividadCronogramaId);
-		sb.append(", actividadPlanId=");
+		sb.append("{actividadPlanId=");
 		sb.append(actividadPlanId);
+		sb.append(", actividadCronogramaId=");
+		sb.append(actividadCronogramaId);
 		sb.append(", planAccionId=");
 		sb.append(planAccionId);
 		sb.append(", actividad=");
@@ -69,8 +69,8 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 	public ActividadPlan toEntityModel() {
 		ActividadPlanImpl actividadPlanImpl = new ActividadPlanImpl();
 
-		actividadPlanImpl.setActividadCronogramaId(actividadCronogramaId);
 		actividadPlanImpl.setActividadPlanId(actividadPlanId);
+		actividadPlanImpl.setActividadCronogramaId(actividadCronogramaId);
 		actividadPlanImpl.setPlanAccionId(planAccionId);
 
 		if (actividad == null) {
@@ -113,8 +113,8 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		actividadCronogramaId = objectInput.readLong();
 		actividadPlanId = objectInput.readLong();
+		actividadCronogramaId = objectInput.readLong();
 		planAccionId = objectInput.readLong();
 		actividad = objectInput.readUTF();
 		evidencia = objectInput.readUTF();
@@ -128,8 +128,8 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(actividadCronogramaId);
 		objectOutput.writeLong(actividadPlanId);
+		objectOutput.writeLong(actividadCronogramaId);
 		objectOutput.writeLong(planAccionId);
 
 		if (actividad == null) {
@@ -153,8 +153,8 @@ public class ActividadPlanCacheModel implements CacheModel<ActividadPlan>,
 		objectOutput.writeLong(fechamodifica);
 	}
 
-	public long actividadCronogramaId;
 	public long actividadPlanId;
+	public long actividadCronogramaId;
 	public long planAccionId;
 	public String actividad;
 	public String evidencia;

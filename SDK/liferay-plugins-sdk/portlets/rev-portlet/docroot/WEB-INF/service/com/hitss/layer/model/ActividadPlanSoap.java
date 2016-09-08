@@ -33,8 +33,8 @@ public class ActividadPlanSoap implements Serializable {
 	public static ActividadPlanSoap toSoapModel(ActividadPlan model) {
 		ActividadPlanSoap soapModel = new ActividadPlanSoap();
 
-		soapModel.setActividadCronogramaId(model.getActividadCronogramaId());
 		soapModel.setActividadPlanId(model.getActividadPlanId());
+		soapModel.setActividadCronogramaId(model.getActividadCronogramaId());
 		soapModel.setPlanAccionId(model.getPlanAccionId());
 		soapModel.setActividad(model.getActividad());
 		soapModel.setEvidencia(model.getEvidencia());
@@ -88,20 +88,12 @@ public class ActividadPlanSoap implements Serializable {
 	}
 
 	public ActividadPlanPK getPrimaryKey() {
-		return new ActividadPlanPK(_actividadCronogramaId, _actividadPlanId);
+		return new ActividadPlanPK(_actividadPlanId, _actividadCronogramaId);
 	}
 
 	public void setPrimaryKey(ActividadPlanPK pk) {
-		setActividadCronogramaId(pk.actividadCronogramaId);
 		setActividadPlanId(pk.actividadPlanId);
-	}
-
-	public long getActividadCronogramaId() {
-		return _actividadCronogramaId;
-	}
-
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadCronogramaId = actividadCronogramaId;
+		setActividadCronogramaId(pk.actividadCronogramaId);
 	}
 
 	public long getActividadPlanId() {
@@ -110,6 +102,14 @@ public class ActividadPlanSoap implements Serializable {
 
 	public void setActividadPlanId(long actividadPlanId) {
 		_actividadPlanId = actividadPlanId;
+	}
+
+	public long getActividadCronogramaId() {
+		return _actividadCronogramaId;
+	}
+
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadCronogramaId = actividadCronogramaId;
 	}
 
 	public long getPlanAccionId() {
@@ -180,8 +180,8 @@ public class ActividadPlanSoap implements Serializable {
 		_fechamodifica = fechamodifica;
 	}
 
-	private long _actividadCronogramaId;
 	private long _actividadPlanId;
+	private long _actividadCronogramaId;
 	private long _planAccionId;
 	private String _actividad;
 	private String _evidencia;

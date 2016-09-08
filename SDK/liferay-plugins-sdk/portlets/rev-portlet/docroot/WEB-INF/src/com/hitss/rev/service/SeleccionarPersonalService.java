@@ -7,6 +7,7 @@ import java.util.Map;
 import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.UsuarioBean;
+import com.liferay.portal.model.User;
 
 public interface SeleccionarPersonalService {
 	List<PuestoBean> getListaPuestos(long groupId, String object);
@@ -16,5 +17,6 @@ public interface SeleccionarPersonalService {
 
 	void selectPersonal();
 	List<UsuarioBean> getListaPostulantes(long companyId, long companyGroupId, Long solicitudRequerimientoId);
+	Map<String, Object> seleccionarPostulaste(Long solicitudId, Long userId, User user);
 
 }

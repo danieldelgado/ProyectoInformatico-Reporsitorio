@@ -50,8 +50,8 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("actividadPlanId", getActividadPlanId());
+		attributes.put("actividadCronogramaId", getActividadCronogramaId());
 		attributes.put("planAccionId", getPlanAccionId());
 		attributes.put("actividad", getActividad());
 		attributes.put("evidencia", getEvidencia());
@@ -66,17 +66,17 @@ public class ActividadPlanWrapper implements ActividadPlan,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
+
+		if (actividadPlanId != null) {
+			setActividadPlanId(actividadPlanId);
+		}
+
 		Long actividadCronogramaId = (Long)attributes.get(
 				"actividadCronogramaId");
 
 		if (actividadCronogramaId != null) {
 			setActividadCronogramaId(actividadCronogramaId);
-		}
-
-		Long actividadPlanId = (Long)attributes.get("actividadPlanId");
-
-		if (actividadPlanId != null) {
-			setActividadPlanId(actividadPlanId);
 		}
 
 		Long planAccionId = (Long)attributes.get("planAccionId");
@@ -150,26 +150,6 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	}
 
 	/**
-	* Returns the actividad cronograma ID of this actividad plan.
-	*
-	* @return the actividad cronograma ID of this actividad plan
-	*/
-	@Override
-	public long getActividadCronogramaId() {
-		return _actividadPlan.getActividadCronogramaId();
-	}
-
-	/**
-	* Sets the actividad cronograma ID of this actividad plan.
-	*
-	* @param actividadCronogramaId the actividad cronograma ID of this actividad plan
-	*/
-	@Override
-	public void setActividadCronogramaId(long actividadCronogramaId) {
-		_actividadPlan.setActividadCronogramaId(actividadCronogramaId);
-	}
-
-	/**
 	* Returns the actividad plan ID of this actividad plan.
 	*
 	* @return the actividad plan ID of this actividad plan
@@ -187,6 +167,26 @@ public class ActividadPlanWrapper implements ActividadPlan,
 	@Override
 	public void setActividadPlanId(long actividadPlanId) {
 		_actividadPlan.setActividadPlanId(actividadPlanId);
+	}
+
+	/**
+	* Returns the actividad cronograma ID of this actividad plan.
+	*
+	* @return the actividad cronograma ID of this actividad plan
+	*/
+	@Override
+	public long getActividadCronogramaId() {
+		return _actividadPlan.getActividadCronogramaId();
+	}
+
+	/**
+	* Sets the actividad cronograma ID of this actividad plan.
+	*
+	* @param actividadCronogramaId the actividad cronograma ID of this actividad plan
+	*/
+	@Override
+	public void setActividadCronogramaId(long actividadCronogramaId) {
+		_actividadPlan.setActividadCronogramaId(actividadCronogramaId);
 	}
 
 	/**

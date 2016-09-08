@@ -1,7 +1,12 @@
+
 var inputFristnamespace = null;
+var modalconfirmacion =null;
+
+
 $(document).ready(function() {
 	init();
 });
+
 function init() {
 	inputFristnamespace = $("input[type=hidden]").first().val();
 }
@@ -32,7 +37,13 @@ function inicializarFormularioBusqueda() {
 		// }
 	});
 	
+	
+
+
+
 	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		init();
+		
 		if (A.one('#' + inputFristnamespace + 'fechaRegistroInicio') != null) {
 			new A.DatePicker({
 				trigger : '#' + inputFristnamespace + 'fechaRegistroInicio',
@@ -42,15 +53,27 @@ function inicializarFormularioBusqueda() {
 				},
 				on : {
 					selectionChange : function(event) {
+						// var btnBuscar = $("#" + inputFristnamespace +
+						// "btnBuscar");
 						var d = new Date(event.newSelection);
 						var day = d.getDate();
 						var monthIndex = d.getMonth();
 						var year = d.getFullYear();
-						A.one('#' + inputFristnamespace + 'fechaRegistroInicioVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+						var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+						A.one('#' + inputFristnamespace + 'fechaRegistroInicioVal').set('value', fecha);
+						console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
+						if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
+							var contenedorAlerta = $(".contenedorAlerta");
+							$(contenedorAlerta).html("");
+						} else {
+							var contenedorAlerta = $(".contenedorAlerta");
+							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+						}
 					}
 				}
 			});
 		}
+		
 		if (A.one('#' + inputFristnamespace + 'fechaRegistroFin') != null) {
 			new A.DatePicker({
 				trigger : '#' + inputFristnamespace + 'fechaRegistroFin',
@@ -60,17 +83,27 @@ function inicializarFormularioBusqueda() {
 				},
 				on : {
 					selectionChange : function(event) {
+						// var btnBuscar = $("#" + inputFristnamespace +
+						// "btnBuscar");
 						var d = new Date(event.newSelection);
 						var day = d.getDate();
 						var monthIndex = d.getMonth();
 						var year = d.getFullYear();
-						A.one('#' + inputFristnamespace + 'fechaRegistroFinVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+						var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+						A.one('#' + inputFristnamespace + 'fechaRegistroFinVal').set('value', fecha);
+						console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
+						if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
+							var contenedorAlerta = $(".contenedorAlerta");
+							$(contenedorAlerta).html("");
+						} else {
+							var contenedorAlerta = $(".contenedorAlerta");
+							mostrarAlerta(contenedorAlerta, "Busqueda", "Fechas incorrectas", "alert-error", null);
+						}
 					}
 				}
 			});
 		}
 	});
-	
 	
 	
 }
@@ -194,28 +227,30 @@ function inicializarListaGrupo(listaGrupos) {
 
 
 function addGrupoFila(object) {
+
+	init();
+	
 	var planificarUrl = $("#" + inputFristnamespace + "planificarUrl").val();
 
 	var listaGrupos = $("#" + inputFristnamespace + "listaGrupos");
 	var html = "";
 	html += "<tr>" + 
 	"<td>" + object.strgrupoUsuario + "</td>" + 
-	"<td>" + "" + "</td>" + 
-	"<td>" + "" + "</td>" + 
-	"<td>" + "" + "</td>" + 
-	"<td>" + "" + "</td>" + 
+	"<td>" + object.actividadCronogramaBean.strfechaEvaluacionInicio + "</td>" + 
+	"<td>" + object.actividadCronogramaBean.strfechaEvaluacionFin + "</td>" + 
+	"<td>" + object.actividadCronogramaBean.strfechaPlanAccionInicio + "</td>" + 
+	"<td>" + object.actividadCronogramaBean.strfechaPlanAccionFin + "</td>" + 
 	"<td>" + "" + "</td>" + 
 	"<td>" + "" + "</td>" + 
 	"<td>" + "";
 	
 	html += '	<div class="btn-group">';
 	html += '		<a class="btn btn-primary" href="' + planificarUrl 
-	+ '&' + inputFristnamespace + 'solicitudEvaluacionId=' +object.solicitudEvaluacionId 
-	+ '&' + inputFristnamespace + 'prioridadGrupoUsuariosId=' + object.prioridadGrupoUsuariosId + 
-	+ '&' + inputFristnamespace + 'cronogramaId=' + object.actividadCronogramaBean.cronogramaId+
-	+ '&' + inputFristnamespace + 'actividadCronogramaId=' + object.actividadCronogramaBean.actividadCronogramaId +
-	+ '&' + inputFristnamespace + 'grupoUsuario=' +  object.grupoUsuario  +
-	'"> Planificar </a>';
+	+ '&'  + inputFristnamespace + 'grupoUsuarioId=' +object.grupoUsuario
+	+ '&'  + inputFristnamespace + 'prioridadGrupoUsuariosId=' + object.prioridadGrupoUsuariosId 
+	+ '&'  + inputFristnamespace + 'cronogramaId=' + object.actividadCronogramaBean.cronogramaId 
+	+ '&'  + inputFristnamespace + 'actividadCronogramaId=' + object.actividadCronogramaBean.actividadCronogramaId
+	+ '&'  + inputFristnamespace + 'solicitudEvaluacionId=' +  object.solicitudEvaluacionId  +'"> Planificar </a>';
 	html += '	</div>';
 	
 	html += "</td>"
@@ -223,4 +258,191 @@ function addGrupoFila(object) {
 	html +="</tr>";
 	$(listaGrupos).append(html);
 
+}
+
+
+
+function inicializarFormularioPlanificar() {
+	init();
+	console.log("inicializarFormularioPlanificar");
+	var guardarPlanificarUrl = $("#" + inputFristnamespace + "guardarPlanificarUrl").val();
+	var contenedorAlerta = $(".contenedorAlerta");
+	var formPlanificarActividad = $("#" + inputFristnamespace + "planificarActividad");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	
+
+	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
+	var msgError = $("#" + inputFristnamespace + "msgError").val();
+	
+	
+	
+	$(btnGuardar).click(function() {
+		console.log("modalconfirmacion");
+		modalconfirmacion.show();
+	});
+	
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		init();
+		if (A.one('#' + inputFristnamespace + 'fechaInicioEvalacion') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaInicioEvalacion',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						A.one('#' + inputFristnamespace + 'fechaInicioEvalacionVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					}
+				}
+			});
+		}
+		if (A.one('#' + inputFristnamespace + 'fechaFinEvalacion') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaFinEvalacion',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						A.one('#' + inputFristnamespace + 'fechaFinEvalacionVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					}
+				}
+			});
+		}
+		
+		
+
+		if (A.one('#' + inputFristnamespace + 'fechaFinEvalacion') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaInicioPlanAccion',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						A.one('#' + inputFristnamespace + 'fechaInicioPlanAccionVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					}
+				}
+			});
+		}
+
+		if (A.one('#' + inputFristnamespace + 'fechaFinPlanAccion') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaFinPlanAccion',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				on : {
+					selectionChange : function(event) {
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						A.one('#' + inputFristnamespace + 'fechaFinPlanAccionVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					}
+				}
+			});
+		}
+		
+		
+		if (A.one('#' + inputFristnamespace + 'modal') != null) {
+			var popupconfirmartitulo = $("#" + inputFristnamespace + "popupconfirmartitulo").val();
+			var popupconfirmarMensage = $("#" + inputFristnamespace + "popupconfirmarMensage").val();
+			var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+			var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+
+			modalconfirmacion = new A.Modal({
+				bodyContent : popupconfirmarMensage,
+				centered : true,
+				destroyOnHide : false,
+				headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+				modal : true,
+				render : '#' + inputFristnamespace + 'modal',
+				resizable : false,
+				visible : false,
+				width : 305
+			}).render();
+
+			modalconfirmacion.addToolbar([
+			                              
+			                              
+			    {
+			    	label : msgAceptar,
+					on : {
+						click : function() {
+//							if (formvalid) {
+								registrarPlanificacion();
+//							}
+						}
+					}
+			    }, 
+			    {
+					
+				    label : msgCancelar,
+					on : {
+						click : function() {
+							modalconfirmacion.hide();
+						}
+					}
+			    } 
+			    ]);
+		}
+		
+	});
+	
+
+		
+	
+}
+
+
+function registrarPlanificacion(){
+
+	var guardarPlanificarUrl = $("#" + inputFristnamespace + "guardarPlanificarUrl").val();
+	var contenedorAlerta = $(".contenedorAlerta");
+	var formPlanificarActividad = $("#" + inputFristnamespace + "planificarActividad");
+	var dataSend = $(formPlanificarActividad).serialize();
+	
+	$.ajax({
+		type : "POST",
+		url : guardarPlanificarUrl,
+		data : dataSend,
+		success : function(data) {
+			console.log(data);
+			modalconfirmacion.hide();
+			data = $.parseJSON(data);
+//			var objeto = data["objeto"];
+//			var respuesta = data["respuesta"];
+//			var mensaje = data["mensaje"];
+//			listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
+//			listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
+//			listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
+//			if (respuesta == 1) {
+//				$(btnGuardar).attr("disabled", "disabled");
+//				mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+//					setTimeout(function() {
+//						window.location = listarSolicitudesUrl;
+//					}, 1500);
+//				});
+//			} else {
+//				mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+//			}
+		}
+	});
 }

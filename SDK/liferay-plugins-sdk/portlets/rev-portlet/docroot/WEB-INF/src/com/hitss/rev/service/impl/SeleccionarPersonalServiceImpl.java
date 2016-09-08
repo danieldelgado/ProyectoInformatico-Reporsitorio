@@ -2,7 +2,9 @@ package com.hitss.rev.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,16 @@ import com.hitss.layer.model.Postulacion;
 import com.hitss.layer.model.Usuario;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.PostulacionLocalServiceUtil;
+import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.UsuarioLocalServiceUtil;
+import com.hitss.layer.service.persistence.PostulacionPK;
+import com.hitss.rev.bean.PostulacionBean;
+import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.dools.ExpertoRevApi;
 import com.hitss.rev.service.SeleccionarPersonalService;
 import com.hitss.rev.util.Constantes;
+import com.hitss.rev.util.PropiedadMensaje;
 import com.hitss.rev.util.RevServiceImpl;
 import com.hitss.rev.util.Util;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -27,6 +34,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
 
 @Service("SeleccionarPersonalService")
 public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements SeleccionarPersonalService {
@@ -132,6 +140,36 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 		}
 		_log.info("lstReturn:"+lstReturn);
 		return lstReturn;
+	}
+
+	@Override
+	public Map<String, Object> seleccionarPostulaste(Long solicitudId, Long userId, User user) {
+		Map<String, Object> result = new HashMap<String, Object>();	
+		PostulacionPK postulacionPK =  new PostulacionPK(solicitudId, userId);		
+		PostulacionBean pstbean = new PostulacionBean();		
+		try {
+			Postulacion post = PostulacionLocalServiceUtil.getPostulacion(postulacionPK );		
+			if(Validator.isNotNull(post)){
+				post.setEstado(Constantes.PARAMETRO_ESTADO_TERMINADO);
+				post.setUsuariomodifica(user.getUserId());
+				post.setFechamodifica(new Date());
+				post.setSeleccionado(true);
+				post = PostulacionLocalServiceUtil.updatePostulacion(post);									
+				pstbean.setEstado(post.getEstado());
+				pstbean.setFechaPostulacion(post.getFechaPostulacion());
+				pstbean.setSolicitudId(solicitudId);
+				pstbean.setUsuarioId(userId);				
+				result.put("objeto", pstbean );
+				result.put("respuesta", Constantes.TRANSACCION_OK);
+				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("seleccionar.postulante.mensaje"), String.valueOf(pstbean.getSolicitudId())));
+			}			
+		} catch (PortalException | SystemException e) {
+			_log.error("Error al seleccionarPostulaste " + e.getMessage(), e);
+			result.put("objeto", pstbean);
+			result.put("respuesta", Constantes.TRANSACCION_NO_OK);
+			result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("seleccionar.postulante.error"), String.valueOf(pstbean.getSolicitudId())));
+		}
+		return result;
 	}
 
 	

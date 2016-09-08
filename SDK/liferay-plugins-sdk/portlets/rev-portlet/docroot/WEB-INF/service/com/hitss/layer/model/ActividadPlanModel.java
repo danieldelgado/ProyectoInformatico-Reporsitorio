@@ -62,20 +62,6 @@ public interface ActividadPlanModel extends BaseModel<ActividadPlan> {
 	public void setPrimaryKey(ActividadPlanPK primaryKey);
 
 	/**
-	 * Returns the actividad cronograma ID of this actividad plan.
-	 *
-	 * @return the actividad cronograma ID of this actividad plan
-	 */
-	public long getActividadCronogramaId();
-
-	/**
-	 * Sets the actividad cronograma ID of this actividad plan.
-	 *
-	 * @param actividadCronogramaId the actividad cronograma ID of this actividad plan
-	 */
-	public void setActividadCronogramaId(long actividadCronogramaId);
-
-	/**
 	 * Returns the actividad plan ID of this actividad plan.
 	 *
 	 * @return the actividad plan ID of this actividad plan
@@ -88,6 +74,20 @@ public interface ActividadPlanModel extends BaseModel<ActividadPlan> {
 	 * @param actividadPlanId the actividad plan ID of this actividad plan
 	 */
 	public void setActividadPlanId(long actividadPlanId);
+
+	/**
+	 * Returns the actividad cronograma ID of this actividad plan.
+	 *
+	 * @return the actividad cronograma ID of this actividad plan
+	 */
+	public long getActividadCronogramaId();
+
+	/**
+	 * Sets the actividad cronograma ID of this actividad plan.
+	 *
+	 * @param actividadCronogramaId the actividad cronograma ID of this actividad plan
+	 */
+	public void setActividadCronogramaId(long actividadCronogramaId);
 
 	/**
 	 * Returns the plan accion ID of this actividad plan.

@@ -33,6 +33,14 @@ public class ActividadCronogramaBean implements Serializable{
 	private String strGerenteArea;
 	private long usuarioLiderId;
 	private String strUsuarioLider;
+	
+	public ActividadCronogramaBean() {
+		strfechaPlanAccionFin = "";
+		strfechaPlanAccionInicio = "";
+		strfechaEvaluacionFin = "" ;
+		strfechaEvaluacionInicio  = "";
+	}
+	
 	public long getCronogramaId() {
 		return cronogramaId;
 	}

@@ -722,7 +722,10 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 					var day = d.getDate();
 					var monthIndex = d.getMonth();
 					var year = d.getFullYear();
-					A.one('#' + inputFristnamespace + 'fechaRegistroInicioVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					
+					var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+					
+					A.one('#' + inputFristnamespace + 'fechaRegistroInicioVal').set('value', fecha);
 					console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
 					if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
 						var contenedorAlerta = $(".contenedorAlerta");
@@ -751,7 +754,8 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 					var day = d.getDate();
 					var monthIndex = d.getMonth();
 					var year = d.getFullYear();
-					A.one('#' + inputFristnamespace + 'fechaRegistroFinVal').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					var fecha = day + "/" + (monthIndex + 1) + "/" + year;
+					A.one('#' + inputFristnamespace + 'fechaRegistroFinVal').set('value', fecha);
 					console.log(validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal'));
 					if (validarFecharSimple(inputFristnamespace + 'fechaRegistroInicioVal', inputFristnamespace + 'fechaRegistroFinVal')) {
 						var contenedorAlerta = $(".contenedorAlerta");

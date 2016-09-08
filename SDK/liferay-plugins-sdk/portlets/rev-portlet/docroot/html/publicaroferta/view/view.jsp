@@ -90,7 +90,7 @@
 							</div>
 							<div class="span6">
 								<input id="<portlet:namespace/>fechaRegistroInicio" name="<portlet:namespace/>fechaRegistroInicio" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;">
-								<aui:input id="fechaRegistroInicioVal" name="fechaRegistroInicio" type="hidden" />
+								<aui:input id="fechaRegistroInicioVal" name="fechaRegistroInicioVal" type="hidden" />
 							</div>
 						</div>
 						<div>
@@ -99,7 +99,7 @@
 							</div>
 							<div class="span6">
 								<input id="<portlet:namespace/>fechaRegistroFin" name="<portlet:namespace/>fechaRegistroFin" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;">
-								<aui:input id="fechaRegistroFinVal" name="fechaRegistroFin" type="hidden" />
+								<aui:input id="fechaRegistroFinVal" name="fechaRegistroFinVal" type="hidden" />
 							</div>
 						</div>
 					</div>

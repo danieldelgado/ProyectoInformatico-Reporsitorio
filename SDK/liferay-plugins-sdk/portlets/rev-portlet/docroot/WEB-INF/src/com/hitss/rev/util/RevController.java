@@ -107,21 +107,18 @@ public abstract class RevController {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+		_log.debug("getParameterMap:" + resourceRequest.getParameterMap());
 		Long puestoId = ParamUtil.getLong(resourceRequest, "puestoId");
 		_log.debug("puestoId:" + puestoId);
 
 		Date fechaRegistroInicio = null;
-		String fechaRegistroInicioVal = ParamUtil.get(resourceRequest, "fechaRegistroInicioVal", "");
-		if (Validator.isNotNull(fechaRegistroInicioVal)) {
-			fechaRegistroInicio = ParamUtil.getDate(resourceRequest, "fechaRegistroInicioVal", sdf);
-		}
+		String fechaRegistroInicioVal = ParamUtil.get(resourceRequest, "fechaRegistroInicio", "");
+		fechaRegistroInicio = Util.getFecha(fechaRegistroInicioVal);
 		_log.debug("fechaRegistroInicio:" + fechaRegistroInicio);
 
 		Date fechaRegistrFin = null;
-		String fechaRegistroFinVal = ParamUtil.get(resourceRequest, "fechaRegistroFinVal", "");
-		if (Validator.isNotNull(fechaRegistroFinVal)) {
-			fechaRegistrFin = ParamUtil.getDate(resourceRequest, "fechaRegistroFinVal", sdf);
-		}
+		String fechaRegistroFinVal = ParamUtil.get(resourceRequest, "fechaRegistroFin", "");	
+		fechaRegistrFin = Util.getFecha(fechaRegistroFinVal);		
 		_log.debug("fechaRegistrFin:" + fechaRegistrFin);
 
 		int responsable = ParamUtil.getInteger(resourceRequest, "responsable");
