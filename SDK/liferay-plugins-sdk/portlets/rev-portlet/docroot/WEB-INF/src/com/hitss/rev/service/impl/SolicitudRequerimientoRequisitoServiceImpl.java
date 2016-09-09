@@ -47,8 +47,8 @@ public class SolicitudRequerimientoRequisitoServiceImpl implements SolicitudRequ
 				re.setSolicitudRequerimientoId(solicitudRequerimientoRequisito.getSolicitudRequerimientoId());
 				re.setTagId(solicitudRequerimientoRequisito.getTagId());
 				re.setRequisito(liferayContentService.getEtiqueta(solicitudRequerimientoRequisito.getTagId()).getValue());
-				re.setNivel(solicitudRequerimientoRequisito.getNivel());				
-				re.setNivelText(parametroService.getParametro(solicitudRequerimientoRequisito.getNivel()).getValor());				
+				re.setAnnos(solicitudRequerimientoRequisito.getAnnos());				
+				re.setAnnosText(parametroService.getParametro(solicitudRequerimientoRequisito.getAnnos()).getValor());				
 				re.setExigible(solicitudRequerimientoRequisito.isExigible());
 				re.setTagId(solicitudRequerimientoRequisito.getTagId());
 				re.setTipoRequisito(solicitudRequerimientoRequisito.getTipoRequisito());
@@ -99,8 +99,10 @@ public class SolicitudRequerimientoRequisitoServiceImpl implements SolicitudRequ
 				re.setSolicitudRequerimientoId(solicitudRequerimientoRequisito.getSolicitudRequerimientoId());
 				re.setTagId(solicitudRequerimientoRequisito.getTagId());
 				re.setRequisito(liferayContentService.getEtiqueta(solicitudRequerimientoRequisito.getTagId()).getValue());
-				re.setNivel(solicitudRequerimientoRequisito.getNivel());				
-				re.setNivelText(parametroService.getParametro(solicitudRequerimientoRequisito.getNivel()).getValor());				
+				if(solicitudRequerimientoRequisito.getAnnos()>0){
+					re.setAnnos(solicitudRequerimientoRequisito.getAnnos());				
+					re.setAnnosText(parametroService.getParametro(solicitudRequerimientoRequisito.getAnnos()).getValor());	
+				}				
 				re.setExigible(solicitudRequerimientoRequisito.isExigible());
 				re.setTagId(solicitudRequerimientoRequisito.getTagId());
 				re.setTipoRequisito(solicitudRequerimientoRequisito.getTipoRequisito());

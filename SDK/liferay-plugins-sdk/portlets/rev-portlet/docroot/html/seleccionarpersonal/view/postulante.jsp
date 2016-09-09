@@ -12,11 +12,17 @@
 <portlet:defineObjects />
 <liferay-theme:defineObjects />
 
-<portlet:resourceURL id="seleccionarPostulante" var="seleccionarPostulante" > </portlet:resourceURL>
+<portlet:resourceURL id="seleccionarPostulante" var="seleccionarPostulante">
+</portlet:resourceURL>
 
 
 <input type="hidden" value="<portlet:namespace/>" />
 <input id="<portlet:namespace/>seleccionarPostulanteUrl" type="hidden" value="${seleccionarPostulante}" />
+
+
+<input id="<portlet:namespace/>popupMensaje" type="hidden" value="<liferay-ui:message key="seleccionar.postulante.mensaje" />" />
+<input id="<portlet:namespace/>msgError" type="hidden" value="<liferay-ui:message key="general.form.error" />" />
+
 
 <input id="<portlet:namespace/>msgAceptar" type="hidden" value="<liferay-ui:message key="general.form.opciones.aceptar" />" />
 <input id="<portlet:namespace/>msgCancelar" type="hidden" value="<liferay-ui:message key="general.form.opciones.cancelar" />" />
@@ -35,25 +41,26 @@
 		</div>
 		<div class="offset1 span10">
 			<form id="<portlet:namespace/>seleccionarPostulante" class="formulario">
-				<input id="<portlet:namespace/>solicitudId" name="<portlet:namespace/>solicitudId" type="hidden" value="${solicitudId}" />
-				<input id="<portlet:namespace/>userId" name="<portlet:namespace/>userId" type="hidden" value="${userId}" />
-			
+				<input id="<portlet:namespace/>solicitudId" name="<portlet:namespace/>solicitudId" type="hidden" value="${solicitudId}" /> <input id="<portlet:namespace/>userId"
+					name="<portlet:namespace/>userId" type="hidden" value="${userId}" />
+
 
 				<div class="row-fluid"></div>
 				<div class="row">
 					<div class="span12"></div>
 				</div>
 				<div class="row">
-					<div class="offset5 span2">
+					<div class="offset4 span4">
 						<aui:button-row>
 							<a class="btn btn-primary" id="<portlet:namespace/>btnGuardar" href="javascript:void(0)"> <liferay-ui:message key="general.form.seleccionar" />
 							</a>
-							
+
 							<portlet:renderURL var="listarPostulantes">
 								<portlet:param name="action" value="listarPostulantes" />
 								<portlet:param name="solicitudRequerimientoId" value="${solicitudId}" />
 							</portlet:renderURL>
-							
+
+							<input id="<portlet:namespace/>listarPostulantesUrl" name="<portlet:namespace/>listarPostulantesUrl" type="hidden" value="${listarPostulantes}" />
 							<a class="btn btn-primary" href="${listarPostulantes}"> <liferay-ui:message key="general.form.opciones.salir" />
 							</a>
 						</aui:button-row>

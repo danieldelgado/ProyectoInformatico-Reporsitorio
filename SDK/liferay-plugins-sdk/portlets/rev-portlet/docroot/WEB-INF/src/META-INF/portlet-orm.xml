@@ -28,9 +28,7 @@
 			<basic name="fechaFinEvaluacion">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="tipoActividad" />
 			<basic name="aprobadoColaborador" />
-			<basic name="jerarquiaEvaluar" />
 			<basic name="aprobadoLider" />
 			<basic name="usuarioGerenteId" />
 			<basic name="usuarioLiderId" />
@@ -168,7 +166,7 @@
 			<id name="estudioId" />
 			<basic name="usuarioId" />
 			<basic name="nombre" />
-			<basic name="nivel" />
+			<basic name="annos" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
 			<basic name="fechacrea">
@@ -601,7 +599,7 @@
 		<attributes>
 			<id name="solicitudRequerimientoId" />
 			<id name="tagId" />
-			<basic name="nivel" />
+			<basic name="annos" />
 			<basic name="exigible" />
 			<basic name="tipoRequisito" />
 			<basic name="herramienta" />
@@ -674,7 +672,7 @@
 		<attributes>
 			<id name="userId" />
 			<id name="tagId" />
-			<basic name="nivel" />
+			<basic name="annos" />
 			<basic name="exigible" />
 			<basic name="tipoRequisito" />
 			<basic name="herramienta" />

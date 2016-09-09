@@ -38,7 +38,7 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(39);
 
 		sb.append("{actividadCronogramaId=");
 		sb.append(actividadCronogramaId);
@@ -60,12 +60,8 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		sb.append(fechaInicioEvaluacion);
 		sb.append(", fechaFinEvaluacion=");
 		sb.append(fechaFinEvaluacion);
-		sb.append(", tipoActividad=");
-		sb.append(tipoActividad);
 		sb.append(", aprobadoColaborador=");
 		sb.append(aprobadoColaborador);
-		sb.append(", jerarquiaEvaluar=");
-		sb.append(jerarquiaEvaluar);
 		sb.append(", aprobadoLider=");
 		sb.append(aprobadoLider);
 		sb.append(", usuarioGerenteId=");
@@ -135,9 +131,7 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 					fechaFinEvaluacion));
 		}
 
-		actividadCronogramaImpl.setTipoActividad(tipoActividad);
 		actividadCronogramaImpl.setAprobadoColaborador(aprobadoColaborador);
-		actividadCronogramaImpl.setJerarquiaEvaluar(jerarquiaEvaluar);
 		actividadCronogramaImpl.setAprobadoLider(aprobadoLider);
 		actividadCronogramaImpl.setUsuarioGerenteId(usuarioGerenteId);
 		actividadCronogramaImpl.setUsuarioLiderId(usuarioLiderId);
@@ -177,9 +171,7 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		estado = objectInput.readLong();
 		fechaInicioEvaluacion = objectInput.readLong();
 		fechaFinEvaluacion = objectInput.readLong();
-		tipoActividad = objectInput.readLong();
 		aprobadoColaborador = objectInput.readLong();
-		jerarquiaEvaluar = objectInput.readLong();
 		aprobadoLider = objectInput.readLong();
 		usuarioGerenteId = objectInput.readLong();
 		usuarioLiderId = objectInput.readLong();
@@ -210,9 +202,7 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 		objectOutput.writeLong(estado);
 		objectOutput.writeLong(fechaInicioEvaluacion);
 		objectOutput.writeLong(fechaFinEvaluacion);
-		objectOutput.writeLong(tipoActividad);
 		objectOutput.writeLong(aprobadoColaborador);
-		objectOutput.writeLong(jerarquiaEvaluar);
 		objectOutput.writeLong(aprobadoLider);
 		objectOutput.writeLong(usuarioGerenteId);
 		objectOutput.writeLong(usuarioLiderId);
@@ -233,9 +223,7 @@ public class ActividadCronogramaCacheModel implements CacheModel<ActividadCronog
 	public long estado;
 	public long fechaInicioEvaluacion;
 	public long fechaFinEvaluacion;
-	public long tipoActividad;
 	public long aprobadoColaborador;
-	public long jerarquiaEvaluar;
 	public long aprobadoLider;
 	public long usuarioGerenteId;
 	public long usuarioLiderId;

@@ -100,8 +100,12 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strfechaGerenteÁrea + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
-				html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
+				if (value.estado == 51 && value.estado == 68 && value.estado ==52) {
+					html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
+				}
+				if (value.estado == 51 && value.estado == 68 && value.estado ==52) {
+					html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
+				}
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';

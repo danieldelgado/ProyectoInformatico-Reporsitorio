@@ -55,6 +55,34 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 				}
 				if (userIds != null) {
 					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);
+					
+//					 List<Usuario> lret = new ArrayList<>();
+//					 User user = null;
+//					 boolean add = false;
+//					 for (Usuario u : usuario) {
+//						 user = UserLocalServiceUtil.getUser(u.getUserId());
+//						 
+//						 user.getr
+//						 List<UserGroupRole> userGroupRoleList =
+//						    UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId, groupId);
+//						    if (userGroupRoleList != null) {
+//						    for (UserGroupRole userGroupRole : userGroupRoleList) {
+//						        /* Get Role object based on userGroupRole.getRoleId() */
+//						        Role role = RoleLocalServiceUtil.getRole(userGroupRole.getRoleId());
+//						        System.out.println("roleId : " + role.getRoleId());
+//						        System.out.println("roleName : " + role.getName());
+//						    }
+//						}
+//						 if(add){
+//							 lret.add(u);	 
+//						 }
+//						  
+//						 
+//					}
+					
+					
+					
+					
 					if (!lstUsuariosPostulantes.isEmpty()) {						
 						User user = null;
 						UsuarioBean usuarioBean = null;

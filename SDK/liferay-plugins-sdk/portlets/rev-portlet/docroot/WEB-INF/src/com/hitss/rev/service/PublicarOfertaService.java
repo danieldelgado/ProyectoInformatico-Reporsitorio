@@ -29,7 +29,7 @@ public interface PublicarOfertaService {
 
 	List<ParametroBean> getListaTipoRequisito();
 
-	List<ParametroBean> getListaNiveles();
+	List<ParametroBean> getListaAnnos();
 
 	List<ParametroBean> getAreas();
 

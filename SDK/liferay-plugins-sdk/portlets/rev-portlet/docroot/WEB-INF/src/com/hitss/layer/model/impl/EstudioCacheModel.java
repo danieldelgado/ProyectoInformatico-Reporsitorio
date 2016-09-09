@@ -45,8 +45,8 @@ public class EstudioCacheModel implements CacheModel<Estudio>, Externalizable {
 		sb.append(usuarioId);
 		sb.append(", nombre=");
 		sb.append(nombre);
-		sb.append(", nivel=");
-		sb.append(nivel);
+		sb.append(", annos=");
+		sb.append(annos);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -76,7 +76,7 @@ public class EstudioCacheModel implements CacheModel<Estudio>, Externalizable {
 			estudioImpl.setNombre(nombre);
 		}
 
-		estudioImpl.setNivel(nivel);
+		estudioImpl.setAnnos(annos);
 		estudioImpl.setActivo(activo);
 		estudioImpl.setUsuariocrea(usuariocrea);
 
@@ -106,7 +106,7 @@ public class EstudioCacheModel implements CacheModel<Estudio>, Externalizable {
 		estudioId = objectInput.readLong();
 		usuarioId = objectInput.readLong();
 		nombre = objectInput.readUTF();
-		nivel = objectInput.readLong();
+		annos = objectInput.readLong();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -127,7 +127,7 @@ public class EstudioCacheModel implements CacheModel<Estudio>, Externalizable {
 			objectOutput.writeUTF(nombre);
 		}
 
-		objectOutput.writeLong(nivel);
+		objectOutput.writeLong(annos);
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -138,7 +138,7 @@ public class EstudioCacheModel implements CacheModel<Estudio>, Externalizable {
 	public long estudioId;
 	public long usuarioId;
 	public String nombre;
-	public long nivel;
+	public long annos;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

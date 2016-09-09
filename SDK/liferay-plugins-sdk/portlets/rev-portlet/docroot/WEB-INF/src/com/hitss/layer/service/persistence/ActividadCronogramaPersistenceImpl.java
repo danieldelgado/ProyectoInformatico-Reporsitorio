@@ -1505,9 +1505,7 @@ public class ActividadCronogramaPersistenceImpl extends BasePersistenceImpl<Acti
 		actividadCronogramaImpl.setEstado(actividadCronograma.getEstado());
 		actividadCronogramaImpl.setFechaInicioEvaluacion(actividadCronograma.getFechaInicioEvaluacion());
 		actividadCronogramaImpl.setFechaFinEvaluacion(actividadCronograma.getFechaFinEvaluacion());
-		actividadCronogramaImpl.setTipoActividad(actividadCronograma.getTipoActividad());
 		actividadCronogramaImpl.setAprobadoColaborador(actividadCronograma.getAprobadoColaborador());
-		actividadCronogramaImpl.setJerarquiaEvaluar(actividadCronograma.getJerarquiaEvaluar());
 		actividadCronogramaImpl.setAprobadoLider(actividadCronograma.getAprobadoLider());
 		actividadCronogramaImpl.setUsuarioGerenteId(actividadCronograma.getUsuarioGerenteId());
 		actividadCronogramaImpl.setUsuarioLiderId(actividadCronograma.getUsuarioLiderId());

@@ -319,7 +319,7 @@ public class EstudioPersistenceImpl extends BasePersistenceImpl<Estudio>
 		estudioImpl.setEstudioId(estudio.getEstudioId());
 		estudioImpl.setUsuarioId(estudio.getUsuarioId());
 		estudioImpl.setNombre(estudio.getNombre());
-		estudioImpl.setNivel(estudio.getNivel());
+		estudioImpl.setAnnos(estudio.getAnnos());
 		estudioImpl.setActivo(estudio.isActivo());
 		estudioImpl.setUsuariocrea(estudio.getUsuariocrea());
 		estudioImpl.setFechacrea(estudio.getFechacrea());

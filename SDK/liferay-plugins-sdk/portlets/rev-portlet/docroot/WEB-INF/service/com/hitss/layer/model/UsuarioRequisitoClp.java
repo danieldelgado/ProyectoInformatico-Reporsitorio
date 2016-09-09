@@ -80,7 +80,7 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 
 		attributes.put("userId", getUserId());
 		attributes.put("tagId", getTagId());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("exigible", getExigible());
 		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("herramienta", getHerramienta());
@@ -108,10 +108,10 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 			setTagId(tagId);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -226,21 +226,21 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 	}
 
 	@Override
-	public long getNivel() {
-		return _nivel;
+	public long getAnnos() {
+		return _annos;
 	}
 
 	@Override
-	public void setNivel(long nivel) {
-		_nivel = nivel;
+	public void setAnnos(long annos) {
+		_annos = annos;
 
 		if (_usuarioRequisitoRemoteModel != null) {
 			try {
 				Class<?> clazz = _usuarioRequisitoRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setNivel", long.class);
+				Method method = clazz.getMethod("setAnnos", long.class);
 
-				method.invoke(_usuarioRequisitoRemoteModel, nivel);
+				method.invoke(_usuarioRequisitoRemoteModel, annos);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -544,7 +544,7 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 
 		clone.setUserId(getUserId());
 		clone.setTagId(getTagId());
-		clone.setNivel(getNivel());
+		clone.setAnnos(getAnnos());
 		clone.setExigible(getExigible());
 		clone.setTipoRequisito(getTipoRequisito());
 		clone.setHerramienta(getHerramienta());
@@ -611,8 +611,8 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getUserId());
 		sb.append(", tagId=");
 		sb.append(getTagId());
-		sb.append(", nivel=");
-		sb.append(getNivel());
+		sb.append(", annos=");
+		sb.append(getAnnos());
 		sb.append(", exigible=");
 		sb.append(getExigible());
 		sb.append(", tipoRequisito=");
@@ -653,8 +653,8 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getTagId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>nivel</column-name><column-value><![CDATA[");
-		sb.append(getNivel());
+			"<column><column-name>annos</column-name><column-value><![CDATA[");
+		sb.append(getAnnos());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>exigible</column-name><column-value><![CDATA[");
@@ -701,7 +701,7 @@ public class UsuarioRequisitoClp extends BaseModelImpl<UsuarioRequisito>
 	private long _userId;
 	private String _userUuid;
 	private long _tagId;
-	private long _nivel;
+	private long _annos;
 	private boolean _exigible;
 	private long _tipoRequisito;
 	private long _herramienta;

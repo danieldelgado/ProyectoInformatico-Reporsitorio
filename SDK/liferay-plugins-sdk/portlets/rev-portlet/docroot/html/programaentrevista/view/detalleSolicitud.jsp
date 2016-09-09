@@ -223,12 +223,34 @@
 									<thead>
 										<tr class="cabecera">
 											<th><liferay-ui:message key="actualizarreclutamiento.form.requisito" /></th>
-											<th><liferay-ui:message key="actualizarreclutamiento.form.nivel" /></th>
+											<th><liferay-ui:message key="actualizarreclutamiento.form.anno" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.exigile" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.tipoRequisito" /></th>
 										</tr>
 									</thead>
 									<tbody id="<portlet:namespace/>listaRequisitos">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<fieldset>
+						<legend> Lista de funciones </legend>
+					</fieldset>
+					<div class="container-fluid">
+						<div>
+							<div id="">
+								<table class="table table-hover table-bordered">
+									<thead>
+										<tr class="cabecera">
+											<th><liferay-ui:message key="actualizarreclutamiento.form.funcion" /></th>
+											<th><liferay-ui:message key="actualizarreclutamiento.form.exigile" /></th>
+										</tr>
+									</thead>
+									<tbody id="<portlet:namespace/>listaFuncions">
 
 									</tbody>
 								</table>
@@ -252,5 +274,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		listarRequisitos('${requisitoEtiquetaBeans}');
+		listarFuncions('${funcionEtiquetaBeans}');
 	});
 </script>

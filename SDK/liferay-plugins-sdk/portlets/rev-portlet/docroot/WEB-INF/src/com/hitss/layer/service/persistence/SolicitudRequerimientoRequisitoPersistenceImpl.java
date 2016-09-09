@@ -2536,7 +2536,7 @@ public class SolicitudRequerimientoRequisitoPersistenceImpl
 
 		solicitudRequerimientoRequisitoImpl.setSolicitudRequerimientoId(solicitudRequerimientoRequisito.getSolicitudRequerimientoId());
 		solicitudRequerimientoRequisitoImpl.setTagId(solicitudRequerimientoRequisito.getTagId());
-		solicitudRequerimientoRequisitoImpl.setNivel(solicitudRequerimientoRequisito.getNivel());
+		solicitudRequerimientoRequisitoImpl.setAnnos(solicitudRequerimientoRequisito.getAnnos());
 		solicitudRequerimientoRequisitoImpl.setExigible(solicitudRequerimientoRequisito.isExigible());
 		solicitudRequerimientoRequisitoImpl.setTipoRequisito(solicitudRequerimientoRequisito.getTipoRequisito());
 		solicitudRequerimientoRequisitoImpl.setHerramienta(solicitudRequerimientoRequisito.getHerramienta());

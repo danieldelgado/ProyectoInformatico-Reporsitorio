@@ -210,20 +210,6 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	public void setFechaFinEvaluacion(Date fechaFinEvaluacion);
 
 	/**
-	 * Returns the tipo actividad of this actividad cronograma.
-	 *
-	 * @return the tipo actividad of this actividad cronograma
-	 */
-	public long getTipoActividad();
-
-	/**
-	 * Sets the tipo actividad of this actividad cronograma.
-	 *
-	 * @param tipoActividad the tipo actividad of this actividad cronograma
-	 */
-	public void setTipoActividad(long tipoActividad);
-
-	/**
 	 * Returns the aprobado colaborador of this actividad cronograma.
 	 *
 	 * @return the aprobado colaborador of this actividad cronograma
@@ -236,20 +222,6 @@ public interface ActividadCronogramaModel extends BaseModel<ActividadCronograma>
 	 * @param aprobadoColaborador the aprobado colaborador of this actividad cronograma
 	 */
 	public void setAprobadoColaborador(long aprobadoColaborador);
-
-	/**
-	 * Returns the jerarquia evaluar of this actividad cronograma.
-	 *
-	 * @return the jerarquia evaluar of this actividad cronograma
-	 */
-	public long getJerarquiaEvaluar();
-
-	/**
-	 * Sets the jerarquia evaluar of this actividad cronograma.
-	 *
-	 * @param jerarquiaEvaluar the jerarquia evaluar of this actividad cronograma
-	 */
-	public void setJerarquiaEvaluar(long jerarquiaEvaluar);
 
 	/**
 	 * Returns the aprobado lider of this actividad cronograma.

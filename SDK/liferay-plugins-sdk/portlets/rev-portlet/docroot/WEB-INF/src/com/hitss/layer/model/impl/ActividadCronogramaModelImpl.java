@@ -72,9 +72,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			{ "estado", Types.BIGINT },
 			{ "fechaInicioEvaluacion", Types.TIMESTAMP },
 			{ "fechaFinEvaluacion", Types.TIMESTAMP },
-			{ "tipoActividad", Types.BIGINT },
 			{ "aprobadoColaborador", Types.BIGINT },
-			{ "jerarquiaEvaluar", Types.BIGINT },
 			{ "aprobadoLider", Types.BIGINT },
 			{ "usuarioGerenteId", Types.BIGINT },
 			{ "usuarioLiderId", Types.BIGINT },
@@ -84,7 +82,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table ActividadCronograma (actividadCronogramaId LONG not null,cronogramaId LONG not null,grupoUsuario LONG,descripcion VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,cumplidoEvaluacion BOOLEAN,estado LONG,fechaInicioEvaluacion DATE null,fechaFinEvaluacion DATE null,tipoActividad LONG,aprobadoColaborador LONG,jerarquiaEvaluar LONG,aprobadoLider LONG,usuarioGerenteId LONG,usuarioLiderId LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (actividadCronogramaId, cronogramaId))";
+	public static final String TABLE_SQL_CREATE = "create table ActividadCronograma (actividadCronogramaId LONG not null,cronogramaId LONG not null,grupoUsuario LONG,descripcion VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,cumplidoEvaluacion BOOLEAN,estado LONG,fechaInicioEvaluacion DATE null,fechaFinEvaluacion DATE null,aprobadoColaborador LONG,aprobadoLider LONG,usuarioGerenteId LONG,usuarioLiderId LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (actividadCronogramaId, cronogramaId))";
 	public static final String TABLE_SQL_DROP = "drop table ActividadCronograma";
 	public static final String ORDER_BY_JPQL = " ORDER BY actividadCronograma.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY ActividadCronograma.fechamodifica ASC";
@@ -128,9 +126,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		model.setEstado(soapModel.getEstado());
 		model.setFechaInicioEvaluacion(soapModel.getFechaInicioEvaluacion());
 		model.setFechaFinEvaluacion(soapModel.getFechaFinEvaluacion());
-		model.setTipoActividad(soapModel.getTipoActividad());
 		model.setAprobadoColaborador(soapModel.getAprobadoColaborador());
-		model.setJerarquiaEvaluar(soapModel.getJerarquiaEvaluar());
 		model.setAprobadoLider(soapModel.getAprobadoLider());
 		model.setUsuarioGerenteId(soapModel.getUsuarioGerenteId());
 		model.setUsuarioLiderId(soapModel.getUsuarioLiderId());
@@ -215,9 +211,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		attributes.put("estado", getEstado());
 		attributes.put("fechaInicioEvaluacion", getFechaInicioEvaluacion());
 		attributes.put("fechaFinEvaluacion", getFechaFinEvaluacion());
-		attributes.put("tipoActividad", getTipoActividad());
 		attributes.put("aprobadoColaborador", getAprobadoColaborador());
-		attributes.put("jerarquiaEvaluar", getJerarquiaEvaluar());
 		attributes.put("aprobadoLider", getAprobadoLider());
 		attributes.put("usuarioGerenteId", getUsuarioGerenteId());
 		attributes.put("usuarioLiderId", getUsuarioLiderId());
@@ -295,22 +289,10 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			setFechaFinEvaluacion(fechaFinEvaluacion);
 		}
 
-		Long tipoActividad = (Long)attributes.get("tipoActividad");
-
-		if (tipoActividad != null) {
-			setTipoActividad(tipoActividad);
-		}
-
 		Long aprobadoColaborador = (Long)attributes.get("aprobadoColaborador");
 
 		if (aprobadoColaborador != null) {
 			setAprobadoColaborador(aprobadoColaborador);
-		}
-
-		Long jerarquiaEvaluar = (Long)attributes.get("jerarquiaEvaluar");
-
-		if (jerarquiaEvaluar != null) {
-			setJerarquiaEvaluar(jerarquiaEvaluar);
 		}
 
 		Long aprobadoLider = (Long)attributes.get("aprobadoLider");
@@ -520,17 +502,6 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@JSON
 	@Override
-	public long getTipoActividad() {
-		return _tipoActividad;
-	}
-
-	@Override
-	public void setTipoActividad(long tipoActividad) {
-		_tipoActividad = tipoActividad;
-	}
-
-	@JSON
-	@Override
 	public long getAprobadoColaborador() {
 		return _aprobadoColaborador;
 	}
@@ -538,17 +509,6 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	@Override
 	public void setAprobadoColaborador(long aprobadoColaborador) {
 		_aprobadoColaborador = aprobadoColaborador;
-	}
-
-	@JSON
-	@Override
-	public long getJerarquiaEvaluar() {
-		return _jerarquiaEvaluar;
-	}
-
-	@Override
-	public void setJerarquiaEvaluar(long jerarquiaEvaluar) {
-		_jerarquiaEvaluar = jerarquiaEvaluar;
 	}
 
 	@JSON
@@ -674,9 +634,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		actividadCronogramaImpl.setEstado(getEstado());
 		actividadCronogramaImpl.setFechaInicioEvaluacion(getFechaInicioEvaluacion());
 		actividadCronogramaImpl.setFechaFinEvaluacion(getFechaFinEvaluacion());
-		actividadCronogramaImpl.setTipoActividad(getTipoActividad());
 		actividadCronogramaImpl.setAprobadoColaborador(getAprobadoColaborador());
-		actividadCronogramaImpl.setJerarquiaEvaluar(getJerarquiaEvaluar());
 		actividadCronogramaImpl.setAprobadoLider(getAprobadoLider());
 		actividadCronogramaImpl.setUsuarioGerenteId(getUsuarioGerenteId());
 		actividadCronogramaImpl.setUsuarioLiderId(getUsuarioLiderId());
@@ -809,11 +767,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 			actividadCronogramaCacheModel.fechaFinEvaluacion = Long.MIN_VALUE;
 		}
 
-		actividadCronogramaCacheModel.tipoActividad = getTipoActividad();
-
 		actividadCronogramaCacheModel.aprobadoColaborador = getAprobadoColaborador();
-
-		actividadCronogramaCacheModel.jerarquiaEvaluar = getJerarquiaEvaluar();
 
 		actividadCronogramaCacheModel.aprobadoLider = getAprobadoLider();
 
@@ -850,7 +804,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(39);
 
 		sb.append("{actividadCronogramaId=");
 		sb.append(getActividadCronogramaId());
@@ -872,12 +826,8 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		sb.append(getFechaInicioEvaluacion());
 		sb.append(", fechaFinEvaluacion=");
 		sb.append(getFechaFinEvaluacion());
-		sb.append(", tipoActividad=");
-		sb.append(getTipoActividad());
 		sb.append(", aprobadoColaborador=");
 		sb.append(getAprobadoColaborador());
-		sb.append(", jerarquiaEvaluar=");
-		sb.append(getJerarquiaEvaluar());
 		sb.append(", aprobadoLider=");
 		sb.append(getAprobadoLider());
 		sb.append(", usuarioGerenteId=");
@@ -901,7 +851,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.ActividadCronograma");
@@ -948,16 +898,8 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 		sb.append(getFechaFinEvaluacion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>tipoActividad</column-name><column-value><![CDATA[");
-		sb.append(getTipoActividad());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>aprobadoColaborador</column-name><column-value><![CDATA[");
 		sb.append(getAprobadoColaborador());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>jerarquiaEvaluar</column-name><column-value><![CDATA[");
-		sb.append(getJerarquiaEvaluar());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>aprobadoLider</column-name><column-value><![CDATA[");
@@ -1017,9 +959,7 @@ public class ActividadCronogramaModelImpl extends BaseModelImpl<ActividadCronogr
 	private long _estado;
 	private Date _fechaInicioEvaluacion;
 	private Date _fechaFinEvaluacion;
-	private long _tipoActividad;
 	private long _aprobadoColaborador;
-	private long _jerarquiaEvaluar;
 	private long _aprobadoLider;
 	private long _usuarioGerenteId;
 	private long _usuarioLiderId;

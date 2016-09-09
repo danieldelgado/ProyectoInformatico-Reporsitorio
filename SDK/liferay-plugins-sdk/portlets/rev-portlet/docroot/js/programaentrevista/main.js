@@ -175,8 +175,15 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strestado + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listarPostulantes + ' </a>';
+				
+
+				if (value.estado == 68) {
+					html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listarPostulantes + ' </a>';
+				}
+				
 				html += '		<a class="btn btn-primary" href="' + urls["verDetalleSolicitudUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionVerDetalle + ' </a>';
+				
+				
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';
@@ -505,3 +512,97 @@ function registrarProgramacion(){
 
 
 
+function listarRequisitos(requisitoEtiquetaBeans) {
+	init();
+
+	if (requisitoEtiquetaBeans != "") {
+		var lista = $.parseJSON(requisitoEtiquetaBeans);
+		$.each(lista, function(index, object) {
+			var exigible = false;
+			if (object['exigibleText'] == undefined) {
+				exigible = object['exigible'];
+			} else {
+				exigible = object['exigibleText'];
+			}
+			addRequisitoFila(object['requisito'], object['annos'], object['annosText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+		});
+	}
+}
+
+function addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext) {
+	var exigileValue = exigile;
+	if (exigile == true) {
+		exigile = "Si";
+	} else {
+		exigile = "No";
+	}
+
+	if (requisito != "" && tipoRequisito > 0 && annos > 0) {
+
+		var requistoMap = {};
+		requistoMap['requisito'] = requisito;
+		requistoMap['annos'] = annos;
+		requistoMap['exigibleText'] = exigileValue;
+
+		requistoMap['tipoRequisito'] = tipoRequisito;
+
+		var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
+	
+		var html = "";
+		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + annosText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
+
+		
+		$(listaRequisitos).append(html);
+
+	}
+}
+
+function listarFuncions(funcionEtiquetaBeans) {
+	console.log(funcionEtiquetaBeans);
+	if (funcionEtiquetaBeans != "") {
+		var lista = $.parseJSON(funcionEtiquetaBeans);
+		console.log(lista);
+		$.each(lista, function(index, object) {
+			var exigible = false;
+			if (object['exigibleText'] == undefined) {
+				exigible = object['exigible'];
+			} else {
+				exigible = object['exigibleText'];
+			}
+			addFuncionFila(object['funcion'], exigible);
+		});
+	}
+}
+
+function addFuncionFila(funcion, exigile) {
+	console.log("addFuncionFila");
+	var exigileValue = exigile;
+	if (exigile == true) {
+		exigile = "Si";
+	} else {
+		exigile = "No";
+	}
+
+	if (funcion != "") {
+
+		if (true) {
+
+			var funcionMap = {};
+			funcionMap['funcion'] = funcion;
+			funcionMap['exigibleText'] = exigileValue;
+			
+			var listaFuncions = $("#" + inputFristnamespace + "listaFuncions");
+			
+			var html = "";
+			html += "<tr>" + "<td>" + funcion + "</td>" + "<td>" + exigile + "</td>" ;			
+			if(false){
+				html += "<td>" + "<a class='btn btn-primary eliminarFuncion' data='"
+				+ funcion + "' href='javascript:void(0);'>Eliminar</a>"
+				+ "</td>";
+			}
+			html += "</tr>";
+			$(listaFuncions).append(html);
+		
+		}
+	}
+}

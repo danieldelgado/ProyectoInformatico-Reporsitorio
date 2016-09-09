@@ -52,7 +52,7 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 		attributes.put("estudioId", getEstudioId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("nombre", getNombre());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -82,10 +82,10 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 			setNombre(nombre);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -200,23 +200,23 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 	}
 
 	/**
-	* Returns the nivel of this estudio.
+	* Returns the annos of this estudio.
 	*
-	* @return the nivel of this estudio
+	* @return the annos of this estudio
 	*/
 	@Override
-	public long getNivel() {
-		return _estudio.getNivel();
+	public long getAnnos() {
+		return _estudio.getAnnos();
 	}
 
 	/**
-	* Sets the nivel of this estudio.
+	* Sets the annos of this estudio.
 	*
-	* @param nivel the nivel of this estudio
+	* @param annos the annos of this estudio
 	*/
 	@Override
-	public void setNivel(long nivel) {
-		_estudio.setNivel(nivel);
+	public void setAnnos(long annos) {
+		_estudio.setAnnos(annos);
 	}
 
 	/**

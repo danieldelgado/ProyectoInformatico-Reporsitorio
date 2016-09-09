@@ -176,7 +176,9 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>';
 				html += '	<div class="btn-group">';
 
-				html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionSeleccionarPostulacion + ' </a>';
+				if ( value.estado == 51 && value.estado == 52 ) {
+					html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionSeleccionarPostulacion + ' </a>';	
+				}
 				
 				
 				html += '	</div>';
@@ -344,7 +346,9 @@ function seleccionarPersonal() {
 	var formseleccionarPostulante = $("#" + inputFristnamespace + "seleccionarPostulante");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var seleccionarPostulanteUrl = $("#" + inputFristnamespace + "seleccionarPostulanteUrl").val();
-	
+	var listarPostulantesUrl  = $("#" + inputFristnamespace + "listarPostulantesUrl").val();	
+
+	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var dataSend = $(formseleccionarPostulante).serialize();
 	
 	$.ajax({
@@ -355,26 +359,26 @@ function seleccionarPersonal() {
 		modalconfirmacion.hide();
 		console.log(data);
 		
-//		data = $.parseJSON(data);
-//		var objeto = data["objeto"];
-//		var respuesta = data["respuesta"];
-//		var mensaje = data["mensaje"];
-//		var contenedorAlerta = $(".contenedorAlerta");
-//		listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
-//		console.log(popupMensaje);
-//		listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
-//		console.log(mensaje);
-//		listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
-//		if (respuesta == 1) {
-//			$(btnGuardar).attr("disabled", "disabled");
-//			mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
-//				setTimeout(function() {
-//					window.location = listarSolicitudesUrl;
-//				}, 1500);
-//			});
-//		} else {
-//			mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
-//		}
+		data = $.parseJSON(data);
+		var objeto = data["objeto"];
+		var respuesta = data["respuesta"];
+		var mensaje = data["mensaje"];
+		var contenedorAlerta = $(".contenedorAlerta");
+		listarPostulantesUrl += "&solicitudRequerimientoId=" + objeto.solicitudId;
+		console.log(popupMensaje);
+		listarPostulantesUrl += "&titulo=" + encodeURI(popupMensaje);
+		console.log(mensaje);
+		listarPostulantesUrl += "&mensaje=" + encodeURI(mensaje);
+		if (respuesta == 1) {
+			$(btnGuardar).attr("disabled", "disabled");
+			mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+				setTimeout(function() {
+					window.location = listarPostulantesUrl;
+				}, 1500);
+			});
+		} else {
+			mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+		}
 	}
 });
 

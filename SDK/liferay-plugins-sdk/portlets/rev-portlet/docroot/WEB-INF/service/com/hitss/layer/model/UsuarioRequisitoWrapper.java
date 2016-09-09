@@ -52,7 +52,7 @@ public class UsuarioRequisitoWrapper implements UsuarioRequisito,
 
 		attributes.put("userId", getUserId());
 		attributes.put("tagId", getTagId());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("exigible", getExigible());
 		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("herramienta", getHerramienta());
@@ -80,10 +80,10 @@ public class UsuarioRequisitoWrapper implements UsuarioRequisito,
 			setTagId(tagId);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -225,23 +225,23 @@ public class UsuarioRequisitoWrapper implements UsuarioRequisito,
 	}
 
 	/**
-	* Returns the nivel of this usuario requisito.
+	* Returns the annos of this usuario requisito.
 	*
-	* @return the nivel of this usuario requisito
+	* @return the annos of this usuario requisito
 	*/
 	@Override
-	public long getNivel() {
-		return _usuarioRequisito.getNivel();
+	public long getAnnos() {
+		return _usuarioRequisito.getAnnos();
 	}
 
 	/**
-	* Sets the nivel of this usuario requisito.
+	* Sets the annos of this usuario requisito.
 	*
-	* @param nivel the nivel of this usuario requisito
+	* @param annos the annos of this usuario requisito
 	*/
 	@Override
-	public void setNivel(long nivel) {
-		_usuarioRequisito.setNivel(nivel);
+	public void setAnnos(long annos) {
+		_usuarioRequisito.setAnnos(annos);
 	}
 
 	/**

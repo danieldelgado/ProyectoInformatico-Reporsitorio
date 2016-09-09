@@ -65,7 +65,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "userId", Types.BIGINT },
 			{ "tagId", Types.BIGINT },
-			{ "nivel", Types.BIGINT },
+			{ "annos", Types.BIGINT },
 			{ "exigible", Types.BOOLEAN },
 			{ "tipoRequisito", Types.BIGINT },
 			{ "herramienta", Types.BIGINT },
@@ -76,7 +76,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table UsuarioRequisito (userId LONG not null,tagId LONG not null,nivel LONG,exigible BOOLEAN,tipoRequisito LONG,herramienta LONG,cumplerequisito BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (userId, tagId))";
+	public static final String TABLE_SQL_CREATE = "create table UsuarioRequisito (userId LONG not null,tagId LONG not null,annos LONG,exigible BOOLEAN,tipoRequisito LONG,herramienta LONG,cumplerequisito BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (userId, tagId))";
 	public static final String TABLE_SQL_DROP = "drop table UsuarioRequisito";
 	public static final String ORDER_BY_JPQL = " ORDER BY usuarioRequisito.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY UsuarioRequisito.fechamodifica ASC";
@@ -106,7 +106,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 		model.setUserId(soapModel.getUserId());
 		model.setTagId(soapModel.getTagId());
-		model.setNivel(soapModel.getNivel());
+		model.setAnnos(soapModel.getAnnos());
 		model.setExigible(soapModel.getExigible());
 		model.setTipoRequisito(soapModel.getTipoRequisito());
 		model.setHerramienta(soapModel.getHerramienta());
@@ -184,7 +184,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 		attributes.put("userId", getUserId());
 		attributes.put("tagId", getTagId());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("exigible", getExigible());
 		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("herramienta", getHerramienta());
@@ -212,10 +212,10 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 			setTagId(tagId);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -307,13 +307,13 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 	@JSON
 	@Override
-	public long getNivel() {
-		return _nivel;
+	public long getAnnos() {
+		return _annos;
 	}
 
 	@Override
-	public void setNivel(long nivel) {
-		_nivel = nivel;
+	public void setAnnos(long annos) {
+		_annos = annos;
 	}
 
 	@JSON
@@ -446,7 +446,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 		usuarioRequisitoImpl.setUserId(getUserId());
 		usuarioRequisitoImpl.setTagId(getTagId());
-		usuarioRequisitoImpl.setNivel(getNivel());
+		usuarioRequisitoImpl.setAnnos(getAnnos());
 		usuarioRequisitoImpl.setExigible(getExigible());
 		usuarioRequisitoImpl.setTipoRequisito(getTipoRequisito());
 		usuarioRequisitoImpl.setHerramienta(getHerramienta());
@@ -515,7 +515,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 		usuarioRequisitoCacheModel.tagId = getTagId();
 
-		usuarioRequisitoCacheModel.nivel = getNivel();
+		usuarioRequisitoCacheModel.annos = getAnnos();
 
 		usuarioRequisitoCacheModel.exigible = getExigible();
 
@@ -560,8 +560,8 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getUserId());
 		sb.append(", tagId=");
 		sb.append(getTagId());
-		sb.append(", nivel=");
-		sb.append(getNivel());
+		sb.append(", annos=");
+		sb.append(getAnnos());
 		sb.append(", exigible=");
 		sb.append(getExigible());
 		sb.append(", tipoRequisito=");
@@ -602,8 +602,8 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		sb.append(getTagId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>nivel</column-name><column-value><![CDATA[");
-		sb.append(getNivel());
+			"<column><column-name>annos</column-name><column-value><![CDATA[");
+		sb.append(getAnnos());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>exigible</column-name><column-value><![CDATA[");
@@ -654,7 +654,7 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 	private long _userId;
 	private String _userUuid;
 	private long _tagId;
-	private long _nivel;
+	private long _annos;
 	private boolean _exigible;
 	private long _tipoRequisito;
 	private long _herramienta;

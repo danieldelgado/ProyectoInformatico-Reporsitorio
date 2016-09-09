@@ -12,9 +12,7 @@
 		<field name="estado" type="long" />
 		<field name="fechaInicioEvaluacion" type="Date" />
 		<field name="fechaFinEvaluacion" type="Date" />
-		<field name="tipoActividad" type="long" />
 		<field name="aprobadoColaborador" type="long" />
-		<field name="jerarquiaEvaluar" type="long" />
 		<field name="aprobadoLider" type="long" />
 		<field name="usuarioGerenteId" type="long" />
 		<field name="usuarioLiderId" type="long" />
@@ -93,7 +91,7 @@
 		<field name="estudioId" type="long" />
 		<field name="usuarioId" type="long" />
 		<field name="nombre" type="String" />
-		<field name="nivel" type="long" />
+		<field name="annos" type="long" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -332,7 +330,7 @@
 	<model name="com.hitss.layer.model.SolicitudRequerimientoRequisito">
 		<field name="solicitudRequerimientoId" type="long" />
 		<field name="tagId" type="long" />
-		<field name="nivel" type="long" />
+		<field name="annos" type="long" />
 		<field name="exigible" type="boolean" />
 		<field name="tipoRequisito" type="long" />
 		<field name="herramienta" type="long" />
@@ -369,7 +367,7 @@
 	<model name="com.hitss.layer.model.UsuarioRequisito">
 		<field name="userId" type="long" />
 		<field name="tagId" type="long" />
-		<field name="nivel" type="long" />
+		<field name="annos" type="long" />
 		<field name="exigible" type="boolean" />
 		<field name="tipoRequisito" type="long" />
 		<field name="herramienta" type="long" />

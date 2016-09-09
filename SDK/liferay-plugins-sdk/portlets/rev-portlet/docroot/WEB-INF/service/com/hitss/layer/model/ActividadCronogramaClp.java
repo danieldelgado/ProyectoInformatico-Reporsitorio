@@ -87,9 +87,7 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		attributes.put("estado", getEstado());
 		attributes.put("fechaInicioEvaluacion", getFechaInicioEvaluacion());
 		attributes.put("fechaFinEvaluacion", getFechaFinEvaluacion());
-		attributes.put("tipoActividad", getTipoActividad());
 		attributes.put("aprobadoColaborador", getAprobadoColaborador());
-		attributes.put("jerarquiaEvaluar", getJerarquiaEvaluar());
 		attributes.put("aprobadoLider", getAprobadoLider());
 		attributes.put("usuarioGerenteId", getUsuarioGerenteId());
 		attributes.put("usuarioLiderId", getUsuarioLiderId());
@@ -167,22 +165,10 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 			setFechaFinEvaluacion(fechaFinEvaluacion);
 		}
 
-		Long tipoActividad = (Long)attributes.get("tipoActividad");
-
-		if (tipoActividad != null) {
-			setTipoActividad(tipoActividad);
-		}
-
 		Long aprobadoColaborador = (Long)attributes.get("aprobadoColaborador");
 
 		if (aprobadoColaborador != null) {
 			setAprobadoColaborador(aprobadoColaborador);
-		}
-
-		Long jerarquiaEvaluar = (Long)attributes.get("jerarquiaEvaluar");
-
-		if (jerarquiaEvaluar != null) {
-			setJerarquiaEvaluar(jerarquiaEvaluar);
 		}
 
 		Long aprobadoLider = (Long)attributes.get("aprobadoLider");
@@ -478,29 +464,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	}
 
 	@Override
-	public long getTipoActividad() {
-		return _tipoActividad;
-	}
-
-	@Override
-	public void setTipoActividad(long tipoActividad) {
-		_tipoActividad = tipoActividad;
-
-		if (_actividadCronogramaRemoteModel != null) {
-			try {
-				Class<?> clazz = _actividadCronogramaRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setTipoActividad", long.class);
-
-				method.invoke(_actividadCronogramaRemoteModel, tipoActividad);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
 	public long getAprobadoColaborador() {
 		return _aprobadoColaborador;
 	}
@@ -518,30 +481,6 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 
 				method.invoke(_actividadCronogramaRemoteModel,
 					aprobadoColaborador);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getJerarquiaEvaluar() {
-		return _jerarquiaEvaluar;
-	}
-
-	@Override
-	public void setJerarquiaEvaluar(long jerarquiaEvaluar) {
-		_jerarquiaEvaluar = jerarquiaEvaluar;
-
-		if (_actividadCronogramaRemoteModel != null) {
-			try {
-				Class<?> clazz = _actividadCronogramaRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setJerarquiaEvaluar",
-						long.class);
-
-				method.invoke(_actividadCronogramaRemoteModel, jerarquiaEvaluar);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -820,9 +759,7 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		clone.setEstado(getEstado());
 		clone.setFechaInicioEvaluacion(getFechaInicioEvaluacion());
 		clone.setFechaFinEvaluacion(getFechaFinEvaluacion());
-		clone.setTipoActividad(getTipoActividad());
 		clone.setAprobadoColaborador(getAprobadoColaborador());
-		clone.setJerarquiaEvaluar(getJerarquiaEvaluar());
 		clone.setAprobadoLider(getAprobadoLider());
 		clone.setUsuarioGerenteId(getUsuarioGerenteId());
 		clone.setUsuarioLiderId(getUsuarioLiderId());
@@ -882,7 +819,7 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(39);
 
 		sb.append("{actividadCronogramaId=");
 		sb.append(getActividadCronogramaId());
@@ -904,12 +841,8 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		sb.append(getFechaInicioEvaluacion());
 		sb.append(", fechaFinEvaluacion=");
 		sb.append(getFechaFinEvaluacion());
-		sb.append(", tipoActividad=");
-		sb.append(getTipoActividad());
 		sb.append(", aprobadoColaborador=");
 		sb.append(getAprobadoColaborador());
-		sb.append(", jerarquiaEvaluar=");
-		sb.append(getJerarquiaEvaluar());
 		sb.append(", aprobadoLider=");
 		sb.append(getAprobadoLider());
 		sb.append(", usuarioGerenteId=");
@@ -933,7 +866,7 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.ActividadCronograma");
@@ -980,16 +913,8 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 		sb.append(getFechaFinEvaluacion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>tipoActividad</column-name><column-value><![CDATA[");
-		sb.append(getTipoActividad());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>aprobadoColaborador</column-name><column-value><![CDATA[");
 		sb.append(getAprobadoColaborador());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>jerarquiaEvaluar</column-name><column-value><![CDATA[");
-		sb.append(getJerarquiaEvaluar());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>aprobadoLider</column-name><column-value><![CDATA[");
@@ -1039,9 +964,7 @@ public class ActividadCronogramaClp extends BaseModelImpl<ActividadCronograma>
 	private long _estado;
 	private Date _fechaInicioEvaluacion;
 	private Date _fechaFinEvaluacion;
-	private long _tipoActividad;
 	private long _aprobadoColaborador;
-	private long _jerarquiaEvaluar;
 	private long _aprobadoLider;
 	private long _usuarioGerenteId;
 	private long _usuarioLiderId;

@@ -31,14 +31,18 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 
 /**
  * The implementation of the usuario local service.
- *
+ * 
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.rec.hitss.layer.service.UsuarioLocalService} interface.
- *
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.rec.hitss.layer.service.UsuarioLocalService} interface.
+ * 
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
- *
+ * 
  * @author Crossfire
  * @see com.rec.hitss.layer.service.base.UsuarioLocalServiceBaseImpl
  * @see com.rec.hitss.layer.service.UsuarioLocalServiceUtil
@@ -46,16 +50,18 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 public class UsuarioLocalServiceImpl extends UsuarioLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.UsuarioLocalServiceUtil} to access the usuario local service.
+	 * 
+	 * Never reference this interface directly. Always use {@link
+	 * com.rec.hitss.layer.service.UsuarioLocalServiceUtil} to access the
+	 * usuario local service.
 	 */
 	private static Log _log = LogFactoryUtil.getLog(UsuarioLocalServiceImpl.class);
 
-	public Usuario newInstance(){
+	public Usuario newInstance() {
 		Usuario u = new UsuarioImpl();
 		return u;
 	}
-	
+
 	public List<User> listarUsuariosByRole(long company, long groupId, String roleName) throws PortalException, SystemException {
 		_log.debug("listarUsuariosByRole");
 		Role role = RoleLocalServiceUtil.getRole(company, roleName);
@@ -63,9 +69,9 @@ public class UsuarioLocalServiceImpl extends UsuarioLocalServiceBaseImpl {
 		_log.debug(lista);
 		return lista;
 	}
-	
+
 	public List<Usuario> findByUsuariosSeleccionados(long[] userIds) throws PortalException, SystemException {
-		return UsuarioUtil.findByUsuariosSeleccionados(userIds);
+		 List<Usuario> usuario = UsuarioUtil.findByUsuariosSeleccionados(userIds);
+		return usuario;
 	}
-	
 }

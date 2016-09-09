@@ -68,14 +68,14 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			{ "estudioId", Types.BIGINT },
 			{ "usuarioId", Types.BIGINT },
 			{ "nombre", Types.VARCHAR },
-			{ "nivel", Types.BIGINT },
+			{ "annos", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Estudio (estudioId LONG not null primary key,usuarioId LONG,nombre VARCHAR(75) null,nivel LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Estudio (estudioId LONG not null primary key,usuarioId LONG,nombre VARCHAR(75) null,annos LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Estudio";
 	public static final String ORDER_BY_JPQL = " ORDER BY estudio.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Estudio.fechamodifica ASC";
@@ -106,7 +106,7 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		model.setEstudioId(soapModel.getEstudioId());
 		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setNombre(soapModel.getNombre());
-		model.setNivel(soapModel.getNivel());
+		model.setAnnos(soapModel.getAnnos());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -179,7 +179,7 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		attributes.put("estudioId", getEstudioId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("nombre", getNombre());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -209,10 +209,10 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			setNombre(nombre);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -286,13 +286,13 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 
 	@JSON
 	@Override
-	public long getNivel() {
-		return _nivel;
+	public long getAnnos() {
+		return _annos;
 	}
 
 	@Override
-	public void setNivel(long nivel) {
-		_nivel = nivel;
+	public void setAnnos(long annos) {
+		_annos = annos;
 	}
 
 	@JSON
@@ -385,7 +385,7 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		estudioImpl.setEstudioId(getEstudioId());
 		estudioImpl.setUsuarioId(getUsuarioId());
 		estudioImpl.setNombre(getNombre());
-		estudioImpl.setNivel(getNivel());
+		estudioImpl.setAnnos(getAnnos());
 		estudioImpl.setActivo(getActivo());
 		estudioImpl.setUsuariocrea(getUsuariocrea());
 		estudioImpl.setFechacrea(getFechacrea());
@@ -458,7 +458,7 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			estudioCacheModel.nombre = null;
 		}
 
-		estudioCacheModel.nivel = getNivel();
+		estudioCacheModel.annos = getAnnos();
 
 		estudioCacheModel.activo = getActivo();
 
@@ -497,8 +497,8 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		sb.append(getUsuarioId());
 		sb.append(", nombre=");
 		sb.append(getNombre());
-		sb.append(", nivel=");
-		sb.append(getNivel());
+		sb.append(", annos=");
+		sb.append(getAnnos());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -535,8 +535,8 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		sb.append(getNombre());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>nivel</column-name><column-value><![CDATA[");
-		sb.append(getNivel());
+			"<column><column-name>annos</column-name><column-value><![CDATA[");
+		sb.append(getAnnos());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -571,7 +571,7 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	private long _estudioId;
 	private long _usuarioId;
 	private String _nombre;
-	private long _nivel;
+	private long _annos;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

@@ -54,7 +54,7 @@ public class SolicitudRequerimientoRequisitoWrapper
 
 		attributes.put("solicitudRequerimientoId", getSolicitudRequerimientoId());
 		attributes.put("tagId", getTagId());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("exigible", getExigible());
 		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("herramienta", getHerramienta());
@@ -82,10 +82,10 @@ public class SolicitudRequerimientoRequisitoWrapper
 			setTagId(tagId);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -199,23 +199,23 @@ public class SolicitudRequerimientoRequisitoWrapper
 	}
 
 	/**
-	* Returns the nivel of this solicitud requerimiento requisito.
+	* Returns the annos of this solicitud requerimiento requisito.
 	*
-	* @return the nivel of this solicitud requerimiento requisito
+	* @return the annos of this solicitud requerimiento requisito
 	*/
 	@Override
-	public long getNivel() {
-		return _solicitudRequerimientoRequisito.getNivel();
+	public long getAnnos() {
+		return _solicitudRequerimientoRequisito.getAnnos();
 	}
 
 	/**
-	* Sets the nivel of this solicitud requerimiento requisito.
+	* Sets the annos of this solicitud requerimiento requisito.
 	*
-	* @param nivel the nivel of this solicitud requerimiento requisito
+	* @param annos the annos of this solicitud requerimiento requisito
 	*/
 	@Override
-	public void setNivel(long nivel) {
-		_solicitudRequerimientoRequisito.setNivel(nivel);
+	public void setAnnos(long annos) {
+		_solicitudRequerimientoRequisito.setAnnos(annos);
 	}
 
 	/**

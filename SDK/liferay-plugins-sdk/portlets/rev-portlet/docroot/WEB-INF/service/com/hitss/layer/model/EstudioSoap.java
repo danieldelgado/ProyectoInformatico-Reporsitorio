@@ -34,7 +34,7 @@ public class EstudioSoap implements Serializable {
 		soapModel.setEstudioId(model.getEstudioId());
 		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setNombre(model.getNombre());
-		soapModel.setNivel(model.getNivel());
+		soapModel.setAnnos(model.getAnnos());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -116,12 +116,12 @@ public class EstudioSoap implements Serializable {
 		_nombre = nombre;
 	}
 
-	public long getNivel() {
-		return _nivel;
+	public long getAnnos() {
+		return _annos;
 	}
 
-	public void setNivel(long nivel) {
-		_nivel = nivel;
+	public void setAnnos(long annos) {
+		_annos = annos;
 	}
 
 	public boolean getActivo() {
@@ -171,7 +171,7 @@ public class EstudioSoap implements Serializable {
 	private long _estudioId;
 	private long _usuarioId;
 	private String _nombre;
-	private long _nivel;
+	private long _annos;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

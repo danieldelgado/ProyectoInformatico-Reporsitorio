@@ -27,7 +27,7 @@ public interface EvaluarSolicitudRequerimientoService {
 
 	SolicitudRequerimientoBean getSolicitudRequerimiento(Long solicitudRequerimientoId);
 	
-	List<ParametroBean> getListaNiveles();
+	List<ParametroBean> getListaAnnos();
 
 	List<ParametroBean> getListaTipoRequisito();
 

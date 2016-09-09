@@ -11,8 +11,8 @@ public class RequisitoEtiquetaBean implements Serializable{
 	private long groupId;
 	private long companyId;
 	private String requisito;
-	private long nivel;
-	private String nivelText;
+	private Long annos;
+	private String annosText;
 	private boolean exigible;
 	private String exigibleText;;
 	private long tipoRequisito;
@@ -33,12 +33,7 @@ public class RequisitoEtiquetaBean implements Serializable{
 		this.tagId = tagId;
 	}
 	
-	public long getNivel() {
-		return nivel;
-	}
-	public void setNivel(long nivel) {
-		this.nivel = nivel;
-	}
+	
 	public boolean isExigible() {
 		return exigible;
 	}
@@ -123,12 +118,7 @@ public class RequisitoEtiquetaBean implements Serializable{
 	public void setNuevo(boolean nuevo) {
 		this.nuevo = nuevo;
 	}
-	public String getNivelText() {
-		return nivelText;
-	}
-	public void setNivelText(String nivelText) {
-		this.nivelText = nivelText;
-	}
+	
 	public String getTipoRequisitoText() {
 		return tipoRequisitoText;
 	}
@@ -140,6 +130,18 @@ public class RequisitoEtiquetaBean implements Serializable{
 	}
 	public void setExigibleText(String exigibleText) {
 		this.exigibleText = exigibleText;
+	}
+	public Long getAnnos() {
+		return annos;
+	}
+	public void setAnnos(Long annos) {
+		this.annos = annos;
+	}
+	public String getAnnosText() {
+		return annosText;
+	}
+	public void setAnnosText(String annosText) {
+		this.annosText = annosText;
 	}
 	
 	

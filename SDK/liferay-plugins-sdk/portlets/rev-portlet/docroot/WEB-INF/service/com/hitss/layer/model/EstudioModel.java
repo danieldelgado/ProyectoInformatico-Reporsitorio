@@ -103,18 +103,18 @@ public interface EstudioModel extends BaseModel<Estudio> {
 	public void setNombre(String nombre);
 
 	/**
-	 * Returns the nivel of this estudio.
+	 * Returns the annos of this estudio.
 	 *
-	 * @return the nivel of this estudio
+	 * @return the annos of this estudio
 	 */
-	public long getNivel();
+	public long getAnnos();
 
 	/**
-	 * Sets the nivel of this estudio.
+	 * Sets the annos of this estudio.
 	 *
-	 * @param nivel the nivel of this estudio
+	 * @param annos the annos of this estudio
 	 */
-	public void setNivel(long nivel);
+	public void setAnnos(long annos);
 
 	/**
 	 * Returns the activo of this estudio.

@@ -223,7 +223,7 @@
 									<thead>
 										<tr class="cabecera">
 											<th><liferay-ui:message key="actualizarreclutamiento.form.requisito" /></th>
-											<th><liferay-ui:message key="actualizarreclutamiento.form.nivel" /></th>
+											<th><liferay-ui:message key="actualizarreclutamiento.form.anno" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.exigile" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.tipoRequisito" /></th>
 										</tr>

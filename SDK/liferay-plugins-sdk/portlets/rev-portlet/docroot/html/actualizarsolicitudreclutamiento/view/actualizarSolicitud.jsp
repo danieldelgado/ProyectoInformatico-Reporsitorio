@@ -222,7 +222,7 @@
 								</label>
 							</div>
 							<div class="span12">
-								<div class="input-prepend">
+								<div class="">
 									<div>${solicitudReclutamiento.observacionBean.descripcion}</div>
 								</div>
 							</div>
@@ -246,15 +246,15 @@
 									</div>
 								</div>
 								<div class="span1">
-									<label> <liferay-ui:message key="actualizarreclutamiento.form.nivel" />:
+									<label> <liferay-ui:message key="actualizarreclutamiento.form.anno" />:
 									</label>
 								</div>
 								<div class="span2">
 									<div class="input-prepend">
 
-										<select id="<portlet:namespace/>nivel" name="<portlet:namespace/>nivel" class="span12">
+										<select id="<portlet:namespace/>annos" name="<portlet:namespace/>annos" class="span12">
 											<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
-											<c:forEach items="${listaNiveles}" var="parametro">
+											<c:forEach items="${listaAnnos}" var="parametro">
 												<option value="${parametro.parametroId}">${parametro.valor}</option>
 											</c:forEach>
 										</select>
@@ -297,7 +297,7 @@
 									<thead>
 										<tr class="cabecera">
 											<th><liferay-ui:message key="actualizarreclutamiento.form.requisito" /></th>
-											<th><liferay-ui:message key="actualizarreclutamiento.form.nivel" /></th>
+											<th><liferay-ui:message key="actualizarreclutamiento.form.anno" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.exigile" /></th>
 											<th><liferay-ui:message key="actualizarreclutamiento.form.tipoRequisito" /></th>
 											<th><liferay-ui:message key="listasolicitudreclutamiento.lista.opciones" /></th>

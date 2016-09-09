@@ -36,7 +36,6 @@ function inicializarFormularioBusqueda() {
 
 	$(btnBuscar).click(function() {
 		// if(filtrafecharegistro){
-		console.log("btnBuscar");
 		listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginacion, listarSolicitudesReclutamientoUrl, urls);
 		// }
 	});
@@ -179,7 +178,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '	<div class="btn-group">';
 
 				if (value.estado == 75) {
-					html += '		<a class="btn btn-primary finalizarPublicacion" data="' + value.solicitudRequerimientoId + '" href="javascript:void();">' + listaOpcionFinalizarOferta + ' </a>';
+					html += '		<a class="btn btn-danger finalizarPublicacion" data="' + value.solicitudRequerimientoId + '" href="javascript:void();">' + listaOpcionFinalizarOferta + ' </a>';
 					//html += '		<a class="btn btn-danger" href="' + urls["finalizarOfertaUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionFinalizarOferta + ' </a>';
 				}
 
@@ -331,6 +330,11 @@ function publicarOfertaLaboral(){
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
 	var editor_descripcion = window[inputFristnamespace + "extractCodeFromEditor"]("");
 //	console.log(encodeURIComponent(editor_descripcion));
+	
+	if(editor_descripcion.length<3000){
+		console.log("menos de 3000:"+editor_descripcion.length);
+	}
+	
 	var dataSend = $(formPublicarOferta).serialize();
 	dataSend=dataSend + "&editor_descripcion="+editor_descripcion;	
 	
@@ -378,12 +382,12 @@ function listarRequisitos(requisitoEtiquetaBeans) {
 			} else {
 				exigible = object['exigibleText'];
 			}
-			addRequisitoFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+			addRequisitoFila(object['requisito'], object['annos'], object['annosText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
 		});
 	}
 }
 
-function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
+function addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext) {
 	var exigileValue = exigile;
 	if (exigile == true) {
 		exigile = "Si";
@@ -391,11 +395,11 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 		exigile = "No";
 	}
 
-	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
+	if (requisito != "" && tipoRequisito > 0 && annos > 0) {
 
 		var requistoMap = {};
 		requistoMap['requisito'] = requisito;
-		requistoMap['nivel'] = nivel;
+		requistoMap['annos'] = annos;
 		requistoMap['exigibleText'] = exigileValue;
 
 		requistoMap['tipoRequisito'] = tipoRequisito;
@@ -403,7 +407,7 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 		var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
 	
 		var html = "";
-		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
+		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + annosText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
 
 		
 		$(listaRequisitos).append(html);
@@ -425,13 +429,13 @@ function listarRequisitosDetalle(requisitoEtiquetaBeans) {
 			} else {
 				exigible = object['exigibleText'];
 			}
-			html += addRequisitoFilaDetalle(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+			html += addRequisitoFilaDetalle(object['requisito'], object['annos'], object['annosText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
 		});
 	}
 	return html
 }
 
-function addRequisitoFilaDetalle(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
+function addRequisitoFilaDetalle(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext) {
 	var exigileValue = exigile;
 	if (exigile == true) {
 		exigile = "Si";
@@ -439,11 +443,11 @@ function addRequisitoFilaDetalle(requisito, nivel, nivelText, exigile, tipoRequi
 		exigile = "No";
 	}
 
-	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
+	if (requisito != "" && tipoRequisito > 0 && annos > 0) {
 
 		var requistoMap = {};
 		requistoMap['requisito'] = requisito;
-		requistoMap['nivel'] = nivel;
+		requistoMap['annos'] = annos;
 		requistoMap['exigibleText'] = exigileValue;
 
 		requistoMap['tipoRequisito'] = tipoRequisito;
@@ -451,7 +455,7 @@ function addRequisitoFilaDetalle(requisito, nivel, nivelText, exigile, tipoRequi
 		var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
 	
 		var html = "";
-		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
+		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + annosText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
 
 		return html;
 

@@ -184,7 +184,7 @@ function getDialogAprobar() {
 	html += '</div>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
-	html += '<p><label class="msgpresupuestominimo text-error" style="display: none;">Ingresar el presupuesto minimo</label></p>';
+	html += '<p><label class="msgpresupuestominimo text-error" style="display: none;">Ingresar el presupuesto minimo o mínimo salario de s/ 850</label></p>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
 	html += '<div class="span5"><label>Presupuesto Maximo:</label></div>';
@@ -193,7 +193,7 @@ function getDialogAprobar() {
 	html += '</div>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
-	html += '<p><label class="msgpresupuestomaximo text-error" style="display: none;">Ingresar el presupuesto maximo</label></p>';
+	html += '<p><label class="msgpresupuestomaximo text-error" style="display: none;">Ingresar el presupuesto maximo o mínimo salario de s/ 850</label></p>';
 	html += '</div>';
 	html += '</from></div>';
 	html += '</div>';
@@ -228,7 +228,7 @@ function cargarModals() {
 			modalAaprobar = new A.Modal({
 				bodyContent : getDialogAprobar(),
 				centered : true,
-				destroyOnHide : false,
+				destroyOnHide : true,
 				headerContent : "<h5>" + "Aprobar Solicitud de Reclutamiento" + "</h5>",
 				modal : true,
 				render : '#' + inputFristnamespace + 'modalAaprobar',
@@ -240,85 +240,127 @@ function cargarModals() {
 				width : 450
 			}).render();
 
-			modalAaprobar.addToolbar([ {
-				label : "Cancelar",
-				on : {
-					click : function() {
-						var presupuestoMinimo = $(".presupuestoMinimo");
-						var presupuestoMaximo = $(".presupuestoMaximo");
-						modalAaprobar.hide();
-						presupuestoMinimo.val("");
-						presupuestoMaximo.val("");
-					}
-				}
-			}, {
-				label : "Confirmar",
-				on : {
-					click : function() {
-						var presupuestoMinimo = $(".presupuestoMinimo");
-						var presupuestoMaximo = $(".presupuestoMaximo");
-						var msgpresupuestominimo = $(".msgpresupuestominimo");
-						var msgpresupuestomaximo = $(".msgpresupuestomaximo");
-						var pminval = presupuestoMinimo.val();
-						var pmaxval = presupuestoMaximo.val();
-						msgpresupuestominimo.hide();
-						msgpresupuestomaximo.hide();
-						var valido = true;
-						try {
-							pminval = parseInt(pminval);
-							if (pminval <= 0 || pminval == "NaN" || !validation.isNumber(pminval)) {
-								msgpresupuestominimo.show();
-								valido = false;
-							}
-						} catch (e) {
-							console.log(e);
-							msgpresupuestominimo.show();
-							valido = false;
-							console.log("false2");
-						}
-						try {
-							pmaxval = parseInt(pmaxval);
-							if (pmaxval <= 0 || pmaxval == "NaN" || !validation.isNumber(pmaxval)) {
-								msgpresupuestomaximo.show();
-								valido = false;
-							}
-						} catch (e) {
-							console.log(e);
-							msgpresupuestomaximo.show();
-						}
-						if (pmaxval <= pminval) {
-							msgpresupuestomaximo.show();
-							valido = false;
-						}
-						if (valido) {
-							$.ajax({
-								type : "POST",
-								url : urlevaluar + '&' + inputFristnamespace + 'presupuestoMinimo=' + pminval + '&' + inputFristnamespace + 'presupuestoMaximo=' + pmaxval,
-								data : {},
-								success : function(data) {
-									data = $.parseJSON(data);
-									console.log(data);
-									console.log(data.solicitudRequerimientoId);
-									console.log(data["solicitudRequerimientoId"]);
-									modalAaprobar.hide();
-									var contenedorAlerta = $(".contenedorAlerta");
-									console.log(contenedorAlerta);
-									var defaultUrl = $("#" + inputFristnamespace + "defaultUrl").val();
-									console.log(defaultUrl);
-									mostrarAlerta(contenedorAlerta, "Solicitud Aprobada", "Solicitud aprobada :" + data.solicitudRequerimientoId, "alert-success", function() {
-										console.log("mostrarAlerta");
-										setTimeout(function() {
-											//window.location = defaultUrl;
-											$(btnBuscar).click();
-										}, 1500);
-									});
-								}
-							});
-						}
+			modalAaprobar.addToolbar([ 
 
-					}
-				}
-			} ]);
+			              			{
+			              				label : "Confirmar",
+			              				on : {
+			              					click : function() {
+			              						var presupuestoMinimo = $(".presupuestoMinimo")[1];
+			              						
+			              						var presupuestoMaximo = $(".presupuestoMaximo")[1];
+			              				
+			              						var msgpresupuestominimo = $(".msgpresupuestominimo");
+			              						var msgpresupuestomaximo = $(".msgpresupuestomaximo");
+			              						var pminval = $(presupuestoMinimo).val();
+			              				
+			              						var pmaxval = $(presupuestoMaximo).val();
+			              					
+			              						msgpresupuestominimo.hide();
+			              						msgpresupuestomaximo.hide();
+			              						var valido = true;
+			              						try {
+			              							
+			              							if(!validation.isNumber(pminval)){
+			              								msgpresupuestominimo.show();
+			              								valido = false;			              								
+			              							}
+			              							
+			              							pminval = parseInt(pminval);
+
+				              						
+			              							if (pminval <= 849 || pminval == "NaN") {
+			              								msgpresupuestominimo.show();
+			              								valido = false;
+			              							}
+			              							
+			              						} catch (e) {
+			              							console.log(e);
+			              							msgpresupuestominimo.show();
+			              							valido = false;
+			              							console.log("false2");
+			              						}
+			              						try {
+			              							
+			              							if(!validation.isNumber(pmaxval)){
+			              								msgpresupuestomaximo.show();
+			              								valido = false;			              								
+			              							}
+			              							
+			              							pmaxval = parseInt(pmaxval);
+			              							
+				              						
+			              							if (pmaxval <= 849 || pmaxval == "NaN" ) {
+			              								msgpresupuestomaximo.show();
+			              								valido = false;
+			              							}
+			              						} catch (e) {
+			              							console.log(e);
+			              							msgpresupuestomaximo.show();
+			              						}
+			              						
+			              						
+			              						if (pmaxval < pminval) {
+			              							msgpresupuestomaximo.show();
+			              							valido = false;
+			              						}
+			              						
+			              						if(pmaxval>=30000 && pminval >=30000 ){
+		              								msgpresupuestominimo.show();
+			              							msgpresupuestomaximo.show();
+			              							valido = false;
+			              						}
+			              						
+			              						
+			              						if (valido) {
+			              							$.ajax({
+			              								type : "POST",
+			              								url : urlevaluar + '&' + inputFristnamespace + 'presupuestoMinimo=' + pminval + '&' + inputFristnamespace + 'presupuestoMaximo=' + pmaxval,
+			              								data : {},
+			              								success : function(data) {
+			              									data = $.parseJSON(data);
+			              									console.log(data);
+			              									console.log(data.solicitudRequerimientoId);
+			              									console.log(data["solicitudRequerimientoId"]);
+			              									modalAaprobar.hide();
+			              									var contenedorAlerta = $(".contenedorAlerta");
+			              									console.log(contenedorAlerta);
+			              									var defaultUrl = $("#" + inputFristnamespace + "defaultUrl").val();
+			              									console.log(defaultUrl);
+			              									mostrarAlerta(contenedorAlerta, "Solicitud Aprobada", "Solicitud aprobada :" + data.solicitudRequerimientoId, "alert-success", function() {
+			              										console.log("mostrarAlerta");
+			              										setTimeout(function() {
+			              											//window.location = defaultUrl;
+			              											$(btnBuscar).click();
+			              										}, 1500);
+			              									});
+			              								}
+			              							});
+			              						}
+
+			              					}
+			              				}
+			              			} 
+			              			
+			              			,
+			                           
+			              			{
+			            				label : "Cancelar",
+			            				on : {
+			            					click : function() {
+			            						var presupuestoMinimo = $(".presupuestoMinimo");
+			            						var presupuestoMaximo = $(".presupuestoMaximo");
+			            						modalAaprobar.hide();
+			            						presupuestoMinimo.val("");
+			            						presupuestoMaximo.val("");
+			            					}
+			            				}
+			            			}
+		
+			
+			
+			
+			]);
 		}
 		
 		if (A.one('#' + inputFristnamespace + 'modalRechazar') != null) {
@@ -326,7 +368,7 @@ function cargarModals() {
 			modalRechazar = new A.Modal({
 				bodyContent : getDialogRechazar(),
 				centered : true,
-				destroyOnHide : false,
+				destroyOnHide : true,
 				headerContent : "<h5>" + "Rechazar Solicitud de Reclutamiento" + "</h5>",
 				modal : true,
 				render : '#' + inputFristnamespace + 'modalRechazar',
@@ -337,32 +379,36 @@ function cargarModals() {
 				width : 450
 			}).render();
 
-			modalRechazar.addToolbar([ {
-				label : "Cancelar",
-				on : {
-					click : function() {
-						modalRechazar.hide();
-					}
-				}
-			}, {
+			modalRechazar.addToolbar([ 
+			
+			{
 				label : "Confirmar",
 				on : {
 					click : function() {
-						var motivo = $(".motivo");
+						var motivo = $(".motivo")[1];
 						console.log(motivo);
 
-						var motivotext = motivo.val();
+						var motivotext = $(motivo).val();
+						console.log("motivotext");
 						console.log(motivotext);
+						console.log(motivotext.length);
 
 						var msgmotivo = $(".msgmotivo");
 
 						var valido = true;
 						try {
 							console.log(motivotext);
+							console.log(validation.isNotEmpty(motivotext));
 							if (!validation.isNotEmpty(motivotext)) {
 								msgmotivo.show();
 								valido = false;
 							}
+							
+							if(motivotext.length>2000){
+								msgmotivo.show();
+								valido = false;
+							}
+							
 						} catch (e) {
 							console.log(e);
 							msgmotivo.show();
@@ -391,7 +437,21 @@ function cargarModals() {
 
 					}
 				}
-			} ]);
+			}
+			, 
+
+			{
+				label : "Cancelar",
+				on : {
+					click : function() {
+						modalRechazar.hide();
+					}
+				}
+			}
+			
+			
+			
+			]);
 		}
 
 	});
@@ -403,12 +463,14 @@ function addEventoClick() {
 	$(".btnAprobar").click(function() {
 		var url = $(this).attr("data");
 		urlevaluar = url;
+		cargarModals();
 		modalAaprobar.show();
 	});
 	$(".btnRechazar").unbind("click");
 	$(".btnRechazar").click(function() {
 		var url = $(this).attr("data");
 		urlevaluar = url;
+		cargarModals();
 		modalRechazar.show();
 	});
 }
@@ -426,12 +488,12 @@ function listarRequisitos(requisitoEtiquetaBeans) {
 			} else {
 				exigible = object['exigibleText'];
 			}
-			addRequisitoFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
+			addRequisitoFila(object['requisito'], object['annos'], object['annosText'], exigible, object['tipoRequisito'], object['tipoRequisitoText']);
 		});
 	}
 }
 
-function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext) {
+function addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext) {
 	var exigileValue = exigile;
 	if (exigile == true) {
 		exigile = "Si";
@@ -439,18 +501,18 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 		exigile = "No";
 	}
 
-	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
+	if (requisito != "" && tipoRequisito > 0 && annos > 0) {
 
 		var requistoMap = {};
 		requistoMap['requisito'] = requisito;
-		requistoMap['nivel'] = nivel;
+		requistoMap['annos'] = annos;
 		requistoMap['exigibleText'] = exigileValue;
 
 		requistoMap['tipoRequisito'] = tipoRequisito;
 
 		var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
 		var html = "";
-		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
+		html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + annosText + "</td>" + "<td>" + exigile + "</td>" + "<td>" + tipoRequisitotext + "</tr>";
 
 		$(listaRequisitos).append(html);
 

@@ -36,7 +36,7 @@ public class SolicitudRequerimientoRequisitoSoap implements Serializable {
 
 		soapModel.setSolicitudRequerimientoId(model.getSolicitudRequerimientoId());
 		soapModel.setTagId(model.getTagId());
-		soapModel.setNivel(model.getNivel());
+		soapModel.setAnnos(model.getAnnos());
 		soapModel.setExigible(model.getExigible());
 		soapModel.setTipoRequisito(model.getTipoRequisito());
 		soapModel.setHerramienta(model.getHerramienta());
@@ -118,12 +118,12 @@ public class SolicitudRequerimientoRequisitoSoap implements Serializable {
 		_tagId = tagId;
 	}
 
-	public long getNivel() {
-		return _nivel;
+	public long getAnnos() {
+		return _annos;
 	}
 
-	public void setNivel(long nivel) {
-		_nivel = nivel;
+	public void setAnnos(long annos) {
+		_annos = annos;
 	}
 
 	public boolean getExigible() {
@@ -200,7 +200,7 @@ public class SolicitudRequerimientoRequisitoSoap implements Serializable {
 
 	private long _solicitudRequerimientoId;
 	private long _tagId;
-	private long _nivel;
+	private long _annos;
 	private boolean _exigible;
 	private long _tipoRequisito;
 	private long _herramienta;

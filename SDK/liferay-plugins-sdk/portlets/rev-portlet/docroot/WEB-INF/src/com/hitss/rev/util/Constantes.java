@@ -13,6 +13,7 @@ public class Constantes {
 	public static final long PARAMETRO_PADRE_CLIENTES = 21;
 	public static final long PARAMETRO_PADRE_TIPO_NEGOCIO = 29;
 	public static final long PARAMETRO_PADRE_NIVEL = 35 ;
+	public static final long PARAMETRO_PADRE_ANNOS = 95 ;
 	public static final long PARAMETRO_PADRE_TIPO_DOCUMENTO = 41 ;
 	public static final long PARAMETRO_PADRE_TIEMPO_CONTRATO = 44 ;
 	public static final long PARAMETRO_PADRE_ESTADO = 47 ;

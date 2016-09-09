@@ -43,9 +43,7 @@ public class ActividadCronogramaSoap implements Serializable {
 		soapModel.setEstado(model.getEstado());
 		soapModel.setFechaInicioEvaluacion(model.getFechaInicioEvaluacion());
 		soapModel.setFechaFinEvaluacion(model.getFechaFinEvaluacion());
-		soapModel.setTipoActividad(model.getTipoActividad());
 		soapModel.setAprobadoColaborador(model.getAprobadoColaborador());
-		soapModel.setJerarquiaEvaluar(model.getJerarquiaEvaluar());
 		soapModel.setAprobadoLider(model.getAprobadoLider());
 		soapModel.setUsuarioGerenteId(model.getUsuarioGerenteId());
 		soapModel.setUsuarioLiderId(model.getUsuarioLiderId());
@@ -194,28 +192,12 @@ public class ActividadCronogramaSoap implements Serializable {
 		_fechaFinEvaluacion = fechaFinEvaluacion;
 	}
 
-	public long getTipoActividad() {
-		return _tipoActividad;
-	}
-
-	public void setTipoActividad(long tipoActividad) {
-		_tipoActividad = tipoActividad;
-	}
-
 	public long getAprobadoColaborador() {
 		return _aprobadoColaborador;
 	}
 
 	public void setAprobadoColaborador(long aprobadoColaborador) {
 		_aprobadoColaborador = aprobadoColaborador;
-	}
-
-	public long getJerarquiaEvaluar() {
-		return _jerarquiaEvaluar;
-	}
-
-	public void setJerarquiaEvaluar(long jerarquiaEvaluar) {
-		_jerarquiaEvaluar = jerarquiaEvaluar;
 	}
 
 	public long getAprobadoLider() {
@@ -296,9 +278,7 @@ public class ActividadCronogramaSoap implements Serializable {
 	private long _estado;
 	private Date _fechaInicioEvaluacion;
 	private Date _fechaFinEvaluacion;
-	private long _tipoActividad;
 	private long _aprobadoColaborador;
-	private long _jerarquiaEvaluar;
 	private long _aprobadoLider;
 	private long _usuarioGerenteId;
 	private long _usuarioLiderId;

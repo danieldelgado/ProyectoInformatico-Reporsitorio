@@ -60,9 +60,7 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 		attributes.put("estado", getEstado());
 		attributes.put("fechaInicioEvaluacion", getFechaInicioEvaluacion());
 		attributes.put("fechaFinEvaluacion", getFechaFinEvaluacion());
-		attributes.put("tipoActividad", getTipoActividad());
 		attributes.put("aprobadoColaborador", getAprobadoColaborador());
-		attributes.put("jerarquiaEvaluar", getJerarquiaEvaluar());
 		attributes.put("aprobadoLider", getAprobadoLider());
 		attributes.put("usuarioGerenteId", getUsuarioGerenteId());
 		attributes.put("usuarioLiderId", getUsuarioLiderId());
@@ -140,22 +138,10 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 			setFechaFinEvaluacion(fechaFinEvaluacion);
 		}
 
-		Long tipoActividad = (Long)attributes.get("tipoActividad");
-
-		if (tipoActividad != null) {
-			setTipoActividad(tipoActividad);
-		}
-
 		Long aprobadoColaborador = (Long)attributes.get("aprobadoColaborador");
 
 		if (aprobadoColaborador != null) {
 			setAprobadoColaborador(aprobadoColaborador);
-		}
-
-		Long jerarquiaEvaluar = (Long)attributes.get("jerarquiaEvaluar");
-
-		if (jerarquiaEvaluar != null) {
-			setJerarquiaEvaluar(jerarquiaEvaluar);
 		}
 
 		Long aprobadoLider = (Long)attributes.get("aprobadoLider");
@@ -439,26 +425,6 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	}
 
 	/**
-	* Returns the tipo actividad of this actividad cronograma.
-	*
-	* @return the tipo actividad of this actividad cronograma
-	*/
-	@Override
-	public long getTipoActividad() {
-		return _actividadCronograma.getTipoActividad();
-	}
-
-	/**
-	* Sets the tipo actividad of this actividad cronograma.
-	*
-	* @param tipoActividad the tipo actividad of this actividad cronograma
-	*/
-	@Override
-	public void setTipoActividad(long tipoActividad) {
-		_actividadCronograma.setTipoActividad(tipoActividad);
-	}
-
-	/**
 	* Returns the aprobado colaborador of this actividad cronograma.
 	*
 	* @return the aprobado colaborador of this actividad cronograma
@@ -476,26 +442,6 @@ public class ActividadCronogramaWrapper implements ActividadCronograma,
 	@Override
 	public void setAprobadoColaborador(long aprobadoColaborador) {
 		_actividadCronograma.setAprobadoColaborador(aprobadoColaborador);
-	}
-
-	/**
-	* Returns the jerarquia evaluar of this actividad cronograma.
-	*
-	* @return the jerarquia evaluar of this actividad cronograma
-	*/
-	@Override
-	public long getJerarquiaEvaluar() {
-		return _actividadCronograma.getJerarquiaEvaluar();
-	}
-
-	/**
-	* Sets the jerarquia evaluar of this actividad cronograma.
-	*
-	* @param jerarquiaEvaluar the jerarquia evaluar of this actividad cronograma
-	*/
-	@Override
-	public void setJerarquiaEvaluar(long jerarquiaEvaluar) {
-		_actividadCronograma.setJerarquiaEvaluar(jerarquiaEvaluar);
 	}
 
 	/**

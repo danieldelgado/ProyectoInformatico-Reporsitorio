@@ -37,7 +37,7 @@ public interface ActualizarSolicitudReclutamientoService {
 	
 	List<ComboBean> getListarPuestosCategorias(long groupId, String filtroCategoria);
 
-	List<ParametroBean> getListaNiveles();
+	List<ParametroBean> getListaAnnos();
 
 	List<ParametroBean> getListaTipoRequisito();
 

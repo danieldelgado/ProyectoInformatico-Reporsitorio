@@ -43,8 +43,8 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 		sb.append(solicitudRequerimientoId);
 		sb.append(", tagId=");
 		sb.append(tagId);
-		sb.append(", nivel=");
-		sb.append(nivel);
+		sb.append(", annos=");
+		sb.append(annos);
 		sb.append(", exigible=");
 		sb.append(exigible);
 		sb.append(", tipoRequisito=");
@@ -72,7 +72,7 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 
 		solicitudRequerimientoRequisitoImpl.setSolicitudRequerimientoId(solicitudRequerimientoId);
 		solicitudRequerimientoRequisitoImpl.setTagId(tagId);
-		solicitudRequerimientoRequisitoImpl.setNivel(nivel);
+		solicitudRequerimientoRequisitoImpl.setAnnos(annos);
 		solicitudRequerimientoRequisitoImpl.setExigible(exigible);
 		solicitudRequerimientoRequisitoImpl.setTipoRequisito(tipoRequisito);
 		solicitudRequerimientoRequisitoImpl.setHerramienta(herramienta);
@@ -105,7 +105,7 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		solicitudRequerimientoId = objectInput.readLong();
 		tagId = objectInput.readLong();
-		nivel = objectInput.readLong();
+		annos = objectInput.readLong();
 		exigible = objectInput.readBoolean();
 		tipoRequisito = objectInput.readLong();
 		herramienta = objectInput.readLong();
@@ -121,7 +121,7 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 		throws IOException {
 		objectOutput.writeLong(solicitudRequerimientoId);
 		objectOutput.writeLong(tagId);
-		objectOutput.writeLong(nivel);
+		objectOutput.writeLong(annos);
 		objectOutput.writeBoolean(exigible);
 		objectOutput.writeLong(tipoRequisito);
 		objectOutput.writeLong(herramienta);
@@ -134,7 +134,7 @@ public class SolicitudRequerimientoRequisitoCacheModel implements CacheModel<Sol
 
 	public long solicitudRequerimientoId;
 	public long tagId;
-	public long nivel;
+	public long annos;
 	public boolean exigible;
 	public long tipoRequisito;
 	public long herramienta;

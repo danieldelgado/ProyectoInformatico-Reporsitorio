@@ -63,7 +63,7 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "solicitudRequerimientoId", Types.BIGINT },
 			{ "tagId", Types.BIGINT },
-			{ "nivel", Types.BIGINT },
+			{ "annos", Types.BIGINT },
 			{ "exigible", Types.BOOLEAN },
 			{ "tipoRequisito", Types.BIGINT },
 			{ "herramienta", Types.BIGINT },
@@ -73,7 +73,7 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimientoRequisito (solicitudRequerimientoId LONG not null,tagId LONG not null,nivel LONG,exigible BOOLEAN,tipoRequisito LONG,herramienta LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (solicitudRequerimientoId, tagId))";
+	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimientoRequisito (solicitudRequerimientoId LONG not null,tagId LONG not null,annos LONG,exigible BOOLEAN,tipoRequisito LONG,herramienta LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (solicitudRequerimientoId, tagId))";
 	public static final String TABLE_SQL_DROP = "drop table SolicitudRequerimientoRequisito";
 	public static final String ORDER_BY_JPQL = " ORDER BY solicitudRequerimientoRequisito.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SolicitudRequerimientoRequisito.fechamodifica ASC";
@@ -109,7 +109,7 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 		model.setSolicitudRequerimientoId(soapModel.getSolicitudRequerimientoId());
 		model.setTagId(soapModel.getTagId());
-		model.setNivel(soapModel.getNivel());
+		model.setAnnos(soapModel.getAnnos());
 		model.setExigible(soapModel.getExigible());
 		model.setTipoRequisito(soapModel.getTipoRequisito());
 		model.setHerramienta(soapModel.getHerramienta());
@@ -188,7 +188,7 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 		attributes.put("solicitudRequerimientoId", getSolicitudRequerimientoId());
 		attributes.put("tagId", getTagId());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("exigible", getExigible());
 		attributes.put("tipoRequisito", getTipoRequisito());
 		attributes.put("herramienta", getHerramienta());
@@ -216,10 +216,10 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 			setTagId(tagId);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean exigible = (Boolean)attributes.get("exigible");
@@ -319,13 +319,13 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 	@JSON
 	@Override
-	public long getNivel() {
-		return _nivel;
+	public long getAnnos() {
+		return _annos;
 	}
 
 	@Override
-	public void setNivel(long nivel) {
-		_nivel = nivel;
+	public void setAnnos(long annos) {
+		_annos = annos;
 	}
 
 	@JSON
@@ -448,7 +448,7 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 		solicitudRequerimientoRequisitoImpl.setSolicitudRequerimientoId(getSolicitudRequerimientoId());
 		solicitudRequerimientoRequisitoImpl.setTagId(getTagId());
-		solicitudRequerimientoRequisitoImpl.setNivel(getNivel());
+		solicitudRequerimientoRequisitoImpl.setAnnos(getAnnos());
 		solicitudRequerimientoRequisitoImpl.setExigible(getExigible());
 		solicitudRequerimientoRequisitoImpl.setTipoRequisito(getTipoRequisito());
 		solicitudRequerimientoRequisitoImpl.setHerramienta(getHerramienta());
@@ -530,7 +530,7 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 
 		solicitudRequerimientoRequisitoCacheModel.tagId = getTagId();
 
-		solicitudRequerimientoRequisitoCacheModel.nivel = getNivel();
+		solicitudRequerimientoRequisitoCacheModel.annos = getAnnos();
 
 		solicitudRequerimientoRequisitoCacheModel.exigible = getExigible();
 
@@ -573,8 +573,8 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 		sb.append(getSolicitudRequerimientoId());
 		sb.append(", tagId=");
 		sb.append(getTagId());
-		sb.append(", nivel=");
-		sb.append(getNivel());
+		sb.append(", annos=");
+		sb.append(getAnnos());
 		sb.append(", exigible=");
 		sb.append(getExigible());
 		sb.append(", tipoRequisito=");
@@ -613,8 +613,8 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 		sb.append(getTagId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>nivel</column-name><column-value><![CDATA[");
-		sb.append(getNivel());
+			"<column><column-name>annos</column-name><column-value><![CDATA[");
+		sb.append(getAnnos());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>exigible</column-name><column-value><![CDATA[");
@@ -664,7 +664,7 @@ public class SolicitudRequerimientoRequisitoModelImpl extends BaseModelImpl<Soli
 	private long _tagId;
 	private long _originalTagId;
 	private boolean _setOriginalTagId;
-	private long _nivel;
+	private long _annos;
 	private boolean _exigible;
 	private long _tipoRequisito;
 	private long _herramienta;

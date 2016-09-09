@@ -77,7 +77,7 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		attributes.put("estudioId", getEstudioId());
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("nombre", getNombre());
-		attributes.put("nivel", getNivel());
+		attributes.put("annos", getAnnos());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -107,10 +107,10 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 			setNombre(nombre);
 		}
 
-		Long nivel = (Long)attributes.get("nivel");
+		Long annos = (Long)attributes.get("annos");
 
-		if (nivel != null) {
-			setNivel(nivel);
+		if (annos != null) {
+			setAnnos(annos);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -214,21 +214,21 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 	}
 
 	@Override
-	public long getNivel() {
-		return _nivel;
+	public long getAnnos() {
+		return _annos;
 	}
 
 	@Override
-	public void setNivel(long nivel) {
-		_nivel = nivel;
+	public void setAnnos(long annos) {
+		_annos = annos;
 
 		if (_estudioRemoteModel != null) {
 			try {
 				Class<?> clazz = _estudioRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setNivel", long.class);
+				Method method = clazz.getMethod("setAnnos", long.class);
 
-				method.invoke(_estudioRemoteModel, nivel);
+				method.invoke(_estudioRemoteModel, annos);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -428,7 +428,7 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		clone.setEstudioId(getEstudioId());
 		clone.setUsuarioId(getUsuarioId());
 		clone.setNombre(getNombre());
-		clone.setNivel(getNivel());
+		clone.setAnnos(getAnnos());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -493,8 +493,8 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		sb.append(getUsuarioId());
 		sb.append(", nombre=");
 		sb.append(getNombre());
-		sb.append(", nivel=");
-		sb.append(getNivel());
+		sb.append(", annos=");
+		sb.append(getAnnos());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -531,8 +531,8 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 		sb.append(getNombre());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>nivel</column-name><column-value><![CDATA[");
-		sb.append(getNivel());
+			"<column><column-name>annos</column-name><column-value><![CDATA[");
+		sb.append(getAnnos());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -563,7 +563,7 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 	private long _estudioId;
 	private long _usuarioId;
 	private String _nombre;
-	private long _nivel;
+	private long _annos;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

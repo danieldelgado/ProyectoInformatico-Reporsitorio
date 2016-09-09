@@ -327,7 +327,7 @@ public class UsuarioRequisitoPersistenceImpl extends BasePersistenceImpl<Usuario
 
 		usuarioRequisitoImpl.setUserId(usuarioRequisito.getUserId());
 		usuarioRequisitoImpl.setTagId(usuarioRequisito.getTagId());
-		usuarioRequisitoImpl.setNivel(usuarioRequisito.getNivel());
+		usuarioRequisitoImpl.setAnnos(usuarioRequisito.getAnnos());
 		usuarioRequisitoImpl.setExigible(usuarioRequisito.isExigible());
 		usuarioRequisitoImpl.setTipoRequisito(usuarioRequisito.getTipoRequisito());
 		usuarioRequisitoImpl.setHerramienta(usuarioRequisito.getHerramienta());

@@ -102,7 +102,7 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
 			model.addAttribute("requisitoEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getRequisitoEtiquetaBeans()));
 			model.addAttribute("funcionEtiquetaBeans", JsonUtil.getJsonString(solicitudReclutamiento.getFuncionEtiquetaBeans()));
-			}
+		}
 
 		List<PuestoBean> listaPuestoBeans = actualizarSolicitudReclutamientoService.getListaPuestos(td.getSiteGroup().getGroupId(), null);
 		model.addAttribute("listaPuestoBeans", listaPuestoBeans);
@@ -122,8 +122,8 @@ public class ActualizarSolicitudReclutamientoController extends RevController {
 		List<ParametroBean> listaAreas = actualizarSolicitudReclutamientoService.getAreas();
 		model.addAttribute("listaAreas", listaAreas);
 
-		List<ParametroBean> listaNiveles = actualizarSolicitudReclutamientoService.getListaNiveles();
-		model.addAttribute("listaNiveles", listaNiveles);
+		List<ParametroBean> listaAnnos = actualizarSolicitudReclutamientoService.getListaAnnos();
+		model.addAttribute("listaAnnos", listaAnnos);
 
 		List<ParametroBean> listaTipoRequisito = actualizarSolicitudReclutamientoService.getListaTipoRequisito();
 		model.addAttribute("listaTipoRequisito", listaTipoRequisito);

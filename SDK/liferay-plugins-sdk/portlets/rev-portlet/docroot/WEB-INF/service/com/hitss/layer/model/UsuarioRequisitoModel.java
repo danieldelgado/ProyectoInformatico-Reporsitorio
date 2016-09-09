@@ -105,18 +105,18 @@ public interface UsuarioRequisitoModel extends BaseModel<UsuarioRequisito> {
 	public void setTagId(long tagId);
 
 	/**
-	 * Returns the nivel of this usuario requisito.
+	 * Returns the annos of this usuario requisito.
 	 *
-	 * @return the nivel of this usuario requisito
+	 * @return the annos of this usuario requisito
 	 */
-	public long getNivel();
+	public long getAnnos();
 
 	/**
-	 * Sets the nivel of this usuario requisito.
+	 * Sets the annos of this usuario requisito.
 	 *
-	 * @param nivel the nivel of this usuario requisito
+	 * @param annos the annos of this usuario requisito
 	 */
-	public void setNivel(long nivel);
+	public void setAnnos(long annos);
 
 	/**
 	 * Returns the exigible of this usuario requisito.

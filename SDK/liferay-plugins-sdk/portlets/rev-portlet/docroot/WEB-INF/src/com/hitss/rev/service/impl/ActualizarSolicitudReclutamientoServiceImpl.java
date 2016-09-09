@@ -52,9 +52,9 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 			SolicitudRequerimiento sRequerimiento = null;
 
 			if (Validator.isNotNull(solicitudRequerimiento.getSolicitudRequerimientoId())) {
-				_log.debug("actualizar:");
+				
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudRequerimiento.getSolicitudRequerimientoId());
-
+				_log.info("actualizar sRequerimiento:"+sRequerimiento.getEstado());
 				if (sRequerimiento.getEstado() == Constantes.PARAMETRO_REGISTRADO || sRequerimiento.getEstado() == Constantes.PARAMETRO_OBSERVADO || sRequerimiento.getEstado() == Constantes.PARAMETRO_REVISADO) {
 					sRequerimiento.setNew(false);
 					sRequerimiento.setCategoriaPuestoId(solicitudRequerimiento.getPuestoId());
@@ -288,8 +288,10 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 					requerimientoRequisito.setExigible(false);					
 				}
 				
+				if(Validator.isNotNull(reqAct.getAnnos())){
+					requerimientoRequisito.setAnnos(reqAct.getAnnos());
+				}
 				
-				requerimientoRequisito.setNivel(reqAct.getNivel());
 				requerimientoRequisito.setTipoRequisito(reqAct.getTipoRequisito());
 				requerimientoRequisito.setActivo(reqAct.isActivo());
 				if (reqAct.isNuevo()) {

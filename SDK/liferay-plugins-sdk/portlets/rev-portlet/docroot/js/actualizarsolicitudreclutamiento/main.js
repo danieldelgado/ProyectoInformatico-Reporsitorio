@@ -247,7 +247,7 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 function inicializarFormularioRegistro() {
 	init();
-
+	
 	var formActualizarSolicitud = $("#" + inputFristnamespace + "actualizarSolicitud");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var inputpuesto = inputFristnamespace + "puestoId";
@@ -378,17 +378,37 @@ function inicializarFormularioRegistro() {
 	$(btnGuardar).click(function() {
 		formvalid = $(formActualizarSolicitud).valid();
 	});
+	
+	var tipoRequisito = $("#" + inputFristnamespace + "tipoRequisito");
+	
+
+	$(tipoRequisito).change(function() {
+		var str = "";
+		$("#" + inputFristnamespace + "tipoRequisito option:selected").each(function() {
+			str += $(this).attr("value");
+			if (str == "66") {
+				$("#" + inputFristnamespace + "annos").prop('disabled', false);
+//				$("#" + inputFristnamespace + "exigile").prop('disabled', false);
+			}
+			if (str == "67") {
+				$("#" + inputFristnamespace + "annos").prop('disabled', true);
+//				$("#" + inputFristnamespace + "exigile").prop('disabled', true);
+
+			}
+
+		});
+	});
 
 }
 
 function agregarRequisitos() {
 	var requisito = $("#" + inputFristnamespace + "requisito").val();
-	var nivel = $("#" + inputFristnamespace + "nivel option:selected").val();
-	var nivelText = $("#" + inputFristnamespace + "nivel option:selected").text();
+	var annos = $("#" + inputFristnamespace + "annos option:selected").val();
+	var annosText = $("#" + inputFristnamespace + "annos option:selected").text();
 	var exigile = $("#" + inputFristnamespace + "exigile").prop("checked");
-	var tipoRequisito = $("#" + inputFristnamespace + "tipoRequisito option:selected").val();
+	var tipoRequisito = $("#" + inputFristnamespace + "tipoRequisito option:selected").val();	
 	var tipoRequisitotext = $("#" + inputFristnamespace + "tipoRequisito option:selected").text();
-	addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext,true);
+	addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext,true);
 }
 
 function agregarFuncion() {
@@ -409,12 +429,13 @@ function listarRequisitos(requisitoEtiquetaBeans,opciones) {
 			} else {
 				exigible = object['exigibleText'];
 			}
-			addRequisitoFila(object['requisito'], object['nivel'], object['nivelText'], exigible, object['tipoRequisito'], object['tipoRequisitoText'],opciones);
+			
+			addRequisitoFila(object['requisito'], object['annos'], object['annosText'], exigible, object['tipoRequisito'], object['tipoRequisitoText'],opciones);
 		});
 	}
 }
 
-function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, tipoRequisitotext,opciones) {
+function addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext,opciones) {
 	console.log("addRequisitoFila");
 	var exigileValue = exigile;
 	if (exigile == true) {
@@ -423,45 +444,80 @@ function addRequisitoFila(requisito, nivel, nivelText, exigile, tipoRequisito, t
 		exigile = "No";
 	}
 
-	if (requisito != "" && tipoRequisito > 0 && nivel > 0) {
-		var b = validarExitenteRequisito(requisito);
+	if( tipoRequisito !="" ){
+		
 
-		if (b) {
-
-			var requistoMap = {};
-			requistoMap['requisito'] = requisito;
-			requistoMap['nivel'] = nivel;
-			requistoMap['exigibleText'] = exigileValue;
-
-			requistoMap['tipoRequisito'] = tipoRequisito;
-			listarequisitosMap.push(requistoMap);
-
-			var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
-			console.log("listaRequisitos");
-			console.log(listaRequisitos);
-			var html = "";
-			html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + nivelText
-					+ "</td>" + "<td>" + exigile + "</td>" + "<td>"
-					+ tipoRequisitotext + "</td>";
-			
-			if(opciones){
-				html += "<td>" + "<a class='btn btn-primary eliminar' data='"
-				+ requisito + "' href='javascript:void(0);'>Eliminar</a>"
-				+ "</td>";
-			}
-
-			html += "</tr>";
-
-			console.log(html);
-			$(listaRequisitos).append(html);
-			$(".eliminar").unbind("click");
-			$(".eliminar").click(function() {
-				var id = $(this).attr("data");
-				var tr = $(this).parent().parent();
-				removerItem(id, tr);
-			});
+		if ( tipoRequisito == 67 ) {
+//			exigile = "";
+			annos = null;
+			annosText = "";
 		}
+		
+		
+		var add = true;
+//		console.log("requisito:"+requisito);
+//		console.log("annos:"+annos);
+//		console.log("annosText:"+annosText);
+//		console.log("exigile:"+exigile);
+//		console.log("tipoRequisito:"+tipoRequisito);
+		if (requisito == "" ) {
+			add = false;			
+		}
+
+//		console.log(tipoRequisito == 66);
+		if ( tipoRequisito == 66 ) {
+//			console.log(! annos > 0);
+			if ( ! annos > 0 ) {
+				add = false;
+			}			
+			
+		}
+
+		if (add) {
+		
+//		if (requisito != "" && tipoRequisito > 0 && annos > 0) {
+			var b = validarExitenteRequisito(requisito);
+
+			if (b) {
+
+				var requistoMap = {};
+				requistoMap['requisito'] = requisito;
+				requistoMap['annos'] = annos;
+				requistoMap['exigibleText'] = exigileValue;
+
+				requistoMap['tipoRequisito'] = tipoRequisito;
+				listarequisitosMap.push(requistoMap);
+
+				var listaRequisitos = $("#" + inputFristnamespace + "listaRequisitos");
+//				console.log("listaRequisitos");
+//				console.log(listaRequisitos);
+				var html = "";
+				html += "<tr>" + "<td>" + requisito + "</td>" + "<td>" + annosText
+						+ "</td>" + "<td>" + exigile + "</td>" + "<td>"
+						+ tipoRequisitotext + "</td>";
+				
+				if(opciones){
+					html += "<td>" + "<a class='btn btn-primary eliminar' data='"
+					+ requisito + "' href='javascript:void(0);'>Eliminar</a>"
+					+ "</td>";
+				}
+
+				html += "</tr>";
+
+//				console.log(html);
+				$(listaRequisitos).append(html);
+				$(".eliminar").unbind("click");
+				$(".eliminar").click(function() {
+					var id = $(this).attr("data");
+					var tr = $(this).parent().parent();
+					removerItem(id, tr);
+				});
+			}
+		}
+		
 	}
+	
+	
 }
 
 function removerItem(id, tr) {

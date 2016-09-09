@@ -43,8 +43,8 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 		sb.append(userId);
 		sb.append(", tagId=");
 		sb.append(tagId);
-		sb.append(", nivel=");
-		sb.append(nivel);
+		sb.append(", annos=");
+		sb.append(annos);
 		sb.append(", exigible=");
 		sb.append(exigible);
 		sb.append(", tipoRequisito=");
@@ -74,7 +74,7 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 
 		usuarioRequisitoImpl.setUserId(userId);
 		usuarioRequisitoImpl.setTagId(tagId);
-		usuarioRequisitoImpl.setNivel(nivel);
+		usuarioRequisitoImpl.setAnnos(annos);
 		usuarioRequisitoImpl.setExigible(exigible);
 		usuarioRequisitoImpl.setTipoRequisito(tipoRequisito);
 		usuarioRequisitoImpl.setHerramienta(herramienta);
@@ -107,7 +107,7 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		userId = objectInput.readLong();
 		tagId = objectInput.readLong();
-		nivel = objectInput.readLong();
+		annos = objectInput.readLong();
 		exigible = objectInput.readBoolean();
 		tipoRequisito = objectInput.readLong();
 		herramienta = objectInput.readLong();
@@ -124,7 +124,7 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 		throws IOException {
 		objectOutput.writeLong(userId);
 		objectOutput.writeLong(tagId);
-		objectOutput.writeLong(nivel);
+		objectOutput.writeLong(annos);
 		objectOutput.writeBoolean(exigible);
 		objectOutput.writeLong(tipoRequisito);
 		objectOutput.writeLong(herramienta);
@@ -138,7 +138,7 @@ public class UsuarioRequisitoCacheModel implements CacheModel<UsuarioRequisito>,
 
 	public long userId;
 	public long tagId;
-	public long nivel;
+	public long annos;
 	public boolean exigible;
 	public long tipoRequisito;
 	public long herramienta;

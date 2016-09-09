@@ -111,7 +111,7 @@
 		local-service="true" remote-service="true">
 		<column name="solicitudRequerimientoId" type="long" primary="true" />
 		<column name="tagId" type="long" primary="true" />
-		<column name="nivel" type="long" />
+		<column name="annos" type="long" />
 		<column name="exigible" type="boolean" />
 		<column name="tipoRequisito" type="long" />
 		<column name="herramienta" type="long" />
@@ -153,7 +153,7 @@
 
 		<column name="userId" type="long" primary="true" />
 		<column name="tagId" type="long" primary="true" />
-		<column name="nivel" type="long" />
+		<column name="annos" type="long" />
 		<column name="exigible" type="boolean" />
 		<column name="tipoRequisito" type="long" />
 		<column name="herramienta" type="long" />
@@ -263,7 +263,7 @@
 		<column name="estudioId" type="long" primary="true" id-type="increment" />
 		<column name="usuarioId" type="long" />
 		<column name="nombre" type="String" />
-		<column name="nivel" type="long" />
+		<column name="annos" type="long" />
 
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />
@@ -679,10 +679,8 @@
 		<column name="cumplidoEvaluacion" type="boolean" />
 		<column name="estado" type="long" />
 		<column name="fechaInicioEvaluacion" type="Date" />
-		<column name="fechaFinEvaluacion" type="Date" />
-		<column name="tipoActividad" type="long" />
-		<column name="aprobadoColaborador" type="long" />
-		<column name="jerarquiaEvaluar" type="long" />
+		<column name="fechaFinEvaluacion" type="Date" />		
+		<column name="aprobadoColaborador" type="long" />		
 		<column name="aprobadoLider" type="long" />
 		<column name="usuarioGerenteId" type="long" />
 		<column name="usuarioLiderId" type="long" />

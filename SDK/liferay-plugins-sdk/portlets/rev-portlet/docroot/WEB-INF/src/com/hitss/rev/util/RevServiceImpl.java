@@ -365,12 +365,18 @@ public abstract class RevServiceImpl {
 	public List<ComboBean> getListarPuestosCategorias(long groupId, String filtroCategoria) {
 		return liferayContentService.getListarCategorias(groupId, Constantes.VOCABULARIO_PUESTO, filtroCategoria);
 	}
+//
+//	public List<ParametroBean> getListaNiveles() {
+//		List<ParametroBean> listaTiempoContrato = parametroService.getListaParametroGrupo(Constantes.PARAMETRO_PADRE_NIVEL);
+//		return listaTiempoContrato;
+//	}
 
-	public List<ParametroBean> getListaNiveles() {
-		List<ParametroBean> listaTiempoContrato = parametroService.getListaParametroGrupo(Constantes.PARAMETRO_PADRE_NIVEL);
+	public List<ParametroBean> getListaAnnos() {
+		List<ParametroBean> listaTiempoContrato = parametroService.getListaParametroGrupo(Constantes.PARAMETRO_PADRE_ANNOS);
 		return listaTiempoContrato;
 	}
-
+	
+	
 	public List<ParametroBean> getListaTipoRequisito() {
 		List<ParametroBean> listaTiempoContrato = parametroService.getListaParametroGrupo(Constantes.PARAMETRO_PADRE_TIPO_REQUISITO);
 		return listaTiempoContrato;

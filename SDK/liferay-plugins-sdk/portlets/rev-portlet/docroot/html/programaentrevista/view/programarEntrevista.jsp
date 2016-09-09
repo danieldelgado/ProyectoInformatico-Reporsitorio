@@ -42,7 +42,6 @@
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
-										${ bcol }
 					<c:if test="${ !bcol }">					
 						<div class="span12">
 							<div>

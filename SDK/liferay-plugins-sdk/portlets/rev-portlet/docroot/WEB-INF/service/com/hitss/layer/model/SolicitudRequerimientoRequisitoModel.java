@@ -89,18 +89,18 @@ public interface SolicitudRequerimientoRequisitoModel extends BaseModel<Solicitu
 	public void setTagId(long tagId);
 
 	/**
-	 * Returns the nivel of this solicitud requerimiento requisito.
+	 * Returns the annos of this solicitud requerimiento requisito.
 	 *
-	 * @return the nivel of this solicitud requerimiento requisito
+	 * @return the annos of this solicitud requerimiento requisito
 	 */
-	public long getNivel();
+	public long getAnnos();
 
 	/**
-	 * Sets the nivel of this solicitud requerimiento requisito.
+	 * Sets the annos of this solicitud requerimiento requisito.
 	 *
-	 * @param nivel the nivel of this solicitud requerimiento requisito
+	 * @param annos the annos of this solicitud requerimiento requisito
 	 */
-	public void setNivel(long nivel);
+	public void setAnnos(long annos);
 
 	/**
 	 * Returns the exigible of this solicitud requerimiento requisito.

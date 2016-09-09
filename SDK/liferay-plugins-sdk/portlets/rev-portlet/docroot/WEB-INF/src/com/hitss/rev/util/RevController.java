@@ -31,7 +31,7 @@ public abstract class RevController {
 	private static Log _log = LogFactoryUtil.getLog(RevController.class);
 	
 	public String defaultViewReclutamiento(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
-		_log.debug("defaultView");
+		_log.info("defaultView");
 		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		List<PuestoBean> listaPuestoBeans = service.getListaPuestos(td.getSiteGroup().getGroupId(), null);
 		model.addAttribute("listaPuestoBeans", listaPuestoBeans);
@@ -41,14 +41,14 @@ public abstract class RevController {
 		model.addAttribute("listaTiempoContrato", listaTiempoContrato);
 
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
-		_log.debug("solicitudRequerimientoId defaultView :" + solicitudRequerimientoId);
+		_log.info("solicitudRequerimientoId defaultView :" + solicitudRequerimientoId);
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
 			model.addAttribute("solicitudRequerimientoId", solicitudRequerimientoId);
 			String mensaje = ParamUtil.get(request, "mensaje", "");
-			_log.debug("mensaje defaultView :" + mensaje);
+			_log.info("mensaje defaultView :" + mensaje);
 			model.addAttribute("mensaje", mensaje);
 			String titulo = ParamUtil.get(request, "titulo", "");
-			_log.debug("titulo:" + titulo);
+			_log.info("titulo:" + titulo);
 			model.addAttribute("titulo", titulo);
 		}
 
@@ -56,21 +56,21 @@ public abstract class RevController {
 	}
 	
 	public String defaultViewEvaluacion(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
-		_log.debug("defaultView");
+		_log.info("defaultView");
 		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 		
 		List<ComboBean> lstEstados = service.getEstados();
 		model.addAttribute("lstEstados", lstEstados);
 		
 		Long solicitudEvaluacionId = ParamUtil.getLong(request, "solicitudEvaluacionId");
-		_log.debug("solicitudEvaluacionId defaultView :" + solicitudEvaluacionId);
+		_log.info("solicitudEvaluacionId defaultView :" + solicitudEvaluacionId);
 		if (Validator.isNotNull(solicitudEvaluacionId) || solicitudEvaluacionId > 0) {
 			model.addAttribute("solicitudEvaluacionId", solicitudEvaluacionId);
 			String mensaje = ParamUtil.get(request, "mensaje", "");
-			_log.debug("mensaje defaultView :" + mensaje);
+			_log.info("mensaje defaultView :" + mensaje);
 			model.addAttribute("mensaje", mensaje);
 			String titulo = ParamUtil.get(request, "titulo", "");
-			_log.debug("titulo:" + titulo);
+			_log.info("titulo:" + titulo);
 			model.addAttribute("titulo", titulo);
 		}
 		return "view";
@@ -78,11 +78,11 @@ public abstract class RevController {
 	
 	public String irDefaultReclutamiento(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
-		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
+		_log.info("solicitudRequerimientoId:" + solicitudRequerimientoId);
 		String mensaje = ParamUtil.get(request, "mensaje", "");
-		_log.debug("mensaje:" + mensaje);
+		_log.info("mensaje:" + mensaje);
 		String titulo = ParamUtil.get(request, "titulo", "");
-		_log.debug("titulo:" + titulo);
+		_log.info("titulo:" + titulo);
 		response.addProperty("solicitudRequerimientoId", String.valueOf(solicitudRequerimientoId));
 		response.addProperty("titulo", titulo);
 		response.addProperty("mensaje", mensaje);
@@ -91,11 +91,11 @@ public abstract class RevController {
 	
 	public String irDefaultEvaluacion(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
 		Long solicitudEvaluacionId = ParamUtil.getLong(request, "solicitudEvaluacionId");
-		_log.debug("solicitudEvaluacionId:" + solicitudEvaluacionId);
+		_log.info("solicitudEvaluacionId:" + solicitudEvaluacionId);
 		String mensaje = ParamUtil.get(request, "mensaje", "");
-		_log.debug("mensaje:" + mensaje);
+		_log.info("mensaje:" + mensaje);
 		String titulo = ParamUtil.get(request, "titulo", "");
-		_log.debug("titulo:" + titulo);
+		_log.info("titulo:" + titulo);
 		response.addProperty("solicitudEvaluacionId", String.valueOf(solicitudEvaluacionId));
 		response.addProperty("titulo", titulo);
 		response.addProperty("mensaje", mensaje);
@@ -103,41 +103,37 @@ public abstract class RevController {
 	}
 	
 	public void listarSolicitudesReclutamiento(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
-		_log.debug("listarSolicitudesRelutamiento");
-
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-		_log.debug("getParameterMap:" + resourceRequest.getParameterMap());
+		_log.info("listarSolicitudesRelutamiento");
 		Long puestoId = ParamUtil.getLong(resourceRequest, "puestoId");
-		_log.debug("puestoId:" + puestoId);
+		_log.info("puestoId:" + puestoId);
 
 		Date fechaRegistroInicio = null;
 		String fechaRegistroInicioVal = ParamUtil.get(resourceRequest, "fechaRegistroInicio", "");
 		fechaRegistroInicio = Util.getFecha(fechaRegistroInicioVal);
-		_log.debug("fechaRegistroInicio:" + fechaRegistroInicio);
+		_log.info("fechaRegistroInicio:" + fechaRegistroInicio);
 
 		Date fechaRegistrFin = null;
 		String fechaRegistroFinVal = ParamUtil.get(resourceRequest, "fechaRegistroFin", "");	
 		fechaRegistrFin = Util.getFecha(fechaRegistroFinVal);		
-		_log.debug("fechaRegistrFin:" + fechaRegistrFin);
+		_log.info("fechaRegistrFin:" + fechaRegistrFin);
 
 		int responsable = ParamUtil.getInteger(resourceRequest, "responsable");
-		_log.debug("responsable:" + responsable);
+		_log.info("responsable:" + responsable);
 
 		int tiempoContrato = ParamUtil.getInteger(resourceRequest, "tiempoContrato");
-		_log.debug("tiempoContrato:" + tiempoContrato);
+		_log.info("tiempoContrato:" + tiempoContrato);
 
 		int filas = ParamUtil.getInteger(resourceRequest, "filas");
-		_log.debug("filas:" + filas);
+		_log.info("filas:" + filas);
 
 		int pagina = ParamUtil.getInteger(resourceRequest, "pagina");
-		_log.debug("pagina:" + pagina);
+		_log.info("pagina:" + pagina);
 
 		String orden = ParamUtil.get(resourceRequest, "orden", "");
-		_log.debug("orden:" + orden);
+		_log.info("orden:" + orden);
 
 		String campoOrden = ParamUtil.get(resourceRequest, "campoOrden", "");
-		_log.debug("campoOrden:" + campoOrden);
+		_log.info("campoOrden:" + campoOrden);
 
 		Map<String, Object> result = service.listarSolicitudesRequermiento(puestoId, fechaRegistroInicio, fechaRegistrFin, responsable, tiempoContrato, filas, pagina, orden, campoOrden);
 		try {
@@ -170,19 +166,19 @@ public abstract class RevController {
 		_log.info("fechaEvaluacionFin:" + fechaEvaluacionFin);
 
 		long estado = ParamUtil.getInteger(resourceRequest, "estado");
-		_log.debug("estado:" + estado);
+		_log.info("estado:" + estado);
 
 		int filas = ParamUtil.getInteger(resourceRequest, "filas");
-		_log.debug("filas:" + filas);
+		_log.info("filas:" + filas);
 
 		int pagina = ParamUtil.getInteger(resourceRequest, "pagina");
-		_log.debug("pagina:" + pagina);
+		_log.info("pagina:" + pagina);
 
 		String orden = ParamUtil.get(resourceRequest, "orden", "");
-		_log.debug("orden:" + orden);
+		_log.info("orden:" + orden);
 
 		String campoOrden = ParamUtil.get(resourceRequest, "campoOrden", "");
-		_log.debug("campoOrden:" + campoOrden);
+		_log.info("campoOrden:" + campoOrden);
 
 		Map<String, Object> result = service.listarSolicitudesEvaluacion(descripcion, fechaEvaluacionInicio, fechaEvaluacionFin, estado, filas, pagina, orden, campoOrden);
 		try {
@@ -195,7 +191,7 @@ public abstract class RevController {
 	public void listarPuestosCategorias(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
 		String filtro = ParamUtil.get(resourceRequest, "filtro", "");
 		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
-		_log.debug("filtro:" + filtro);
+		_log.info("filtro:" + filtro);
 		List<ComboBean> listaRequisitos = service.getListarPuestosCategorias(td.getSiteGroup().getGroupId(), filtro);
 		try {
 			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaRequisitos);
@@ -205,12 +201,12 @@ public abstract class RevController {
 	}
 	
 	public String verDetalleSolicitudReclutamiento(RenderRequest request, RenderResponse response, Model model, RevServiceImpl service) {
-		_log.debug("actualizarSolicitud");
+		_log.info("actualizarSolicitud");
 
 		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
 
 		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
-		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
+		_log.info("solicitudRequerimientoId:" + solicitudRequerimientoId);
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
 			SolicitudRequerimientoBean solicitudReclutamiento = service.getSolicitudRequerimiento(solicitudRequerimientoId);
 			model.addAttribute("solicitudReclutamiento", solicitudReclutamiento);
@@ -236,8 +232,8 @@ public abstract class RevController {
 		List<ParametroBean> listaAreas = service.getAreas();
 		model.addAttribute("listaAreas", listaAreas);
 
-		List<ParametroBean> listaNiveles = service.getListaNiveles();
-		model.addAttribute("listaNiveles", listaNiveles);
+		List<ParametroBean> listaAnnos = service.getListaAnnos();
+		model.addAttribute("listaAnnos", listaAnnos);
 
 		List<ParametroBean> listaTipoRequisito = service.getListaTipoRequisito();
 		model.addAttribute("listaTipoRequisito", listaTipoRequisito);
@@ -247,7 +243,7 @@ public abstract class RevController {
 
 	public void listarEtiquetas(ResourceRequest resourceRequest, ResourceResponse resourceResponse, RevServiceImpl service) {
 		String requisito = ParamUtil.get(resourceRequest, "requisito", "");
-		_log.debug("requisito:" + requisito);
+		_log.info("requisito:" + requisito);
 		List<ComboBean> listaRequisitos = service.getListarEtiquetas(requisito);
 		try {
 			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaRequisitos);
@@ -260,7 +256,7 @@ public abstract class RevController {
 			RevServiceImpl service) {
 		
 		String funcion = ParamUtil.get(resourceRequest, "funcion", "");
-		_log.debug("funcion:" + funcion);
+		_log.info("funcion:" + funcion);
 		List<ComboBean> listaFunciones = service.getFuncionsByDescripcion(funcion);
 		try {
 			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), listaFunciones);
