@@ -302,6 +302,11 @@ public class UsuarioLocalServiceWrapper implements UsuarioLocalService,
 		return _usuarioLocalService.findByUsuariosSeleccionados(userIds);
 	}
 
+	@Override
+	public int getUsuariosPostulantes(long solicitudRequerimientoId) {
+		return _usuarioLocalService.getUsuariosPostulantes(solicitudRequerimientoId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

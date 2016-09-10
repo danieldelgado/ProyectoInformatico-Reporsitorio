@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-sql>
+    <sql id="com.hitss.layer.service.persistence.UsuarioFinderImpl.countUsuariosPostulados">
+ 
+            <![CDATA[
+                
+				select 
+				count(*) as postulanteCount 
+				from 
+				usuario u, 
+				postulacion p , 
+				solicitudrequerimiento s
+				where 
+				u.userId = p.usuarioId and 
+				p.solicitudRequerimientoId = s.solicitudRequerimientoId and 
+				s.solicitudRequerimientoId = ?
+				  
+            ]]>
+    </sql>
+</custom-sql>

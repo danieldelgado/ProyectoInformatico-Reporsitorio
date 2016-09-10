@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -71,8 +72,9 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 				int init = (filas * pagina - filas);
 				int fin = init + filas;
 				_log.debug("records :" + records + " init:" + init + " fin:" + fin);
-				List<Postulacion> listaSolicitudRequerimientos = PostulacionLocalServiceUtil.listaSolicitudRequerimientoByPostulacion(solicitudRequerimiento, fechaRegistroInicio, fechaRegistrFin, init, fin, orden, campoOrden);
-				
+				List<Postulacion> listaSolicitudRequerimientos = PostulacionLocalServiceUtil.listaSolicitudRequerimientoByPostulacion(solicitudRequerimiento, fechaRegistroInicio,
+						fechaRegistrFin, init, fin, orden, campoOrden);
+
 				lista = new ArrayList<SolicitudPostulacionBean>();
 				SolicitudPostulacionBean solicitudPostulacionBean = null;
 				ParametroBean p = null;
@@ -83,8 +85,8 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 
 				long faspostulacionIdCumplida = 0;
 				long diferenciasTiempo = 0;
-				SolicitudRequerimiento sr = null ;
-				
+				SolicitudRequerimiento sr = null;
+
 				for (Postulacion postulacion : listaSolicitudRequerimientos) {
 
 					sr = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(postulacion.getSolicitudRequerimientoId());
@@ -95,7 +97,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					solicitudPostulacionBean.setUserId(postulacion.getUsuarioId());
 					solicitudPostulacionBean.setPostulante(u.getFullName());
 					solicitudPostulacionBean.setStrpuesto(liferayContentService.getCategoria(sr.getCategoriaPuestoId()).getValue());
-
+					System.out.println(u.getFullName());
 					if (Validator.isNotNull(u.getExpandoBridge())) {
 						Boolean colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
 						if (Validator.isNotNull(colaborador)) {
@@ -105,62 +107,134 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 						if (Validator.isNotNull(disponibildad)) {
 							solicitudPostulacionBean.setDisponibilidad(Util.getStrFecha(disponibildad));
 						}
-						solicitudPostulacionBean.setStrfechaPostulacion(sdf.format(postulacion.getFechaPostulacion()));
 					}
+					System.out.println(postulacion.getFechaPostulacion());
+					solicitudPostulacionBean.setStrfechaPostulacion(sdf.format(postulacion.getFechaPostulacion()));
 
-					fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
-							Constantes.PARAMETRO_FASE_PSICOLOGICA);
-					if (Validator.isNotNull(fase)) {
-						solicitudPostulacionBean.setStrfechaPsicologica(sdf.format(fase.getFechaFase()));
+					// fase =
+					// FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(),
+					// postulacion.getUsuarioId(),
+					// Constantes.PARAMETRO_FASE_PSICOLOGICA);
+					// if (Validator.isNotNull(fase)) {
+					// solicitudPostulacionBean.setStrfechaPsicologica(sdf.format(fase.getFechaFase()));
+					//
+					// diferenciasTiempo = fase.getFechamodifica().getTime() -
+					// fase.getFechacrea().getTime();
+					//
+					// if (diferenciasTiempo > 0) {
+					// faspostulacionIdCumplida = fase.getTipoFase();
+					// }
+					// }
+					//
+					// fase =
+					// FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(),
+					// postulacion.getUsuarioId(),
+					// Constantes.PARAMETRO_FASE_TECNICA);
+					// if (Validator.isNotNull(fase)) {
+					// solicitudPostulacionBean.setStrfechaTecnica(sdf.format(fase.getFechaFase()));
+					// diferenciasTiempo = fase.getFechamodifica().getTime() -
+					// fase.getFechacrea().getTime();
+					//
+					// if (diferenciasTiempo > 0) {
+					// faspostulacionIdCumplida = fase.getTipoFase();
+					// }
+					// }
+					//
+					// fase =
+					// FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(),
+					// postulacion.getUsuarioId(),
+					// Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
+					// if (Validator.isNotNull(fase)) {
+					// solicitudPostulacionBean.setStrfechaRRHH(sdf.format(fase.getFechaFase()));
+					// diferenciasTiempo = fase.getFechamodifica().getTime() -
+					// fase.getFechacrea().getTime();
+					//
+					// if (diferenciasTiempo > 0) {
+					// faspostulacionIdCumplida = fase.getTipoFase();
+					// }
+					// }
+					//
+					// fase =
+					// FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(),
+					// postulacion.getUsuarioId(),
+					// Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
 
-						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
-
-						if (diferenciasTiempo > 0) {
-							faspostulacionIdCumplida = fase.getTipoFase();
-						}
-					}
-
-					fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
-					if (Validator.isNotNull(fase)) {
-						solicitudPostulacionBean.setStrfechaTecnica(sdf.format(fase.getFechaFase()));
-						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
-
-						if (diferenciasTiempo > 0) {
-							faspostulacionIdCumplida = fase.getTipoFase();
-						}
-					}
-
-					fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
-							Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
-					if (Validator.isNotNull(fase)) {
-						solicitudPostulacionBean.setStrfechaRRHH(sdf.format(fase.getFechaFase()));
-						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
-
-						if (diferenciasTiempo > 0) {
-							faspostulacionIdCumplida = fase.getTipoFase();
-						}
-					}
-
-					fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+					long estado_parametro_id = Constantes.PARAMETRO_ESTADO_POSTULADO;
+					FasePostulacion fp = null;
+					fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
 							Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
-					if (Validator.isNotNull(fase)) {
-						solicitudPostulacionBean.setStrfechaGerenteArea(sdf.format(fase.getFechaFase()));
-						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
+					if (Validator.isNotNull(fp)) {
+						System.out.println(fp.getFechaFase());
+						solicitudPostulacionBean.setStrfechaGerenteArea(Util.getStrFecha(fp.getFechaFase()));
+						diferenciasTiempo = fp.getFechamodifica().getTime() - fp.getFechacrea().getTime();
+						if (fp.isAsistio()) {
 
+							estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+							fase = fp;
+						}
+					}
+
+					fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+							Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
+					if (Validator.isNotNull(fp)) {
+						System.out.println(fp.getFechaFase());
+						solicitudPostulacionBean.setStrfechaRRHH(Util.getStrFecha(fp.getFechaFase()));
+						diferenciasTiempo = fp.getFechamodifica().getTime() - fp.getFechacrea().getTime();
+						if (fp.isAsistio()) {
+							estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR;
+							fase = fp;
+						}
+					}
+
+					fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
+					if (Validator.isNotNull(fp)) {
+
+						System.out.println(fp.getFechaFase());
+						solicitudPostulacionBean.setStrfechaTecnica(Util.getStrFecha(fp.getFechaFase()));
+
+						diferenciasTiempo = fp.getFechamodifica().getTime() - fp.getFechacrea().getTime();
+						if (fp.isAsistio()) {
+							estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
+							fase = fp;
+						}
+					}
+
+					if (Validator.isNull(fase)) {
+						fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+								Constantes.PARAMETRO_FASE_PSICOLOGICA);
+						if (Validator.isNotNull(fase)) {
+							diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
+							System.out.println(fase.getFechaFase());
+							solicitudPostulacionBean.setStrfechaPsicologica(Util.getStrFecha(fase.getFechaFase()));
+						}
+						
+					}
+
+					if (Validator.isNotNull(fase)) {
+//						solicitudPostulacionBean.setStrfechaGerenteArea(sdf.format(fase.getFechaFase()));
+//						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
+						System.out.println("==============diferenciasTiempo:=" + diferenciasTiempo);
 						if (diferenciasTiempo > 0) {
 							faspostulacionIdCumplida = fase.getTipoFase();
 						}
+						solicitudPostulacionBean.setStrFasePostulacion(parametroService.getParametro(fase.getTipoFase()).getValor());
+					}else{
+						solicitudPostulacionBean.setStrFasePostulacion(StringPool.BLANK);
 					}
-					if (faspostulacionIdCumplida > 0) {
-						solicitudPostulacionBean.setStrFasePostulacion(parametroService.getParametro(faspostulacionIdCumplida).getValor());
-					} else {
-						solicitudPostulacionBean.setStrFasePostulacion("Sin registros");
-					}
+					fase = null;
+					// if (faspostulacionIdCumplida > 0) {
+					// solicitudPostulacionBean.setStrFasePostulacion(StringPool.BLANK);
+					// } else {
+					// solicitudPostulacionBean.setStrFasePostulacion("Sin registros");
+					// solicitudPostulacionBean.setStrFasePostulacion(StringPool.BLANK);
+					// solicitudPostulacionBean.setEstado(parametroService.getParametro(Constantes.PARAMETRO_ESTADO_POSTULADO).getValor());
+					
+					// }
 
 					lista.add(solicitudPostulacionBean);
 
 				}
-					
+
 			}
 
 		} catch (SystemException | PortalException e) {

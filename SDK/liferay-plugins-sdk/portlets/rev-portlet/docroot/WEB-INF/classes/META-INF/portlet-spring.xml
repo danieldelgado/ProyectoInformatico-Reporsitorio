@@ -89,6 +89,7 @@
 	<bean id="com.hitss.layer.service.UsuarioLocalService" class="com.hitss.layer.service.impl.UsuarioLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.UsuarioService" class="com.hitss.layer.service.impl.UsuarioServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.UsuarioPersistence" class="com.hitss.layer.service.persistence.UsuarioPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.persistence.UsuarioFinder" class="com.hitss.layer.service.persistence.UsuarioFinderImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.UsuarioEvaluacionLocalService" class="com.hitss.layer.service.impl.UsuarioEvaluacionLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.UsuarioEvaluacionService" class="com.hitss.layer.service.impl.UsuarioEvaluacionServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.UsuarioEvaluacionPersistence" class="com.hitss.layer.service.persistence.UsuarioEvaluacionPersistenceImpl" parent="basePersistence" />

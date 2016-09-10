@@ -121,6 +121,10 @@ public class UsuarioLocalServiceClp implements UsuarioLocalService {
 		_methodName21 = "findByUsuariosSeleccionados";
 
 		_methodParameterTypes21 = new String[] { "long[][]" };
+
+		_methodName22 = "getUsuariosPostulantes";
+
+		_methodParameterTypes22 = new String[] { "long" };
 	}
 
 	@Override
@@ -768,6 +772,30 @@ public class UsuarioLocalServiceClp implements UsuarioLocalService {
 		return (java.util.List<com.hitss.layer.model.Usuario>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public int getUsuariosPostulantes(long solicitudRequerimientoId) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { solicitudRequerimientoId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -811,4 +839,6 @@ public class UsuarioLocalServiceClp implements UsuarioLocalService {
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

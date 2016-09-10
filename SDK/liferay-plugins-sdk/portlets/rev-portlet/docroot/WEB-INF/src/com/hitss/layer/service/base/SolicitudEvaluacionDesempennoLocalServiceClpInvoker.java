@@ -106,24 +106,24 @@ public class SolicitudEvaluacionDesempennoLocalServiceClpInvoker {
 				"com.hitss.layer.model.SolicitudEvaluacionDesempenno"
 			};
 
-		_methodName222 = "getBeanIdentifier";
+		_methodName224 = "getBeanIdentifier";
 
-		_methodParameterTypes222 = new String[] {  };
+		_methodParameterTypes224 = new String[] {  };
 
-		_methodName223 = "setBeanIdentifier";
+		_methodName225 = "setBeanIdentifier";
 
-		_methodParameterTypes223 = new String[] { "java.lang.String" };
+		_methodParameterTypes225 = new String[] { "java.lang.String" };
 
-		_methodName228 = "listaSolicitudEvaluacionCount";
+		_methodName230 = "listaSolicitudEvaluacionCount";
 
-		_methodParameterTypes228 = new String[] {
+		_methodParameterTypes230 = new String[] {
 				"com.hitss.layer.model.SolicitudEvaluacionDesempenno",
 				"java.util.Date", "java.util.Date"
 			};
 
-		_methodName229 = "listaSolicitudEvaluacion";
+		_methodName231 = "listaSolicitudEvaluacion";
 
-		_methodParameterTypes229 = new String[] {
+		_methodParameterTypes231 = new String[] {
 				"com.hitss.layer.model.SolicitudEvaluacionDesempenno",
 				"java.util.Date", "java.util.Date", "int", "int",
 				"java.lang.String", "java.lang.String"
@@ -219,26 +219,26 @@ public class SolicitudEvaluacionDesempennoLocalServiceClpInvoker {
 			return SolicitudEvaluacionDesempennoLocalServiceUtil.updateSolicitudEvaluacionDesempenno((com.hitss.layer.model.SolicitudEvaluacionDesempenno)arguments[0]);
 		}
 
-		if (_methodName222.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes222, parameterTypes)) {
+		if (_methodName224.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
 			return SolicitudEvaluacionDesempennoLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName223.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes223, parameterTypes)) {
+		if (_methodName225.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes225, parameterTypes)) {
 			SolicitudEvaluacionDesempennoLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName228.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes228, parameterTypes)) {
+		if (_methodName230.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes230, parameterTypes)) {
 			return SolicitudEvaluacionDesempennoLocalServiceUtil.listaSolicitudEvaluacionCount((com.hitss.layer.model.SolicitudEvaluacionDesempenno)arguments[0],
 				(java.util.Date)arguments[1], (java.util.Date)arguments[2]);
 		}
 
-		if (_methodName229.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes229, parameterTypes)) {
+		if (_methodName231.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes231, parameterTypes)) {
 			return SolicitudEvaluacionDesempennoLocalServiceUtil.listaSolicitudEvaluacion((com.hitss.layer.model.SolicitudEvaluacionDesempenno)arguments[0],
 				(java.util.Date)arguments[1], (java.util.Date)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -281,12 +281,12 @@ public class SolicitudEvaluacionDesempennoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName222;
-	private String[] _methodParameterTypes222;
-	private String _methodName223;
-	private String[] _methodParameterTypes223;
-	private String _methodName228;
-	private String[] _methodParameterTypes228;
-	private String _methodName229;
-	private String[] _methodParameterTypes229;
+	private String _methodName224;
+	private String[] _methodParameterTypes224;
+	private String _methodName225;
+	private String[] _methodParameterTypes225;
+	private String _methodName230;
+	private String[] _methodParameterTypes230;
+	private String _methodName231;
+	private String[] _methodParameterTypes231;
 }

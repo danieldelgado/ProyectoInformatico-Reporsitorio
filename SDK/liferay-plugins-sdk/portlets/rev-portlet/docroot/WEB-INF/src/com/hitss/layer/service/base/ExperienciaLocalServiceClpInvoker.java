@@ -106,13 +106,13 @@ public class ExperienciaLocalServiceClpInvoker {
 				"com.hitss.layer.model.Experiencia"
 			};
 
-		_methodName222 = "getBeanIdentifier";
+		_methodName224 = "getBeanIdentifier";
 
-		_methodParameterTypes222 = new String[] {  };
+		_methodParameterTypes224 = new String[] {  };
 
-		_methodName223 = "setBeanIdentifier";
+		_methodName225 = "setBeanIdentifier";
 
-		_methodParameterTypes223 = new String[] { "java.lang.String" };
+		_methodParameterTypes225 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -204,13 +204,13 @@ public class ExperienciaLocalServiceClpInvoker {
 			return ExperienciaLocalServiceUtil.updateExperiencia((com.hitss.layer.model.Experiencia)arguments[0]);
 		}
 
-		if (_methodName222.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes222, parameterTypes)) {
+		if (_methodName224.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
 			return ExperienciaLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName223.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes223, parameterTypes)) {
+		if (_methodName225.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes225, parameterTypes)) {
 			ExperienciaLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -251,8 +251,8 @@ public class ExperienciaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName222;
-	private String[] _methodParameterTypes222;
-	private String _methodName223;
-	private String[] _methodParameterTypes223;
+	private String _methodName224;
+	private String[] _methodParameterTypes224;
+	private String _methodName225;
+	private String[] _methodParameterTypes225;
 }

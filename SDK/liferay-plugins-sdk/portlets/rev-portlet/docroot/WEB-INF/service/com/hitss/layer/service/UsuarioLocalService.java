@@ -261,4 +261,7 @@ public interface UsuarioLocalService extends BaseLocalService,
 		long[] userIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getUsuariosPostulantes(long solicitudRequerimientoId);
 }

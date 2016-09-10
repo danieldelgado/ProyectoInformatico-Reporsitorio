@@ -260,6 +260,8 @@ public abstract class RevServiceImpl {
 					solicitudRequerimientoBean.setEstado(sr.getEstado());
 					solicitudRequerimientoBean.setStrestado(parametroService.getParametro(sr.getEstado()).getValor());
 					
+					solicitudRequerimientoBean.setCantidadPostulantes(UsuarioLocalServiceUtil.getUsuariosPostulantes(sr.getSolicitudRequerimientoId()));
+					
 					lista.add(solicitudRequerimientoBean);
 					
 				}

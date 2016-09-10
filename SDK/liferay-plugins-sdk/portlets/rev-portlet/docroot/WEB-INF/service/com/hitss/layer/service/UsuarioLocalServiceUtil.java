@@ -289,6 +289,10 @@ public class UsuarioLocalServiceUtil {
 		return getService().findByUsuariosSeleccionados(userIds);
 	}
 
+	public static int getUsuariosPostulantes(long solicitudRequerimientoId) {
+		return getService().getUsuariosPostulantes(solicitudRequerimientoId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

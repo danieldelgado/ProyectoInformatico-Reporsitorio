@@ -287,7 +287,7 @@ public class ActualizarSolicitudReclutamientoServiceImpl extends RevServiceImpl 
 				}else{
 					requerimientoRequisito.setExigible(false);					
 				}
-				
+
 				if(Validator.isNotNull(reqAct.getAnnos())){
 					requerimientoRequisito.setAnnos(reqAct.getAnnos());
 				}

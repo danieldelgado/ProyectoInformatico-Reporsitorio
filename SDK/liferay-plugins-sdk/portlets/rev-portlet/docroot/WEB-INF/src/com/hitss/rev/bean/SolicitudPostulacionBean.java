@@ -1,8 +1,9 @@
 package com.hitss.rev.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SolicitudPostulacionBean {
+public class SolicitudPostulacionBean implements Serializable {
 
 	private long userId;
 	private long solicitudId;
@@ -24,6 +25,16 @@ public class SolicitudPostulacionBean {
 	private String strfechaRRHH;
 	private Date	fechaGerenteArea;
 	private String strfechaGerenteArea;
+	
+	public SolicitudPostulacionBean() {
+		strFasePostulacion = "";
+		strTipoPostulante = "";
+		strfechaPostulacion = "";
+		strfechaPsicologica = "";
+		strfechaTecnica = "";
+		strfechaRRHH = "";
+		strfechaGerenteArea = "";
+	}
 	
 	public long getUserId() {
 		return userId;

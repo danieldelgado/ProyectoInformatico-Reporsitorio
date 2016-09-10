@@ -47,6 +47,7 @@ import com.hitss.layer.service.persistence.SolicitudRequerimientoFuncionPersiste
 import com.hitss.layer.service.persistence.SolicitudRequerimientoPersistence;
 import com.hitss.layer.service.persistence.SolicitudRequerimientoRequisitoPersistence;
 import com.hitss.layer.service.persistence.UsuarioEvaluacionPersistence;
+import com.hitss.layer.service.persistence.UsuarioFinder;
 import com.hitss.layer.service.persistence.UsuarioFuncionPersistence;
 import com.hitss.layer.service.persistence.UsuarioPersistence;
 import com.hitss.layer.service.persistence.UsuarioRequisitoPersistence;
@@ -1988,6 +1989,24 @@ public abstract class DetalleRepuestaReclutamientoLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the usuario finder.
+	 *
+	 * @return the usuario finder
+	 */
+	public UsuarioFinder getUsuarioFinder() {
+		return usuarioFinder;
+	}
+
+	/**
+	 * Sets the usuario finder.
+	 *
+	 * @param usuarioFinder the usuario finder
+	 */
+	public void setUsuarioFinder(UsuarioFinder usuarioFinder) {
+		this.usuarioFinder = usuarioFinder;
+	}
+
+	/**
 	 * Returns the usuario evaluacion local service.
 	 *
 	 * @return the usuario evaluacion local service
@@ -2510,6 +2529,8 @@ public abstract class DetalleRepuestaReclutamientoLocalServiceBaseImpl
 	protected com.hitss.layer.service.UsuarioService usuarioService;
 	@BeanReference(type = UsuarioPersistence.class)
 	protected UsuarioPersistence usuarioPersistence;
+	@BeanReference(type = UsuarioFinder.class)
+	protected UsuarioFinder usuarioFinder;
 	@BeanReference(type = com.hitss.layer.service.UsuarioEvaluacionLocalService.class)
 	protected com.hitss.layer.service.UsuarioEvaluacionLocalService usuarioEvaluacionLocalService;
 	@BeanReference(type = com.hitss.layer.service.UsuarioEvaluacionService.class)

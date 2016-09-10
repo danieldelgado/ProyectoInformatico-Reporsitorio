@@ -171,13 +171,13 @@ public class RespuestaLocalServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] { "long", "long[][]" };
 
-		_methodName238 = "getBeanIdentifier";
+		_methodName240 = "getBeanIdentifier";
 
-		_methodParameterTypes238 = new String[] {  };
+		_methodParameterTypes240 = new String[] {  };
 
-		_methodName239 = "setBeanIdentifier";
+		_methodName241 = "setBeanIdentifier";
 
-		_methodParameterTypes239 = new String[] { "java.lang.String" };
+		_methodParameterTypes241 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -384,13 +384,13 @@ public class RespuestaLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName238.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes238, parameterTypes)) {
+		if (_methodName240.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes240, parameterTypes)) {
 			return RespuestaLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName239.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes239, parameterTypes)) {
+		if (_methodName241.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes241, parameterTypes)) {
 			RespuestaLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -463,8 +463,8 @@ public class RespuestaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
-	private String _methodName238;
-	private String[] _methodParameterTypes238;
-	private String _methodName239;
-	private String[] _methodParameterTypes239;
+	private String _methodName240;
+	private String[] _methodParameterTypes240;
+	private String _methodName241;
+	private String[] _methodParameterTypes241;
 }

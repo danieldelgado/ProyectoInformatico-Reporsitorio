@@ -121,7 +121,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
 							if (Validator.isNotNull(fp)) {
 								if(fp.isAsistio()){
-									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR;
 									fase = fp;
 								}
 							}
@@ -129,24 +129,27 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_TECNICA);
 							if (Validator.isNotNull(fp)) {
 								if(fp.isAsistio()){
-									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+									estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
 									fase = fp;
 								}
 							}
 							
-							fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
-
+							if (Validator.isNull(fase)) {
+								fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
+							}
+							
 							usuarioBean.setSolicitudId(post.getSolicitudRequerimientoId());
 							
 							if (Validator.isNotNull(fase)) {
-								System.out.println(estado_parametro_id);
-								System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
+//								System.out.println(estado_parametro_id);
+//								System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
 								usuarioBean.setFasePostulacion(parametroService.getParametro(fase.getTipoFase()).getValor());
 								usuarioBean.setEstado(parametroService.getParametro(estado_parametro_id).getValor());
 							} else {
 								usuarioBean.setFasePostulacion(StringPool.BLANK);
 								usuarioBean.setEstado(parametroService.getParametro(Constantes.PARAMETRO_ESTADO_POSTULADO).getValor());
 							}
+							fase = null;
 							lstReturn.add(usuarioBean);
 						}
 					}

@@ -149,7 +149,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			html += '<th>' + listafechalimite + '</th>';
 			html += '<th>' + listatiempocontrato + '</th>';
 			html += '<th>' + listacliente + '</th>';
-			html += '<th>' + listaprioridad + '</th>';
+			html += '<th>' + 'Cantidad Postulantes' + '</th>';
 			html += '<th>' + listaestado + '</th>';
 			html += '<th>' + listaopciones + '</th>';
 			html += '</tr>';
@@ -171,13 +171,12 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strfechaLimite + '</td>';
 				html += '<td>' + value.strtiempoContrato + '</td>';
 				html += '<td>' + value.strcliente + '</td>';
-				html += '<td>' + value.strprioridad + '</td>';
+				html += '<td>' + value.cantidadPostulantes + '</td>';
 				html += '<td>' + value.strestado + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				
 
-				if (value.estado == 68) {
+				if (value.estado == 51 || value.estado == 68 ) {
 					html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listarPostulantes + ' </a>';
 				}
 				
@@ -276,6 +275,7 @@ function addPostulanteFila(object) {
 
 function inicializarFormularioProgramacionEntrevista() {
 	init();
+	var today = new Date();
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
 		init();
@@ -285,7 +285,13 @@ function inicializarFormularioProgramacionEntrevista() {
 				trigger : '#' + inputFristnamespace + 'fechaEvaluacionPsicologica',
 				mask : '%d/%m/%Y',
 				popover : {
-					zIndex : 1
+					zIndex : 1,
+		            boundingBox: '#bb',
+		            contentBox: '#cb'
+				},
+				calendar: {
+					maximumDate : new Date(today.getFullYear(),today.getMonth()+1,today.getDate()),
+					minimumDate : new Date(today.getFullYear(),today.getMonth(),today.getDate())
 				},
 				on : {
 					selectionChange : function(event) {		
@@ -319,6 +325,10 @@ function inicializarFormularioProgramacionEntrevista() {
 				popover : {
 					zIndex : 1
 				},
+				calendar: {
+					maximumDate : new Date(today.getFullYear(),today.getMonth()+1,today.getDate()),
+					minimumDate : new Date(today.getFullYear(),today.getMonth(),today.getDate())
+				},
 				on : {
 					selectionChange : function(event) {		
 						var d = new Date(event.newSelection);
@@ -350,6 +360,10 @@ function inicializarFormularioProgramacionEntrevista() {
 				mask : '%d/%m/%Y',
 				popover : {
 					zIndex : 1
+				},
+				calendar: {
+					maximumDate : new Date(today.getFullYear(),today.getMonth()+1,today.getDate()),
+					minimumDate : new Date(today.getFullYear(),today.getMonth(),today.getDate()+1)
 				},
 				on : {
 					selectionChange : function(event) {		
@@ -383,6 +397,10 @@ function inicializarFormularioProgramacionEntrevista() {
 				mask : '%d/%m/%Y',
 				popover : {
 					zIndex : 1
+				},
+				calendar: {
+					maximumDate : new Date(today.getFullYear(),today.getMonth()+1,today.getDate()),
+					minimumDate : new Date(today.getFullYear(),today.getMonth(),today.getDate()+1)
 				},
 				on : {
 					selectionChange : function(event) {		

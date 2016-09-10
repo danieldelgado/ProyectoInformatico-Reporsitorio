@@ -83,6 +83,8 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			var count = (filas * pagina - filas);
 
 			$.each(data.lista, function(index, value) {
+				console.log("value");
+				console.log(value);
 				count++;
 				html += '<tr>';
 
@@ -93,17 +95,17 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strTipoPostulante + '</td>';
 				html += '<td>' + value.postulante + '</td>';
 				html += '<td>' + value.strFasePostulacion + '</td>';
-				html += '<td>' + value.strfechaPostulación + '</td>';	
-				html += '<td>' + value.strfechaPsicológica + '</td>';
+				html += '<td>' + value.strfechaPostulacion + '</td>';	
+				html += '<td>' + value.strfechaPsicologica + '</td>';
 				html += '<td>' + value.strfechaTecnica + '</td>';
 				html += '<td>' + value.strfechaRRHH + '</td>';
-				html += '<td>' + value.strfechaGerenteÁrea + '</td>';
+				html += '<td>' + value.strfechaGerenteArea + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				if (value.estado == 51 && value.estado == 68 && value.estado ==52) {
+				if (value.estado == 51  ||  value.estado == 68  ||  value.estado ==52) {
 					html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
 				}
-				if (value.estado == 51 && value.estado == 68 && value.estado ==52) {
+				if (value.estado == 51  ||  value.estado == 68  ||  value.estado ==52) {
 					html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
 				}
 				html += '	</div>';

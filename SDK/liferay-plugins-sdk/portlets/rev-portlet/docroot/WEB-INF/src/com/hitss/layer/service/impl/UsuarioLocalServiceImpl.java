@@ -19,6 +19,7 @@ import java.util.List;
 import com.hitss.layer.model.Usuario;
 import com.hitss.layer.model.impl.UsuarioImpl;
 import com.hitss.layer.service.base.UsuarioLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.UsuarioFinderUtil;
 import com.hitss.layer.service.persistence.UsuarioUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -48,13 +49,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
  * @see com.rec.hitss.layer.service.UsuarioLocalServiceUtil
  */
 public class UsuarioLocalServiceImpl extends UsuarioLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 * 
-	 * Never reference this interface directly. Always use {@link
-	 * com.rec.hitss.layer.service.UsuarioLocalServiceUtil} to access the
-	 * usuario local service.
-	 */
+
 	private static Log _log = LogFactoryUtil.getLog(UsuarioLocalServiceImpl.class);
 
 	public Usuario newInstance() {
@@ -71,7 +66,21 @@ public class UsuarioLocalServiceImpl extends UsuarioLocalServiceBaseImpl {
 	}
 
 	public List<Usuario> findByUsuariosSeleccionados(long[] userIds) throws PortalException, SystemException {
-		 List<Usuario> usuario = UsuarioUtil.findByUsuariosSeleccionados(userIds);
+		List<Usuario> usuario = UsuarioUtil.findByUsuariosSeleccionados(userIds);
 		return usuario;
 	}
+
+	public int getUsuariosPostulantes(long solicitudRequerimientoId) {
+
+		int c = 0;
+		try {
+		
+			c = UsuarioFinderUtil.getUsuarioPostulantesCount(solicitudRequerimientoId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return c;
+	}
+
 }

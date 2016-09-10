@@ -51,6 +51,7 @@ public class SolicitudRequerimientoBean {
 	private String strfechacreamodifica;
 	private List<RequisitoEtiquetaBean> requisitoEtiquetaBeans;
 	private List<FuncionEtiquetaBean> funcionEtiquetaBeans;
+	private int cantidadPostulantes;
 	
 	private ObservacionBean observacionBean;
 	
@@ -432,6 +433,14 @@ public class SolicitudRequerimientoBean {
 
 	public void setFuncionEtiquetaBeans(List<FuncionEtiquetaBean> funcionEtiquetaBeans) {
 		this.funcionEtiquetaBeans = funcionEtiquetaBeans;
+	}
+
+	public int getCantidadPostulantes() {
+		return cantidadPostulantes;
+	}
+
+	public void setCantidadPostulantes(int cantidadPostulantes) {
+		this.cantidadPostulantes = cantidadPostulantes;
 	}
 
 	
