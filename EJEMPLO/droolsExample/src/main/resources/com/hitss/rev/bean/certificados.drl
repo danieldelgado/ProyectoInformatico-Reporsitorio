@@ -1,0 +1,42 @@
+
+package com.hitss.rev.bean
+
+ dialect "java"
+
+
+
+import com.hitss.rev.bean.EvaluacionBean
+import com.hitss.rev.bean.EvaluacionPuestoBean
+import com.hitss.rev.bean.ExperienciaBean
+import com.hitss.rev.bean.Postulacion
+import com.hitss.rev.bean.PuestoBean
+import com.hitss.rev.bean.ReferenciaBean
+import com.hitss.rev.bean.RequisitoBean
+import com.hitss.rev.bean.SolicitudReclutamiento
+import com.hitss.rev.bean.UsuarioBean
+
+rule PrintString when
+    $p : Postulacion( )
+then
+   System.out.println( " ----------------------------- " );
+   System.out.println( $p );
+   System.out.println( $p.getSolicitudReclutamiento() );
+   System.out.println( $p.getSolicitudReclutamiento().getId() );
+   System.out.println( $p.getSolicitudReclutamiento().getPuesto() );
+   System.out.println( $p.getSolicitudReclutamiento().getPuesto().getNombre() );
+   System.out.println( $p.getUsuarioBean() );
+   System.out.println( $p.getUsuarioBean().getIdUsuario() );
+   System.out.println( $p.getUsuarioBean().getNombre() );
+   System.out.println( " ----------------------------- " );
+end
+
+
+rule "Analizar requisitos" when
+    
+    $p : Postulacion( )
+    $s : SolicitudReclutamiento()
+    
+then
+
+
+end

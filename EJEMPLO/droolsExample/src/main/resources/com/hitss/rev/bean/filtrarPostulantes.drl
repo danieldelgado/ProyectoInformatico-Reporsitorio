@@ -1,0 +1,38 @@
+package com.hitss.rev.bean
+
+dialect "java"
+
+import com.hitss.rev.bean.EvaluacionBean
+import com.hitss.rev.bean.EvaluacionPuestoBean
+import com.hitss.rev.bean.ExperienciaBean
+import com.hitss.rev.bean.Postulacion
+import com.hitss.rev.bean.PuestoBean
+import com.hitss.rev.bean.ReferenciaBean
+import com.hitss.rev.bean.RequisitoBean
+import com.hitss.rev.bean.SolicitudReclutamiento
+import com.hitss.rev.bean.UsuarioBean
+
+rule FiltroBasico 
+no-loop true
+when
+    			$p : Postulacion( 
+	    			
+	    			$solicitud : solicitudReclutamiento , 
+	    			$puesto : solicitudReclutamiento.puesto , 
+	    			$usuario : usuarioBean,	
+	    			$usuario.salario <=  $solicitud.presupuestoMaximo,   
+	    			$usuario.salario >=  $solicitud.presupuestoMinimo, 		
+	    			$solicitud.fechaActual <= $solicitud.fechaLimite , 
+	    			filtroPostulacion == false , 
+	    			filtroConocimiento == false , 
+	    			tieneCertificadoExperiencia == false  
+	    			 			
+    			)
+   
+then
+   System.out.println( $puesto.getNombre() );
+   System.out.println( $usuario.getNombre() );
+   $p.setFiltroPostulacion(true);
+   insertLogical( $usuario );
+   insertLogical( $puesto );
+end

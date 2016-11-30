@@ -1,0 +1,45 @@
+
+package com.hitss.rev.bean
+
+ dialect "java"
+
+
+
+import com.hitss.rev.bean.EvaluacionBean
+import com.hitss.rev.bean.EvaluacionPuestoBean
+import com.hitss.rev.bean.ExperienciaBean
+import com.hitss.rev.bean.Postulacion
+import com.hitss.rev.bean.PuestoBean
+import com.hitss.rev.bean.ReferenciaBean
+import com.hitss.rev.bean.RequisitoBean
+import com.hitss.rev.bean.SolicitudReclutamiento
+import com.hitss.rev.bean.UsuarioBean
+
+rule "Distancia Hamming Piscologia" when
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false )
+  	
+  	
+    $p : PuestoBean( $evaluaciones : listaEvaluacionPiscologicas  != null  ) from $puesto
+  	$u : UsuarioBean( $ulevaluaciones : listaEvaluacionPiscologicas  != null  ) from $usuario
+  
+  
+  
+then
+   System.out.println( " ----------------------------- " );
+   System.out.println( "Distancia Hamming Piscologia " );
+   System.out.println( "Id Usuario: " +$u.getIdUsuario()); 
+   
+	if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
+		   if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
+		       EvaluacionPuestoBean e = null;	
+		       double prom = 0;	
+			   for( Object o : $evaluaciones ){
+			   		e = (EvaluacionPuestoBean)o;
+			   		prom = (e.getLimitePorcentajeSuperior()+e.getLimitePorcentajeInferior())/2;			   		
+			   		System.out.println( "e:"+e.getId()+ "|prom:"+prom );
+			   }
+		   }
+   }
+   
+end
+
