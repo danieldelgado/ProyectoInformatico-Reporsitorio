@@ -28,7 +28,7 @@
 <input id="<portlet:namespace/>noAsistioUrl" type="hidden" value="${irnoAsistio}" />
 
 <input id="<portlet:namespace/>pagina" type="hidden" value="1" />
-<input id="<portlet:namespace/>filas" type="hidden" value="12" />
+<input id="<portlet:namespace/>filas" type="hidden" value="5" />
 
 <input id="<portlet:namespace/>listapuesto" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.puesto" />" />
 <input id="<portlet:namespace/>listadisponibilidad" type="hidden" value="Disponiilidad" />

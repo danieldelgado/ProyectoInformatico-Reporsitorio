@@ -16,6 +16,7 @@ package com.hitss.layer.service.impl;
 
 import java.util.List;
 
+import com.hitss.layer.NoSuchFasePostulacionException;
 import com.hitss.layer.model.FasePostulacion;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.base.FasePostulacionLocalServiceBaseImpl;
@@ -102,7 +103,9 @@ public class FasePostulacionLocalServiceImpl
 	public FasePostulacion getFasePostuacionByTipo(long solicitudId, long userId, long tipo) {
 		try {
 			return FasePostulacionUtil.findByS_U_T(solicitudId, userId, tipo);
-		} catch (Exception e) {
+		} catch ( NoSuchFasePostulacionException e) {
+			_log.error("FasePostulacionServiceImpl getFasePostuacionByTipo: "+e.getLocalizedMessage(),e);
+		} catch ( Exception e) {
 			_log.error("FasePostulacionServiceImpl getFasePostuacionByTipo: "+e.getLocalizedMessage(),e);
 		}
 		return null;

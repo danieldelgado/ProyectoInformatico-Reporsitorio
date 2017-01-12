@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
+import com.hitss.rev.bean.SolicitudPostulacionBean;
 import com.hitss.rev.service.RegistrarResultadoPostulanteService;
 import com.hitss.rev.util.JsonUtil;
 import com.hitss.rev.util.RevController;
@@ -39,57 +40,56 @@ public class RegistrarResultadoPotulanteController extends RevController{
 
 	@RenderMapping
 	public String defaultView(RenderRequest request, RenderResponse response, Model model) {
-		_log.debug("defaultView");
+		_log.info("defaultView");
 		return super.defaultViewReclutamiento(request, response, model, (RevServiceImpl) registrarResultadoPostulanteService);
 	}
 
 	@RenderMapping(params = "action=default")
 	public String irDefault(RenderRequest request, RenderResponse response, Model model) {
-		_log.debug("irDefault");
+		_log.info("irDefault");
 		return super.irDefaultReclutamiento(request, response, model, (RevServiceImpl) registrarResultadoPostulanteService);
 	}
 
 	@ResourceMapping(value = "listarSolicitudesReclutamiento")
 	public void listarSolicitudesReclutamiento(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
-		_log.debug("listarSolicitudesReclutamiento");
-		
+		_log.info("listarSolicitudesReclutamiento");		
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		Long puestoId = ParamUtil.getLong(resourceRequest, "puestoId");
-		_log.debug("puestoId:" + puestoId);
+		_log.info("puestoId:" + puestoId);
 
 		Date fechaRegistroInicio = null;
 		String fechaRegistroInicioVal = ParamUtil.get(resourceRequest, "fechaRegistroInicioVal", "");
 		if (Validator.isNotNull(fechaRegistroInicioVal)) {
 			fechaRegistroInicio = ParamUtil.getDate(resourceRequest, "fechaRegistroInicioVal", sdf);
 		}
-		_log.debug("fechaRegistroInicio:" + fechaRegistroInicio);
+		_log.info("fechaRegistroInicio:" + fechaRegistroInicio);
 
 		Date fechaRegistrFin = null;
 		String fechaRegistroFinVal = ParamUtil.get(resourceRequest, "fechaRegistroFinVal", "");
 		if (Validator.isNotNull(fechaRegistroFinVal)) {
 			fechaRegistrFin = ParamUtil.getDate(resourceRequest, "fechaRegistroFinVal", sdf);
 		}
-		_log.debug("fechaRegistrFin:" + fechaRegistrFin);
+		_log.info("fechaRegistrFin:" + fechaRegistrFin);
 
 		int responsable = ParamUtil.getInteger(resourceRequest, "responsable");
-		_log.debug("responsable:" + responsable);
+		_log.info("responsable:" + responsable);
 
 		int tiempoContrato = ParamUtil.getInteger(resourceRequest, "tiempoContrato");
-		_log.debug("tiempoContrato:" + tiempoContrato);
+		_log.info("tiempoContrato:" + tiempoContrato);
 
 		int filas = ParamUtil.getInteger(resourceRequest, "filas");
-		_log.debug("filas:" + filas);
+		_log.info("filas:" + filas);
 
 		int pagina = ParamUtil.getInteger(resourceRequest, "pagina");
-		_log.debug("pagina:" + pagina);
+		_log.info("pagina:" + pagina);
 
 		String orden = ParamUtil.get(resourceRequest, "orden", "");
-		_log.debug("orden:" + orden);
+		_log.info("orden:" + orden);
 
 		String campoOrden = ParamUtil.get(resourceRequest, "campoOrden", "");
-		_log.debug("campoOrden:" + campoOrden);
+		_log.info("campoOrden:" + campoOrden);
 
 		Map<String, Object> result = 	registrarResultadoPostulanteService.listarSolicitudesRequermientoPostulacion(puestoId, fechaRegistroInicio, fechaRegistrFin, responsable, tiempoContrato, filas, pagina, orden, campoOrden);
 		try {
@@ -102,6 +102,14 @@ public class RegistrarResultadoPotulanteController extends RevController{
 	@RenderMapping(params = "action=irregistrarProceso")
 	public String irregistrarProceso(RenderRequest resourceRequest, RenderResponse resourceResponse) {
 		_log.info("irregistrarProceso");
+		Long solicitudId = ParamUtil.getLong(resourceRequest, "solicitudId");
+		_log.info("solicitudId:" + solicitudId);
+		Long userId = ParamUtil.getLong(resourceRequest, "userId");
+		_log.info("userId:" + userId);
+
+		SolicitudPostulacionBean solicitudPostulacionBean = registrarResultadoPostulanteService.getSolicitudPostulacion(solicitudId,userId);
+		
+		
 		return "procesoPostulante";
 	}
 
@@ -114,6 +122,12 @@ public class RegistrarResultadoPotulanteController extends RevController{
 	@RenderMapping(params = "action=irnoAsistio")
 	public String irnoAsistio(RenderRequest resourceRequest, RenderResponse resourceResponse) {
 		_log.info("noAsistio");
+		Long solicitudId = ParamUtil.getLong(resourceRequest, "solicitudId");
+		_log.info("solicitudId:" + solicitudId);
+		Long userId = ParamUtil.getLong(resourceRequest, "userId");
+		_log.info("userId:" + userId);
+		
+		
 		return "noAsistio";
 	}
 

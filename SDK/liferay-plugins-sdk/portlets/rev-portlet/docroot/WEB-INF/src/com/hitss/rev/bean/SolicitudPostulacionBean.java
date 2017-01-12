@@ -25,6 +25,10 @@ public class SolicitudPostulacionBean implements Serializable {
 	private String strfechaRRHH;
 	private Date	fechaGerenteArea;
 	private String strfechaGerenteArea;
+	private long estado;
+	private String strEstado;
+	private long estadoSolicitud;
+	private String strEstadoSolicitud;
 	
 	public SolicitudPostulacionBean() {
 		strFasePostulacion = "";
@@ -156,5 +160,38 @@ public class SolicitudPostulacionBean implements Serializable {
 	public void setStrfechaGerenteArea(String strfechaGerenteArea) {
 		this.strfechaGerenteArea = strfechaGerenteArea;
 	}
+
+	public String getStrEstado() {
+		return strEstado;
+	}
+
+	public void setStrEstado(String strEstado) {
+		this.strEstado = strEstado;
+	}
+
+	public long getEstado() {
+		return estado;
+	}
+
+	public void setEstado(long estado) {
+		this.estado = estado;
+	}
+
+	public long getEstadoSolicitud() {
+		return estadoSolicitud;
+	}
+
+	public void setEstadoSolicitud(long estadoSolicitud) {
+		this.estadoSolicitud = estadoSolicitud;
+	}
+
+	public String getStrEstadoSolicitud() {
+		return strEstadoSolicitud;
+	}
+
+	public void setStrEstadoSolicitud(String strEstadoSolicitud) {
+		this.strEstadoSolicitud = strEstadoSolicitud;
+	}
+
 
 }

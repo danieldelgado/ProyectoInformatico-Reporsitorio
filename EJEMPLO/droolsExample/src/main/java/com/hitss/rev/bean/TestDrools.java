@@ -3,7 +3,11 @@ package com.hitss.rev.bean;
 import java.util.Collection;
 import java.util.List;
 
+import org.drools.core.common.DefaultFactHandle;
 import org.kie.api.io.ResourceType;
+import org.kie.api.runtime.ClassObjectFilter;
+import org.kie.api.runtime.ObjectFilter;
+import org.kie.api.runtime.rule.FactHandle;
 import org.kie.internal.KnowledgeBase;
 import org.kie.internal.KnowledgeBaseFactory;
 import org.kie.internal.builder.KnowledgeBuilder;
@@ -35,18 +39,23 @@ public class TestDrools {
 		for (Postulacion postulacion : lpst) {
 			session.insert(postulacion);
 		}
+				
 		System.out.println("fireAllRules");
 		session.fireAllRules();
 		System.out.println(kbuilder.getErrors());
-		// $usuario.salario >= $solicitud.presupuestoMinimo,
-		// Postulacion p = null;
-		// for (Object o : session.getObjects()) {
-		// System.out.println(o);
-		// p = (Postulacion) o;
-		// System.out.println("pasa primer filtro:"+p.isFiltroPostulacion());
-		// }
-
+		System.out.println("--------------Obteniendo resultados----------------");
+		ObjectFilter filter = new ClassObjectFilter(Postulacion.class);
+		Collection<FactHandle> factHandles = session.getFactHandles(filter );
+		lpst.clear();
+		Postulacion pc = null;
+		for (FactHandle factHandle : factHandles) { 
+			pc = (Postulacion) ((DefaultFactHandle) factHandle).getObject();
+			lpst.add(pc);
+		}		
 		session.dispose();
+		
+		OrdenPostulantes.ordenPostulantes(lpst);
+		
 	}
 
 	public static void main(String[] args) {

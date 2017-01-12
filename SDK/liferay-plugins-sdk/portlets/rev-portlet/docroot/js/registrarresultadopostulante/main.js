@@ -102,12 +102,18 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strfechaGerenteArea + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				if (value.estado == 51  ||  value.estado == 68  ||  value.estado ==52) {
-					html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
+				console.log("value.estadoSolicitud :"+value.estadoSolicitud );
+				console.log("value.estado :"+value.estado );
+				if (value.estadoSolicitud == 51  ||   value.estadoSolicitud ==52) {
+					if (value.estado == 70  ||   value.estado ==71 ||   value.estado ==72 ||   value.estado ==73) {
+						
+						html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
+				
+						html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
+				
+					}
 				}
-				if (value.estado == 51  ||  value.estado == 68  ||  value.estado ==52) {
-					html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
-				}
+				
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';

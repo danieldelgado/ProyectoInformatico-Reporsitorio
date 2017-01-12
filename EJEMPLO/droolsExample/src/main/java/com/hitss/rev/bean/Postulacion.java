@@ -29,6 +29,17 @@ public class Postulacion {
 	private boolean filtroTecnico;
 	private boolean filtroEtrevistas;
 	
+	
+
+	private double distanciaHammingPsicologico;
+	private double distanciaEuclidianaPsicologico;
+	private double distanciaHammingTecnico;
+	private double distanciaEuclidianaTecnico;
+
+	private double distanciaHammingEntrevista;
+	private double distanciaEuclidianaEntrevista;
+	
+	
 	public SolicitudReclutamiento getSolicitudReclutamiento() {
 		
 	return solicitudReclutamiento;
@@ -180,6 +191,54 @@ public class Postulacion {
 
 	public void setRequiereCertificado(boolean requiereCertificado) {
 		this.requiereCertificado = requiereCertificado;
+	}
+
+	public double getDistanciaHammingPsicologico() {
+		return distanciaHammingPsicologico;
+	}
+
+	public void setDistanciaHammingPsicologico(double distanciaHammingPsicologico) {
+		this.distanciaHammingPsicologico = distanciaHammingPsicologico;
+	}
+
+	public double getDistanciaEuclidianaPsicologico() {
+		return distanciaEuclidianaPsicologico;
+	}
+
+	public void setDistanciaEuclidianaPsicologico(double distanciaEuclidianaPsicologico) {
+		this.distanciaEuclidianaPsicologico = distanciaEuclidianaPsicologico;
+	}
+
+	public double getDistanciaHammingTecnico() {
+		return distanciaHammingTecnico;
+	}
+
+	public void setDistanciaHammingTecnico(double distanciaHammingTecnico) {
+		this.distanciaHammingTecnico = distanciaHammingTecnico;
+	}
+
+	public double getDistanciaEuclidianaTecnico() {
+		return distanciaEuclidianaTecnico;
+	}
+
+	public void setDistanciaEuclidianaTecnico(double distanciaEuclidianaTecnico) {
+		this.distanciaEuclidianaTecnico = distanciaEuclidianaTecnico;
+	}
+
+	public double getDistanciaHammingEntrevista() {
+		return distanciaHammingEntrevista;
+	}
+
+	public void setDistanciaHammingEntrevista(double distanciaHammingEntrevista) {
+		this.distanciaHammingEntrevista = distanciaHammingEntrevista;
+	}
+
+	public double getDistanciaEuclidianaEntrevista() {
+		return distanciaEuclidianaEntrevista;
+	}
+
+	public void setDistanciaEuclidianaEntrevista(double distanciaEuclidianaEntrevista) {
+		this.distanciaEuclidianaEntrevista = distanciaEuclidianaEntrevista;
 	}
 
 }

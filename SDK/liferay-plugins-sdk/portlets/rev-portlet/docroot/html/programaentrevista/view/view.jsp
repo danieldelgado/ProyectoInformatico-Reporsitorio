@@ -27,7 +27,7 @@
 <input id="<portlet:namespace/>verDetalleSolicitudUrl" type="hidden" value="${verDetalleSolicitud}" />
 
 <input id="<portlet:namespace/>pagina" type="hidden" value="1" />
-<input id="<portlet:namespace/>filas" type="hidden" value="30" />
+<input id="<portlet:namespace/>filas" type="hidden" value="10" />
 
 <input id="<portlet:namespace/>listapuesto" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.puesto" />" />
 <input id="<portlet:namespace/>listacantidad" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.cantidad" />" />
