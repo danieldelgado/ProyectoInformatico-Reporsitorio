@@ -14,15 +14,19 @@ public class Postulacion {
 
 	private boolean filtroConocimiento;
 	private int cantidadReqCon;	
-	private double porcentajeReqCum;	
+	private double porcentajeReqCum;
+	private boolean recomendableReqCum;
 	private double porcentajeRequisitosCumplidoPorUsuario;
+	private boolean recomendableRequisitosCumplidoPorUsuario;
 
 	private boolean requiereCertificado;
 	private boolean tieneCertificadoExperiencia;	
 	private boolean filtroCertificado;
 	private int cantidadReqCerti;
 	private double porcentajeReqCertiCum;
+	private boolean recomendableReqCertiCum;
 	private double porcentajeCertificadoCumplidoPorUsuario;
+	private boolean recomendableCertificadoCumplidoPorUsuario;
 	
 	private boolean filtroPsicologico;
 	
@@ -38,7 +42,9 @@ public class Postulacion {
 
 	private double distanciaHammingEntrevista;
 	private double distanciaEuclidianaEntrevista;
-	
+
+	private boolean analizadoCercania;
+	private double cercania;
 	
 	public SolicitudReclutamiento getSolicitudReclutamiento() {
 		
@@ -239,6 +245,54 @@ public class Postulacion {
 
 	public void setDistanciaEuclidianaEntrevista(double distanciaEuclidianaEntrevista) {
 		this.distanciaEuclidianaEntrevista = distanciaEuclidianaEntrevista;
+	}
+
+	public double getCercania() {
+		return cercania;
+	}
+
+	public void setCercania(double cercania) {
+		this.cercania = cercania;
+	}
+
+	public boolean isAnalizadoCercania() {
+		return analizadoCercania;
+	}
+
+	public void setAnalizadoCercania(boolean analizadoCercania) {
+		this.analizadoCercania = analizadoCercania;
+	}
+
+	public boolean isRecomendableCertificadoCumplidoPorUsuario() {
+		return recomendableCertificadoCumplidoPorUsuario;
+	}
+
+	public void setRecomendableCertificadoCumplidoPorUsuario(boolean recomendableCertificadoCumplidoPorUsuario) {
+		this.recomendableCertificadoCumplidoPorUsuario = recomendableCertificadoCumplidoPorUsuario;
+	}
+
+	public boolean isRecomendableReqCum() {
+		return recomendableReqCum;
+	}
+
+	public void setRecomendableReqCum(boolean recomendableReqCum) {
+		this.recomendableReqCum = recomendableReqCum;
+	}
+
+	public boolean isRecomendableRequisitosCumplidoPorUsuario() {
+		return recomendableRequisitosCumplidoPorUsuario;
+	}
+
+	public void setRecomendableRequisitosCumplidoPorUsuario(boolean recomendableRequisitosCumplidoPorUsuario) {
+		this.recomendableRequisitosCumplidoPorUsuario = recomendableRequisitosCumplidoPorUsuario;
+	}
+
+	public boolean isRecomendableReqCertiCum() {
+		return recomendableReqCertiCum;
+	}
+
+	public void setRecomendableReqCertiCum(boolean recomendableReqCertiCum) {
+		this.recomendableReqCertiCum = recomendableReqCertiCum;
 	}
 
 }

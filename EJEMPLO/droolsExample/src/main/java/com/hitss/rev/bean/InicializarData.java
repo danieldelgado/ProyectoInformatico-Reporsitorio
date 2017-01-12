@@ -1012,14 +1012,19 @@ public class InicializarData {
 
 	public List<Postulacion> getPostulacionesPuestogetPuestoProgramadorJavaSemiSenior() {
 		List<Postulacion> l = new ArrayList<Postulacion>();
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_MONTH, 31);
+		c.set(Calendar.MONTH, 10);
+		c.set(Calendar.YEAR, 2017);
 		{
 			Postulacion p = new Postulacion();
 			SolicitudReclutamiento solicitudReclutamiento = new SolicitudReclutamiento();
 			solicitudReclutamiento.setId(2L);
 			solicitudReclutamiento.setPuesto(getPuestoProgramadorJavaSemiSenior());
-			p.setSolicitudReclutamiento(solicitudReclutamiento);
+			solicitudReclutamiento.setFechaLimite((c.getTime()));
 			solicitudReclutamiento.setPresupuestoMaximo(2000);
 			solicitudReclutamiento.setPresupuestoMinimo(900);
+			p.setSolicitudReclutamiento(solicitudReclutamiento);
 			p.setUsuarioBean(getUsuarioPostulante07());
 			l.add(p);
 		}
@@ -1028,6 +1033,7 @@ public class InicializarData {
 			SolicitudReclutamiento solicitudReclutamiento = new SolicitudReclutamiento();
 			solicitudReclutamiento.setId(2L);
 			solicitudReclutamiento.setPuesto(getPuestoProgramadorJavaSemiSenior());
+			solicitudReclutamiento.setFechaLimite((c.getTime()));
 			solicitudReclutamiento.setPresupuestoMaximo(2000);
 			solicitudReclutamiento.setPresupuestoMinimo(900);
 			p.setSolicitudReclutamiento(solicitudReclutamiento);
@@ -1039,6 +1045,7 @@ public class InicializarData {
 			SolicitudReclutamiento solicitudReclutamiento = new SolicitudReclutamiento();
 			solicitudReclutamiento.setId(2L);
 			solicitudReclutamiento.setPuesto(getPuestoProgramadorJavaSemiSenior());
+			solicitudReclutamiento.setFechaLimite((c.getTime()));
 			solicitudReclutamiento.setPresupuestoMaximo(2000);
 			solicitudReclutamiento.setPresupuestoMinimo(900);
 			p.setSolicitudReclutamiento(solicitudReclutamiento);
@@ -1048,6 +1055,7 @@ public class InicializarData {
 		{
 			Postulacion p = new Postulacion();
 			SolicitudReclutamiento solicitudReclutamiento = new SolicitudReclutamiento();
+			solicitudReclutamiento.setFechaLimite((c.getTime()));
 			solicitudReclutamiento.setId(2L);
 			solicitudReclutamiento.setPuesto(getPuestoProgramadorJavaSemiSenior());
 			solicitudReclutamiento.setPresupuestoMaximo(2000);
@@ -1121,26 +1129,26 @@ public class InicializarData {
 		boolean v = (d) >= 0.8686;
 		return v;
 	}
-
-	public static void main(String[] args) {
-		// printSimilarity("", "");
-		// printSimilarity("Java", "java");
-		System.out.println(porcentagrIgualdad("Java2222222", "java"));
-		// printSimilarity("Java6", "java7");
-		// printSimilarity("Java 1.6", "java ");
-		// printSimilarity("1234567890", "1");
-		// printSimilarity("1234567890", "123");
-		// printSimilarity("1234567890", "1234567");
-		// printSimilarity("1234567890", "1234567890");
-		// printSimilarity("1234567890", "1234567980");
-		// printSimilarity("47/2010", "472010");
-		// printSimilarity("47/2010", "472011");
-		// printSimilarity("47/2010", "AB.CDEF");
-		// printSimilarity("47/2010", "4B.CDEFG");
-		// printSimilarity("47/2010", "AB.CDEFG");
-		// printSimilarity("The quick fox jumped", "The fox jumped");
-		// printSimilarity("The quick fox jumped", "The fox");
-		// printSimilarity("kitten", "sitting");
-	}
+//
+//	public static void main(String[] args) {
+//		// printSimilarity("", "");
+//		// printSimilarity("Java", "java");
+//		System.out.println(porcentagrIgualdad("Java2222222", "java"));
+//		// printSimilarity("Java6", "java7");
+//		// printSimilarity("Java 1.6", "java ");
+//		// printSimilarity("1234567890", "1");
+//		// printSimilarity("1234567890", "123");
+//		// printSimilarity("1234567890", "1234567");
+//		// printSimilarity("1234567890", "1234567890");
+//		// printSimilarity("1234567890", "1234567980");
+//		// printSimilarity("47/2010", "472010");
+//		// printSimilarity("47/2010", "472011");
+//		// printSimilarity("47/2010", "AB.CDEF");
+//		// printSimilarity("47/2010", "4B.CDEFG");
+//		// printSimilarity("47/2010", "AB.CDEFG");
+//		// printSimilarity("The quick fox jumped", "The fox jumped");
+//		// printSimilarity("The quick fox jumped", "The fox");
+//		// printSimilarity("kitten", "sitting");
+//	}
 
 }
