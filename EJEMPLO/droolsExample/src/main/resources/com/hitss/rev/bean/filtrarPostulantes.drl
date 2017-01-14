@@ -12,6 +12,30 @@ import com.hitss.rev.bean.RequisitoBean
 import com.hitss.rev.bean.SolicitudReclutamiento
 import com.hitss.rev.bean.UsuarioBean
 
+rule Revision 
+no-loop true
+when
+    			$p : Postulacion( 
+	    			$solicitud : solicitudReclutamiento , 
+	    			$puesto : solicitudReclutamiento.puesto , 
+	    			$usuario : usuarioBean   			 			
+    			)
+   
+then
+   System.out.println( "Incio de revision del postulante : -----------------------" );
+   System.out.println( "Nombre de puesto:"+ $puesto.getNombre() );
+   System.out.println( "Nombre de postulante:"+ $usuario.getNombre() );
+   System.out.println( "Salario:"+ $usuario.getSalario() );
+   System.out.println( "Presupuesto Maximo:"+ $solicitud.getPresupuestoMaximo() );
+   System.out.println( "Presupuesto Minimo:"+ $solicitud.getPresupuestoMinimo() );
+   System.out.println( "Fecha Actual:"+ $solicitud.getFechaActual() );
+   System.out.println( "Fecha Limite:"+ $solicitud.getFechaLimite() );
+   System.out.println( "Filtro Postulacion:"+ $p.isFiltroPostulacion() );
+   System.out.println( "Filtro Conocimiento:"+ $p.isFiltroConocimiento() );
+   System.out.println( "Tiene Certificado Experiencia:"+ $p.isTieneCertificadoExperiencia() );
+   System.out.println( "Fin de revision del postulante : -----------------------" );
+end
+
 rule FiltroBasico 
 no-loop true
 when
