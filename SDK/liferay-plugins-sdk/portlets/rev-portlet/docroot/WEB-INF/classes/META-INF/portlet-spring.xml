@@ -37,6 +37,9 @@
 	<bean id="com.hitss.layer.service.FasePostulacionLocalService" class="com.hitss.layer.service.impl.FasePostulacionLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.FasePostulacionService" class="com.hitss.layer.service.impl.FasePostulacionServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.FasePostulacionPersistence" class="com.hitss.layer.service.persistence.FasePostulacionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalService" class="com.hitss.layer.service.impl.FasePostulacionPuestoEvaluacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.FasePostulacionPuestoEvaluacionService" class="com.hitss.layer.service.impl.FasePostulacionPuestoEvaluacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.FasePostulacionPuestoEvaluacionPersistence" class="com.hitss.layer.service.persistence.FasePostulacionPuestoEvaluacionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.FichaIngresoLocalService" class="com.hitss.layer.service.impl.FichaIngresoLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.FichaIngresoService" class="com.hitss.layer.service.impl.FichaIngresoServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.FichaIngresoPersistence" class="com.hitss.layer.service.persistence.FichaIngresoPersistenceImpl" parent="basePersistence" />
@@ -68,6 +71,9 @@
 	<bean id="com.hitss.layer.service.PrioridadGrupoUsuariosLocalService" class="com.hitss.layer.service.impl.PrioridadGrupoUsuariosLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.PrioridadGrupoUsuariosService" class="com.hitss.layer.service.impl.PrioridadGrupoUsuariosServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistence" class="com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistenceImpl" parent="basePersistence" />
+	<bean id="com.hitss.layer.service.PuestoEvaluacionLocalService" class="com.hitss.layer.service.impl.PuestoEvaluacionLocalServiceImpl" />
+	<bean id="com.hitss.layer.service.PuestoEvaluacionService" class="com.hitss.layer.service.impl.PuestoEvaluacionServiceImpl" />
+	<bean id="com.hitss.layer.service.persistence.PuestoEvaluacionPersistence" class="com.hitss.layer.service.persistence.PuestoEvaluacionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.hitss.layer.service.ReferenciaLocalService" class="com.hitss.layer.service.impl.ReferenciaLocalServiceImpl" />
 	<bean id="com.hitss.layer.service.ReferenciaService" class="com.hitss.layer.service.impl.ReferenciaServiceImpl" />
 	<bean id="com.hitss.layer.service.persistence.ReferenciaPersistence" class="com.hitss.layer.service.persistence.ReferenciaPersistenceImpl" parent="basePersistence" />

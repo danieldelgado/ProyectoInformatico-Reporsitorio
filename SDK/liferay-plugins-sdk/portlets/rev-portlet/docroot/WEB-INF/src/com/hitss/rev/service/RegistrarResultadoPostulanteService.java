@@ -8,6 +8,7 @@ import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
 import com.hitss.rev.bean.SolicitudPostulacionBean;
 import com.hitss.rev.bean.UsuarioBean;
+import com.liferay.portal.model.User;
 
 public interface RegistrarResultadoPostulanteService {
 	
@@ -20,5 +21,7 @@ public interface RegistrarResultadoPostulanteService {
 	Map<String, Object> listarSolicitudesRequermientoPostulacion(Long puestoId, Date fechaRegistroInicio, Date fechaRegistrFin, int responsable, int tiempoContrato, int filas, int pagina, String orden, String campoOrden);
 
 	SolicitudPostulacionBean getSolicitudPostulacion(Long solicitudId, Long userId);
+
+	Map<String, Object> registarAvance(SolicitudPostulacionBean solicitudPostulacionBean, Long userId, long scopeGroupId, User user);
 
 }

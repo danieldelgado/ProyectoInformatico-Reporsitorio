@@ -14,6 +14,7 @@
 	<import class="com.hitss.layer.model.EvaluacionPregunta" />
 	<import class="com.hitss.layer.model.Experiencia" />
 	<import class="com.hitss.layer.model.FasePostulacion" />
+	<import class="com.hitss.layer.model.FasePostulacionPuestoEvaluacion" />
 	<import class="com.hitss.layer.model.FichaIngreso" />
 	<import class="com.hitss.layer.model.Funcion" />
 	<import class="com.hitss.layer.model.InformeRetroalimentacion" />
@@ -24,6 +25,7 @@
 	<import class="com.hitss.layer.model.Pregunta" />
 	<import class="com.hitss.layer.model.PreguntaRespuesta" />
 	<import class="com.hitss.layer.model.PrioridadGrupoUsuarios" />
+	<import class="com.hitss.layer.model.PuestoEvaluacion" />
 	<import class="com.hitss.layer.model.Referencia" />
 	<import class="com.hitss.layer.model.Respuesta" />
 	<import class="com.hitss.layer.model.SolicitudEvaluacionDesempenno" />
@@ -163,6 +165,7 @@
 		<property name="enfoque" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="puestoCategoriaEvaluacion" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="tipoEvaluacion" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
@@ -214,6 +217,15 @@
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.hitss.layer.model.impl.FasePostulacionPuestoEvaluacionImpl" table="FasePostulacionPuestoEvaluacion">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.FasePostulacionPuestoEvaluacionPK">
+			<key-property name="fasePostulacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="solicitudFuncionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="evaluacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="resultado" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.FichaIngresoImpl" table="FichaIngreso">
 		<cache usage="read-write" />
@@ -352,6 +364,15 @@
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.hitss.layer.model.impl.PuestoEvaluacionImpl" table="PuestoEvaluacion">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.PuestoEvaluacionPK">
+			<key-property name="solicitudFuncionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="evaluacionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="rangoSuperior" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="rangoInferior" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.ReferenciaImpl" table="Referencia">
 		<cache usage="read-write" />

@@ -1,0 +1,88 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.hitss.layer.model.impl;
+
+import com.hitss.layer.model.PuestoEvaluacion;
+
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.CacheModel;
+
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+/**
+ * The cache model class for representing PuestoEvaluacion in entity cache.
+ *
+ * @author Danielle Delgado
+ * @see PuestoEvaluacion
+ * @generated
+ */
+public class PuestoEvaluacionCacheModel implements CacheModel<PuestoEvaluacion>,
+	Externalizable {
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler(9);
+
+		sb.append("{solicitudFuncionId=");
+		sb.append(solicitudFuncionId);
+		sb.append(", evaluacionId=");
+		sb.append(evaluacionId);
+		sb.append(", rangoSuperior=");
+		sb.append(rangoSuperior);
+		sb.append(", rangoInferior=");
+		sb.append(rangoInferior);
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@Override
+	public PuestoEvaluacion toEntityModel() {
+		PuestoEvaluacionImpl puestoEvaluacionImpl = new PuestoEvaluacionImpl();
+
+		puestoEvaluacionImpl.setSolicitudFuncionId(solicitudFuncionId);
+		puestoEvaluacionImpl.setEvaluacionId(evaluacionId);
+		puestoEvaluacionImpl.setRangoSuperior(rangoSuperior);
+		puestoEvaluacionImpl.setRangoInferior(rangoInferior);
+
+		puestoEvaluacionImpl.resetOriginalValues();
+
+		return puestoEvaluacionImpl;
+	}
+
+	@Override
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		solicitudFuncionId = objectInput.readLong();
+		evaluacionId = objectInput.readLong();
+		rangoSuperior = objectInput.readDouble();
+		rangoInferior = objectInput.readDouble();
+	}
+
+	@Override
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(solicitudFuncionId);
+		objectOutput.writeLong(evaluacionId);
+		objectOutput.writeDouble(rangoSuperior);
+		objectOutput.writeDouble(rangoInferior);
+	}
+
+	public long solicitudFuncionId;
+	public long evaluacionId;
+	public double rangoSuperior;
+	public double rangoInferior;
+}

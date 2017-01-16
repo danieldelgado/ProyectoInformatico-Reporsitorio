@@ -114,32 +114,32 @@ public class PostulacionLocalServiceClpInvoker {
 				"com.hitss.layer.model.Postulacion"
 			};
 
-		_methodName224 = "getBeanIdentifier";
+		_methodName236 = "getBeanIdentifier";
 
-		_methodParameterTypes224 = new String[] {  };
+		_methodParameterTypes236 = new String[] {  };
 
-		_methodName225 = "setBeanIdentifier";
+		_methodName237 = "setBeanIdentifier";
 
-		_methodParameterTypes225 = new String[] { "java.lang.String" };
+		_methodParameterTypes237 = new String[] { "java.lang.String" };
 
-		_methodName230 = "listaPostulacionedsSolicitud";
+		_methodName242 = "listaPostulacionedsSolicitud";
 
-		_methodParameterTypes230 = new String[] { "long" };
+		_methodParameterTypes242 = new String[] { "long" };
 
-		_methodName231 = "getPostulacionBySolicitudRequerimeinto";
+		_methodName243 = "getPostulacionBySolicitudRequerimeinto";
 
-		_methodParameterTypes231 = new String[] {  };
+		_methodParameterTypes243 = new String[] {  };
 
-		_methodName232 = "listaSolicitudRequerimientoByPostulacionCount";
+		_methodName244 = "listaSolicitudRequerimientoByPostulacionCount";
 
-		_methodParameterTypes232 = new String[] {
+		_methodParameterTypes244 = new String[] {
 				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
 				"java.util.Date"
 			};
 
-		_methodName233 = "listaSolicitudRequerimientoByPostulacion";
+		_methodName245 = "listaSolicitudRequerimientoByPostulacion";
 
-		_methodParameterTypes233 = new String[] {
+		_methodParameterTypes245 = new String[] {
 				"com.hitss.layer.model.SolicitudRequerimiento", "java.util.Date",
 				"java.util.Date", "int", "int", "java.lang.String",
 				"java.lang.String"
@@ -235,36 +235,36 @@ public class PostulacionLocalServiceClpInvoker {
 			return PostulacionLocalServiceUtil.updatePostulacion((com.hitss.layer.model.Postulacion)arguments[0]);
 		}
 
-		if (_methodName224.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
+		if (_methodName236.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes236, parameterTypes)) {
 			return PostulacionLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName225.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes225, parameterTypes)) {
+		if (_methodName237.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes237, parameterTypes)) {
 			PostulacionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName230.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes230, parameterTypes)) {
+		if (_methodName242.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes242, parameterTypes)) {
 			return PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName231.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes231, parameterTypes)) {
+		if (_methodName243.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes243, parameterTypes)) {
 			return PostulacionLocalServiceUtil.getPostulacionBySolicitudRequerimeinto();
 		}
 
-		if (_methodName232.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes232, parameterTypes)) {
+		if (_methodName244.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes244, parameterTypes)) {
 			return PostulacionLocalServiceUtil.listaSolicitudRequerimientoByPostulacionCount((com.hitss.layer.model.SolicitudRequerimiento)arguments[0],
 				(java.util.Date)arguments[1], (java.util.Date)arguments[2]);
 		}
 
-		if (_methodName233.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes233, parameterTypes)) {
+		if (_methodName245.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes245, parameterTypes)) {
 			return PostulacionLocalServiceUtil.listaSolicitudRequerimientoByPostulacion((com.hitss.layer.model.SolicitudRequerimiento)arguments[0],
 				(java.util.Date)arguments[1], (java.util.Date)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -307,16 +307,16 @@ public class PostulacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName224;
-	private String[] _methodParameterTypes224;
-	private String _methodName225;
-	private String[] _methodParameterTypes225;
-	private String _methodName230;
-	private String[] _methodParameterTypes230;
-	private String _methodName231;
-	private String[] _methodParameterTypes231;
-	private String _methodName232;
-	private String[] _methodParameterTypes232;
-	private String _methodName233;
-	private String[] _methodParameterTypes233;
+	private String _methodName236;
+	private String[] _methodParameterTypes236;
+	private String _methodName237;
+	private String[] _methodParameterTypes237;
+	private String _methodName242;
+	private String[] _methodParameterTypes242;
+	private String _methodName243;
+	private String[] _methodParameterTypes243;
+	private String _methodName244;
+	private String[] _methodParameterTypes244;
+	private String _methodName245;
+	private String[] _methodParameterTypes245;
 }

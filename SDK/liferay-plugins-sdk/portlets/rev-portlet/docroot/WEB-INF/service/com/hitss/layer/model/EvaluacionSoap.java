@@ -35,6 +35,7 @@ public class EvaluacionSoap implements Serializable {
 		soapModel.setEnfoque(model.getEnfoque());
 		soapModel.setPuestoCategoriaEvaluacion(model.getPuestoCategoriaEvaluacion());
 		soapModel.setTipoEvaluacion(model.getTipoEvaluacion());
+		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -124,6 +125,14 @@ public class EvaluacionSoap implements Serializable {
 		_tipoEvaluacion = tipoEvaluacion;
 	}
 
+	public String getDescripcion() {
+		return _descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		_descripcion = descripcion;
+	}
+
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -172,6 +181,7 @@ public class EvaluacionSoap implements Serializable {
 	private long _enfoque;
 	private long _puestoCategoriaEvaluacion;
 	private long _tipoEvaluacion;
+	private String _descripcion;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

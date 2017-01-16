@@ -14,6 +14,7 @@
 
 package com.hitss.layer.model;
 
+import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -113,6 +114,21 @@ public interface EvaluacionModel extends BaseModel<Evaluacion> {
 	 * @param tipoEvaluacion the tipo evaluacion of this evaluacion
 	 */
 	public void setTipoEvaluacion(long tipoEvaluacion);
+
+	/**
+	 * Returns the descripcion of this evaluacion.
+	 *
+	 * @return the descripcion of this evaluacion
+	 */
+	@AutoEscape
+	public String getDescripcion();
+
+	/**
+	 * Sets the descripcion of this evaluacion.
+	 *
+	 * @param descripcion the descripcion of this evaluacion
+	 */
+	public void setDescripcion(String descripcion);
 
 	/**
 	 * Returns the activo of this evaluacion.

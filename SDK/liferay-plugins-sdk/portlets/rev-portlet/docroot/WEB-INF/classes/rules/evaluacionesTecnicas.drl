@@ -1,0 +1,71 @@
+
+package com.hitss.rev.bean
+
+ dialect "java"
+
+
+
+import com.hitss.rev.bean.EvaluacionBean
+import com.hitss.rev.bean.EvaluacionPuestoBean
+import com.hitss.rev.bean.ExperienciaBean
+import com.hitss.rev.bean.Postulacion
+import com.hitss.rev.bean.PuestoBean
+import com.hitss.rev.bean.ReferenciaBean
+import com.hitss.rev.bean.RequisitoBean
+import com.hitss.rev.bean.SolicitudReclutamiento
+import com.hitss.rev.bean.UsuarioBean
+
+rule "Analizar evaluaciones tecnicas"    
+ 
+no-loop true
+salience 7
+
+when
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == true && filtroEtrevistas == true)
+    $u : UsuarioBean( $ulevaluaciones : listaEvaluacionTecnicas  != null  ) from $usuario
+    $p : PuestoBean( $evaluaciones : listaEvaluacionTecnicas  != null  ) from $puesto
+    
+then
+
+	if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
+		if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
+			EvaluacionBean usuEval = null;
+			EvaluacionPuestoBean puestEval = null;	
+			
+			int countEvalRendidas = $ulevaluaciones.size();
+			int countEvalRequeridas = $evaluaciones.size();
+			
+			for(Object  o : $ulevaluaciones){
+				usuEval = (EvaluacionBean) o;			
+				//System.out.println( "usuEval.getId():"+usuEval.getId()+"||usuEval.getTipoEvaluacion():"+usuEval.getTipoEvaluacion() +"||usuEval.getPuntajeObtenido():"+(usuEval.getPuntajeObtenido()/35) );	// el divisor es la cantidad de preguntas
+				for(Object  o2 : $evaluaciones){
+					puestEval = (EvaluacionPuestoBean) o2;				
+					//System.out.println( "||puestEval.getId():"+puestEval.getId()+"||puestEval.getTipoEvaluacion():"+puestEval.getTipoEvaluacion()+"||puestEval.getLimitePorcentajeInferior():"+puestEval.getLimitePorcentajeInferior()+"||puestEval.getLimitePorcentajeSuperior():"+puestEval.getLimitePorcentajeSuperior() );		
+					if( usuEval.getTipoEvaluacion() == puestEval.getTipoEvaluacion() ){						
+						if( puestEval.getLimitePorcentajeInferior()<=  usuEval.getPuntajeObtenido() &&  (usuEval.getPuntajeObtenido()/35)   <=   puestEval.getLimitePorcentajeSuperior() ){
+							usuEval.setEvaluacionAceptada(true);
+							break;
+						}			
+					}				
+				}
+				if(usuEval.isEvaluacionAceptada()){
+					continue;
+				}		
+			}			
+			
+    		System.out.println( "Analisis de evaluaciones tecnicas " );
+    		System.out.println( "Id Usuario evaluaciones: " +$u.getIdUsuario()); 
+			for(Object  o : $ulevaluaciones){
+				usuEval = (EvaluacionBean) o;
+				System.out.println( "%Evaluacion tecnicas:"+usuEval.getId()+"|| Tipo:"+usuEval.getTipoEvaluacion()+"|| Rango Aceptable:"+usuEval.isEvaluacionAceptada() );	
+			}
+			if( countEvalRequeridas <= countEvalRendidas ){
+				if(!$postulacion.isFiltroTecnico()){
+					$postulacion.setFiltroTecnico(true);
+					update($postulacion);
+				}
+			}
+		}
+	}
+
+end

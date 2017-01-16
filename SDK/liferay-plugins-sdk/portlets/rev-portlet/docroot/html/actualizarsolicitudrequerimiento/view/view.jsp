@@ -49,7 +49,7 @@
 <input id="<portlet:namespace/>popupanularaMensage" type="hidden" value="<liferay-ui:message key="actualizarreclutamiento.mensaje.anular.registro" />" />
 
 <fieldset>
-	<legend>Lista de Solicitudes de Reclutamiento</legend>
+	<legend>Lista de Solicitudes de Requerimientos</legend>
 	<div class="container">
 		<div class="contenedorAlerta">
 			<c:if test="${not empty mensaje}">

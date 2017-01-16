@@ -175,8 +175,8 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strestado + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-
-				if ( value.estado == 51 && value.estado == 52 ) {
+				console.log("estado:"+value.estado);
+				if ( value.estado == 51 || value.estado == 52 ) {
 					html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionSeleccionarPostulacion + ' </a>';	
 				}
 				

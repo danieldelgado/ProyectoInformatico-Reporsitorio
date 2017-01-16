@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
@@ -68,13 +69,14 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 			{ "enfoque", Types.BIGINT },
 			{ "puestoCategoriaEvaluacion", Types.BIGINT },
 			{ "tipoEvaluacion", Types.BIGINT },
+			{ "descripcion", Types.VARCHAR },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Evaluacion (evaluacionId LONG not null primary key,enfoque LONG,puestoCategoriaEvaluacion LONG,tipoEvaluacion LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Evaluacion (evaluacionId LONG not null primary key,enfoque LONG,puestoCategoriaEvaluacion LONG,tipoEvaluacion LONG,descripcion VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table Evaluacion";
 	public static final String ORDER_BY_JPQL = " ORDER BY evaluacion.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Evaluacion.fechamodifica ASC";
@@ -106,6 +108,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		model.setEnfoque(soapModel.getEnfoque());
 		model.setPuestoCategoriaEvaluacion(soapModel.getPuestoCategoriaEvaluacion());
 		model.setTipoEvaluacion(soapModel.getTipoEvaluacion());
+		model.setDescripcion(soapModel.getDescripcion());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -192,6 +195,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		attributes.put("puestoCategoriaEvaluacion",
 			getPuestoCategoriaEvaluacion());
 		attributes.put("tipoEvaluacion", getTipoEvaluacion());
+		attributes.put("descripcion", getDescripcion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -226,6 +230,12 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 
 		if (tipoEvaluacion != null) {
 			setTipoEvaluacion(tipoEvaluacion);
+		}
+
+		String descripcion = (String)attributes.get("descripcion");
+
+		if (descripcion != null) {
+			setDescripcion(descripcion);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -301,6 +311,22 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 	@Override
 	public void setTipoEvaluacion(long tipoEvaluacion) {
 		_tipoEvaluacion = tipoEvaluacion;
+	}
+
+	@JSON
+	@Override
+	public String getDescripcion() {
+		if (_descripcion == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _descripcion;
+		}
+	}
+
+	@Override
+	public void setDescripcion(String descripcion) {
+		_descripcion = descripcion;
 	}
 
 	@JSON
@@ -394,6 +420,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		evaluacionImpl.setEnfoque(getEnfoque());
 		evaluacionImpl.setPuestoCategoriaEvaluacion(getPuestoCategoriaEvaluacion());
 		evaluacionImpl.setTipoEvaluacion(getTipoEvaluacion());
+		evaluacionImpl.setDescripcion(getDescripcion());
 		evaluacionImpl.setActivo(getActivo());
 		evaluacionImpl.setUsuariocrea(getUsuariocrea());
 		evaluacionImpl.setFechacrea(getFechacrea());
@@ -462,6 +489,14 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 
 		evaluacionCacheModel.tipoEvaluacion = getTipoEvaluacion();
 
+		evaluacionCacheModel.descripcion = getDescripcion();
+
+		String descripcion = evaluacionCacheModel.descripcion;
+
+		if ((descripcion != null) && (descripcion.length() == 0)) {
+			evaluacionCacheModel.descripcion = null;
+		}
+
 		evaluacionCacheModel.activo = getActivo();
 
 		evaluacionCacheModel.usuariocrea = getUsuariocrea();
@@ -491,7 +526,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{evaluacionId=");
 		sb.append(getEvaluacionId());
@@ -501,6 +536,8 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		sb.append(getPuestoCategoriaEvaluacion());
 		sb.append(", tipoEvaluacion=");
 		sb.append(getTipoEvaluacion());
+		sb.append(", descripcion=");
+		sb.append(getDescripcion());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -518,7 +555,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Evaluacion");
@@ -539,6 +576,10 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 		sb.append(
 			"<column><column-name>tipoEvaluacion</column-name><column-value><![CDATA[");
 		sb.append(getTipoEvaluacion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
+		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -574,6 +615,7 @@ public class EvaluacionModelImpl extends BaseModelImpl<Evaluacion>
 	private long _enfoque;
 	private long _puestoCategoriaEvaluacion;
 	private long _tipoEvaluacion;
+	private String _descripcion;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

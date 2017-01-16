@@ -24,6 +24,8 @@ create index IX_D6434D50 on PrioridadGrupoUsuarios (solicitudEvaluacionDesempenn
 
 create index IX_24B38389 on Puesto (descripcion);
 
+create index IX_C87E53D0 on PuestoEvaluacion (solicitudFuncionId);
+
 create index IX_BF01054 on Requisito (descripcion);
 
 create index IX_A926BE0B on SolicitudRequerimiento (activo);

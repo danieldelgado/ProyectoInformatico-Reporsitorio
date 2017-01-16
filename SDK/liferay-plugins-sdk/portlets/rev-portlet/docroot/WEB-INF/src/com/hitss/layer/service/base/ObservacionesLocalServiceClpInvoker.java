@@ -106,17 +106,17 @@ public class ObservacionesLocalServiceClpInvoker {
 				"com.hitss.layer.model.Observaciones"
 			};
 
-		_methodName224 = "getBeanIdentifier";
+		_methodName236 = "getBeanIdentifier";
 
-		_methodParameterTypes224 = new String[] {  };
+		_methodParameterTypes236 = new String[] {  };
 
-		_methodName225 = "setBeanIdentifier";
+		_methodName237 = "setBeanIdentifier";
 
-		_methodParameterTypes225 = new String[] { "java.lang.String" };
+		_methodParameterTypes237 = new String[] { "java.lang.String" };
 
-		_methodName230 = "getObservacion";
+		_methodName242 = "getObservacion";
 
-		_methodParameterTypes230 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes242 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -208,20 +208,20 @@ public class ObservacionesLocalServiceClpInvoker {
 			return ObservacionesLocalServiceUtil.updateObservaciones((com.hitss.layer.model.Observaciones)arguments[0]);
 		}
 
-		if (_methodName224.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes224, parameterTypes)) {
+		if (_methodName236.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes236, parameterTypes)) {
 			return ObservacionesLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName225.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes225, parameterTypes)) {
+		if (_methodName237.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes237, parameterTypes)) {
 			ObservacionesLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName230.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes230, parameterTypes)) {
+		if (_methodName242.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes242, parameterTypes)) {
 			return ObservacionesLocalServiceUtil.getObservacion(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
@@ -261,10 +261,10 @@ public class ObservacionesLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName224;
-	private String[] _methodParameterTypes224;
-	private String _methodName225;
-	private String[] _methodParameterTypes225;
-	private String _methodName230;
-	private String[] _methodParameterTypes230;
+	private String _methodName236;
+	private String[] _methodParameterTypes236;
+	private String _methodName237;
+	private String[] _methodParameterTypes237;
+	private String _methodName242;
+	private String[] _methodParameterTypes242;
 }

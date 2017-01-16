@@ -87,6 +87,113 @@
 							</div>
 						</div>
 					</div>
+					<div class="row"></div>
+
+					<div class="row">
+						<fieldset>
+							<legend> Lista de Evaluaciones </legend>
+						</fieldset>
+						<div class="container-fluid">
+							<div>
+								<div class="span12">
+									<input id="<portlet:namespace/>evaluacionEntrevista1Id" name="<portlet:namespace/>evaluacionEntrevista1Id"  type="hidden" value="1" />
+									<div class="span2">
+										<label> Entrevista con Coordinador de RRHH :</label>
+									</div>
+									<div class="span2">
+										<label> Rango Mínimo: </label>
+									</div>
+									<div class="span2">
+										<input id="<portlet:namespace/>rangoMinimo1" name="<portlet:namespace/>rangoMinimo1" class="span8" type="text">
+									</div>
+									<div class="span2">
+										<label> Rango Máximo: </label>
+									</div>
+									<div class="span2">
+										<input id="<portlet:namespace/>rangoMaximo1" name="<portlet:namespace/>rangoMaximo1" class="span8" type="text">
+									</div>
+								</div>
+							</div>
+							<div>
+								<div class="span12">
+									<input id="<portlet:namespace/>evaluacionEntrevista2Id"  name="<portlet:namespace/>evaluacionEntrevista2Id"   type="hidden" value="2" />
+									<div class="span2">
+										<label> Entrevista Gérente Área :</label>
+									</div>
+									<div class="span2">
+										<label> Rango Mínimo: </label>
+									</div>
+									<div class="span2">
+										<input id="<portlet:namespace/>rangoMinimo2" name="<portlet:namespace/>rangoMinimo2" class="span8" type="text">
+									</div>
+									<div class="span2">
+										<label> Rango Máximo: </label>
+									</div>
+									<div class="span2">
+										<input id="<portlet:namespace/>rangoMaximo2" name="<portlet:namespace/>rangoMaximo2" class="span8" type="text">
+									</div>
+
+								</div>
+							</div>
+							<div>
+								<div class="span12">
+									<div class="span1">
+										<label> Evaluación: </label>
+									</div>
+									<div class="span2">
+										<div class="input-prepend">
+											<select id="<portlet:namespace/>evaluacion" name="<portlet:namespace/>evaluacion" class="span12">
+												<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
+												<c:forEach items="${evaluaciones}" var="parametro">
+													<option value="${parametro.evaluacionId}">${parametro.descripcion}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+									<div class="span1">
+										<label> Rango Mínimo: </label>
+									</div>
+									<div class="span2">
+										<input id="<portlet:namespace/>rangoMinimo" name="<portlet:namespace/>rangoMinimo" class="span8" type="text">
+									</div>
+									<div class="span1">
+										<label> Rango Máximo: </label>
+									</div>
+									<div class="span2">
+										<input id="<portlet:namespace/>rangoMaximo" name="<portlet:namespace/>rangoMaximo" class="span8" type="text">
+									</div>
+									<div class="span1">
+										<div class="input-prepend">
+											<button id="<portlet:namespace/>btnAgregar" class="btn btn-primary span12" type="button">
+												<liferay-ui:message key="general.form.opciones.agregar" />
+											</button>
+										</div>
+									</div>
+								</div>
+								<div id="">
+									<table class="table table-hover table-bordered">
+										<thead>
+											<tr class="cabecera">
+												<th>Evaluación</th>
+												<th>Rango Mínimo</th>
+												<th>Rango Máximo</th>
+												<th>Opción</th>
+											</tr>
+										</thead>
+										<tbody id="<portlet:namespace/>listaEvaluaciones">
+
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+
+
+
 				</div>
 				<div class="row">
 					<div class="offset5 span2">
@@ -98,6 +205,8 @@
 						</aui:button-row>
 					</div>
 				</div>
+
+
 			</form>
 		</div>
 	</div>

@@ -6,8 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.hitss.rev.bean.EvaluacionBean;
 import com.hitss.rev.bean.ParametroBean;
 import com.hitss.rev.bean.PuestoBean;
+import com.hitss.rev.bean.PuestoEvaluacionBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.liferay.portal.model.User;
@@ -33,7 +35,9 @@ public interface PublicarOfertaService {
 
 	List<ParametroBean> getAreas();
 
-	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, Long scopeGroupId, String descripcion,User user, boolean publicar , HttpServletRequest request);
+	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, Long scopeGroupId, List<PuestoEvaluacionBean> lista  , String descripcion,User user, boolean publicar , HttpServletRequest request);
+
+	List<EvaluacionBean>  getEvaluaciones();
 
 
 }

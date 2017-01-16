@@ -1,3 +1,5 @@
+
+use revhitssportal;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win32 (AMD64)
 --
 -- Host: 192.168.48.129    Database: revhitsslportal

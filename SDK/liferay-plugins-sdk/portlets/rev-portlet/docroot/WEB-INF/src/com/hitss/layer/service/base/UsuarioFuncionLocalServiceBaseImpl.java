@@ -28,6 +28,7 @@ import com.hitss.layer.service.persistence.EvaluacionPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPreguntaPersistence;
 import com.hitss.layer.service.persistence.ExperienciaPersistence;
 import com.hitss.layer.service.persistence.FasePostulacionPersistence;
+import com.hitss.layer.service.persistence.FasePostulacionPuestoEvaluacionPersistence;
 import com.hitss.layer.service.persistence.FichaIngresoPersistence;
 import com.hitss.layer.service.persistence.FuncionPersistence;
 import com.hitss.layer.service.persistence.InformeRetroalimentacionPersistence;
@@ -39,6 +40,7 @@ import com.hitss.layer.service.persistence.PostulacionPersistence;
 import com.hitss.layer.service.persistence.PreguntaPersistence;
 import com.hitss.layer.service.persistence.PreguntaRespuestaPersistence;
 import com.hitss.layer.service.persistence.PrioridadGrupoUsuariosPersistence;
+import com.hitss.layer.service.persistence.PuestoEvaluacionPersistence;
 import com.hitss.layer.service.persistence.ReferenciaPersistence;
 import com.hitss.layer.service.persistence.RespuestaPersistence;
 import com.hitss.layer.service.persistence.SolicitudEvaluacionDesempennoPersistence;
@@ -999,6 +1001,63 @@ public abstract class UsuarioFuncionLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the fase postulacion puesto evaluacion local service.
+	 *
+	 * @return the fase postulacion puesto evaluacion local service
+	 */
+	public com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalService getFasePostulacionPuestoEvaluacionLocalService() {
+		return fasePostulacionPuestoEvaluacionLocalService;
+	}
+
+	/**
+	 * Sets the fase postulacion puesto evaluacion local service.
+	 *
+	 * @param fasePostulacionPuestoEvaluacionLocalService the fase postulacion puesto evaluacion local service
+	 */
+	public void setFasePostulacionPuestoEvaluacionLocalService(
+		com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalService fasePostulacionPuestoEvaluacionLocalService) {
+		this.fasePostulacionPuestoEvaluacionLocalService = fasePostulacionPuestoEvaluacionLocalService;
+	}
+
+	/**
+	 * Returns the fase postulacion puesto evaluacion remote service.
+	 *
+	 * @return the fase postulacion puesto evaluacion remote service
+	 */
+	public com.hitss.layer.service.FasePostulacionPuestoEvaluacionService getFasePostulacionPuestoEvaluacionService() {
+		return fasePostulacionPuestoEvaluacionService;
+	}
+
+	/**
+	 * Sets the fase postulacion puesto evaluacion remote service.
+	 *
+	 * @param fasePostulacionPuestoEvaluacionService the fase postulacion puesto evaluacion remote service
+	 */
+	public void setFasePostulacionPuestoEvaluacionService(
+		com.hitss.layer.service.FasePostulacionPuestoEvaluacionService fasePostulacionPuestoEvaluacionService) {
+		this.fasePostulacionPuestoEvaluacionService = fasePostulacionPuestoEvaluacionService;
+	}
+
+	/**
+	 * Returns the fase postulacion puesto evaluacion persistence.
+	 *
+	 * @return the fase postulacion puesto evaluacion persistence
+	 */
+	public FasePostulacionPuestoEvaluacionPersistence getFasePostulacionPuestoEvaluacionPersistence() {
+		return fasePostulacionPuestoEvaluacionPersistence;
+	}
+
+	/**
+	 * Sets the fase postulacion puesto evaluacion persistence.
+	 *
+	 * @param fasePostulacionPuestoEvaluacionPersistence the fase postulacion puesto evaluacion persistence
+	 */
+	public void setFasePostulacionPuestoEvaluacionPersistence(
+		FasePostulacionPuestoEvaluacionPersistence fasePostulacionPuestoEvaluacionPersistence) {
+		this.fasePostulacionPuestoEvaluacionPersistence = fasePostulacionPuestoEvaluacionPersistence;
+	}
+
+	/**
 	 * Returns the ficha ingreso local service.
 	 *
 	 * @return the ficha ingreso local service
@@ -1582,6 +1641,63 @@ public abstract class UsuarioFuncionLocalServiceBaseImpl
 	public void setPrioridadGrupoUsuariosPersistence(
 		PrioridadGrupoUsuariosPersistence prioridadGrupoUsuariosPersistence) {
 		this.prioridadGrupoUsuariosPersistence = prioridadGrupoUsuariosPersistence;
+	}
+
+	/**
+	 * Returns the puesto evaluacion local service.
+	 *
+	 * @return the puesto evaluacion local service
+	 */
+	public com.hitss.layer.service.PuestoEvaluacionLocalService getPuestoEvaluacionLocalService() {
+		return puestoEvaluacionLocalService;
+	}
+
+	/**
+	 * Sets the puesto evaluacion local service.
+	 *
+	 * @param puestoEvaluacionLocalService the puesto evaluacion local service
+	 */
+	public void setPuestoEvaluacionLocalService(
+		com.hitss.layer.service.PuestoEvaluacionLocalService puestoEvaluacionLocalService) {
+		this.puestoEvaluacionLocalService = puestoEvaluacionLocalService;
+	}
+
+	/**
+	 * Returns the puesto evaluacion remote service.
+	 *
+	 * @return the puesto evaluacion remote service
+	 */
+	public com.hitss.layer.service.PuestoEvaluacionService getPuestoEvaluacionService() {
+		return puestoEvaluacionService;
+	}
+
+	/**
+	 * Sets the puesto evaluacion remote service.
+	 *
+	 * @param puestoEvaluacionService the puesto evaluacion remote service
+	 */
+	public void setPuestoEvaluacionService(
+		com.hitss.layer.service.PuestoEvaluacionService puestoEvaluacionService) {
+		this.puestoEvaluacionService = puestoEvaluacionService;
+	}
+
+	/**
+	 * Returns the puesto evaluacion persistence.
+	 *
+	 * @return the puesto evaluacion persistence
+	 */
+	public PuestoEvaluacionPersistence getPuestoEvaluacionPersistence() {
+		return puestoEvaluacionPersistence;
+	}
+
+	/**
+	 * Sets the puesto evaluacion persistence.
+	 *
+	 * @param puestoEvaluacionPersistence the puesto evaluacion persistence
+	 */
+	public void setPuestoEvaluacionPersistence(
+		PuestoEvaluacionPersistence puestoEvaluacionPersistence) {
+		this.puestoEvaluacionPersistence = puestoEvaluacionPersistence;
 	}
 
 	/**
@@ -2419,6 +2535,12 @@ public abstract class UsuarioFuncionLocalServiceBaseImpl
 	protected com.hitss.layer.service.FasePostulacionService fasePostulacionService;
 	@BeanReference(type = FasePostulacionPersistence.class)
 	protected FasePostulacionPersistence fasePostulacionPersistence;
+	@BeanReference(type = com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalService.class)
+	protected com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalService fasePostulacionPuestoEvaluacionLocalService;
+	@BeanReference(type = com.hitss.layer.service.FasePostulacionPuestoEvaluacionService.class)
+	protected com.hitss.layer.service.FasePostulacionPuestoEvaluacionService fasePostulacionPuestoEvaluacionService;
+	@BeanReference(type = FasePostulacionPuestoEvaluacionPersistence.class)
+	protected FasePostulacionPuestoEvaluacionPersistence fasePostulacionPuestoEvaluacionPersistence;
 	@BeanReference(type = com.hitss.layer.service.FichaIngresoLocalService.class)
 	protected com.hitss.layer.service.FichaIngresoLocalService fichaIngresoLocalService;
 	@BeanReference(type = com.hitss.layer.service.FichaIngresoService.class)
@@ -2481,6 +2603,12 @@ public abstract class UsuarioFuncionLocalServiceBaseImpl
 	protected com.hitss.layer.service.PrioridadGrupoUsuariosService prioridadGrupoUsuariosService;
 	@BeanReference(type = PrioridadGrupoUsuariosPersistence.class)
 	protected PrioridadGrupoUsuariosPersistence prioridadGrupoUsuariosPersistence;
+	@BeanReference(type = com.hitss.layer.service.PuestoEvaluacionLocalService.class)
+	protected com.hitss.layer.service.PuestoEvaluacionLocalService puestoEvaluacionLocalService;
+	@BeanReference(type = com.hitss.layer.service.PuestoEvaluacionService.class)
+	protected com.hitss.layer.service.PuestoEvaluacionService puestoEvaluacionService;
+	@BeanReference(type = PuestoEvaluacionPersistence.class)
+	protected PuestoEvaluacionPersistence puestoEvaluacionPersistence;
 	@BeanReference(type = com.hitss.layer.service.ReferenciaLocalService.class)
 	protected com.hitss.layer.service.ReferenciaLocalService referenciaLocalService;
 	@BeanReference(type = com.hitss.layer.service.ReferenciaService.class)

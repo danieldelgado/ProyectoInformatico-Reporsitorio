@@ -17,6 +17,7 @@ package com.hitss.layer.model.impl;
 import com.hitss.layer.model.Evaluacion;
 
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import java.io.Externalizable;
@@ -37,7 +38,7 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{evaluacionId=");
 		sb.append(evaluacionId);
@@ -47,6 +48,8 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 		sb.append(puestoCategoriaEvaluacion);
 		sb.append(", tipoEvaluacion=");
 		sb.append(tipoEvaluacion);
+		sb.append(", descripcion=");
+		sb.append(descripcion);
 		sb.append(", activo=");
 		sb.append(activo);
 		sb.append(", usuariocrea=");
@@ -70,6 +73,14 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 		evaluacionImpl.setEnfoque(enfoque);
 		evaluacionImpl.setPuestoCategoriaEvaluacion(puestoCategoriaEvaluacion);
 		evaluacionImpl.setTipoEvaluacion(tipoEvaluacion);
+
+		if (descripcion == null) {
+			evaluacionImpl.setDescripcion(StringPool.BLANK);
+		}
+		else {
+			evaluacionImpl.setDescripcion(descripcion);
+		}
+
 		evaluacionImpl.setActivo(activo);
 		evaluacionImpl.setUsuariocrea(usuariocrea);
 
@@ -100,6 +111,7 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 		enfoque = objectInput.readLong();
 		puestoCategoriaEvaluacion = objectInput.readLong();
 		tipoEvaluacion = objectInput.readLong();
+		descripcion = objectInput.readUTF();
 		activo = objectInput.readBoolean();
 		usuariocrea = objectInput.readLong();
 		fechacrea = objectInput.readLong();
@@ -114,6 +126,14 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 		objectOutput.writeLong(enfoque);
 		objectOutput.writeLong(puestoCategoriaEvaluacion);
 		objectOutput.writeLong(tipoEvaluacion);
+
+		if (descripcion == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(descripcion);
+		}
+
 		objectOutput.writeBoolean(activo);
 		objectOutput.writeLong(usuariocrea);
 		objectOutput.writeLong(fechacrea);
@@ -125,6 +145,7 @@ public class EvaluacionCacheModel implements CacheModel<Evaluacion>,
 	public long enfoque;
 	public long puestoCategoriaEvaluacion;
 	public long tipoEvaluacion;
+	public String descripcion;
 	public boolean activo;
 	public long usuariocrea;
 	public long fechacrea;

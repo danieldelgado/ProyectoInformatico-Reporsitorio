@@ -1,4 +1,8 @@
 
+var inputFristnamespace = null;
+var formvalid = true;
+var modalconfirmacion = null;
+
 $(document).ready(function() {
 	init();
 });
@@ -163,3 +167,132 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 	}
 
 }
+
+
+function inicializarFormularioRegsitroAvancePostulante(){
+	
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	
+	
+	
+}
+
+
+AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+	init();
+
+
+	if (A.one('#' + inputFristnamespace + 'modal') != null) {
+		var popupconfirmartitulo = $("#" + inputFristnamespace + "popupPublicacionTitulo").val();
+		var popupconfirmarMensage = $("#" + inputFristnamespace + "popupPublicacionMensage").val();
+		var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+		var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+
+		modalconfirmacion = new A.Modal({
+			bodyContent : popupconfirmarMensage,
+			centered : true,
+			destroyOnHide : false,
+			headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+			modal : true,
+			render : '#' + inputFristnamespace + 'modal',
+			resizable : false,
+			visible : false,
+			width : 305
+		}).render();
+
+		modalconfirmacion.addToolbar([ {
+			label : msgCancelar,
+			on : {
+				click : function() {
+					modalconfirmacion.hide();
+				}
+			}
+		}, {
+			label : msgAceptar,
+			on : {
+				click : function() {
+					if (formvalid) {
+						registrarAvance();
+					}
+				}
+			}
+		} ]);
+	}
+	
+	if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
+		A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
+			if (formvalid) {
+				modalconfirmacion.show();
+			}
+		});
+	}
+});
+
+
+function registrarAvance(){
+	
+	
+	var listasCorrectas = true;
+	var contenedorAlerta = $(".contenedorAlerta");
+	
+	var btnGuardar  = $("#" + inputFristnamespace + "btnGuardar");
+	var formRegistrarResultado  = $("#" + inputFristnamespace + "registrarResultado");
+	var solicitudId = $("#" +inputFristnamespace + "solicitudId");
+	var userId = $("#" +inputFristnamespace + "userId");
+
+	var registrarProcesoUrl = $("#" + inputFristnamespace + "registrarProcesoUrl").val();
+	var listarPostulantesUrl = $("#" + inputFristnamespace + "listarPostulantesUrl").val();
+	
+	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
+	
+	var msgError = $("#" + inputFristnamespace + "msgError").val();
+	
+
+	var dataSend = $(formRegistrarResultado).serialize();
+	
+//	if(  !((rangoMinimo1 != "" && rangoMinimo1 <= 1 && rangoMinimo1 >=0) && 
+//			(rangoMaximo1 != "" && rangoMinimo1 <= 1 && rangoMaximo1 >=0) && 
+//			(rangoMinimo2 != "" && rangoMinimo1 <= 1 && rangoMinimo2 >=0) && 
+//			(rangoMaximo2 != "" && rangoMinimo1 <= 1 && rangoMaximo2 >=0))  ){
+//		mostrarAlerta(contenedorAlerta, "Rangos de Entrevistas", "Ingrese los valores para las entrevistas", "alert-error", null);
+//		listasCorrectas = false;
+//		modalconfirmacion.hide();
+//	}
+
+	if(listasCorrectas){
+		$.ajax({
+			type : "POST",
+			url : registrarProcesoUrl,
+			data : dataSend,
+			success : function(data) {
+				console.log(data);
+				modalconfirmacion.hide();
+				data = $.parseJSON(data);
+				var objeto = data["objeto"];
+				var respuesta = data["respuesta"];
+				var mensaje = data["mensaje"];
+				var contenedorAlerta = $(".contenedorAlerta");
+//				listarPostulantesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
+				console.log(popupMensaje);
+//				listarPostulantesUrl += "&titulo=" + encodeURI(popupMensaje);
+				console.log(mensaje);
+//				listarPostulantesUrl += "&mensaje=" + encodeURI(mensaje);
+				if (respuesta == 1) {
+					$(btnGuardar).attr("disabled", "disabled");
+					mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+						setTimeout(function() {
+							window.location = listarPostulantesUrl;
+						}, 1500);
+					});
+				} else {
+					mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+				}
+			}
+		});
+	}
+}
+
+
+
+
+

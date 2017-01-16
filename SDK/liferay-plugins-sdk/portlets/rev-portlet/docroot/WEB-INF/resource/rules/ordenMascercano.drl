@@ -1,0 +1,92 @@
+
+package com.hitss.rev.bean
+
+dialect "java"
+
+import com.hitss.rev.bean.EvaluacionBean
+import com.hitss.rev.bean.EvaluacionPuestoBean
+import com.hitss.rev.bean.ExperienciaBean
+import com.hitss.rev.bean.Postulacion
+import com.hitss.rev.bean.PuestoBean
+import com.hitss.rev.bean.ReferenciaBean
+import com.hitss.rev.bean.RequisitoBean
+import com.hitss.rev.bean.SolicitudReclutamiento
+import com.hitss.rev.bean.UsuarioBean
+import com.hitss.rev.bean.Haming
+import com.hitss.rev.bean.Euclistica
+import com.hitss.rev.bean.DataHamming
+import com.hitss.rev.bean.DistanciaEuclidiana
+import java.util.ArrayList
+import java.util.List
+
+rule "Analisis de cercanos" salience 200 when
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false && analizadoCercania == false )
+  
+then
+	System.out.println( " ----------------------------- " );
+	System.out.println( "Analisis de Cercania " );
+	   
+	System.out.println("-----------------");
+	System.out.println("getIdUsuario--" + $postulacion.getUsuarioBean().getIdUsuario());
+	System.out.println("-----------------");
+	System.out.println("DistanciaEuclidianaEntrevista--" + $postulacion.getDistanciaEuclidianaEntrevista());
+	System.out.println("DistanciaHammingEntrevista--" + $postulacion.getDistanciaHammingEntrevista());
+	System.out.println("DistanciaEuclidianaPsicologico--" + $postulacion.getDistanciaEuclidianaPsicologico());
+	System.out.println("DistanciaHammingPsicologico--" + $postulacion.getDistanciaHammingPsicologico());
+	System.out.println("DistanciaEuclidianaTecnico--" + $postulacion.getDistanciaEuclidianaTecnico());
+	System.out.println("DistanciaHammingTecnico--" + $postulacion.getDistanciaHammingTecnico());   
+				   	
+   	System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
+   	System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
+   	System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
+   	System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+		
+	List<Haming> dis = new ArrayList<Haming>();
+	Haming a1 = new Haming();
+	a1.setValorDefinido(0.0);	
+	a1.setValor($postulacion.getDistanciaEuclidianaEntrevista());
+	dis.add(a1);
+	Haming a2 = new Haming();
+	a2.setValorDefinido(0.0);	
+	a2.setValor($postulacion.getDistanciaHammingEntrevista());
+	dis.add(a2);
+	Haming a3 = new Haming();
+	a3.setValorDefinido(0.0);	
+	a3.setValor($postulacion.getDistanciaEuclidianaPsicologico());
+	dis.add(a3);
+	Haming a4 = new Haming();
+	a4.setValorDefinido(0.0);	
+	a4.setValor($postulacion.getDistanciaHammingPsicologico());
+	dis.add(a4);
+	Haming a5 = new Haming();
+	a5.setValorDefinido(0.0);	
+	a5.setValor($postulacion.getDistanciaEuclidianaTecnico());
+	dis.add(a5);
+	Haming a6 = new Haming();
+	a6.setValorDefinido(0.0);	
+	a6.setValor($postulacion.getDistanciaHammingTecnico());
+	dis.add(a6);
+	
+	System.out.println( "DataHamming:" + DataHamming.calcularDistancia(dis) );
+	
+	$postulacion.setCercania(DataHamming.calcularDistancia(dis));
+	
+	if($postulacion.getPorcentajeReqCum() >= 0.5){	
+		$postulacion.setRecomendableReqCum(true);	
+	}
+	if($postulacion.getPorcentajeRequisitosCumplidoPorUsuario() >= 0.5){	
+		$postulacion.setRecomendableRequisitosCumplidoPorUsuario(true);	
+	}	
+	if($postulacion.getPorcentajeReqCertiCum() >= 0.5){	
+		$postulacion.setRecomendableReqCertiCum(true);	
+	}	
+	if($postulacion.getPorcentajeCertificadoCumplidoPorUsuario() >= 0.5){	
+		$postulacion.setRecomendableReqCertiCum(true);	
+	}
+	
+	$postulacion.setAnalizadoCercania(true);
+	update($postulacion);
+	
+end
+
+

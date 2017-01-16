@@ -123,6 +123,7 @@ create table Evaluacion (
 	enfoque LONG,
 	puestoCategoriaEvaluacion LONG,
 	tipoEvaluacion LONG,
+	descripcion VARCHAR(75) null,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
@@ -169,6 +170,14 @@ create table FasePostulacion (
 	fechacrea DATE null,
 	usuariomodifica LONG,
 	fechamodifica DATE null
+);
+
+create table FasePostulacionPuestoEvaluacion (
+	fasePostulacionId LONG not null,
+	solicitudFuncionId LONG not null,
+	evaluacionId LONG not null,
+	resultado DOUBLE,
+	primary key (fasePostulacionId, solicitudFuncionId, evaluacionId)
 );
 
 create table FichaIngreso (
@@ -316,6 +325,14 @@ create table Puesto (
 	fechacrea DATE null,
 	usuariomodifica LONG,
 	fechacreamodifica DATE null
+);
+
+create table PuestoEvaluacion (
+	solicitudFuncionId LONG not null,
+	evaluacionId LONG not null,
+	rangoSuperior DOUBLE,
+	rangoInferior DOUBLE,
+	primary key (solicitudFuncionId, evaluacionId)
 );
 
 create table Referencia (

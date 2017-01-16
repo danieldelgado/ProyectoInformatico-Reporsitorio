@@ -1,0 +1,224 @@
+package com.hitss.rev.bean
+dialect "java"
+
+import com.hitss.rev.bean.EvaluacionBean
+import com.hitss.rev.bean.EvaluacionPuestoBean
+import com.hitss.rev.bean.ExperienciaBean
+import com.hitss.rev.bean.Postulacion
+import com.hitss.rev.bean.PuestoBean
+import com.hitss.rev.bean.ReferenciaBean
+import com.hitss.rev.bean.RequisitoBean
+import com.hitss.rev.bean.SolicitudReclutamiento
+import com.hitss.rev.bean.UsuarioBean
+import java.util.ArrayList;
+import java.util.List;
+
+
+rule seleccionarPorConocimientosConExperiencia 
+salience 1
+when
+	
+    $u : UsuarioBean( $ulexp : listaExperiencias  != null )
+    $p : PuestoBean( $ep  : experienciaRubro != null )
+    
+    $expUsuario : ExperienciaBean() from $ulexp
+    $expRequerida : ExperienciaBean() from $ep    
+    
+    $listExperiencia : List() from collect( ExperienciaBean( $expUsuario.tipoNegocioProyecto == $expRequerida.tipoNegocioProyecto  ) from $ulexp ) 
+    $t: Number( doubleValue >= 1) from accumulate( ExperienciaBean( $a : annos ) from $listExperiencia , sum( $a ))  
+    
+    $listExperienciaReq : List() from collect( ExperienciaBean( $expUsuario.tipoNegocioProyecto == $expRequerida.tipoNegocioProyecto  ) from $expRequerida )      
+    $tr: Number( doubleValue >= 1) from accumulate( ExperienciaBean( $a : annos ) from $listExperienciaReq , sum( $a ))  
+    
+    $postulacion : Postulacion( )
+          
+then
+
+   if($t.doubleValue() >= $tr.doubleValue() ){    	
+    	if( $postulacion.getUsuarioBean().getIdUsuario() == $u.getIdUsuario() && $postulacion.isFiltroPostulacion() && ! $postulacion.isFiltroExperiencia() ){
+    		if( ! $postulacion.isFiltroExperiencia() ){
+    			System.out.println( "Usuario con Experiencia Requerida" );
+    			System.out.println( "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario()); 
+    			$postulacion.setFiltroExperiencia(true);
+    			update($postulacion);
+    		}
+    	}
+   }
+end
+
+rule procentagesDeRequisitos 
+no-loop true
+salience 2
+when
+	
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == false )
+    $u : UsuarioBean( $ulreq : listaConocimientos  != null , $ulcertreq : listaCertificados  != null ) from $usuario
+    $p : PuestoBean( $req : listaConocimientos , $certreq : listaCertificados ) from $puesto    
+                 
+    $listReqSimple : List( size >= 1) from 
+	   collect( 
+	   RequisitoBean(      
+	   ) from $ulreq )   
+   
+  	$listReqExigible : List( size >= 1) from 
+	   collect( 
+	   RequisitoBean( ) from $req )
+	   
+	$totalCount : Number() 
+             from accumulate( RequisitoBean(  ) from $listReqExigible ,
+                              init( int total = 0; ),
+                              action( total++; ),
+                              reverse( total--; ),
+                              result( total ) )  
+
+     
+then
+	if( $postulacion.isFiltroPostulacion() ){	
+
+		if($listReqSimple!=null && !$listReqSimple.isEmpty() ){
+			RequisitoBean r = null ,r2 = null, r3MasCercano = null;
+			int countRequerimientos = 0 , cantidadComparada = 0;
+			boolean cercano = false;
+			double valorCercania = 0 , valorCercaniaTemp = 0 ;
+			for(Object  o : $listReqSimple){
+				countRequerimientos++;
+				cercano = false;
+				valorCercania = 0 ;
+				valorCercaniaTemp = 0 ;
+				r3MasCercano = null;
+				r = (RequisitoBean) o;
+				for(Object  o2 : $listReqExigible){
+					r2 = (RequisitoBean) o2;
+					valorCercaniaTemp = InicializarData.porcentagrIgualdad( r.getDescripcion() , r2.getDescripcion() );
+					r.setPorcetageIgualdad( valorCercaniaTemp );
+					r2.setPorcetageIgualdad( valorCercaniaTemp );					
+					if( valorCercaniaTemp >=  valorCercania){ 
+						valorCercania = valorCercaniaTemp;
+						r3MasCercano = r2;
+						if( !InicializarData.tieneSimilitud(valorCercania)  ){
+							r3MasCercano = null;
+						}
+					}						
+				}				
+				if(	r3MasCercano!=null ){				
+					if(  r.getAnnos() >= r3MasCercano.getAnnos()  ){
+						r.setAnnosMinimoAceptado(true);
+					}					
+				}	
+				
+			}	
+			for(Object  o : $listReqSimple){
+				r = (RequisitoBean) o;
+				if( InicializarData.tieneSimilitud(r.getPorcetageIgualdad()) &&  r.isAnnosMinimoAceptado()){
+					$postulacion.setCantidadReqCon($postulacion.getCantidadReqCon()+1);
+				}
+			}	
+			cantidadComparada = $postulacion.getCantidadReqCon();
+			$postulacion.setPorcentajeRequisitosCumplidoPorUsuario(Double.valueOf(cantidadComparada)/Double.valueOf(countRequerimientos));
+			$postulacion.setPorcentajeReqCum(($postulacion.getCantidadReqCon()/$totalCount.doubleValue()));		
+    		System.out.println( "%Requisitos del usuario " );
+    		System.out.println( "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario()); 		
+    		System.out.println( "%Requisitos que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCum());
+    		System.out.println( "%Requisitos que cumple el puesto para el usuario: " +$postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
+    		$postulacion.setFiltroConocimiento(true);
+    		if( $ulcertreq!=null && !$ulcertreq.isEmpty() ){
+    			$postulacion.setTieneCertificadoExperiencia(true);
+    		}
+    		
+			if($certreq!=null && !$certreq.isEmpty() ){
+				$postulacion.setRequiereCertificado(true);
+    		}
+			update($postulacion);
+		}
+	}
+end
+
+
+
+rule procentagesDeRequisitosCetificados 
+
+no-loop true
+salience 4
+
+when
+	
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto, filtroPostulacion == true && filtroConocimiento == true && tieneCertificadoExperiencia == true && filtroCertificado == false && requiereCertificado == true)
+    $u : UsuarioBean( $ulreq : listaCertificados  != null ) from $usuario
+    $p : PuestoBean( $req : listaCertificados ) from $puesto    
+                 
+    $listReqSimple : List( size >= 1) from 
+	   collect( 
+	   RequisitoBean(      
+	   ) from $ulreq )   
+   
+  	$listReqExigible : List( size >= 1) from 
+	   collect( 
+	   RequisitoBean( ) from $req )
+	   
+	$totalCount : Number() 
+             from accumulate( RequisitoBean(  ) from $listReqExigible ,
+                              init( int total = 0; ),
+                              action( total++; ),
+                              reverse( total--; ),
+                              result( total ) )  
+     
+then
+	
+	if( $postulacion.isFiltroPostulacion() && $postulacion.isFiltroConocimiento() && $postulacion.isTieneCertificadoExperiencia() && !$postulacion.isFiltroCertificado() ){	
+		
+		if($listReqSimple!=null && !$listReqSimple.isEmpty() ){
+			RequisitoBean r = null ,r2 = null, r3MasCercano = null;
+			int countRequerimientos = 0 , cantidadComparada = 0;
+			boolean cercano = false;
+			double valorCercania = 0 , valorCercaniaTemp = 0 ;
+			for(Object  o : $listReqSimple){
+				countRequerimientos++;
+				cercano = false;
+				valorCercania = 0 ;
+				valorCercaniaTemp = 0 ;
+				r3MasCercano = null;
+				r = (RequisitoBean) o;
+				for(Object  o2 : $listReqExigible){
+					r2 = (RequisitoBean) o2;
+					valorCercaniaTemp = InicializarData.porcentagrIgualdad( r.getDescripcion() , r2.getDescripcion() );
+					r.setPorcetageIgualdad( valorCercaniaTemp );
+					r2.setPorcetageIgualdad( valorCercaniaTemp );					
+					if( valorCercaniaTemp >=  valorCercania){ 
+						valorCercania = valorCercaniaTemp;
+						r3MasCercano = r2;
+						if( !InicializarData.tieneSimilitud(valorCercania)  ){
+							r3MasCercano = null;
+						}
+					}						
+				}				
+				if(	r3MasCercano!=null ){				
+					if(  r.getAnnos() >= r3MasCercano.getAnnos()  ){
+						r.setAnnosMinimoAceptado(true);
+					}					
+				}					
+			}	
+			for(Object  o : $listReqSimple){
+				r = (RequisitoBean) o;
+				if( InicializarData.tieneSimilitud(r.getPorcetageIgualdad()) &&  r.isAnnosMinimoAceptado()){
+					$postulacion.setCantidadReqCerti($postulacion.getCantidadReqCerti()+1);
+				}
+			}	
+			cantidadComparada = $postulacion.getCantidadReqCerti();
+			$postulacion.setPorcentajeReqCertiCum(($postulacion.getCantidadReqCerti()/$totalCount.doubleValue()));	
+			$postulacion.setPorcentajeCertificadoCumplidoPorUsuario(Double.valueOf(cantidadComparada)/Double.valueOf(countRequerimientos));	
+    		System.out.println( "%Certificado del usuario " );
+    		System.out.println( "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario()); 		
+    		System.out.println( "%Certificado que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCertiCum());
+    		System.out.println( "%Certificado que cumple el puesto para el usuario: " +$postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
+    		if( $postulacion.getPorcentajeReqCertiCum()<=1 && $postulacion.getPorcentajeCertificadoCumplidoPorUsuario()<=1 ){
+    			$postulacion.setFiltroCertificado(true);
+	    		modify($postulacion){    		
+	    			setFiltroCertificado(true);
+	    		}
+    		}
+    	
+		}
+	}
+end
+
+

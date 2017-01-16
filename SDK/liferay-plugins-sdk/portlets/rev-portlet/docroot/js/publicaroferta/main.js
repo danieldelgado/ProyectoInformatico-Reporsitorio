@@ -315,11 +315,91 @@ function inicializarFormularioPublicarOferta(){
 	var formPublicarOferta = $("#" + inputFristnamespace + "publicaroferta");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var solicitudReclutamientoId = inputFristnamespace + "solicitudReclutamientoId";
-
+	
+	
+	var btnAgregar =  $("#" + inputFristnamespace + "btnAgregar");
+	console.log(btnAgregar);
+	$(btnAgregar).click(function() {
+		agregarEvaluacion();
+	});
 }
 
-function publicarOfertaLaboral(){
+function agregarEvaluacion(){
+	var evaluacion = $("#" + inputFristnamespace + "evaluacion").val();
+	console.log("evaluacion:"+evaluacion);
+	var evaluacionText = $("#" + inputFristnamespace + "evaluacion option:selected").text();
+	console.log("evaluacionText:"+evaluacionText);
+	var rangoMinimo = $("#" + inputFristnamespace + "rangoMinimo").val();
+	var rangoMaximo = $("#" + inputFristnamespace + "rangoMaximo").val();
+	addEvaluacionFila(evaluacion, evaluacionText , rangoMinimo,rangoMaximo);	
+}
+
+function addEvaluacionFila(evaluacionId , evaluacionText , rangoInferior,rangoSuperior) {
+	console.log("addEvaluacionFila");
 	
+	if (evaluacionId != "" && (rangoInferior != "" && rangoInferior <= 1 && rangoInferior >=0) && (rangoSuperior != ""& rangoSuperior <= 1 && rangoSuperior >=0) ) {
+		var b = validarExitenteEvaluacionFila(evaluacionId);
+		if (b) {
+			var funcionMap = {};
+			funcionMap['evaluacionId'] = evaluacionId;
+			funcionMap['rangoSuperior'] = rangoSuperior;
+			funcionMap['rangoInferior'] = rangoInferior;
+			listaFuncionMap.push(funcionMap);
+
+			var listaFuncions = $("#" + inputFristnamespace + "listaEvaluaciones");
+			console.log("listaEvaluaciones");
+			console.log(listaFuncions);
+			var html = "";
+			html += "<tr>" + "<td>" + evaluacionText + "</td>" + "<td>" + rangoInferior + "</td>"+ "<td>" + rangoSuperior + "</td>" ;			
+			
+				html += "<td>" + "<a class='btn btn-primary eliminarFuncion' data='"
+				+ evaluacionId + "' href='javascript:void(0);'>Eliminar</a>"
+				+ "</td>";
+			
+			html += "</tr>";
+
+			console.log(html);
+			$(listaFuncions).append(html);
+			$(".eliminarFuncion").unbind("click");
+			$(".eliminarFuncion").click(function() {
+				var id = $(this).attr("data");
+				console.log(id);
+				var tr = $(this).parent().parent();
+				removerFuncionItem(id, tr);
+			});
+		}
+	}
+}
+function validarExitenteEvaluacionFila(evaluacion) {
+	var result = true;
+	console.log("validarExitenteEvaluacionFila1:"+listaFuncionMap);
+	$.each(listaFuncionMap, function(index, object) {
+		if (object['evaluacionId'] == evaluacion) {
+			result = false;
+		}
+	});
+	console.log("validarExitenteEvaluacionFila2:"+listaFuncionMap);;
+	return result;
+}
+
+function removerFuncionItem(id, tr) {
+	console.log("removerFuncionItem1:"+listaFuncionMap);
+	$.each(listaFuncionMap, function(index, object) {
+		if (object['evaluacionId'] == id) {
+			listaFuncionMap.splice(index, 1);
+		}
+	});
+	console.log("removerFuncionItem2:"+listaFuncionMap);
+	$(tr).remove();
+}
+
+
+
+
+function publicarOfertaLaboral(){
+
+	var listasCorrectas = true;
+	var contenedorAlerta = $(".contenedorAlerta");
 	var formPublicarOferta = $("#" + inputFristnamespace + "publicaroferta");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var solicitudReclutamientoId = inputFristnamespace + "solicitudReclutamientoId";
@@ -337,37 +417,61 @@ function publicarOfertaLaboral(){
 	
 	var dataSend = $(formPublicarOferta).serialize();
 	dataSend=dataSend + "&editor_descripcion="+editor_descripcion;	
+
+	if( listaFuncionMap.length == 0 ){
+		mostrarAlerta(contenedorAlerta, "Evaluaciones y rangos", "Ingrese al menos una evaluación", "alert-error", null);
+		listasCorrectas = false;
+		modalconfirmacion.hide();
+	}
+
+	var rangoMinimo1 = $("#" + inputFristnamespace + "rangoMinimo1").val();
+	var rangoMaximo1 = $("#" + inputFristnamespace + "rangoMaximo1").val();
+	var rangoMinimo2 = $("#" + inputFristnamespace + "rangoMinimo2").val();
+	var rangoMaximo2 = $("#" + inputFristnamespace + "rangoMaximo2").val();
+	console.log(rangoMinimo1);
+	console.log(rangoMaximo1);
+	console.log(rangoMinimo2);
+	console.log(rangoMaximo2);
+	if(  !((rangoMinimo1 != "" && rangoMinimo1 <= 1 && rangoMinimo1 >=0) && 
+			(rangoMaximo1 != "" && rangoMinimo1 <= 1 && rangoMaximo1 >=0) && 
+			(rangoMinimo2 != "" && rangoMinimo1 <= 1 && rangoMinimo2 >=0) && 
+			(rangoMaximo2 != "" && rangoMinimo1 <= 1 && rangoMaximo2 >=0))  ){
+		mostrarAlerta(contenedorAlerta, "Rangos de Entrevistas", "Ingrese los valores para las entrevistas", "alert-error", null);
+		listasCorrectas = false;
+		modalconfirmacion.hide();
+	}
+	dataSend = dataSend + "&" + inputFristnamespace + "evaluacionList=" + JSON.stringify(listaFuncionMap) + "";
 	
-	$.ajax({
-		type : "POST",
-		url : publicarOfertaUrl,
-		data : dataSend,
-		success : function(data) {
-			modalconfirmacion.hide();
-			data = $.parseJSON(data);
-			var objeto = data["objeto"];
-			var respuesta = data["respuesta"];
-			var mensaje = data["mensaje"];
-			var contenedorAlerta = $(".contenedorAlerta");
-			listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
-			console.log(popupMensaje);
-			listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
-			console.log(mensaje);
-			listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
-			if (respuesta == 1) {
-				$(btnGuardar).attr("disabled", "disabled");
-				mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
-					setTimeout(function() {
-						window.location = listarSolicitudesUrl;
-					}, 1500);
-				});
-			} else {
-				mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+	if(listasCorrectas){
+		$.ajax({
+			type : "POST",
+			url : publicarOfertaUrl,
+			data : dataSend,
+			success : function(data) {
+				modalconfirmacion.hide();
+				data = $.parseJSON(data);
+				var objeto = data["objeto"];
+				var respuesta = data["respuesta"];
+				var mensaje = data["mensaje"];
+				var contenedorAlerta = $(".contenedorAlerta");
+				listarSolicitudesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
+				console.log(popupMensaje);
+				listarSolicitudesUrl += "&titulo=" + encodeURI(popupMensaje);
+				console.log(mensaje);
+				listarSolicitudesUrl += "&mensaje=" + encodeURI(mensaje);
+				if (respuesta == 1) {
+					$(btnGuardar).attr("disabled", "disabled");
+					mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+						setTimeout(function() {
+							window.location = listarSolicitudesUrl;
+						}, 1500);
+					});
+				} else {
+					mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+				}
 			}
-		}
-	});
-	
-	
+		});
+	}
 }
 
 function listarRequisitos(requisitoEtiquetaBeans) {
@@ -567,7 +671,7 @@ function addFuncionFila(funcion, exigile) {
 			$(".eliminarFuncion").click(function() {
 				var id = $(this).attr("data");
 				var tr = $(this).parent().parent();
-				removerFuncionItem(id, tr);
+				removerFuncionItem2(id, tr);
 			});
 		}
 	}
@@ -583,7 +687,7 @@ function validarExitenteFuncion(funcion) {
 	return result;
 }
 
-function removerFuncionItem(id, tr) {
+function removerFuncionItem2(id, tr) {
 	$.each(listaFuncionMap, function(index, object) {
 		if (object['funcion'] == id) {
 			listaFuncionMap.splice(index, 1);
@@ -591,3 +695,9 @@ function removerFuncionItem(id, tr) {
 	});
 	$(tr).remove();
 }
+
+
+
+
+
+

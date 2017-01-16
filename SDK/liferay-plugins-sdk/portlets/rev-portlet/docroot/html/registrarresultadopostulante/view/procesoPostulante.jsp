@@ -18,8 +18,8 @@
 
 <input type="hidden" value="<portlet:namespace/>" />
 <input id="<portlet:namespace/>registrarProcesoUrl" type="hidden" value="${registrarProceso}" />
-
 <input id="<portlet:namespace/>popupconfirmarMensage" type="hidden" value="Registrar Resultado" />
+<input id="<portlet:namespace/>popupPublicacionTitulo" type="hidden" value="Registrar Avance" />
 <input id="<portlet:namespace/>popupMensaje" type="hidden" value="Registro de Registrar Resultado" />
 
 <input id="<portlet:namespace/>msgError" type="hidden" value="<liferay-ui:message key="general.form.error" />" />
@@ -32,148 +32,130 @@
 	<div class="container">
 		<div class="contenedorAlerta"></div>
 		<div class="offset1 span10">
-			<form id="<portlet:namespace/>registrarResultado"
-				name="<portlet:namespace/>registrarResultado" class="formulario">
-				<input id="<portlet:namespace/>solicitudId"
-					name="<portlet:namespace/>solicitudId" type="hidden"
-					value="${solicitudReclutamiento.solicitudRequerimientoId}" /> <input
-					id="<portlet:namespace/>userId" name="<portlet:namespace/>userId"
-					type="hidden" value="${userId}" />
+			<form id="<portlet:namespace/>registrarResultado" name="<portlet:namespace/>registrarResultado" class="formulario">
+				<input id="<portlet:namespace/>solicitudId" name="<portlet:namespace/>solicitudId" type="hidden" value="${solicitudPostulacionBean.solicitudId}" /> <input
+					id="<portlet:namespace/>userId" name="<portlet:namespace/>userId" type="hidden" value="${userId}" />
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
-					<c:if test="${ !bcol }">					
+					<c:if test="${ solicitudPostulacionBean.tipoPostulante == 0 }">
 						<div class="span12">
 							<div>
 								<div class="span5">
 									<label> Fecha evaluación Piscólogica: </label>
 								</div>
 								<div class="span6">
-									<input id="<portlet:namespace/>fasepostulacionPicologicaId"
-										name="<portlet:namespace/>fasepostulacionPicologicaId"
-										type="hidden" value="${fasePsicologia.fasepostulacionId}" />
-	
-									<div class="input-prepend">
-										<span class="add-on"><i class="icon-calendar"></i></span> <input
-											class="span7" value="${fasePsicologia.strfechaFase}"
-											id="<portlet:namespace/>fechaEvaluacionPsicologica"
-											name="<portlet:namespace/>fechaEvaluacionPsicologica"
-											type="text" placeholder="DD/MM/YYYY"
-											onKeyPress="return false;" /> <input
-											id="<portlet:namespace/>fechaEvaluacionPsicologicaVal"
-											name="<portlet:namespace/>fechaEvaluacionPsicologicaVal"
-											type="hidden" value="${fasePsicologia.strfechaFase}" />
-									</div>
+									<label>${solicitudPostulacionBean.strfechaPsicologica}</label>
 								</div>
 							</div>
-	
 						</div>
+
+						<c:forEach items="${solicitudPostulacionBean.listaEvaluacionesPuestoEnfoque}" var="evaluaciones">
+							<c:if test="${ evaluaciones.evaluacionBean.evaluacionId != '1' && evaluaciones.evaluacionBean.evaluacionId != '2'  }">
+								<c:if test="${ evaluaciones.evaluacionBean.tipoEvaluacion == 83  }">
+									<div class="span12">
+										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden"
+											value="${evaluaciones.evaluacionBean.evaluacionId}" />
+										<div class="span5">
+											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
+										</div>
+										<div class="span6">
+											<input value="13" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8" type="text">
+										</div>
+									</div>
+								</c:if>
+							</c:if>
+						</c:forEach>
+
+
 						<div class="span12">
 							<div>
 								<div class="span5">
 									<label> Fecha evaluación Técnica: </label>
 								</div>
 								<div class="span6">
-									<input id="<portlet:namespace/>fasepostulacionTecnicaId"
-										name="<portlet:namespace/>fasepostulacionTecnicaId"
-										type="hidden" value="${faseTecnica.fasepostulacionId}" />
-	
-									<div class="input-prepend">
-										<span class="add-on"><i class="icon-calendar"></i></span> <input
-											class="span7" value="${faseTecnica.strfechaFase}"
-											id="<portlet:namespace/>fechaEvaluacionTecnica"
-											name="<portlet:namespace/>fechaEvaluacionTecnica" type="text"
-											placeholder="DD/MM/YYYY" onKeyPress="return false;" /> <input
-											id="<portlet:namespace/>fechaEvaluacionTecnicaVal"
-											name="<portlet:namespace/>fechaEvaluacionTecnicaVal"
-											type="hidden" value="${faseTecnica.strfechaFase}" />
-									</div>
+									<label>${solicitudPostulacionBean.strfechaTecnica}</label>
 								</div>
 							</div>
-	
+
 						</div>
+
+						<c:forEach items="${solicitudPostulacionBean.listaEvaluacionesPuestoEnfoque}" var="evaluaciones">
+							<c:if test="${ evaluaciones.evaluacionBean.evaluacionId != '1' && evaluaciones.evaluacionBean.evaluacionId != '2'  }">
+								<c:if test="${ evaluaciones.evaluacionBean.tipoEvaluacion == 84  }">
+									<div class="span12">
+										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden"
+											value="${evaluaciones.evaluacionBean.evaluacionId}" />
+										<div class="span5">
+											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
+										</div>
+										<div class="span6">
+											<input value="13" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8" type="text">
+										</div>
+									</div>
+								</c:if>
+							</c:if>
+						</c:forEach>
+
+
 					</c:if>
-					
-					
-					
+
+
+
+
 					<div class="span12">
 						<div>
 							<div class="span5">
 								<label> Fecha Entrevista con RRHH: </label>
 							</div>
 							<div class="span6">
-								<input id="<portlet:namespace/>fasepostulacionEntreCoordRRHHId"
-									name="<portlet:namespace/>fasepostulacionEntreCoordRRHHId"
-									type="hidden" value="${faseEntreCoordRRHH.fasepostulacionId}" />
-
-								<div class="input-prepend">
-									<span class="add-on"><i class="icon-calendar"></i></span> <input
-										class="span7" value="${faseEntreCoordRRHH.strfechaFase}"
-										id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH"
-										name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH"
-										type="text" placeholder="DD/MM/YYYY"
-										onKeyPress="return false;" /> <input
-										id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal"
-										name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal"
-										type="hidden" value="${faseEntreCoordRRHH.strfechaFase}" />
-								</div>
+								<label>${solicitudPostulacionBean.strfechaRRHH}</label>
 							</div>
 						</div>
-
 					</div>
+					<div class="span12">
+						<input name="<portlet:namespace/>evaluacionSelect1Id" type="hidden" value="1" />
+						<div class="span5">
+							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
+						</div>
+						<div class="span6">
+							<input value="13" name="<portlet:namespace/>resultado1Id" class="span8" type="text">
+						</div>
+					</div>
+
 					<div class="span12">
 						<div>
 							<div class="span5">
 								<label> Fecha Entrevista con Gerente de Área: </label>
 							</div>
 							<div class="span6">
-								<input
-									id="<portlet:namespace/>fasepostulacionEntreGerenteAreaId"
-									name="<portlet:namespace/>fasepostulacionEntreGerenteAreaId"
-									type="hidden" value="${faseEntreGerenteArea.fasepostulacionId}" />
-
-								<div class="input-prepend">
-									<span class="add-on"><i class="icon-calendar"></i></span> <input
-										class="span7" value="${faseEntreGerenteArea.strfechaFase}"
-										id="<portlet:namespace/>fechaEvaluacionEntreGerenteArea"
-										name="<portlet:namespace/>fechaEvaluacionEntreGerenteArea"
-										type="text" placeholder="DD/MM/YYYY"
-										onKeyPress="return false;" /> <input
-										id="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal"
-										name="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal"
-										type="hidden" value="${faseEntreGerenteArea.strfechaFase}" />
-								</div>
+								<label>${solicitudPostulacionBean.strfechaGerenteArea}</label>
 							</div>
 						</div>
-
+					</div>
+					<div class="span12">
+						<input name="<portlet:namespace/>evaluacionSelect2Id" type="hidden" value="2" />
+						<div class="span5">
+							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
+						</div>
+						<div class="span6">
+							<input value="13" name="<portlet:namespace/>resultado2Id" class="span8" type="text">
+						</div>
 					</div>
 
-
-
 				</div>
-
-
 				<div class="row">
 					<div class="offset4 span4">
 						<aui:button-row>
-							<button id="<portlet:namespace/>btnGuardar"
-								class="btn btn-primary" type="button">
+							<button id="<portlet:namespace/>btnGuardar" class="btn btn-primary" type="button">
 								<liferay-ui:message key="general.form.opciones.guardar" />
 							</button>
 							<portlet:renderURL var="listarPostulantes">
 								<portlet:param name="action" value="listarPostulantes" />
 								<portlet:param name="solicitudRequerimientoId" value="${solicitudReclutamiento.solicitudRequerimientoId}" />
 							</portlet:renderURL>
-
-
-
-							<input id="<portlet:namespace/>listarPostulantesUrl"
-								name="<portlet:namespace/>listarPostulantesUrl" type="hidden"
-								value="${listarPostulantes}" />
-
-							<a class="btn btn-primary"
-								href="${listarPostulantes}">
-								Cancelar </a>
+							<input id="<portlet:namespace/>listarPostulantesUrl" name="<portlet:namespace/>listarPostulantesUrl" type="hidden" value="${listarPostulantes}" />
+							<a class="btn btn-primary" href="${listarPostulantes}"> Cancelar </a>
 						</aui:button-row>
 					</div>
 				</div>
@@ -186,6 +168,6 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
-	//	inicializarFormularioPostulante();
+		inicializarFormularioRegsitroAvancePostulante();
 	});
 </script>

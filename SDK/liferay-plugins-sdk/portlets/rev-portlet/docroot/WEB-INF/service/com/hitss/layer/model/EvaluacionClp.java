@@ -80,6 +80,7 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 		attributes.put("puestoCategoriaEvaluacion",
 			getPuestoCategoriaEvaluacion());
 		attributes.put("tipoEvaluacion", getTipoEvaluacion());
+		attributes.put("descripcion", getDescripcion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -114,6 +115,12 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 
 		if (tipoEvaluacion != null) {
 			setTipoEvaluacion(tipoEvaluacion);
+		}
+
+		String descripcion = (String)attributes.get("descripcion");
+
+		if (descripcion != null) {
+			setDescripcion(descripcion);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -233,6 +240,29 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 				Method method = clazz.getMethod("setTipoEvaluacion", long.class);
 
 				method.invoke(_evaluacionRemoteModel, tipoEvaluacion);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getDescripcion() {
+		return _descripcion;
+	}
+
+	@Override
+	public void setDescripcion(String descripcion) {
+		_descripcion = descripcion;
+
+		if (_evaluacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _evaluacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setDescripcion", String.class);
+
+				method.invoke(_evaluacionRemoteModel, descripcion);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -433,6 +463,7 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 		clone.setEnfoque(getEnfoque());
 		clone.setPuestoCategoriaEvaluacion(getPuestoCategoriaEvaluacion());
 		clone.setTipoEvaluacion(getTipoEvaluacion());
+		clone.setDescripcion(getDescripcion());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -489,7 +520,7 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{evaluacionId=");
 		sb.append(getEvaluacionId());
@@ -499,6 +530,8 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 		sb.append(getPuestoCategoriaEvaluacion());
 		sb.append(", tipoEvaluacion=");
 		sb.append(getTipoEvaluacion());
+		sb.append(", descripcion=");
+		sb.append(getDescripcion());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -516,7 +549,7 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Evaluacion");
@@ -537,6 +570,10 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 		sb.append(
 			"<column><column-name>tipoEvaluacion</column-name><column-value><![CDATA[");
 		sb.append(getTipoEvaluacion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>descripcion</column-name><column-value><![CDATA[");
+		sb.append(getDescripcion());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -568,6 +605,7 @@ public class EvaluacionClp extends BaseModelImpl<Evaluacion>
 	private long _enfoque;
 	private long _puestoCategoriaEvaluacion;
 	private long _tipoEvaluacion;
+	private String _descripcion;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

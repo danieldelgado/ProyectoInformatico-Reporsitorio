@@ -103,6 +103,7 @@
 		<field name="enfoque" type="long" />
 		<field name="puestoCategoriaEvaluacion" type="long" />
 		<field name="tipoEvaluacion" type="long" />
+		<field name="descripcion" type="String" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />
@@ -145,6 +146,12 @@
 		<field name="fechacrea" type="Date" />
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
+	</model>
+	<model name="com.hitss.layer.model.FasePostulacionPuestoEvaluacion">
+		<field name="fasePostulacionId" type="long" />
+		<field name="solicitudFuncionId" type="long" />
+		<field name="evaluacionId" type="long" />
+		<field name="resultado" type="double" />
 	</model>
 	<model name="com.hitss.layer.model.FichaIngreso">
 		<field name="fichaingresoId" type="long" />
@@ -253,6 +260,12 @@
 		<field name="fechacrea" type="Date" />
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
+	</model>
+	<model name="com.hitss.layer.model.PuestoEvaluacion">
+		<field name="solicitudFuncionId" type="long" />
+		<field name="evaluacionId" type="long" />
+		<field name="rangoSuperior" type="double" />
+		<field name="rangoInferior" type="double" />
 	</model>
 	<model name="com.hitss.layer.model.Referencia">
 		<field name="referenciaId" type="long" />

@@ -1,0 +1,207 @@
+
+package com.hitss.rev.bean
+
+dialect "java"
+
+import com.hitss.rev.bean.EvaluacionBean
+import com.hitss.rev.bean.EvaluacionPuestoBean
+import com.hitss.rev.bean.ExperienciaBean
+import com.hitss.rev.bean.Postulacion
+import com.hitss.rev.bean.PuestoBean
+import com.hitss.rev.bean.ReferenciaBean
+import com.hitss.rev.bean.RequisitoBean
+import com.hitss.rev.bean.SolicitudReclutamiento
+import com.hitss.rev.bean.UsuarioBean
+import com.hitss.rev.bean.Haming
+import com.hitss.rev.bean.Euclistica
+import com.hitss.rev.bean.DataHamming
+import com.hitss.rev.bean.DistanciaEuclidiana
+import java.util.ArrayList
+import java.util.List
+
+rule "Distancia Hamming y Euclistica Piscologia" when
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false )
+  	
+    $p : PuestoBean(  $evaluaciones   : listaEvaluacionPiscologicas  != null  ) from $puesto
+  	$u : UsuarioBean( $ulevaluaciones : listaEvaluacionPiscologicas  != null  ) from $usuario
+  
+then
+   System.out.println( " ----------------------------- " );
+   System.out.println( "Distancia Hamming y Euclistica Piscologia " );
+   System.out.println( "Id Usuario: " +$u.getIdUsuario());    
+   if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
+		   if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
+		       EvaluacionPuestoBean e = null;	
+		       EvaluacionBean e2 = null;	
+		       double prom = 0;		       
+		       List<Haming> dis = new ArrayList<Haming>();	
+		       List<Euclistica> disEu = new ArrayList<Euclistica>();		       
+		       Haming a = null;
+		       Euclistica euc = null;
+			   for( Object o : $evaluaciones ){
+			   		e = (EvaluacionPuestoBean)o;
+			   		prom = (e.getLimitePorcentajeSuperior()+e.getLimitePorcentajeInferior())/2;			   		
+			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );			   		
+			   		a = new Haming();
+			   		a.setValorDefinido(prom);	
+			   		euc = new Euclistica();
+			   		euc.setValorDefinido(prom);	
+			   				   		
+					   for( Object o2 : $ulevaluaciones ){
+						   	e2 = (EvaluacionBean)o2;							   	
+					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
+			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
+						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/20));
+								a.setValor((e2.getPuntajeObtenido()/20));
+			   					euc.setValor((e2.getPuntajeObtenido()/20));		
+					   		}					  
+					   }			   		
+			   		dis.add(a);	   		
+			   		disEu.add(euc);
+			   		System.out.println( " ------- ");
+			   }
+			   	
+			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
+			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
+			   System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
+			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+			   System.out.println( " DataHamming:" + DataHamming.calcularDistancia(dis) );	
+			   System.out.println( " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );
+			   
+			   $postulacion.setDistanciaHammingPsicologico(DataHamming.calcularDistancia(dis));
+			   $postulacion.setDistanciaEuclidianaPsicologico(DistanciaEuclidiana.calcularDistancia(disEu));
+			   			 			  
+		   }
+		   
+		   
+   }
+   
+end
+
+
+
+rule "Distancia Hamming y Euclistica Tecnica" when
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false )
+  	
+  	
+    $p : PuestoBean(   $evalTecnicas  : listaEvaluacionTecnicas  != null ) from $puesto
+  	$u : UsuarioBean(  $uEvalTecnicas : listaEvaluacionTecnicas  != null ) from $usuario
+  
+  
+  
+then
+   System.out.println( " ----------------------------- " );
+   System.out.println( "Distancia Hamming y Euclistica Tecnica " );
+   System.out.println( "Id Usuario: " +$u.getIdUsuario());    
+   		if($evalTecnicas!=null && !$uEvalTecnicas.isEmpty() ){
+		   if($evalTecnicas!=null && !$uEvalTecnicas.isEmpty() ){
+		       EvaluacionPuestoBean e = null;	
+		       EvaluacionBean e2 = null;	
+		       double prom = 0;		       
+		       List<Haming> dis = new ArrayList<Haming>();	
+		       List<Euclistica> disEu = new ArrayList<Euclistica>();		       
+		       Haming a = null;
+		       Euclistica euc = null;
+			   for( Object o : $evalTecnicas ){
+			   		e = (EvaluacionPuestoBean)o;
+			   		prom = (e.getLimitePorcentajeSuperior()+e.getLimitePorcentajeInferior())/2;			   		
+			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );			   		
+			   		a = new Haming();
+			   		a.setValorDefinido(prom);	
+			   		euc = new Euclistica();
+			   		euc.setValorDefinido(prom);	
+			   				   		
+					   for( Object o2 : $uEvalTecnicas ){
+						   	e2 = (EvaluacionBean)o2;							   	
+					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
+			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
+						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/20));
+								a.setValor((e2.getPuntajeObtenido()/20));
+			   					euc.setValor((e2.getPuntajeObtenido()/20));		
+					   		}					  
+					   }			   		
+			   		dis.add(a);	   		
+			   		disEu.add(euc);
+			   		System.out.println( " ------- ");
+			   }
+			   	
+			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
+			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
+			   System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
+			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+			   System.out.println( " DataHamming:" + DataHamming.calcularDistancia(dis) );	
+			   System.out.println( " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );
+			  
+			   $postulacion.setDistanciaHammingTecnico(DataHamming.calcularDistancia(dis));
+			   $postulacion.setDistanciaEuclidianaTecnico(DistanciaEuclidiana.calcularDistancia(disEu));
+			   			 			  
+		   }
+		   
+		   
+   }
+   
+end
+
+
+rule "Distancia Hamming y Euclistica Entrevistas" when
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false )
+  	
+  	
+    $p : PuestoBean(   $entrevistas  : listaEntrevista  != null ) from $puesto
+  	$u : UsuarioBean(  $uEntrevistas : listaEntrevista  != null ) from $usuario
+  
+  
+  
+then
+   System.out.println( " ----------------------------- " );
+   System.out.println( "Distancia Hamming y Euclistica Entrevistas " );
+   System.out.println( "Id Usuario: " +$u.getIdUsuario());    
+   		if($entrevistas!=null && !$uEntrevistas.isEmpty() ){
+		   if($entrevistas!=null && !$uEntrevistas.isEmpty() ){
+		       EvaluacionPuestoBean e = null;	
+		       EvaluacionBean e2 = null;	
+		       double prom = 0;		       
+		       List<Haming> dis = new ArrayList<Haming>();	
+		       List<Euclistica> disEu = new ArrayList<Euclistica>();		       
+		       Haming a = null;
+		       Euclistica euc = null;
+			   for( Object o : $entrevistas ){
+			   		e = (EvaluacionPuestoBean)o;
+			   		prom = (e.getLimitePorcentajeSuperior()+e.getLimitePorcentajeInferior())/2;			   		
+			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );			   		
+			   		a = new Haming();
+			   		a.setValorDefinido(prom);	
+			   		euc = new Euclistica();
+			   		euc.setValorDefinido(prom);	
+			   				   		
+					   for( Object o2 : $uEntrevistas ){
+						   	e2 = (EvaluacionBean)o2;							   	
+					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
+			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
+						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/20));
+								a.setValor((e2.getPuntajeObtenido()/20));
+			   					euc.setValor((e2.getPuntajeObtenido()/20));		
+					   		}					  
+					   }			   		
+			   		dis.add(a);	   		
+			   		disEu.add(euc);
+			   		System.out.println( " ------- ");
+			   }
+			   	
+			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
+			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
+			   System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
+			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+			   System.out.println( " DataHamming:" + DataHamming.calcularDistancia(dis) );	
+			   System.out.println( " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );
+			  
+			   $postulacion.setDistanciaHammingEntrevista(DataHamming.calcularDistancia(dis));
+			   $postulacion.setDistanciaEuclidianaEntrevista(DistanciaEuclidiana.calcularDistancia(disEu));
+			   			 			  
+		   }
+		   
+		   
+   }
+   
+end
+

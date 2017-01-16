@@ -330,6 +330,7 @@ public class EvaluacionPersistenceImpl extends BasePersistenceImpl<Evaluacion>
 		evaluacionImpl.setEnfoque(evaluacion.getEnfoque());
 		evaluacionImpl.setPuestoCategoriaEvaluacion(evaluacion.getPuestoCategoriaEvaluacion());
 		evaluacionImpl.setTipoEvaluacion(evaluacion.getTipoEvaluacion());
+		evaluacionImpl.setDescripcion(evaluacion.getDescripcion());
 		evaluacionImpl.setActivo(evaluacion.isActivo());
 		evaluacionImpl.setUsuariocrea(evaluacion.getUsuariocrea());
 		evaluacionImpl.setFechacrea(evaluacion.getFechacrea());

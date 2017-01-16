@@ -38,6 +38,8 @@ import com.hitss.layer.service.EvaluacionServiceUtil;
 import com.hitss.layer.service.ExperienciaLocalServiceUtil;
 import com.hitss.layer.service.ExperienciaServiceUtil;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
+import com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalServiceUtil;
+import com.hitss.layer.service.FasePostulacionPuestoEvaluacionServiceUtil;
 import com.hitss.layer.service.FasePostulacionServiceUtil;
 import com.hitss.layer.service.FichaIngresoLocalServiceUtil;
 import com.hitss.layer.service.FichaIngresoServiceUtil;
@@ -59,6 +61,8 @@ import com.hitss.layer.service.PreguntaRespuestaServiceUtil;
 import com.hitss.layer.service.PreguntaServiceUtil;
 import com.hitss.layer.service.PrioridadGrupoUsuariosLocalServiceUtil;
 import com.hitss.layer.service.PrioridadGrupoUsuariosServiceUtil;
+import com.hitss.layer.service.PuestoEvaluacionLocalServiceUtil;
+import com.hitss.layer.service.PuestoEvaluacionServiceUtil;
 import com.hitss.layer.service.ReferenciaLocalServiceUtil;
 import com.hitss.layer.service.ReferenciaServiceUtil;
 import com.hitss.layer.service.RespuestaLocalServiceUtil;
@@ -134,6 +138,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			FasePostulacionLocalServiceUtil.clearService();
 
 			FasePostulacionServiceUtil.clearService();
+			FasePostulacionPuestoEvaluacionLocalServiceUtil.clearService();
+
+			FasePostulacionPuestoEvaluacionServiceUtil.clearService();
 			FichaIngresoLocalServiceUtil.clearService();
 
 			FichaIngresoServiceUtil.clearService();
@@ -164,6 +171,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			PrioridadGrupoUsuariosLocalServiceUtil.clearService();
 
 			PrioridadGrupoUsuariosServiceUtil.clearService();
+			PuestoEvaluacionLocalServiceUtil.clearService();
+
+			PuestoEvaluacionServiceUtil.clearService();
 			ReferenciaLocalServiceUtil.clearService();
 
 			ReferenciaServiceUtil.clearService();

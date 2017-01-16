@@ -54,6 +54,7 @@ public class EvaluacionWrapper implements Evaluacion, ModelWrapper<Evaluacion> {
 		attributes.put("puestoCategoriaEvaluacion",
 			getPuestoCategoriaEvaluacion());
 		attributes.put("tipoEvaluacion", getTipoEvaluacion());
+		attributes.put("descripcion", getDescripcion());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -88,6 +89,12 @@ public class EvaluacionWrapper implements Evaluacion, ModelWrapper<Evaluacion> {
 
 		if (tipoEvaluacion != null) {
 			setTipoEvaluacion(tipoEvaluacion);
+		}
+
+		String descripcion = (String)attributes.get("descripcion");
+
+		if (descripcion != null) {
+			setDescripcion(descripcion);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -219,6 +226,26 @@ public class EvaluacionWrapper implements Evaluacion, ModelWrapper<Evaluacion> {
 	@Override
 	public void setTipoEvaluacion(long tipoEvaluacion) {
 		_evaluacion.setTipoEvaluacion(tipoEvaluacion);
+	}
+
+	/**
+	* Returns the descripcion of this evaluacion.
+	*
+	* @return the descripcion of this evaluacion
+	*/
+	@Override
+	public java.lang.String getDescripcion() {
+		return _evaluacion.getDescripcion();
+	}
+
+	/**
+	* Sets the descripcion of this evaluacion.
+	*
+	* @param descripcion the descripcion of this evaluacion
+	*/
+	@Override
+	public void setDescripcion(java.lang.String descripcion) {
+		_evaluacion.setDescripcion(descripcion);
 	}
 
 	/**
