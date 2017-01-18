@@ -54,6 +54,7 @@ public class ExperienciaWrapper implements Experiencia,
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("empresa", getEmpresa());
+		attributes.put("tipoNegocio", getTipoNegocio());
 		attributes.put("proyecto", getProyecto());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
@@ -90,6 +91,12 @@ public class ExperienciaWrapper implements Experiencia,
 
 		if (empresa != null) {
 			setEmpresa(empresa);
+		}
+
+		Long tipoNegocio = (Long)attributes.get("tipoNegocio");
+
+		if (tipoNegocio != null) {
+			setTipoNegocio(tipoNegocio);
 		}
 
 		String proyecto = (String)attributes.get("proyecto");
@@ -147,7 +154,7 @@ public class ExperienciaWrapper implements Experiencia,
 	* @return the primary key of this experiencia
 	*/
 	@Override
-	public long getPrimaryKey() {
+	public com.hitss.layer.service.persistence.ExperienciaPK getPrimaryKey() {
 		return _experiencia.getPrimaryKey();
 	}
 
@@ -157,7 +164,8 @@ public class ExperienciaWrapper implements Experiencia,
 	* @param primaryKey the primary key of this experiencia
 	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(
+		com.hitss.layer.service.persistence.ExperienciaPK primaryKey) {
 		_experiencia.setPrimaryKey(primaryKey);
 	}
 
@@ -239,6 +247,26 @@ public class ExperienciaWrapper implements Experiencia,
 	@Override
 	public void setEmpresa(java.lang.String empresa) {
 		_experiencia.setEmpresa(empresa);
+	}
+
+	/**
+	* Returns the tipo negocio of this experiencia.
+	*
+	* @return the tipo negocio of this experiencia
+	*/
+	@Override
+	public long getTipoNegocio() {
+		return _experiencia.getTipoNegocio();
+	}
+
+	/**
+	* Sets the tipo negocio of this experiencia.
+	*
+	* @param tipoNegocio the tipo negocio of this experiencia
+	*/
+	@Override
+	public void setTipoNegocio(long tipoNegocio) {
+		_experiencia.setTipoNegocio(tipoNegocio);
 	}
 
 	/**

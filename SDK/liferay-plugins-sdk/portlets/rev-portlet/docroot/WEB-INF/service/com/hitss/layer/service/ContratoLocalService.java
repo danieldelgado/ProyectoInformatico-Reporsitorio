@@ -61,21 +61,23 @@ public interface ContratoLocalService extends BaseLocalService,
 	/**
 	* Creates a new contrato with the primary key. Does not add the contrato to the database.
 	*
-	* @param contratoId the primary key for the new contrato
+	* @param contratoPK the primary key for the new contrato
 	* @return the new contrato
 	*/
-	public com.hitss.layer.model.Contrato createContrato(long contratoId);
+	public com.hitss.layer.model.Contrato createContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK);
 
 	/**
 	* Deletes the contrato with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param contratoId the primary key of the contrato
+	* @param contratoPK the primary key of the contrato
 	* @return the contrato that was removed
 	* @throws PortalException if a contrato with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.hitss.layer.model.Contrato deleteContrato(long contratoId)
+	public com.hitss.layer.model.Contrato deleteContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -169,19 +171,21 @@ public interface ContratoLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.hitss.layer.model.Contrato fetchContrato(long contratoId)
+	public com.hitss.layer.model.Contrato fetchContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the contrato with the primary key.
 	*
-	* @param contratoId the primary key of the contrato
+	* @param contratoPK the primary key of the contrato
 	* @return the contrato
 	* @throws PortalException if a contrato with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.hitss.layer.model.Contrato getContrato(long contratoId)
+	public com.hitss.layer.model.Contrato getContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

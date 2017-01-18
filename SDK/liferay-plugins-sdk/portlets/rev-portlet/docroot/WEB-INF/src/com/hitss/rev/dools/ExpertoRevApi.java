@@ -7,7 +7,7 @@ import com.hitss.layer.model.Usuario;
 
 public interface ExpertoRevApi {
 
-	void test();
+//	void test();
 
 	List<Usuario> analsisExperto(Long solicitudRequerimientoId, List<Postulacion> lst, List<Usuario> lstUsuariosPostulantes);
 	

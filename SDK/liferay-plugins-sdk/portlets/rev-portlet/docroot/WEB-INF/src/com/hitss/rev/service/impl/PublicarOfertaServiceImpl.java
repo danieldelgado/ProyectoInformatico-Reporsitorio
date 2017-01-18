@@ -38,7 +38,7 @@ public class PublicarOfertaServiceImpl extends RevServiceImpl implements Publica
 	private static Log _log = LogFactoryUtil.getLog(EvaluarSolicitudRequerimientoServiceImpl.class);
 
 	@Override
-	public Map<String, Object> publicarOfertaLaboral(Long solicitudRequerimientoId, Long scopeGroupId, List<PuestoEvaluacionBean> lista, String descripcion, User user,
+	public Map<String, Object> publicarOfertaLaboral(Long solicitudRequerimientoId, Long scopeGroupId, List<PuestoEvaluacionBean> lista, String descripcion,int cantidadAnnosRubro,  User user,
 			boolean publicar, HttpServletRequest request) {
 		SolicitudRequerimientoBean solicitudRequerimientoBean = new SolicitudRequerimientoBean();
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -63,6 +63,7 @@ public class PublicarOfertaServiceImpl extends RevServiceImpl implements Publica
 					pe.setRangoInferior(p.getRangoInferior());
 					PuestoEvaluacionLocalServiceUtil.addPuestoEvaluacion(pe);					
 				}
+				sr.setCantidadAnnosRubro(cantidadAnnosRubro);
 			} else {
 				sr.setEstado(Constantes.PARAMETRO_FECHA_LIMITE_POSTULACION);
 				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("publicar.oferta.mensaje.finalizar"), String.valueOf(sr.getSolicitudRequerimientoId())));

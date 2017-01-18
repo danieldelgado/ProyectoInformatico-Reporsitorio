@@ -92,9 +92,10 @@
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.ContratoModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.ContratoPK" />
 		<attributes>
 			<id name="contratoId" />
-			<basic name="usuarioId" />
+			<id name="usuarioId" />
 			<basic name="motivo" />
 			<basic name="descripcion" />
 			<basic name="titulo" />
@@ -162,9 +163,10 @@
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.EstudioModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.EstudioPK" />
 		<attributes>
 			<id name="estudioId" />
-			<basic name="usuarioId" />
+			<id name="usuarioId" />
 			<basic name="nombre" />
 			<basic name="annos" />
 			<basic name="activo" />
@@ -214,11 +216,13 @@
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.hitss.layer.model.impl.ExperienciaModelImpl">
+		<id-class class="com.hitss.layer.service.persistence.ExperienciaPK" />
 		<attributes>
 			<id name="experienciaId" />
-			<basic name="usuarioId" />
+			<id name="usuarioId" />
 			<basic name="descripcion" />
 			<basic name="empresa" />
+			<basic name="tipoNegocio" />
 			<basic name="proyecto" />
 			<basic name="fechaInicio">
 				<temporal>TIMESTAMP</temporal>
@@ -594,6 +598,7 @@
 			<basic name="fechamodifica">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="cantidadAnnosRubro" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

@@ -17,6 +17,7 @@ package com.hitss.layer.model.impl;
 import com.hitss.layer.model.Estudio;
 import com.hitss.layer.model.EstudioModel;
 import com.hitss.layer.model.EstudioSoap;
+import com.hitss.layer.service.persistence.EstudioPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
@@ -27,10 +28,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.service.ServiceContext;
-
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
@@ -75,7 +72,7 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Estudio (estudioId LONG not null primary key,usuarioId LONG,nombre VARCHAR(75) null,annos LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Estudio (estudioId LONG not null,usuarioId LONG not null,nombre VARCHAR(75) null,annos LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (estudioId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table Estudio";
 	public static final String ORDER_BY_JPQL = " ORDER BY estudio.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Estudio.fechamodifica ASC";
@@ -88,7 +85,11 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.Estudio"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.Estudio"),
+			true);
+	public static long USUARIOID_COLUMN_BITMASK = 1L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -143,23 +144,24 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _estudioId;
+	public EstudioPK getPrimaryKey() {
+		return new EstudioPK(_estudioId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setEstudioId(primaryKey);
+	public void setPrimaryKey(EstudioPK primaryKey) {
+		setEstudioId(primaryKey.estudioId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _estudioId;
+		return new EstudioPK(_estudioId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((EstudioPK)primaryKeyObj);
 	}
 
 	@Override
@@ -265,7 +267,19 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 
 	@Override
 	public void setUsuarioId(long usuarioId) {
+		_columnBitmask |= USUARIOID_COLUMN_BITMASK;
+
+		if (!_setOriginalUsuarioId) {
+			_setOriginalUsuarioId = true;
+
+			_originalUsuarioId = _usuarioId;
+		}
+
 		_usuarioId = usuarioId;
+	}
+
+	public long getOriginalUsuarioId() {
+		return _originalUsuarioId;
 	}
 
 	@JSON
@@ -352,20 +366,13 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 
 	@Override
 	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
 		_fechamodifica = fechamodifica;
 	}
 
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-			Estudio.class.getName(), getPrimaryKey());
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		ExpandoBridge expandoBridge = getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -423,9 +430,9 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 
 		Estudio estudio = (Estudio)obj;
 
-		long primaryKey = estudio.getPrimaryKey();
+		EstudioPK primaryKey = estudio.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -435,11 +442,18 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
 	public void resetOriginalValues() {
+		EstudioModelImpl estudioModelImpl = this;
+
+		estudioModelImpl._originalUsuarioId = estudioModelImpl._usuarioId;
+
+		estudioModelImpl._setOriginalUsuarioId = false;
+
+		estudioModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -570,6 +584,8 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 		};
 	private long _estudioId;
 	private long _usuarioId;
+	private long _originalUsuarioId;
+	private boolean _setOriginalUsuarioId;
 	private String _nombre;
 	private long _annos;
 	private boolean _activo;
@@ -577,5 +593,6 @@ public class EstudioModelImpl extends BaseModelImpl<Estudio>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private Estudio _escapedModel;
 }

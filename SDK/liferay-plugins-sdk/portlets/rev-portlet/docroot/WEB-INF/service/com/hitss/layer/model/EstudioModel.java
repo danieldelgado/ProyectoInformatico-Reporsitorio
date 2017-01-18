@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.EstudioPK;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -50,14 +52,14 @@ public interface EstudioModel extends BaseModel<Estudio> {
 	 *
 	 * @return the primary key of this estudio
 	 */
-	public long getPrimaryKey();
+	public EstudioPK getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this estudio.
 	 *
 	 * @param primaryKey the primary key of this estudio
 	 */
-	public void setPrimaryKey(long primaryKey);
+	public void setPrimaryKey(EstudioPK primaryKey);
 
 	/**
 	 * Returns the estudio ID of this estudio.

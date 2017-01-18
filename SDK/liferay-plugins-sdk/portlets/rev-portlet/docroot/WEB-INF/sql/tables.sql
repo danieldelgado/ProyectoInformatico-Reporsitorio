@@ -51,8 +51,8 @@ create table ActividadPlanAccionUsuario (
 );
 
 create table Contrato (
-	contratoId LONG not null primary key,
-	usuarioId LONG,
+	contratoId LONG not null,
+	usuarioId LONG not null,
 	motivo VARCHAR(75) null,
 	descripcion VARCHAR(75) null,
 	titulo VARCHAR(75) null,
@@ -60,7 +60,8 @@ create table Contrato (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechamodifica DATE null
+	fechamodifica DATE null,
+	primary key (contratoId, usuarioId)
 );
 
 create table Cronograma (
@@ -97,15 +98,16 @@ create table DetalleRepuestaReclutamiento (
 );
 
 create table Estudio (
-	estudioId LONG not null primary key,
-	usuarioId LONG,
+	estudioId LONG not null,
+	usuarioId LONG not null,
 	nombre VARCHAR(75) null,
 	annos LONG,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechamodifica DATE null
+	fechamodifica DATE null,
+	primary key (estudioId, usuarioId)
 );
 
 create table EtiquetaRelacionada (
@@ -139,10 +141,11 @@ create table EvaluacionPregunta (
 );
 
 create table Experiencia (
-	experienciaId LONG not null primary key,
-	usuarioId LONG,
+	experienciaId LONG not null,
+	usuarioId LONG not null,
 	descripcion VARCHAR(75) null,
 	empresa VARCHAR(75) null,
+	tipoNegocio LONG,
 	proyecto VARCHAR(75) null,
 	fechaInicio DATE null,
 	fechaFin DATE null,
@@ -150,7 +153,8 @@ create table Experiencia (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechamodifica DATE null
+	fechamodifica DATE null,
+	primary key (experienciaId, usuarioId)
 );
 
 create table FasePostulacion (
@@ -429,7 +433,8 @@ create table SolicitudRequerimiento (
 	usuariocrea LONG,
 	fechacrea DATE null,
 	usuariomodifica LONG,
-	fechamodifica DATE null
+	fechamodifica DATE null,
+	cantidadAnnosRubro INTEGER
 );
 
 create table SolicitudRequerimientoFuncion (

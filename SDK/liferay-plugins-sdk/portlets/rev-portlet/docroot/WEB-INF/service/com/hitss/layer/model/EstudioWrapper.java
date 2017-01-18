@@ -125,7 +125,7 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 	* @return the primary key of this estudio
 	*/
 	@Override
-	public long getPrimaryKey() {
+	public com.hitss.layer.service.persistence.EstudioPK getPrimaryKey() {
 		return _estudio.getPrimaryKey();
 	}
 
@@ -135,7 +135,8 @@ public class EstudioWrapper implements Estudio, ModelWrapper<Estudio> {
 	* @param primaryKey the primary key of this estudio
 	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(
+		com.hitss.layer.service.persistence.EstudioPK primaryKey) {
 		_estudio.setPrimaryKey(primaryKey);
 	}
 

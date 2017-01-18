@@ -55,25 +55,27 @@ public class ContratoLocalServiceUtil {
 	/**
 	* Creates a new contrato with the primary key. Does not add the contrato to the database.
 	*
-	* @param contratoId the primary key for the new contrato
+	* @param contratoPK the primary key for the new contrato
 	* @return the new contrato
 	*/
-	public static com.hitss.layer.model.Contrato createContrato(long contratoId) {
-		return getService().createContrato(contratoId);
+	public static com.hitss.layer.model.Contrato createContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK) {
+		return getService().createContrato(contratoPK);
 	}
 
 	/**
 	* Deletes the contrato with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param contratoId the primary key of the contrato
+	* @param contratoPK the primary key of the contrato
 	* @return the contrato that was removed
 	* @throws PortalException if a contrato with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Contrato deleteContrato(long contratoId)
+	public static com.hitss.layer.model.Contrato deleteContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteContrato(contratoId);
+		return getService().deleteContrato(contratoPK);
 	}
 
 	/**
@@ -179,23 +181,25 @@ public class ContratoLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.hitss.layer.model.Contrato fetchContrato(long contratoId)
+	public static com.hitss.layer.model.Contrato fetchContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchContrato(contratoId);
+		return getService().fetchContrato(contratoPK);
 	}
 
 	/**
 	* Returns the contrato with the primary key.
 	*
-	* @param contratoId the primary key of the contrato
+	* @param contratoPK the primary key of the contrato
 	* @return the contrato
 	* @throws PortalException if a contrato with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Contrato getContrato(long contratoId)
+	public static com.hitss.layer.model.Contrato getContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getContrato(contratoId);
+		return getService().getContrato(contratoPK);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

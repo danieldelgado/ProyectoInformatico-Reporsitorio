@@ -33,6 +33,8 @@
 		<column name="fechacrea" type="Date" />
 		<column name="usuariomodifica" type="long" />
 		<column name="fechamodifica" type="Date" />
+		<column name="cantidadAnnosRubro" type="int" />
+		
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
@@ -146,6 +148,7 @@
 		</finder>
 
 
+		
 		<finder name="S_All" return-type="Collection">
 			<finder-column name="solicitudRequerimientoId" />
 		</finder>
@@ -172,6 +175,10 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		
+		<finder name="U" return-type="Collection" where="activo=true">
+			<finder-column name="userId"  />
+		</finder>
 	</entity>
 
 	<entity name="UsuarioFuncion" table="UsuarioFuncion" local-service="true" remote-service="true">
@@ -250,15 +257,22 @@
 		<column name="usuariomodifica" type="long" />
 		<column name="fechamodifica" type="Date" />
 
+
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+
+		<finder name="U" return-type="Collection" where="activo=true">
+			<finder-column name="usuarioId"  />
+		</finder>
+		
+		
 	</entity>
 
 	<entity name="Estudio" table="Estudio" local-service="true" remote-service="true">
 
 		<column name="estudioId" type="long" primary="true" id-type="increment" />
-		<column name="usuarioId" type="long" />
+		<column name="usuarioId" type="long" primary="true"/>
 		<column name="nombre" type="String" />
 		<column name="annos" type="long" />
 
@@ -271,14 +285,19 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		<finder name="U" return-type="Collection" where="activo=true">
+			<finder-column name="usuarioId" />
+		</finder>
+		
 	</entity>
 
 	<entity name="Experiencia" table="Experiencia" local-service="true" remote-service="true">
 
 		<column name="experienciaId" type="long" primary="true" id-type="increment" />
-		<column name="usuarioId" type="long" />
+		<column name="usuarioId" type="long" primary="true"/>
 		<column name="descripcion" type="String" />
 		<column name="empresa" type="String" />
+		<column name="tipoNegocio" type="long" />
 		<column name="proyecto" type="String" />
 		<column name="fechaInicio" type="Date" />
 		<column name="fechaFin" type="Date" />
@@ -292,12 +311,16 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		<finder name="U" return-type="Collection" where="activo=true">
+			<finder-column name="usuarioId" />
+		</finder>
+		
 	</entity>
 
 	<entity name="Contrato" table="Contrato" local-service="true" remote-service="true">
 
 		<column name="contratoId" type="long" primary="true" id-type="increment" />
-		<column name="usuarioId" type="long" />
+		<column name="usuarioId" type="long" primary="true" />
 		<column name="motivo" type="String" />
 		<column name="descripcion" type="String" />
 		<column name="titulo" type="String" />
@@ -311,6 +334,10 @@
 		<order by="asc">
 			<order-column name="fechamodifica" />
 		</order>
+		<finder name="U" return-type="Collection" where="activo=true">
+			<finder-column name="usuarioId" />
+		</finder>
+		
 	</entity>
 
 	<entity name="Postulacion" table="Postulacion" local-service="true" remote-service="true">
@@ -395,6 +422,12 @@
 		
 		<column name="resultado" type="double"/>
 
+		<finder name="S" return-type="Collection" where="activo=true">
+			<finder-column name="solicitudFuncionId" />
+		</finder>
+		<finder name="E" return-type="Collection" where="activo=true">
+			<finder-column name="evaluacionId" />
+		</finder>
 	</entity>
 	
 	

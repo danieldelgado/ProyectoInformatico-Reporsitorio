@@ -121,6 +121,10 @@ public class UsuarioRequisitoLocalServiceClpInvoker {
 		_methodName237 = "setBeanIdentifier";
 
 		_methodParameterTypes237 = new String[] { "java.lang.String" };
+
+		_methodName242 = "getUsuarioRequisito";
+
+		_methodParameterTypes242 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,6 +228,11 @@ public class UsuarioRequisitoLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName242.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes242, parameterTypes)) {
+			return UsuarioRequisitoLocalServiceUtil.getUsuarioRequisito((java.lang.Long)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -263,4 +272,6 @@ public class UsuarioRequisitoLocalServiceClpInvoker {
 	private String[] _methodParameterTypes236;
 	private String _methodName237;
 	private String[] _methodParameterTypes237;
+	private String _methodName242;
+	private String[] _methodParameterTypes242;
 }

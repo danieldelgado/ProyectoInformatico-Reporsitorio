@@ -1,19 +1,19 @@
 
-package com.hitss.rev.bean
+package com.hitss.rev.dools.impl
 
  dialect "java"
 
 
 
-import com.hitss.rev.bean.EvaluacionBean
-import com.hitss.rev.bean.EvaluacionPuestoBean
-import com.hitss.rev.bean.ExperienciaBean
-import com.hitss.rev.bean.Postulacion
-import com.hitss.rev.bean.PuestoBean
-import com.hitss.rev.bean.ReferenciaBean
-import com.hitss.rev.bean.RequisitoBean
-import com.hitss.rev.bean.SolicitudReclutamiento
-import com.hitss.rev.bean.UsuarioBean
+import com.hitss.rev.dools.impl.EvaluacionBean
+import com.hitss.rev.dools.impl.EvaluacionPuestoBean
+import com.hitss.rev.dools.impl.ExperienciaBean
+import com.hitss.rev.dools.impl.Postulacion
+import com.hitss.rev.dools.impl.PuestoBean
+import com.hitss.rev.dools.impl.ReferenciaBean
+import com.hitss.rev.dools.impl.RequisitoBean
+import com.hitss.rev.dools.impl.SolicitudReclutamiento
+import com.hitss.rev.dools.impl.UsuarioBean
 
 rule PrintString when
     $p : Postulacion( )

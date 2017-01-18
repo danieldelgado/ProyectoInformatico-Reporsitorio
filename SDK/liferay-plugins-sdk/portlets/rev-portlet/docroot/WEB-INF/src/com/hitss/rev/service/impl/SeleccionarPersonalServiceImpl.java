@@ -45,7 +45,7 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 	@Override
 	public void selectPersonal() {
-		expertoRevApi.test();
+//		expertoRevApi.test();
 
 	}
 

@@ -121,6 +121,14 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClpInvoker {
 		_methodName237 = "setBeanIdentifier";
 
 		_methodParameterTypes237 = new String[] { "java.lang.String" };
+
+		_methodName242 = "getFasePostulacionPuestoEvaluacionBySolicitud";
+
+		_methodParameterTypes242 = new String[] { "java.lang.Long" };
+
+		_methodName243 = "getFasePostulacionPuestoEvaluacionByEvaluacion";
+
+		_methodParameterTypes243 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,6 +232,16 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName242.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes242, parameterTypes)) {
+			return FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud((java.lang.Long)arguments[0]);
+		}
+
+		if (_methodName243.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes243, parameterTypes)) {
+			return FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByEvaluacion((java.lang.Long)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -263,4 +281,8 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes236;
 	private String _methodName237;
 	private String[] _methodParameterTypes237;
+	private String _methodName242;
+	private String[] _methodParameterTypes242;
+	private String _methodName243;
+	private String[] _methodParameterTypes243;
 }

@@ -290,6 +290,22 @@ public class FasePostulacionPuestoEvaluacionLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
+		java.lang.Long solicitud)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionBySolicitud(solicitud);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(
+		java.lang.Long evaluacion)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionByEvaluacion(evaluacion);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

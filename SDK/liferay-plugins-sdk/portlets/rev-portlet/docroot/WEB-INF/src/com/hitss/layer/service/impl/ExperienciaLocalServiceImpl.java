@@ -14,7 +14,12 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.Experiencia;
 import com.hitss.layer.service.base.ExperienciaLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.ExperienciaUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the experiencia local service.
@@ -36,4 +41,10 @@ public class ExperienciaLocalServiceImpl extends ExperienciaLocalServiceBaseImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.ExperienciaLocalServiceUtil} to access the experiencia local service.
 	 */
+	
+	public List<Experiencia> getExperiencia(Long userId) throws SystemException{
+		return ExperienciaUtil.findByU(userId);
+	}
+	
+	
 }

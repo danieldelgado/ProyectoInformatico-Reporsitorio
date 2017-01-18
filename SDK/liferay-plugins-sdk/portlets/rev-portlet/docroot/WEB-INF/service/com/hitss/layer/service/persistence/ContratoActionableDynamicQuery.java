@@ -32,6 +32,6 @@ public abstract class ContratoActionableDynamicQuery
 
 		setClassLoader(com.hitss.layer.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("contratoId");
+		setPrimaryKeyPropertyName("primaryKey.contratoId");
 	}
 }

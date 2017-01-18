@@ -19,6 +19,7 @@ import com.hitss.layer.service.ContratoLocalService;
 import com.hitss.layer.service.persistence.ActividadCronogramaPersistence;
 import com.hitss.layer.service.persistence.ActividadPlanAccionUsuarioPersistence;
 import com.hitss.layer.service.persistence.ActividadPlanPersistence;
+import com.hitss.layer.service.persistence.ContratoPK;
 import com.hitss.layer.service.persistence.ContratoPersistence;
 import com.hitss.layer.service.persistence.CronogramaPersistence;
 import com.hitss.layer.service.persistence.DetalleRepuestaEvaluacionPersistence;
@@ -114,27 +115,27 @@ public abstract class ContratoLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new contrato with the primary key. Does not add the contrato to the database.
 	 *
-	 * @param contratoId the primary key for the new contrato
+	 * @param contratoPK the primary key for the new contrato
 	 * @return the new contrato
 	 */
 	@Override
-	public Contrato createContrato(long contratoId) {
-		return contratoPersistence.create(contratoId);
+	public Contrato createContrato(ContratoPK contratoPK) {
+		return contratoPersistence.create(contratoPK);
 	}
 
 	/**
 	 * Deletes the contrato with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param contratoId the primary key of the contrato
+	 * @param contratoPK the primary key of the contrato
 	 * @return the contrato that was removed
 	 * @throws PortalException if a contrato with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Contrato deleteContrato(long contratoId)
+	public Contrato deleteContrato(ContratoPK contratoPK)
 		throws PortalException, SystemException {
-		return contratoPersistence.remove(contratoId);
+		return contratoPersistence.remove(contratoPK);
 	}
 
 	/**
@@ -243,22 +244,23 @@ public abstract class ContratoLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public Contrato fetchContrato(long contratoId) throws SystemException {
-		return contratoPersistence.fetchByPrimaryKey(contratoId);
+	public Contrato fetchContrato(ContratoPK contratoPK)
+		throws SystemException {
+		return contratoPersistence.fetchByPrimaryKey(contratoPK);
 	}
 
 	/**
 	 * Returns the contrato with the primary key.
 	 *
-	 * @param contratoId the primary key of the contrato
+	 * @param contratoPK the primary key of the contrato
 	 * @return the contrato
 	 * @throws PortalException if a contrato with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Contrato getContrato(long contratoId)
+	public Contrato getContrato(ContratoPK contratoPK)
 		throws PortalException, SystemException {
-		return contratoPersistence.findByPrimaryKey(contratoId);
+		return contratoPersistence.findByPrimaryKey(contratoPK);
 	}
 
 	@Override

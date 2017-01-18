@@ -33,11 +33,15 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 
 		_methodName1 = "createExperiencia";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName2 = "deleteExperiencia";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName3 = "deleteExperiencia";
 
@@ -83,11 +87,15 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 
 		_methodName10 = "fetchExperiencia";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName11 = "getExperiencia";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -114,6 +122,10 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "getExperiencia";
+
+		_methodParameterTypes19 = new String[] { "java.lang.Long" };
 	}
 
 	@Override
@@ -148,12 +160,13 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 
 	@Override
 	public com.hitss.layer.model.Experiencia createExperiencia(
-		long experienciaId) {
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { experienciaId });
+					_methodParameterTypes1,
+					new Object[] { ClpSerializer.translateInput(experienciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -172,14 +185,15 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 
 	@Override
 	public com.hitss.layer.model.Experiencia deleteExperiencia(
-		long experienciaId)
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { experienciaId });
+					_methodParameterTypes2,
+					new Object[] { ClpSerializer.translateInput(experienciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -433,13 +447,14 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 
 	@Override
 	public com.hitss.layer.model.Experiencia fetchExperiencia(
-		long experienciaId)
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { experienciaId });
+					_methodParameterTypes10,
+					new Object[] { ClpSerializer.translateInput(experienciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -461,14 +476,16 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Experiencia getExperiencia(long experienciaId)
+	public com.hitss.layer.model.Experiencia getExperiencia(
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { experienciaId });
+					_methodParameterTypes11,
+					new Object[] { ClpSerializer.translateInput(experienciaPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -665,6 +682,36 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.Experiencia> getExperiencia(
+		java.lang.Long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] { ClpSerializer.translateInput(userId) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.Experiencia>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -702,4 +749,6 @@ public class ExperienciaLocalServiceClp implements ExperienciaLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
 }

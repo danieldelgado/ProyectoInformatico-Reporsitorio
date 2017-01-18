@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
-import com.hitss.rev.bean.EvaluacionBean;
 import com.hitss.rev.bean.PuestoEvaluacionBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.service.PublicarOfertaService;
@@ -115,12 +114,14 @@ public class PublicarOfertaController extends RevController {
 
 		lista.add(entre1);
 		lista.add(entre2);
+
+		int cantidadAnnosRubro = ParamUtil.getInteger(resourceRequest, "cantidadAnnosRubro");
 		
 		
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0 && !lista.isEmpty() || lista.size() > 0) {
 			_log.info("solicitudRequerimientoId:" + solicitudRequerimientoId);
 			_log.info("descripcion:" + descripcion);
-			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, td.getScopeGroupId(), lista, descripcion, user, true, h);
+			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, td.getScopeGroupId(), lista, descripcion, cantidadAnnosRubro, user, true, h);
 			_log.info("result:" + result);
 			try {
 				JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
@@ -138,7 +139,7 @@ public class PublicarOfertaController extends RevController {
 		Long solicitudRequerimientoId = ParamUtil.getLong(resourceRequest, "solicitudRequerimientoId");
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0) {
 
-			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, td.getScopeGroupId(), null , null, user, false, null);
+			Map<String, Object> result = publicarOfertaService.publicarOfertaLaboral(solicitudRequerimientoId, td.getScopeGroupId(), null , null, 0,  user, false, null);
 
 			_log.info("result:" + result);
 			try {

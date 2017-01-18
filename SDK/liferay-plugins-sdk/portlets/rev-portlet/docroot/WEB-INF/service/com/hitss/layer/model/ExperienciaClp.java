@@ -16,6 +16,7 @@ package com.hitss.layer.model;
 
 import com.hitss.layer.service.ClpSerializer;
 import com.hitss.layer.service.ExperienciaLocalServiceUtil;
+import com.hitss.layer.service.persistence.ExperienciaPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -52,23 +53,24 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _experienciaId;
+	public ExperienciaPK getPrimaryKey() {
+		return new ExperienciaPK(_experienciaId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setExperienciaId(primaryKey);
+	public void setPrimaryKey(ExperienciaPK primaryKey) {
+		setExperienciaId(primaryKey.experienciaId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _experienciaId;
+		return new ExperienciaPK(_experienciaId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ExperienciaPK)primaryKeyObj);
 	}
 
 	@Override
@@ -79,6 +81,7 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("empresa", getEmpresa());
+		attributes.put("tipoNegocio", getTipoNegocio());
 		attributes.put("proyecto", getProyecto());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
@@ -115,6 +118,12 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 
 		if (empresa != null) {
 			setEmpresa(empresa);
+		}
+
+		Long tipoNegocio = (Long)attributes.get("tipoNegocio");
+
+		if (tipoNegocio != null) {
+			setTipoNegocio(tipoNegocio);
 		}
 
 		String proyecto = (String)attributes.get("proyecto");
@@ -251,6 +260,29 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 				Method method = clazz.getMethod("setEmpresa", String.class);
 
 				method.invoke(_experienciaRemoteModel, empresa);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getTipoNegocio() {
+		return _tipoNegocio;
+	}
+
+	@Override
+	public void setTipoNegocio(long tipoNegocio) {
+		_tipoNegocio = tipoNegocio;
+
+		if (_experienciaRemoteModel != null) {
+			try {
+				Class<?> clazz = _experienciaRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setTipoNegocio", long.class);
+
+				method.invoke(_experienciaRemoteModel, tipoNegocio);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -520,6 +552,7 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 		clone.setUsuarioId(getUsuarioId());
 		clone.setDescripcion(getDescripcion());
 		clone.setEmpresa(getEmpresa());
+		clone.setTipoNegocio(getTipoNegocio());
 		clone.setProyecto(getProyecto());
 		clone.setFechaInicio(getFechaInicio());
 		clone.setFechaFin(getFechaFin());
@@ -558,9 +591,9 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 
 		ExperienciaClp experiencia = (ExperienciaClp)obj;
 
-		long primaryKey = experiencia.getPrimaryKey();
+		ExperienciaPK primaryKey = experiencia.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -574,12 +607,12 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{experienciaId=");
 		sb.append(getExperienciaId());
@@ -589,6 +622,8 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 		sb.append(getDescripcion());
 		sb.append(", empresa=");
 		sb.append(getEmpresa());
+		sb.append(", tipoNegocio=");
+		sb.append(getTipoNegocio());
 		sb.append(", proyecto=");
 		sb.append(getProyecto());
 		sb.append(", fechaInicio=");
@@ -612,7 +647,7 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Experiencia");
@@ -633,6 +668,10 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 		sb.append(
 			"<column><column-name>empresa</column-name><column-value><![CDATA[");
 		sb.append(getEmpresa());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>tipoNegocio</column-name><column-value><![CDATA[");
+		sb.append(getTipoNegocio());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>proyecto</column-name><column-value><![CDATA[");
@@ -676,6 +715,7 @@ public class ExperienciaClp extends BaseModelImpl<Experiencia>
 	private long _usuarioId;
 	private String _descripcion;
 	private String _empresa;
+	private long _tipoNegocio;
 	private String _proyecto;
 	private Date _fechaInicio;
 	private Date _fechaFin;

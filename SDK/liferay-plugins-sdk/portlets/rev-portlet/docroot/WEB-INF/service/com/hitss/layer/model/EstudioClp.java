@@ -16,6 +16,7 @@ package com.hitss.layer.model;
 
 import com.hitss.layer.service.ClpSerializer;
 import com.hitss.layer.service.EstudioLocalServiceUtil;
+import com.hitss.layer.service.persistence.EstudioPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -51,23 +52,24 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _estudioId;
+	public EstudioPK getPrimaryKey() {
+		return new EstudioPK(_estudioId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setEstudioId(primaryKey);
+	public void setPrimaryKey(EstudioPK primaryKey) {
+		setEstudioId(primaryKey.estudioId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _estudioId;
+		return new EstudioPK(_estudioId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((EstudioPK)primaryKeyObj);
 	}
 
 	@Override
@@ -464,9 +466,9 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 
 		EstudioClp estudio = (EstudioClp)obj;
 
-		long primaryKey = estudio.getPrimaryKey();
+		EstudioPK primaryKey = estudio.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -480,7 +482,7 @@ public class EstudioClp extends BaseModelImpl<Estudio> implements Estudio {
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override

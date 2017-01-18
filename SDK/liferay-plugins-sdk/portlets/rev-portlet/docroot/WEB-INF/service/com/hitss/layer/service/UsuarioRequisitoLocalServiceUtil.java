@@ -275,6 +275,12 @@ public class UsuarioRequisitoLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.hitss.layer.model.UsuarioRequisito> getUsuarioRequisito(
+		java.lang.Long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUsuarioRequisito(userId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

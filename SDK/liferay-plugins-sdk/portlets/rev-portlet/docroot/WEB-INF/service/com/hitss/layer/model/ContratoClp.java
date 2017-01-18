@@ -16,6 +16,7 @@ package com.hitss.layer.model;
 
 import com.hitss.layer.service.ClpSerializer;
 import com.hitss.layer.service.ContratoLocalServiceUtil;
+import com.hitss.layer.service.persistence.ContratoPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -51,23 +52,24 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _contratoId;
+	public ContratoPK getPrimaryKey() {
+		return new ContratoPK(_contratoId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setContratoId(primaryKey);
+	public void setPrimaryKey(ContratoPK primaryKey) {
+		setContratoId(primaryKey.contratoId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _contratoId;
+		return new ContratoPK(_contratoId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ContratoPK)primaryKeyObj);
 	}
 
 	@Override
@@ -495,9 +497,9 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 
 		ContratoClp contrato = (ContratoClp)obj;
 
-		long primaryKey = contrato.getPrimaryKey();
+		ContratoPK primaryKey = contrato.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -511,7 +513,7 @@ public class ContratoClp extends BaseModelImpl<Contrato> implements Contrato {
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override

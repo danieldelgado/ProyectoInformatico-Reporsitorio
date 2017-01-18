@@ -61,23 +61,23 @@ public interface ExperienciaLocalService extends BaseLocalService,
 	/**
 	* Creates a new experiencia with the primary key. Does not add the experiencia to the database.
 	*
-	* @param experienciaId the primary key for the new experiencia
+	* @param experienciaPK the primary key for the new experiencia
 	* @return the new experiencia
 	*/
 	public com.hitss.layer.model.Experiencia createExperiencia(
-		long experienciaId);
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK);
 
 	/**
 	* Deletes the experiencia with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param experienciaId the primary key of the experiencia
+	* @param experienciaPK the primary key of the experiencia
 	* @return the experiencia that was removed
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.hitss.layer.model.Experiencia deleteExperiencia(
-		long experienciaId)
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -172,19 +172,20 @@ public interface ExperienciaLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.Experiencia fetchExperiencia(
-		long experienciaId)
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the experiencia with the primary key.
 	*
-	* @param experienciaId the primary key of the experiencia
+	* @param experienciaPK the primary key of the experiencia
 	* @return the experiencia
 	* @throws PortalException if a experiencia with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.hitss.layer.model.Experiencia getExperiencia(long experienciaId)
+	public com.hitss.layer.model.Experiencia getExperiencia(
+		com.hitss.layer.service.persistence.ExperienciaPK experienciaPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -252,4 +253,9 @@ public interface ExperienciaLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.Experiencia> getExperiencia(
+		java.lang.Long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

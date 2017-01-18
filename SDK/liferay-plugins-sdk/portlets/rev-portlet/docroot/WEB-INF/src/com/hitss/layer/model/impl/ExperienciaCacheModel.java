@@ -38,7 +38,7 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{experienciaId=");
 		sb.append(experienciaId);
@@ -48,6 +48,8 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 		sb.append(descripcion);
 		sb.append(", empresa=");
 		sb.append(empresa);
+		sb.append(", tipoNegocio=");
+		sb.append(tipoNegocio);
 		sb.append(", proyecto=");
 		sb.append(proyecto);
 		sb.append(", fechaInicio=");
@@ -89,6 +91,8 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 		else {
 			experienciaImpl.setEmpresa(empresa);
 		}
+
+		experienciaImpl.setTipoNegocio(tipoNegocio);
 
 		if (proyecto == null) {
 			experienciaImpl.setProyecto(StringPool.BLANK);
@@ -141,6 +145,7 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 		usuarioId = objectInput.readLong();
 		descripcion = objectInput.readUTF();
 		empresa = objectInput.readUTF();
+		tipoNegocio = objectInput.readLong();
 		proyecto = objectInput.readUTF();
 		fechaInicio = objectInput.readLong();
 		fechaFin = objectInput.readLong();
@@ -171,6 +176,8 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 			objectOutput.writeUTF(empresa);
 		}
 
+		objectOutput.writeLong(tipoNegocio);
+
 		if (proyecto == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
@@ -191,6 +198,7 @@ public class ExperienciaCacheModel implements CacheModel<Experiencia>,
 	public long usuarioId;
 	public String descripcion;
 	public String empresa;
+	public long tipoNegocio;
 	public String proyecto;
 	public long fechaInicio;
 	public long fechaFin;

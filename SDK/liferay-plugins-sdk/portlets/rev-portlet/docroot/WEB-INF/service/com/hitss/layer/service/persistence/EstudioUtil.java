@@ -110,6 +110,162 @@ public class EstudioUtil {
 	}
 
 	/**
+	* Returns all the estudios where usuarioId = &#63;.
+	*
+	* @param usuarioId the usuario ID
+	* @return the matching estudios
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.Estudio> findByU(
+		long usuarioId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU(usuarioId);
+	}
+
+	/**
+	* Returns a range of all the estudios where usuarioId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.EstudioModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param usuarioId the usuario ID
+	* @param start the lower bound of the range of estudios
+	* @param end the upper bound of the range of estudios (not inclusive)
+	* @return the range of matching estudios
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.Estudio> findByU(
+		long usuarioId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU(usuarioId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the estudios where usuarioId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.EstudioModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param usuarioId the usuario ID
+	* @param start the lower bound of the range of estudios
+	* @param end the upper bound of the range of estudios (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching estudios
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.hitss.layer.model.Estudio> findByU(
+		long usuarioId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU(usuarioId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first estudio in the ordered set where usuarioId = &#63;.
+	*
+	* @param usuarioId the usuario ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching estudio
+	* @throws com.hitss.layer.NoSuchEstudioException if a matching estudio could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Estudio findByU_First(long usuarioId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchEstudioException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_First(usuarioId, orderByComparator);
+	}
+
+	/**
+	* Returns the first estudio in the ordered set where usuarioId = &#63;.
+	*
+	* @param usuarioId the usuario ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching estudio, or <code>null</code> if a matching estudio could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Estudio fetchByU_First(long usuarioId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_First(usuarioId, orderByComparator);
+	}
+
+	/**
+	* Returns the last estudio in the ordered set where usuarioId = &#63;.
+	*
+	* @param usuarioId the usuario ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching estudio
+	* @throws com.hitss.layer.NoSuchEstudioException if a matching estudio could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Estudio findByU_Last(long usuarioId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchEstudioException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_Last(usuarioId, orderByComparator);
+	}
+
+	/**
+	* Returns the last estudio in the ordered set where usuarioId = &#63;.
+	*
+	* @param usuarioId the usuario ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching estudio, or <code>null</code> if a matching estudio could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Estudio fetchByU_Last(long usuarioId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_Last(usuarioId, orderByComparator);
+	}
+
+	/**
+	* Returns the estudios before and after the current estudio in the ordered set where usuarioId = &#63;.
+	*
+	* @param estudioPK the primary key of the current estudio
+	* @param usuarioId the usuario ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next estudio
+	* @throws com.hitss.layer.NoSuchEstudioException if a estudio with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.Estudio[] findByU_PrevAndNext(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK,
+		long usuarioId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.hitss.layer.NoSuchEstudioException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_PrevAndNext(estudioPK, usuarioId, orderByComparator);
+	}
+
+	/**
+	* Removes all the estudios where usuarioId = &#63; from the database.
+	*
+	* @param usuarioId the usuario ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU(long usuarioId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU(usuarioId);
+	}
+
+	/**
+	* Returns the number of estudios where usuarioId = &#63;.
+	*
+	* @param usuarioId the usuario ID
+	* @return the number of matching estudios
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU(long usuarioId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU(usuarioId);
+	}
+
+	/**
 	* Caches the estudio in the entity cache if it is enabled.
 	*
 	* @param estudio the estudio
@@ -131,25 +287,27 @@ public class EstudioUtil {
 	/**
 	* Creates a new estudio with the primary key. Does not add the estudio to the database.
 	*
-	* @param estudioId the primary key for the new estudio
+	* @param estudioPK the primary key for the new estudio
 	* @return the new estudio
 	*/
-	public static com.hitss.layer.model.Estudio create(long estudioId) {
-		return getPersistence().create(estudioId);
+	public static com.hitss.layer.model.Estudio create(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK) {
+		return getPersistence().create(estudioPK);
 	}
 
 	/**
 	* Removes the estudio with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param estudioId the primary key of the estudio
+	* @param estudioPK the primary key of the estudio
 	* @return the estudio that was removed
 	* @throws com.hitss.layer.NoSuchEstudioException if a estudio with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Estudio remove(long estudioId)
+	public static com.hitss.layer.model.Estudio remove(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.hitss.layer.NoSuchEstudioException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(estudioId);
+		return getPersistence().remove(estudioPK);
 	}
 
 	public static com.hitss.layer.model.Estudio updateImpl(
@@ -161,28 +319,29 @@ public class EstudioUtil {
 	/**
 	* Returns the estudio with the primary key or throws a {@link com.hitss.layer.NoSuchEstudioException} if it could not be found.
 	*
-	* @param estudioId the primary key of the estudio
+	* @param estudioPK the primary key of the estudio
 	* @return the estudio
 	* @throws com.hitss.layer.NoSuchEstudioException if a estudio with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Estudio findByPrimaryKey(long estudioId)
+	public static com.hitss.layer.model.Estudio findByPrimaryKey(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.hitss.layer.NoSuchEstudioException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(estudioId);
+		return getPersistence().findByPrimaryKey(estudioPK);
 	}
 
 	/**
 	* Returns the estudio with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param estudioId the primary key of the estudio
+	* @param estudioPK the primary key of the estudio
 	* @return the estudio, or <code>null</code> if a estudio with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.hitss.layer.model.Estudio fetchByPrimaryKey(
-		long estudioId)
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(estudioId);
+		return getPersistence().fetchByPrimaryKey(estudioPK);
 	}
 
 	/**

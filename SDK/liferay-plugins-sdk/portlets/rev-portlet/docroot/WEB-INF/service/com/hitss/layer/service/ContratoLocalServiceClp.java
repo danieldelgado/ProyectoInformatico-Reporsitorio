@@ -30,11 +30,15 @@ public class ContratoLocalServiceClp implements ContratoLocalService {
 
 		_methodName1 = "createContrato";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName2 = "deleteContrato";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName3 = "deleteContrato";
 
@@ -78,11 +82,15 @@ public class ContratoLocalServiceClp implements ContratoLocalService {
 
 		_methodName10 = "fetchContrato";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName11 = "getContrato";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -140,12 +148,14 @@ public class ContratoLocalServiceClp implements ContratoLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Contrato createContrato(long contratoId) {
+	public com.hitss.layer.model.Contrato createContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { contratoId });
+					_methodParameterTypes1,
+					new Object[] { ClpSerializer.translateInput(contratoPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -163,14 +173,16 @@ public class ContratoLocalServiceClp implements ContratoLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Contrato deleteContrato(long contratoId)
+	public com.hitss.layer.model.Contrato deleteContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { contratoId });
+					_methodParameterTypes2,
+					new Object[] { ClpSerializer.translateInput(contratoPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -423,13 +435,15 @@ public class ContratoLocalServiceClp implements ContratoLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Contrato fetchContrato(long contratoId)
+	public com.hitss.layer.model.Contrato fetchContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { contratoId });
+					_methodParameterTypes10,
+					new Object[] { ClpSerializer.translateInput(contratoPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -451,14 +465,16 @@ public class ContratoLocalServiceClp implements ContratoLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Contrato getContrato(long contratoId)
+	public com.hitss.layer.model.Contrato getContrato(
+		com.hitss.layer.service.persistence.ContratoPK contratoPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { contratoId });
+					_methodParameterTypes11,
+					new Object[] { ClpSerializer.translateInput(contratoPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

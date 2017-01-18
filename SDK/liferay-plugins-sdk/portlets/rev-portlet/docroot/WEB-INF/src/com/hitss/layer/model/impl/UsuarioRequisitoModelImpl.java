@@ -89,7 +89,11 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.UsuarioRequisito"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.UsuarioRequisito"),
+			true);
+	public static long USERID_COLUMN_BITMASK = 1L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -281,6 +285,14 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 	@Override
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -292,6 +304,10 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@JSON
@@ -427,7 +443,13 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 	@Override
 	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
 		_fechamodifica = fechamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -505,6 +527,13 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 
 	@Override
 	public void resetOriginalValues() {
+		UsuarioRequisitoModelImpl usuarioRequisitoModelImpl = this;
+
+		usuarioRequisitoModelImpl._originalUserId = usuarioRequisitoModelImpl._userId;
+
+		usuarioRequisitoModelImpl._setOriginalUserId = false;
+
+		usuarioRequisitoModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -653,6 +682,8 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 		};
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private long _tagId;
 	private long _annos;
 	private boolean _exigible;
@@ -664,5 +695,6 @@ public class UsuarioRequisitoModelImpl extends BaseModelImpl<UsuarioRequisito>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private UsuarioRequisito _escapedModel;
 }

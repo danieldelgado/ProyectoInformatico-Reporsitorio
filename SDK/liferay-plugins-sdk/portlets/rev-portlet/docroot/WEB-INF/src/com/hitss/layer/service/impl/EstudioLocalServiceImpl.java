@@ -14,16 +14,25 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.Estudio;
 import com.hitss.layer.service.base.EstudioLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.EstudioUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the estudio local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.rec.hitss.layer.service.EstudioLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.rec.hitss.layer.service.EstudioLocalService} interface.
  *
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
  *
  * @author Crossfire
@@ -33,7 +42,12 @@ import com.hitss.layer.service.base.EstudioLocalServiceBaseImpl;
 public class EstudioLocalServiceImpl extends EstudioLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.EstudioLocalServiceUtil} to access the estudio local service.
+	 * 
+	 * Never reference this interface directly. Always use {@link
+	 * com.rec.hitss.layer.service.EstudioLocalServiceUtil} to access the
+	 * estudio local service.
 	 */
+	public List<Estudio> getEstudio(Long userId) throws SystemException {
+		return EstudioUtil.findByU(userId);
+	}
 }

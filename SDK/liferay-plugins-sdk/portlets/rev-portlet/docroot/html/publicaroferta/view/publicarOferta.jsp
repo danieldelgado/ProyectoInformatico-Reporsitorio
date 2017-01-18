@@ -75,6 +75,14 @@
 								<label>${solicitudReclutamiento.strfechaLimite}</label>
 							</div>
 						</div>
+						<div>
+							<div class="span5">
+								<label>Cantidad de Años en (${solicitudReclutamiento.strtipoNegocio}):</label>
+							</div>
+							<div class="span6">
+								<input id="<portlet:namespace/>cantidadAnnosRubro" name="<portlet:namespace/>rangoMinimo1" class="span8" type="text">
+							</div>
+						</div>
 					</div>
 					<div>
 						<div class="span12">

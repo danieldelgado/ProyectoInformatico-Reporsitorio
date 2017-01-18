@@ -30,11 +30,15 @@ public class ContratoLocalServiceClpInvoker {
 
 		_methodName1 = "createContrato";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName2 = "deleteContrato";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName3 = "deleteContrato";
 
@@ -78,11 +82,15 @@ public class ContratoLocalServiceClpInvoker {
 
 		_methodName10 = "fetchContrato";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName11 = "getContrato";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.ContratoPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -118,12 +126,12 @@ public class ContratoLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return ContratoLocalServiceUtil.createContrato(((Long)arguments[0]).longValue());
+			return ContratoLocalServiceUtil.createContrato((com.hitss.layer.service.persistence.ContratoPK)arguments[0]);
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return ContratoLocalServiceUtil.deleteContrato(((Long)arguments[0]).longValue());
+			return ContratoLocalServiceUtil.deleteContrato((com.hitss.layer.service.persistence.ContratoPK)arguments[0]);
 		}
 
 		if (_methodName3.equals(name) &&
@@ -169,12 +177,12 @@ public class ContratoLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return ContratoLocalServiceUtil.fetchContrato(((Long)arguments[0]).longValue());
+			return ContratoLocalServiceUtil.fetchContrato((com.hitss.layer.service.persistence.ContratoPK)arguments[0]);
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return ContratoLocalServiceUtil.getContrato(((Long)arguments[0]).longValue());
+			return ContratoLocalServiceUtil.getContrato((com.hitss.layer.service.persistence.ContratoPK)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&

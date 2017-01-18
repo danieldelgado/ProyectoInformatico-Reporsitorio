@@ -253,4 +253,16 @@ public interface FasePostulacionPuestoEvaluacionLocalService
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
+		java.lang.Long solicitud)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(
+		java.lang.Long evaluacion)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

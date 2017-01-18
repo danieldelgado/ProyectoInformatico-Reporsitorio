@@ -32,6 +32,6 @@ public abstract class EstudioActionableDynamicQuery
 
 		setClassLoader(com.hitss.layer.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("estudioId");
+		setPrimaryKeyPropertyName("primaryKey.estudioId");
 	}
 }

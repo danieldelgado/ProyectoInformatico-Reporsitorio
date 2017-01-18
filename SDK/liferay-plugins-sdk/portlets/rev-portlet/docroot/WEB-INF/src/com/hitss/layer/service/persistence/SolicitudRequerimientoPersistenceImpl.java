@@ -2079,6 +2079,7 @@ public class SolicitudRequerimientoPersistenceImpl extends BasePersistenceImpl<S
 		solicitudRequerimientoImpl.setFechacrea(solicitudRequerimiento.getFechacrea());
 		solicitudRequerimientoImpl.setUsuariomodifica(solicitudRequerimiento.getUsuariomodifica());
 		solicitudRequerimientoImpl.setFechamodifica(solicitudRequerimiento.getFechamodifica());
+		solicitudRequerimientoImpl.setCantidadAnnosRubro(solicitudRequerimiento.getCantidadAnnosRubro());
 
 		return solicitudRequerimientoImpl;
 	}

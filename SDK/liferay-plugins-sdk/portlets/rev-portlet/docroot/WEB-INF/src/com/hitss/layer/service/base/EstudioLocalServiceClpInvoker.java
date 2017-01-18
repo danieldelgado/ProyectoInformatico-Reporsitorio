@@ -30,11 +30,15 @@ public class EstudioLocalServiceClpInvoker {
 
 		_methodName1 = "createEstudio";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName2 = "deleteEstudio";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName3 = "deleteEstudio";
 
@@ -78,11 +82,15 @@ public class EstudioLocalServiceClpInvoker {
 
 		_methodName10 = "fetchEstudio";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName11 = "getEstudio";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -107,6 +115,10 @@ public class EstudioLocalServiceClpInvoker {
 		_methodName237 = "setBeanIdentifier";
 
 		_methodParameterTypes237 = new String[] { "java.lang.String" };
+
+		_methodName242 = "getEstudio";
+
+		_methodParameterTypes242 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -118,12 +130,12 @@ public class EstudioLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return EstudioLocalServiceUtil.createEstudio(((Long)arguments[0]).longValue());
+			return EstudioLocalServiceUtil.createEstudio((com.hitss.layer.service.persistence.EstudioPK)arguments[0]);
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return EstudioLocalServiceUtil.deleteEstudio(((Long)arguments[0]).longValue());
+			return EstudioLocalServiceUtil.deleteEstudio((com.hitss.layer.service.persistence.EstudioPK)arguments[0]);
 		}
 
 		if (_methodName3.equals(name) &&
@@ -169,12 +181,12 @@ public class EstudioLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return EstudioLocalServiceUtil.fetchEstudio(((Long)arguments[0]).longValue());
+			return EstudioLocalServiceUtil.fetchEstudio((com.hitss.layer.service.persistence.EstudioPK)arguments[0]);
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return EstudioLocalServiceUtil.getEstudio(((Long)arguments[0]).longValue());
+			return EstudioLocalServiceUtil.getEstudio((com.hitss.layer.service.persistence.EstudioPK)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&
@@ -208,6 +220,11 @@ public class EstudioLocalServiceClpInvoker {
 			EstudioLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
+		}
+
+		if (_methodName242.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes242, parameterTypes)) {
+			return EstudioLocalServiceUtil.getEstudio((java.lang.Long)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -249,4 +266,6 @@ public class EstudioLocalServiceClpInvoker {
 	private String[] _methodParameterTypes236;
 	private String _methodName237;
 	private String[] _methodParameterTypes237;
+	private String _methodName242;
+	private String[] _methodParameterTypes242;
 }

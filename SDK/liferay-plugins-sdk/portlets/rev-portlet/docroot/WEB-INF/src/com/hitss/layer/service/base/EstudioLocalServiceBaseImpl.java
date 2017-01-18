@@ -23,6 +23,7 @@ import com.hitss.layer.service.persistence.ContratoPersistence;
 import com.hitss.layer.service.persistence.CronogramaPersistence;
 import com.hitss.layer.service.persistence.DetalleRepuestaEvaluacionPersistence;
 import com.hitss.layer.service.persistence.DetalleRepuestaReclutamientoPersistence;
+import com.hitss.layer.service.persistence.EstudioPK;
 import com.hitss.layer.service.persistence.EstudioPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPreguntaPersistence;
@@ -114,27 +115,27 @@ public abstract class EstudioLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new estudio with the primary key. Does not add the estudio to the database.
 	 *
-	 * @param estudioId the primary key for the new estudio
+	 * @param estudioPK the primary key for the new estudio
 	 * @return the new estudio
 	 */
 	@Override
-	public Estudio createEstudio(long estudioId) {
-		return estudioPersistence.create(estudioId);
+	public Estudio createEstudio(EstudioPK estudioPK) {
+		return estudioPersistence.create(estudioPK);
 	}
 
 	/**
 	 * Deletes the estudio with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param estudioId the primary key of the estudio
+	 * @param estudioPK the primary key of the estudio
 	 * @return the estudio that was removed
 	 * @throws PortalException if a estudio with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Estudio deleteEstudio(long estudioId)
+	public Estudio deleteEstudio(EstudioPK estudioPK)
 		throws PortalException, SystemException {
-		return estudioPersistence.remove(estudioId);
+		return estudioPersistence.remove(estudioPK);
 	}
 
 	/**
@@ -242,22 +243,22 @@ public abstract class EstudioLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public Estudio fetchEstudio(long estudioId) throws SystemException {
-		return estudioPersistence.fetchByPrimaryKey(estudioId);
+	public Estudio fetchEstudio(EstudioPK estudioPK) throws SystemException {
+		return estudioPersistence.fetchByPrimaryKey(estudioPK);
 	}
 
 	/**
 	 * Returns the estudio with the primary key.
 	 *
-	 * @param estudioId the primary key of the estudio
+	 * @param estudioPK the primary key of the estudio
 	 * @return the estudio
 	 * @throws PortalException if a estudio with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Estudio getEstudio(long estudioId)
+	public Estudio getEstudio(EstudioPK estudioPK)
 		throws PortalException, SystemException {
-		return estudioPersistence.findByPrimaryKey(estudioId);
+		return estudioPersistence.findByPrimaryKey(estudioPK);
 	}
 
 	@Override

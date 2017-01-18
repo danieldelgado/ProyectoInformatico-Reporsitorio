@@ -289,6 +289,13 @@ public class UsuarioRequisitoLocalServiceWrapper
 			arguments);
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.UsuarioRequisito> getUsuarioRequisito(
+		java.lang.Long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _usuarioRequisitoLocalService.getUsuarioRequisito(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

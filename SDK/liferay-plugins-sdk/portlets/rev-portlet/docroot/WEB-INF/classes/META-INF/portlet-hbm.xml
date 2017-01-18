@@ -93,10 +93,10 @@
 	</class>
 	<class name="com.hitss.layer.model.impl.ContratoImpl" table="Contrato">
 		<cache usage="read-write" />
-		<id name="contratoId" type="long">
-			<generator class="increment" />
-		</id>
-		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.ContratoPK">
+			<key-property name="contratoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
 		<property name="motivo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="titulo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -145,10 +145,10 @@
 	</class>
 	<class name="com.hitss.layer.model.impl.EstudioImpl" table="Estudio">
 		<cache usage="read-write" />
-		<id name="estudioId" type="long">
-			<generator class="increment" />
-		</id>
-		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.EstudioPK">
+			<key-property name="estudioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
 		<property name="nombre" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="annos" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
@@ -182,12 +182,13 @@
 	</class>
 	<class name="com.hitss.layer.model.impl.ExperienciaImpl" table="Experiencia">
 		<cache usage="read-write" />
-		<id name="experienciaId" type="long">
-			<generator class="increment" />
-		</id>
-		<property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<composite-id name="primaryKey" class="com.hitss.layer.service.persistence.ExperienciaPK">
+			<key-property name="experienciaId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="usuarioId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
 		<property name="descripcion" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="empresa" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tipoNegocio" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="proyecto" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="fechaInicio" type="org.hibernate.type.TimestampType" />
 		<property name="fechaFin" type="org.hibernate.type.TimestampType" />
@@ -448,6 +449,7 @@
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />
 		<property name="usuariomodifica" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechamodifica" type="org.hibernate.type.TimestampType" />
+		<property name="cantidadAnnosRubro" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.hitss.layer.model.impl.SolicitudRequerimientoFuncionImpl" table="SolicitudRequerimientoFuncion">
 		<cache usage="read-write" />

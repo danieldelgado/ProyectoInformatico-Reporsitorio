@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ContratoPK;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -85,12 +87,13 @@ public class ContratoSoap implements Serializable {
 	public ContratoSoap() {
 	}
 
-	public long getPrimaryKey() {
-		return _contratoId;
+	public ContratoPK getPrimaryKey() {
+		return new ContratoPK(_contratoId, _usuarioId);
 	}
 
-	public void setPrimaryKey(long pk) {
-		setContratoId(pk);
+	public void setPrimaryKey(ContratoPK pk) {
+		setContratoId(pk.contratoId);
+		setUsuarioId(pk.usuarioId);
 	}
 
 	public long getContratoId() {

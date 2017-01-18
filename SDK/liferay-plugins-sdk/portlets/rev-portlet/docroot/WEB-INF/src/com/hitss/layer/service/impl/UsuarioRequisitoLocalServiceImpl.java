@@ -14,7 +14,12 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.model.UsuarioRequisito;
 import com.hitss.layer.service.base.UsuarioRequisitoLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.UsuarioRequisitoUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the usuario requisito local service.
@@ -37,4 +42,11 @@ public class UsuarioRequisitoLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.rec.hitss.layer.service.UsuarioRequisitoLocalServiceUtil} to access the usuario requisito local service.
 	 */
+	
+	public List<UsuarioRequisito> getUsuarioRequisito(Long userId) throws SystemException{
+		
+		return UsuarioRequisitoUtil.findByU(userId);
+		
+	}
+	
 }

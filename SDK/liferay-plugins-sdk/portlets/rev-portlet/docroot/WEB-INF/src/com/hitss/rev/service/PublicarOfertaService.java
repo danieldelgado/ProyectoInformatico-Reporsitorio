@@ -35,7 +35,7 @@ public interface PublicarOfertaService {
 
 	List<ParametroBean> getAreas();
 
-	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, Long scopeGroupId, List<PuestoEvaluacionBean> lista  , String descripcion,User user, boolean publicar , HttpServletRequest request);
+	Map<String, Object>  publicarOfertaLaboral(Long solicitudRequerimientoId, Long scopeGroupId, List<PuestoEvaluacionBean> lista  , String descripcion,int cantidadAnnosRubro, User user, boolean publicar , HttpServletRequest request);
 
 	List<EvaluacionBean>  getEvaluaciones();
 

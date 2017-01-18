@@ -78,6 +78,7 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechamodifica", getFechamodifica());
+		attributes.put("cantidadAnnosRubro", getCantidadAnnosRubro());
 
 		return attributes;
 	}
@@ -245,6 +246,13 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 
 		if (fechamodifica != null) {
 			setFechamodifica(fechamodifica);
+		}
+
+		Integer cantidadAnnosRubro = (Integer)attributes.get(
+				"cantidadAnnosRubro");
+
+		if (cantidadAnnosRubro != null) {
+			setCantidadAnnosRubro(cantidadAnnosRubro);
 		}
 	}
 
@@ -816,6 +824,26 @@ public class SolicitudRequerimientoWrapper implements SolicitudRequerimiento,
 	@Override
 	public void setFechamodifica(java.util.Date fechamodifica) {
 		_solicitudRequerimiento.setFechamodifica(fechamodifica);
+	}
+
+	/**
+	* Returns the cantidad annos rubro of this solicitud requerimiento.
+	*
+	* @return the cantidad annos rubro of this solicitud requerimiento
+	*/
+	@Override
+	public int getCantidadAnnosRubro() {
+		return _solicitudRequerimiento.getCantidadAnnosRubro();
+	}
+
+	/**
+	* Sets the cantidad annos rubro of this solicitud requerimiento.
+	*
+	* @param cantidadAnnosRubro the cantidad annos rubro of this solicitud requerimiento
+	*/
+	@Override
+	public void setCantidadAnnosRubro(int cantidadAnnosRubro) {
+		_solicitudRequerimiento.setCantidadAnnosRubro(cantidadAnnosRubro);
 	}
 
 	@Override

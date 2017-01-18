@@ -17,6 +17,7 @@ package com.hitss.layer.model.impl;
 import com.hitss.layer.model.Contrato;
 import com.hitss.layer.model.ContratoModel;
 import com.hitss.layer.model.ContratoSoap;
+import com.hitss.layer.service.persistence.ContratoPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
@@ -27,10 +28,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.service.ServiceContext;
-
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
@@ -76,7 +73,7 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Contrato (contratoId LONG not null primary key,usuarioId LONG,motivo VARCHAR(75) null,descripcion VARCHAR(75) null,titulo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Contrato (contratoId LONG not null,usuarioId LONG not null,motivo VARCHAR(75) null,descripcion VARCHAR(75) null,titulo VARCHAR(75) null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (contratoId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table Contrato";
 	public static final String ORDER_BY_JPQL = " ORDER BY contrato.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Contrato.fechamodifica ASC";
@@ -89,7 +86,11 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.Contrato"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.Contrato"),
+			true);
+	public static long USUARIOID_COLUMN_BITMASK = 1L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -145,23 +146,24 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _contratoId;
+	public ContratoPK getPrimaryKey() {
+		return new ContratoPK(_contratoId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setContratoId(primaryKey);
+	public void setPrimaryKey(ContratoPK primaryKey) {
+		setContratoId(primaryKey.contratoId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _contratoId;
+		return new ContratoPK(_contratoId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ContratoPK)primaryKeyObj);
 	}
 
 	@Override
@@ -274,7 +276,19 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 
 	@Override
 	public void setUsuarioId(long usuarioId) {
+		_columnBitmask |= USUARIOID_COLUMN_BITMASK;
+
+		if (!_setOriginalUsuarioId) {
+			_setOriginalUsuarioId = true;
+
+			_originalUsuarioId = _usuarioId;
+		}
+
 		_usuarioId = usuarioId;
+	}
+
+	public long getOriginalUsuarioId() {
+		return _originalUsuarioId;
 	}
 
 	@JSON
@@ -382,20 +396,13 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 
 	@Override
 	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
 		_fechamodifica = fechamodifica;
 	}
 
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-			Contrato.class.getName(), getPrimaryKey());
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		ExpandoBridge expandoBridge = getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -454,9 +461,9 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 
 		Contrato contrato = (Contrato)obj;
 
-		long primaryKey = contrato.getPrimaryKey();
+		ContratoPK primaryKey = contrato.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -466,11 +473,18 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
 	public void resetOriginalValues() {
+		ContratoModelImpl contratoModelImpl = this;
+
+		contratoModelImpl._originalUsuarioId = contratoModelImpl._usuarioId;
+
+		contratoModelImpl._setOriginalUsuarioId = false;
+
+		contratoModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -621,6 +635,8 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 		};
 	private long _contratoId;
 	private long _usuarioId;
+	private long _originalUsuarioId;
+	private boolean _setOriginalUsuarioId;
 	private String _motivo;
 	private String _descripcion;
 	private String _titulo;
@@ -629,5 +645,6 @@ public class ContratoModelImpl extends BaseModelImpl<Contrato>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private Contrato _escapedModel;
 }

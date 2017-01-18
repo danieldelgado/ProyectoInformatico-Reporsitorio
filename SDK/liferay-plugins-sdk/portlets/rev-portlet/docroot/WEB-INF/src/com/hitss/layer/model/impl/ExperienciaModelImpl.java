@@ -17,6 +17,7 @@ package com.hitss.layer.model.impl;
 import com.hitss.layer.model.Experiencia;
 import com.hitss.layer.model.ExperienciaModel;
 import com.hitss.layer.model.ExperienciaSoap;
+import com.hitss.layer.service.persistence.ExperienciaPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
@@ -27,10 +28,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.service.ServiceContext;
-
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 import java.io.Serializable;
 
@@ -69,6 +66,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 			{ "usuarioId", Types.BIGINT },
 			{ "descripcion", Types.VARCHAR },
 			{ "empresa", Types.VARCHAR },
+			{ "tipoNegocio", Types.BIGINT },
 			{ "proyecto", Types.VARCHAR },
 			{ "fechaInicio", Types.TIMESTAMP },
 			{ "fechaFin", Types.TIMESTAMP },
@@ -78,7 +76,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Experiencia (experienciaId LONG not null primary key,usuarioId LONG,descripcion VARCHAR(75) null,empresa VARCHAR(75) null,proyecto VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table Experiencia (experienciaId LONG not null,usuarioId LONG not null,descripcion VARCHAR(75) null,empresa VARCHAR(75) null,tipoNegocio LONG,proyecto VARCHAR(75) null,fechaInicio DATE null,fechaFin DATE null,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (experienciaId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table Experiencia";
 	public static final String ORDER_BY_JPQL = " ORDER BY experiencia.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Experiencia.fechamodifica ASC";
@@ -91,7 +89,11 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.Experiencia"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.Experiencia"),
+			true);
+	public static long USUARIOID_COLUMN_BITMASK = 1L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -110,6 +112,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		model.setUsuarioId(soapModel.getUsuarioId());
 		model.setDescripcion(soapModel.getDescripcion());
 		model.setEmpresa(soapModel.getEmpresa());
+		model.setTipoNegocio(soapModel.getTipoNegocio());
 		model.setProyecto(soapModel.getProyecto());
 		model.setFechaInicio(soapModel.getFechaInicio());
 		model.setFechaFin(soapModel.getFechaFin());
@@ -149,23 +152,24 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	}
 
 	@Override
-	public long getPrimaryKey() {
-		return _experienciaId;
+	public ExperienciaPK getPrimaryKey() {
+		return new ExperienciaPK(_experienciaId, _usuarioId);
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
-		setExperienciaId(primaryKey);
+	public void setPrimaryKey(ExperienciaPK primaryKey) {
+		setExperienciaId(primaryKey.experienciaId);
+		setUsuarioId(primaryKey.usuarioId);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _experienciaId;
+		return new ExperienciaPK(_experienciaId, _usuarioId);
 	}
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((ExperienciaPK)primaryKeyObj);
 	}
 
 	@Override
@@ -186,6 +190,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		attributes.put("usuarioId", getUsuarioId());
 		attributes.put("descripcion", getDescripcion());
 		attributes.put("empresa", getEmpresa());
+		attributes.put("tipoNegocio", getTipoNegocio());
 		attributes.put("proyecto", getProyecto());
 		attributes.put("fechaInicio", getFechaInicio());
 		attributes.put("fechaFin", getFechaFin());
@@ -222,6 +227,12 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 		if (empresa != null) {
 			setEmpresa(empresa);
+		}
+
+		Long tipoNegocio = (Long)attributes.get("tipoNegocio");
+
+		if (tipoNegocio != null) {
+			setTipoNegocio(tipoNegocio);
 		}
 
 		String proyecto = (String)attributes.get("proyecto");
@@ -292,7 +303,19 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public void setUsuarioId(long usuarioId) {
+		_columnBitmask |= USUARIOID_COLUMN_BITMASK;
+
+		if (!_setOriginalUsuarioId) {
+			_setOriginalUsuarioId = true;
+
+			_originalUsuarioId = _usuarioId;
+		}
+
 		_usuarioId = usuarioId;
+	}
+
+	public long getOriginalUsuarioId() {
+		return _originalUsuarioId;
 	}
 
 	@JSON
@@ -325,6 +348,17 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	@Override
 	public void setEmpresa(String empresa) {
 		_empresa = empresa;
+	}
+
+	@JSON
+	@Override
+	public long getTipoNegocio() {
+		return _tipoNegocio;
+	}
+
+	@Override
+	public void setTipoNegocio(long tipoNegocio) {
+		_tipoNegocio = tipoNegocio;
 	}
 
 	@JSON
@@ -422,20 +456,13 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
 		_fechamodifica = fechamodifica;
 	}
 
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-			Experiencia.class.getName(), getPrimaryKey());
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		ExpandoBridge expandoBridge = getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -456,6 +483,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		experienciaImpl.setUsuarioId(getUsuarioId());
 		experienciaImpl.setDescripcion(getDescripcion());
 		experienciaImpl.setEmpresa(getEmpresa());
+		experienciaImpl.setTipoNegocio(getTipoNegocio());
 		experienciaImpl.setProyecto(getProyecto());
 		experienciaImpl.setFechaInicio(getFechaInicio());
 		experienciaImpl.setFechaFin(getFechaFin());
@@ -496,9 +524,9 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 		Experiencia experiencia = (Experiencia)obj;
 
-		long primaryKey = experiencia.getPrimaryKey();
+		ExperienciaPK primaryKey = experiencia.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -508,11 +536,18 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	@Override
 	public void resetOriginalValues() {
+		ExperienciaModelImpl experienciaModelImpl = this;
+
+		experienciaModelImpl._originalUsuarioId = experienciaModelImpl._usuarioId;
+
+		experienciaModelImpl._setOriginalUsuarioId = false;
+
+		experienciaModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -538,6 +573,8 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		if ((empresa != null) && (empresa.length() == 0)) {
 			experienciaCacheModel.empresa = null;
 		}
+
+		experienciaCacheModel.tipoNegocio = getTipoNegocio();
 
 		experienciaCacheModel.proyecto = getProyecto();
 
@@ -594,7 +631,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{experienciaId=");
 		sb.append(getExperienciaId());
@@ -604,6 +641,8 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		sb.append(getDescripcion());
 		sb.append(", empresa=");
 		sb.append(getEmpresa());
+		sb.append(", tipoNegocio=");
+		sb.append(getTipoNegocio());
 		sb.append(", proyecto=");
 		sb.append(getProyecto());
 		sb.append(", fechaInicio=");
@@ -627,7 +666,7 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Experiencia");
@@ -648,6 +687,10 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		sb.append(
 			"<column><column-name>empresa</column-name><column-value><![CDATA[");
 		sb.append(getEmpresa());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>tipoNegocio</column-name><column-value><![CDATA[");
+		sb.append(getTipoNegocio());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>proyecto</column-name><column-value><![CDATA[");
@@ -693,8 +736,11 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 		};
 	private long _experienciaId;
 	private long _usuarioId;
+	private long _originalUsuarioId;
+	private boolean _setOriginalUsuarioId;
 	private String _descripcion;
 	private String _empresa;
+	private long _tipoNegocio;
 	private String _proyecto;
 	private Date _fechaInicio;
 	private Date _fechaFin;
@@ -703,5 +749,6 @@ public class ExperienciaModelImpl extends BaseModelImpl<Experiencia>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private Experiencia _escapedModel;
 }

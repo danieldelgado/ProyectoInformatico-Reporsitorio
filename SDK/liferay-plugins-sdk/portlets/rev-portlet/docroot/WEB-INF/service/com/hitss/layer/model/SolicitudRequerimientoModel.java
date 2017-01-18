@@ -449,6 +449,20 @@ public interface SolicitudRequerimientoModel extends BaseModel<SolicitudRequerim
 	 */
 	public void setFechamodifica(Date fechamodifica);
 
+	/**
+	 * Returns the cantidad annos rubro of this solicitud requerimiento.
+	 *
+	 * @return the cantidad annos rubro of this solicitud requerimiento
+	 */
+	public int getCantidadAnnosRubro();
+
+	/**
+	 * Sets the cantidad annos rubro of this solicitud requerimiento.
+	 *
+	 * @param cantidadAnnosRubro the cantidad annos rubro of this solicitud requerimiento
+	 */
+	public void setCantidadAnnosRubro(int cantidadAnnosRubro);
+
 	@Override
 	public boolean isNew();
 

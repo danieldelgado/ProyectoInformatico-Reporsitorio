@@ -120,6 +120,7 @@
 		<field name="usuarioId" type="long" />
 		<field name="descripcion" type="String" />
 		<field name="empresa" type="String" />
+		<field name="tipoNegocio" type="long" />
 		<field name="proyecto" type="String" />
 		<field name="fechaInicio" type="Date" />
 		<field name="fechaFin" type="Date" />
@@ -329,6 +330,7 @@
 		<field name="fechacrea" type="Date" />
 		<field name="usuariomodifica" type="long" />
 		<field name="fechamodifica" type="Date" />
+		<field name="cantidadAnnosRubro" type="int" />
 	</model>
 	<model name="com.hitss.layer.model.SolicitudRequerimientoFuncion">
 		<field name="solicitudFuncionId" type="long" />

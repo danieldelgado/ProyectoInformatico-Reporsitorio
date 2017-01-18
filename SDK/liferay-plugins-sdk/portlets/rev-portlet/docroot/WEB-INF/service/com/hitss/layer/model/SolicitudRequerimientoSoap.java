@@ -59,6 +59,7 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		soapModel.setFechacrea(model.getFechacrea());
 		soapModel.setUsuariomodifica(model.getUsuariomodifica());
 		soapModel.setFechamodifica(model.getFechamodifica());
+		soapModel.setCantidadAnnosRubro(model.getCantidadAnnosRubro());
 
 		return soapModel;
 	}
@@ -334,6 +335,14 @@ public class SolicitudRequerimientoSoap implements Serializable {
 		_fechamodifica = fechamodifica;
 	}
 
+	public int getCantidadAnnosRubro() {
+		return _cantidadAnnosRubro;
+	}
+
+	public void setCantidadAnnosRubro(int cantidadAnnosRubro) {
+		_cantidadAnnosRubro = cantidadAnnosRubro;
+	}
+
 	private long _solicitudRequerimientoId;
 	private long _areaSolicitante;
 	private int _cantidadRecursos;
@@ -361,4 +370,5 @@ public class SolicitudRequerimientoSoap implements Serializable {
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private int _cantidadAnnosRubro;
 }

@@ -87,7 +87,11 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.Referencia"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.Referencia"),
+			true);
+	public static long USUARIOID_COLUMN_BITMASK = 1L;
+	public static long FECHAMODIFICA_COLUMN_BITMASK = 2L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -281,7 +285,19 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 	@Override
 	public void setUsuarioId(long usuarioId) {
+		_columnBitmask |= USUARIOID_COLUMN_BITMASK;
+
+		if (!_setOriginalUsuarioId) {
+			_setOriginalUsuarioId = true;
+
+			_originalUsuarioId = _usuarioId;
+		}
+
 		_usuarioId = usuarioId;
+	}
+
+	public long getOriginalUsuarioId() {
+		return _originalUsuarioId;
 	}
 
 	@JSON
@@ -405,7 +421,13 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 	@Override
 	public void setFechamodifica(Date fechamodifica) {
+		_columnBitmask = -1L;
+
 		_fechamodifica = fechamodifica;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -482,6 +504,13 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 
 	@Override
 	public void resetOriginalValues() {
+		ReferenciaModelImpl referenciaModelImpl = this;
+
+		referenciaModelImpl._originalUsuarioId = referenciaModelImpl._usuarioId;
+
+		referenciaModelImpl._setOriginalUsuarioId = false;
+
+		referenciaModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -646,6 +675,8 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 		};
 	private long _referenciaId;
 	private long _usuarioId;
+	private long _originalUsuarioId;
+	private boolean _setOriginalUsuarioId;
 	private String _empresa;
 	private String _telefono;
 	private String _responsable;
@@ -655,5 +686,6 @@ public class ReferenciaModelImpl extends BaseModelImpl<Referencia>
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private long _columnBitmask;
 	private Referencia _escapedModel;
 }

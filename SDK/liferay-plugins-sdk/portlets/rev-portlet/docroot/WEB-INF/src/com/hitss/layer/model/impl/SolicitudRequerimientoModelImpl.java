@@ -91,9 +91,10 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
-			{ "fechamodifica", Types.TIMESTAMP }
+			{ "fechamodifica", Types.TIMESTAMP },
+			{ "cantidadAnnosRubro", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,fechameta DATE null,prioridad LONG,contenidoId VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table SolicitudRequerimiento (solicitudRequerimientoId LONG not null primary key,areaSolicitante LONG,cantidadRecursos INTEGER,responsableRRHH LONG,fechaLimite DATE null,tiempoContrato LONG,tipoNegocio LONG,presupuestoMaximo LONG,presupuestoMinimo LONG,cliente LONG,especialidad VARCHAR(75) null,meta VARCHAR(75) null,fechameta DATE null,prioridad LONG,contenidoId VARCHAR(75) null,modalidadjornada LONG,modalidadcontrato LONG,lugarTrabajo VARCHAR(75) null,categoriaPuestoId LONG,proyecto VARCHAR(75) null,tiporeclutamiento LONG,estado LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,cantidadAnnosRubro INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table SolicitudRequerimiento";
 	public static final String ORDER_BY_JPQL = " ORDER BY solicitudRequerimiento.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SolicitudRequerimiento.fechamodifica ASC";
@@ -156,6 +157,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		model.setFechacrea(soapModel.getFechacrea());
 		model.setUsuariomodifica(soapModel.getUsuariomodifica());
 		model.setFechamodifica(soapModel.getFechamodifica());
+		model.setCantidadAnnosRubro(soapModel.getCantidadAnnosRubro());
 
 		return model;
 	}
@@ -248,6 +250,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechamodifica", getFechamodifica());
+		attributes.put("cantidadAnnosRubro", getCantidadAnnosRubro());
 
 		return attributes;
 	}
@@ -415,6 +418,13 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 		if (fechamodifica != null) {
 			setFechamodifica(fechamodifica);
+		}
+
+		Integer cantidadAnnosRubro = (Integer)attributes.get(
+				"cantidadAnnosRubro");
+
+		if (cantidadAnnosRubro != null) {
+			setCantidadAnnosRubro(cantidadAnnosRubro);
 		}
 	}
 
@@ -793,6 +803,17 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		_fechamodifica = fechamodifica;
 	}
 
+	@JSON
+	@Override
+	public int getCantidadAnnosRubro() {
+		return _cantidadAnnosRubro;
+	}
+
+	@Override
+	public void setCantidadAnnosRubro(int cantidadAnnosRubro) {
+		_cantidadAnnosRubro = cantidadAnnosRubro;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -851,6 +872,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		solicitudRequerimientoImpl.setFechacrea(getFechacrea());
 		solicitudRequerimientoImpl.setUsuariomodifica(getUsuariomodifica());
 		solicitudRequerimientoImpl.setFechamodifica(getFechamodifica());
+		solicitudRequerimientoImpl.setCantidadAnnosRubro(getCantidadAnnosRubro());
 
 		solicitudRequerimientoImpl.resetOriginalValues();
 
@@ -1035,12 +1057,14 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			solicitudRequerimientoCacheModel.fechamodifica = Long.MIN_VALUE;
 		}
 
+		solicitudRequerimientoCacheModel.cantidadAnnosRubro = getCantidadAnnosRubro();
+
 		return solicitudRequerimientoCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1096,6 +1120,8 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 		sb.append(getUsuariomodifica());
 		sb.append(", fechamodifica=");
 		sb.append(getFechamodifica());
+		sb.append(", cantidadAnnosRubro=");
+		sb.append(getCantidadAnnosRubro());
 		sb.append("}");
 
 		return sb.toString();
@@ -1103,7 +1129,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1217,6 +1243,10 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>cantidadAnnosRubro</column-name><column-value><![CDATA[");
+		sb.append(getCantidadAnnosRubro());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -1261,6 +1291,7 @@ public class SolicitudRequerimientoModelImpl extends BaseModelImpl<SolicitudRequ
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private int _cantidadAnnosRubro;
 	private long _columnBitmask;
 	private SolicitudRequerimiento _escapedModel;
 }

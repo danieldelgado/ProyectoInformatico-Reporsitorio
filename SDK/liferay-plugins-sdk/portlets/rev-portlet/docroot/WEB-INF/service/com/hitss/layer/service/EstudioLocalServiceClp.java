@@ -30,11 +30,15 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 
 		_methodName1 = "createEstudio";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName2 = "deleteEstudio";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName3 = "deleteEstudio";
 
@@ -78,11 +82,15 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 
 		_methodName10 = "fetchEstudio";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName11 = "getEstudio";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.EstudioPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -107,6 +115,10 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "getEstudio";
+
+		_methodParameterTypes19 = new String[] { "java.lang.Long" };
 	}
 
 	@Override
@@ -140,12 +152,14 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Estudio createEstudio(long estudioId) {
+	public com.hitss.layer.model.Estudio createEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { estudioId });
+					_methodParameterTypes1,
+					new Object[] { ClpSerializer.translateInput(estudioPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -163,14 +177,16 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Estudio deleteEstudio(long estudioId)
+	public com.hitss.layer.model.Estudio deleteEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { estudioId });
+					_methodParameterTypes2,
+					new Object[] { ClpSerializer.translateInput(estudioPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -423,13 +439,15 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Estudio fetchEstudio(long estudioId)
+	public com.hitss.layer.model.Estudio fetchEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { estudioId });
+					_methodParameterTypes10,
+					new Object[] { ClpSerializer.translateInput(estudioPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -451,14 +469,16 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 	}
 
 	@Override
-	public com.hitss.layer.model.Estudio getEstudio(long estudioId)
+	public com.hitss.layer.model.Estudio getEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { estudioId });
+					_methodParameterTypes11,
+					new Object[] { ClpSerializer.translateInput(estudioPK) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -655,6 +675,36 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public java.util.List<com.hitss.layer.model.Estudio> getEstudio(
+		java.lang.Long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] { ClpSerializer.translateInput(userId) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.Estudio>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -692,4 +742,6 @@ public class EstudioLocalServiceClp implements EstudioLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
 }

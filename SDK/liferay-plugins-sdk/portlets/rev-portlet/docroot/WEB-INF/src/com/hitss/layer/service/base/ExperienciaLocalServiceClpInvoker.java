@@ -32,11 +32,15 @@ public class ExperienciaLocalServiceClpInvoker {
 
 		_methodName1 = "createExperiencia";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName2 = "deleteExperiencia";
 
-		_methodParameterTypes2 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName3 = "deleteExperiencia";
 
@@ -82,11 +86,15 @@ public class ExperienciaLocalServiceClpInvoker {
 
 		_methodName10 = "fetchExperiencia";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName11 = "getExperiencia";
 
-		_methodParameterTypes11 = new String[] { "long" };
+		_methodParameterTypes11 = new String[] {
+				"com.hitss.layer.service.persistence.ExperienciaPK"
+			};
 
 		_methodName12 = "getPersistedModel";
 
@@ -113,6 +121,10 @@ public class ExperienciaLocalServiceClpInvoker {
 		_methodName237 = "setBeanIdentifier";
 
 		_methodParameterTypes237 = new String[] { "java.lang.String" };
+
+		_methodName242 = "getExperiencia";
+
+		_methodParameterTypes242 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -124,12 +136,12 @@ public class ExperienciaLocalServiceClpInvoker {
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return ExperienciaLocalServiceUtil.createExperiencia(((Long)arguments[0]).longValue());
+			return ExperienciaLocalServiceUtil.createExperiencia((com.hitss.layer.service.persistence.ExperienciaPK)arguments[0]);
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return ExperienciaLocalServiceUtil.deleteExperiencia(((Long)arguments[0]).longValue());
+			return ExperienciaLocalServiceUtil.deleteExperiencia((com.hitss.layer.service.persistence.ExperienciaPK)arguments[0]);
 		}
 
 		if (_methodName3.equals(name) &&
@@ -175,12 +187,12 @@ public class ExperienciaLocalServiceClpInvoker {
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return ExperienciaLocalServiceUtil.fetchExperiencia(((Long)arguments[0]).longValue());
+			return ExperienciaLocalServiceUtil.fetchExperiencia((com.hitss.layer.service.persistence.ExperienciaPK)arguments[0]);
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return ExperienciaLocalServiceUtil.getExperiencia(((Long)arguments[0]).longValue());
+			return ExperienciaLocalServiceUtil.getExperiencia((com.hitss.layer.service.persistence.ExperienciaPK)arguments[0]);
 		}
 
 		if (_methodName12.equals(name) &&
@@ -214,6 +226,11 @@ public class ExperienciaLocalServiceClpInvoker {
 			ExperienciaLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
+		}
+
+		if (_methodName242.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes242, parameterTypes)) {
+			return ExperienciaLocalServiceUtil.getExperiencia((java.lang.Long)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -255,4 +272,6 @@ public class ExperienciaLocalServiceClpInvoker {
 	private String[] _methodParameterTypes236;
 	private String _methodName237;
 	private String[] _methodParameterTypes237;
+	private String _methodName242;
+	private String[] _methodParameterTypes242;
 }

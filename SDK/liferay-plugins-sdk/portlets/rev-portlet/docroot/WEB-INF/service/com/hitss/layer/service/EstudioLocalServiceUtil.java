@@ -55,25 +55,27 @@ public class EstudioLocalServiceUtil {
 	/**
 	* Creates a new estudio with the primary key. Does not add the estudio to the database.
 	*
-	* @param estudioId the primary key for the new estudio
+	* @param estudioPK the primary key for the new estudio
 	* @return the new estudio
 	*/
-	public static com.hitss.layer.model.Estudio createEstudio(long estudioId) {
-		return getService().createEstudio(estudioId);
+	public static com.hitss.layer.model.Estudio createEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK) {
+		return getService().createEstudio(estudioPK);
 	}
 
 	/**
 	* Deletes the estudio with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param estudioId the primary key of the estudio
+	* @param estudioPK the primary key of the estudio
 	* @return the estudio that was removed
 	* @throws PortalException if a estudio with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Estudio deleteEstudio(long estudioId)
+	public static com.hitss.layer.model.Estudio deleteEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteEstudio(estudioId);
+		return getService().deleteEstudio(estudioPK);
 	}
 
 	/**
@@ -179,23 +181,25 @@ public class EstudioLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.hitss.layer.model.Estudio fetchEstudio(long estudioId)
+	public static com.hitss.layer.model.Estudio fetchEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchEstudio(estudioId);
+		return getService().fetchEstudio(estudioPK);
 	}
 
 	/**
 	* Returns the estudio with the primary key.
 	*
-	* @param estudioId the primary key of the estudio
+	* @param estudioPK the primary key of the estudio
 	* @return the estudio
 	* @throws PortalException if a estudio with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.hitss.layer.model.Estudio getEstudio(long estudioId)
+	public static com.hitss.layer.model.Estudio getEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getEstudio(estudioId);
+		return getService().getEstudio(estudioPK);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -269,6 +273,12 @@ public class EstudioLocalServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static java.util.List<com.hitss.layer.model.Estudio> getEstudio(
+		java.lang.Long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getEstudio(userId);
 	}
 
 	public static void clearService() {

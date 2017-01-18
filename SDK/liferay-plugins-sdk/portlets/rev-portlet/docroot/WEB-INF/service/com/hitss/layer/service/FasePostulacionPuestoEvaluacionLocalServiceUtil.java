@@ -282,6 +282,22 @@ public class FasePostulacionPuestoEvaluacionLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
+		java.lang.Long solicitud)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getFasePostulacionPuestoEvaluacionBySolicitud(solicitud);
+	}
+
+	public static java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(
+		java.lang.Long evaluacion)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getFasePostulacionPuestoEvaluacionByEvaluacion(evaluacion);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

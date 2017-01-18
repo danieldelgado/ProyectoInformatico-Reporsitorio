@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.EstudioPK;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -84,12 +86,13 @@ public class EstudioSoap implements Serializable {
 	public EstudioSoap() {
 	}
 
-	public long getPrimaryKey() {
-		return _estudioId;
+	public EstudioPK getPrimaryKey() {
+		return new EstudioPK(_estudioId, _usuarioId);
 	}
 
-	public void setPrimaryKey(long pk) {
-		setEstudioId(pk);
+	public void setPrimaryKey(EstudioPK pk) {
+		setEstudioId(pk.estudioId);
+		setUsuarioId(pk.usuarioId);
 	}
 
 	public long getEstudioId() {

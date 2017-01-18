@@ -132,7 +132,7 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 	* @return the primary key of this contrato
 	*/
 	@Override
-	public long getPrimaryKey() {
+	public com.hitss.layer.service.persistence.ContratoPK getPrimaryKey() {
 		return _contrato.getPrimaryKey();
 	}
 
@@ -142,7 +142,8 @@ public class ContratoWrapper implements Contrato, ModelWrapper<Contrato> {
 	* @param primaryKey the primary key of this contrato
 	*/
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(
+		com.hitss.layer.service.persistence.ContratoPK primaryKey) {
 		_contrato.setPrimaryKey(primaryKey);
 	}
 

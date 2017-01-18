@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ExperienciaPK;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class ExperienciaSoap implements Serializable {
 		soapModel.setUsuarioId(model.getUsuarioId());
 		soapModel.setDescripcion(model.getDescripcion());
 		soapModel.setEmpresa(model.getEmpresa());
+		soapModel.setTipoNegocio(model.getTipoNegocio());
 		soapModel.setProyecto(model.getProyecto());
 		soapModel.setFechaInicio(model.getFechaInicio());
 		soapModel.setFechaFin(model.getFechaFin());
@@ -87,12 +90,13 @@ public class ExperienciaSoap implements Serializable {
 	public ExperienciaSoap() {
 	}
 
-	public long getPrimaryKey() {
-		return _experienciaId;
+	public ExperienciaPK getPrimaryKey() {
+		return new ExperienciaPK(_experienciaId, _usuarioId);
 	}
 
-	public void setPrimaryKey(long pk) {
-		setExperienciaId(pk);
+	public void setPrimaryKey(ExperienciaPK pk) {
+		setExperienciaId(pk.experienciaId);
+		setUsuarioId(pk.usuarioId);
 	}
 
 	public long getExperienciaId() {
@@ -125,6 +129,14 @@ public class ExperienciaSoap implements Serializable {
 
 	public void setEmpresa(String empresa) {
 		_empresa = empresa;
+	}
+
+	public long getTipoNegocio() {
+		return _tipoNegocio;
+	}
+
+	public void setTipoNegocio(long tipoNegocio) {
+		_tipoNegocio = tipoNegocio;
 	}
 
 	public String getProyecto() {
@@ -199,6 +211,7 @@ public class ExperienciaSoap implements Serializable {
 	private long _usuarioId;
 	private String _descripcion;
 	private String _empresa;
+	private long _tipoNegocio;
 	private String _proyecto;
 	private Date _fechaInicio;
 	private Date _fechaFin;

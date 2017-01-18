@@ -38,7 +38,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(solicitudRequerimientoId);
@@ -94,6 +94,8 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		sb.append(usuariomodifica);
 		sb.append(", fechamodifica=");
 		sb.append(fechamodifica);
+		sb.append(", cantidadAnnosRubro=");
+		sb.append(cantidadAnnosRubro);
 		sb.append("}");
 
 		return sb.toString();
@@ -191,6 +193,8 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 			solicitudRequerimientoImpl.setFechamodifica(new Date(fechamodifica));
 		}
 
+		solicitudRequerimientoImpl.setCantidadAnnosRubro(cantidadAnnosRubro);
+
 		solicitudRequerimientoImpl.resetOriginalValues();
 
 		return solicitudRequerimientoImpl;
@@ -225,6 +229,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		fechacrea = objectInput.readLong();
 		usuariomodifica = objectInput.readLong();
 		fechamodifica = objectInput.readLong();
+		cantidadAnnosRubro = objectInput.readInt();
 	}
 
 	@Override
@@ -291,6 +296,7 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 		objectOutput.writeLong(fechacrea);
 		objectOutput.writeLong(usuariomodifica);
 		objectOutput.writeLong(fechamodifica);
+		objectOutput.writeInt(cantidadAnnosRubro);
 	}
 
 	public long solicitudRequerimientoId;
@@ -320,4 +326,5 @@ public class SolicitudRequerimientoCacheModel implements CacheModel<SolicitudReq
 	public long fechacrea;
 	public long usuariomodifica;
 	public long fechamodifica;
+	public int cantidadAnnosRubro;
 }

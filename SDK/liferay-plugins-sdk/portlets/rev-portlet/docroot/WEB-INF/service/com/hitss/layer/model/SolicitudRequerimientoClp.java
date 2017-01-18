@@ -102,6 +102,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		attributes.put("fechacrea", getFechacrea());
 		attributes.put("usuariomodifica", getUsuariomodifica());
 		attributes.put("fechamodifica", getFechamodifica());
+		attributes.put("cantidadAnnosRubro", getCantidadAnnosRubro());
 
 		return attributes;
 	}
@@ -269,6 +270,13 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 		if (fechamodifica != null) {
 			setFechamodifica(fechamodifica);
+		}
+
+		Integer cantidadAnnosRubro = (Integer)attributes.get(
+				"cantidadAnnosRubro");
+
+		if (cantidadAnnosRubro != null) {
+			setCantidadAnnosRubro(cantidadAnnosRubro);
 		}
 	}
 
@@ -916,6 +924,31 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		}
 	}
 
+	@Override
+	public int getCantidadAnnosRubro() {
+		return _cantidadAnnosRubro;
+	}
+
+	@Override
+	public void setCantidadAnnosRubro(int cantidadAnnosRubro) {
+		_cantidadAnnosRubro = cantidadAnnosRubro;
+
+		if (_solicitudRequerimientoRemoteModel != null) {
+			try {
+				Class<?> clazz = _solicitudRequerimientoRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCantidadAnnosRubro",
+						int.class);
+
+				method.invoke(_solicitudRequerimientoRemoteModel,
+					cantidadAnnosRubro);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public BaseModel<?> getSolicitudRequerimientoRemoteModel() {
 		return _solicitudRequerimientoRemoteModel;
 	}
@@ -1014,6 +1047,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		clone.setFechacrea(getFechacrea());
 		clone.setUsuariomodifica(getUsuariomodifica());
 		clone.setFechamodifica(getFechamodifica());
+		clone.setCantidadAnnosRubro(getCantidadAnnosRubro());
 
 		return clone;
 	}
@@ -1065,7 +1099,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -1121,6 +1155,8 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 		sb.append(getUsuariomodifica());
 		sb.append(", fechamodifica=");
 		sb.append(getFechamodifica());
+		sb.append(", cantidadAnnosRubro=");
+		sb.append(getCantidadAnnosRubro());
 		sb.append("}");
 
 		return sb.toString();
@@ -1128,7 +1164,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.SolicitudRequerimiento");
@@ -1242,6 +1278,10 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 			"<column><column-name>fechamodifica</column-name><column-value><![CDATA[");
 		sb.append(getFechamodifica());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>cantidadAnnosRubro</column-name><column-value><![CDATA[");
+		sb.append(getCantidadAnnosRubro());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -1275,6 +1315,7 @@ public class SolicitudRequerimientoClp extends BaseModelImpl<SolicitudRequerimie
 	private Date _fechacrea;
 	private long _usuariomodifica;
 	private Date _fechamodifica;
+	private int _cantidadAnnosRubro;
 	private BaseModel<?> _solicitudRequerimientoRemoteModel;
 	private Class<?> _clpSerializerClass = com.hitss.layer.service.ClpSerializer.class;
 }

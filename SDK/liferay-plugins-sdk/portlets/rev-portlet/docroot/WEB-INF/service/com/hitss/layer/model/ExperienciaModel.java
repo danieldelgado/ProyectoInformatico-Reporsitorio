@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ExperienciaPK;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -50,14 +52,14 @@ public interface ExperienciaModel extends BaseModel<Experiencia> {
 	 *
 	 * @return the primary key of this experiencia
 	 */
-	public long getPrimaryKey();
+	public ExperienciaPK getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this experiencia.
 	 *
 	 * @param primaryKey the primary key of this experiencia
 	 */
-	public void setPrimaryKey(long primaryKey);
+	public void setPrimaryKey(ExperienciaPK primaryKey);
 
 	/**
 	 * Returns the experiencia ID of this experiencia.
@@ -116,6 +118,20 @@ public interface ExperienciaModel extends BaseModel<Experiencia> {
 	 * @param empresa the empresa of this experiencia
 	 */
 	public void setEmpresa(String empresa);
+
+	/**
+	 * Returns the tipo negocio of this experiencia.
+	 *
+	 * @return the tipo negocio of this experiencia
+	 */
+	public long getTipoNegocio();
+
+	/**
+	 * Sets the tipo negocio of this experiencia.
+	 *
+	 * @param tipoNegocio the tipo negocio of this experiencia
+	 */
+	public void setTipoNegocio(long tipoNegocio);
 
 	/**
 	 * Returns the proyecto of this experiencia.

@@ -14,6 +14,8 @@
 
 package com.hitss.layer.model;
 
+import com.hitss.layer.service.persistence.ContratoPK;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -50,14 +52,14 @@ public interface ContratoModel extends BaseModel<Contrato> {
 	 *
 	 * @return the primary key of this contrato
 	 */
-	public long getPrimaryKey();
+	public ContratoPK getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this contrato.
 	 *
 	 * @param primaryKey the primary key of this contrato
 	 */
-	public void setPrimaryKey(long primaryKey);
+	public void setPrimaryKey(ContratoPK primaryKey);
 
 	/**
 	 * Returns the contrato ID of this contrato.

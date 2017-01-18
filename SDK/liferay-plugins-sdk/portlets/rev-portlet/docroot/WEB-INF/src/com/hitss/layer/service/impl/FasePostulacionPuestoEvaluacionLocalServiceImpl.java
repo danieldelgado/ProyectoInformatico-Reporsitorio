@@ -14,7 +14,13 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException;
+import com.hitss.layer.model.FasePostulacionPuestoEvaluacion;
 import com.hitss.layer.service.base.FasePostulacionPuestoEvaluacionLocalServiceBaseImpl;
+import com.hitss.layer.service.persistence.FasePostulacionPuestoEvaluacionUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the fase postulacion puesto evaluacion local service.
@@ -37,4 +43,13 @@ public class FasePostulacionPuestoEvaluacionLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalServiceUtil} to access the fase postulacion puesto evaluacion local service.
 	 */
+
+	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(Long solicitud) throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException{
+		return  FasePostulacionPuestoEvaluacionUtil.findByS(solicitud);
+	}
+
+	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(Long evaluacion) throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException{
+		return  FasePostulacionPuestoEvaluacionUtil.findByE(evaluacion);
+	}
+	
 }

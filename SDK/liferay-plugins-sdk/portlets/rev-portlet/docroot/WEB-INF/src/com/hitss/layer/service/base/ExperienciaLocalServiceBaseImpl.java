@@ -26,6 +26,7 @@ import com.hitss.layer.service.persistence.DetalleRepuestaReclutamientoPersisten
 import com.hitss.layer.service.persistence.EstudioPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPersistence;
 import com.hitss.layer.service.persistence.EvaluacionPreguntaPersistence;
+import com.hitss.layer.service.persistence.ExperienciaPK;
 import com.hitss.layer.service.persistence.ExperienciaPersistence;
 import com.hitss.layer.service.persistence.FasePostulacionPersistence;
 import com.hitss.layer.service.persistence.FasePostulacionPuestoEvaluacionPersistence;
@@ -116,27 +117,27 @@ public abstract class ExperienciaLocalServiceBaseImpl
 	/**
 	 * Creates a new experiencia with the primary key. Does not add the experiencia to the database.
 	 *
-	 * @param experienciaId the primary key for the new experiencia
+	 * @param experienciaPK the primary key for the new experiencia
 	 * @return the new experiencia
 	 */
 	@Override
-	public Experiencia createExperiencia(long experienciaId) {
-		return experienciaPersistence.create(experienciaId);
+	public Experiencia createExperiencia(ExperienciaPK experienciaPK) {
+		return experienciaPersistence.create(experienciaPK);
 	}
 
 	/**
 	 * Deletes the experiencia with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param experienciaId the primary key of the experiencia
+	 * @param experienciaPK the primary key of the experiencia
 	 * @return the experiencia that was removed
 	 * @throws PortalException if a experiencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Experiencia deleteExperiencia(long experienciaId)
+	public Experiencia deleteExperiencia(ExperienciaPK experienciaPK)
 		throws PortalException, SystemException {
-		return experienciaPersistence.remove(experienciaId);
+		return experienciaPersistence.remove(experienciaPK);
 	}
 
 	/**
@@ -247,23 +248,23 @@ public abstract class ExperienciaLocalServiceBaseImpl
 	}
 
 	@Override
-	public Experiencia fetchExperiencia(long experienciaId)
+	public Experiencia fetchExperiencia(ExperienciaPK experienciaPK)
 		throws SystemException {
-		return experienciaPersistence.fetchByPrimaryKey(experienciaId);
+		return experienciaPersistence.fetchByPrimaryKey(experienciaPK);
 	}
 
 	/**
 	 * Returns the experiencia with the primary key.
 	 *
-	 * @param experienciaId the primary key of the experiencia
+	 * @param experienciaPK the primary key of the experiencia
 	 * @return the experiencia
 	 * @throws PortalException if a experiencia with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Experiencia getExperiencia(long experienciaId)
+	public Experiencia getExperiencia(ExperienciaPK experienciaPK)
 		throws PortalException, SystemException {
-		return experienciaPersistence.findByPrimaryKey(experienciaId);
+		return experienciaPersistence.findByPrimaryKey(experienciaPK);
 	}
 
 	@Override

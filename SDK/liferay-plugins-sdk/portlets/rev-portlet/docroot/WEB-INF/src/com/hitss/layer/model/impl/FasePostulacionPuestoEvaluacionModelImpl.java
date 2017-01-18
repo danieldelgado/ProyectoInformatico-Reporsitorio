@@ -77,7 +77,12 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.hitss.layer.model.FasePostulacionPuestoEvaluacion"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.hitss.layer.model.FasePostulacionPuestoEvaluacion"),
+			true);
+	public static long EVALUACIONID_COLUMN_BITMASK = 1L;
+	public static long SOLICITUDFUNCIONID_COLUMN_BITMASK = 2L;
+	public static long FASEPOSTULACIONID_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -220,7 +225,19 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 
 	@Override
 	public void setSolicitudFuncionId(long solicitudFuncionId) {
+		_columnBitmask |= SOLICITUDFUNCIONID_COLUMN_BITMASK;
+
+		if (!_setOriginalSolicitudFuncionId) {
+			_setOriginalSolicitudFuncionId = true;
+
+			_originalSolicitudFuncionId = _solicitudFuncionId;
+		}
+
 		_solicitudFuncionId = solicitudFuncionId;
+	}
+
+	public long getOriginalSolicitudFuncionId() {
+		return _originalSolicitudFuncionId;
 	}
 
 	@JSON
@@ -231,7 +248,19 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 
 	@Override
 	public void setEvaluacionId(long evaluacionId) {
+		_columnBitmask |= EVALUACIONID_COLUMN_BITMASK;
+
+		if (!_setOriginalEvaluacionId) {
+			_setOriginalEvaluacionId = true;
+
+			_originalEvaluacionId = _evaluacionId;
+		}
+
 		_evaluacionId = evaluacionId;
+	}
+
+	public long getOriginalEvaluacionId() {
+		return _originalEvaluacionId;
 	}
 
 	@JSON
@@ -243,6 +272,10 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 	@Override
 	public void setResultado(double resultado) {
 		_resultado = resultado;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -306,6 +339,18 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 
 	@Override
 	public void resetOriginalValues() {
+		FasePostulacionPuestoEvaluacionModelImpl fasePostulacionPuestoEvaluacionModelImpl =
+			this;
+
+		fasePostulacionPuestoEvaluacionModelImpl._originalSolicitudFuncionId = fasePostulacionPuestoEvaluacionModelImpl._solicitudFuncionId;
+
+		fasePostulacionPuestoEvaluacionModelImpl._setOriginalSolicitudFuncionId = false;
+
+		fasePostulacionPuestoEvaluacionModelImpl._originalEvaluacionId = fasePostulacionPuestoEvaluacionModelImpl._evaluacionId;
+
+		fasePostulacionPuestoEvaluacionModelImpl._setOriginalEvaluacionId = false;
+
+		fasePostulacionPuestoEvaluacionModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -377,7 +422,12 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 		};
 	private long _fasePostulacionId;
 	private long _solicitudFuncionId;
+	private long _originalSolicitudFuncionId;
+	private boolean _setOriginalSolicitudFuncionId;
 	private long _evaluacionId;
+	private long _originalEvaluacionId;
+	private boolean _setOriginalEvaluacionId;
 	private double _resultado;
+	private long _columnBitmask;
 	private FasePostulacionPuestoEvaluacion _escapedModel;
 }

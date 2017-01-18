@@ -46,27 +46,29 @@ public class EstudioLocalServiceWrapper implements EstudioLocalService,
 	/**
 	* Creates a new estudio with the primary key. Does not add the estudio to the database.
 	*
-	* @param estudioId the primary key for the new estudio
+	* @param estudioPK the primary key for the new estudio
 	* @return the new estudio
 	*/
 	@Override
-	public com.hitss.layer.model.Estudio createEstudio(long estudioId) {
-		return _estudioLocalService.createEstudio(estudioId);
+	public com.hitss.layer.model.Estudio createEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK) {
+		return _estudioLocalService.createEstudio(estudioPK);
 	}
 
 	/**
 	* Deletes the estudio with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param estudioId the primary key of the estudio
+	* @param estudioPK the primary key of the estudio
 	* @return the estudio that was removed
 	* @throws PortalException if a estudio with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public com.hitss.layer.model.Estudio deleteEstudio(long estudioId)
+	public com.hitss.layer.model.Estudio deleteEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _estudioLocalService.deleteEstudio(estudioId);
+		return _estudioLocalService.deleteEstudio(estudioPK);
 	}
 
 	/**
@@ -180,24 +182,26 @@ public class EstudioLocalServiceWrapper implements EstudioLocalService,
 	}
 
 	@Override
-	public com.hitss.layer.model.Estudio fetchEstudio(long estudioId)
+	public com.hitss.layer.model.Estudio fetchEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _estudioLocalService.fetchEstudio(estudioId);
+		return _estudioLocalService.fetchEstudio(estudioPK);
 	}
 
 	/**
 	* Returns the estudio with the primary key.
 	*
-	* @param estudioId the primary key of the estudio
+	* @param estudioPK the primary key of the estudio
 	* @return the estudio
 	* @throws PortalException if a estudio with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public com.hitss.layer.model.Estudio getEstudio(long estudioId)
+	public com.hitss.layer.model.Estudio getEstudio(
+		com.hitss.layer.service.persistence.EstudioPK estudioPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _estudioLocalService.getEstudio(estudioId);
+		return _estudioLocalService.getEstudio(estudioPK);
 	}
 
 	@Override
@@ -278,6 +282,13 @@ public class EstudioLocalServiceWrapper implements EstudioLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _estudioLocalService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.Estudio> getEstudio(
+		java.lang.Long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _estudioLocalService.getEstudio(userId);
 	}
 
 	/**
