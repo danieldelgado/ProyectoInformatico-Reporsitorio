@@ -19,7 +19,6 @@ import org.drools.runtime.ObjectFilter;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.FactHandle;
 
-@SuppressWarnings("deprecation")
 public class DataAnalisisExperto {
 
 	public static List<Postulacion> analisisDatos(List<Postulacion> lpst) {

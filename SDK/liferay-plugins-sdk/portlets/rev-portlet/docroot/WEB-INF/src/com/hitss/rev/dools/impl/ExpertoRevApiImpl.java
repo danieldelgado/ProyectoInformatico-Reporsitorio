@@ -66,6 +66,28 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				pa.setUsuarioBean(getUsuario(pst.getUsuarioId(), solicitudRequerimientoId));
 				listaPostulaciones.add(pa);
 			}
+			
+			
+			listaPostulaciones = DataAnalisisExperto.analisisDatos(listaPostulaciones);
+			for (com.hitss.rev.dools.impl.Postulacion postulacion : listaPostulaciones) {
+				System.out.println(postulacion.getUsuarioBean().getIdUsuario());
+				System.out.println("getIdUsuario--" + postulacion.getUsuarioBean().getIdUsuario());
+				System.out.println("DistanciaEuclidianaEntrevista--" + postulacion.getDistanciaEuclidianaEntrevista());
+				System.out.println("DistanciaHammingEntrevista--" + postulacion.getDistanciaHammingEntrevista());
+				System.out.println("DistanciaEuclidianaPsicologico--" + postulacion.getDistanciaEuclidianaPsicologico());
+				System.out.println("DistanciaHammingPsicologico--" + postulacion.getDistanciaHammingPsicologico());
+				System.out.println("DistanciaEuclidianaTecnico--" + postulacion.getDistanciaEuclidianaTecnico());
+				System.out.println("DistanciaHammingTecnico--" + postulacion.getDistanciaHammingTecnico());
+				System.out.println("RecomendableReqCum--" + postulacion.isRecomendableReqCum() + " al " +  postulacion.getPorcentajeReqCum() );
+				System.out.println("RecomendableRequisitosCumplidoPorUsuario--" + postulacion.isRecomendableRequisitosCumplidoPorUsuario() + " al " +  postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );
+				if(postulacion.getPorcentajeReqCertiCum()>0){
+					System.out.println("RecomendableReqCertiCum--" + postulacion.isRecomendableReqCertiCum() + " al " +  postulacion.getPorcentajeReqCertiCum() );
+					System.out.println("RecomendableCertificadoCumplidoPorUsuario--" + postulacion.isRecomendableCertificadoCumplidoPorUsuario() + " al " +  postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );				
+				}
+				System.out.println("-----------------");
+			}
+			
+			
 		} catch (PortalException | SystemException e) {
 			e.printStackTrace();
 		}
@@ -108,44 +130,63 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 			p.setListaCertificados(listaRequisitoBean);
 		}
 		{
-			List<EvaluacionBean> listaEvaluacionPiscologicas = new ArrayList<EvaluacionBean>();
+			List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
 			List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
 			EvaluacionBean eb = null;
+			Evaluacion e2 = null;
 			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
 				if (fasePostulacionPuestoEvaluacion.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacion.getEvaluacionId() != 2) {
 					if (fasePostulacionPuestoEvaluacion.getEvaluacionId() == 83) {
-
+						e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+						eb = new EvaluacionBean();
+						eb.setId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+						eb.setTipoEvaluacion(e2.getTipoEvaluacion());
+						eb.setPuntajeObtenido(fasePostulacionPuestoEvaluacion.getResultado());
+						listaEvaluacion.add(eb);
 					}
-					eb = new EvaluacionBean();
-					listaEvaluacionPiscologicas.add(eb);
+					
 				}
 			}
-
+			p.setListaEvaluacionPiscologicas(listaEvaluacion);
 		}
-		// {
-		// List<ExperienciaBean> listaExperiencias = new
-		// ArrayList<ExperienciaBean>();
-		// ExperienciaBean experienciaBean = null;
-		// List<Experiencia> exp =
-		// ExperienciaLocalServiceUtil.getExperiencia(usuarioId);
-		// for (Experiencia experiencia : exp) {
-		// experienciaBean = new ExperienciaBean(1L, "emp1", experiencia.get ,
-		// experiencia.getProyecto(), experiencia.getFechaInicio(),
-		// experiencia.getFechaFin());
-		// listaExperiencias.add(experienciaBean);
-		// }
-		// }
-
-		// List<FasePostulacionPuestoEvaluacion> a =
-		// FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
-		// for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion
-		// : a) {
-		//
-		// fasePostulacionPuestoEvaluacion.getResultado();
-		//
-		// }
-
-		return null;
+		{
+			List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
+			List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
+			EvaluacionBean eb = null;
+			Evaluacion e2 = null;
+			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
+				if (fasePostulacionPuestoEvaluacion.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacion.getEvaluacionId() != 2) {
+					if (fasePostulacionPuestoEvaluacion.getEvaluacionId() == 84) {
+						e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+						eb = new EvaluacionBean();
+						eb.setId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+						eb.setTipoEvaluacion(e2.getTipoEvaluacion());
+						eb.setPuntajeObtenido(fasePostulacionPuestoEvaluacion.getResultado());
+						listaEvaluacion.add(eb);
+					}
+					listaEvaluacion.add(eb);
+				}
+			}
+			p.setListaEvaluacionTecnicas(listaEvaluacion);
+		}
+		{
+			List<EvaluacionBean> listaEntrevistas = new ArrayList<EvaluacionBean>();
+			List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
+			EvaluacionBean eb = null;
+			Evaluacion e2 = null;
+			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
+				if (fasePostulacionPuestoEvaluacion.getEvaluacionId() == 1 && fasePostulacionPuestoEvaluacion.getEvaluacionId() == 2) {
+						e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+						eb = new EvaluacionBean();
+						eb.setId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+						eb.setTipoEvaluacion(e2.getTipoEvaluacion());
+						eb.setPuntajeObtenido(fasePostulacionPuestoEvaluacion.getResultado());
+						listaEntrevistas.add(eb);
+				}
+			}
+			p.setListaEvaluacionTecnicas(listaEntrevistas);
+		}
+		return p;
 	}
 
 	private PuestoBean getPuestoConfiguracion(SolicitudRequerimiento sr, List<PuestoEvaluacion> listaPuestoEvaluacion) throws PortalException, SystemException {
