@@ -14,7 +14,21 @@ import com.hitss.rev.dools.impl.ReferenciaBean
 import com.hitss.rev.dools.impl.RequisitoBean
 import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
-
+rule check3 
+no-loop true
+when
+    			$p : Postulacion( 	    			
+	    			$solicitud : solicitudReclutamiento , 
+	    			$puesto : solicitudReclutamiento.puesto , 
+	    			$usuario : usuarioBean	    			 			
+    			)
+   
+then
+   System.out.println( "--------check3----------" );
+   System.out.println( "puesto:"+$puesto.getNombre() );
+   System.out.println( "usuario:"+$usuario.getNombre() );
+   System.out.println( "------------------" );
+end
 rule "Analizar evaluaciones tecnicas"    
  
 no-loop true

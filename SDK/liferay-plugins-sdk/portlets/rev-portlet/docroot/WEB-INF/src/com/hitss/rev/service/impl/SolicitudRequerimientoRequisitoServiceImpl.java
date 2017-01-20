@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 @Service("SolicitudRequerimientoRequisitoService")
 public class SolicitudRequerimientoRequisitoServiceImpl implements SolicitudRequerimientoRequisitoService {
@@ -46,13 +47,17 @@ public class SolicitudRequerimientoRequisitoServiceImpl implements SolicitudRequ
 				re =  new RequisitoEtiquetaBean();
 				re.setSolicitudRequerimientoId(solicitudRequerimientoRequisito.getSolicitudRequerimientoId());
 				re.setTagId(solicitudRequerimientoRequisito.getTagId());
+				
 				re.setRequisito(liferayContentService.getEtiqueta(solicitudRequerimientoRequisito.getTagId()).getValue());
-				re.setAnnos(solicitudRequerimientoRequisito.getAnnos());				
-				re.setAnnosText(parametroService.getParametro(solicitudRequerimientoRequisito.getAnnos()).getValor());				
+				if(Validator.isNotNull(solicitudRequerimientoRequisito.getAnnos()) && solicitudRequerimientoRequisito.getAnnos() > 0 ){
+					re.setAnnos(solicitudRequerimientoRequisito.getAnnos());				
+					re.setAnnosText(parametroService.getParametro(solicitudRequerimientoRequisito.getAnnos()).getValor());	
+				}
 				re.setExigible(solicitudRequerimientoRequisito.isExigible());
-				re.setTagId(solicitudRequerimientoRequisito.getTagId());
+				
 				re.setTipoRequisito(solicitudRequerimientoRequisito.getTipoRequisito());
 				re.setTipoRequisitoText(parametroService.getParametro(solicitudRequerimientoRequisito.getTipoRequisito()).getValor());
+				
 				re.setActivo(solicitudRequerimientoRequisito.isActivo());
 				requisitoEtiquetaBeans.add(re);
 			}		

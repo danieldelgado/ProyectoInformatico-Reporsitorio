@@ -422,10 +422,13 @@
 		
 		<column name="resultado" type="double"/>
 
-		<finder name="S" return-type="Collection" where="activo=true">
+		<finder name="F" return-type="FasePostulacionPuestoEvaluacion">
+			<finder-column name="fasePostulacionId" />
+		</finder>
+		<finder name="S" return-type="Collection">
 			<finder-column name="solicitudFuncionId" />
 		</finder>
-		<finder name="E" return-type="Collection" where="activo=true">
+		<finder name="E" return-type="Collection">
 			<finder-column name="evaluacionId" />
 		</finder>
 	</entity>

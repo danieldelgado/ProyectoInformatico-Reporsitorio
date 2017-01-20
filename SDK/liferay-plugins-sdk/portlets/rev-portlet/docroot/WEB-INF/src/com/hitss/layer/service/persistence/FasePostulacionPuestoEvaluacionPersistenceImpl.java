@@ -86,6 +86,225 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0]);
+	public static final FinderPath FINDER_PATH_FETCH_BY_F = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByF",
+			new String[] { Long.class.getName() },
+			FasePostulacionPuestoEvaluacionModelImpl.FASEPOSTULACIONID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_F = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByF",
+			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or throws a {@link com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException} if it could not be found.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @return the matching fase postulacion puesto evaluacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion findByF(long fasePostulacionId)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = fetchByF(fasePostulacionId);
+
+		if (fasePostulacionPuestoEvaluacion == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("fasePostulacionId=");
+			msg.append(fasePostulacionId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchFasePostulacionPuestoEvaluacionException(msg.toString());
+		}
+
+		return fasePostulacionPuestoEvaluacion;
+	}
+
+	/**
+	 * Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @return the matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion fetchByF(long fasePostulacionId)
+		throws SystemException {
+		return fetchByF(fasePostulacionId, true);
+	}
+
+	/**
+	 * Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion fetchByF(long fasePostulacionId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { fasePostulacionId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_F,
+					finderArgs, this);
+		}
+
+		if (result instanceof FasePostulacionPuestoEvaluacion) {
+			FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = (FasePostulacionPuestoEvaluacion)result;
+
+			if ((fasePostulacionId != fasePostulacionPuestoEvaluacion.getFasePostulacionId())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_FASEPOSTULACIONPUESTOEVALUACION_WHERE);
+
+			query.append(_FINDER_COLUMN_F_FASEPOSTULACIONID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fasePostulacionId);
+
+				List<FasePostulacionPuestoEvaluacion> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"FasePostulacionPuestoEvaluacionPersistenceImpl.fetchByF(long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion =
+						list.get(0);
+
+					result = fasePostulacionPuestoEvaluacion;
+
+					cacheResult(fasePostulacionPuestoEvaluacion);
+
+					if ((fasePostulacionPuestoEvaluacion.getFasePostulacionId() != fasePostulacionId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F,
+							finderArgs, fasePostulacionPuestoEvaluacion);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (FasePostulacionPuestoEvaluacion)result;
+		}
+	}
+
+	/**
+	 * Removes the fase postulacion puesto evaluacion where fasePostulacionId = &#63; from the database.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @return the fase postulacion puesto evaluacion that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion removeByF(long fasePostulacionId)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = findByF(fasePostulacionId);
+
+		return remove(fasePostulacionPuestoEvaluacion);
+	}
+
+	/**
+	 * Returns the number of fase postulacion puesto evaluacions where fasePostulacionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @return the number of matching fase postulacion puesto evaluacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByF(long fasePostulacionId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_F;
+
+		Object[] finderArgs = new Object[] { fasePostulacionId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FASEPOSTULACIONPUESTOEVALUACION_WHERE);
+
+			query.append(_FINDER_COLUMN_F_FASEPOSTULACIONID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fasePostulacionId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_F_FASEPOSTULACIONID_2 = "fasePostulacionPuestoEvaluacion.id.fasePostulacionId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_S = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionImpl.class,
@@ -589,7 +808,7 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_S_SOLICITUDFUNCIONID_2 = "fasePostulacionPuestoEvaluacion.id.solicitudFuncionId = ? AND activo=true";
+	private static final String _FINDER_COLUMN_S_SOLICITUDFUNCIONID_2 = "fasePostulacionPuestoEvaluacion.id.solicitudFuncionId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_E = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionImpl.class,
@@ -1089,7 +1308,7 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_E_EVALUACIONID_2 = "fasePostulacionPuestoEvaluacion.id.evaluacionId = ? AND activo=true";
+	private static final String _FINDER_COLUMN_E_EVALUACIONID_2 = "fasePostulacionPuestoEvaluacion.id.evaluacionId = ?";
 
 	public FasePostulacionPuestoEvaluacionPersistenceImpl() {
 		setModelClass(FasePostulacionPuestoEvaluacion.class);
@@ -1106,6 +1325,10 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 		EntityCacheUtil.putResult(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionImpl.class,
 			fasePostulacionPuestoEvaluacion.getPrimaryKey(),
+			fasePostulacionPuestoEvaluacion);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F,
+			new Object[] { fasePostulacionPuestoEvaluacion.getFasePostulacionId() },
 			fasePostulacionPuestoEvaluacion);
 
 		fasePostulacionPuestoEvaluacion.resetOriginalValues();
@@ -1168,6 +1391,8 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(fasePostulacionPuestoEvaluacion);
 	}
 
 	@Override
@@ -1180,6 +1405,61 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			EntityCacheUtil.removeResult(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
 				FasePostulacionPuestoEvaluacionImpl.class,
 				fasePostulacionPuestoEvaluacion.getPrimaryKey());
+
+			clearUniqueFindersCache(fasePostulacionPuestoEvaluacion);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion) {
+		if (fasePostulacionPuestoEvaluacion.isNew()) {
+			Object[] args = new Object[] {
+					fasePostulacionPuestoEvaluacion.getFasePostulacionId()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F, args,
+				fasePostulacionPuestoEvaluacion);
+		}
+		else {
+			FasePostulacionPuestoEvaluacionModelImpl fasePostulacionPuestoEvaluacionModelImpl =
+				(FasePostulacionPuestoEvaluacionModelImpl)fasePostulacionPuestoEvaluacion;
+
+			if ((fasePostulacionPuestoEvaluacionModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_F.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						fasePostulacionPuestoEvaluacion.getFasePostulacionId()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F, args,
+					fasePostulacionPuestoEvaluacion);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion) {
+		FasePostulacionPuestoEvaluacionModelImpl fasePostulacionPuestoEvaluacionModelImpl =
+			(FasePostulacionPuestoEvaluacionModelImpl)fasePostulacionPuestoEvaluacion;
+
+		Object[] args = new Object[] {
+				fasePostulacionPuestoEvaluacion.getFasePostulacionId()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F, args);
+
+		if ((fasePostulacionPuestoEvaluacionModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_F.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					fasePostulacionPuestoEvaluacionModelImpl.getOriginalFasePostulacionId()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F, args);
 		}
 	}
 
@@ -1373,6 +1653,9 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			FasePostulacionPuestoEvaluacionImpl.class,
 			fasePostulacionPuestoEvaluacion.getPrimaryKey(),
 			fasePostulacionPuestoEvaluacion);
+
+		clearUniqueFindersCache(fasePostulacionPuestoEvaluacion);
+		cacheUniqueFindersCache(fasePostulacionPuestoEvaluacion);
 
 		return fasePostulacionPuestoEvaluacion;
 	}

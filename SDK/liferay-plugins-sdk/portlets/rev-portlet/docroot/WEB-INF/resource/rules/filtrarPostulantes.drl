@@ -12,7 +12,7 @@ import com.hitss.rev.dools.impl.RequisitoBean
 import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
 
-rule Revision 
+/*rule Revision 
 no-loop true
 when
     			$p : Postulacion( 
@@ -33,24 +33,21 @@ then
    System.out.println( "Filtro Postulacion:"+ $p.isFiltroPostulacion() );
    System.out.println( "Filtro Conocimiento:"+ $p.isFiltroConocimiento() );
    System.out.println( "Tiene Certificado Experiencia:"+ $p.isTieneCertificadoExperiencia() );
+   System.out.println( "Filtro Conocimiento:"+ $p.isFiltroConocimiento() );
+   System.out.println(  ($usuario.getSalario() <=  $solicitud.getPresupuestoMaximo()) );
+   System.out.println(  ($usuario.getSalario() >=  $solicitud.getPresupuestoMinimo()) );
+   System.out.println(  ($solicitud.getFechaActual().getTime()  <= $solicitud.getFechaLimite().getTime() ) );
    System.out.println( "Fin de revision del postulante : -----------------------" );
 end
-
+*/
 rule FiltroBasico 
 no-loop true
+salience 2
 when
-    			$p : Postulacion( 
-	    			
+    			$p : Postulacion( 	    			
 	    			$solicitud : solicitudReclutamiento , 
 	    			$puesto : solicitudReclutamiento.puesto , 
-	    			$usuario : usuarioBean,	
-	    			$usuario.salario <=  $solicitud.presupuestoMaximo,   
-	    			$usuario.salario >=  $solicitud.presupuestoMinimo, 		
-	    			$solicitud.fechaActual <= $solicitud.fechaLimite , 
-	    			filtroPostulacion == false , 
-	    			filtroConocimiento == false , 
-	    			tieneCertificadoExperiencia == false  
-	    			 			
+	    			$usuario : usuarioBean	    			 			
     			)
    
 then

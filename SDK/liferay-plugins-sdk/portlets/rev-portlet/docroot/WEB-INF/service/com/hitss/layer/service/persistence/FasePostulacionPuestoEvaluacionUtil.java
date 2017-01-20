@@ -115,6 +115,74 @@ public class FasePostulacionPuestoEvaluacionUtil {
 	}
 
 	/**
+	* Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or throws a {@link com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException} if it could not be found.
+	*
+	* @param fasePostulacionId the fase postulacion ID
+	* @return the matching fase postulacion puesto evaluacion
+	* @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a matching fase postulacion puesto evaluacion could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.FasePostulacionPuestoEvaluacion findByF(
+		long fasePostulacionId)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByF(fasePostulacionId);
+	}
+
+	/**
+	* Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param fasePostulacionId the fase postulacion ID
+	* @return the matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.FasePostulacionPuestoEvaluacion fetchByF(
+		long fasePostulacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByF(fasePostulacionId);
+	}
+
+	/**
+	* Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param fasePostulacionId the fase postulacion ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.FasePostulacionPuestoEvaluacion fetchByF(
+		long fasePostulacionId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByF(fasePostulacionId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the fase postulacion puesto evaluacion where fasePostulacionId = &#63; from the database.
+	*
+	* @param fasePostulacionId the fase postulacion ID
+	* @return the fase postulacion puesto evaluacion that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.hitss.layer.model.FasePostulacionPuestoEvaluacion removeByF(
+		long fasePostulacionId)
+		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByF(fasePostulacionId);
+	}
+
+	/**
+	* Returns the number of fase postulacion puesto evaluacions where fasePostulacionId = &#63;.
+	*
+	* @param fasePostulacionId the fase postulacion ID
+	* @return the number of matching fase postulacion puesto evaluacions
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByF(long fasePostulacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByF(fasePostulacionId);
+	}
+
+	/**
 	* Returns all the fase postulacion puesto evaluacions where solicitudFuncionId = &#63;.
 	*
 	* @param solicitudFuncionId the solicitud funcion ID

@@ -81,8 +81,8 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 				"value.object.column.bitmask.enabled.com.hitss.layer.model.FasePostulacionPuestoEvaluacion"),
 			true);
 	public static long EVALUACIONID_COLUMN_BITMASK = 1L;
-	public static long SOLICITUDFUNCIONID_COLUMN_BITMASK = 2L;
-	public static long FASEPOSTULACIONID_COLUMN_BITMASK = 4L;
+	public static long FASEPOSTULACIONID_COLUMN_BITMASK = 2L;
+	public static long SOLICITUDFUNCIONID_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -214,7 +214,19 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 
 	@Override
 	public void setFasePostulacionId(long fasePostulacionId) {
+		_columnBitmask |= FASEPOSTULACIONID_COLUMN_BITMASK;
+
+		if (!_setOriginalFasePostulacionId) {
+			_setOriginalFasePostulacionId = true;
+
+			_originalFasePostulacionId = _fasePostulacionId;
+		}
+
 		_fasePostulacionId = fasePostulacionId;
+	}
+
+	public long getOriginalFasePostulacionId() {
+		return _originalFasePostulacionId;
 	}
 
 	@JSON
@@ -342,6 +354,10 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 		FasePostulacionPuestoEvaluacionModelImpl fasePostulacionPuestoEvaluacionModelImpl =
 			this;
 
+		fasePostulacionPuestoEvaluacionModelImpl._originalFasePostulacionId = fasePostulacionPuestoEvaluacionModelImpl._fasePostulacionId;
+
+		fasePostulacionPuestoEvaluacionModelImpl._setOriginalFasePostulacionId = false;
+
 		fasePostulacionPuestoEvaluacionModelImpl._originalSolicitudFuncionId = fasePostulacionPuestoEvaluacionModelImpl._solicitudFuncionId;
 
 		fasePostulacionPuestoEvaluacionModelImpl._setOriginalSolicitudFuncionId = false;
@@ -421,6 +437,8 @@ public class FasePostulacionPuestoEvaluacionModelImpl extends BaseModelImpl<Fase
 			FasePostulacionPuestoEvaluacion.class
 		};
 	private long _fasePostulacionId;
+	private long _originalFasePostulacionId;
+	private boolean _setOriginalFasePostulacionId;
 	private long _solicitudFuncionId;
 	private long _originalSolicitudFuncionId;
 	private boolean _setOriginalSolicitudFuncionId;

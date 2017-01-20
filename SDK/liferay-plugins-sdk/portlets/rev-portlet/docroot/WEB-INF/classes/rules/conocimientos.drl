@@ -13,6 +13,21 @@ import com.hitss.rev.dools.impl.UsuarioBean
 import java.util.ArrayList;
 import java.util.List;
 
+rule check1 
+no-loop true
+when
+    			$p : Postulacion( 	    			
+	    			$solicitud : solicitudReclutamiento , 
+	    			$puesto : solicitudReclutamiento.puesto , 
+	    			$usuario : usuarioBean	    			 			
+    			)
+   
+then
+   System.out.println( "--------check1----------" );
+   System.out.println( "puesto:"+$puesto.getNombre() );
+   System.out.println( "usuario:"+$usuario.getNombre() );
+   System.out.println( "------------------" );
+end
 
 rule seleccionarPorConocimientosConExperiencia 
 salience 1
