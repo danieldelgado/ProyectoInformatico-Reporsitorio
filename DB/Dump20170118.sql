@@ -3,7 +3,8 @@
 -- Host: 192.168.113.128    Database: revhitssportal
 -- ------------------------------------------------------
 -- Server version	5.1.40-community
-
+-- create database revhitssportal;
+use revhitssportal;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
