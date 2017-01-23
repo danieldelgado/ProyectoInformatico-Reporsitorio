@@ -69,8 +69,10 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				pa.setUsuarioBean(getUsuario(pst.getUsuarioId(), solicitudRequerimientoId));
 				listaPostulaciones.add(pa);
 			}
-
 			listaPostulaciones = DataAnalisisExperto.analisisDatos(listaPostulaciones);
+			System.out.println("---------FIN--------");
+			System.out.println("---------FIN--------");
+			System.out.println("---------FIN--------");
 			for (com.hitss.rev.dools.impl.Postulacion postulacion : listaPostulaciones) {
 				System.out.println(postulacion.getUsuarioBean().getIdUsuario());
 				System.out.println("getIdUsuario--" + postulacion.getUsuarioBean().getIdUsuario());
@@ -212,7 +214,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 		ComboBean v = liferayApiService.getCategoria(sr.getCategoriaPuestoId());
 		p.setNombre(v.getValue());
 		p.setTipoNegocioRequierido(parametroService.getParametro(sr.getTipoNegocio()).getParametroId());
-		{
+		{	
 			ExperienciaBean experienciaBean = new ExperienciaBean(1L, parametroService.getParametro(sr.getTipoNegocio()).getParametroId(), sr.getCantidadAnnosRubro());
 			p.setExperienciaRubro(experienciaBean);
 		}

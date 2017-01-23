@@ -56,6 +56,8 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 		List<UsuarioBean> lstReturn = new ArrayList<UsuarioBean>();
 		try {
 			List<Postulacion> lst = PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(solicitudRequerimientoId);
+			lst =  lst.subList(0, 1);
+			System.out.println(lst);
 
 			if (!lst.isEmpty()) {
 				long[] userIds = new long[lst.size()];
@@ -64,8 +66,11 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 				}
 				if (userIds != null) {
 					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);
+					System.out.println(lstUsuariosPostulantes);
+					List<Usuario> lstUsuariosPostulantesa =  lstUsuariosPostulantes.subList(0, 1);
+					System.out.println(lstUsuariosPostulantesa);
 
-					lstUsuariosPostulantes = expertoRevApi.analsisExperto(solicitudRequerimientoId, lst, lstUsuariosPostulantes);
+					lstUsuariosPostulantes = expertoRevApi.analsisExperto(solicitudRequerimientoId, lst, lstUsuariosPostulantesa);
 
 					if (!lstUsuariosPostulantes.isEmpty()) {
 						User user = null;

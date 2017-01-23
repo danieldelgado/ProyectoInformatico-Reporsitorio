@@ -24,7 +24,7 @@ rule "Analisis de cercanos" salience 200 when
   
 then
 	System.out.println( " ----------------------------- " );
-	System.out.println( "Analisis de Cercania " );
+	System.out.println( "Analisis de Cercania i " );
 	   
 	System.out.println("-----------------");
 	System.out.println("getIdUsuario--" + $postulacion.getUsuarioBean().getIdUsuario());
@@ -87,6 +87,7 @@ then
 	$postulacion.setAnalizadoCercania(true);
 	update($postulacion);
 	
+	System.out.println( "Analisis de Cercania f" );
 end
 
 

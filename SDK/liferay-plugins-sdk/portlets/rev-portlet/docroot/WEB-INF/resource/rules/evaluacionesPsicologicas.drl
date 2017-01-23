@@ -10,8 +10,10 @@ import com.hitss.rev.dools.impl.ReferenciaBean
 import com.hitss.rev.dools.impl.RequisitoBean
 import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList
+import java.util.List
+
+/*
 rule check2 
 no-loop true
 when
@@ -27,6 +29,10 @@ then
    System.out.println( "usuario:"+$usuario.getNombre() );
    System.out.println( "------------------" );
 end
+
+
+*/
+
 rule "Analizar evaluaciones psicologicas"     
 no-loop true
 salience 5
@@ -41,6 +47,7 @@ then
 
 	if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
 		if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
+    		System.out.println( "--Analizar evaluaciones psicologicas i--" );
 			EvaluacionBean usuEval = null;
 			EvaluacionPuestoBean puestEval = null;	
 			
@@ -77,6 +84,7 @@ then
 					update($postulacion);
 				}
 			}
+    		System.out.println( "--Analizar evaluaciones psicologicas f--" );
 		}
 	}
 

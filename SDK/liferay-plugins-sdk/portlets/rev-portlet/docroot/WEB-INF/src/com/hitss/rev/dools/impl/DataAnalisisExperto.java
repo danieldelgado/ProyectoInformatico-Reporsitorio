@@ -65,11 +65,27 @@ public class DataAnalisisExperto {
 		Postulacion pc = null;
 		for (FactHandle factHandle : factHandles) {
 			pc = (Postulacion) ((DefaultFactHandle) factHandle).getObject();
+
+			System.out.println("--------------Resultados----------------");
+			
+			System.out.println(pc.getUsuarioBean().getIdUsuario());
+			System.out.println("getIdUsuario--" + pc.getUsuarioBean().getIdUsuario());
+			System.out.println("DistanciaEuclidianaEntrevista--" + pc.getDistanciaEuclidianaEntrevista());
+			System.out.println("DistanciaHammingEntrevista--" + pc.getDistanciaHammingEntrevista());
+			System.out.println("DistanciaEuclidianaPsicologico--" + pc.getDistanciaEuclidianaPsicologico());
+			System.out.println("DistanciaHammingPsicologico--" + pc.getDistanciaHammingPsicologico());
+			System.out.println("DistanciaEuclidianaTecnico--" + pc.getDistanciaEuclidianaTecnico());
+			System.out.println("DistanciaHammingTecnico--" + pc.getDistanciaHammingTecnico());
+			System.out.println("RecomendableReqCum--" + pc.isRecomendableReqCum() + " al " + pc.getPorcentajeReqCum());
+			System.out.println("RecomendableRequisitosCumplidoPorUsuario--" + pc.isRecomendableRequisitosCumplidoPorUsuario() + " al "
+					+ pc.getPorcentajeRequisitosCumplidoPorUsuario());
+
 			if (pc.getDistanciaEuclidianaEntrevista() > 0 && pc.getDistanciaHammingEntrevista() > 0 && pc.getDistanciaEuclidianaPsicologico() > 0
 					&& pc.getDistanciaHammingPsicologico() > 0 && pc.getDistanciaEuclidianaTecnico() > 0 && pc.getDistanciaHammingTecnico() > 0) {
 				lpst.add(pc);
 			}
 		}
+		System.out.println("--------------Fin resultados----------------");
 		lpst = ordenandoListaPostulantes(lpst);
 		session.dispose();
 		return lpst;

@@ -12,7 +12,9 @@ import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
 import java.util.ArrayList;
 import java.util.List;
+/**/
 
+/*
 rule check1 
 no-loop true
 when
@@ -26,8 +28,12 @@ then
    System.out.println( "--------check1----------" );
    System.out.println( "puesto:"+$puesto.getNombre() );
    System.out.println( "usuario:"+$usuario.getNombre() );
+   System.out.println( "puesto:"+$puesto.getExperienciaRubro() );
+   System.out.println( "puesto:"+$puesto.getExperienciaRubro().getTipoNegocioProyecto() );
+   System.out.println( "usuario:"+$usuario.getListaExperiencias() );
    System.out.println( "------------------" );
 end
+*/
 
 rule seleccionarPorConocimientosConExperiencia 
 salience 1
@@ -52,10 +58,12 @@ then
    if($t.doubleValue() >= $tr.doubleValue() ){    	
     	if( $postulacion.getUsuarioBean().getIdUsuario() == $u.getIdUsuario() && $postulacion.isFiltroPostulacion() && ! $postulacion.isFiltroExperiencia() ){
     		if( ! $postulacion.isFiltroExperiencia() ){
+    			System.out.println( "--seleccionarPorConocimientosConExperiencia i--" );
     			System.out.println( "Usuario con Experiencia Requerida" );
     			System.out.println( "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario()); 
     			$postulacion.setFiltroExperiencia(true);
     			update($postulacion);
+    			System.out.println( "--seleccionarPorConocimientosConExperiencia f--" );
     		}
     	}
    }
@@ -91,6 +99,7 @@ then
 	if( $postulacion.isFiltroPostulacion() ){	
 
 		if($listReqSimple!=null && !$listReqSimple.isEmpty() ){
+    		System.out.println( "--procentagesDeRequisitos i--" );
 			RequisitoBean r = null ,r2 = null, r3MasCercano = null;
 			int countRequerimientos = 0 , cantidadComparada = 0;
 			boolean cercano = false;
@@ -144,6 +153,7 @@ then
 				$postulacion.setRequiereCertificado(true);
     		}
 			update($postulacion);
+    		System.out.println( "--procentagesDeRequisitos f--" );
 		}
 	}
 end
@@ -182,6 +192,7 @@ then
 	if( $postulacion.isFiltroPostulacion() && $postulacion.isFiltroConocimiento() && $postulacion.isTieneCertificadoExperiencia() && !$postulacion.isFiltroCertificado() ){	
 		
 		if($listReqSimple!=null && !$listReqSimple.isEmpty() ){
+    		System.out.println( "--procentagesDeRequisitosCetificados i--" );
 			RequisitoBean r = null ,r2 = null, r3MasCercano = null;
 			int countRequerimientos = 0 , cantidadComparada = 0;
 			boolean cercano = false;
@@ -231,6 +242,7 @@ then
 	    			setFiltroCertificado(true);
 	    		}
     		}
+    		System.out.println( "--procentagesDeRequisitosCetificados f--" );
     	
 		}
 	}

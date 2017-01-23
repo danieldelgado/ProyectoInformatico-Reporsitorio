@@ -12,7 +12,7 @@ import com.hitss.rev.dools.impl.RequisitoBean
 import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
 
-/*rule Revision 
+rule Revision 
 no-loop true
 when
     			$p : Postulacion( 
@@ -39,7 +39,7 @@ then
    System.out.println(  ($solicitud.getFechaActual().getTime()  <= $solicitud.getFechaLimite().getTime() ) );
    System.out.println( "Fin de revision del postulante : -----------------------" );
 end
-*/
+
 rule FiltroBasico 
 no-loop true
 salience 2
@@ -51,9 +51,11 @@ when
     			)
    
 then
+   System.out.println( "------------- FiltroBasico i------------- " );
    System.out.println( $puesto.getNombre() );
    System.out.println( $usuario.getNombre() );
    $p.setFiltroPostulacion(true);
    insertLogical( $usuario );
-   insertLogical( $puesto );
+   insertLogical( $puesto ); 
+   System.out.println( "------------- FiltroBasico f------------- " );
 end

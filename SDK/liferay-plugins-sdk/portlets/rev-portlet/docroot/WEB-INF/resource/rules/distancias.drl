@@ -18,6 +18,8 @@ import com.hitss.rev.dools.impl.DataHamming
 import com.hitss.rev.dools.impl.DistanciaEuclidiana
 import java.util.ArrayList
 import java.util.List
+
+/*
 rule check5 
 no-loop true
 when
@@ -33,6 +35,9 @@ then
    System.out.println( "usuario:"+$usuario.getNombre() );
    System.out.println( "------------------" );
 end
+*/
+
+
 rule "Distancia Hamming y Euclistica Piscologia" when
     $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false )
   	
@@ -45,6 +50,7 @@ then
    System.out.println( "Id Usuario: " +$u.getIdUsuario());    
    if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
 		   if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
+    		   System.out.println( "--Distancia Hamming y Euclistica Piscologia i--" );
 		       EvaluacionPuestoBean e = null;	
 		       EvaluacionBean e2 = null;	
 		       double prom = 0;		       
@@ -84,6 +90,7 @@ then
 			   
 			   $postulacion.setDistanciaHammingPsicologico(DataHamming.calcularDistancia(dis));
 			   $postulacion.setDistanciaEuclidianaPsicologico(DistanciaEuclidiana.calcularDistancia(disEu));
+    		   System.out.println( "--Distancia Hamming y Euclistica Piscologia f--" );
 			   			 			  
 		   }
 		   
@@ -109,6 +116,7 @@ then
    System.out.println( "Id Usuario: " +$u.getIdUsuario());    
    		if($evalTecnicas!=null && !$uEvalTecnicas.isEmpty() ){
 		   if($evalTecnicas!=null && !$uEvalTecnicas.isEmpty() ){
+    		   System.out.println( "--Distancia Hamming y Euclistica Tecnica i--" );
 		       EvaluacionPuestoBean e = null;	
 		       EvaluacionBean e2 = null;	
 		       double prom = 0;		       
@@ -148,6 +156,7 @@ then
 			  
 			   $postulacion.setDistanciaHammingTecnico(DataHamming.calcularDistancia(dis));
 			   $postulacion.setDistanciaEuclidianaTecnico(DistanciaEuclidiana.calcularDistancia(disEu));
+    		   System.out.println( "--Distancia Hamming y Euclistica Tecnica f--" );
 			   			 			  
 		   }
 		   
@@ -172,6 +181,7 @@ then
    System.out.println( "Id Usuario: " +$u.getIdUsuario());    
    		if($entrevistas!=null && !$uEntrevistas.isEmpty() ){
 		   if($entrevistas!=null && !$uEntrevistas.isEmpty() ){
+    		   System.out.println( "--Distancia Hamming y Euclistica Entrevistas i--" );
 		       EvaluacionPuestoBean e = null;	
 		       EvaluacionBean e2 = null;	
 		       double prom = 0;		       
@@ -211,6 +221,7 @@ then
 			  
 			   $postulacion.setDistanciaHammingEntrevista(DataHamming.calcularDistancia(dis));
 			   $postulacion.setDistanciaEuclidianaEntrevista(DistanciaEuclidiana.calcularDistancia(disEu));
+    		   System.out.println( "--Distancia Hamming y Euclistica Entrevistas f--" );
 			   			 			  
 		   }
 		   
