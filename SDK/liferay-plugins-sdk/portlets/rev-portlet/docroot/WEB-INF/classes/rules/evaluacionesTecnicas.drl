@@ -19,21 +19,30 @@ import com.hitss.rev.dools.impl.UsuarioBean
 rule check3 
 no-loop true
 when
-    			$p : Postulacion( 	    			
+    			$postulacion : Postulacion( 	    			
 	    			$solicitud : solicitudReclutamiento , 
 	    			$puesto : solicitudReclutamiento.puesto , 
 	    			$usuario : usuarioBean	    			 			
     			)
-   
+    			
+    $u : UsuarioBean( $ulevaluaciones : listaEvaluacionTecnicas  != null  ) from $usuario
+    $p : PuestoBean( $evaluaciones : listaEvaluacionTecnicas  != null  ) from $puesto
 then
    System.out.println( "--------check3----------" );
    System.out.println( "puesto:"+$puesto.getNombre() );
    System.out.println( "usuario:"+$usuario.getNombre() );
+   
+   System.out.println( $ulevaluaciones!=null && !$ulevaluaciones.isEmpty() );
+   System.out.println( $evaluaciones!=null && !$evaluaciones.isEmpty() );
+      
+   System.out.println( "filtroPostulacion:"+$postulacion.isFiltroPostulacion() );
+   System.out.println( "filtroConocimiento:"+$postulacion.isFiltroConocimiento() );
+   System.out.println( "filtroPsicologico:"+$postulacion.isFiltroPsicologico() );
+   System.out.println( "filtroTecnico:"+$postulacion.isFiltroTecnico() );
+   System.out.println( "filtroEtrevistas:"+$postulacion.isFiltroEtrevistas() );
    System.out.println( "------------------" );
 end
-
 */
-
 
 rule "Analizar evaluaciones tecnicas"    
  
@@ -41,13 +50,14 @@ no-loop true
 salience 7
 
 when
-    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == true && filtroEtrevistas == true)
+    $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == false && filtroTecnico == false && filtroEtrevistas == false)
     $u : UsuarioBean( $ulevaluaciones : listaEvaluacionTecnicas  != null  ) from $usuario
     $p : PuestoBean( $evaluaciones : listaEvaluacionTecnicas  != null  ) from $puesto
     
 then
-
+	System.out.println( "rule AET	A ----	" );
 	if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
+		System.out.println( "rule AET	B ----	" );
 		if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
     		System.out.println( "--Analizar evaluaciones tecnicas i--" );
 			EvaluacionBean usuEval = null;
@@ -58,12 +68,12 @@ then
 			
 			for(Object  o : $ulevaluaciones){
 				usuEval = (EvaluacionBean) o;			
-				//System.out.println( "usuEval.getId():"+usuEval.getId()+"||usuEval.getTipoEvaluacion():"+usuEval.getTipoEvaluacion() +"||usuEval.getPuntajeObtenido():"+(usuEval.getPuntajeObtenido()/35) );	// el divisor es la cantidad de preguntas
+				System.out.println( "usuEval.getId():"+usuEval.getId()+"||usuEval.getTipoEvaluacion():"+usuEval.getTipoEvaluacion() +"||usuEval.getPuntajeObtenido():"+(usuEval.getPuntajeObtenido()/35) );	// el divisor es la cantidad de preguntas
 				for(Object  o2 : $evaluaciones){
 					puestEval = (EvaluacionPuestoBean) o2;				
-					//System.out.println( "||puestEval.getId():"+puestEval.getId()+"||puestEval.getTipoEvaluacion():"+puestEval.getTipoEvaluacion()+"||puestEval.getLimitePorcentajeInferior():"+puestEval.getLimitePorcentajeInferior()+"||puestEval.getLimitePorcentajeSuperior():"+puestEval.getLimitePorcentajeSuperior() );		
+					System.out.println( "||puestEval.getId():"+puestEval.getId()+"||puestEval.getTipoEvaluacion():"+puestEval.getTipoEvaluacion()+"||puestEval.getLimitePorcentajeInferior():"+puestEval.getLimitePorcentajeInferior()+"||puestEval.getLimitePorcentajeSuperior():"+puestEval.getLimitePorcentajeSuperior() );		
 					if( usuEval.getTipoEvaluacion() == puestEval.getTipoEvaluacion() ){						
-						if( puestEval.getLimitePorcentajeInferior()<=  usuEval.getPuntajeObtenido() &&  (usuEval.getPuntajeObtenido()/35)   <=   puestEval.getLimitePorcentajeSuperior() ){
+						if( puestEval.getLimitePorcentajeInferior()<=  (usuEval.getPuntajeObtenido()/35) &&  (usuEval.getPuntajeObtenido()/35)   <=   puestEval.getLimitePorcentajeSuperior() ){
 							usuEval.setEvaluacionAceptada(true);
 							break;
 						}			

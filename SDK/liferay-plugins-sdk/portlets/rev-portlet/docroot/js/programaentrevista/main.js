@@ -3,6 +3,7 @@ var formvalid = false;
 var modalconfirmacion = null;
 var inputFristnamespace = null;
 
+var activoInternoEvals = false;
 $(document).ready(function() {
 	init();
 });
@@ -480,6 +481,23 @@ function inicializarFormularioProgramacionEntrevista() {
 		}
 		
 	});
+
+	var btnIngEval = $("#" + inputFristnamespace + "btnIngEval");
+	$(btnIngEval).click(function() {
+		var pnlEvalPsicologicos = $("#" + inputFristnamespace + "pnlEvalPsicologicos");
+		var pnlEvalTecnicas = $("#" + inputFristnamespace + "pnlEvalTecnicas");
+		console.log("Activar evalauciones psicologicas y tecnicas");		
+		if(!activoInternoEvals){
+			activoInternoEvals = true;
+			$(pnlEvalPsicologicos).show();
+			$(pnlEvalTecnicas).show();		
+		}else{
+			activoInternoEvals = false;
+			$(pnlEvalPsicologicos).hide();
+			$(pnlEvalTecnicas).hide();				
+		}	
+	});
+	
 }
 
 

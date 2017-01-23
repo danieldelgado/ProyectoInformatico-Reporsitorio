@@ -19,20 +19,29 @@ import com.hitss.rev.dools.impl.UsuarioBean
 rule check4 
 no-loop true
 when
-    			$p : Postulacion( 	    			
+    			$postulacion : Postulacion( 	    			
 	    			$solicitud : solicitudReclutamiento , 
 	    			$puesto : solicitudReclutamiento.puesto , 
 	    			$usuario : usuarioBean	    			 			
     			)
    
+    $u : UsuarioBean( $ulevaluaciones : listaEntrevista  != null  ) from $usuario
+    $p : PuestoBean( $evaluaciones : listaEntrevista  != null  ) from $puesto
+   
 then
    System.out.println( "--------check4----------" );
    System.out.println( "puesto:"+$puesto.getNombre() );
    System.out.println( "usuario:"+$usuario.getNombre() );
+   System.out.println( $ulevaluaciones!=null && !$ulevaluaciones.isEmpty() );
+   System.out.println( $evaluaciones!=null && !$evaluaciones.isEmpty()  );
+   System.out.println( "filtroPostulacion:"+$postulacion.isFiltroPostulacion() );
+   System.out.println( "filtroConocimiento:"+$postulacion.isFiltroConocimiento() );
+   System.out.println( "filtroPsicologico:"+$postulacion.isFiltroPsicologico() );
+   System.out.println( "filtroTecnico:"+$postulacion.isFiltroTecnico() );
+   System.out.println( "filtroEtrevistas:"+$postulacion.isFiltroEtrevistas() );
    System.out.println( "------------------" );
 end
 */
-
 
 rule "Analizar Entrevistas"    
  
@@ -42,16 +51,21 @@ salience 8
 when
     $postulacion : Postulacion( 
     $usuario : usuarioBean , 
-    $puesto : solicitudReclutamiento.puesto , 
-    
-    filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == true && filtroEtrevistas == false )
+    $puesto : solicitudReclutamiento.puesto ,     
+	    filtroPostulacion == true && 
+	    filtroConocimiento == true  && 
+	    filtroPsicologico == false && 
+	    filtroTecnico == false && 
+	    filtroEtrevistas == false )
     
     $u : UsuarioBean( $ulevaluaciones : listaEntrevista  != null  ) from $usuario
     $p : PuestoBean( $evaluaciones : listaEntrevista  != null  ) from $puesto
     
 then
-    		
+    
+	System.out.println( "rule AE	A ----	" );		
 	if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
+		System.out.println( "rule AE	B ----	" );	
 		if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
     		System.out.println( "--Analizar Entrevistas i--" );
 			EvaluacionBean usuEval = null;
@@ -62,10 +76,10 @@ then
 			
 			for(Object  o : $ulevaluaciones){
 				usuEval = (EvaluacionBean) o;			
-				//System.out.println( "usuEval.getId():"+usuEval.getId()+"||usuEval.getTipoEvaluacion():"+usuEval.getTipoEvaluacion() +"||usuEval.getPuntajeObtenido():"+(usuEval.getPuntajeObtenido()/35) );	// el divisor es la cantidad de preguntas
+				System.out.println( "usuEval.getId():"+usuEval.getId()+"||usuEval.getTipoEvaluacion():"+usuEval.getTipoEvaluacion() +"||usuEval.getPuntajeObtenido():"+(usuEval.getPuntajeObtenido()/35) );	// el divisor es la cantidad de preguntas
 				for(Object  o2 : $evaluaciones){
 					puestEval = (EvaluacionPuestoBean) o2;				
-					//System.out.println( "||puestEval.getId():"+puestEval.getId()+"||puestEval.getTipoEvaluacion():"+puestEval.getTipoEvaluacion()+"||puestEval.getLimitePorcentajeInferior():"+puestEval.getLimitePorcentajeInferior()+"||puestEval.getLimitePorcentajeSuperior():"+puestEval.getLimitePorcentajeSuperior() );		
+					System.out.println( "||puestEval.getId():"+puestEval.getId()+"||puestEval.getTipoEvaluacion():"+puestEval.getTipoEvaluacion()+"||puestEval.getLimitePorcentajeInferior():"+puestEval.getLimitePorcentajeInferior()+"||puestEval.getLimitePorcentajeSuperior():"+puestEval.getLimitePorcentajeSuperior() );		
 					if( usuEval.getTipoEvaluacion() == puestEval.getTipoEvaluacion() ){						
 						if( puestEval.getLimitePorcentajeInferior()<=  usuEval.getPuntajeObtenido() &&  (usuEval.getPuntajeObtenido()/35)   <=   puestEval.getLimitePorcentajeSuperior() ){
 							usuEval.setEvaluacionAceptada(true);

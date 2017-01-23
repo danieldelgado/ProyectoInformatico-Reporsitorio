@@ -5,16 +5,23 @@ import java.util.List;
 
 public class DataHamming {
 
-	public static double calcularDistancia(List<Haming> lista ) {		
+	public static double calcularDistancia(List<Haming> lista) {
 		List<Double> vals = new ArrayList<Double>();
 		double v = 0;
-		for (Haming ha : lista) {			
+		for (Haming ha : lista) {
+			if (ha == null) {
+				System.out.println(" ha is null ");
+			} else if (ha.getValorDefinido() == null) {
+				System.out.println(" ha.getValorDefinido() is null ");
+			} else if (ha.getValor() == null) {
+				System.out.println(" ha.getValor() is null ");
+			}
 			v = restaAbsoluta(ha.getValorDefinido(), ha.getValor());
 			vals.add(v);
 			v = 0;
 		}
 		v = sumaValores(vals);
-		return v/lista.size();
+		return v / lista.size();
 	}
 
 	private static double sumaValores(List<Double> listaValores) {
@@ -31,7 +38,7 @@ public class DataHamming {
 
 	public static void main(String[] args) {
 		{
-			List<Haming> lista  = new ArrayList<Haming>();
+			List<Haming> lista = new ArrayList<Haming>();
 			Haming a = new Haming(1.0, 1.0);
 			lista.add(a);
 			Haming a2 = new Haming(1.0, 0.7);
@@ -47,11 +54,11 @@ public class DataHamming {
 			Haming a7 = new Haming(1.0, 1.0);
 			lista.add(a7);
 			Haming a8 = new Haming(0.8, 0.2);
-			lista.add(a8);		
+			lista.add(a8);
 			System.out.println(calcularDistancia(lista));
 		}
 		{
-			List<Haming> lista  = new ArrayList<Haming>();
+			List<Haming> lista = new ArrayList<Haming>();
 			Haming a = new Haming(1.0, 0.7);
 			lista.add(a);
 			Haming a2 = new Haming(1.0, 0.9);
@@ -67,11 +74,11 @@ public class DataHamming {
 			Haming a7 = new Haming(1.0, 0.7);
 			lista.add(a7);
 			Haming a8 = new Haming(0.8, 0.6);
-			lista.add(a8);		
+			lista.add(a8);
 			System.out.println(calcularDistancia(lista));
 		}
 		{
-			List<Haming> lista  = new ArrayList<Haming>();
+			List<Haming> lista = new ArrayList<Haming>();
 			Haming a = new Haming(1.0, 0.6);
 			lista.add(a);
 			Haming a2 = new Haming(1.0, 0.8);
@@ -87,10 +94,10 @@ public class DataHamming {
 			Haming a7 = new Haming(1.0, 0.6);
 			lista.add(a7);
 			Haming a8 = new Haming(0.8, 1.0);
-			lista.add(a8);		
+			lista.add(a8);
 			System.out.println(calcularDistancia(lista));
 		}
-				
+
 	}
-	
+
 }

@@ -12,13 +12,11 @@ import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
 import java.util.ArrayList;
 import java.util.List;
-/**/
-
 /*
 rule check1 
 no-loop true
 when
-    			$p : Postulacion( 	    			
+    			$postulacion : Postulacion( 	    			
 	    			$solicitud : solicitudReclutamiento , 
 	    			$puesto : solicitudReclutamiento.puesto , 
 	    			$usuario : usuarioBean	    			 			
@@ -31,10 +29,17 @@ then
    System.out.println( "puesto:"+$puesto.getExperienciaRubro() );
    System.out.println( "puesto:"+$puesto.getExperienciaRubro().getTipoNegocioProyecto() );
    System.out.println( "usuario:"+$usuario.getListaExperiencias() );
+      
+   System.out.println( "filtroPostulacion:"+$postulacion.isFiltroPostulacion() );
+   System.out.println( "filtroConocimiento:"+$postulacion.isFiltroConocimiento() );
+   System.out.println( "filtroPsicologico:"+$postulacion.isFiltroPsicologico() );
+   System.out.println( "filtroTecnico:"+$postulacion.isFiltroTecnico() );
+   System.out.println( "filtroEtrevistas:"+$postulacion.isFiltroEtrevistas() );
+   
    System.out.println( "------------------" );
 end
-*/
 
+*/
 rule seleccionarPorConocimientosConExperiencia 
 salience 1
 when
@@ -141,7 +146,7 @@ then
 			$postulacion.setPorcentajeRequisitosCumplidoPorUsuario(Double.valueOf(cantidadComparada)/Double.valueOf(countRequerimientos));
 			$postulacion.setPorcentajeReqCum(($postulacion.getCantidadReqCon()/$totalCount.doubleValue()));		
     		System.out.println( "%Requisitos del usuario " );
-    		System.out.println( "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario()); 		
+    		System.out.println( "Id Usuario con requisitos minima requerida: " +$u.getIdUsuario()); 		
     		System.out.println( "%Requisitos que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCum());
     		System.out.println( "%Requisitos que cumple el puesto para el usuario: " +$postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
     		$postulacion.setFiltroConocimiento(true);
@@ -233,7 +238,7 @@ then
 			$postulacion.setPorcentajeReqCertiCum(($postulacion.getCantidadReqCerti()/$totalCount.doubleValue()));	
 			$postulacion.setPorcentajeCertificadoCumplidoPorUsuario(Double.valueOf(cantidadComparada)/Double.valueOf(countRequerimientos));	
     		System.out.println( "%Certificado del usuario " );
-    		System.out.println( "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario()); 		
+    		System.out.println( "Id Usuario con requisitos certificado minima requerida: " +$u.getIdUsuario()); 		
     		System.out.println( "%Certificado que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCertiCum());
     		System.out.println( "%Certificado que cumple el puesto para el usuario: " +$postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
     		if( $postulacion.getPorcentajeReqCertiCum()<=1 && $postulacion.getPorcentajeCertificadoCumplidoPorUsuario()<=1 ){

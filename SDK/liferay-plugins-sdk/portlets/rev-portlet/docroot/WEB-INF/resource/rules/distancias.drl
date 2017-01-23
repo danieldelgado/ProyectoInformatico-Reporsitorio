@@ -71,9 +71,9 @@ then
 						   	e2 = (EvaluacionBean)o2;							   	
 					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
 			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
-						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/20));
-								a.setValor((e2.getPuntajeObtenido()/20));
-			   					euc.setValor((e2.getPuntajeObtenido()/20));		
+						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35));
+								a.setValor((e2.getPuntajeObtenido()/35));
+			   					euc.setValor((e2.getPuntajeObtenido()/35));		
 					   		}					  
 					   }			   		
 			   		dis.add(a);	   		
@@ -137,9 +137,9 @@ then
 						   	e2 = (EvaluacionBean)o2;							   	
 					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
 			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
-						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/20));
-								a.setValor((e2.getPuntajeObtenido()/20));
-			   					euc.setValor((e2.getPuntajeObtenido()/20));		
+						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35));
+								a.setValor((e2.getPuntajeObtenido()/35));
+			   					euc.setValor((e2.getPuntajeObtenido()/35));		
 					   		}					  
 					   }			   		
 			   		dis.add(a);	   		
@@ -202,9 +202,9 @@ then
 						   	e2 = (EvaluacionBean)o2;							   	
 					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
 			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
-						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/20));
-								a.setValor((e2.getPuntajeObtenido()/20));
-			   					euc.setValor((e2.getPuntajeObtenido()/20));		
+						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35));
+								a.setValor((e2.getPuntajeObtenido()/35));
+			   					euc.setValor((e2.getPuntajeObtenido()/35));		
 					   		}					  
 					   }			   		
 			   		dis.add(a);	   		

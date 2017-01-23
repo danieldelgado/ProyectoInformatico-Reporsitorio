@@ -42,8 +42,19 @@
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
-					<c:if test="${ !bcol }">					
+					
+					<c:if test="${ bcol }">	
 						<div class="span12">
+							<button id="<portlet:namespace/>btnIngEval" class="btn btn-primary offset3" type="button">
+											Ingresar evaluaciones adicionales
+							</button>
+						</div>
+					</c:if>				
+					
+						 	
+					<br>
+						
+						<div id="<portlet:namespace/>pnlEvalPsicologicos" class="span12" style=' <c:if test="${ bcol }"> display: none; </c:if>'>
 							<div>
 								<div class="span5">
 									<label> Fecha evaluación Piscólogica: </label>
@@ -68,7 +79,7 @@
 							</div>
 	
 						</div>
-						<div class="span12">
+						<div id="<portlet:namespace/>pnlEvalTecnicas" class="span12"  style=' <c:if test="${ bcol }"> display: none; </c:if>'>
 							<div>
 								<div class="span5">
 									<label> Fecha evaluación Técnica: </label>
@@ -92,7 +103,7 @@
 							</div>
 	
 						</div>
-					</c:if>
+				
 					
 					
 					

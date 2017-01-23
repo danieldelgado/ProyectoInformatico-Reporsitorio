@@ -38,6 +38,22 @@
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
+					
+<%-- 					<c:if test="${ solicitudPostulacionBean.tipoPostulante == 1 }"> --%>
+<!-- 						<div class="span12"> -->
+<!-- 							<div> -->
+<!-- 								<div class="span5"> -->
+<!-- 									<label> Ingresar resultados evaluaciones: </label> -->
+<!-- 								</div> -->
+<!-- 								<div class="span6"> -->
+<%-- 									<button id="<portlet:namespace/>btnIngEval" class="btn btn-primary" type="button"> --%>
+<!-- 										Ingresar evaluaciones -->
+<!-- 									</button> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<%-- 					</c:if> --%>
+					
 					<c:if test="${ solicitudPostulacionBean.tipoPostulante == 0 }">
 						<div class="span12">
 							<div>
