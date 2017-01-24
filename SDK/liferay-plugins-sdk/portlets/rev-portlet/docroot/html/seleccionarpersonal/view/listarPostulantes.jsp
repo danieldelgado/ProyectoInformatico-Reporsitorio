@@ -50,6 +50,11 @@
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.disponibilidad" /></th>
 							<th>Interno</th>
 							<th>Fase de Postulación</th>
+							<th>Candidato Recomendado</th>
+							<th>Puesto Recomendado</th>
+							<th>Certificados del Candidato Recomendado</th>
+							<th>Certificados del Puesto Recomendado</th>
+							<th>Distancia</th>
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.estado" /></th>
 							<th><liferay-ui:message key="listasolicitudreclutamiento.lista.opciones" /></th>
 						</tr>

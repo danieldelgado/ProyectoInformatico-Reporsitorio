@@ -9,7 +9,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hitss.layer.NoSuchFasePostulacionException;
 import com.hitss.layer.model.FasePostulacion;
 import com.hitss.layer.model.Postulacion;
 import com.hitss.layer.model.Usuario;
@@ -58,23 +57,23 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 		List<UsuarioBean> lstReturn = new ArrayList<UsuarioBean>();
 		try {
 			List<Postulacion> lst = PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(solicitudRequerimientoId);
-//			lst =  lst.subList(0, 1);
-//			System.out.println(lst);
-
+			System.out.println(lst);
 			if (!lst.isEmpty()) {
+				
+				LogTraza.inicializar();
+				PostulacionBean pstBean = null;
+				List<PostulacionBean> lstAnalizado = expertoRevApi.analsisExperto(solicitudRequerimientoId, lst);
+				List<Traza> listaList = LogTraza.getListaList();
+				System.out.println(listaList);
+				LogTraza.inicializar();
+				
 				long[] userIds = new long[lst.size()];
 				for (int i = 0; i < lst.size(); i++) {
 					userIds[i] = lst.get(i).getUsuarioId();
 				}
+				
 				if (userIds != null) {
-					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);
-
-					LogTraza.inicializar();
-					lstUsuariosPostulantes = expertoRevApi.analsisExperto(solicitudRequerimientoId, lst, lstUsuariosPostulantes);
-					List<Traza> listaList = LogTraza.getListaList();
-					System.out.println(listaList);
-					
-					LogTraza.inicializar();
+					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);					
 					if (!lstUsuariosPostulantes.isEmpty()) {
 						User user = null;
 						UsuarioBean usuarioBean = null;
@@ -87,9 +86,16 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 									post = postulacion;
 								}
 							}
+							pstBean = getPostualcionAnalizada(usuario.getUserId(),lstAnalizado);
 							usuarioBean = new UsuarioBean();
 							usuarioBean.setUserId(usuario.getUserId());
-							usuarioBean.setFullname(user.getFullName());
+							if(Validator.isNotNull(user.getFullName()) && !user.getFullName().equals("")){
+								usuarioBean.setFullname(user.getFullName());
+							}else{
+								usuarioBean.setFullname(user.getFirstName() + " " + user.getLastName() );
+							}
+							
+							
 							Boolean colaborador = (Boolean) user.getExpandoBridge().getAttribute("Colaborador");
 							usuarioBean.setInterno(colaborador ? "Si" : "No");
 							Date disponibildad = (Date) user.getExpandoBridge().getAttribute("Disponibilidad");
@@ -160,6 +166,26 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 								usuarioBean.setFasePostulacion(StringPool.BLANK);
 								usuarioBean.setEstado(parametroService.getParametro(Constantes.PARAMETRO_ESTADO_POSTULADO).getValor());
 							}
+							if(pstBean!=null){
+								usuarioBean.setCercania(pstBean.getCercania());
+								usuarioBean.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
+								usuarioBean.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
+								usuarioBean.setDistanciaHammingEntrevista(pstBean.getDistanciaHammingEntrevista());
+								usuarioBean.setDistanciaEuclidianaPsicologico( pstBean.getDistanciaEuclidianaPsicologico());
+								usuarioBean.setDistanciaHammingPsicologico( pstBean.getDistanciaHammingPsicologico());
+								usuarioBean.setDistanciaEuclidianaTecnico(pstBean.getDistanciaEuclidianaTecnico());
+								usuarioBean.setDistanciaHammingTecnico(pstBean.getDistanciaHammingTecnico());
+								usuarioBean.setRecomendableReqCum(pstBean.isRecomendableReqCum());
+								usuarioBean.setPorcentajeReqCum(pstBean.getPorcentajeReqCum());
+								usuarioBean.setRecomendableRequisitosCumplidoPorUsuario(pstBean.isRecomendableRequisitosCumplidoPorUsuario());
+								usuarioBean.setPorcentajeRequisitosCumplidoPorUsuario( pstBean.getPorcentajeRequisitosCumplidoPorUsuario());
+								if (pstBean.getPorcentajeReqCertiCum() > 0) {
+									usuarioBean.setRecomendableReqCertiCum(pstBean.isRecomendableReqCertiCum());
+									usuarioBean.setPorcentajeReqCertiCum(pstBean.getPorcentajeReqCertiCum());
+									usuarioBean.setRecomendableCertificadoCumplidoPorUsuario(pstBean.isRecomendableCertificadoCumplidoPorUsuario());
+									usuarioBean.setPorcentajeCertificadoCumplidoPorUsuario(pstBean.getPorcentajeCertificadoCumplidoPorUsuario());
+								}
+							}
 							lstReturn.add(usuarioBean);
 						}
 					}
@@ -170,6 +196,15 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 		}
 		_log.info("lstReturn:" + lstReturn);
 		return lstReturn;
+	}
+
+	private PostulacionBean getPostualcionAnalizada(long userId, List<PostulacionBean> lstAnalizado) {
+		for (PostulacionBean postulacionBean : lstAnalizado) {
+			if( userId == postulacionBean.getUsuarioId() ){
+				return postulacionBean;
+			}
+		}
+		return null;
 	}
 
 	@Override

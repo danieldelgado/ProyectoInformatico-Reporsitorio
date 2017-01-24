@@ -11,6 +11,7 @@ import com.hitss.rev.dools.impl.ReferenciaBean
 import com.hitss.rev.dools.impl.RequisitoBean
 import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
+import com.hitss.rev.dools.impl.LogTraza
 
 rule Revision 
 no-loop true
@@ -52,9 +53,13 @@ when
     			)
    
 then
-   System.out.println( "------------- FiltroBasico i------------- " );
+   System.out.println( "------------- FiltroBasico i------------- " );;
+   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "------------- FiltroBasico 1------------- " );
    System.out.println( $puesto.getNombre() );
+   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,$puesto.getNombre() );
    System.out.println( $usuario.getNombre() );
+   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , $usuario.getNombre()  );
+   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "------------- FiltroBasico 2------------- " );
    $p.setFiltroPostulacion(true);
    insertLogical( $usuario );
    insertLogical( $puesto ); 

@@ -255,10 +255,15 @@ function addPostulanteFila(object) {
 	"<td>" + object['fechaPostulacion'] + "</td>" + 
 	"<td>" + object['disponibilidad'] + "</td>" + 
 	"<td>" + object['interno'] + "</td>" + 
+	"<td>" + object['recomendableReqCum'] + "</td>" + 
+	"<td>" + object['recomendableRequisitosCumplidoPorUsuario'] + "</td>" + 
+	"<td>" + object['recomendableReqCertiCum'] + "</td>" + 
+	"<td>" + object['recomendableCertificadoCumplidoPorUsuario'] + "</td>" + 
+	"<td>" + object['cercania'] + "</td>" + 
 	"<td>" + object['fasePostulacion'] + "</td>" + 
 	"<td>" + object['estado'] + "</td>" + 
 	"<td>" + "";
-	
+
 	html += '	<div class="btn-group">';
 	html += '		<a class="btn btn-primary" href="' + postulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Seleccionar </a>';
 	html += '		<a class="btn btn-primary" href="' + detallePostulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Ver detalle </a>';

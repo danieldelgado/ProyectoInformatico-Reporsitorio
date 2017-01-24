@@ -14,6 +14,7 @@ import com.hitss.rev.dools.impl.ReferenciaBean
 import com.hitss.rev.dools.impl.RequisitoBean
 import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
+import com.hitss.rev.dools.impl.LogTraza
 
 /*
 rule check3 
@@ -69,9 +70,11 @@ then
 			for(Object  o : $ulevaluaciones){
 				usuEval = (EvaluacionBean) o;			
 				System.out.println( "usuEval.getId():"+usuEval.getId()+"||usuEval.getTipoEvaluacion():"+usuEval.getTipoEvaluacion() +"||usuEval.getPuntajeObtenido():"+(usuEval.getPuntajeObtenido()/35) );	// el divisor es la cantidad de preguntas
+				LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "usuEval.getId():"+usuEval.getId()+"||usuEval.getTipoEvaluacion():"+usuEval.getTipoEvaluacion() +"||usuEval.getPuntajeObtenido():"+(usuEval.getPuntajeObtenido()/35) );	// el divisor es la cantidad de preguntas
 				for(Object  o2 : $evaluaciones){
 					puestEval = (EvaluacionPuestoBean) o2;				
 					System.out.println( "||puestEval.getId():"+puestEval.getId()+"||puestEval.getTipoEvaluacion():"+puestEval.getTipoEvaluacion()+"||puestEval.getLimitePorcentajeInferior():"+puestEval.getLimitePorcentajeInferior()+"||puestEval.getLimitePorcentajeSuperior():"+puestEval.getLimitePorcentajeSuperior() );		
+					LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "||puestEval.getId():"+puestEval.getId()+"||puestEval.getTipoEvaluacion():"+puestEval.getTipoEvaluacion()+"||puestEval.getLimitePorcentajeInferior():"+puestEval.getLimitePorcentajeInferior()+"||puestEval.getLimitePorcentajeSuperior():"+puestEval.getLimitePorcentajeSuperior() );		
 					if( usuEval.getTipoEvaluacion() == puestEval.getTipoEvaluacion() ){						
 						if( puestEval.getLimitePorcentajeInferior()<=  (usuEval.getPuntajeObtenido()/35) &&  (usuEval.getPuntajeObtenido()/35)   <=   puestEval.getLimitePorcentajeSuperior() ){
 							usuEval.setEvaluacionAceptada(true);
@@ -85,10 +88,13 @@ then
 			}			
 			
     		System.out.println( "Analisis de evaluaciones tecnicas " );
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "Analisis de evaluaciones tecnicas " );
     		System.out.println( "Id Usuario evaluaciones: " +$u.getIdUsuario()); 
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Id Usuario evaluaciones: " +$u.getIdUsuario()); 
 			for(Object  o : $ulevaluaciones){
 				usuEval = (EvaluacionBean) o;
 				System.out.println( "%Evaluacion tecnicas:"+usuEval.getId()+"|| Tipo:"+usuEval.getTipoEvaluacion()+"|| Rango Aceptable:"+usuEval.isEvaluacionAceptada() );	
+				LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "%Evaluacion tecnicas:"+usuEval.getId()+"|| Tipo:"+usuEval.getTipoEvaluacion()+"|| Rango Aceptable:"+usuEval.isEvaluacionAceptada() );	
 			}
 			if( countEvalRequeridas <= countEvalRendidas ){
 				if(!$postulacion.isFiltroTecnico()){

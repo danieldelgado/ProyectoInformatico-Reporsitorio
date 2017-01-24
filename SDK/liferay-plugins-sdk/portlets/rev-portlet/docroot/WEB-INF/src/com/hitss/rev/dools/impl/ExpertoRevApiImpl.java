@@ -13,8 +13,8 @@ import com.hitss.layer.model.FasePostulacionPuestoEvaluacion;
 import com.hitss.layer.model.Postulacion;
 import com.hitss.layer.model.PuestoEvaluacion;
 import com.hitss.layer.model.SolicitudRequerimiento;
-import com.hitss.layer.model.Usuario;
 import com.hitss.layer.model.UsuarioRequisito;
+import com.hitss.layer.model.impl.PostulacionImpl;
 import com.hitss.layer.service.EvaluacionLocalServiceUtil;
 import com.hitss.layer.service.ExperienciaLocalServiceUtil;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
@@ -23,6 +23,7 @@ import com.hitss.layer.service.PuestoEvaluacionLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.UsuarioRequisitoLocalServiceUtil;
 import com.hitss.rev.bean.ComboBean;
+import com.hitss.rev.bean.PostulacionBean;
 import com.hitss.rev.bean.RequisitoEtiquetaBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.dools.ExpertoRevApi;
@@ -47,8 +48,9 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 	private ParametroService parametroService;
 
 	@Override
-	public List<Usuario> analsisExperto(Long solicitudRequerimientoId, List<Postulacion> lst, List<Usuario> lstUsuariosPostulantes) {
-		List<Usuario> u = new ArrayList<Usuario>();
+	public List<PostulacionBean> analsisExperto(Long solicitudRequerimientoId, List<Postulacion> lst) {
+		List<PostulacionBean> lstR = new ArrayList<PostulacionBean>();
+		PostulacionBean paa = null;
 		try {
 			SolicitudRequerimiento sr = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudRequerimientoId);
 			List<PuestoEvaluacion> listaPuestoEvaluacion = PuestoEvaluacionLocalServiceUtil.findByS_ALL(solicitudRequerimientoId);
@@ -71,21 +73,39 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 			}
 			listaPostulaciones = DataAnalisisExperto.analisisDatos(listaPostulaciones);
 			for (com.hitss.rev.dools.impl.Postulacion postulacion : listaPostulaciones) {
-				System.out.println(postulacion.getUsuarioBean().getIdUsuario());
+				paa = new PostulacionBean();
+				paa.setUsuarioId(postulacion.getUsuarioBean().getIdUsuario());
+				paa.setCercania(postulacion.getCercania());
+				paa.setSolicitudId(postulacion.getSolicitudReclutamiento().getId());
 				System.out.println("getIdUsuario--" + postulacion.getUsuarioBean().getIdUsuario());
+				paa.setDistanciaEuclidianaEntrevista(postulacion.getDistanciaEuclidianaEntrevista());
 				System.out.println("DistanciaEuclidianaEntrevista--" + postulacion.getDistanciaEuclidianaEntrevista());
+				paa.setDistanciaEuclidianaEntrevista(postulacion.getDistanciaEuclidianaEntrevista());
 				System.out.println("DistanciaHammingEntrevista--" + postulacion.getDistanciaHammingEntrevista());
+				paa.setDistanciaHammingEntrevista(postulacion.getDistanciaHammingEntrevista());
 				System.out.println("DistanciaEuclidianaPsicologico--" + postulacion.getDistanciaEuclidianaPsicologico());
+				paa.setDistanciaEuclidianaPsicologico( postulacion.getDistanciaEuclidianaPsicologico());
 				System.out.println("DistanciaHammingPsicologico--" + postulacion.getDistanciaHammingPsicologico());
+				paa.setDistanciaHammingPsicologico( postulacion.getDistanciaHammingPsicologico());
 				System.out.println("DistanciaEuclidianaTecnico--" + postulacion.getDistanciaEuclidianaTecnico());
+				paa.setDistanciaEuclidianaTecnico(postulacion.getDistanciaEuclidianaTecnico());
 				System.out.println("DistanciaHammingTecnico--" + postulacion.getDistanciaHammingTecnico());
+				paa.setDistanciaHammingTecnico(postulacion.getDistanciaHammingTecnico());
 				System.out.println("RecomendableReqCum--" + postulacion.isRecomendableReqCum() + " al " + postulacion.getPorcentajeReqCum());
+				paa.setRecomendableReqCum(postulacion.isRecomendableReqCum());
+				paa.setPorcentajeReqCum(postulacion.getPorcentajeReqCum());
 				System.out.println("RecomendableRequisitosCumplidoPorUsuario--" + postulacion.isRecomendableRequisitosCumplidoPorUsuario() + " al "
 						+ postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
+				paa.setRecomendableRequisitosCumplidoPorUsuario(postulacion.isRecomendableRequisitosCumplidoPorUsuario());
+				paa.setPorcentajeRequisitosCumplidoPorUsuario( postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
 				if (postulacion.getPorcentajeReqCertiCum() > 0) {
 					System.out.println("RecomendableReqCertiCum--" + postulacion.isRecomendableReqCertiCum() + " al " + postulacion.getPorcentajeReqCertiCum());
+					paa.setRecomendableReqCertiCum(postulacion.isRecomendableReqCertiCum());
+					paa.setPorcentajeReqCertiCum(postulacion.getPorcentajeReqCertiCum());
 					System.out.println("RecomendableCertificadoCumplidoPorUsuario--" + postulacion.isRecomendableCertificadoCumplidoPorUsuario() + " al "
 							+ postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
+					paa.setRecomendableCertificadoCumplidoPorUsuario(postulacion.isRecomendableCertificadoCumplidoPorUsuario());
+					paa.setPorcentajeCertificadoCumplidoPorUsuario(postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
 				}
 				System.out.println("-----------------");
 			}
@@ -93,7 +113,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 		} catch (PortalException | SystemException e) {
 			e.printStackTrace();
 		}
-		return lstUsuariosPostulantes;
+		return lstR;
 	}
 
 	private UsuarioBean getUsuario(long usuarioId, Long solicitudRequerimientoId) throws PortalException, SystemException {

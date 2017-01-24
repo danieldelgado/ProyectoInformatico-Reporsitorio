@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import org.drools.KnowledgeBase;
@@ -68,8 +67,8 @@ public class DataAnalisisExperto {
 
 			System.out.println("--------------Resultados----------------");
 			
-			System.out.println(pc.getUsuarioBean().getIdUsuario());
 			System.out.println("getIdUsuario--" + pc.getUsuarioBean().getIdUsuario());
+			System.out.println("getCercania--" + pc.getCercania());
 			System.out.println("DistanciaEuclidianaEntrevista--" + pc.getDistanciaEuclidianaEntrevista());
 			System.out.println("DistanciaHammingEntrevista--" + pc.getDistanciaHammingEntrevista());
 			System.out.println("DistanciaEuclidianaPsicologico--" + pc.getDistanciaEuclidianaPsicologico());

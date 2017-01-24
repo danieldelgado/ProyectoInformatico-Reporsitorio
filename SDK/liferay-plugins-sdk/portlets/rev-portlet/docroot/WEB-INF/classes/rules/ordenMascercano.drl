@@ -18,6 +18,7 @@ import com.hitss.rev.dools.impl.DataHamming
 import com.hitss.rev.dools.impl.DistanciaEuclidiana
 import java.util.ArrayList
 import java.util.List
+import com.hitss.rev.dools.impl.LogTraza
 
 rule "Analisis de cercanos" salience 200 when
     $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false && analizadoCercania == false )
@@ -25,21 +26,32 @@ rule "Analisis de cercanos" salience 200 when
 then
 	System.out.println( " ----------------------------- " );
 	System.out.println( "Analisis de Cercania i " );
-	   
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Analisis de Cercania i ");
 	System.out.println("-----------------");
 	System.out.println("getIdUsuario--" + $postulacion.getUsuarioBean().getIdUsuario());
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"getIdUsuario--" + $postulacion.getUsuarioBean().getIdUsuario());
 	System.out.println("-----------------");
 	System.out.println("DistanciaEuclidianaEntrevista--" + $postulacion.getDistanciaEuclidianaEntrevista());
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"DistanciaEuclidianaEntrevista--" + $postulacion.getDistanciaEuclidianaEntrevista());
 	System.out.println("DistanciaHammingEntrevista--" + $postulacion.getDistanciaHammingEntrevista());
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"DistanciaHammingEntrevista--" + $postulacion.getDistanciaHammingEntrevista());
 	System.out.println("DistanciaEuclidianaPsicologico--" + $postulacion.getDistanciaEuclidianaPsicologico());
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"DistanciaEuclidianaPsicologico--" + $postulacion.getDistanciaEuclidianaPsicologico());
 	System.out.println("DistanciaHammingPsicologico--" + $postulacion.getDistanciaHammingPsicologico());
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"DistanciaHammingPsicologico--" + $postulacion.getDistanciaHammingPsicologico());
 	System.out.println("DistanciaEuclidianaTecnico--" + $postulacion.getDistanciaEuclidianaTecnico());
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"DistanciaEuclidianaTecnico--" + $postulacion.getDistanciaEuclidianaTecnico());
 	System.out.println("DistanciaHammingTecnico--" + $postulacion.getDistanciaHammingTecnico());   
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"DistanciaHammingTecnico--" + $postulacion.getDistanciaHammingTecnico()); 
 				   	
-   	System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
-   	System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
-   	System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
-   	System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+   	System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , 	 " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );		   
+   	System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() ); 
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,	" porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );    			   
+   	System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   		 
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,	   " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	
+   	System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );	 
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,	  " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );  			   
 		
 	List<Haming> dis = new ArrayList<Haming>();
 	Haming a1 = new Haming();
@@ -68,7 +80,7 @@ then
 	dis.add(a6);
 	
 	System.out.println( "DataHamming:" + DataHamming.calcularDistancia(dis) );
-	
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "DataHamming:" + DataHamming.calcularDistancia(dis) );
 	$postulacion.setCercania(DataHamming.calcularDistancia(dis));
 	
 	if($postulacion.getPorcentajeReqCum() >= 0.5){	
