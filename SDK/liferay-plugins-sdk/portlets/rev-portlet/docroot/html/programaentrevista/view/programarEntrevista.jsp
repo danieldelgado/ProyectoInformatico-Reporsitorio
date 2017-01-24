@@ -53,6 +53,10 @@
 					
 						 	
 					<br>
+						 	
+					<br>
+						 	
+					<br>
 						
 						<div id="<portlet:namespace/>pnlEvalPsicologicos" class="span12" style=' <c:if test="${ bcol }"> display: none; </c:if>'>
 							<div>

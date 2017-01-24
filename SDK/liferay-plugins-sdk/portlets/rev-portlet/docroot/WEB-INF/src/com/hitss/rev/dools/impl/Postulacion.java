@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Postulacion {
 
+	private Long postulacionId;
+	private Long usuarioId;
 	private SolicitudReclutamiento solicitudReclutamiento;
 	private UsuarioBean usuarioBean;
 	private Date fechaPostulacion;
@@ -293,6 +295,22 @@ public class Postulacion {
 
 	public void setRecomendableReqCertiCum(boolean recomendableReqCertiCum) {
 		this.recomendableReqCertiCum = recomendableReqCertiCum;
+	}
+
+	public Long getPostulacionId() {
+		return postulacionId;
+	}
+
+	public void setPostulacionId(Long postulacionId) {
+		this.postulacionId = postulacionId;
+	}
+
+	public Long getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(Long usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 
 }

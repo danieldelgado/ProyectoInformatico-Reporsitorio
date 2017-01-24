@@ -57,7 +57,8 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 			List<com.hitss.rev.dools.impl.Postulacion> listaPostulaciones = new ArrayList<com.hitss.rev.dools.impl.Postulacion>();
 			for (Postulacion pst : lst) {
 				pa = new com.hitss.rev.dools.impl.Postulacion();
-
+				pa.setPostulacionId(pst.getPrimaryKey().getSolicitudRequerimientoId());
+				pa.setUsuarioId(pst.getPrimaryKey().getUsuarioId());
 				solicitudReclutamiento = new SolicitudReclutamiento();
 				solicitudReclutamiento.setId(solicitudRequerimientoId);
 				solicitudReclutamiento.setPuesto(getPuestoConfiguracion(sr, listaPuestoEvaluacion));
@@ -69,9 +70,6 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				listaPostulaciones.add(pa);
 			}
 			listaPostulaciones = DataAnalisisExperto.analisisDatos(listaPostulaciones);
-			System.out.println("---------FIN--------");
-			System.out.println("---------FIN--------");
-			System.out.println("---------FIN--------");
 			for (com.hitss.rev.dools.impl.Postulacion postulacion : listaPostulaciones) {
 				System.out.println(postulacion.getUsuarioBean().getIdUsuario());
 				System.out.println("getIdUsuario--" + postulacion.getUsuarioBean().getIdUsuario());
@@ -91,7 +89,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				}
 				System.out.println("-----------------");
 			}
-
+			
 		} catch (PortalException | SystemException e) {
 			e.printStackTrace();
 		}
@@ -172,7 +170,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 			faseIds[i] = fspt.get(i).getFasePostulacionId();
 		}
 		
-		if (!colaborador) {
+//		if (!colaborador) {
 			{
 				List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
 				List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
@@ -237,12 +235,11 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 								}
 							}							
 						}
-						listaEvaluacion.add(eb);
 					}
 				}
 				p.setListaEvaluacionTecnicas(listaEvaluacion);
 			}
-		}
+//		}
 		{
 			List<EvaluacionBean> listaEntrevistas = new ArrayList<EvaluacionBean>();
 			List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);

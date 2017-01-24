@@ -121,28 +121,27 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					solicitudPostulacionBean.setStrfechaPostulacion(sdf.format(postulacion.getFechaPostulacion()));
 					long estado_parametro_id = colaborador ? Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR : Constantes.PARAMETRO_FASE_PSICOLOGICA;
 
-					if (!colaborador) {
-						fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
-								Constantes.PARAMETRO_FASE_PSICOLOGICA);
-						if (Validator.isNotNull(fase)) {
-							diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
-							solicitudPostulacionBean.setStrfechaPsicologica(Util.getStrFecha(fase.getFechaFase()));
-							if (fase.isAsistio()) {
-								estado_parametro_id = Constantes.PARAMETRO_FASE_PSICOLOGICA;
+					// if (!colaborador) {
+					fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+							Constantes.PARAMETRO_FASE_PSICOLOGICA);
+					if (Validator.isNotNull(fase)) {
+						diferenciasTiempo = fase.getFechamodifica().getTime() - fase.getFechacrea().getTime();
+						solicitudPostulacionBean.setStrfechaPsicologica(Util.getStrFecha(fase.getFechaFase()));
+						if (fase.isAsistio()) {
+							estado_parametro_id = Constantes.PARAMETRO_FASE_PSICOLOGICA;
 
-							}
-						}
-						fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
-								Constantes.PARAMETRO_FASE_TECNICA);
-						if (Validator.isNotNull(fp)) {
-							solicitudPostulacionBean.setStrfechaTecnica(Util.getStrFecha(fp.getFechaFase()));
-							diferenciasTiempo = fp.getFechamodifica().getTime() - fp.getFechacrea().getTime();
-							if (fp.isAsistio()) {
-								estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
-							}
-							fase = fp;
 						}
 					}
+					fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
+					if (Validator.isNotNull(fp)) {
+						solicitudPostulacionBean.setStrfechaTecnica(Util.getStrFecha(fp.getFechaFase()));
+						diferenciasTiempo = fp.getFechamodifica().getTime() - fp.getFechacrea().getTime();
+						if (fp.isAsistio()) {
+							estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
+						}
+						fase = fp;
+					}
+					// }
 
 					fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
 							Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
@@ -373,41 +372,41 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 			User u = UserLocalServiceUtil.getUser(userId);
 			Boolean colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
 
-			if (!colaborador) {
-				FasePostulacionBean aPsicologico = solicitudPostulacionBean.getFasePostulacionPsicologico();
-				FasePostulacion baPsicologico = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
-						Constantes.PARAMETRO_FASE_PSICOLOGICA);
-				if (Validator.isNull(baPsicologico)) {
-					baPsicologico = new FasePostulacionImpl();
-				}
-				baPsicologico.setApruebaFase(aPsicologico.isApruebaFase());
-				baPsicologico.setAsistio(aPsicologico.isAsistio());
-				baPsicologico.setEstado(aPsicologico.getEstado());
-				baPsicologico.setFechaFase(aPsicologico.getFechaFase());
-				if (Validator.isNull(baPsicologico.getFasePostulacionId())) {
-					FasePostulacionLocalServiceUtil.addFasePostulacion(baPsicologico);
-					aPsicologico.setFasepostulacionId(baPsicologico.getFasePostulacionId());
-				} else {
-					FasePostulacionLocalServiceUtil.updateFasePostulacion(baPsicologico);
-				}
-
-				FasePostulacionBean aTecnico = solicitudPostulacionBean.getFasePostulacionTecnico();
-				FasePostulacion baTecnico = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
-						Constantes.PARAMETRO_FASE_TECNICA);
-				if (Validator.isNull(baPsicologico)) {
-					baTecnico = new FasePostulacionImpl();
-				}
-				baTecnico.setApruebaFase(aTecnico.isApruebaFase());
-				baTecnico.setAsistio(aTecnico.isAsistio());
-				baTecnico.setEstado(aTecnico.getEstado());
-				baTecnico.setFechaFase(aTecnico.getFechaFase());
-				if (Validator.isNull(baTecnico.getFasePostulacionId())) {
-					FasePostulacionLocalServiceUtil.addFasePostulacion(baTecnico);
-					aPsicologico.setFasepostulacionId(baTecnico.getFasePostulacionId());
-				} else {
-					FasePostulacionLocalServiceUtil.updateFasePostulacion(baTecnico);
-				}
+			// if (!colaborador) {
+			FasePostulacionBean aPsicologico = solicitudPostulacionBean.getFasePostulacionPsicologico();
+			FasePostulacion baPsicologico = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+					Constantes.PARAMETRO_FASE_PSICOLOGICA);
+			if (Validator.isNull(baPsicologico)) {
+				baPsicologico = new FasePostulacionImpl();
 			}
+			baPsicologico.setApruebaFase(aPsicologico.isApruebaFase());
+			baPsicologico.setAsistio(aPsicologico.isAsistio());
+			baPsicologico.setEstado(aPsicologico.getEstado());
+			baPsicologico.setFechaFase(aPsicologico.getFechaFase());
+			if (Validator.isNull(baPsicologico.getFasePostulacionId())) {
+				FasePostulacionLocalServiceUtil.addFasePostulacion(baPsicologico);
+				aPsicologico.setFasepostulacionId(baPsicologico.getFasePostulacionId());
+			} else {
+				FasePostulacionLocalServiceUtil.updateFasePostulacion(baPsicologico);
+			}
+
+			FasePostulacionBean aTecnico = solicitudPostulacionBean.getFasePostulacionTecnico();
+			FasePostulacion baTecnico = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+					Constantes.PARAMETRO_FASE_TECNICA);
+			if (Validator.isNull(baPsicologico)) {
+				baTecnico = new FasePostulacionImpl();
+			}
+			baTecnico.setApruebaFase(aTecnico.isApruebaFase());
+			baTecnico.setAsistio(aTecnico.isAsistio());
+			baTecnico.setEstado(aTecnico.getEstado());
+			baTecnico.setFechaFase(aTecnico.getFechaFase());
+			if (Validator.isNull(baTecnico.getFasePostulacionId())) {
+				FasePostulacionLocalServiceUtil.addFasePostulacion(baTecnico);
+				aPsicologico.setFasepostulacionId(baTecnico.getFasePostulacionId());
+			} else {
+				FasePostulacionLocalServiceUtil.updateFasePostulacion(baTecnico);
+			}
+			// }
 
 			FasePostulacionBean aEntrevistaRRHH = solicitudPostulacionBean.getFasePostulacionEntrevistaRRHH();
 			FasePostulacion baEntrevistaRRHH = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
@@ -449,11 +448,11 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 			FasePostulacionPuestoEvaluacionPK fasePostulacionPuestoEvaluacionPK = null;
 
 			for (FasePostulacionPuestoEvaluacionBean fasePostulacionPuestoEvaluacionBean : listaFasePostulacionPuestoEvaluacionBean) {
-				if (colaborador) {
-					if (fasePostulacionPuestoEvaluacionBean.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacionBean.getEvaluacionId() != 2) {
-						continue;
-					}
-				}
+//				if (colaborador) {
+//					if (fasePostulacionPuestoEvaluacionBean.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacionBean.getEvaluacionId() != 2) {
+//						continue;
+//					}
+//				}
 				try {
 					fasePostulacionPuestoEvaluacionPK = new FasePostulacionPuestoEvaluacionPK(fasePostulacionPuestoEvaluacionBean.getFasePostulacionId(),
 							fasePostulacionPuestoEvaluacionBean.getSolicitudFuncionId(), fasePostulacionPuestoEvaluacionBean.getEvaluacionId());

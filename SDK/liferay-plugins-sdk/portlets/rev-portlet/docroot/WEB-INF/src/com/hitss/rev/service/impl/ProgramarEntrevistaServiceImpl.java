@@ -102,22 +102,19 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 								}
 							}
 
-							if (!colaborador) {
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_TECNICA);
-								if (Validator.isNotNull(fp)) {
-									if (!fp.isAsistio()) {
-										estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
-										fase = fp;
-									}
+							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_TECNICA);
+							if (Validator.isNotNull(fp)) {
+								if (!fp.isAsistio()) {
+									estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
+									fase = fp;
 								}
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
-								if ( Validator.isNotNull(fp)) {
-									if (!fp.isAsistio()) {
-										estado_parametro_id = Constantes.PARAMETRO_FASE_PSICOLOGICA;
-										fase = fp;
-									}
+							}
+							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
+							if (Validator.isNotNull(fp)) {
+								if (!fp.isAsistio()) {
+									estado_parametro_id = Constantes.PARAMETRO_FASE_PSICOLOGICA;
+									fase = fp;
 								}
-
 							}
 
 							usuarioBean.setSolicitudId(post.getSolicitudRequerimientoId());
@@ -186,8 +183,8 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 	}
 
 	@Override
-	public Map<String, Object> guardarProgramacionEntevista(Long solicitudId, Long userId, User user, FasePostulacionBean fasePsicologia, FasePostulacionBean faseTecnica,
-			FasePostulacionBean faseEntreCoordRRHH, FasePostulacionBean faseEntreGerenteArea) {
+	public Map<String, Object> guardarProgramacionEntevista(Long solicitudId, Long userId, User user, Boolean addEvaluaciones, FasePostulacionBean fasePsicologia,
+			FasePostulacionBean faseTecnica, FasePostulacionBean faseEntreCoordRRHH, FasePostulacionBean faseEntreGerenteArea) {
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
@@ -195,7 +192,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 			Boolean colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
 			SolicitudRequerimiento sRequerimiento = null;
 			if (Validator.isNotNull(solicitudId)) {
-				_log.info("guardarProgramacionEntevista");
+				_log.info("guardarProgramacionEntevista addEvaluaciones:" + addEvaluaciones + " colaborador:" + colaborador);
 				sRequerimiento = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudId);
 
 				long estado_parametro_id = Constantes.PARAMETRO_ESTADO_POSTULADO;
@@ -260,7 +257,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 					fp.setFechamodifica(new Date());
 					FasePostulacionLocalServiceUtil.addFasePostulacion(fp);
 				}
-				if (!colaborador) {
+				if (!colaborador || addEvaluaciones) {
 					fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudId, userId, Constantes.PARAMETRO_FASE_TECNICA);
 					if (Validator.isNotNull(fp)) {
 						if (fp.isAsistio()) {
@@ -290,7 +287,9 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 						fp.setFechamodifica(new Date());
 						FasePostulacionLocalServiceUtil.addFasePostulacion(fp);
 					}
+				}
 
+				if (!colaborador || addEvaluaciones) {
 					fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudId, userId, Constantes.PARAMETRO_FASE_PSICOLOGICA);
 					if (Validator.isNotNull(fp)) {
 						if (fp.isAsistio()) {

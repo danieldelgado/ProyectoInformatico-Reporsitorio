@@ -12,6 +12,7 @@ import com.hitss.rev.dools.impl.SolicitudReclutamiento
 import com.hitss.rev.dools.impl.UsuarioBean
 import java.util.ArrayList;
 import java.util.List;
+import com.hitss.rev.dools.impl.LogTraza
 /*
 rule check1 
 no-loop true
@@ -59,13 +60,15 @@ when
     $postulacion : Postulacion( )
           
 then
-
+   
    if($t.doubleValue() >= $tr.doubleValue() ){    	
     	if( $postulacion.getUsuarioBean().getIdUsuario() == $u.getIdUsuario() && $postulacion.isFiltroPostulacion() && ! $postulacion.isFiltroExperiencia() ){
     		if( ! $postulacion.isFiltroExperiencia() ){
     			System.out.println( "--seleccionarPorConocimientosConExperiencia i--" );
     			System.out.println( "Usuario con Experiencia Requerida" );
+    			LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Usuario con Experiencia Requerida" );
     			System.out.println( "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario()); 
+    			LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Id Usuario con experiencia minima requerida: " +$u.getIdUsuario() );
     			$postulacion.setFiltroExperiencia(true);
     			update($postulacion);
     			System.out.println( "--seleccionarPorConocimientosConExperiencia f--" );
@@ -146,9 +149,13 @@ then
 			$postulacion.setPorcentajeRequisitosCumplidoPorUsuario(Double.valueOf(cantidadComparada)/Double.valueOf(countRequerimientos));
 			$postulacion.setPorcentajeReqCum(($postulacion.getCantidadReqCon()/$totalCount.doubleValue()));		
     		System.out.println( "%Requisitos del usuario " );
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "%Requisitos del usuario " );
     		System.out.println( "Id Usuario con requisitos minima requerida: " +$u.getIdUsuario()); 		
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Id Usuario con requisitos minima requerida: " +$u.getIdUsuario() );
     		System.out.println( "%Requisitos que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCum());
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "%Requisitos que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCum() );
     		System.out.println( "%Requisitos que cumple el puesto para el usuario: " +$postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "%Requisitos que cumple el puesto para el usuario: " +$postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );
     		$postulacion.setFiltroConocimiento(true);
     		if( $ulcertreq!=null && !$ulcertreq.isEmpty() ){
     			$postulacion.setTieneCertificadoExperiencia(true);
@@ -238,9 +245,13 @@ then
 			$postulacion.setPorcentajeReqCertiCum(($postulacion.getCantidadReqCerti()/$totalCount.doubleValue()));	
 			$postulacion.setPorcentajeCertificadoCumplidoPorUsuario(Double.valueOf(cantidadComparada)/Double.valueOf(countRequerimientos));	
     		System.out.println( "%Certificado del usuario " );
-    		System.out.println( "Id Usuario con requisitos certificado minima requerida: " +$u.getIdUsuario()); 		
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "%Certificado del usuario " );
+    		System.out.println( "Id Usuario con requisitos certificado minima requerida: " +$u.getIdUsuario()); 
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Id Usuario con requisitos certificado minima requerida: " +$u.getIdUsuario());		
     		System.out.println( "%Certificado que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCertiCum());
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "%Certificado que cumple el usuario para el puesto: " +$postulacion.getPorcentajeReqCertiCum() );
     		System.out.println( "%Certificado que cumple el puesto para el usuario: " +$postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "%Certificado que cumple el puesto para el usuario: " +$postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );
     		if( $postulacion.getPorcentajeReqCertiCum()<=1 && $postulacion.getPorcentajeCertificadoCumplidoPorUsuario()<=1 ){
     			$postulacion.setFiltroCertificado(true);
 	    		modify($postulacion){    		

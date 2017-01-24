@@ -38,7 +38,7 @@ end
 */
 
 
-rule "Distancia Hamming y Euclistica Piscologia" when
+rule "Distancia Hamming y Euclistica Psicologia" when
     $postulacion : Postulacion( $usuario : usuarioBean , $puesto : solicitudReclutamiento.puesto , filtroPostulacion == true && filtroConocimiento == true  && filtroPsicologico == true && filtroTecnico == false )
   	
     $p : PuestoBean(  $evaluaciones   : listaEvaluacionPiscologicas  != null  ) from $puesto
@@ -61,7 +61,10 @@ then
 			   for( Object o : $evaluaciones ){
 			   		e = (EvaluacionPuestoBean)o;
 			   		prom = (e.getLimitePorcentajeSuperior()+e.getLimitePorcentajeInferior())/2;			   		
-			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );			   		
+			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );	
+			   		
+			   		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );
+    				   		
 			   		a = new Haming();
 			   		a.setValorDefinido(prom);	
 			   		euc = new Euclistica();
@@ -70,8 +73,12 @@ then
 					   for( Object o2 : $ulevaluaciones ){
 						   	e2 = (EvaluacionBean)o2;							   	
 					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
-			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
+			   		  			System.out.println( "Puntaje Obtenido del usuario");	 
+			   		  			LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "Puntaje Obtenido del usuario" );  		
+						   		
 						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35));
+								LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35) );  		
+								
 								a.setValor((e2.getPuntajeObtenido()/35));
 			   					euc.setValor((e2.getPuntajeObtenido()/35));		
 					   		}					  
@@ -81,13 +88,19 @@ then
 			   		System.out.println( " ------- ");
 			   }
 			   	
-			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
-			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
+			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   		
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() ); 	   
+			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario()  ); 	   			   
 			   System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
-			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() ); 
+			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() ); 		   			   
 			   System.out.println( " DataHamming:" + DataHamming.calcularDistancia(dis) );	
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " DataHamming:" + DataHamming.calcularDistancia(dis) ); 
 			   System.out.println( " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );
-			   
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );  		
+						   		 
 			   $postulacion.setDistanciaHammingPsicologico(DataHamming.calcularDistancia(dis));
 			   $postulacion.setDistanciaEuclidianaPsicologico(DistanciaEuclidiana.calcularDistancia(disEu));
     		   System.out.println( "--Distancia Hamming y Euclistica Piscologia f--" );
@@ -128,6 +141,8 @@ then
 			   		e = (EvaluacionPuestoBean)o;
 			   		prom = (e.getLimitePorcentajeSuperior()+e.getLimitePorcentajeInferior())/2;			   		
 			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );			   		
+			   	    LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );  		
+			
 			   		a = new Haming();
 			   		a.setValorDefinido(prom);	
 			   		euc = new Euclistica();
@@ -137,7 +152,9 @@ then
 						   	e2 = (EvaluacionBean)o2;							   	
 					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
 			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
-						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35));
+						   		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "Puntaje Obtenido del usuario" );  		
+								System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35));
+						   		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35) );  		
 								a.setValor((e2.getPuntajeObtenido()/35));
 			   					euc.setValor((e2.getPuntajeObtenido()/35));		
 					   		}					  
@@ -147,12 +164,18 @@ then
 			   		System.out.println( " ------- ");
 			   }
 			   	
-			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
-			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
-			   System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
-			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   	
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );  		   
+			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );     			   
+			   System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	 
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );    			   
+			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );	
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario()  );  	   			   
 			   System.out.println( " DataHamming:" + DataHamming.calcularDistancia(dis) );	
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " DataHamming:" + DataHamming.calcularDistancia(dis)  );  
 			   System.out.println( " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );  		
 			  
 			   $postulacion.setDistanciaHammingTecnico(DataHamming.calcularDistancia(dis));
 			   $postulacion.setDistanciaEuclidianaTecnico(DistanciaEuclidiana.calcularDistancia(disEu));
@@ -192,7 +215,8 @@ then
 			   for( Object o : $entrevistas ){
 			   		e = (EvaluacionPuestoBean)o;
 			   		prom = (e.getLimitePorcentajeSuperior()+e.getLimitePorcentajeInferior())/2;			   		
-			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );			   		
+			   		System.out.println( "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom );	
+			        LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "e:"+e.getId()+" TipoEvaluacion:"+e.getTipoEvaluacion()+ "|prom:"+prom  ); 		   		
 			   		a = new Haming();
 			   		a.setValorDefinido(prom);	
 			   		euc = new Euclistica();
@@ -201,8 +225,10 @@ then
 					   for( Object o2 : $uEntrevistas ){
 						   	e2 = (EvaluacionBean)o2;							   	
 					   		if( e2.getTipoEvaluacion() == e.getTipoEvaluacion() ){			   		
-			   		  			System.out.println( "Puntaje Obtenido del usuario");	   		
+			   		  			System.out.println( "Puntaje Obtenido del usuario");
+			        			LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "Puntaje Obtenido del usuario" ); 	   		
 						   		System.out.println( "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35));
+			        			LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  "e2:"+e2.getId()+" TipoEvaluacion:"+e2.getTipoEvaluacion()+ "|PuntajeObtenido:"+e2.getPuntajeObtenido() + " := "+(e2.getPuntajeObtenido()/35) ); 
 								a.setValor((e2.getPuntajeObtenido()/35));
 			   					euc.setValor((e2.getPuntajeObtenido()/35));		
 					   		}					  
@@ -213,11 +239,17 @@ then
 			   }
 			   	
 			   System.out.println( " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum() );	   			   
-			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   			   
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeReqCum:" + $postulacion.getPorcentajeReqCum()  ); 	   		
+			   System.out.println( " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() );	   
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeRequisitosCumplidoPorUsuario:" + $postulacion.getPorcentajeRequisitosCumplidoPorUsuario() ); 	   					   
 			   System.out.println( " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() );	   			   
-			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );		   			   
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeReqCertiCum:" + $postulacion.getPorcentajeReqCertiCum() ); 	   		
+			   System.out.println( " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() );
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,  " porcentajeCertificadoCumplidoPorUsuario:" + $postulacion.getPorcentajeCertificadoCumplidoPorUsuario() ); 	   				   			   
 			   System.out.println( " DataHamming:" + DataHamming.calcularDistancia(dis) );	
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,   " DataHamming:" + DataHamming.calcularDistancia(dis) ); 	   		
 			   System.out.println( " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu) );
+			   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , " DistanciaEuclidiana:" + DistanciaEuclidiana.calcularDistancia(disEu)); 	   		
 			  
 			   $postulacion.setDistanciaHammingEntrevista(DataHamming.calcularDistancia(dis));
 			   $postulacion.setDistanciaEuclidianaEntrevista(DistanciaEuclidiana.calcularDistancia(disEu));

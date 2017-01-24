@@ -43,7 +43,7 @@ public interface ProgramarEntrevistaService {
 	FasePostulacionBean getFaseEntreGerenteArea(Long solicitudId, Long userId);
 
 	Map<String, Object> guardarProgramacionEntevista(Long solicitudId,
-			Long userId, User user, FasePostulacionBean fasePsicologia,
+			Long userId, User user, Boolean addEvaluaciones, FasePostulacionBean fasePsicologia,
 			FasePostulacionBean faseTecnica,
 			FasePostulacionBean faseEntreCoordRRHH,
 			FasePostulacionBean faseEntreGerenteArea);

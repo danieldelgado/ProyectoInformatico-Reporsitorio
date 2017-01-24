@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.drools.KnowledgeBase;
@@ -37,7 +38,6 @@ public class DataAnalisisExperto {
 		if (lpst.isEmpty()) {
 			return new ArrayList<Postulacion>();
 		}
-
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		kbuilder.add(ResourceFactory.newClassPathResource("rules/filtrarPostulantes.drl"), ResourceType.DRL);
 		kbuilder.add(ResourceFactory.newClassPathResource("rules/conocimientos.drl"), ResourceType.DRL);
@@ -50,7 +50,7 @@ public class DataAnalisisExperto {
 		final KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
 		kbase.addKnowledgePackages(pkgs);
 		StatefulKnowledgeSession session = kbase.newStatefulKnowledgeSession();
-
+		
 		for (Postulacion postulacion : lpst) {
 			session.insert(postulacion);
 		}

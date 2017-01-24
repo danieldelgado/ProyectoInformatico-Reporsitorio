@@ -20,6 +20,8 @@ import com.hitss.layer.service.persistence.PostulacionPK;
 import com.hitss.rev.bean.PostulacionBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.dools.ExpertoRevApi;
+import com.hitss.rev.dools.impl.LogTraza;
+import com.hitss.rev.dools.impl.Traza;
 import com.hitss.rev.service.SeleccionarPersonalService;
 import com.hitss.rev.util.Constantes;
 import com.hitss.rev.util.PropiedadMensaje;
@@ -56,8 +58,8 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 		List<UsuarioBean> lstReturn = new ArrayList<UsuarioBean>();
 		try {
 			List<Postulacion> lst = PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(solicitudRequerimientoId);
-			lst =  lst.subList(1, 2);
-			System.out.println(lst);
+//			lst =  lst.subList(0, 1);
+//			System.out.println(lst);
 
 			if (!lst.isEmpty()) {
 				long[] userIds = new long[lst.size()];
@@ -66,9 +68,13 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 				}
 				if (userIds != null) {
 					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);
-				
-					lstUsuariosPostulantes = expertoRevApi.analsisExperto(solicitudRequerimientoId, lst, lstUsuariosPostulantes);
 
+					LogTraza.inicializar();
+					lstUsuariosPostulantes = expertoRevApi.analsisExperto(solicitudRequerimientoId, lst, lstUsuariosPostulantes);
+					List<Traza> listaList = LogTraza.getListaList();
+					System.out.println(listaList);
+					
+					LogTraza.inicializar();
 					if (!lstUsuariosPostulantes.isEmpty()) {
 						User user = null;
 						UsuarioBean usuarioBean = null;
@@ -146,8 +152,8 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 							usuarioBean.setSolicitudId(post.getSolicitudRequerimientoId());
 
 							if (Validator.isNotNull(fase)) {
-								System.out.println(estado_parametro_id);
-								System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
+//								System.out.println(estado_parametro_id);
+//								System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
 								usuarioBean.setFasePostulacion(parametroService.getParametro(fase.getTipoFase()).getValor());
 								usuarioBean.setEstado(parametroService.getParametro(estado_parametro_id).getValor());
 							} else {

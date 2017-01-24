@@ -486,7 +486,7 @@ function inicializarFormularioProgramacionEntrevista() {
 	$(btnIngEval).click(function() {
 		var pnlEvalPsicologicos = $("#" + inputFristnamespace + "pnlEvalPsicologicos");
 		var pnlEvalTecnicas = $("#" + inputFristnamespace + "pnlEvalTecnicas");
-		console.log("Activar evalauciones psicologicas y tecnicas");		
+		console.log("Activar evaluciones psicologicas y tecnicas");		
 		if(!activoInternoEvals){
 			activoInternoEvals = true;
 			$(pnlEvalPsicologicos).show();
@@ -517,6 +517,10 @@ function registrarProgramacion(){
 
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
+	
+	if(activoInternoEvals){
+		dataSend = dataSend+"&"+inputFristnamespace + "addEvaluaciones="+true;
+	}
 	
 	$.ajax({
 		type : "POST",
