@@ -67,28 +67,28 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 				System.out.println(listaList);
 				LogTraza.inicializar();
 				
-				long[] userIds = new long[lst.size()];
-				for (int i = 0; i < lst.size(); i++) {
-					userIds[i] = lst.get(i).getUsuarioId();
-				}
+//				long[] userIds = new long[lst.size()];
+//				for (int i = 0; i < lstAnalizado.size(); i++) {
+//					userIds[i] = lstAnalizado.get(i).getUsuarioId();
+//				}
 				
-				if (userIds != null) {
-					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);					
-					if (!lstUsuariosPostulantes.isEmpty()) {
+				if (lstAnalizado != null) {
+//					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);					
+					if (!lstAnalizado.isEmpty()) {
 						User user = null;
 						UsuarioBean usuarioBean = null;
 						Postulacion post = null;
 						FasePostulacion fase = null;
-						for (Usuario usuario : lstUsuariosPostulantes) {
-							user = UserLocalServiceUtil.getUser(usuario.getUserId());
+						for (PostulacionBean p : lstAnalizado) {
+							user = UserLocalServiceUtil.getUser(p.getUsuarioId());
 							for (Postulacion postulacion : lst) {
-								if (postulacion.getUsuarioId() == usuario.getUserId()) {
+								if (postulacion.getUsuarioId() == p.getUsuarioId()) {
 									post = postulacion;
 								}
 							}
-							pstBean = getPostualcionAnalizada(usuario.getUserId(),lstAnalizado);
+							pstBean = getPostualcionAnalizada(p.getUsuarioId(),lstAnalizado);
 							usuarioBean = new UsuarioBean();
-							usuarioBean.setUserId(usuario.getUserId());
+							usuarioBean.setUserId(p.getUsuarioId());
 							if(Validator.isNotNull(user.getFullName()) && !user.getFullName().equals("")){
 								usuarioBean.setFullname(user.getFullName());
 							}else{
@@ -108,7 +108,7 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 							FasePostulacion fp = null;
 							try {
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(),
+								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(),
 										Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
@@ -122,7 +122,7 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 							try {
 								fp = null;
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(),
+								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(),
 										Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
@@ -136,7 +136,7 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 							try {
 								fp = null;
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_TECNICA);
+								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
 							}
@@ -150,7 +150,7 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 							try {
 								fase = null;
 								fase = FasePostulacionLocalServiceUtil
-										.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
+										.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
 								estado_parametro_id = Constantes.PARAMETRO_ESTADO_POSTULADO;
