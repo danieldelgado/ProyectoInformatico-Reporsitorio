@@ -98,7 +98,7 @@ then
 			}			
 			
     		System.out.println( "Analisis de Entrevistas " );
-    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Analisis de Entrevistas " )
+    		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Analisis de Entrevistas " );
     		System.out.println( "Id Usuario entrevistas: " +$u.getIdUsuario()); 
     		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "Id Usuario entrevistas: " +$u.getIdUsuario()); 
 			for(Object  o : $ulevaluaciones){

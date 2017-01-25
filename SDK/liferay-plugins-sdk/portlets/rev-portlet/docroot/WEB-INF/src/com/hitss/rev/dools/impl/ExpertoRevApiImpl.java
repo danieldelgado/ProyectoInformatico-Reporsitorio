@@ -76,6 +76,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				paa = new PostulacionBean();
 				paa.setUsuarioId(postulacion.getUsuarioBean().getIdUsuario());
 				paa.setCercania(postulacion.getCercania());
+				System.out.println("getCercania--" + postulacion.getCercania());
 				paa.setSolicitudId(postulacion.getSolicitudReclutamiento().getId());
 				System.out.println("getIdUsuario--" + postulacion.getUsuarioBean().getIdUsuario());
 				paa.setDistanciaEuclidianaEntrevista(postulacion.getDistanciaEuclidianaEntrevista());
@@ -106,7 +107,10 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 							+ postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
 					paa.setRecomendableCertificadoCumplidoPorUsuario(postulacion.isRecomendableCertificadoCumplidoPorUsuario());
 					paa.setPorcentajeCertificadoCumplidoPorUsuario(postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
+					
 				}
+
+				lstR.add(paa);
 				System.out.println("-----------------");
 			}
 			

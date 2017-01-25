@@ -54,12 +54,12 @@ when
    
 then
    System.out.println( "------------- FiltroBasico i------------- " );;
-   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "------------- FiltroBasico 1------------- " );
+   LogTraza.log( $p.getPostulacionId() , $p.getUsuarioId() , "------------- FiltroBasico 1------------- " );
    System.out.println( $puesto.getNombre() );
-   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,$puesto.getNombre() );
+   LogTraza.log( $p.getPostulacionId() , $p.getUsuarioId() ,$puesto.getNombre() );
    System.out.println( $usuario.getNombre() );
-   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , $usuario.getNombre()  );
-   LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() , "------------- FiltroBasico 2------------- " );
+   LogTraza.log( $p.getPostulacionId() , $p.getUsuarioId() , $usuario.getNombre()  );
+   LogTraza.log( $p.getPostulacionId() , $p.getUsuarioId() , "------------- FiltroBasico 2------------- " );
    $p.setFiltroPostulacion(true);
    insertLogical( $usuario );
    insertLogical( $puesto ); 

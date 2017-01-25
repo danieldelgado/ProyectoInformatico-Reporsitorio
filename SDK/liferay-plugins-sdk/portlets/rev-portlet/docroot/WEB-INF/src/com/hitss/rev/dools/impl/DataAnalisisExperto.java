@@ -23,13 +23,17 @@ public class DataAnalisisExperto {
 
 	public static List<Postulacion> analisisDatos(List<Postulacion> lpst) {
 		List<Postulacion> a = new ArrayList<Postulacion>();
-		List<Postulacion> aux = lpst;
-		while (!(aux = analisisDrools(aux)).isEmpty()) {
-			if (!aux.isEmpty()) {
-				a.add(aux.get(0));
-				aux.remove(0);
+		if(lpst.size()<=2){
+			a = analisisDrools(lpst);
+		}else{
+			List<Postulacion> aux = lpst;
+			while (!(aux = analisisDrools(aux)).isEmpty()) {
+				if (!aux.isEmpty()) {
+					a.add(aux.get(0));
+					aux.remove(0);
+				}
 			}
-		}
+		}		
 		return a;
 	}
 
@@ -62,13 +66,11 @@ public class DataAnalisisExperto {
 		Collection<FactHandle> factHandles = session.getFactHandles(filter);
 		lpst.clear();
 		Postulacion pc = null;
+		System.out.println("--------------Resultados----------------");
+		
 		for (FactHandle factHandle : factHandles) {
 			pc = (Postulacion) ((DefaultFactHandle) factHandle).getObject();
-
-			System.out.println("--------------Resultados----------------");
-			
 			System.out.println("getIdUsuario--" + pc.getUsuarioBean().getIdUsuario());
-			System.out.println("getCercania--" + pc.getCercania());
 			System.out.println("DistanciaEuclidianaEntrevista--" + pc.getDistanciaEuclidianaEntrevista());
 			System.out.println("DistanciaHammingEntrevista--" + pc.getDistanciaHammingEntrevista());
 			System.out.println("DistanciaEuclidianaPsicologico--" + pc.getDistanciaEuclidianaPsicologico());
