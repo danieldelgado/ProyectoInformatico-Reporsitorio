@@ -1,6 +1,9 @@
 package com.hitss.rev.bean;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.hitss.rev.dools.impl.Traza;
 
 public class UsuarioBean implements Serializable{
 
@@ -41,6 +44,7 @@ public class UsuarioBean implements Serializable{
 
 	private double distanciaHammingPsicologico;
 	private double distanciaEuclidianaPsicologico;
+	
 	private double distanciaHammingTecnico;
 	private double distanciaEuclidianaTecnico;
 
@@ -49,6 +53,8 @@ public class UsuarioBean implements Serializable{
 
 	private boolean analizadoCercania;
 	private double cercania;
+	
+	private List<Traza> listaTrazaAnalisis;
 	
 	public long getUserId() {
 		return userId;
@@ -260,6 +266,12 @@ public class UsuarioBean implements Serializable{
 	}
 	public void setCercania(double cercania) {
 		this.cercania = cercania;
+	}
+	public List<Traza> getListaTrazaAnalisis() {
+		return listaTrazaAnalisis;
+	}
+	public void setListaTrazaAnalisis(List<Traza> listaTrazaAnalisis) {
+		this.listaTrazaAnalisis = listaTrazaAnalisis;
 	}
 	
 	

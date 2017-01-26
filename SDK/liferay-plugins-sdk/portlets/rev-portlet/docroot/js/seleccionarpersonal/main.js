@@ -250,14 +250,15 @@ function addPostulanteFila(object) {
 
 	var listaRequisitos = $("#" + inputFristnamespace + "listaPostulantes");
 	var html = "";
-	var cercania = new Number(object['cercania']);
+	var cercania = new Number((object['cercania']));
+	cercania = cercania * 100;
 	html += "<tr>" + 
 	"<td>" + object['fullname'] + "</td>" + 
 	"<td>" + object['fechaPostulacion'] + "</td>" + 
 	"<td>" + object['disponibilidad'] + "</td>" + 
 	"<td>" + object['interno'] + "</td>" + 
 	"<td>" + object['fasePostulacion'] + "</td>" + 
-	"<td>" + cercania.toFixed(4) + "%</td>" + 
+	"<td>" + (cercania.toFixed(4)) + "%</td>" + 
 	"<td>" + object['estado'] + "</td>" + 
 	"<td>" + "";
 

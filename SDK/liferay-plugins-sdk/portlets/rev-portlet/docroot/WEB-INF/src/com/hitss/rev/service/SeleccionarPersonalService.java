@@ -18,5 +18,6 @@ public interface SeleccionarPersonalService {
 	void selectPersonal();
 	List<UsuarioBean> getListaPostulantes(long companyId, long companyGroupId, Long solicitudRequerimientoId);
 	Map<String, Object> seleccionarPostulaste(Long solicitudId, Long userId, User user);
+	UsuarioBean getPostulanteDetalle(Long solicitudId, Long userId);
 
 }

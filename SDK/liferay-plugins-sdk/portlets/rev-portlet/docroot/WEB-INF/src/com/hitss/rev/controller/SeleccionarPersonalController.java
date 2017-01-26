@@ -111,9 +111,9 @@ public class SeleccionarPersonalController  extends RevController {
 	public String irdetallePostulante(RenderRequest request, RenderResponse response, Model model) {
 		Long solicitudId = ParamUtil.getLong(request, "solicitudId");
 		Long userId = ParamUtil.getLong(request, "userId");
-		
-		
-		
+		_log.info("irdetallePostulante " + " |solicitudId:"+solicitudId+ " |userId:"+userId );
+		UsuarioBean usuarioPostualnte = seleccionarPersonalService.getPostulanteDetalle(solicitudId,userId);
+		model.addAttribute("usuarioPostulante",usuarioPostualnte);		
 		return "detallePostulante";
 	}
 	

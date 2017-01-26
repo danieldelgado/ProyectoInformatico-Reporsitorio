@@ -11,10 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.hitss.layer.model.FasePostulacion;
 import com.hitss.layer.model.Postulacion;
-import com.hitss.layer.model.Usuario;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.PostulacionLocalServiceUtil;
-import com.hitss.layer.service.UsuarioLocalServiceUtil;
 import com.hitss.layer.service.persistence.PostulacionPK;
 import com.hitss.rev.bean.PostulacionBean;
 import com.hitss.rev.bean.UsuarioBean;
@@ -46,7 +44,7 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 	@Override
 	public void selectPersonal() {
-//		expertoRevApi.test();
+		// expertoRevApi.test();
 
 	}
 
@@ -59,21 +57,14 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 			List<Postulacion> lst = PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(solicitudRequerimientoId);
 			System.out.println(lst);
 			if (!lst.isEmpty()) {
-				
+
 				LogTraza.inicializar();
 				PostulacionBean pstBean = null;
 				List<PostulacionBean> lstAnalizado = expertoRevApi.analsisExperto(solicitudRequerimientoId, lst);
-				List<Traza> listaList = LogTraza.getListaList();
-				System.out.println(listaList);
+				// List<Traza> listaList = LogTraza.getListaList();
 				LogTraza.inicializar();
-				
-//				long[] userIds = new long[lst.size()];
-//				for (int i = 0; i < lstAnalizado.size(); i++) {
-//					userIds[i] = lstAnalizado.get(i).getUsuarioId();
-//				}
-				
+
 				if (lstAnalizado != null) {
-//					List<Usuario> lstUsuariosPostulantes = UsuarioLocalServiceUtil.findByUsuariosSeleccionados(userIds);					
 					if (!lstAnalizado.isEmpty()) {
 						User user = null;
 						UsuarioBean usuarioBean = null;
@@ -86,16 +77,15 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 									post = postulacion;
 								}
 							}
-							pstBean = getPostualcionAnalizada(p.getUsuarioId(),lstAnalizado);
+							pstBean = getPostualcionAnalizada(p.getUsuarioId(), lstAnalizado);
 							usuarioBean = new UsuarioBean();
 							usuarioBean.setUserId(p.getUsuarioId());
-							if(Validator.isNotNull(user.getFullName()) && !user.getFullName().equals("")){
+							if (Validator.isNotNull(user.getFullName()) && !user.getFullName().equals("")) {
 								usuarioBean.setFullname(user.getFullName());
-							}else{
-								usuarioBean.setFullname(user.getFirstName() + " " + user.getLastName() );
+							} else {
+								usuarioBean.setFullname(user.getFirstName() + " " + user.getLastName());
 							}
-							
-							
+
 							Boolean colaborador = (Boolean) user.getExpandoBridge().getAttribute("Colaborador");
 							usuarioBean.setInterno(colaborador ? "Si" : "No");
 							Date disponibildad = (Date) user.getExpandoBridge().getAttribute("Disponibilidad");
@@ -108,8 +98,8 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 							FasePostulacion fp = null;
 							try {
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(),
-										Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
+								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId,
+										p.getUsuarioId(), Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
 							}
@@ -122,8 +112,8 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 							try {
 								fp = null;
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(),
-										Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
+								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId,
+										p.getUsuarioId(), Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
 							}
@@ -136,7 +126,8 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 							try {
 								fp = null;
-								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
+								fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId,
+										p.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
 							}
@@ -149,8 +140,8 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 							try {
 								fase = null;
-								fase = FasePostulacionLocalServiceUtil
-										.getFasePostuacionByTipo(solicitudRequerimientoId, p.getUsuarioId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
+								fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId,
+										p.getUsuarioId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
 							} catch (Exception e) {
 								_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
 								estado_parametro_id = Constantes.PARAMETRO_ESTADO_POSTULADO;
@@ -158,32 +149,41 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 							usuarioBean.setSolicitudId(post.getSolicitudRequerimientoId());
 
 							if (Validator.isNotNull(fase)) {
-//								System.out.println(estado_parametro_id);
-//								System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
-								usuarioBean.setFasePostulacion(parametroService.getParametro(fase.getTipoFase()).getValor());
+								// System.out.println(estado_parametro_id);
+								// System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
+								usuarioBean.setFasePostulacion(
+										parametroService.getParametro(fase.getTipoFase()).getValor());
 								usuarioBean.setEstado(parametroService.getParametro(estado_parametro_id).getValor());
 							} else {
 								usuarioBean.setFasePostulacion(StringPool.BLANK);
-								usuarioBean.setEstado(parametroService.getParametro(Constantes.PARAMETRO_ESTADO_POSTULADO).getValor());
+								usuarioBean.setEstado(parametroService
+										.getParametro(Constantes.PARAMETRO_ESTADO_POSTULADO).getValor());
 							}
-							if(pstBean!=null){
+							if (pstBean != null) {
 								usuarioBean.setCercania(pstBean.getCercania());
-								usuarioBean.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
-								usuarioBean.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
+								usuarioBean
+										.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
+								usuarioBean
+										.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
 								usuarioBean.setDistanciaHammingEntrevista(pstBean.getDistanciaHammingEntrevista());
-								usuarioBean.setDistanciaEuclidianaPsicologico( pstBean.getDistanciaEuclidianaPsicologico());
-								usuarioBean.setDistanciaHammingPsicologico( pstBean.getDistanciaHammingPsicologico());
+								usuarioBean
+										.setDistanciaEuclidianaPsicologico(pstBean.getDistanciaEuclidianaPsicologico());
+								usuarioBean.setDistanciaHammingPsicologico(pstBean.getDistanciaHammingPsicologico());
 								usuarioBean.setDistanciaEuclidianaTecnico(pstBean.getDistanciaEuclidianaTecnico());
 								usuarioBean.setDistanciaHammingTecnico(pstBean.getDistanciaHammingTecnico());
 								usuarioBean.setRecomendableReqCum(pstBean.isRecomendableReqCum());
 								usuarioBean.setPorcentajeReqCum(pstBean.getPorcentajeReqCum());
-								usuarioBean.setRecomendableRequisitosCumplidoPorUsuario(pstBean.isRecomendableRequisitosCumplidoPorUsuario());
-								usuarioBean.setPorcentajeRequisitosCumplidoPorUsuario( pstBean.getPorcentajeRequisitosCumplidoPorUsuario());
+								usuarioBean.setRecomendableRequisitosCumplidoPorUsuario(
+										pstBean.isRecomendableRequisitosCumplidoPorUsuario());
+								usuarioBean.setPorcentajeRequisitosCumplidoPorUsuario(
+										pstBean.getPorcentajeRequisitosCumplidoPorUsuario());
 								if (pstBean.getPorcentajeReqCertiCum() > 0) {
 									usuarioBean.setRecomendableReqCertiCum(pstBean.isRecomendableReqCertiCum());
 									usuarioBean.setPorcentajeReqCertiCum(pstBean.getPorcentajeReqCertiCum());
-									usuarioBean.setRecomendableCertificadoCumplidoPorUsuario(pstBean.isRecomendableCertificadoCumplidoPorUsuario());
-									usuarioBean.setPorcentajeCertificadoCumplidoPorUsuario(pstBean.getPorcentajeCertificadoCumplidoPorUsuario());
+									usuarioBean.setRecomendableCertificadoCumplidoPorUsuario(
+											pstBean.isRecomendableCertificadoCumplidoPorUsuario());
+									usuarioBean.setPorcentajeCertificadoCumplidoPorUsuario(
+											pstBean.getPorcentajeCertificadoCumplidoPorUsuario());
 								}
 							}
 							lstReturn.add(usuarioBean);
@@ -200,7 +200,7 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 
 	private PostulacionBean getPostualcionAnalizada(long userId, List<PostulacionBean> lstAnalizado) {
 		for (PostulacionBean postulacionBean : lstAnalizado) {
-			if( userId == postulacionBean.getUsuarioId() ){
+			if (userId == postulacionBean.getUsuarioId()) {
 				return postulacionBean;
 			}
 		}
@@ -226,15 +226,151 @@ public class SeleccionarPersonalServiceImpl extends RevServiceImpl implements Se
 				pstbean.setUsuarioId(userId);
 				result.put("objeto", pstbean);
 				result.put("respuesta", Constantes.TRANSACCION_OK);
-				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("seleccionar.postulante.mensaje"), String.valueOf(pstbean.getSolicitudId())));
+				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("seleccionar.postulante.mensaje"),
+						String.valueOf(pstbean.getSolicitudId())));
 			}
 		} catch (PortalException | SystemException e) {
 			_log.error("Error al seleccionarPostulaste " + e.getMessage(), e);
 			result.put("objeto", pstbean);
 			result.put("respuesta", Constantes.TRANSACCION_NO_OK);
-			result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("seleccionar.postulante.error"), String.valueOf(pstbean.getSolicitudId())));
+			result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("seleccionar.postulante.error"),
+					String.valueOf(pstbean.getSolicitudId())));
 		}
 		return result;
+	}
+
+	@Override
+	public UsuarioBean getPostulanteDetalle(Long solicitudId, Long userId) {
+		UsuarioBean usuarioBean = null;
+		try {
+			PostulacionPK postulacionPK = new PostulacionPK(solicitudId, userId);
+			Postulacion ps = PostulacionLocalServiceUtil.getPostulacion(postulacionPK);
+			LogTraza.inicializar();
+			PostulacionBean pstBean = null;
+			List<Postulacion> lst = new ArrayList<Postulacion>();
+			lst.add(ps);
+			List<PostulacionBean> lstAnalizado = expertoRevApi.analsisExperto(solicitudId, lst);
+			List<Traza> listaList = LogTraza.getListaList();
+			LogTraza.inicializar();
+
+			if (lstAnalizado != null) {
+				if (!lstAnalizado.isEmpty()) {
+					User user = null;
+					usuarioBean = new UsuarioBean();
+					Postulacion post = null;
+					FasePostulacion fase = null;
+					PostulacionBean p = lstAnalizado.get(0);
+					user = UserLocalServiceUtil.getUser(p.getUsuarioId());
+					for (Postulacion postulacion : lst) {
+						if (postulacion.getUsuarioId() == p.getUsuarioId()) {
+							post = postulacion;
+						}
+					}
+					pstBean = getPostualcionAnalizada(p.getUsuarioId(), lstAnalizado);
+					usuarioBean = new UsuarioBean();
+					usuarioBean.setUserId(p.getUsuarioId());
+					if (Validator.isNotNull(user.getFullName()) && !user.getFullName().equals("")) {
+						usuarioBean.setFullname(user.getFullName());
+					} else {
+						usuarioBean.setFullname(user.getFirstName() + " " + user.getLastName());
+					}
+					Boolean colaborador = (Boolean) user.getExpandoBridge().getAttribute("Colaborador");
+					usuarioBean.setInterno(colaborador ? "Si" : "No");
+					Date disponibildad = (Date) user.getExpandoBridge().getAttribute("Disponibilidad");
+					usuarioBean.setDisponibilidad(Util.getStrFecha(disponibildad));
+					usuarioBean.setFechaPostulacion(Util.getStrFecha(post.getFechaPostulacion()));
+					long estado_parametro_id = post.getEstado();
+
+					FasePostulacion fp = null;
+					try {
+						fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudId, p.getUsuarioId(),
+								Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
+					} catch (Exception e) {
+						_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
+					}
+					if (Validator.isNotNull(fp)) {
+						if (fp.isAsistio()) {
+							estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+							fase = fp;
+						}
+					}
+					try {
+						fp = null;
+						fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudId, p.getUsuarioId(),
+								Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
+					} catch (Exception e) {
+						_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
+					}
+					if (Validator.isNotNull(fp)) {
+						if (fp.isAsistio()) {
+							estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+							fase = fp;
+						}
+					}
+					try {
+						fp = null;
+						fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudId, p.getUsuarioId(),
+								Constantes.PARAMETRO_FASE_TECNICA);
+					} catch (Exception e) {
+						_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
+					}
+					if (Validator.isNotNull(fp)) {
+						if (fp.isAsistio()) {
+							estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+							fase = fp;
+						}
+					}
+					try {
+						fase = null;
+						fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudId, p.getUsuarioId(),
+								Constantes.PARAMETRO_FASE_PSICOLOGICA);
+					} catch (Exception e) {
+						_log.error("Error al getFasePostuacionByTipo " + e.getMessage(), e);
+						estado_parametro_id = Constantes.PARAMETRO_ESTADO_POSTULADO;
+					}
+					usuarioBean.setSolicitudId(post.getSolicitudRequerimientoId());
+
+					if (Validator.isNotNull(fase)) {
+						// System.out.println(estado_parametro_id);
+						// System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
+						usuarioBean.setFasePostulacion(parametroService.getParametro(fase.getTipoFase()).getValor());
+						usuarioBean.setEstado(parametroService.getParametro(estado_parametro_id).getValor());
+					} else {
+						usuarioBean.setFasePostulacion(StringPool.BLANK);
+						usuarioBean.setEstado(
+								parametroService.getParametro(Constantes.PARAMETRO_ESTADO_POSTULADO).getValor());
+					}
+					if (pstBean != null) {
+						usuarioBean.setCercania(pstBean.getCercania());
+						usuarioBean.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
+						usuarioBean.setDistanciaEuclidianaEntrevista(pstBean.getDistanciaEuclidianaEntrevista());
+						usuarioBean.setDistanciaHammingEntrevista(pstBean.getDistanciaHammingEntrevista());
+						usuarioBean.setDistanciaEuclidianaPsicologico(pstBean.getDistanciaEuclidianaPsicologico());
+						usuarioBean.setDistanciaHammingPsicologico(pstBean.getDistanciaHammingPsicologico());
+						usuarioBean.setDistanciaEuclidianaTecnico(pstBean.getDistanciaEuclidianaTecnico());
+						usuarioBean.setDistanciaHammingTecnico(pstBean.getDistanciaHammingTecnico());
+						usuarioBean.setRecomendableReqCum(pstBean.isRecomendableReqCum());
+						usuarioBean.setPorcentajeReqCum(pstBean.getPorcentajeReqCum());
+						usuarioBean.setRecomendableRequisitosCumplidoPorUsuario(
+								pstBean.isRecomendableRequisitosCumplidoPorUsuario());
+						usuarioBean.setPorcentajeRequisitosCumplidoPorUsuario(
+								pstBean.getPorcentajeRequisitosCumplidoPorUsuario());
+						if (pstBean.getPorcentajeReqCertiCum() > 0) {
+							usuarioBean.setRecomendableReqCertiCum(pstBean.isRecomendableReqCertiCum());
+							usuarioBean.setPorcentajeReqCertiCum(pstBean.getPorcentajeReqCertiCum());
+							usuarioBean.setRecomendableCertificadoCumplidoPorUsuario(
+									pstBean.isRecomendableCertificadoCumplidoPorUsuario());
+							usuarioBean.setPorcentajeCertificadoCumplidoPorUsuario(
+									pstBean.getPorcentajeCertificadoCumplidoPorUsuario());
+						}
+					}
+					usuarioBean.setListaTrazaAnalisis(listaList);
+				}
+			}
+		} catch (PortalException | SystemException e) {
+			_log.error("Error al seleccionarPostulaste " + e.getMessage(), e);
+		}
+		return usuarioBean;
 	}
 
 }
