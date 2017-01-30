@@ -43,13 +43,22 @@ public class FasePostulacionPuestoEvaluacionLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.hitss.layer.service.FasePostulacionPuestoEvaluacionLocalServiceUtil} to access the fase postulacion puesto evaluacion local service.
 	 */
-
-	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(Long solicitud) throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException{
-		return  FasePostulacionPuestoEvaluacionUtil.findByS(solicitud);
+	
+	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(Long fasePostulacionId , Long solicitudFuncionId ) throws SystemException{
+		return FasePostulacionPuestoEvaluacionUtil.findByF_S(fasePostulacionId, solicitudFuncionId);
+	}
+	
+	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacion(Long fasePostulacionId ) throws SystemException {
+		return FasePostulacionPuestoEvaluacionUtil.findByF(fasePostulacionId);
 	}
 
-	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(Long evaluacion) throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException{
-		return  FasePostulacionPuestoEvaluacionUtil.findByE(evaluacion);
+	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud( Long solicitudFuncionId ) throws SystemException{
+		return FasePostulacionPuestoEvaluacionUtil.findByS(solicitudFuncionId);
 	}
+
+	public List<FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion( Long evaluacionId ) throws SystemException{
+		return FasePostulacionPuestoEvaluacionUtil.findByE(evaluacionId);
+	}
+	
 	
 }

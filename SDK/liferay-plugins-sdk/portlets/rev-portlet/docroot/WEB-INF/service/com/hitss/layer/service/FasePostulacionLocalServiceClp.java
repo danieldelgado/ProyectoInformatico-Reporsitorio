@@ -193,15 +193,35 @@ public class FasePostulacionLocalServiceClp
 				"java.lang.Long", "java.lang.Long"
 			};
 
-		_methodName36 = "listaFasesPostulacion";
+		_methodName36 = "getNotLastPostulacion";
 
 		_methodParameterTypes36 = new String[] {
 				"java.lang.Long", "java.lang.Long"
 			};
 
-		_methodName37 = "getFasePostuacionByTipo";
+		_methodName37 = "listaFasesPostulacion";
 
-		_methodParameterTypes37 = new String[] { "long", "long", "long" };
+		_methodParameterTypes37 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
+
+		_methodName38 = "listaDiferenteSolicitudActualFasesPostulacion";
+
+		_methodParameterTypes38 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
+
+		_methodName39 = "getFasePostuacionByTipo";
+
+		_methodParameterTypes39 = new String[] { "long", "long", "long" };
+
+		_methodName40 = "getFasePostuacionByUsuario";
+
+		_methodParameterTypes40 = new String[] { "long" };
+
+		_methodName41 = "getFasePostuacionByUsuarioByTipoFase";
+
+		_methodParameterTypes41 = new String[] { "long", "long" };
 	}
 
 	@Override
@@ -1254,13 +1274,71 @@ public class FasePostulacionLocalServiceClp
 	}
 
 	@Override
-	public java.util.List<com.hitss.layer.model.FasePostulacion> listaFasesPostulacion(
+	public com.hitss.layer.model.FasePostulacion getNotLastPostulacion(
 		java.lang.Long solicitud, java.lang.Long usuario) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName36,
 					_methodParameterTypes36,
+					new Object[] {
+						ClpSerializer.translateInput(solicitud),
+						
+					ClpSerializer.translateInput(usuario)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.hitss.layer.model.FasePostulacion)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> listaFasesPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName37,
+					_methodParameterTypes37,
+					new Object[] {
+						ClpSerializer.translateInput(solicitud),
+						
+					ClpSerializer.translateInput(usuario)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.FasePostulacion>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> listaDiferenteSolicitudActualFasesPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName38,
+					_methodParameterTypes38,
 					new Object[] {
 						ClpSerializer.translateInput(solicitud),
 						
@@ -1288,8 +1366,8 @@ public class FasePostulacionLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName37,
-					_methodParameterTypes37,
+			returnObj = _invokableLocalService.invokeMethod(_methodName39,
+					_methodParameterTypes39,
 					new Object[] { solicitudId, userId, tipo });
 		}
 		catch (Throwable t) {
@@ -1305,6 +1383,54 @@ public class FasePostulacionLocalServiceClp
 		}
 
 		return (com.hitss.layer.model.FasePostulacion)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> getFasePostuacionByUsuario(
+		long userId) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName40,
+					_methodParameterTypes40, new Object[] { userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.FasePostulacion>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> getFasePostuacionByUsuarioByTipoFase(
+		long userId, long tipo) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName41,
+					_methodParameterTypes41, new Object[] { userId, tipo });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.FasePostulacion>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableLocalService _invokableLocalService;
@@ -1382,4 +1508,12 @@ public class FasePostulacionLocalServiceClp
 	private String[] _methodParameterTypes36;
 	private String _methodName37;
 	private String[] _methodParameterTypes37;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
 }

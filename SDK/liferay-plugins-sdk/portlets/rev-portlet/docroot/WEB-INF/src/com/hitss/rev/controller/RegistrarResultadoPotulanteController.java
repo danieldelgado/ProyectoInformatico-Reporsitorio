@@ -162,6 +162,7 @@ public class RegistrarResultadoPotulanteController extends RevController {
 				if( Validator.isNotNull(resutlado) && resutlado>=12.8 ){
 					a.setApruebaFase(true);
 				}
+				a.setPuntuacion(resutlado);
 				a.setEstado(72);
 				a.setFechaFase(new Date());
 
@@ -184,6 +185,7 @@ public class RegistrarResultadoPotulanteController extends RevController {
 					a.setSolicitudRequerimientoId(solicitudId);
 					a.setTipoFase(Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
 				}
+				a.setPuntuacion(resutlado);
 				a.setApruebaFase(false);
 				a.setAsistio(true);
 				if( Validator.isNotNull(resutlado) && resutlado>=12.8 ){
@@ -211,6 +213,7 @@ public class RegistrarResultadoPotulanteController extends RevController {
 					a.setSolicitudRequerimientoId(solicitudId);
 					a.setTipoFase(Constantes.PARAMETRO_FASE_PSICOLOGICA);
 				}
+				a.setPuntuacion(resutlado);
 				a.setApruebaFase(false);
 				a.setAsistio(true);
 				if( Validator.isNotNull(resutlado) && resutlado>=12.8 ){
@@ -243,6 +246,7 @@ public class RegistrarResultadoPotulanteController extends RevController {
 				if( Validator.isNotNull(resutlado) && resutlado>=12.8 ){
 					a.setApruebaFase(true);
 				}
+				a.setPuntuacion(resutlado);
 				a.setEstado(72);
 				a.setFechaFase(new Date());
 
@@ -290,7 +294,29 @@ public class RegistrarResultadoPotulanteController extends RevController {
 	@ResourceMapping(value = "noAsistio")
 	public void noAsistio(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 		_log.info("noAsistio");
+		ThemeDisplay td = (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		User user = td.getUser();
+		_log.info("registrarProceso");
 
+		Long solicitudId = ParamUtil.getLong(resourceRequest, "solicitudId");
+		_log.info("solicitudId:" + solicitudId);
+		
+		Long userId = ParamUtil.getLong(resourceRequest, "userId");
+		_log.info("userId:" + userId);
+
+		Long fasePostulacion = ParamUtil.getLong(resourceRequest, "fasePostulacion");
+		_log.info("fasePostulacion:" + fasePostulacion);
+
+		String observacion = ParamUtil.get(resourceRequest, "observacion","");
+		_log.info("observacion:" + observacion);
+		
+		Map<String, Object> result = registrarResultadoPostulanteService.noAsistio(solicitudId, userId , fasePostulacion, observacion , td.getScopeGroupId(), user);
+		_log.info("result:" + result);
+		try {
+			JsonUtil.sendJsonReturn(PortalUtil.getHttpServletResponse(resourceResponse), result);
+		} catch (IOException e) {
+			_log.error("e:" + e.getLocalizedMessage(), e);
+		}
 	}
 
 }

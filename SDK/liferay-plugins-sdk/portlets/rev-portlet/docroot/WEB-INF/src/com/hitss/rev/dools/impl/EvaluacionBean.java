@@ -17,6 +17,7 @@ public class EvaluacionBean {
 	
 	private long id;
 	private long tipoEvaluacion;
+	private String strTipoEvaluacion;
 	private String descripcion;
 	private double puntajeObtenido;
 	private boolean evaluacionAceptada;
@@ -79,6 +80,18 @@ public class EvaluacionBean {
 
 	public void setEvaluacionAceptada(boolean evaluacionAceptada) {
 		this.evaluacionAceptada = evaluacionAceptada;
+	}
+
+
+
+	public String getStrTipoEvaluacion() {
+		return strTipoEvaluacion;
+	}
+
+
+
+	public void setStrTipoEvaluacion(String strTipoEvaluacion) {
+		this.strTipoEvaluacion = strTipoEvaluacion;
 	}
 	
 	

@@ -282,20 +282,33 @@ public class FasePostulacionPuestoEvaluacionLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
-		java.lang.Long solicitud)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+		java.lang.Long fasePostulacionId, java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getFasePostulacionPuestoEvaluacionBySolicitud(solicitud);
+				   .getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(fasePostulacionId,
+			solicitudFuncionId);
+	}
+
+	public static java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacion(
+		java.lang.Long fasePostulacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getFasePostulacionPuestoEvaluacionByFasePostulacion(fasePostulacionId);
+	}
+
+	public static java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
+		java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getFasePostulacionPuestoEvaluacionBySolicitud(solicitudFuncionId);
 	}
 
 	public static java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(
-		java.lang.Long evaluacion)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException {
+		java.lang.Long evaluacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getFasePostulacionPuestoEvaluacionByEvaluacion(evaluacion);
+				   .getFasePostulacionPuestoEvaluacionByEvaluacion(evaluacionId);
 	}
 
 	public static void clearService() {

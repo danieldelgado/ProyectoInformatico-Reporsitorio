@@ -90,8 +90,13 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				console.log("value");
 				console.log(value);
 				count++;
-				html += '<tr>';
-
+				html += '<tr ';
+				
+				if( !value.asistio ){
+					html += ' class="warning" ';
+				}
+				html += ' >';
+				
 				html += '<td>' + +count + '</td>';
 
 				html += '<td>' + value.strpuesto + '</td>';
@@ -294,5 +299,117 @@ function registrarAvance(){
 
 
 
+function inicializarFormularioRegsitroNoAsistencia(){
+	init();
+
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	
+	$(btnGuardar).click(function() {
+		console.log(btnGuardar);
+		formvalid = true;
+		if(formvalid){
+			console.log("show");
+			modalconfirmacion.show();
+		}
+		
+	});
+	
+
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		init();
+
+
+		if (A.one('#' + inputFristnamespace + 'modal') != null) {
+			var popupconfirmartitulo = $("#" + inputFristnamespace + "popupPublicacionTitulo").val();
+			var popupconfirmarMensage = $("#" + inputFristnamespace + "popupPublicacionMensage").val();
+			var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+			var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+
+			modalconfirmacion = new A.Modal({
+				bodyContent : popupconfirmarMensage,
+				centered : true,
+				destroyOnHide : false,
+				headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+				modal : true,
+				render : '#' + inputFristnamespace + 'modal',
+				resizable : false,
+				visible : false,
+				width : 305
+			}).render();
+
+			modalconfirmacion.addToolbar([ {
+				label : msgCancelar,
+				on : {
+					click : function() {
+						modalconfirmacion.hide();
+					}
+				}
+			}, {
+				label : msgAceptar,
+				on : {
+					click : function() {
+						if (formvalid) {
+							registrarNoAsistncia();
+						}
+					}
+				}
+			} ]);
+		}
+		
+		if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
+			A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
+				if (formvalid) {
+					modalconfirmacion.show();
+				}
+			});
+		}
+	});
+}
+//noAsistioUrl
+
+
+function registrarNoAsistncia() {
+	init();
+	var contenedorAlerta = $(".contenedorAlerta");
+
+	var formPublicarOferta = $("#" + inputFristnamespace + "noAsistio");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var noAsistioUrl = $("#" + inputFristnamespace + "noAsistioUrl").val();
+	var regresarUrl = $("#" + inputFristnamespace + "regresarUrl").val();
+
+
+	
+	var dataSend = $(formPublicarOferta).serialize();
+	console.log("dataSend:"+dataSend);
+	
+	var popupMensaje = "Extensión de Fecha Limite";
+	var msgError = "Error en actualizar la extensión de fecha limite";
+		
+	$.ajax({
+		type : "POST",
+		url : noAsistioUrl,
+		data : dataSend,
+		success : function(data) {
+			console.log(data);
+			modalconfirmacion.hide();
+			data = $.parseJSON(data);
+			var objeto = data["objeto"];
+			var respuesta = data["respuesta"];
+			var mensaje = data["mensaje"];
+			regresarUrl += "&titulo=" + encodeURI(popupMensaje);
+			regresarUrl += "&mensaje=" + encodeURI(mensaje);
+			if (respuesta == 1) {
+				$(btnGuardar).attr("disabled", "disabled");
+				mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+					setTimeout(function() {
+						window.location = regresarUrl;
+					}, 1500);
+				});
+			} else {
+				mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+			}
+		}
+	});
+}
 
 

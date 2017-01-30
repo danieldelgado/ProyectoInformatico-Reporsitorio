@@ -467,9 +467,23 @@ public class FasePostulacionLocalServiceWrapper
 	}
 
 	@Override
+	public com.hitss.layer.model.FasePostulacion getNotLastPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		return _fasePostulacionLocalService.getNotLastPostulacion(solicitud,
+			usuario);
+	}
+
+	@Override
 	public java.util.List<com.hitss.layer.model.FasePostulacion> listaFasesPostulacion(
 		java.lang.Long solicitud, java.lang.Long usuario) {
 		return _fasePostulacionLocalService.listaFasesPostulacion(solicitud,
+			usuario);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> listaDiferenteSolicitudActualFasesPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario) {
+		return _fasePostulacionLocalService.listaDiferenteSolicitudActualFasesPostulacion(solicitud,
 			usuario);
 	}
 
@@ -478,6 +492,19 @@ public class FasePostulacionLocalServiceWrapper
 		long solicitudId, long userId, long tipo) {
 		return _fasePostulacionLocalService.getFasePostuacionByTipo(solicitudId,
 			userId, tipo);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> getFasePostuacionByUsuario(
+		long userId) {
+		return _fasePostulacionLocalService.getFasePostuacionByUsuario(userId);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacion> getFasePostuacionByUsuarioByTipoFase(
+		long userId, long tipo) {
+		return _fasePostulacionLocalService.getFasePostuacionByUsuarioByTipoFase(userId,
+			tipo);
 	}
 
 	/**

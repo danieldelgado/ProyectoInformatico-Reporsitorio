@@ -24,4 +24,6 @@ public interface RegistrarResultadoPostulanteService {
 
 	Map<String, Object> registarAvance(SolicitudPostulacionBean solicitudPostulacionBean, Long userId, long scopeGroupId, User user);
 
+	Map<String, Object> noAsistio(Long solicitudId, Long userId, Long fasePostulacion, String observacion, long scopeGroupId, User user);
+
 }

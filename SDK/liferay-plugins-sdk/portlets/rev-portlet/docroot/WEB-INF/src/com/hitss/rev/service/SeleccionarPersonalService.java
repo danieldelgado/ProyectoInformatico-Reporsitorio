@@ -19,5 +19,6 @@ public interface SeleccionarPersonalService {
 	List<UsuarioBean> getListaPostulantes(long companyId, long companyGroupId, Long solicitudRequerimientoId);
 	Map<String, Object> seleccionarPostulaste(Long solicitudId, Long userId, User user);
 	UsuarioBean getPostulanteDetalle(Long solicitudId, Long userId);
+	Map<String, Object> extenderFechaLimite(Long solicitudId, Date fechaLimite2Val, User user, long scopeGroupId);
 
 }

@@ -122,13 +122,23 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClpInvoker {
 
 		_methodParameterTypes237 = new String[] { "java.lang.String" };
 
-		_methodName242 = "getFasePostulacionPuestoEvaluacionBySolicitud";
+		_methodName242 = "getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud";
 
-		_methodParameterTypes242 = new String[] { "java.lang.Long" };
+		_methodParameterTypes242 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
 
-		_methodName243 = "getFasePostulacionPuestoEvaluacionByEvaluacion";
+		_methodName243 = "getFasePostulacionPuestoEvaluacionByFasePostulacion";
 
 		_methodParameterTypes243 = new String[] { "java.lang.Long" };
+
+		_methodName244 = "getFasePostulacionPuestoEvaluacionBySolicitud";
+
+		_methodParameterTypes244 = new String[] { "java.lang.Long" };
+
+		_methodName245 = "getFasePostulacionPuestoEvaluacionByEvaluacion";
+
+		_methodParameterTypes245 = new String[] { "java.lang.Long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -234,11 +244,22 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClpInvoker {
 
 		if (_methodName242.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes242, parameterTypes)) {
-			return FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud((java.lang.Long)arguments[0]);
+			return FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud((java.lang.Long)arguments[0],
+				(java.lang.Long)arguments[1]);
 		}
 
 		if (_methodName243.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes243, parameterTypes)) {
+			return FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacion((java.lang.Long)arguments[0]);
+		}
+
+		if (_methodName244.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes244, parameterTypes)) {
+			return FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud((java.lang.Long)arguments[0]);
+		}
+
+		if (_methodName245.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes245, parameterTypes)) {
 			return FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByEvaluacion((java.lang.Long)arguments[0]);
 		}
 
@@ -285,4 +306,8 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes242;
 	private String _methodName243;
 	private String[] _methodParameterTypes243;
+	private String _methodName244;
+	private String[] _methodParameterTypes244;
+	private String _methodName245;
+	private String[] _methodParameterTypes245;
 }

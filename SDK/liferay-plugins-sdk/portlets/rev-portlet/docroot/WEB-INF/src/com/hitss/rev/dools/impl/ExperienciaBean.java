@@ -14,6 +14,7 @@ public class ExperienciaBean {
 	private long id;
 	private String empresa;
 	private long tipoNegocioProyecto;
+	private String stTipoNegocioProyecto;
 	private double annos;
 	private String proyecto;
 	private Date fechaInicio;
@@ -123,6 +124,14 @@ public class ExperienciaBean {
 
 	public void setAnnos(double annos) {
 		this.annos = annos;
+	}
+
+	public String getStTipoNegocioProyecto() {
+		return stTipoNegocioProyecto;
+	}
+
+	public void setStTipoNegocioProyecto(String stTipoNegocioProyecto) {
+		this.stTipoNegocioProyecto = stTipoNegocioProyecto;
 	}
 
 }

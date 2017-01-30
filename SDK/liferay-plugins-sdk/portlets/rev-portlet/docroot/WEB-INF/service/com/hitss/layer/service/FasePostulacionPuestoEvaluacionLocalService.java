@@ -255,14 +255,22 @@ public interface FasePostulacionPuestoEvaluacionLocalService
 		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+		java.lang.Long fasePostulacionId, java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacion(
+		java.lang.Long fasePostulacionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
-		java.lang.Long solicitud)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException;
+		java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(
-		java.lang.Long evaluacion)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException;
+		java.lang.Long evaluacionId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

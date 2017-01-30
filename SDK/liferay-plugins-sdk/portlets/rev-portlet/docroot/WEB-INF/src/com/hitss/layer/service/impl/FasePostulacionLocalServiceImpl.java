@@ -53,21 +53,17 @@ public class FasePostulacionLocalServiceImpl
 	
 
 	private static Log _log = LogFactoryUtil.getLog(FasePostulacionServiceImpl.class);
-	
+
 	public FasePostulacion getLastPostulacion( Long solicitud, Long usuario ) {
-		
-	
 		DynamicQuery subQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"child");
 		subQuery.setProjection(ProjectionFactoryUtil.max("child.fechamodifica"));
 		subQuery.add(PropertyFactoryUtil.forName("child.solicitudRequerimientoId").eq(solicitud));
 		subQuery.add(PropertyFactoryUtil.forName("child.usuarioId").eq(usuario));
 		subQuery.setLimit(0, 1);
-
         DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.fechamodifica").eq(subQuery));
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").eq(solicitud));
-        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));
-		
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));		
         try {
 			List<FasePostulacion> lstfasePostulacion = FasePostulacionLocalServiceUtil.dynamicQuery(dynamicQuery);
 			_log.info("lstfasePostulacion:"+lstfasePostulacion);
@@ -76,30 +72,58 @@ public class FasePostulacionLocalServiceImpl
 			}			
 		} catch (SystemException e) {
 			_log.error("FasePostulacionServiceImpl getLastPostulacion: "+e.getLocalizedMessage(),e);
-		}      
-        
+		}        
 		return null;
 	}
 	
+	public FasePostulacion getNotLastPostulacion( Long solicitud, Long usuario ) {
+		DynamicQuery subQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"child");
+		subQuery.setProjection(ProjectionFactoryUtil.max("child.fechamodifica"));
+		subQuery.add(PropertyFactoryUtil.forName("child.solicitudRequerimientoId").ne(solicitud));
+		subQuery.add(PropertyFactoryUtil.forName("child.usuarioId").eq(usuario));
+		subQuery.setLimit(0, 1);
+        DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.fechamodifica").eq(subQuery));
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").ne(solicitud));
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));		
+        try {
+			List<FasePostulacion> lstfasePostulacion = FasePostulacionLocalServiceUtil.dynamicQuery(dynamicQuery);
+			_log.info("lstfasePostulacion:"+lstfasePostulacion);
+			if(!lstfasePostulacion.isEmpty()){
+				return lstfasePostulacion.get(0);
+			}			
+		} catch (SystemException e) {
+			_log.error("FasePostulacionServiceImpl getLastPostulacion: "+e.getLocalizedMessage(),e);
+		}        
+		return null;
+	}
 	
-	
-	public List<FasePostulacion> listaFasesPostulacion( Long solicitud, Long usuario ) {
-		
+	public List<FasePostulacion> listaFasesPostulacion( Long solicitud, Long usuario ) {		
         DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").eq(solicitud));
         dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));
-		
-		
         try {
 			List<FasePostulacion> lstfasePostulacion = FasePostulacionLocalServiceUtil.dynamicQuery(dynamicQuery);
 			return lstfasePostulacion;		
 		} catch (SystemException e) {
 			_log.error("FasePostulacionServiceImpl listaFasesPostulacion: "+e.getLocalizedMessage(),e);
-		}      
-        
+		}        
 		return null;
 	}
 	
+	public List<FasePostulacion> listaDiferenteSolicitudActualFasesPostulacion( Long solicitud, Long usuario ) {		
+        DynamicQuery dynamicQuery=DynamicQueryFactoryUtil.forClass(FasePostulacion.class,"fase");
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.solicitudRequerimientoId").ne(solicitud));
+        dynamicQuery.add(PropertyFactoryUtil.forName("fase.usuarioId").eq(usuario));
+        try {
+			List<FasePostulacion> lstfasePostulacion = FasePostulacionLocalServiceUtil.dynamicQuery(dynamicQuery);
+			return lstfasePostulacion;		
+		} catch (SystemException e) {
+			_log.error("FasePostulacionServiceImpl listaFasesPostulacion: "+e.getLocalizedMessage(),e);
+		}        
+		return null;
+	}
+
 	public FasePostulacion getFasePostuacionByTipo(long solicitudId, long userId, long tipo) {
 		try {
 			return FasePostulacionUtil.findByS_U_T(solicitudId, userId, tipo);
@@ -110,7 +134,23 @@ public class FasePostulacionLocalServiceImpl
 		}
 		return null;
 	}
+
+	public List<FasePostulacion>  getFasePostuacionByUsuario(long userId) {
+		try {
+			return FasePostulacionUtil.findByU(userId);
+		} catch ( Exception e) {
+			_log.error("FasePostulacionServiceImpl getFasePostuacionByTipo: "+e.getLocalizedMessage(),e);
+		}
+		return null;
+	}
 	
-	
+	public List<FasePostulacion>  getFasePostuacionByUsuarioByTipoFase(long userId, long tipo) {
+		try {
+			return FasePostulacionUtil.findByT_U(userId, tipo);
+		} catch ( Exception e) {
+			_log.error("FasePostulacionServiceImpl getFasePostuacionByTipo: "+e.getLocalizedMessage(),e);
+		}
+		return null;
+	}
 	
 }

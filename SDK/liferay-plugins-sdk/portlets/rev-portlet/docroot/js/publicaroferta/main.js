@@ -405,6 +405,7 @@ function publicarOfertaLaboral(){
 	var solicitudReclutamientoId = inputFristnamespace + "solicitudReclutamientoId";
 	var publicarOfertaUrl = $("#" + inputFristnamespace + "publicarOfertaUrl").val();
 	var listarSolicitudesUrl = $("#" + inputFristnamespace + "regresar").val();
+	var cantidadAnnosRubro = $("#" + inputFristnamespace + "cantidadAnnosRubro").val();
 		
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
@@ -417,6 +418,7 @@ function publicarOfertaLaboral(){
 	
 	var dataSend = $(formPublicarOferta).serialize();
 	dataSend=dataSend + "&editor_descripcion="+editor_descripcion;	
+	dataSend=dataSend + "&"+inputFristnamespace +"cantidadAnnosRubro="+cantidadAnnosRubro;	
 
 	if( listaFuncionMap.length == 0 ){
 		mostrarAlerta(contenedorAlerta, "Evaluaciones y rangos", "Ingrese al menos una evaluación", "alert-error", null);

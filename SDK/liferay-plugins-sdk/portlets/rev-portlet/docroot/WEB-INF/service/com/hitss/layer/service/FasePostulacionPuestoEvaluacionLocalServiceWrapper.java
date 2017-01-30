@@ -291,19 +291,32 @@ public class FasePostulacionPuestoEvaluacionLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+		java.lang.Long fasePostulacionId, java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(fasePostulacionId,
+			solicitudFuncionId);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacion(
+		java.lang.Long fasePostulacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionByFasePostulacion(fasePostulacionId);
+	}
+
+	@Override
 	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
-		java.lang.Long solicitud)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionBySolicitud(solicitud);
+		java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudFuncionId);
 	}
 
 	@Override
 	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(
-		java.lang.Long evaluacion)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionByEvaluacion(evaluacion);
+		java.lang.Long evaluacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _fasePostulacionPuestoEvaluacionLocalService.getFasePostulacionPuestoEvaluacionByEvaluacion(evaluacionId);
 	}
 
 	/**

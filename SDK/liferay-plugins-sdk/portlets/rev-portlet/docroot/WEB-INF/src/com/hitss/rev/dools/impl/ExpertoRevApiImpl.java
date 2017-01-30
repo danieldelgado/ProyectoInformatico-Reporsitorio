@@ -14,7 +14,6 @@ import com.hitss.layer.model.Postulacion;
 import com.hitss.layer.model.PuestoEvaluacion;
 import com.hitss.layer.model.SolicitudRequerimiento;
 import com.hitss.layer.model.UsuarioRequisito;
-import com.hitss.layer.model.impl.PostulacionImpl;
 import com.hitss.layer.service.EvaluacionLocalServiceUtil;
 import com.hitss.layer.service.ExperienciaLocalServiceUtil;
 import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
@@ -30,6 +29,7 @@ import com.hitss.rev.dools.ExpertoRevApi;
 import com.hitss.rev.liferay.api.LiferayApiService;
 import com.hitss.rev.service.ParametroService;
 import com.hitss.rev.service.SolicitudRequerimientoRequisitoService;
+import com.hitss.rev.util.Constantes;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
@@ -85,9 +85,9 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				System.out.println("DistanciaHammingEntrevista--" + postulacion.getDistanciaHammingEntrevista());
 				paa.setDistanciaHammingEntrevista(postulacion.getDistanciaHammingEntrevista());
 				System.out.println("DistanciaEuclidianaPsicologico--" + postulacion.getDistanciaEuclidianaPsicologico());
-				paa.setDistanciaEuclidianaPsicologico( postulacion.getDistanciaEuclidianaPsicologico());
+				paa.setDistanciaEuclidianaPsicologico(postulacion.getDistanciaEuclidianaPsicologico());
 				System.out.println("DistanciaHammingPsicologico--" + postulacion.getDistanciaHammingPsicologico());
-				paa.setDistanciaHammingPsicologico( postulacion.getDistanciaHammingPsicologico());
+				paa.setDistanciaHammingPsicologico(postulacion.getDistanciaHammingPsicologico());
 				System.out.println("DistanciaEuclidianaTecnico--" + postulacion.getDistanciaEuclidianaTecnico());
 				paa.setDistanciaEuclidianaTecnico(postulacion.getDistanciaEuclidianaTecnico());
 				System.out.println("DistanciaHammingTecnico--" + postulacion.getDistanciaHammingTecnico());
@@ -98,7 +98,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				System.out.println("RecomendableRequisitosCumplidoPorUsuario--" + postulacion.isRecomendableRequisitosCumplidoPorUsuario() + " al "
 						+ postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
 				paa.setRecomendableRequisitosCumplidoPorUsuario(postulacion.isRecomendableRequisitosCumplidoPorUsuario());
-				paa.setPorcentajeRequisitosCumplidoPorUsuario( postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
+				paa.setPorcentajeRequisitosCumplidoPorUsuario(postulacion.getPorcentajeRequisitosCumplidoPorUsuario());
 				if (postulacion.getPorcentajeReqCertiCum() > 0) {
 					System.out.println("RecomendableReqCertiCum--" + postulacion.isRecomendableReqCertiCum() + " al " + postulacion.getPorcentajeReqCertiCum());
 					paa.setRecomendableReqCertiCum(postulacion.isRecomendableReqCertiCum());
@@ -107,13 +107,13 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 							+ postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
 					paa.setRecomendableCertificadoCumplidoPorUsuario(postulacion.isRecomendableCertificadoCumplidoPorUsuario());
 					paa.setPorcentajeCertificadoCumplidoPorUsuario(postulacion.getPorcentajeCertificadoCumplidoPorUsuario());
-					
+
 				}
 
 				lstR.add(paa);
 				System.out.println("-----------------");
 			}
-			
+
 		} catch (PortalException | SystemException e) {
 			e.printStackTrace();
 		}
@@ -121,7 +121,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 	}
 
 	private UsuarioBean getUsuario(long usuarioId, Long solicitudRequerimientoId) throws PortalException, SystemException {
-		System.out.println("Obteniendo datos del usuario usuarioId:"+usuarioId + " solicitudRequerimientoId:"+solicitudRequerimientoId);
+		System.out.println("Obteniendo datos del usuario usuarioId:" + usuarioId + " solicitudRequerimientoId:" + solicitudRequerimientoId);
 		User e = UserLocalServiceUtil.getUser(usuarioId);
 		UsuarioBean p = new UsuarioBean();
 		p.setIdUsuario(e.getUserId());
@@ -140,8 +140,8 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 				System.out.println("getTipoNegocio():--" + parametroService.getParametro(experiencia.getTipoNegocio()).getParametroId());
 				System.out.println("getFechaInicio():--" + experiencia.getFechaInicio());
 				System.out.println("getFechaFin():--" + experiencia.getFechaFin());
-				experienciaBean = new ExperienciaBean(experiencia.getExperienciaId(), experiencia.getDescripcion(), parametroService.getParametro(experiencia.getTipoNegocio()).getParametroId(),
-						experiencia.getProyecto(), experiencia.getFechaInicio(), experiencia.getFechaFin());
+				experienciaBean = new ExperienciaBean(experiencia.getExperienciaId(), experiencia.getDescripcion(), parametroService.getParametro(experiencia.getTipoNegocio())
+						.getParametroId(), experiencia.getProyecto(), experiencia.getFechaInicio(), experiencia.getFechaFin());
 				listaExperiencias.add(experienciaBean);
 				System.out.println("-----------");
 			}
@@ -187,29 +187,69 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 			p.setListaCertificados(listaRequisitoBean);
 		}
 
-		List<FasePostulacion> fspt =  FasePostulacionLocalServiceUtil.listaFasesPostulacion(solicitudRequerimientoId, usuarioId);
-		
+		List<FasePostulacion> fspt = FasePostulacionLocalServiceUtil.listaFasesPostulacion(solicitudRequerimientoId, usuarioId);
+
 		long[] faseIds = new long[fspt.size()];
 		for (int i = 0; i < fspt.size(); i++) {
 			faseIds[i] = fspt.get(i).getFasePostulacionId();
 		}
-		
-//		if (!colaborador) {
-			{
-				List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
-				List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
+
+		// if (!colaborador) {
+		{
+			List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
+			List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
+			EvaluacionBean eb = null;
+			Evaluacion e2 = null;
+			System.out.println("FasePostulacionPuestoEvaluacion 83");
+			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
+				if (fasePostulacionPuestoEvaluacion.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacion.getEvaluacionId() != 2) {
+					e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+					if (e2.getTipoEvaluacion() == 83) {
+						if (faseIds.length > 0) {
+							for (int i = 0; i < faseIds.length; i++) {
+								if (fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds[i]) {
+									System.out.println("getFasePostulacionId():--" + fasePostulacionPuestoEvaluacion.getFasePostulacionId());
+									eb = new EvaluacionBean();
+									System.out.println("getEvaluacionId():--" + fasePostulacionPuestoEvaluacion.getEvaluacionId());
+									System.out.println("getTipoEvaluacion():--" + e2.getTipoEvaluacion());
+									System.out.println("getResultado():--" + fasePostulacionPuestoEvaluacion.getResultado());
+									eb.setId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+									eb.setTipoEvaluacion(e2.getTipoEvaluacion());
+									eb.setPuntajeObtenido(fasePostulacionPuestoEvaluacion.getResultado());
+									listaEvaluacion.add(eb);
+									System.out.println("-----------");
+								}
+							}
+						}
+
+					}
+
+				}
+			}
+			p.setListaEvaluacionPiscologicas(listaEvaluacion);
+		}
+		{
+			List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
+			if (p.getListaEvaluacionPiscologicas() == null || p.getListaEvaluacionPiscologicas().isEmpty() ) {				
+				List<FasePostulacion> lstFasePostulaciones =  FasePostulacionLocalServiceUtil.getFasePostuacionByUsuarioByTipoFase(usuarioId, Constantes.PARAMETRO_FASE_PSICOLOGICA);
+				
+				long[] faseIds2 = new long[lstFasePostulaciones.size()];
+				for (int i = 0; i < lstFasePostulaciones.size(); i++) {
+					faseIds2[i] = lstFasePostulaciones.get(i).getFasePostulacionId();
+				}
+				
+				FasePostulacion fp = getLastPostulacion(lstFasePostulaciones);				
+				List<FasePostulacionPuestoEvaluacion> a2 = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacion(fp.getFasePostulacionId());
 				EvaluacionBean eb = null;
 				Evaluacion e2 = null;
-				System.out.println("FasePostulacionPuestoEvaluacion 83");
-				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
-//					System.out.println("-- getEvaluacionId():--" + fasePostulacionPuestoEvaluacion.getEvaluacionId() );
+				System.out.println("FasePostulacionPuestoEvaluacion 2 83");
+				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a2) {
 					if (fasePostulacionPuestoEvaluacion.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacion.getEvaluacionId() != 2) {
 						e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
-//						System.out.println("-- getTipoEvaluacion():--" + e2.getTipoEvaluacion() );
 						if (e2.getTipoEvaluacion() == 83) {
-							if(faseIds.length>0){
-								for (int i = 0; i < faseIds.length; i++) {
-									if(fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds[i]){
+							if (faseIds2.length > 0) {
+								for (int i = 0; i < faseIds2.length; i++) {
+									if (fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds2[i]) {
 										System.out.println("getFasePostulacionId():--" + fasePostulacionPuestoEvaluacion.getFasePostulacionId());
 										eb = new EvaluacionBean();
 										System.out.println("getEvaluacionId():--" + fasePostulacionPuestoEvaluacion.getEvaluacionId());
@@ -223,28 +263,67 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 									}
 								}
 							}
-							
+
 						}
 
 					}
 				}
 				p.setListaEvaluacionPiscologicas(listaEvaluacion);
 			}
-			{
-				List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
-				List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
+		}
+		{
+			List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
+			List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
+			EvaluacionBean eb = null;
+			Evaluacion e2 = null;
+			System.out.println("FasePostulacionPuestoEvaluacion 84");
+			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
+				if (fasePostulacionPuestoEvaluacion.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacion.getEvaluacionId() != 2) {
+					e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+					if (e2.getTipoEvaluacion() == 84) {
+						if (faseIds.length > 0) {
+							for (int i = 0; i < faseIds.length; i++) {
+								if (fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds[i]) {
+									System.out.println("getFasePostulacionId():--" + fasePostulacionPuestoEvaluacion.getFasePostulacionId());
+									eb = new EvaluacionBean();
+									System.out.println("getEvaluacionId():--" + fasePostulacionPuestoEvaluacion.getEvaluacionId());
+									System.out.println("getTipoEvaluacion():--" + e2.getTipoEvaluacion());
+									System.out.println("getResultado():--" + fasePostulacionPuestoEvaluacion.getResultado());
+									eb.setId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+									eb.setTipoEvaluacion(e2.getTipoEvaluacion());
+									eb.setPuntajeObtenido(fasePostulacionPuestoEvaluacion.getResultado());
+									listaEvaluacion.add(eb);
+									System.out.println("-----------");
+								}
+							}
+						}
+					}
+				}
+			}
+			p.setListaEvaluacionTecnicas(listaEvaluacion);
+		}
+		{
+			List<EvaluacionBean> listaEvaluacion = new ArrayList<EvaluacionBean>();
+			if (p.getListaEvaluacionTecnicas() == null || p.getListaEvaluacionTecnicas().isEmpty() ) {				
+				List<FasePostulacion> lstFasePostulaciones =  FasePostulacionLocalServiceUtil.getFasePostuacionByUsuarioByTipoFase(usuarioId, Constantes.PARAMETRO_FASE_TECNICA);
+				
+				long[] faseIds2 = new long[lstFasePostulaciones.size()];
+				for (int i = 0; i < lstFasePostulaciones.size(); i++) {
+					faseIds2[i] = lstFasePostulaciones.get(i).getFasePostulacionId();
+				}
+								
+				FasePostulacion fp = getLastPostulacion(lstFasePostulaciones);				
+				List<FasePostulacionPuestoEvaluacion> a2 = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacion(fp.getFasePostulacionId());
 				EvaluacionBean eb = null;
 				Evaluacion e2 = null;
-				System.out.println("FasePostulacionPuestoEvaluacion 84");
-				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
-//					System.out.println("-- getEvaluacionId():--" + fasePostulacionPuestoEvaluacion.getEvaluacionId() );
+				System.out.println("FasePostulacionPuestoEvaluacion 2 84");
+				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a2) {
 					if (fasePostulacionPuestoEvaluacion.getEvaluacionId() != 1 && fasePostulacionPuestoEvaluacion.getEvaluacionId() != 2) {
 						e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
-//						System.out.println("-- getTipoEvaluacion():--" + e2.getTipoEvaluacion() );
 						if (e2.getTipoEvaluacion() == 84) {
-							if(faseIds.length>0){
-								for (int i = 0; i < faseIds.length; i++) {
-									if(fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds[i]){
+							if (faseIds2.length > 0) {
+								for (int i = 0; i < faseIds2.length; i++) {
+									if (fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds2[i]) {
 										System.out.println("getFasePostulacionId():--" + fasePostulacionPuestoEvaluacion.getFasePostulacionId());
 										eb = new EvaluacionBean();
 										System.out.println("getEvaluacionId():--" + fasePostulacionPuestoEvaluacion.getEvaluacionId());
@@ -257,13 +336,13 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 										System.out.println("-----------");
 									}
 								}
-							}							
+							}
 						}
 					}
 				}
 				p.setListaEvaluacionTecnicas(listaEvaluacion);
 			}
-//		}
+		}
 		{
 			List<EvaluacionBean> listaEntrevistas = new ArrayList<EvaluacionBean>();
 			List<FasePostulacionPuestoEvaluacion> a = FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionBySolicitud(solicitudRequerimientoId);
@@ -271,11 +350,10 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 			Evaluacion e2 = null;
 			System.out.println("FasePostulacionPuestoEvaluacion 1 y 2");
 			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : a) {
-//				System.out.println("-- getEvaluacionId():--" + fasePostulacionPuestoEvaluacion.getEvaluacionId() );
 				if (fasePostulacionPuestoEvaluacion.getEvaluacionId() == 1 || fasePostulacionPuestoEvaluacion.getEvaluacionId() == 2) {
-					if(faseIds.length>0){
+					if (faseIds.length > 0) {
 						for (int i = 0; i < faseIds.length; i++) {
-							if(fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds[i]){
+							if (fasePostulacionPuestoEvaluacion.getFasePostulacionId() == faseIds[i]) {
 								System.out.println("getFasePostulacionId():--" + fasePostulacionPuestoEvaluacion.getFasePostulacionId());
 								e2 = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());
 								eb = new EvaluacionBean();
@@ -289,17 +367,32 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 								System.out.println("-----------");
 							}
 						}
-					}		
+					}
 				}
 			}
 			p.setListaEntrevista(listaEntrevistas);
 		}
-		System.out.println("Fin Obteniendo datos del usuario usuarioId:"+usuarioId+ " solicitudRequerimientoId:"+solicitudRequerimientoId);
+		System.out.println("Fin Obteniendo datos del usuario usuarioId:" + usuarioId + " solicitudRequerimientoId:" + solicitudRequerimientoId);
 		return p;
 	}
 
+	private FasePostulacion getLastPostulacion(List<FasePostulacion> lstFasePostulaciones) {
+		long id = 0;
+		for (FasePostulacion fasePostulacion : lstFasePostulaciones) {
+			if( fasePostulacion.getFasePostulacionId() > id ){
+				id = fasePostulacion.getFasePostulacionId();				
+			}
+		}
+		for (FasePostulacion fasePostulacion : lstFasePostulaciones) {
+			if( fasePostulacion.getFasePostulacionId() == id ){
+				return fasePostulacion;
+			}
+		}
+		return null;
+	}
+
 	private PuestoBean getPuestoConfiguracion(SolicitudRequerimiento sr, List<PuestoEvaluacion> listaPuestoEvaluacion) throws PortalException, SystemException {
-		System.out.println("Configuracion del puesto sr:"+ sr.getSolicitudRequerimientoId());
+		System.out.println("Configuracion del puesto sr:" + sr.getSolicitudRequerimientoId());
 		SolicitudRequerimientoBean solicitudRequerimiento = new SolicitudRequerimientoBean();
 		solicitudRequerimiento.setSolicitudRequerimientoId(sr.getSolicitudRequerimientoId());
 		PuestoBean p = new PuestoBean();
@@ -307,7 +400,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 		ComboBean v = liferayApiService.getCategoria(sr.getCategoriaPuestoId());
 		p.setNombre(v.getValue());
 		p.setTipoNegocioRequierido(parametroService.getParametro(sr.getTipoNegocio()).getParametroId());
-		{	
+		{
 			System.out.println("Experiencia");
 			ExperienciaBean experienciaBean = new ExperienciaBean(1L, parametroService.getParametro(sr.getTipoNegocio()).getParametroId(), sr.getCantidadAnnosRubro());
 			System.out.println("getExperienciaId():--" + experienciaBean.getId());
@@ -330,7 +423,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 					System.out.println("getTagId():--" + requisitoEtiquetaBean.getTagId());
 					System.out.println("getEtiqueta():--" + liferayApiService.getEtiqueta(requisitoEtiquetaBean.getTagId()).getValue());
 					System.out.println("getAnnos():--" + requisitoEtiquetaBean.getAnnos());
-					System.out.println("isExigible():--" + requisitoEtiquetaBean.isExigible());					
+					System.out.println("isExigible():--" + requisitoEtiquetaBean.isExigible());
 					requisitoBean = new RequisitoBean(requisitoEtiquetaBean.getTagId(), requisitoEtiquetaBean.getTipoRequisito(), requisitoEtiquetaBean.getRequisito(),
 							getValueAnnos(requisitoEtiquetaBean.getAnnos()), requisitoEtiquetaBean.isExigible());
 					listaRequisitoBean.add(requisitoBean);
@@ -436,7 +529,7 @@ public class ExpertoRevApiImpl implements ExpertoRevApi {
 	//
 	// }
 
-	private int getValueAnnos(Long annosId) {
+	public static int getValueAnnos(Long annosId) {
 		switch (annosId.intValue()) {
 		case 96:
 			return 1;

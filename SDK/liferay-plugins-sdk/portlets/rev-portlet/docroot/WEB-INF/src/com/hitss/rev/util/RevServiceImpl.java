@@ -10,11 +10,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hitss.layer.model.FasePostulacion;
 import com.hitss.layer.model.Funcion;
 import com.hitss.layer.model.SolicitudEvaluacionDesempenno;
 import com.hitss.layer.model.SolicitudRequerimiento;
 import com.hitss.layer.model.impl.SolicitudEvaluacionDesempennoImpl;
+import com.hitss.layer.service.FasePostulacionLocalServiceUtil;
 import com.hitss.layer.service.FuncionLocalServiceUtil;
+import com.hitss.layer.service.PostulacionLocalServiceUtil;
 import com.hitss.layer.service.SolicitudEvaluacionDesempennoLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
 import com.hitss.layer.service.UsuarioLocalServiceUtil;
@@ -27,6 +30,7 @@ import com.hitss.rev.bean.RequisitoEtiquetaBean;
 import com.hitss.rev.bean.SolicitudEvaluacionBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
+import com.hitss.rev.dools.impl.Postulacion;
 import com.hitss.rev.liferay.api.LiferayApiService;
 import com.hitss.rev.service.ObservacionService;
 import com.hitss.rev.service.ParametroService;
@@ -261,6 +265,52 @@ public abstract class RevServiceImpl {
 					solicitudRequerimientoBean.setStrestado(parametroService.getParametro(sr.getEstado()).getValor());
 					
 					solicitudRequerimientoBean.setCantidadPostulantes(UsuarioLocalServiceUtil.getUsuariosPostulantes(sr.getSolicitudRequerimientoId()));
+					
+					if( sr.getEstado() == Constantes.PARAMETRO_ENTREVISTA ){
+						boolean asistio = false;
+						FasePostulacion fase = null , fp = null;
+						List<com.hitss.layer.model.Postulacion> lsta = PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(sr.getSolicitudRequerimientoId());
+						for (com.hitss.layer.model.Postulacion postulacion : lsta) {							
+							fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+									Constantes.PARAMETRO_FASE_PSICOLOGICA);
+							if (Validator.isNotNull(fase)) {								
+								if (fase.isAsistio()) {
+									asistio = fase.isAsistio();
+								}								
+							}
+							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
+							if (Validator.isNotNull(fp)) {								
+								if (fp.isAsistio()) {
+									if(!asistio){
+										asistio = fp.isAsistio();
+									}
+								}
+								fase = fp;
+							}
+							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+									Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
+							if (Validator.isNotNull(fp)) {
+								if (fp.isAsistio()) {
+									if(!asistio){
+										asistio = fp.isAsistio();
+									}
+								}
+								fase = fp;
+							}
+							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
+									Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
+							if (Validator.isNotNull(fp)) {
+								if (fp.isAsistio()) {
+									if(!asistio){
+										asistio = fp.isAsistio();
+									}
+								}
+								fase = fp;
+							}
+						}
+						solicitudRequerimientoBean.setAsistio(asistio);
+						
+					}
 					
 					lista.add(solicitudRequerimientoBean);
 					

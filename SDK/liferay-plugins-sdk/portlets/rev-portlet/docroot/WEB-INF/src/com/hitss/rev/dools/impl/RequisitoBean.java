@@ -6,6 +6,7 @@ public class RequisitoBean {
 
 	private long id;
 	private long tipo;
+	private String strTipo;
 	private String descripcion;
 	private int annos;
 	private boolean exigible;
@@ -98,6 +99,14 @@ public class RequisitoBean {
 
 	public void setAnnosMinimoAceptado(boolean annosMinimoAceptado) {
 		this.annosMinimoAceptado = annosMinimoAceptado;
+	}
+
+	public String getStrTipo() {
+		return strTipo;
+	}
+
+	public void setStrTipo(String strTipo) {
+		this.strTipo = strTipo;
 	}
 
 	

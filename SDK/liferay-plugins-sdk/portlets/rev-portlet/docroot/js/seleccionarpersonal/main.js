@@ -78,8 +78,6 @@ function inicializarFormularioBusqueda() {
 				},
 				on : {
 					selectionChange : function(event) {
-						// var btnBuscar = $("#" + inputFristnamespace +
-						// "btnBuscar");
 						var d = new Date(event.newSelection);
 						var day = d.getDate();
 						var monthIndex = d.getMonth();
@@ -233,18 +231,173 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 
 
-function inicializarListaPotulantes(listaPostulantes) {
+function inicializarListaPotulantes( listaPostulantes , cantidadRecursos ) {
 	init();
+	
+	var today = new Date();
+	
 	if (listaPostulantes != "") {
-		var lista = $.parseJSON(listaPostulantes);	
+		var lista = $.parseJSON(listaPostulantes);
+
+		var cantidadPostulantes = 0;
+		var seleccionados = 0;
+		
 		$.each(lista, function(index, object) {		
-			addPostulanteFila(	object );
-		});		
+			cantidadPostulantes ++;
+			if(object['seleccionado'] ){
+				seleccionados++;
+			}				
+		});	
+		
+		console.log("cantidadPostulantes:"+cantidadPostulantes +"  |seleccionados:"+seleccionados);
+		
+		$.each(lista, function(index, object) {	
+			if( cantidadRecursos == seleccionados ){
+				addPostulanteFila(	object , false );
+			}else {
+				addPostulanteFila(	object , true );	
+			}
+			
+		});	
+		
 	}	
+	
+	var contenedorAlerta = $("#"+ inputFristnamespace + "pnlFechaLimite");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	$(contenedorAlerta).hide();
+	$(btnGuardar).hide();
+
+	console.log(contenedorAlerta);
+	console.log(btnGuardar);
+
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+		
+		if (A.one('#' + inputFristnamespace + 'fechaLimite2') != null) {
+			new A.DatePicker({
+				trigger : '#' + inputFristnamespace + 'fechaLimite2',
+				mask : '%d/%m/%Y',
+				popover : {
+					zIndex : 1
+				},
+				calendar: {
+					maximumDate : new Date(today.getFullYear(),today.getMonth()+1,today.getDate()),
+					minimumDate : new Date(today.getFullYear(),today.getMonth(),today.getDate())
+				},
+				on : {
+					selectionChange : function(event) {
+						var d = new Date(event.newSelection);
+						var day = d.getDate();
+						var monthIndex = d.getMonth();
+						var year = d.getFullYear();
+						A.one('#' + inputFristnamespace + 'fechaLimite2Val').set('value', day + "/" + (monthIndex + 1) + "/" + year);
+					}
+				}
+			});
+		}
+		
+		if (A.one('#' + inputFristnamespace + 'modal') != null) {
+			var popupconfirmartitulo = "Fecha Limite";
+			var popupconfirmarMensage = "Confirma la extension de fecha de limite";
+			var msgAceptar = "Aceptar";
+			var msgCancelar = "Cancelar";
+
+			modalconfirmacion = new A.Modal({
+				bodyContent : popupconfirmarMensage,
+				centered : true,
+				destroyOnHide : false,
+				headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+				modal : true,
+				render : '#' + inputFristnamespace + 'modal',
+				resizable : false,
+				visible : false,
+				width : 305
+			}).render();
+
+			modalconfirmacion.addToolbar([ {				
+				label : msgAceptar,
+				on : {
+					click : function() {
+						console.log("msgAceptar");
+						if (formvalid) {
+							registrarExtensionFechaLimite();
+						}
+				}
+			}
+			}, {
+				label : msgCancelar,
+				on : {
+					click : function() {
+						console.log("msgCancelar");
+						modalconfirmacion.hide();
+					}
+				}
+			} ]);
+		}
+
+		
+	});
+	
+	$(btnGuardar).click(function() {
+		console.log(btnGuardar);
+		formvalid = true;
+		if(formvalid){
+			console.log("show");
+			modalconfirmacion.show();
+		}
+		
+	});
+	
 }
 
+function registrarExtensionFechaLimite() {
+	init();
+	var contenedorAlerta = $(".contenedorAlerta");
+	
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var extenderPublicacionUrl = $("#" + inputFristnamespace + "extenderPublicacionUrl").val();
+	console.log("extenderPublicacionUrl:"+extenderPublicacionUrl);
+	var regresarUrl = $("#" + inputFristnamespace + "regresarUrl").val();
 
-function addPostulanteFila(object) {
+
+	var solicitudId = $("#" + inputFristnamespace + "solicitudId").val();
+	console.log("solicitudId:"+solicitudId);
+	var fechaLimite2Val = $("#" + inputFristnamespace + "fechaLimite2Val").val();
+	console.log("fechaLimite2Val:"+fechaLimite2Val);
+	
+	var dataSend = inputFristnamespace + "solicitudRequerimientoId="+solicitudId+"&"+inputFristnamespace+"fechaLimite2Val="+fechaLimite2Val;
+	console.log("dataSend:"+dataSend);
+	
+	var popupMensaje = "Extensión de Fecha Limite";
+	var msgError = "Error en actualizar la extensión de fecha limite";
+		
+	$.ajax({
+		type : "POST",
+		url : extenderPublicacionUrl,
+		data : dataSend,
+		success : function(data) {
+			console.log(data);
+			modalconfirmacion.hide();
+			data = $.parseJSON(data);
+			var objeto = data["objeto"];
+			var respuesta = data["respuesta"];
+			var mensaje = data["mensaje"];
+			regresarUrl += "&titulo=" + encodeURI(popupMensaje);
+			regresarUrl += "&mensaje=" + encodeURI(mensaje);
+			if (respuesta == 1) {
+				$(btnGuardar).attr("disabled", "disabled");
+				mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
+					setTimeout(function() {
+						window.location = regresarUrl;
+					}, 1500);
+				});
+			} else {
+				mostrarAlerta(contenedorAlerta, msgError, mensaje, "alert-error", null);
+			}
+		}
+	});
+}
+
+function addPostulanteFila(object , mostrarBtnSeleccionado ) {
 	var postulanteUrl = $("#" + inputFristnamespace + "postulanteUrl").val();
 	var detallePostulanteUrl = $("#" + inputFristnamespace + "detallePostulanteUrl").val();
 
@@ -252,24 +405,37 @@ function addPostulanteFila(object) {
 	var html = "";
 	var cercania = new Number((object['cercania']));
 	cercania = cercania * 100;
-	html += "<tr>" + 
+	html += "<tr "; 
+	if(cercania <= 30.0){
+		html += ' class="success" ';					
+	}
+	html += " > " + 
 	"<td>" + object['fullname'] + "</td>" + 
 	"<td>" + object['fechaPostulacion'] + "</td>" + 
 	"<td>" + object['disponibilidad'] + "</td>" + 
 	"<td>" + object['interno'] + "</td>" + 
-	"<td>" + object['fasePostulacion'] + "</td>" + 
 	"<td>" + (cercania.toFixed(4)) + "%</td>" + 
-	"<td>" + object['estado'] + "</td>" + 
 	"<td>" + "";
 
 	html += '	<div class="btn-group">';
-	html += '		<a class="btn btn-primary" href="' + postulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Seleccionar </a>';
+	console.log("seleccionado:"+ object['seleccionado'] );
+	console.log("mostrarBtnSeleccionado:"+mostrarBtnSeleccionado);
+	if(mostrarBtnSeleccionado){
+		if( !object['seleccionado'] ){
+			if(cercania <= 30.0){
+				html += '		<a class="btn btn-primary" href="' + postulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Seleccionar </a>';
+			}
+		}	
+	}	
+	
 	html += '		<a class="btn btn-primary" href="' + detallePostulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Ver detalle </a>';
+
 	html += '	</div>';
 	
 	html += "</td>"
 	
 	html +="</tr>";
+	
 	$(listaRequisitos).append(html);
 
 }

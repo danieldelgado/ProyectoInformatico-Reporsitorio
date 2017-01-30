@@ -57,8 +57,12 @@ when
     
 then
 	System.out.println( "rule AET	A ----	" );
+	System.out.println( "rule AET 1: " +$u.getIdUsuario()); 
+	LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"rule AET 1: " +$u.getIdUsuario()); 
 	if($ulevaluaciones!=null && !$ulevaluaciones.isEmpty() ){
 		System.out.println( "rule AET	B ----	" );
+		System.out.println( "rule AET 2: " +$u.getIdUsuario()); 
+		LogTraza.log( $postulacion.getPostulacionId() , $postulacion.getUsuarioId() ,"rule AET 2: " +$u.getIdUsuario()); 
 		if($evaluaciones!=null && !$evaluaciones.isEmpty() ){
     		System.out.println( "--Analizar evaluaciones tecnicas i--" );
 			EvaluacionBean usuEval = null;

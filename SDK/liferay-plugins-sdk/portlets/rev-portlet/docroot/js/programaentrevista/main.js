@@ -176,10 +176,21 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strestado + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
+				var fechaHoy = Date.now();
+				var dateParts =  value.strfechaLimite.split('/');
+				console.log(dateParts);
+				var fechaLimite = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+				console.log(fechaLimite);
 
-				if (value.estado == 51 || value.estado == 68 ) {
-					html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listarPostulantes + ' </a>';
+				if (fechaHoy < fechaLimite) {	
+					
+					if (value.estado == 51 || value.estado == 52 || value.estado == 68 ) {
+						html += '		<a class="btn btn-primary" href="' + urls["listarPostulantesUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listarPostulantes + ' </a>';
+					}
+				
+					
 				}
+
 				
 				html += '		<a class="btn btn-primary" href="' + urls["verDetalleSolicitudUrl"] + '&' + inputFristnamespace + 'solicitudRequerimientoId=' + value.solicitudRequerimientoId + '">' + listaOpcionVerDetalle + ' </a>';
 				
@@ -248,6 +259,7 @@ function inicializarListaPotulantes(listaPostulantes) {
 
 
 function addPostulanteFila(object) {
+	console.log("--------- addPostulanteFila ---------");
 	var programarEntrevistaUrl = $("#" + inputFristnamespace + "programarEntrevistaUrl").val();
 	var detallePostulanteUrl = $("#" + inputFristnamespace + "detallePostulanteUrl").val();
 
@@ -262,9 +274,16 @@ function addPostulanteFila(object) {
 	"<td>" + object['estado'] + "</td>" + 
 	"<td>" + "";
 	
-	html += '	<div class="btn-group">';
-	html += '		<a class="btn btn-primary" href="' + programarEntrevistaUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '">Programar Entrevista </a>';
+	html += '	<div class="btn-group">';		
+	console.log("asistio:"+object['asistio']);
+//	if(!object['asistio']){
+		
+		html += '		<a class="btn btn-primary" href="' + programarEntrevistaUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '">Programar Entrevista </a>';
+
+//	}
+	
 	html += '		<a class="btn btn-primary" href="' + detallePostulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Ver detalle </a>';
+	
 	html += '	</div>';
 	
 	html += "</td>"

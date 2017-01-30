@@ -374,10 +374,25 @@ public interface FasePostulacionLocalService extends BaseLocalService,
 	public com.hitss.layer.model.FasePostulacion getLastPostulacion(
 		java.lang.Long solicitud, java.lang.Long usuario);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.hitss.layer.model.FasePostulacion getNotLastPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario);
+
 	public java.util.List<com.hitss.layer.model.FasePostulacion> listaFasesPostulacion(
+		java.lang.Long solicitud, java.lang.Long usuario);
+
+	public java.util.List<com.hitss.layer.model.FasePostulacion> listaDiferenteSolicitudActualFasesPostulacion(
 		java.lang.Long solicitud, java.lang.Long usuario);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.hitss.layer.model.FasePostulacion getFasePostuacionByTipo(
 		long solicitudId, long userId, long tipo);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.FasePostulacion> getFasePostuacionByUsuario(
+		long userId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.hitss.layer.model.FasePostulacion> getFasePostuacionByUsuarioByTipoFase(
+		long userId, long tipo);
 }

@@ -124,13 +124,23 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClp
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "getFasePostulacionPuestoEvaluacionBySolicitud";
+		_methodName19 = "getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud";
 
-		_methodParameterTypes19 = new String[] { "java.lang.Long" };
+		_methodParameterTypes19 = new String[] {
+				"java.lang.Long", "java.lang.Long"
+			};
 
-		_methodName20 = "getFasePostulacionPuestoEvaluacionByEvaluacion";
+		_methodName20 = "getFasePostulacionPuestoEvaluacionByFasePostulacion";
 
 		_methodParameterTypes20 = new String[] { "java.lang.Long" };
+
+		_methodName21 = "getFasePostulacionPuestoEvaluacionBySolicitud";
+
+		_methodParameterTypes21 = new String[] { "java.lang.Long" };
+
+		_methodName22 = "getFasePostulacionPuestoEvaluacionByEvaluacion";
+
+		_methodParameterTypes22 = new String[] { "java.lang.Long" };
 	}
 
 	@Override
@@ -709,23 +719,85 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClp
 	}
 
 	@Override
-	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
-		java.lang.Long solicitud)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+		java.lang.Long fasePostulacionId, java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName19,
 					_methodParameterTypes19,
-					new Object[] { ClpSerializer.translateInput(solicitud) });
+					new Object[] {
+						ClpSerializer.translateInput(fasePostulacionId),
+						
+					ClpSerializer.translateInput(solicitudFuncionId)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException) {
-				throw (com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException)t;
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByFasePostulacion(
+		java.lang.Long fasePostulacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] { ClpSerializer.translateInput(
+							fasePostulacionId) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionBySolicitud(
+		java.lang.Long solicitudFuncionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] {
+						ClpSerializer.translateInput(solicitudFuncionId)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
@@ -745,22 +817,17 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClp
 
 	@Override
 	public java.util.List<com.hitss.layer.model.FasePostulacionPuestoEvaluacion> getFasePostulacionPuestoEvaluacionByEvaluacion(
-		java.lang.Long evaluacion)
-		throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException,
-			com.liferay.portal.kernel.exception.SystemException {
+		java.lang.Long evaluacionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
-					new Object[] { ClpSerializer.translateInput(evaluacion) });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] { ClpSerializer.translateInput(evaluacionId) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException) {
-				throw (com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException)t;
-			}
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
@@ -819,4 +886,8 @@ public class FasePostulacionPuestoEvaluacionLocalServiceClp
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 }

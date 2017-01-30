@@ -116,6 +116,7 @@ public class PublicarOfertaController extends RevController {
 		lista.add(entre2);
 
 		int cantidadAnnosRubro = ParamUtil.getInteger(resourceRequest, "cantidadAnnosRubro");
+		System.out.println("cantidadAnnosRubro:"+cantidadAnnosRubro);
 		
 		
 		if (Validator.isNotNull(solicitudRequerimientoId) || solicitudRequerimientoId > 0 && !lista.isEmpty() || lista.size() > 0) {

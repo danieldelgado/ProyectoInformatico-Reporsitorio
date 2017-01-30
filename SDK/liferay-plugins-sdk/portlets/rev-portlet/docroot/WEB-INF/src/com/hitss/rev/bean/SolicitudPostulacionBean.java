@@ -36,6 +36,8 @@ public class SolicitudPostulacionBean implements Serializable {
 	private Date fechaGerenteArea;
 	private String strfechaGerenteArea;
 
+	private boolean asistio;
+	
 	private long estado;
 	private String strEstado;
 
@@ -293,6 +295,14 @@ public class SolicitudPostulacionBean implements Serializable {
 
 	public void setListaFasePostulacionPuestoEvaluacionBean(List<FasePostulacionPuestoEvaluacionBean> listaFasePostulacionPuestoEvaluacionBean) {
 		this.listaFasePostulacionPuestoEvaluacionBean = listaFasePostulacionPuestoEvaluacionBean;
+	}
+
+	public boolean isAsistio() {
+		return asistio;
+	}
+
+	public void setAsistio(boolean asistio) {
+		this.asistio = asistio;
 	}
 
 }

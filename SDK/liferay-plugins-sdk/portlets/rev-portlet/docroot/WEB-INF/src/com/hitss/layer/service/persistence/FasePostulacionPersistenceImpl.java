@@ -90,6 +90,1028 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionModelImpl.FINDER_CACHE_ENABLED,
+			FasePostulacionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByU",
+			new String[] {
+				Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionModelImpl.FINDER_CACHE_ENABLED,
+			FasePostulacionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU",
+			new String[] { Long.class.getName() },
+			FasePostulacionModelImpl.USUARIOID_COLUMN_BITMASK |
+			FasePostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU",
+			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns all the fase postulacions where usuarioId = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @return the matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacion> findByU(long usuarioId)
+		throws SystemException {
+		return findByU(usuarioId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the fase postulacions where usuarioId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param start the lower bound of the range of fase postulacions
+	 * @param end the upper bound of the range of fase postulacions (not inclusive)
+	 * @return the range of matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacion> findByU(long usuarioId, int start, int end)
+		throws SystemException {
+		return findByU(usuarioId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the fase postulacions where usuarioId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param start the lower bound of the range of fase postulacions
+	 * @param end the upper bound of the range of fase postulacions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacion> findByU(long usuarioId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U;
+			finderArgs = new Object[] { usuarioId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U;
+			finderArgs = new Object[] { usuarioId, start, end, orderByComparator };
+		}
+
+		List<FasePostulacion> list = (List<FasePostulacion>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (FasePostulacion fasePostulacion : list) {
+				if ((usuarioId != fasePostulacion.getUsuarioId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FASEPOSTULACION_WHERE);
+
+			query.append(_FINDER_COLUMN_U_USUARIOID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(FasePostulacionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(usuarioId);
+
+				if (!pagination) {
+					list = (List<FasePostulacion>)QueryUtil.list(q,
+							getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<FasePostulacion>(list);
+				}
+				else {
+					list = (List<FasePostulacion>)QueryUtil.list(q,
+							getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first fase postulacion in the ordered set where usuarioId = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion findByU_First(long usuarioId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionException, SystemException {
+		FasePostulacion fasePostulacion = fetchByU_First(usuarioId,
+				orderByComparator);
+
+		if (fasePostulacion != null) {
+			return fasePostulacion;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("usuarioId=");
+		msg.append(usuarioId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first fase postulacion in the ordered set where usuarioId = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion fetchByU_First(long usuarioId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<FasePostulacion> list = findByU(usuarioId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last fase postulacion in the ordered set where usuarioId = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion findByU_Last(long usuarioId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionException, SystemException {
+		FasePostulacion fasePostulacion = fetchByU_Last(usuarioId,
+				orderByComparator);
+
+		if (fasePostulacion != null) {
+			return fasePostulacion;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("usuarioId=");
+		msg.append(usuarioId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last fase postulacion in the ordered set where usuarioId = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion fetchByU_Last(long usuarioId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByU(usuarioId);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<FasePostulacion> list = findByU(usuarioId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the fase postulacions before and after the current fase postulacion in the ordered set where usuarioId = &#63;.
+	 *
+	 * @param fasePostulacionId the primary key of the current fase postulacion
+	 * @param usuarioId the usuario ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next fase postulacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionException if a fase postulacion with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion[] findByU_PrevAndNext(long fasePostulacionId,
+		long usuarioId, OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionException, SystemException {
+		FasePostulacion fasePostulacion = findByPrimaryKey(fasePostulacionId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			FasePostulacion[] array = new FasePostulacionImpl[3];
+
+			array[0] = getByU_PrevAndNext(session, fasePostulacion, usuarioId,
+					orderByComparator, true);
+
+			array[1] = fasePostulacion;
+
+			array[2] = getByU_PrevAndNext(session, fasePostulacion, usuarioId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected FasePostulacion getByU_PrevAndNext(Session session,
+		FasePostulacion fasePostulacion, long usuarioId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FASEPOSTULACION_WHERE);
+
+		query.append(_FINDER_COLUMN_U_USUARIOID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(FasePostulacionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(usuarioId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(fasePostulacion);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<FasePostulacion> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the fase postulacions where usuarioId = &#63; from the database.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByU(long usuarioId) throws SystemException {
+		for (FasePostulacion fasePostulacion : findByU(usuarioId,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(fasePostulacion);
+		}
+	}
+
+	/**
+	 * Returns the number of fase postulacions where usuarioId = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @return the number of matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByU(long usuarioId) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_U;
+
+		Object[] finderArgs = new Object[] { usuarioId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FASEPOSTULACION_WHERE);
+
+			query.append(_FINDER_COLUMN_U_USUARIOID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(usuarioId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_U_USUARIOID_2 = "fasePostulacion.usuarioId = ? AND fasePostulacion.activo=true";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_T_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionModelImpl.FINDER_CACHE_ENABLED,
+			FasePostulacionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByT_U",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionModelImpl.FINDER_CACHE_ENABLED,
+			FasePostulacionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByT_U",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			FasePostulacionModelImpl.USUARIOID_COLUMN_BITMASK |
+			FasePostulacionModelImpl.TIPOFASE_COLUMN_BITMASK |
+			FasePostulacionModelImpl.FECHAMODIFICA_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_T_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByT_U",
+			new String[] { Long.class.getName(), Long.class.getName() });
+
+	/**
+	 * Returns all the fase postulacions where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @return the matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacion> findByT_U(long usuarioId, long tipoFase)
+		throws SystemException {
+		return findByT_U(usuarioId, tipoFase, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the fase postulacions where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @param start the lower bound of the range of fase postulacions
+	 * @param end the upper bound of the range of fase postulacions (not inclusive)
+	 * @return the range of matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacion> findByT_U(long usuarioId, long tipoFase,
+		int start, int end) throws SystemException {
+		return findByT_U(usuarioId, tipoFase, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the fase postulacions where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @param start the lower bound of the range of fase postulacions
+	 * @param end the upper bound of the range of fase postulacions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacion> findByT_U(long usuarioId, long tipoFase,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_U;
+			finderArgs = new Object[] { usuarioId, tipoFase };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_T_U;
+			finderArgs = new Object[] {
+					usuarioId, tipoFase,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<FasePostulacion> list = (List<FasePostulacion>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (FasePostulacion fasePostulacion : list) {
+				if ((usuarioId != fasePostulacion.getUsuarioId()) ||
+						(tipoFase != fasePostulacion.getTipoFase())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_FASEPOSTULACION_WHERE);
+
+			query.append(_FINDER_COLUMN_T_U_USUARIOID_2);
+
+			query.append(_FINDER_COLUMN_T_U_TIPOFASE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(FasePostulacionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(usuarioId);
+
+				qPos.add(tipoFase);
+
+				if (!pagination) {
+					list = (List<FasePostulacion>)QueryUtil.list(q,
+							getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<FasePostulacion>(list);
+				}
+				else {
+					list = (List<FasePostulacion>)QueryUtil.list(q,
+							getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first fase postulacion in the ordered set where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion findByT_U_First(long usuarioId, long tipoFase,
+		OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionException, SystemException {
+		FasePostulacion fasePostulacion = fetchByT_U_First(usuarioId, tipoFase,
+				orderByComparator);
+
+		if (fasePostulacion != null) {
+			return fasePostulacion;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("usuarioId=");
+		msg.append(usuarioId);
+
+		msg.append(", tipoFase=");
+		msg.append(tipoFase);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first fase postulacion in the ordered set where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion fetchByT_U_First(long usuarioId, long tipoFase,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<FasePostulacion> list = findByT_U(usuarioId, tipoFase, 0, 1,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last fase postulacion in the ordered set where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionException if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion findByT_U_Last(long usuarioId, long tipoFase,
+		OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionException, SystemException {
+		FasePostulacion fasePostulacion = fetchByT_U_Last(usuarioId, tipoFase,
+				orderByComparator);
+
+		if (fasePostulacion != null) {
+			return fasePostulacion;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("usuarioId=");
+		msg.append(usuarioId);
+
+		msg.append(", tipoFase=");
+		msg.append(tipoFase);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last fase postulacion in the ordered set where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion, or <code>null</code> if a matching fase postulacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion fetchByT_U_Last(long usuarioId, long tipoFase,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByT_U(usuarioId, tipoFase);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<FasePostulacion> list = findByT_U(usuarioId, tipoFase, count - 1,
+				count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the fase postulacions before and after the current fase postulacion in the ordered set where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * @param fasePostulacionId the primary key of the current fase postulacion
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next fase postulacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionException if a fase postulacion with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacion[] findByT_U_PrevAndNext(long fasePostulacionId,
+		long usuarioId, long tipoFase, OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionException, SystemException {
+		FasePostulacion fasePostulacion = findByPrimaryKey(fasePostulacionId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			FasePostulacion[] array = new FasePostulacionImpl[3];
+
+			array[0] = getByT_U_PrevAndNext(session, fasePostulacion,
+					usuarioId, tipoFase, orderByComparator, true);
+
+			array[1] = fasePostulacion;
+
+			array[2] = getByT_U_PrevAndNext(session, fasePostulacion,
+					usuarioId, tipoFase, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected FasePostulacion getByT_U_PrevAndNext(Session session,
+		FasePostulacion fasePostulacion, long usuarioId, long tipoFase,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FASEPOSTULACION_WHERE);
+
+		query.append(_FINDER_COLUMN_T_U_USUARIOID_2);
+
+		query.append(_FINDER_COLUMN_T_U_TIPOFASE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(FasePostulacionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(usuarioId);
+
+		qPos.add(tipoFase);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(fasePostulacion);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<FasePostulacion> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the fase postulacions where usuarioId = &#63; and tipoFase = &#63; from the database.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByT_U(long usuarioId, long tipoFase)
+		throws SystemException {
+		for (FasePostulacion fasePostulacion : findByT_U(usuarioId, tipoFase,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(fasePostulacion);
+		}
+	}
+
+	/**
+	 * Returns the number of fase postulacions where usuarioId = &#63; and tipoFase = &#63;.
+	 *
+	 * @param usuarioId the usuario ID
+	 * @param tipoFase the tipo fase
+	 * @return the number of matching fase postulacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByT_U(long usuarioId, long tipoFase)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_T_U;
+
+		Object[] finderArgs = new Object[] { usuarioId, tipoFase };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_FASEPOSTULACION_WHERE);
+
+			query.append(_FINDER_COLUMN_T_U_USUARIOID_2);
+
+			query.append(_FINDER_COLUMN_T_U_TIPOFASE_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(usuarioId);
+
+				qPos.add(tipoFase);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_T_U_USUARIOID_2 = "fasePostulacion.usuarioId = ? AND ";
+	private static final String _FINDER_COLUMN_T_U_TIPOFASE_2 = "fasePostulacion.tipoFase = ? AND fasePostulacion.activo=true";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_S_F_U = new FinderPath(FasePostulacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionModelImpl.FINDER_CACHE_ENABLED,
 			FasePostulacionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -1725,6 +2747,44 @@ public class FasePostulacionPersistenceImpl extends BasePersistenceImpl<FasePost
 		}
 
 		else {
+			if ((fasePostulacionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						fasePostulacionModelImpl.getOriginalUsuarioId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U,
+					args);
+
+				args = new Object[] { fasePostulacionModelImpl.getUsuarioId() };
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U,
+					args);
+			}
+
+			if ((fasePostulacionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_U.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						fasePostulacionModelImpl.getOriginalUsuarioId(),
+						fasePostulacionModelImpl.getOriginalTipoFase()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_U,
+					args);
+
+				args = new Object[] {
+						fasePostulacionModelImpl.getUsuarioId(),
+						fasePostulacionModelImpl.getTipoFase()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_U,
+					args);
+			}
+
 			if ((fasePostulacionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S_F_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {

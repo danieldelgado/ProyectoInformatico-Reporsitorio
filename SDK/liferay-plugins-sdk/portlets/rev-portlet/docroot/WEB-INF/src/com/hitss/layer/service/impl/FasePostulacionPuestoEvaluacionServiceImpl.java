@@ -14,7 +14,13 @@
 
 package com.hitss.layer.service.impl;
 
+import java.util.List;
+
+import com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException;
+import com.hitss.layer.model.FasePostulacionPuestoEvaluacion;
 import com.hitss.layer.service.base.FasePostulacionPuestoEvaluacionServiceBaseImpl;
+import com.hitss.layer.service.persistence.FasePostulacionPuestoEvaluacionUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * The implementation of the fase postulacion puesto evaluacion remote service.

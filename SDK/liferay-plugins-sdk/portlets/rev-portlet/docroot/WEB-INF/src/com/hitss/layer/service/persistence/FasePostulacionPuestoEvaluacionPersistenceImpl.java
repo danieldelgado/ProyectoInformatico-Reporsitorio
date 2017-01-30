@@ -86,97 +86,143 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
 			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0]);
-	public static final FinderPath FINDER_PATH_FETCH_BY_F = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_F_S = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByF",
-			new String[] { Long.class.getName() },
-			FasePostulacionPuestoEvaluacionModelImpl.FASEPOSTULACIONID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_F = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByF_S",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_S = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
 			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
-			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByF",
-			new String[] { Long.class.getName() });
+			FasePostulacionPuestoEvaluacionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByF_S",
+			new String[] { Long.class.getName(), Long.class.getName() },
+			FasePostulacionPuestoEvaluacionModelImpl.FASEPOSTULACIONID_COLUMN_BITMASK |
+			FasePostulacionPuestoEvaluacionModelImpl.SOLICITUDFUNCIONID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_F_S = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByF_S",
+			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or throws a {@link com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException} if it could not be found.
+	 * Returns all the fase postulacion puesto evaluacions where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
 	 *
 	 * @param fasePostulacionId the fase postulacion ID
-	 * @return the matching fase postulacion puesto evaluacion
-	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a matching fase postulacion puesto evaluacion could not be found
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @return the matching fase postulacion puesto evaluacions
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FasePostulacionPuestoEvaluacion findByF(long fasePostulacionId)
-		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
-		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = fetchByF(fasePostulacionId);
-
-		if (fasePostulacionPuestoEvaluacion == null) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("fasePostulacionId=");
-			msg.append(fasePostulacionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchFasePostulacionPuestoEvaluacionException(msg.toString());
-		}
-
-		return fasePostulacionPuestoEvaluacion;
-	}
-
-	/**
-	 * Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param fasePostulacionId the fase postulacion ID
-	 * @return the matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public FasePostulacionPuestoEvaluacion fetchByF(long fasePostulacionId)
+	public List<FasePostulacionPuestoEvaluacion> findByF_S(
+		long fasePostulacionId, long solicitudFuncionId)
 		throws SystemException {
-		return fetchByF(fasePostulacionId, true);
+		return findByF_S(fasePostulacionId, solicitudFuncionId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns the fase postulacion puesto evaluacion where fasePostulacionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns a range of all the fase postulacion puesto evaluacions where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionPuestoEvaluacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
 	 *
 	 * @param fasePostulacionId the fase postulacion ID
-	 * @param retrieveFromCache whether to use the finder cache
-	 * @return the matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @param start the lower bound of the range of fase postulacion puesto evaluacions
+	 * @param end the upper bound of the range of fase postulacion puesto evaluacions (not inclusive)
+	 * @return the range of matching fase postulacion puesto evaluacions
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FasePostulacionPuestoEvaluacion fetchByF(long fasePostulacionId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { fasePostulacionId };
+	public List<FasePostulacionPuestoEvaluacion> findByF_S(
+		long fasePostulacionId, long solicitudFuncionId, int start, int end)
+		throws SystemException {
+		return findByF_S(fasePostulacionId, solicitudFuncionId, start, end, null);
+	}
 
-		Object result = null;
+	/**
+	 * Returns an ordered range of all the fase postulacion puesto evaluacions where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionPuestoEvaluacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @param start the lower bound of the range of fase postulacion puesto evaluacions
+	 * @param end the upper bound of the range of fase postulacion puesto evaluacions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching fase postulacion puesto evaluacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacionPuestoEvaluacion> findByF_S(
+		long fasePostulacionId, long solicitudFuncionId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
 
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_F,
-					finderArgs, this);
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_S;
+			finderArgs = new Object[] { fasePostulacionId, solicitudFuncionId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_F_S;
+			finderArgs = new Object[] {
+					fasePostulacionId, solicitudFuncionId,
+					
+					start, end, orderByComparator
+				};
 		}
 
-		if (result instanceof FasePostulacionPuestoEvaluacion) {
-			FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = (FasePostulacionPuestoEvaluacion)result;
+		List<FasePostulacionPuestoEvaluacion> list = (List<FasePostulacionPuestoEvaluacion>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
-			if ((fasePostulacionId != fasePostulacionPuestoEvaluacion.getFasePostulacionId())) {
-				result = null;
+		if ((list != null) && !list.isEmpty()) {
+			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : list) {
+				if ((fasePostulacionId != fasePostulacionPuestoEvaluacion.getFasePostulacionId()) ||
+						(solicitudFuncionId != fasePostulacionPuestoEvaluacion.getSolicitudFuncionId())) {
+					list = null;
+
+					break;
+				}
 			}
 		}
 
-		if (result == null) {
-			StringBundler query = new StringBundler(3);
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
 			query.append(_SQL_SELECT_FASEPOSTULACIONPUESTOEVALUACION_WHERE);
 
-			query.append(_FINDER_COLUMN_F_FASEPOSTULACIONID_2);
+			query.append(_FINDER_COLUMN_F_S_FASEPOSTULACIONID_2);
+
+			query.append(_FINDER_COLUMN_F_S_SOLICITUDFUNCIONID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(FasePostulacionPuestoEvaluacionModelImpl.ORDER_BY_JPQL);
+			}
 
 			String sql = query.toString();
 
@@ -191,35 +237,27 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 
 				qPos.add(fasePostulacionId);
 
-				List<FasePostulacionPuestoEvaluacion> list = q.list();
+				qPos.add(solicitudFuncionId);
 
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F,
-						finderArgs, list);
+				if (!pagination) {
+					list = (List<FasePostulacionPuestoEvaluacion>)QueryUtil.list(q,
+							getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<FasePostulacionPuestoEvaluacion>(list);
 				}
 				else {
-					if ((list.size() > 1) && _log.isWarnEnabled()) {
-						_log.warn(
-							"FasePostulacionPuestoEvaluacionPersistenceImpl.fetchByF(long, boolean) with parameters (" +
-							StringUtil.merge(finderArgs) +
-							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-					}
-
-					FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion =
-						list.get(0);
-
-					result = fasePostulacionPuestoEvaluacion;
-
-					cacheResult(fasePostulacionPuestoEvaluacion);
-
-					if ((fasePostulacionPuestoEvaluacion.getFasePostulacionId() != fasePostulacionId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F,
-							finderArgs, fasePostulacionPuestoEvaluacion);
-					}
+					list = (List<FasePostulacionPuestoEvaluacion>)QueryUtil.list(q,
+							getDialect(), start, end);
 				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -228,27 +266,818 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			}
 		}
 
-		if (result instanceof List<?>) {
+		return list;
+	}
+
+	/**
+	 * Returns the first fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion puesto evaluacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion findByF_S_First(
+		long fasePostulacionId, long solicitudFuncionId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = fetchByF_S_First(fasePostulacionId,
+				solicitudFuncionId, orderByComparator);
+
+		if (fasePostulacionPuestoEvaluacion != null) {
+			return fasePostulacionPuestoEvaluacion;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fasePostulacionId=");
+		msg.append(fasePostulacionId);
+
+		msg.append(", solicitudFuncionId=");
+		msg.append(solicitudFuncionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionPuestoEvaluacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion fetchByF_S_First(
+		long fasePostulacionId, long solicitudFuncionId,
+		OrderByComparator orderByComparator) throws SystemException {
+		List<FasePostulacionPuestoEvaluacion> list = findByF_S(fasePostulacionId,
+				solicitudFuncionId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion puesto evaluacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion findByF_S_Last(
+		long fasePostulacionId, long solicitudFuncionId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = fetchByF_S_Last(fasePostulacionId,
+				solicitudFuncionId, orderByComparator);
+
+		if (fasePostulacionPuestoEvaluacion != null) {
+			return fasePostulacionPuestoEvaluacion;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fasePostulacionId=");
+		msg.append(fasePostulacionId);
+
+		msg.append(", solicitudFuncionId=");
+		msg.append(solicitudFuncionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionPuestoEvaluacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion fetchByF_S_Last(
+		long fasePostulacionId, long solicitudFuncionId,
+		OrderByComparator orderByComparator) throws SystemException {
+		int count = countByF_S(fasePostulacionId, solicitudFuncionId);
+
+		if (count == 0) {
 			return null;
 		}
+
+		List<FasePostulacionPuestoEvaluacion> list = findByF_S(fasePostulacionId,
+				solicitudFuncionId, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the fase postulacion puesto evaluacions before and after the current fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * @param fasePostulacionPuestoEvaluacionPK the primary key of the current fase postulacion puesto evaluacion
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next fase postulacion puesto evaluacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a fase postulacion puesto evaluacion with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion[] findByF_S_PrevAndNext(
+		FasePostulacionPuestoEvaluacionPK fasePostulacionPuestoEvaluacionPK,
+		long fasePostulacionId, long solicitudFuncionId,
+		OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = findByPrimaryKey(fasePostulacionPuestoEvaluacionPK);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			FasePostulacionPuestoEvaluacion[] array = new FasePostulacionPuestoEvaluacionImpl[3];
+
+			array[0] = getByF_S_PrevAndNext(session,
+					fasePostulacionPuestoEvaluacion, fasePostulacionId,
+					solicitudFuncionId, orderByComparator, true);
+
+			array[1] = fasePostulacionPuestoEvaluacion;
+
+			array[2] = getByF_S_PrevAndNext(session,
+					fasePostulacionPuestoEvaluacion, fasePostulacionId,
+					solicitudFuncionId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected FasePostulacionPuestoEvaluacion getByF_S_PrevAndNext(
+		Session session,
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion,
+		long fasePostulacionId, long solicitudFuncionId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
 		else {
-			return (FasePostulacionPuestoEvaluacion)result;
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FASEPOSTULACIONPUESTOEVALUACION_WHERE);
+
+		query.append(_FINDER_COLUMN_F_S_FASEPOSTULACIONID_2);
+
+		query.append(_FINDER_COLUMN_F_S_SOLICITUDFUNCIONID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(FasePostulacionPuestoEvaluacionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(fasePostulacionId);
+
+		qPos.add(solicitudFuncionId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(fasePostulacionPuestoEvaluacion);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<FasePostulacionPuestoEvaluacion> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
 	/**
-	 * Removes the fase postulacion puesto evaluacion where fasePostulacionId = &#63; from the database.
+	 * Removes all the fase postulacion puesto evaluacions where fasePostulacionId = &#63; and solicitudFuncionId = &#63; from the database.
 	 *
 	 * @param fasePostulacionId the fase postulacion ID
-	 * @return the fase postulacion puesto evaluacion that was removed
+	 * @param solicitudFuncionId the solicitud funcion ID
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public FasePostulacionPuestoEvaluacion removeByF(long fasePostulacionId)
-		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
-		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = findByF(fasePostulacionId);
+	public void removeByF_S(long fasePostulacionId, long solicitudFuncionId)
+		throws SystemException {
+		for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : findByF_S(
+				fasePostulacionId, solicitudFuncionId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(fasePostulacionPuestoEvaluacion);
+		}
+	}
 
-		return remove(fasePostulacionPuestoEvaluacion);
+	/**
+	 * Returns the number of fase postulacion puesto evaluacions where fasePostulacionId = &#63; and solicitudFuncionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param solicitudFuncionId the solicitud funcion ID
+	 * @return the number of matching fase postulacion puesto evaluacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByF_S(long fasePostulacionId, long solicitudFuncionId)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_F_S;
+
+		Object[] finderArgs = new Object[] { fasePostulacionId, solicitudFuncionId };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_FASEPOSTULACIONPUESTOEVALUACION_WHERE);
+
+			query.append(_FINDER_COLUMN_F_S_FASEPOSTULACIONID_2);
+
+			query.append(_FINDER_COLUMN_F_S_SOLICITUDFUNCIONID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fasePostulacionId);
+
+				qPos.add(solicitudFuncionId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_F_S_FASEPOSTULACIONID_2 = "fasePostulacionPuestoEvaluacion.id.fasePostulacionId = ? AND ";
+	private static final String _FINDER_COLUMN_F_S_SOLICITUDFUNCIONID_2 = "fasePostulacionPuestoEvaluacion.id.solicitudFuncionId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_F = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByF",
+			new String[] {
+				Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByF",
+			new String[] { Long.class.getName() },
+			FasePostulacionPuestoEvaluacionModelImpl.FASEPOSTULACIONID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_F = new FinderPath(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
+			FasePostulacionPuestoEvaluacionModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByF",
+			new String[] { Long.class.getName() });
+
+	/**
+	 * Returns all the fase postulacion puesto evaluacions where fasePostulacionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @return the matching fase postulacion puesto evaluacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacionPuestoEvaluacion> findByF(long fasePostulacionId)
+		throws SystemException {
+		return findByF(fasePostulacionId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Returns a range of all the fase postulacion puesto evaluacions where fasePostulacionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionPuestoEvaluacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param start the lower bound of the range of fase postulacion puesto evaluacions
+	 * @param end the upper bound of the range of fase postulacion puesto evaluacions (not inclusive)
+	 * @return the range of matching fase postulacion puesto evaluacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacionPuestoEvaluacion> findByF(
+		long fasePostulacionId, int start, int end) throws SystemException {
+		return findByF(fasePostulacionId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the fase postulacion puesto evaluacions where fasePostulacionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.hitss.layer.model.impl.FasePostulacionPuestoEvaluacionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param start the lower bound of the range of fase postulacion puesto evaluacions
+	 * @param end the upper bound of the range of fase postulacion puesto evaluacions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching fase postulacion puesto evaluacions
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<FasePostulacionPuestoEvaluacion> findByF(
+		long fasePostulacionId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F;
+			finderArgs = new Object[] { fasePostulacionId };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_F;
+			finderArgs = new Object[] {
+					fasePostulacionId,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<FasePostulacionPuestoEvaluacion> list = (List<FasePostulacionPuestoEvaluacion>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : list) {
+				if ((fasePostulacionId != fasePostulacionPuestoEvaluacion.getFasePostulacionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FASEPOSTULACIONPUESTOEVALUACION_WHERE);
+
+			query.append(_FINDER_COLUMN_F_FASEPOSTULACIONID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(FasePostulacionPuestoEvaluacionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(fasePostulacionId);
+
+				if (!pagination) {
+					list = (List<FasePostulacionPuestoEvaluacion>)QueryUtil.list(q,
+							getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = new UnmodifiableList<FasePostulacionPuestoEvaluacion>(list);
+				}
+				else {
+					list = (List<FasePostulacionPuestoEvaluacion>)QueryUtil.list(q,
+							getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion puesto evaluacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion findByF_First(
+		long fasePostulacionId, OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = fetchByF_First(fasePostulacionId,
+				orderByComparator);
+
+		if (fasePostulacionPuestoEvaluacion != null) {
+			return fasePostulacionPuestoEvaluacion;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fasePostulacionId=");
+		msg.append(fasePostulacionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionPuestoEvaluacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion fetchByF_First(
+		long fasePostulacionId, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<FasePostulacionPuestoEvaluacion> list = findByF(fasePostulacionId,
+				0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion puesto evaluacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion findByF_Last(
+		long fasePostulacionId, OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = fetchByF_Last(fasePostulacionId,
+				orderByComparator);
+
+		if (fasePostulacionPuestoEvaluacion != null) {
+			return fasePostulacionPuestoEvaluacion;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fasePostulacionId=");
+		msg.append(fasePostulacionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFasePostulacionPuestoEvaluacionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63;.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching fase postulacion puesto evaluacion, or <code>null</code> if a matching fase postulacion puesto evaluacion could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion fetchByF_Last(
+		long fasePostulacionId, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByF(fasePostulacionId);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<FasePostulacionPuestoEvaluacion> list = findByF(fasePostulacionId,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the fase postulacion puesto evaluacions before and after the current fase postulacion puesto evaluacion in the ordered set where fasePostulacionId = &#63;.
+	 *
+	 * @param fasePostulacionPuestoEvaluacionPK the primary key of the current fase postulacion puesto evaluacion
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next fase postulacion puesto evaluacion
+	 * @throws com.hitss.layer.NoSuchFasePostulacionPuestoEvaluacionException if a fase postulacion puesto evaluacion with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public FasePostulacionPuestoEvaluacion[] findByF_PrevAndNext(
+		FasePostulacionPuestoEvaluacionPK fasePostulacionPuestoEvaluacionPK,
+		long fasePostulacionId, OrderByComparator orderByComparator)
+		throws NoSuchFasePostulacionPuestoEvaluacionException, SystemException {
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion = findByPrimaryKey(fasePostulacionPuestoEvaluacionPK);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			FasePostulacionPuestoEvaluacion[] array = new FasePostulacionPuestoEvaluacionImpl[3];
+
+			array[0] = getByF_PrevAndNext(session,
+					fasePostulacionPuestoEvaluacion, fasePostulacionId,
+					orderByComparator, true);
+
+			array[1] = fasePostulacionPuestoEvaluacion;
+
+			array[2] = getByF_PrevAndNext(session,
+					fasePostulacionPuestoEvaluacion, fasePostulacionId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected FasePostulacionPuestoEvaluacion getByF_PrevAndNext(
+		Session session,
+		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion,
+		long fasePostulacionId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_FASEPOSTULACIONPUESTOEVALUACION_WHERE);
+
+		query.append(_FINDER_COLUMN_F_FASEPOSTULACIONID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(FasePostulacionPuestoEvaluacionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(fasePostulacionId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(fasePostulacionPuestoEvaluacion);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<FasePostulacionPuestoEvaluacion> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the fase postulacion puesto evaluacions where fasePostulacionId = &#63; from the database.
+	 *
+	 * @param fasePostulacionId the fase postulacion ID
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByF(long fasePostulacionId) throws SystemException {
+		for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : findByF(
+				fasePostulacionId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(fasePostulacionPuestoEvaluacion);
+		}
 	}
 
 	/**
@@ -1327,10 +2156,6 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			fasePostulacionPuestoEvaluacion.getPrimaryKey(),
 			fasePostulacionPuestoEvaluacion);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F,
-			new Object[] { fasePostulacionPuestoEvaluacion.getFasePostulacionId() },
-			fasePostulacionPuestoEvaluacion);
-
 		fasePostulacionPuestoEvaluacion.resetOriginalValues();
 	}
 
@@ -1391,8 +2216,6 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		clearUniqueFindersCache(fasePostulacionPuestoEvaluacion);
 	}
 
 	@Override
@@ -1405,61 +2228,6 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			EntityCacheUtil.removeResult(FasePostulacionPuestoEvaluacionModelImpl.ENTITY_CACHE_ENABLED,
 				FasePostulacionPuestoEvaluacionImpl.class,
 				fasePostulacionPuestoEvaluacion.getPrimaryKey());
-
-			clearUniqueFindersCache(fasePostulacionPuestoEvaluacion);
-		}
-	}
-
-	protected void cacheUniqueFindersCache(
-		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion) {
-		if (fasePostulacionPuestoEvaluacion.isNew()) {
-			Object[] args = new Object[] {
-					fasePostulacionPuestoEvaluacion.getFasePostulacionId()
-				};
-
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F, args,
-				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F, args,
-				fasePostulacionPuestoEvaluacion);
-		}
-		else {
-			FasePostulacionPuestoEvaluacionModelImpl fasePostulacionPuestoEvaluacionModelImpl =
-				(FasePostulacionPuestoEvaluacionModelImpl)fasePostulacionPuestoEvaluacion;
-
-			if ((fasePostulacionPuestoEvaluacionModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_F.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						fasePostulacionPuestoEvaluacion.getFasePostulacionId()
-					};
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F, args,
-					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F, args,
-					fasePostulacionPuestoEvaluacion);
-			}
-		}
-	}
-
-	protected void clearUniqueFindersCache(
-		FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion) {
-		FasePostulacionPuestoEvaluacionModelImpl fasePostulacionPuestoEvaluacionModelImpl =
-			(FasePostulacionPuestoEvaluacionModelImpl)fasePostulacionPuestoEvaluacion;
-
-		Object[] args = new Object[] {
-				fasePostulacionPuestoEvaluacion.getFasePostulacionId()
-			};
-
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F, args);
-
-		if ((fasePostulacionPuestoEvaluacionModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_F.getColumnBitmask()) != 0) {
-			args = new Object[] {
-					fasePostulacionPuestoEvaluacionModelImpl.getOriginalFasePostulacionId()
-				};
-
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F, args);
 		}
 	}
 
@@ -1611,6 +2379,46 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 
 		else {
 			if ((fasePostulacionPuestoEvaluacionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						fasePostulacionPuestoEvaluacionModelImpl.getOriginalFasePostulacionId(),
+						fasePostulacionPuestoEvaluacionModelImpl.getOriginalSolicitudFuncionId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_S,
+					args);
+
+				args = new Object[] {
+						fasePostulacionPuestoEvaluacionModelImpl.getFasePostulacionId(),
+						fasePostulacionPuestoEvaluacionModelImpl.getSolicitudFuncionId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F_S,
+					args);
+			}
+
+			if ((fasePostulacionPuestoEvaluacionModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						fasePostulacionPuestoEvaluacionModelImpl.getOriginalFasePostulacionId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F,
+					args);
+
+				args = new Object[] {
+						fasePostulacionPuestoEvaluacionModelImpl.getFasePostulacionId()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_F,
+					args);
+			}
+
+			if ((fasePostulacionPuestoEvaluacionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						fasePostulacionPuestoEvaluacionModelImpl.getOriginalSolicitudFuncionId()
@@ -1653,9 +2461,6 @@ public class FasePostulacionPuestoEvaluacionPersistenceImpl
 			FasePostulacionPuestoEvaluacionImpl.class,
 			fasePostulacionPuestoEvaluacion.getPrimaryKey(),
 			fasePostulacionPuestoEvaluacion);
-
-		clearUniqueFindersCache(fasePostulacionPuestoEvaluacion);
-		cacheUniqueFindersCache(fasePostulacionPuestoEvaluacion);
 
 		return fasePostulacionPuestoEvaluacion;
 	}

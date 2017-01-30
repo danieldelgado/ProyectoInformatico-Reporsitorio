@@ -53,7 +53,9 @@ public class SolicitudRequerimientoBean {
 	private List<RequisitoEtiquetaBean> requisitoEtiquetaBeans;
 	private List<FuncionEtiquetaBean> funcionEtiquetaBeans;
 	private int cantidadPostulantes;
-	
+
+	boolean asistio;
+
 	private ObservacionBean observacionBean;
 	
 	
@@ -450,6 +452,14 @@ public class SolicitudRequerimientoBean {
 
 	public void setCantidadExperienciaRubro(int cantidadExperienciaRubro) {
 		this.cantidadExperienciaRubro = cantidadExperienciaRubro;
+	}
+	
+	public boolean isAsistio() {
+		return asistio;
+	}
+
+	public void setAsistio(boolean asistio) {
+		this.asistio = asistio;
 	}
 
 	

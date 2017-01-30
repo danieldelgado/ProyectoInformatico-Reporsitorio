@@ -47,7 +47,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 		List<UsuarioBean> lstReturn = new ArrayList<UsuarioBean>();
 		try {
 			List<Postulacion> lst = PostulacionLocalServiceUtil.listaPostulacionedsSolicitud(solicitudRequerimientoId);
-
+			Postulacion ppp =null;
 			if (!lst.isEmpty()) {
 				long[] userIds = new long[lst.size()];
 				for (int i = 0; i < lst.size(); i++) {
@@ -61,7 +61,15 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 						Postulacion post = null;
 						FasePostulacion fase = null;
 						FasePostulacion fp = null;
+						PostulacionPK postulacionPK = null;
+						
+						SolicitudRequerimiento s = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(solicitudRequerimientoId);
+						
 						for (Usuario usuario : lstUsuariosPostulantes) {
+							
+							postulacionPK = new PostulacionPK(solicitudRequerimientoId, usuario.getUserId());
+							ppp = PostulacionLocalServiceUtil.getPostulacion(postulacionPK );
+							
 							user = UserLocalServiceUtil.getUser(usuario.getUserId());
 							for (Postulacion postulacion : lst) {
 								if (postulacion.getUsuarioId() == usuario.getUserId()) {
@@ -76,7 +84,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							Date disponibildad = (Date) user.getExpandoBridge().getAttribute("Disponibilidad");
 							usuarioBean.setDisponibilidad(Util.getStrFecha(disponibildad));
 							usuarioBean.setFechaPostulacion(Util.getStrFecha(post.getFechaPostulacion()));
-
+							usuarioBean.setSeleccionado(ppp.getSeleccionado());
 							_log.info("solicitudRequerimientoId:" + solicitudRequerimientoId);
 							_log.info("post.getSolicitudRequerimientoId():" + post.getSolicitudRequerimientoId());
 							_log.info("usuario.getUserId():" + usuario.getUserId());
@@ -84,12 +92,16 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							// FasePostulacionLocalServiceUtil.getLastPostulacion(post.getSolicitudRequerimientoId(),
 							// usuario.getUserId());
 							long estado_parametro_id = Constantes.PARAMETRO_ESTADO_POSTULADO;
+							boolean asistio = true;
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(),
 									Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
 							if (Validator.isNotNull(fp)) {
 								if (!fp.isAsistio()) {
 									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
 									fase = fp;
+								}
+								if (!fp.isAsistio()) {
+									asistio = fp.isAsistio();									
 								}
 							}
 
@@ -100,6 +112,9 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR;
 									fase = fp;
 								}
+								if (!fp.isAsistio()) {
+									asistio = fp.isAsistio();									
+								}
 							}
 
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_TECNICA);
@@ -108,6 +123,9 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 									estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
 									fase = fp;
 								}
+								if (!fp.isAsistio()) {
+									asistio = fp.isAsistio();									
+								}
 							}
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
 							if (Validator.isNotNull(fp)) {
@@ -115,10 +133,13 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 									estado_parametro_id = Constantes.PARAMETRO_FASE_PSICOLOGICA;
 									fase = fp;
 								}
+								if (!fp.isAsistio()) {
+									asistio = fp.isAsistio();									
+								}
 							}
 
 							usuarioBean.setSolicitudId(post.getSolicitudRequerimientoId());
-
+							usuarioBean.setAsistio(asistio);
 							if (Validator.isNotNull(fase)) {
 								// System.out.println(estado_parametro_id);
 								// System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
@@ -130,7 +151,17 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							}
 							fase = null;
 							fp = null;
-							lstReturn.add(usuarioBean);
+							
+							System.out.println(s.getEstado());
+							
+							if( s.getEstado() == Constantes.PARAMETRO_EVALUACION  || s.getEstado() == Constantes.PARAMETRO_ENTREVISTA ){
+								if(!asistio){
+									lstReturn.add(usuarioBean);								
+								}
+							}else{
+								lstReturn.add(usuarioBean);			
+							}
+														
 						}
 					}
 				}
@@ -203,7 +234,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 					if (fp.isAsistio()) {
 						estado_parametro_id = fp.getEstado();
 					}
-					if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO) {
+					if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_TERMINADO) {
 						fp.setFechaFase(faseEntreGerenteArea.getFechaFase());
 						fp.setActivo(true);
 						fp.setUsuariomodifica(user.getUserId());
@@ -233,7 +264,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 					if (fp.isAsistio()) {
 						estado_parametro_id = fp.getEstado();
 					}
-					if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO) {
+					if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_TERMINADO) {
 						fp.setFechaFase(faseEntreCoordRRHH.getFechaFase());
 						fp.setActivo(true);
 						fp.setUsuariomodifica(user.getUserId());
@@ -263,7 +294,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 						if (fp.isAsistio()) {
 							estado_parametro_id = fp.getEstado();
 						}
-						if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO) {
+						if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_TERMINADO) {
 							fp.setFechaFase(faseTecnica.getFechaFase());
 							fp.setActivo(true);
 							fp.setUsuariomodifica(user.getUserId());
@@ -295,7 +326,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 						if (fp.isAsistio()) {
 							estado_parametro_id = fp.getEstado();
 						}
-						if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO) {
+						if (fp.getEstado() == Constantes.PARAMETRO_ESTADO_POSTULADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_CANCELADO || fp.getEstado() == Constantes.PARAMETRO_ESTADO_TERMINADO) {
 							fp.setFechaFase(fasePsicologia.getFechaFase());
 							fp.setActivo(true);
 							fp.setUsuariomodifica(user.getUserId());

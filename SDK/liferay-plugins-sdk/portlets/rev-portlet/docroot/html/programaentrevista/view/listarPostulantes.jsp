@@ -19,9 +19,16 @@
 <portlet:renderURL var="detallePostulante">
 	<portlet:param name="action" value="irdetallePostulante" />
 </portlet:renderURL>
+
+
+<portlet:renderURL var="regresar">
+	<portlet:param name="action" value="default" />
+</portlet:renderURL>
+
 <input type="hidden" value="<portlet:namespace/>" />
 <input id="<portlet:namespace/>programarEntrevistaUrl" type="hidden" value="${programarEntrevista}" />
 <input id="<portlet:namespace/>detallePostulanteUrl" type="hidden" value="${detallePostulante}" />
+<input id="<portlet:namespace/>regresarUrl" type="hidden" value="${regresar}" />
 
 
 
@@ -42,7 +49,7 @@
 			<div class="span12">
 
 
-				<table  class="table table-hover table-bordered">
+				<table class="table table-hover table-bordered">
 					<thead>
 						<tr class="cabecera">
 							<th><liferay-ui:message key="programar.entevistas.lista.postulante.nombre" /></th>
@@ -55,10 +62,19 @@
 						</tr>
 					</thead>
 					<tbody id="<portlet:namespace/>listaPostulantes">
-						
+
 					</tbody>
 				</table>
 
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="offset5 span2">
+				<aui:button-row>
+					<a class="btn btn-primary" href="${regresar}"> <liferay-ui:message key="general.form.opciones.salir" />
+					</a>
+				</aui:button-row>
 			</div>
 		</div>
 	</div>

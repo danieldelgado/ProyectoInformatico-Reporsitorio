@@ -396,6 +396,13 @@
 			<order-column name="fechamodifica" />
 		</order>
 
+		<finder name="U" return-type="Collection" where="activo=true">
+			<finder-column name="usuarioId" />
+		</finder>
+		<finder name="T_U" return-type="Collection" where="activo=true">
+			<finder-column name="usuarioId" />
+			<finder-column name="tipoFase" />
+		</finder>
 		<finder name="S_F_U" return-type="Collection" where="activo=true">
 			<finder-column name="solicitudRequerimientoId" />
 			<finder-column name="fasePostulacionId" />
@@ -422,7 +429,11 @@
 		
 		<column name="resultado" type="double"/>
 
-		<finder name="F" return-type="FasePostulacionPuestoEvaluacion">
+		<finder name="F_S" return-type="Collection">
+			<finder-column name="fasePostulacionId" />
+			<finder-column name="solicitudFuncionId" />
+		</finder>
+		<finder name="F" return-type="Collection">
 			<finder-column name="fasePostulacionId" />
 		</finder>
 		<finder name="S" return-type="Collection">

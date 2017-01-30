@@ -23,17 +23,17 @@ public class DataAnalisisExperto {
 
 	public static List<Postulacion> analisisDatos(List<Postulacion> lpst) {
 		List<Postulacion> a = new ArrayList<Postulacion>();
-		if(lpst.size()<=2){
+//		if(lpst.size()<=2){
 			a = analisisDrools(lpst);
-		}else{
-			List<Postulacion> aux = lpst;
-			while (!(aux = analisisDrools(aux)).isEmpty()) {
-				if (!aux.isEmpty()) {
-					a.add(aux.get(0));
-					aux.remove(0);
-				}
-			}
-		}		
+//		}else{
+//			List<Postulacion> aux = lpst;
+//			while (!(aux = analisisDrools(aux)).isEmpty()) {
+//				if (!aux.isEmpty()) {
+//					a.add(aux.get(0));
+//					aux.remove(0);
+//				}
+//			}
+//		}		
 		return a;
 	}
 

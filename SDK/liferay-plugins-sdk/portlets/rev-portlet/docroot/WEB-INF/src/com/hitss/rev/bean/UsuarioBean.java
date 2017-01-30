@@ -3,18 +3,24 @@ package com.hitss.rev.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import com.hitss.rev.dools.impl.ExperienciaBean;
+import com.hitss.rev.dools.impl.RequisitoBean;
 import com.hitss.rev.dools.impl.Traza;
+import com.hitss.rev.dools.impl.EvaluacionBean;
 
 public class UsuarioBean implements Serializable{
 
 	private long solicitudId;	
 	private long userId;	
 	private String fullname;
+	private String acerca;
 	private String fechaPostulacion;
 	private String disponibilidad;
 	private String interno;
 	private String fasePostulacion;
 	private String estado;
+	private boolean asistio;
+	private boolean seleccionado;
 	
 	private boolean filtroPostulacion;
 	private boolean filtroExperiencia;
@@ -55,6 +61,18 @@ public class UsuarioBean implements Serializable{
 	private double cercania;
 	
 	private List<Traza> listaTrazaAnalisis;
+	
+	private List<ExperienciaBean> listaExperienciaBean;
+	private List<RequisitoBean> listaRequisitoConocimientosBean;
+	private List<RequisitoBean> listaRequisitoCertificadosBean;
+	
+	private List<EvaluacionBean> listaEvaluacionPsicologicoBean; 
+	private List<EvaluacionBean> listaEvaluacionTecnicoBean; 
+
+	private EvaluacionBean evaluacionEntevistaPsicologicaBean; 
+	private EvaluacionBean evaluacionEntevistaGerenteAreaBean; 
+	
+	
 	
 	public long getUserId() {
 		return userId;
@@ -273,11 +291,64 @@ public class UsuarioBean implements Serializable{
 	public void setListaTrazaAnalisis(List<Traza> listaTrazaAnalisis) {
 		this.listaTrazaAnalisis = listaTrazaAnalisis;
 	}
-	
-	
-	
-	
-	
-	
-	
+	public String getAcerca() {
+		return acerca;
+	}
+	public void setAcerca(String acerca) {
+		this.acerca = acerca;
+	}	
+	public List<RequisitoBean> getListaRequisitoConocimientosBean() {
+		return listaRequisitoConocimientosBean;
+	}
+	public void setListaRequisitoConocimientosBean(List<RequisitoBean> listaRequisitoConocimientosBean) {
+		this.listaRequisitoConocimientosBean = listaRequisitoConocimientosBean;
+	}
+	public List<RequisitoBean> getListaRequisitoCertificadosBean() {
+		return listaRequisitoCertificadosBean;
+	}
+	public void setListaRequisitoCertificadosBean(List<RequisitoBean> listaRequisitoCertificadosBean) {
+		this.listaRequisitoCertificadosBean = listaRequisitoCertificadosBean;
+	}
+	public List<ExperienciaBean> getListaExperienciaBean() {
+		return listaExperienciaBean;
+	}
+	public void setListaExperienciaBean(List<ExperienciaBean> listaExperienciaBean) {
+		this.listaExperienciaBean = listaExperienciaBean;
+	}
+	public List<EvaluacionBean> getListaEvaluacionPsicologicoBean() {
+		return listaEvaluacionPsicologicoBean;
+	}
+	public void setListaEvaluacionPsicologicoBean(List<EvaluacionBean> listaEvaluacionPsicologicoBean) {
+		this.listaEvaluacionPsicologicoBean = listaEvaluacionPsicologicoBean;
+	}
+	public List<EvaluacionBean> getListaEvaluacionTecnicoBean() {
+		return listaEvaluacionTecnicoBean;
+	}
+	public void setListaEvaluacionTecnicoBean(List<EvaluacionBean> listaEvaluacionTecnicoBean) {
+		this.listaEvaluacionTecnicoBean = listaEvaluacionTecnicoBean;
+	}
+	public EvaluacionBean getEvaluacionEntevistaPsicologicaBean() {
+		return evaluacionEntevistaPsicologicaBean;
+	}
+	public void setEvaluacionEntevistaPsicologicaBean(EvaluacionBean evaluacionEntevistaPsicologicaBean) {
+		this.evaluacionEntevistaPsicologicaBean = evaluacionEntevistaPsicologicaBean;
+	}
+	public EvaluacionBean getEvaluacionEntevistaGerenteAreaBean() {
+		return evaluacionEntevistaGerenteAreaBean;
+	}
+	public void setEvaluacionEntevistaGerenteAreaBean(EvaluacionBean evaluacionEntevistaGerenteAreaBean) {
+		this.evaluacionEntevistaGerenteAreaBean = evaluacionEntevistaGerenteAreaBean;
+	}
+	public boolean isSeleccionado() {
+		return seleccionado;
+	}
+	public void setSeleccionado(boolean seleccionado) {
+		this.seleccionado = seleccionado;
+	}
+	public boolean isAsistio() {
+		return asistio;
+	}
+	public void setAsistio(boolean asistio) {
+		this.asistio = asistio;
+	}
 }
