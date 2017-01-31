@@ -19,7 +19,14 @@ public class UsuarioBean implements Serializable{
 	private String interno;
 	private String fasePostulacion;
 	private String estado;
+	
+	private boolean faseEvalPsicologicaRegitrada;
+	private boolean faseEvalTecnicaRegitrada;
+	private boolean faseEvalEntrervistaRRHHRegitrada;	
+	private boolean faseEvalEntrervistaGerenteRegitrada;
+	private long    faseNoAsistencia;	
 	private boolean asistio;
+	
 	private boolean seleccionado;
 	
 	private boolean filtroPostulacion;
@@ -350,5 +357,35 @@ public class UsuarioBean implements Serializable{
 	}
 	public void setAsistio(boolean asistio) {
 		this.asistio = asistio;
+	}
+	public boolean isFaseEvalPsicologicaRegitrada() {
+		return faseEvalPsicologicaRegitrada;
+	}
+	public void setFaseEvalPsicologicaRegitrada(boolean faseEvalPsicologicaRegitrada) {
+		this.faseEvalPsicologicaRegitrada = faseEvalPsicologicaRegitrada;
+	}
+	public boolean isFaseEvalTecnicaRegitrada() {
+		return faseEvalTecnicaRegitrada;
+	}
+	public void setFaseEvalTecnicaRegitrada(boolean faseEvalTecnicaRegitrada) {
+		this.faseEvalTecnicaRegitrada = faseEvalTecnicaRegitrada;
+	}
+	public boolean isFaseEvalEntrervistaRRHHRegitrada() {
+		return faseEvalEntrervistaRRHHRegitrada;
+	}
+	public void setFaseEvalEntrervistaRRHHRegitrada(boolean faseEvalEntrervistaRRHHRegitrada) {
+		this.faseEvalEntrervistaRRHHRegitrada = faseEvalEntrervistaRRHHRegitrada;
+	}
+	public boolean isFaseEvalEntrervistaGerenteRegitrada() {
+		return faseEvalEntrervistaGerenteRegitrada;
+	}
+	public void setFaseEvalEntrervistaGerenteRegitrada(boolean faseEvalEntrervistaGerenteRegitrada) {
+		this.faseEvalEntrervistaGerenteRegitrada = faseEvalEntrervistaGerenteRegitrada;
+	}
+	public long getFaseNoAsistencia() {
+		return faseNoAsistencia;
+	}
+	public void setFaseNoAsistencia(long faseNoAsistencia) {
+		this.faseNoAsistencia = faseNoAsistencia;
 	}
 }

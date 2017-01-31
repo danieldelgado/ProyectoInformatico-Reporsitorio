@@ -550,7 +550,9 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 				break;
 
 			}
-
+			
+//			postulacion.setFaseNoAsistida();
+			fase.setFechaFase(new Date());
 			fase.setAsistio(false);
 			fase.setUsuariomodifica(user.getUserId());
 			fase.setFechamodifica(new Date());

@@ -264,6 +264,11 @@ function addPostulanteFila(object) {
 	var detallePostulanteUrl = $("#" + inputFristnamespace + "detallePostulanteUrl").val();
 
 	var listaRequisitos = $("#" + inputFristnamespace + "listaPostulantes");
+	
+	console.log(object['asistio']);
+	console.log(object['fasePostulacion']);
+	
+	
 	var html = "";
 	html += "<tr>" + 
 	"<td>" + object['fullname'] + "</td>" + 

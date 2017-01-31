@@ -347,6 +347,7 @@
 		<column name="fechaPostulacion" type="Date" />
 		<column name="estado" type="long" />
 		<column name="seleccionado" type="boolean" />
+		<column name="faseNoAsistida" type="long" />
 
 		<column name="activo" type="boolean" />
 		<column name="usuariocrea" type="long" />

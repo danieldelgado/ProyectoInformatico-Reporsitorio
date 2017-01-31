@@ -93,56 +93,67 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							// usuario.getUserId());
 							long estado_parametro_id = Constantes.PARAMETRO_ESTADO_POSTULADO;
 							boolean asistio = true;
+							Date fechaHoy = new Date();
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(),
 									Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA);
 							if (Validator.isNotNull(fp)) {
+								usuarioBean.setFaseEvalEntrervistaGerenteRegitrada(true);
 								if (!fp.isAsistio()) {
 									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
 									fase = fp;
-								}
-								if (!fp.isAsistio()) {
-									asistio = fp.isAsistio();									
+								}								
+								if ( fp.getFechaFase().getTime() <= fechaHoy.getTime() ){
+									if (!fp.isAsistio()) {
+										asistio = fp.isAsistio();									
+									}
 								}
 							}
 
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(),
 									Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
 							if (Validator.isNotNull(fp)) {
+								usuarioBean.setFaseEvalEntrervistaRRHHRegitrada(true);
 								if (!fp.isAsistio()) {
 									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR;
 									fase = fp;
-								}
-								if (!fp.isAsistio()) {
-									asistio = fp.isAsistio();									
+								}							
+								if ( fp.getFechaFase().getTime() <= fechaHoy.getTime() ){
+									if (!fp.isAsistio()) {
+										asistio = fp.isAsistio();									
+									}
 								}
 							}
 
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_TECNICA);
 							if (Validator.isNotNull(fp)) {
+								usuarioBean.setFaseEvalTecnicaRegitrada(true);
 								if (!fp.isAsistio()) {
 									estado_parametro_id = Constantes.PARAMETRO_FASE_TECNICA;
 									fase = fp;
-								}
-								if (!fp.isAsistio()) {
-									asistio = fp.isAsistio();									
+								}							
+								if ( fp.getFechaFase().getTime() <= fechaHoy.getTime() ){
+									if (!fp.isAsistio()) {
+										asistio = fp.isAsistio();									
+									}
 								}
 							}
 							fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(solicitudRequerimientoId, usuario.getUserId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
 							if (Validator.isNotNull(fp)) {
+								usuarioBean.setFaseEvalPsicologicaRegitrada(true);
 								if (!fp.isAsistio()) {
 									estado_parametro_id = Constantes.PARAMETRO_FASE_PSICOLOGICA;
 									fase = fp;
-								}
-								if (!fp.isAsistio()) {
-									asistio = fp.isAsistio();									
+								}							
+								if ( fp.getFechaFase().getTime() <= fechaHoy.getTime() ){
+									if (!fp.isAsistio()) {
+										asistio = fp.isAsistio();									
+									}
 								}
 							}
 
 							usuarioBean.setSolicitudId(post.getSolicitudRequerimientoId());
 							usuarioBean.setAsistio(asistio);
 							if (Validator.isNotNull(fase)) {
-								// System.out.println(estado_parametro_id);
-								// System.out.println(parametroService.getParametro(estado_parametro_id).getValor());
 								usuarioBean.setFasePostulacion(parametroService.getParametro(fase.getTipoFase()).getValor());
 								usuarioBean.setEstado(parametroService.getParametro(estado_parametro_id).getValor());
 							} else {
@@ -154,13 +165,13 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							
 							System.out.println(s.getEstado());
 							
-							if( s.getEstado() == Constantes.PARAMETRO_EVALUACION  || s.getEstado() == Constantes.PARAMETRO_ENTREVISTA ){
-								if(!asistio){
+//							if( s.getEstado() == Constantes.PARAMETRO_EVALUACION  || s.getEstado() == Constantes.PARAMETRO_ENTREVISTA ){
+//								if(!asistio){
 									lstReturn.add(usuarioBean);								
-								}
-							}else{
-								lstReturn.add(usuarioBean);			
-							}
+//								}
+//							}else{
+//								lstReturn.add(usuarioBean);			
+//							}
 														
 						}
 					}
