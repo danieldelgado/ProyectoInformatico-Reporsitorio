@@ -17,5 +17,7 @@ public interface EvaluarFichaIngresoService {
 
 	Map<String, Object> listarSolicitudesRequermiento(Long puestoId, Date fechaRegistroInicio, Date fechaRegistrFin, int responsable, int tiempoContrato, int filas, int pagina, String orden, String campoOrden);
 
+	List<UsuarioBean> getListaSeleccionados(long companyId, long companyGroupId, Long solicitudRequerimientoId);
+
 
 }

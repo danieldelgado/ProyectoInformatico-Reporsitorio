@@ -230,6 +230,7 @@
 		<field name="fechaPostulacion" type="Date" />
 		<field name="estado" type="long" />
 		<field name="seleccionado" type="boolean" />
+		<field name="faseNoAsistida" type="long" />
 		<field name="activo" type="boolean" />
 		<field name="usuariocrea" type="long" />
 		<field name="fechacrea" type="Date" />

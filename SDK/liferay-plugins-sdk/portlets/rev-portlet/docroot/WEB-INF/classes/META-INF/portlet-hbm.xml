@@ -325,6 +325,7 @@
 		<property name="fechaPostulacion" type="org.hibernate.type.TimestampType" />
 		<property name="estado" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="seleccionado" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="faseNoAsistida" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="activo" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="usuariocrea" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="fechacrea" type="org.hibernate.type.TimestampType" />

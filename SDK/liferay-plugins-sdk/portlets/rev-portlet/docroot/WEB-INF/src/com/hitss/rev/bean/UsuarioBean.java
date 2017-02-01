@@ -1,6 +1,7 @@
 package com.hitss.rev.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import com.hitss.rev.dools.impl.ExperienciaBean;
@@ -19,6 +20,9 @@ public class UsuarioBean implements Serializable{
 	private String interno;
 	private String fasePostulacion;
 	private String estado;
+
+	private long faseInansistencia;	
+	private Date fechaFase;
 	
 	private boolean faseEvalPsicologicaRegitrada;
 	private boolean faseEvalTecnicaRegitrada;
@@ -387,5 +391,17 @@ public class UsuarioBean implements Serializable{
 	}
 	public void setFaseNoAsistencia(long faseNoAsistencia) {
 		this.faseNoAsistencia = faseNoAsistencia;
+	}
+	public long getFaseInansistencia() {
+		return faseInansistencia;
+	}
+	public void setFaseInansistencia(long faseInansistencia) {
+		this.faseInansistencia = faseInansistencia;
+	}
+	public Date getFechaFase() {
+		return fechaFase;
+	}
+	public void setFechaFase(Date fechaFase) {
+		this.fechaFase = fechaFase;
 	}
 }

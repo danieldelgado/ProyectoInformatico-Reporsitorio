@@ -421,6 +421,7 @@
 			</basic>
 			<basic name="estado" />
 			<basic name="seleccionado" />
+			<basic name="faseNoAsistida" />
 			<basic name="activo" />
 			<basic name="usuariocrea" />
 			<basic name="fechacrea">

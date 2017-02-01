@@ -82,6 +82,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		attributes.put("fechaPostulacion", getFechaPostulacion());
 		attributes.put("estado", getEstado());
 		attributes.put("seleccionado", getSeleccionado());
+		attributes.put("faseNoAsistida", getFaseNoAsistida());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -122,6 +123,12 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 
 		if (seleccionado != null) {
 			setSeleccionado(seleccionado);
+		}
+
+		Long faseNoAsistida = (Long)attributes.get("faseNoAsistida");
+
+		if (faseNoAsistida != null) {
+			setFaseNoAsistida(faseNoAsistida);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -270,6 +277,29 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 				Method method = clazz.getMethod("setSeleccionado", boolean.class);
 
 				method.invoke(_postulacionRemoteModel, seleccionado);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getFaseNoAsistida() {
+		return _faseNoAsistida;
+	}
+
+	@Override
+	public void setFaseNoAsistida(long faseNoAsistida) {
+		_faseNoAsistida = faseNoAsistida;
+
+		if (_postulacionRemoteModel != null) {
+			try {
+				Class<?> clazz = _postulacionRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFaseNoAsistida", long.class);
+
+				method.invoke(_postulacionRemoteModel, faseNoAsistida);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -471,6 +501,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		clone.setFechaPostulacion(getFechaPostulacion());
 		clone.setEstado(getEstado());
 		clone.setSeleccionado(getSeleccionado());
+		clone.setFaseNoAsistida(getFaseNoAsistida());
 		clone.setActivo(getActivo());
 		clone.setUsuariocrea(getUsuariocrea());
 		clone.setFechacrea(getFechacrea());
@@ -527,7 +558,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -539,6 +570,8 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		sb.append(getEstado());
 		sb.append(", seleccionado=");
 		sb.append(getSeleccionado());
+		sb.append(", faseNoAsistida=");
+		sb.append(getFaseNoAsistida());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -556,7 +589,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Postulacion");
@@ -581,6 +614,10 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 		sb.append(
 			"<column><column-name>seleccionado</column-name><column-value><![CDATA[");
 		sb.append(getSeleccionado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>faseNoAsistida</column-name><column-value><![CDATA[");
+		sb.append(getFaseNoAsistida());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -613,6 +650,7 @@ public class PostulacionClp extends BaseModelImpl<Postulacion>
 	private Date _fechaPostulacion;
 	private long _estado;
 	private boolean _seleccionado;
+	private long _faseNoAsistida;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

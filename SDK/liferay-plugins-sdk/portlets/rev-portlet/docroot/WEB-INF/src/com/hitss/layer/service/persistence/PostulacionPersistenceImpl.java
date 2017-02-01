@@ -1674,6 +1674,7 @@ public class PostulacionPersistenceImpl extends BasePersistenceImpl<Postulacion>
 		postulacionImpl.setFechaPostulacion(postulacion.getFechaPostulacion());
 		postulacionImpl.setEstado(postulacion.getEstado());
 		postulacionImpl.setSeleccionado(postulacion.isSeleccionado());
+		postulacionImpl.setFaseNoAsistida(postulacion.getFaseNoAsistida());
 		postulacionImpl.setActivo(postulacion.isActivo());
 		postulacionImpl.setUsuariocrea(postulacion.getUsuariocrea());
 		postulacionImpl.setFechacrea(postulacion.getFechacrea());

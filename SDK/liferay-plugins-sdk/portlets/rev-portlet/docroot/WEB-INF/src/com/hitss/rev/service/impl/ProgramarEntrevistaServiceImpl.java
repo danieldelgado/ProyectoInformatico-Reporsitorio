@@ -85,6 +85,8 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 							usuarioBean.setDisponibilidad(Util.getStrFecha(disponibildad));
 							usuarioBean.setFechaPostulacion(Util.getStrFecha(post.getFechaPostulacion()));
 							usuarioBean.setSeleccionado(ppp.getSeleccionado());
+							usuarioBean.setFaseInansistencia(post.getFaseNoAsistida());
+							usuarioBean.setFechaFase(post.getFechaPostulacion());
 							_log.info("solicitudRequerimientoId:" + solicitudRequerimientoId);
 							_log.info("post.getSolicitudRequerimientoId():" + post.getSolicitudRequerimientoId());
 							_log.info("usuario.getUserId():" + usuario.getUserId());

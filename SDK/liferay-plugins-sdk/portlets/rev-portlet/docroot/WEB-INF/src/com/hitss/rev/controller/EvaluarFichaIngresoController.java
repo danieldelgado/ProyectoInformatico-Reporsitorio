@@ -24,6 +24,8 @@ import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.service.EvaluarFichaIngresoService;
 import com.hitss.rev.service.impl.EvaluarSolicitudRequerimientoServiceImpl;
 import com.hitss.rev.util.JsonUtil;
+import com.hitss.rev.util.RevController;
+import com.hitss.rev.util.RevServiceImpl;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -35,7 +37,7 @@ import com.liferay.portal.util.PortalUtil;
 
 @Controller("evaluarFichaIngresoController")
 @RequestMapping(value = "VIEW")
-public class EvaluarFichaIngresoController {
+public class EvaluarFichaIngresoController extends RevController  {
 
 	private static Log _log = LogFactoryUtil.getLog(EvaluarSolicitudRequerimientoServiceImpl.class);
 	
@@ -120,6 +122,21 @@ public class EvaluarFichaIngresoController {
 		}
 	}
 
+	@RenderMapping
+	public String listarSelecciondos(RenderRequest request, RenderResponse response, Model model) {
+		_log.info("listarPostulantes");
+		ThemeDisplay td = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
+		Long solicitudRequerimientoId = ParamUtil.getLong(request, "solicitudRequerimientoId");
+		_log.debug("solicitudRequerimientoId:" + solicitudRequerimientoId);
+		
+		super.verDetalleSolicitudReclutamiento(request, response, model, (RevServiceImpl) evaluarSolicitudRequerimientoService);
+		
+		List<UsuarioBean> listaUsuarios = evaluarSolicitudRequerimientoService.getListaSeleccionados(td.getCompanyId(),td.getCompanyGroupId(),solicitudRequerimientoId);
+		model.addAttribute("listaUsuarios",JsonUtil.getJsonString(listaUsuarios));		
+		
+		return "listarSeleccionados";
+
+	}
 
 	@ResourceMapping(value = "aprobarSolicitud")
 	public void aprobarSolicitud(ResourceRequest resourceRequest, ResourceResponse resourceResponse) {

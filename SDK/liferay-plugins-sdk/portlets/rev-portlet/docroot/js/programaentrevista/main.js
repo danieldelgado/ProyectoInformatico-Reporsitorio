@@ -267,6 +267,7 @@ function addPostulanteFila(object) {
 	
 	console.log(object['asistio']);
 	console.log(object['fasePostulacion']);
+	console.log(object['faseInansistencia']);
 	
 	
 	var html = "";

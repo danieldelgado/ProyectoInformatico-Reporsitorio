@@ -38,6 +38,7 @@ public class PostulacionSoap implements Serializable {
 		soapModel.setFechaPostulacion(model.getFechaPostulacion());
 		soapModel.setEstado(model.getEstado());
 		soapModel.setSeleccionado(model.getSeleccionado());
+		soapModel.setFaseNoAsistida(model.getFaseNoAsistida());
 		soapModel.setActivo(model.getActivo());
 		soapModel.setUsuariocrea(model.getUsuariocrea());
 		soapModel.setFechacrea(model.getFechacrea());
@@ -140,6 +141,14 @@ public class PostulacionSoap implements Serializable {
 		_seleccionado = seleccionado;
 	}
 
+	public long getFaseNoAsistida() {
+		return _faseNoAsistida;
+	}
+
+	public void setFaseNoAsistida(long faseNoAsistida) {
+		_faseNoAsistida = faseNoAsistida;
+	}
+
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -189,6 +198,7 @@ public class PostulacionSoap implements Serializable {
 	private Date _fechaPostulacion;
 	private long _estado;
 	private boolean _seleccionado;
+	private long _faseNoAsistida;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;

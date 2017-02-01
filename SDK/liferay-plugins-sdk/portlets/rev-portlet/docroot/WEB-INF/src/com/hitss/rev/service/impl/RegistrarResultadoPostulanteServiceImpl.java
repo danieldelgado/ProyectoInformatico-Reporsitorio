@@ -387,7 +387,14 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 
 			Postulacion postulacion = PostulacionLocalServiceUtil.getPostulacion(postulacionPK);
 			SolicitudRequerimiento sr = SolicitudRequerimientoLocalServiceUtil.getSolicitudRequerimiento(postulacion.getSolicitudRequerimientoId());
+			
+			long faseInansistencia  = postulacion.getFaseNoAsistida(); 
 
+			postulacion.setFaseNoAsistida(0);
+			postulacion.setUsuariomodifica(user.getUserId());
+			postulacion.setFechamodifica(new Date());
+			PostulacionLocalServiceUtil.updatePostulacion(postulacion);
+			
 			User u = UserLocalServiceUtil.getUser(userId);
 			Boolean colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
 
@@ -409,7 +416,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					FasePostulacionLocalServiceUtil.updateFasePostulacion(baPsicologico);
 				}				
 			}	
-
+			
 			FasePostulacionBean aTecnico = solicitudPostulacionBean.getFasePostulacionTecnico();
 			FasePostulacion baTecnico = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(),
 					Constantes.PARAMETRO_FASE_TECNICA);
@@ -493,6 +500,8 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 								fasePostulacionPuestoEvaluacionBean.getEvaluacionId()>0 &&
 								fasePostulacionPuestoEvaluacionBean.getFasePostulacionId()>0 &&
 								fasePostulacionPuestoEvaluacionBean.getResultado()>0 ){
+
+							
 							FasePostulacionPuestoEvaluacionLocalServiceUtil.addFasePostulacionPuestoEvaluacion(a);
 						}
 					}
@@ -516,6 +525,14 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 		}
 		return result;
 	}
+
+//	private long getTipoFase(Postulacion postulacion, Long fasePostulacionId, List<FasePostulacionPuestoEvaluacionBean> listaFasePostulacionPuestoEvaluacionBean) {
+//		
+//		
+//		
+//		
+//		return 0;
+//	}
 
 	@Override
 	public Map<String, Object> noAsistio(Long solicitudId, Long userId, Long fasePostulacion, String observacion, long scopeGroupId, User user) {
@@ -551,14 +568,16 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 
 			}
 			
-//			postulacion.setFaseNoAsistida();
+			postulacion.setFaseNoAsistida(fase.getTipoFase());			
+			postulacion.setUsuariomodifica(user.getUserId());
+			postulacion.setFechamodifica(new Date());
 			fase.setFechaFase(new Date());
 			fase.setAsistio(false);
 			fase.setUsuariomodifica(user.getUserId());
 			fase.setFechamodifica(new Date());
 		
 			FasePostulacionLocalServiceUtil.updateFasePostulacion(fase);
-			
+			PostulacionLocalServiceUtil.updatePostulacion(postulacion);
 			Long id = CounterLocalServiceUtil.increment(Observaciones.class.getName());				
 			Observaciones o = ObservacionesLocalServiceUtil.createObservaciones(id);
 			o.setActivo(Constantes.ACTIVO);

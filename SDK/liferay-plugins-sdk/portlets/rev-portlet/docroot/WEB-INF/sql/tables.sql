@@ -282,6 +282,7 @@ create table Postulacion (
 	fechaPostulacion DATE null,
 	estado LONG,
 	seleccionado BOOLEAN,
+	faseNoAsistida LONG,
 	activo BOOLEAN,
 	usuariocrea LONG,
 	fechacrea DATE null,

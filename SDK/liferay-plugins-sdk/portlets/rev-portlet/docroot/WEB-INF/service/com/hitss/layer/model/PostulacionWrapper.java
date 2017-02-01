@@ -55,6 +55,7 @@ public class PostulacionWrapper implements Postulacion,
 		attributes.put("fechaPostulacion", getFechaPostulacion());
 		attributes.put("estado", getEstado());
 		attributes.put("seleccionado", getSeleccionado());
+		attributes.put("faseNoAsistida", getFaseNoAsistida());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -95,6 +96,12 @@ public class PostulacionWrapper implements Postulacion,
 
 		if (seleccionado != null) {
 			setSeleccionado(seleccionado);
+		}
+
+		Long faseNoAsistida = (Long)attributes.get("faseNoAsistida");
+
+		if (faseNoAsistida != null) {
+			setFaseNoAsistida(faseNoAsistida);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -257,6 +264,26 @@ public class PostulacionWrapper implements Postulacion,
 	@Override
 	public void setSeleccionado(boolean seleccionado) {
 		_postulacion.setSeleccionado(seleccionado);
+	}
+
+	/**
+	* Returns the fase no asistida of this postulacion.
+	*
+	* @return the fase no asistida of this postulacion
+	*/
+	@Override
+	public long getFaseNoAsistida() {
+		return _postulacion.getFaseNoAsistida();
+	}
+
+	/**
+	* Sets the fase no asistida of this postulacion.
+	*
+	* @param faseNoAsistida the fase no asistida of this postulacion
+	*/
+	@Override
+	public void setFaseNoAsistida(long faseNoAsistida) {
+		_postulacion.setFaseNoAsistida(faseNoAsistida);
 	}
 
 	/**

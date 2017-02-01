@@ -138,6 +138,20 @@ public interface PostulacionModel extends BaseModel<Postulacion> {
 	public void setSeleccionado(boolean seleccionado);
 
 	/**
+	 * Returns the fase no asistida of this postulacion.
+	 *
+	 * @return the fase no asistida of this postulacion
+	 */
+	public long getFaseNoAsistida();
+
+	/**
+	 * Sets the fase no asistida of this postulacion.
+	 *
+	 * @param faseNoAsistida the fase no asistida of this postulacion
+	 */
+	public void setFaseNoAsistida(long faseNoAsistida);
+
+	/**
 	 * Returns the activo of this postulacion.
 	 *
 	 * @return the activo of this postulacion

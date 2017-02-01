@@ -66,13 +66,14 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 			{ "fechaPostulacion", Types.TIMESTAMP },
 			{ "estado", Types.BIGINT },
 			{ "seleccionado", Types.BOOLEAN },
+			{ "faseNoAsistida", Types.BIGINT },
 			{ "activo", Types.BOOLEAN },
 			{ "usuariocrea", Types.BIGINT },
 			{ "fechacrea", Types.TIMESTAMP },
 			{ "usuariomodifica", Types.BIGINT },
 			{ "fechamodifica", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Postulacion (solicitudRequerimientoId LONG not null,usuarioId LONG not null,fechaPostulacion DATE null,estado LONG,seleccionado BOOLEAN,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (solicitudRequerimientoId, usuarioId))";
+	public static final String TABLE_SQL_CREATE = "create table Postulacion (solicitudRequerimientoId LONG not null,usuarioId LONG not null,fechaPostulacion DATE null,estado LONG,seleccionado BOOLEAN,faseNoAsistida LONG,activo BOOLEAN,usuariocrea LONG,fechacrea DATE null,usuariomodifica LONG,fechamodifica DATE null,primary key (solicitudRequerimientoId, usuarioId))";
 	public static final String TABLE_SQL_DROP = "drop table Postulacion";
 	public static final String ORDER_BY_JPQL = " ORDER BY postulacion.fechamodifica ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Postulacion.fechamodifica ASC";
@@ -110,6 +111,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		model.setFechaPostulacion(soapModel.getFechaPostulacion());
 		model.setEstado(soapModel.getEstado());
 		model.setSeleccionado(soapModel.getSeleccionado());
+		model.setFaseNoAsistida(soapModel.getFaseNoAsistida());
 		model.setActivo(soapModel.getActivo());
 		model.setUsuariocrea(soapModel.getUsuariocrea());
 		model.setFechacrea(soapModel.getFechacrea());
@@ -185,6 +187,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		attributes.put("fechaPostulacion", getFechaPostulacion());
 		attributes.put("estado", getEstado());
 		attributes.put("seleccionado", getSeleccionado());
+		attributes.put("faseNoAsistida", getFaseNoAsistida());
 		attributes.put("activo", getActivo());
 		attributes.put("usuariocrea", getUsuariocrea());
 		attributes.put("fechacrea", getFechacrea());
@@ -225,6 +228,12 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 		if (seleccionado != null) {
 			setSeleccionado(seleccionado);
+		}
+
+		Long faseNoAsistida = (Long)attributes.get("faseNoAsistida");
+
+		if (faseNoAsistida != null) {
+			setFaseNoAsistida(faseNoAsistida);
 		}
 
 		Boolean activo = (Boolean)attributes.get("activo");
@@ -344,6 +353,17 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@JSON
 	@Override
+	public long getFaseNoAsistida() {
+		return _faseNoAsistida;
+	}
+
+	@Override
+	public void setFaseNoAsistida(long faseNoAsistida) {
+		_faseNoAsistida = faseNoAsistida;
+	}
+
+	@JSON
+	@Override
 	public boolean getActivo() {
 		return _activo;
 	}
@@ -427,6 +447,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		postulacionImpl.setFechaPostulacion(getFechaPostulacion());
 		postulacionImpl.setEstado(getEstado());
 		postulacionImpl.setSeleccionado(getSeleccionado());
+		postulacionImpl.setFaseNoAsistida(getFaseNoAsistida());
 		postulacionImpl.setActivo(getActivo());
 		postulacionImpl.setUsuariocrea(getUsuariocrea());
 		postulacionImpl.setFechacrea(getFechacrea());
@@ -515,6 +536,8 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 		postulacionCacheModel.seleccionado = getSeleccionado();
 
+		postulacionCacheModel.faseNoAsistida = getFaseNoAsistida();
+
 		postulacionCacheModel.activo = getActivo();
 
 		postulacionCacheModel.usuariocrea = getUsuariocrea();
@@ -544,7 +567,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{solicitudRequerimientoId=");
 		sb.append(getSolicitudRequerimientoId());
@@ -556,6 +579,8 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		sb.append(getEstado());
 		sb.append(", seleccionado=");
 		sb.append(getSeleccionado());
+		sb.append(", faseNoAsistida=");
+		sb.append(getFaseNoAsistida());
 		sb.append(", activo=");
 		sb.append(getActivo());
 		sb.append(", usuariocrea=");
@@ -573,7 +598,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.hitss.layer.model.Postulacion");
@@ -598,6 +623,10 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 		sb.append(
 			"<column><column-name>seleccionado</column-name><column-value><![CDATA[");
 		sb.append(getSeleccionado());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>faseNoAsistida</column-name><column-value><![CDATA[");
+		sb.append(getFaseNoAsistida());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>activo</column-name><column-value><![CDATA[");
@@ -638,6 +667,7 @@ public class PostulacionModelImpl extends BaseModelImpl<Postulacion>
 	private Date _fechaPostulacion;
 	private long _estado;
 	private boolean _seleccionado;
+	private long _faseNoAsistida;
 	private boolean _activo;
 	private long _usuariocrea;
 	private Date _fechacrea;
