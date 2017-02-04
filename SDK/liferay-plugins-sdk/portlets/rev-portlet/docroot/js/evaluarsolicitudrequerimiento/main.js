@@ -184,7 +184,7 @@ function getDialogAprobar() {
 	html += '</div>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
-	html += '<p><label class="msgpresupuestominimo text-error" style="display: none;">Ingresar el presupuesto minimo o mínimo salario de s/ 850</label></p>';
+	html += '<p><label class="msgpresupuestominimo text-error" style="display: none;">Ingresar el presupuesto salario de s/ 850 a s/ 30 000 </label></p>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
 	html += '<div class="span5"><label>Presupuesto Maximo:</label></div>';
@@ -193,7 +193,7 @@ function getDialogAprobar() {
 	html += '</div>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
-	html += '<p><label class="msgpresupuestomaximo text-error" style="display: none;">Ingresar el presupuesto maximo o mínimo salario de s/ 850</label></p>';
+	html += '<p><label class="msgpresupuestomaximo text-error" style="display: none;">Ingresar el presupuesto salario de s/ 850 a s/ 30 000</label></p>';
 	html += '</div>';
 	html += '</from></div>';
 	html += '</div>';
@@ -213,7 +213,7 @@ function getDialogRechazar() {
 	html += '</div>';
 
 	html += '<div class="offset1 span10">';
-	html += '<p><label class="msgmotivo text-error" style="display: none;">Ingresar el motivo de rechazo</label></p>';
+	html += '<p><label class="msgmotivo text-error" style="display: none;">Se debe ingresar la observación</label></p>';
 	html += '</div>';
 	html += '</from></div>';
 	html += '</div>';
@@ -267,7 +267,6 @@ function cargarModals() {
 			              							}
 			              							
 			              							pminval = parseInt(pminval);
-
 				              						
 			              							if (pminval <= 849 || pminval == "NaN") {
 			              								msgpresupuestominimo.show();
@@ -304,13 +303,15 @@ function cargarModals() {
 			              							msgpresupuestomaximo.show();
 			              							valido = false;
 			              						}
-			              						
-			              						if(pmaxval>=30000 && pminval >=30000 ){
+
+		              							console.log((pmaxval>=30000 || pminval >=30000 ));
+			              						if(pmaxval>=30000 || pminval >=30000 ){
 		              								msgpresupuestominimo.show();
 			              							msgpresupuestomaximo.show();
 			              							valido = false;
 			              						}
-			              						
+
+		              							console.log(valido);
 			              						
 			              						if (valido) {
 			              							$.ajax({

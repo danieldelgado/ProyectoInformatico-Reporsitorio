@@ -122,6 +122,7 @@ then
 				for(Object  o2 : $listReqExigible){
 					r2 = (RequisitoBean) o2;
 					valorCercaniaTemp = InicializarData.porcentagrIgualdad( r.getDescripcion() , r2.getDescripcion() );
+    				System.out.println( " r.getDescripcion():" + r.getDescripcion() +"| r2.getDescripcion():" + r2.getDescripcion() + "| valorCercaniaTemp:"+valorCercaniaTemp );
 					r.setPorcetageIgualdad( valorCercaniaTemp );
 					r2.setPorcetageIgualdad( valorCercaniaTemp );					
 					if( valorCercaniaTemp >=  valorCercania){ 
@@ -131,7 +132,8 @@ then
 							r3MasCercano = null;
 						}
 					}						
-				}				
+				}		
+    				System.out.println( "| r3MasCercano:"+r3MasCercano );		
 				if(	r3MasCercano!=null ){				
 					if(  r.getAnnos() >= r3MasCercano.getAnnos()  ){
 						r.setAnnosMinimoAceptado(true);
@@ -219,6 +221,7 @@ then
 				for(Object  o2 : $listReqExigible){
 					r2 = (RequisitoBean) o2;
 					valorCercaniaTemp = InicializarData.porcentagrIgualdad( r.getDescripcion() , r2.getDescripcion() );
+    				System.out.println( " r.getDescripcion():" + r.getDescripcion() +"| r2.getDescripcion():" + r2.getDescripcion() + "| valorCercaniaTemp:"+valorCercaniaTemp );
 					r.setPorcetageIgualdad( valorCercaniaTemp );
 					r2.setPorcetageIgualdad( valorCercaniaTemp );					
 					if( valorCercaniaTemp >=  valorCercania){ 
@@ -228,7 +231,8 @@ then
 							r3MasCercano = null;
 						}
 					}						
-				}				
+				}	
+    				System.out.println( "| r3MasCercano:"+r3MasCercano );			
 				if(	r3MasCercano!=null ){				
 					if(  r.getAnnos() >= r3MasCercano.getAnnos()  ){
 						r.setAnnosMinimoAceptado(true);

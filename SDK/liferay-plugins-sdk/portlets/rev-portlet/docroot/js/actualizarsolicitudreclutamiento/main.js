@@ -172,13 +172,6 @@ function anularSolicitud() {
 		}).render();
 
 		modalAnular.addToolbar([ {
-			label : msgCancelar,
-			on : {
-				click : function() {
-					modalAnular.hide();
-				}
-			}
-		}, {
 			label : msgAceptar,
 			on : {
 				click : function() {
@@ -204,7 +197,15 @@ function anularSolicitud() {
 					});
 				}
 			}
-		} ]);
+		},
+		 {
+			label : msgCancelar,
+			on : {
+				click : function() {
+					modalAnular.hide();
+				}
+			}
+		}]);
 
 	});
 
@@ -271,6 +272,8 @@ function inicializarFormularioRegistro() {
 		agregarFuncion();
 	});
 
+	onlyNumber(inputcantidadRecursos);
+	
 	var rules = {};
 	rules[inputpuesto] = {
 		required : function() {
@@ -371,12 +374,40 @@ function inicializarFormularioRegistro() {
 		rules : rules,
 		messages : messages,
 		submitHandler : function(form) {
+			var contenedorAlerta = $(".contenedorAlerta");
+			console.log("listarequisitosMap:"+listarequisitosMap);
+			console.log("listaFuncionMap:"+listaFuncionMap);
+			if( listarequisitosMap.length == 0 ){
+				mostrarAlerta(contenedorAlerta, "Requisito", "Ingrese al menos un requisito", "alert-error", null);
+				listasCorrectas = false;
+			}			
+			var contenedorAlerta2 = $(".contenedorAlerta2");
+			if( listaFuncionMap.length == 0 ){
+				mostrarAlerta(contenedorAlerta2, "Función", "Ingrese al menos una función", "alert-error", null);
+				listasCorrectas = false;
+			}
 			return false;
 		}
 	});
 
 	$(btnGuardar).click(function() {
-		formvalid = $(formActualizarSolicitud).valid();
+		var contenedorAlerta = $(".contenedorAlerta");
+		console.log("listarequisitosMap:"+listarequisitosMap);
+		console.log("listaFuncionMap:"+listaFuncionMap);
+		listasCorrectas = true;
+		if( listarequisitosMap.length == 0 ){
+			mostrarAlerta(contenedorAlerta, "Requisito", "Ingrese al menos un requisito", "alert-error", null);
+			listasCorrectas = false;
+		}			
+		var contenedorAlerta2 = $(".contenedorAlerta2");
+		if( listaFuncionMap.length == 0 ){
+			mostrarAlerta(contenedorAlerta2, "Función", "Ingrese al menos una función", "alert-error", null);
+			listasCorrectas = false;
+		}
+		if(listasCorrectas){
+			formvalid = $(formActualizarSolicitud).valid();
+		}
+		
 	});
 	
 	var tipoRequisito = $("#" + inputFristnamespace + "tipoRequisito");
@@ -862,14 +893,8 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 			width : 305
 		}).render();
 
-		modalconfirmacion.addToolbar([ {
-			label : msgCancelar,
-			on : {
-				click : function() {
-					modalconfirmacion.hide();
-				}
-			}
-		}, {
+		modalconfirmacion.addToolbar([ 
+		{
 			label : msgAceptar,
 			on : {
 				click : function() {
@@ -878,7 +903,17 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 					}
 				}
 			}
-		} ]);
+		} ,
+		{
+			label : msgCancelar,
+			on : {
+				click : function() {
+					modalconfirmacion.hide();
+				}
+			}
+		}
+		
+		]);
 	}
 
 	if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {

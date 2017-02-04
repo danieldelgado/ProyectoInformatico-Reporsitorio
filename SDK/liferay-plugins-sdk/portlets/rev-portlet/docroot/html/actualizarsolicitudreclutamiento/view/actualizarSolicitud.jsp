@@ -61,6 +61,7 @@
 	<legend> ${empty solicitudReclutamiento?'Registrar':'Actualizar'} Solicitud de Reclutamiento </legend>
 	<div class="container">
 		<div class="contenedorAlerta"></div>
+		<div class="contenedorAlerta2"></div>
 		<div class="offset1 span10">
 			<form id="<portlet:namespace/>actualizarSolicitud" name="<portlet:namespace/>actualizarSolicitud" class="formulario">
 				<input id="<portlet:namespace/>solicitudRequerimientoId" name="<portlet:namespace/>solicitudRequerimientoId" type="hidden"

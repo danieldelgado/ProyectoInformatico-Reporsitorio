@@ -26,7 +26,7 @@
 
 <input type="hidden" value="<portlet:namespace/>" />
 <input id="<portlet:namespace/>postulanteUrl" type="hidden" value="${postulante}" />
-<input id="<portlet:namespace/>detallePostulanteUrl" type="hidden" value="${detallePostulante}" />
+<input id="<portlet:namespace/>detallePostulanteUrl" type="hidden" value="${detallePostulanteUrl}" />
 <input id="<portlet:namespace/>regresarUrl" type="hidden" value="${regresar}" />
 <input id="<portlet:namespace/>extenderPublicacionUrl" type="hidden" value="${extenderPublicacionUrl}" />
 

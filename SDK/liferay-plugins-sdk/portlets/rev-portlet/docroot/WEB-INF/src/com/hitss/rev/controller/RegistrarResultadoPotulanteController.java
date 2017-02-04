@@ -117,7 +117,11 @@ public class RegistrarResultadoPotulanteController extends RevController {
 		_log.info("userId:" + userId);
 
 		SolicitudPostulacionBean solicitudPostulacionBean = registrarResultadoPostulanteService.getSolicitudPostulacion(solicitudId, userId);
-
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String strfechaPostulacion = sdf.format(new Date());
+		solicitudPostulacionBean.setStrfechaPostulacion(strfechaPostulacion);
+		
 		model.addAttribute("solicitudPostulacionBean", solicitudPostulacionBean);
 		model.addAttribute("userId", userId);
 		return "procesoPostulante";

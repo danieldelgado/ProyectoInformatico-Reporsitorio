@@ -35,7 +35,7 @@
 <input id="<portlet:namespace/>msgCancelar" type="hidden" value="<liferay-ui:message key="general.form.opciones.cancelar" />" />
 
 <fieldset>
-	<legend>Lista de Solicitudes de Reclutamiento</legend>
+	<legend>Publicar Oferta Laboral</legend>
 	<div class="container">
 		<div class="contenedorAlerta">
 			<c:if test="${not empty mensaje}">
@@ -47,8 +47,8 @@
 			</c:if>
 		</div>
 		<div class="offset1 span10">
-			<form id="<portlet:namespace/>publicaroferta" class="formulario">
-				<input id="<portlet:namespace/>solicitudReclutamientoId" type="hidden" value="${solicitudReclutamiento.solicitudRequerimientoId}" />
+			<form id="<portlet:namespace/>publicaroferta" name="<portlet:namespace/>publicaroferta" class="formulario">
+				<input id="<portlet:namespace/>solicitudReclutamientoId" name="<portlet:namespace/>solicitudReclutamientoId" type="hidden" value="${solicitudReclutamiento.solicitudRequerimientoId}" />
 				<div class="row-fluid">
 					<div class="span12">
 						<div>
@@ -80,7 +80,9 @@
 								<label>Cantidad de Años en (${solicitudReclutamiento.strtipoNegocio}):</label>
 							</div>
 							<div class="span6">
-								<input id="<portlet:namespace/>cantidadAnnosRubro" name="<portlet:namespace/>rangoMinimo1" class="span8" type="text">
+								<div class="input-prepend">
+									<input id="<portlet:namespace/>cantidadAnnosRubro" name="<portlet:namespace/>rangoMinimo1" class="span8" type="text">
+								</div>
 							</div>
 						</div>
 					</div>

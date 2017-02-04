@@ -38,8 +38,29 @@
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
-					
-					
+
+
+					<div class="span12">
+						<div>
+							<div class="span5">
+								<label> Puesto: </label>
+							</div>
+							<div class="span6">
+								<label>${solicitudPostulacionBean.strpuesto}</label>
+							</div>
+						</div>
+					</div>
+					<div class="span12">
+						<div>
+							<div class="span5">
+								<label> Fecha Actual: </label>
+							</div>
+							<div class="span6">
+								<label>${solicitudPostulacionBean.strfechaPostulacion}</label>
+							</div>
+						</div>
+					</div>
+
 					<c:if test="${ solicitudPostulacionBean.fasePostulacionPsicologico != null }">
 						<div class="span12">
 							<div>
@@ -56,13 +77,12 @@
 							<c:if test="${ evaluaciones.evaluacionBean.evaluacionId != '1' && evaluaciones.evaluacionBean.evaluacionId != '2'  }">
 								<c:if test="${ evaluaciones.evaluacionBean.tipoEvaluacion == 83  }">
 									<div class="span12">
-										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden"
-											value="${evaluaciones.evaluacionBean.evaluacionId}" />
+										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden" value="${evaluaciones.evaluacionBean.evaluacionId}" />
 										<div class="span5">
 											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 										</div>
 										<div class="span6">
-											<input value="31" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8" type="text">
+											<input value="" id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 solonumeros" type="text">
 										</div>
 									</div>
 								</c:if>
@@ -88,13 +108,12 @@
 							<c:if test="${ evaluaciones.evaluacionBean.evaluacionId != '1' && evaluaciones.evaluacionBean.evaluacionId != '2'  }">
 								<c:if test="${ evaluaciones.evaluacionBean.tipoEvaluacion == 84  }">
 									<div class="span12">
-										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden"
-											value="${evaluaciones.evaluacionBean.evaluacionId}" />
+										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden" value="${evaluaciones.evaluacionBean.evaluacionId}" />
 										<div class="span5">
 											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 										</div>
 										<div class="span6">
-											<input value="30" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8" type="text">
+											<input value="" id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 solonumeros" type="text">
 										</div>
 									</div>
 								</c:if>
@@ -122,7 +141,7 @@
 							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 						</div>
 						<div class="span6">
-							<input value="30" name="<portlet:namespace/>resultado1Id" class="span8" type="text">
+							<input value="" id="<portlet:namespace/>resultado1Id" name="<portlet:namespace/>resultado1Id" class="span8 solonumeros" type="text">
 						</div>
 					</div>
 
@@ -142,7 +161,7 @@
 							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 						</div>
 						<div class="span6">
-							<input value="30" name="<portlet:namespace/>resultado2Id" class="span8" type="text">
+							<input value="" id="<portlet:namespace/>resultado2Id"  name="<portlet:namespace/>resultado2Id" class="span8 solonumeros" type="text">
 						</div>
 					</div>
 

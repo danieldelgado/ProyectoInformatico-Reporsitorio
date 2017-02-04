@@ -1,4 +1,3 @@
-
 var inputFristnamespace = null;
 var formvalid = true;
 var modalconfirmacion = null;
@@ -91,12 +90,12 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				console.log(value);
 				count++;
 				html += '<tr ';
-				
-				if( !value.asistio ){
+
+				if (!value.asistio) {
 					html += ' class="warning" ';
 				}
 				html += ' >';
-				
+
 				html += '<td>' + +count + '</td>';
 
 				html += '<td>' + value.strpuesto + '</td>';
@@ -104,25 +103,27 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '<td>' + value.strTipoPostulante + '</td>';
 				html += '<td>' + value.postulante + '</td>';
 				html += '<td>' + value.strFasePostulacion + '</td>';
-				html += '<td>' + value.strfechaPostulacion + '</td>';	
+				html += '<td>' + value.strfechaPostulacion + '</td>';
 				html += '<td>' + value.strfechaPsicologica + '</td>';
 				html += '<td>' + value.strfechaTecnica + '</td>';
 				html += '<td>' + value.strfechaRRHH + '</td>';
 				html += '<td>' + value.strfechaGerenteArea + '</td>';
 				html += '<td>';
 				html += '	<div class="btn-group">';
-				console.log("value.estadoSolicitud :"+value.estadoSolicitud );
-				console.log("value.estado :"+value.estado );
-				if (value.estadoSolicitud == 51  ||   value.estadoSolicitud ==52) {
-					if (value.estado == 70  ||   value.estado ==71 ||   value.estado ==72 ||   value.estado ==73) {
-						
-						html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
-				
-						html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&' + inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
-				
+				console.log("value.estadoSolicitud :" + value.estadoSolicitud);
+				console.log("value.estado :" + value.estado);
+				if (value.estadoSolicitud == 51 || value.estadoSolicitud == 52) {
+					if (value.estado == 70 || value.estado == 71 || value.estado == 72 || value.estado == 73) {
+
+						html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&'
+								+ inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';
+
+						html += '		<a class="btn btn-primary" href="' + urls["noAsistioUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&'
+								+ inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionNoAsistio + ' </a>';
+
 					}
 				}
-				
+
 				html += '	</div>';
 				html += '</td>';
 				html += '</tr>';
@@ -173,98 +174,204 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 }
 
-
-function inicializarFormularioRegsitroAvancePostulante(){
-	
+function inicializarFormularioRegsitroAvancePostulante() {
+	 init() ;
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	onlyNumberClass("solonumeros");
+	var registrarResultado = $("#" + inputFristnamespace + "registrarResultado");
+	var resultado1Id = inputFristnamespace + "resultado1Id";
+	var resultado2Id = inputFristnamespace + "resultado2Id";
+	
+	
+	var solonumeroslist = $(".solonumeros");
+	console.log(solonumeroslist);
+	var rules = {};
+	rules[resultado1Id] = {
+			required : function() {
+				console.log(" com:"+resultado1Id + " | val:"+$('#' + resultado1Id).val())
+				if ($('#' + resultado1Id).val() >= 0 && $('#' + resultado1Id).val() <= 35 ) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+
+	rules[resultado2Id] = {
+			required : function() {
+				console.log(" com:"+resultado2Id + " | val:"+$('#' + resultado2Id).val())
+				if ($('#' + resultado2Id).val() >= 0 && $('#' + resultado2Id).val() <= 35 ) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
 	
 	
 	
+	var messages = {};
+	messages[resultado1Id] = "Debe ingresar la puntuacion obtenida";
+	messages[resultado2Id] = "Debe ingresar la puntuacion obtenida";
+	
+	
+	
+	
+	try {
+		$(solonumeroslist).each(function( index ) {
+			var com = $( this ).attr("id");
+			rules[com] = {
+					required : function() {
+						console.log(" com:"+com + " | val:"+$('#' + com).val())
+						if ($('#' + com).val() >= 0 && $('#' + com).val() <= 35 ) {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				};
+
+			messages[com] = "Debe ingresar la puntuacion obtenida";
+			
+		});
+		
+		
+
+//		rules[resultado1Id] = {
+//				required : function() {
+//					console.log(" com:"+resultado1Id + " | val:"+$('#' + resultado1Id).val())
+//					if ($('#' + resultado1Id).val() >= 0 && $('#' + resultado1Id).val() <= 35 ) {
+//						return true;
+//					} else {
+//						return false;
+//					}
+//				}
+//			};
+//
+//		messages[resultado1Id] = "Debe ingresar la puntuacion obtenida";
+//		
+//		rules[resultado2Id] = {
+//				required : function() {
+//					console.log(" com:"+resultado2Id + " | val:"+$('#' + resultado2Id).val())
+//					if ($('#' + resultado2Id).val() >= 0 && $('#' + resultado2Id).val() <= 35 ) {
+//						return true;
+//					} else {
+//						return false;
+//					}
+//				}
+//			};
+//
+//		messages[resultado2Id] = "Debe ingresar la puntuacion obtenida";
+		
+	} catch (e) {
+		console.log(e);
+	}
+	
+	
+	$(registrarResultado).validate({
+		ignore : [],
+		debug : true,
+		rules : rules,
+		messages : messages,
+		errorElement : "div",
+		errorClass : "text-error",
+		submitHandler : function(form) {
+			return false;
+		}
+	});
+	
+	
+	$(btnGuardar).click(function() {
+		
+		console.log("validate");
+		formvalid = true;
+		formvalid = $(registrarResultado).valid();
+		if (formvalid) {
+			modalconfirmacion.show();
+		}
+	});
 }
 
+AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator',
+		'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+			init();
 
-AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
-	init();
+			if (A.one('#' + inputFristnamespace + 'modal') != null) {
+				var popupconfirmartitulo = "Registra Avance";
+				var popupconfirmarMensage = "Confirma resultados de postuante";
+				var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+				var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
 
+				modalconfirmacion = new A.Modal({
+					bodyContent : popupconfirmarMensage,
+					centered : true,
+					destroyOnHide : false,
+					headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+					modal : true,
+					render : '#' + inputFristnamespace + 'modal',
+					resizable : false,
+					visible : false,
+					width : 305
+				}).render();
 
-	if (A.one('#' + inputFristnamespace + 'modal') != null) {
-		var popupconfirmartitulo = $("#" + inputFristnamespace + "popupPublicacionTitulo").val();
-		var popupconfirmarMensage = $("#" + inputFristnamespace + "popupPublicacionMensage").val();
-		var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
-		var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
-
-		modalconfirmacion = new A.Modal({
-			bodyContent : popupconfirmarMensage,
-			centered : true,
-			destroyOnHide : false,
-			headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
-			modal : true,
-			render : '#' + inputFristnamespace + 'modal',
-			resizable : false,
-			visible : false,
-			width : 305
-		}).render();
-
-		modalconfirmacion.addToolbar([ {
-			label : msgCancelar,
-			on : {
-				click : function() {
-					modalconfirmacion.hide();
-				}
-			}
-		}, {
-			label : msgAceptar,
-			on : {
-				click : function() {
-					if (formvalid) {
-						registrarAvance();
+				modalconfirmacion.addToolbar([ {
+					label : msgAceptar,
+					on : {
+						click : function() {
+							if (formvalid) {
+								registrarAvance();
+							}
+						}
 					}
-				}
+				}, {
+					label : msgCancelar,
+					on : {
+						click : function() {
+							modalconfirmacion.hide();
+						}
+					}
+				} ]);
 			}
-		} ]);
-	}
-	
-	if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
-		A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
-			if (formvalid) {
-				modalconfirmacion.show();
-			}
+
+//			if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
+//				A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
+//					if (formvalid) {
+//						modalconfirmacion.show();
+//					}
+//				});
+//			}
 		});
-	}
-});
 
+function registrarAvance() {
 
-function registrarAvance(){
-	
-	
 	var listasCorrectas = true;
 	var contenedorAlerta = $(".contenedorAlerta");
-	
-	var btnGuardar  = $("#" + inputFristnamespace + "btnGuardar");
-	var formRegistrarResultado  = $("#" + inputFristnamespace + "registrarResultado");
-	var solicitudId = $("#" +inputFristnamespace + "solicitudId");
-	var userId = $("#" +inputFristnamespace + "userId");
+
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var formRegistrarResultado = $("#" + inputFristnamespace + "registrarResultado");
+	var solicitudId = $("#" + inputFristnamespace + "solicitudId");
+	var userId = $("#" + inputFristnamespace + "userId");
 
 	var registrarProcesoUrl = $("#" + inputFristnamespace + "registrarProcesoUrl").val();
 	var listarPostulantesUrl = $("#" + inputFristnamespace + "listarPostulantesUrl").val();
-	
+
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
-	
+
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
-	
 
 	var dataSend = $(formRegistrarResultado).serialize();
-	
-//	if(  !((rangoMinimo1 != "" && rangoMinimo1 <= 1 && rangoMinimo1 >=0) && 
-//			(rangoMaximo1 != "" && rangoMinimo1 <= 1 && rangoMaximo1 >=0) && 
-//			(rangoMinimo2 != "" && rangoMinimo1 <= 1 && rangoMinimo2 >=0) && 
-//			(rangoMaximo2 != "" && rangoMinimo1 <= 1 && rangoMaximo2 >=0))  ){
-//		mostrarAlerta(contenedorAlerta, "Rangos de Entrevistas", "Ingrese los valores para las entrevistas", "alert-error", null);
-//		listasCorrectas = false;
-//		modalconfirmacion.hide();
-//	}
 
-	if(listasCorrectas){
+	// if( !((rangoMinimo1 != "" && rangoMinimo1 <= 1 && rangoMinimo1 >=0) &&
+	// (rangoMaximo1 != "" && rangoMinimo1 <= 1 && rangoMaximo1 >=0) &&
+	// (rangoMinimo2 != "" && rangoMinimo1 <= 1 && rangoMinimo2 >=0) &&
+	// (rangoMaximo2 != "" && rangoMinimo1 <= 1 && rangoMaximo2 >=0)) ){
+	// mostrarAlerta(contenedorAlerta, "Rangos de Entrevistas", "Ingrese los
+	// valores para las entrevistas", "alert-error", null);
+	// listasCorrectas = false;
+	// modalconfirmacion.hide();
+	// }
+
+	if (listasCorrectas) {
 		$.ajax({
 			type : "POST",
 			url : registrarProcesoUrl,
@@ -277,11 +384,12 @@ function registrarAvance(){
 				var respuesta = data["respuesta"];
 				var mensaje = data["mensaje"];
 				var contenedorAlerta = $(".contenedorAlerta");
-//				listarPostulantesUrl += "&solicitudRequerimientoId=" + objeto.solicitudRequerimientoId;
+				// listarPostulantesUrl += "&solicitudRequerimientoId=" +
+				// objeto.solicitudRequerimientoId;
 				console.log(popupMensaje);
-//				listarPostulantesUrl += "&titulo=" + encodeURI(popupMensaje);
+				// listarPostulantesUrl += "&titulo=" + encodeURI(popupMensaje);
 				console.log(mensaje);
-//				listarPostulantesUrl += "&mensaje=" + encodeURI(mensaje);
+				// listarPostulantesUrl += "&mensaje=" + encodeURI(mensaje);
 				if (respuesta == 1) {
 					$(btnGuardar).attr("disabled", "disabled");
 					mostrarAlerta(contenedorAlerta, popupMensaje, mensaje, "alert-success", function() {
@@ -297,76 +405,72 @@ function registrarAvance(){
 	}
 }
 
-
-
-function inicializarFormularioRegsitroNoAsistencia(){
+function inicializarFormularioRegsitroNoAsistencia() {
 	init();
 
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
-	
+
 	$(btnGuardar).click(function() {
 		console.log(btnGuardar);
 		formvalid = true;
-		if(formvalid){
+		if (formvalid) {
 			console.log("show");
 			modalconfirmacion.show();
 		}
-		
+
 	});
-	
 
-	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
-		init();
+	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator',
+			'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {
+				init();
 
+				if (A.one('#' + inputFristnamespace + 'modal') != null) {
+					var popupconfirmartitulo = $("#" + inputFristnamespace + "popupPublicacionTitulo").val();
+					var popupconfirmarMensage = $("#" + inputFristnamespace + "popupPublicacionMensage").val();
+					var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
+					var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
 
-		if (A.one('#' + inputFristnamespace + 'modal') != null) {
-			var popupconfirmartitulo = $("#" + inputFristnamespace + "popupPublicacionTitulo").val();
-			var popupconfirmarMensage = $("#" + inputFristnamespace + "popupPublicacionMensage").val();
-			var msgAceptar = $("#" + inputFristnamespace + "msgAceptar").val();
-			var msgCancelar = $("#" + inputFristnamespace + "msgCancelar").val();
+					modalconfirmacion = new A.Modal({
+						bodyContent : popupconfirmarMensage,
+						centered : true,
+						destroyOnHide : false,
+						headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
+						modal : true,
+						render : '#' + inputFristnamespace + 'modal',
+						resizable : false,
+						visible : false,
+						width : 305
+					}).render();
 
-			modalconfirmacion = new A.Modal({
-				bodyContent : popupconfirmarMensage,
-				centered : true,
-				destroyOnHide : false,
-				headerContent : "<h5>" + popupconfirmartitulo + "</h5>",
-				modal : true,
-				render : '#' + inputFristnamespace + 'modal',
-				resizable : false,
-				visible : false,
-				width : 305
-			}).render();
-
-			modalconfirmacion.addToolbar([ {
-				label : msgCancelar,
-				on : {
-					click : function() {
-						modalconfirmacion.hide();
-					}
-				}
-			}, {
-				label : msgAceptar,
-				on : {
-					click : function() {
-						if (formvalid) {
-							registrarNoAsistncia();
+					modalconfirmacion.addToolbar([ {
+						label : msgAceptar,
+						on : {
+							click : function() {
+								if (formvalid) {
+									registrarNoAsistncia();
+								}
+							}
 						}
-					}
+					}, {
+						label : msgCancelar,
+						on : {
+							click : function() {
+								modalconfirmacion.hide();
+							}
+						}
+					} ]);
 				}
-			} ]);
-		}
-		
-		if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
-			A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
-				if (formvalid) {
-					modalconfirmacion.show();
+
+				if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
+					A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
+						if (formvalid) {
+							modalconfirmacion.show();
+						}
+					});
 				}
 			});
-		}
-	});
 }
-//noAsistioUrl
-
+// noAsistioUrl
 
 function registrarNoAsistncia() {
 	init();
@@ -377,14 +481,12 @@ function registrarNoAsistncia() {
 	var noAsistioUrl = $("#" + inputFristnamespace + "noAsistioUrl").val();
 	var regresarUrl = $("#" + inputFristnamespace + "regresarUrl").val();
 
-
-	
 	var dataSend = $(formPublicarOferta).serialize();
-	console.log("dataSend:"+dataSend);
-	
+	console.log("dataSend:" + dataSend);
+
 	var popupMensaje = "Extensión de Fecha Limite";
 	var msgError = "Error en actualizar la extensión de fecha limite";
-		
+
 	$.ajax({
 		type : "POST",
 		url : noAsistioUrl,
@@ -411,5 +513,3 @@ function registrarNoAsistncia() {
 		}
 	});
 }
-
-

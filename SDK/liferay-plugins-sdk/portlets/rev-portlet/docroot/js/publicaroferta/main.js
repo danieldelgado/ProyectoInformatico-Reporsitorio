@@ -270,14 +270,7 @@ function finalizarPublicacion(){
 			width : 305
 		}).render();
 
-		modal.addToolbar([ {
-			label : msgCancelar,
-			on : {
-				click : function() {
-					modal.hide();
-				}
-			}
-		}, {
+		modal.addToolbar([{
 			label : msgAceptar,
 			on : {
 				click : function() {
@@ -304,7 +297,19 @@ function finalizarPublicacion(){
 					});
 				}
 			}
-		} ]);
+		} ,
+
+		{
+			label : msgCancelar,
+			on : {
+				click : function() {
+					modal.hide();
+				}
+			}
+		}
+		
+		
+		]);
 
 	});
 }
@@ -314,12 +319,134 @@ function inicializarFormularioPublicarOferta(){
 	
 	var formPublicarOferta = $("#" + inputFristnamespace + "publicaroferta");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	
 	var solicitudReclutamientoId = inputFristnamespace + "solicitudReclutamientoId";
 	
+	var cantidadAnnosRubro =  inputFristnamespace + "cantidadAnnosRubro";
+	onlyNumber(cantidadAnnosRubro);
+	
+	var rangoMinimo1 =  inputFristnamespace + "rangoMinimo1";
+	onlyNumber(rangoMinimo1);
+	
+	var rangoMaximo1 =  inputFristnamespace + "rangoMaximo1";
+	onlyNumber(rangoMaximo1);
+	
+	var rangoMinimo2 =  inputFristnamespace + "rangoMinimo2";
+	onlyNumber(rangoMinimo2);
+	
+	var rangoMaximo2 =  inputFristnamespace + "rangoMaximo2";
+	onlyNumber(rangoMaximo2);
+
+	var rangoMinimo =  inputFristnamespace + "rangoMinimo";
+	onlyNumber(rangoMinimo);
+	var rangoMaximo =  inputFristnamespace + "rangoMaximo";
+	onlyNumber(rangoMaximo);
 	
 	var btnAgregar =  $("#" + inputFristnamespace + "btnAgregar");
-	console.log(btnAgregar);
+	
+	
+	var rules = {};
+	rules[cantidadAnnosRubro] = {
+			required : function() {
+				console.log($('#' + cantidadAnnosRubro).val());
+				console.log($('#' + cantidadAnnosRubro).val() > -1);
+				if (!$('#' + cantidadAnnosRubro).val() > -1) {
+					console.log("pasa val");
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	rules[rangoMinimo1] = {
+			required : function() {
+				console.log($('#' + rangoMinimo1).val());
+				console.log($('#' + rangoMinimo1).val() <= 1 && $('#' + rangoMinimo1).val() >=0);
+				if (!$('#' + rangoMinimo1).val() <= 1 && $('#' + rangoMinimo1).val() >=0) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	rules[rangoMaximo1] = {
+			required : function() {
+				console.log($('#' + rangoMaximo1).val());
+				console.log($('#' + rangoMaximo1).val() <= 1 && $('#' + rangoMaximo1).val() >=0);
+				if (!$('#' + rangoMaximo1).val() <= 1 && $('#' + rangoMaximo1).val() >=0) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	rules[rangoMinimo2] = {
+			required : function() {
+				console.log($('#' + rangoMinimo2).val());
+				console.log($('#' + rangoMinimo2).val() <= 1 && $('#' + rangoMinimo2).val() >=0);
+				if (!$('#' + rangoMinimo2).val() <= 1 && $('#' + rangoMinimo2).val() >=0) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	rules[rangoMaximo2] = {
+			required : function() {
+				console.log($('#' + rangoMaximo2).val());
+				console.log($('#' + rangoMaximo2).val() <= 1 && $('#' + rangoMaximo2).val() >=0);
+				if (!$('#' + rangoMaximo2).val() <= 1 && $('#' + rangoMaximo2).val() >=0) {
+					console.log("rangoMaximo2 return true");
+					return true;
+				} else {
+					console.log("rangoMaximo2 return false");
+					return false;
+				}
+			}
+		};
+	
+	
+	var messages = {};
+	messages[cantidadAnnosRubro] =	{	required :  "Debe de ingresar la cantidad de años" };
+	messages[rangoMinimo1] = 		{	required :  "Ingresar rango minimo de evaluación con coordinandor de RRHH" };
+	messages[rangoMaximo1] = 		{	required :  "Ingresar rango maximo de evaluación con coordinandor de RRHH" };
+	messages[rangoMinimo2] = 		{	required :  "Ingresar rango minimo de evaluación con Gerente de área" };
+	messages[rangoMaximo2] = 		{	required :  "Ingresar rango maximo de evaluación con Gerente de área" };
+	
+	$(formPublicarOferta).validate({
+		ignore : [],
+		debug : true,
+		errorElement : "div",
+		errorClass : "text-error",
+		rules : rules,
+		messages : messages,
+		submitHandler : function(form) {
+			console.log(form);
+			return false;
+		}
+	});
+	
+	
+	$(btnGuardar).click(function() {
+		var contenedorAlerta = $(".contenedorAlerta");
+		console.log("listaFuncionMap:"+listaFuncionMap);
+		var listasCorrectas = true;
+		if( listaFuncionMap.length == 0 ){
+			mostrarAlerta(contenedorAlerta, "Lista de Evaluaciones", "Ingrese al menos una evaluacion psicológica y/o técnica", "alert-error", null);
+			listasCorrectas = false;
+		}	
+		console.log("listasCorrectas:"+listasCorrectas);
+		console.log("btnGuardar");
+		formvalid = false;
+		$(formPublicarOferta).valid();
+		if(listasCorrectas){
+			formvalid = $(formPublicarOferta).valid();
+			console.log(formvalid);
+		}		
+	});
+	
 	$(btnAgregar).click(function() {
+		
 		agregarEvaluacion();
 	});
 }
@@ -592,14 +719,10 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 			width : 305
 		}).render();
 
-		modalconfirmacion.addToolbar([ {
-			label : msgCancelar,
-			on : {
-				click : function() {
-					modalconfirmacion.hide();
-				}
-			}
-		}, {
+		modalconfirmacion.addToolbar([ 
+		                              
+		{
+		
 			label : msgAceptar,
 			on : {
 				click : function() {
@@ -608,7 +731,17 @@ AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-req
 					}
 				}
 			}
-		} ]);
+		} ,
+		{
+			label : msgCancelar,
+			on : {
+				click : function() {
+					modalconfirmacion.hide();
+				}
+			}
+		}
+		
+		]);
 	}
 	if (A.one('#' + inputFristnamespace + 'btnGuardar') != null) {
 		A.one('#' + inputFristnamespace + 'btnGuardar').on('click', function() {
