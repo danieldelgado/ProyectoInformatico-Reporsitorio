@@ -323,24 +323,24 @@ function inicializarFormularioPublicarOferta(){
 	var solicitudReclutamientoId = inputFristnamespace + "solicitudReclutamientoId";
 	
 	var cantidadAnnosRubro =  inputFristnamespace + "cantidadAnnosRubro";
-	onlyNumber(cantidadAnnosRubro);
+//	onlyNumber(cantidadAnnosRubro);
 	
 	var rangoMinimo1 =  inputFristnamespace + "rangoMinimo1";
-	onlyNumber(rangoMinimo1);
+//	onlyNumber(rangoMinimo1);
 	
 	var rangoMaximo1 =  inputFristnamespace + "rangoMaximo1";
-	onlyNumber(rangoMaximo1);
+//	onlyNumber(rangoMaximo1);
 	
 	var rangoMinimo2 =  inputFristnamespace + "rangoMinimo2";
-	onlyNumber(rangoMinimo2);
+//	onlyNumber(rangoMinimo2);
 	
 	var rangoMaximo2 =  inputFristnamespace + "rangoMaximo2";
-	onlyNumber(rangoMaximo2);
+//	onlyNumber(rangoMaximo2);
 
 	var rangoMinimo =  inputFristnamespace + "rangoMinimo";
-	onlyNumber(rangoMinimo);
+//	onlyNumber(rangoMinimo);
 	var rangoMaximo =  inputFristnamespace + "rangoMaximo";
-	onlyNumber(rangoMaximo);
+//	onlyNumber(rangoMaximo);
 	
 	var btnAgregar =  $("#" + inputFristnamespace + "btnAgregar");
 	
@@ -438,8 +438,22 @@ function inicializarFormularioPublicarOferta(){
 		console.log("listasCorrectas:"+listasCorrectas);
 		console.log("btnGuardar");
 		formvalid = false;
+		
+		var editor_descripcion = window[inputFristnamespace + "extractCodeFromEditor"]("");
+//		console.log(encodeURIComponent(editor_descripcion));
+		var valContentPass = false;
+		console.log("menos de 5000:"+editor_descripcion.length);
+		if(editor_descripcion.length<5000){
+			valContentPass = true;
+		}else{
+			mostrarAlerta(contenedorAlerta, "Contenido", "Se exidio la cantidad de caracteres en el contenido", "alert-error", null);
+			listasCorrectas = false;
+			modalconfirmacion.hide();		
+		}
+		
+		
 		$(formPublicarOferta).valid();
-		if(listasCorrectas){
+		if(listasCorrectas && valContentPass){
 			formvalid = $(formPublicarOferta).valid();
 			console.log(formvalid);
 		}		
@@ -538,9 +552,14 @@ function publicarOfertaLaboral(){
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
 	var editor_descripcion = window[inputFristnamespace + "extractCodeFromEditor"]("");
 //	console.log(encodeURIComponent(editor_descripcion));
-	
-	if(editor_descripcion.length<3000){
-		console.log("menos de 3000:"+editor_descripcion.length);
+	var valContentPass = false;
+	console.log("menos de 5000:"+editor_descripcion.length);
+	if(editor_descripcion.length<5000){
+		valContentPass = true;
+	}else{
+		mostrarAlerta(contenedorAlerta, "Contenido", "Se exidio la cantidad de caracteres en el contenido", "alert-error", null);
+		listasCorrectas = false;
+		modalconfirmacion.hide();		
 	}
 	
 	var dataSend = $(formPublicarOferta).serialize();
@@ -571,7 +590,7 @@ function publicarOfertaLaboral(){
 	}
 	dataSend = dataSend + "&" + inputFristnamespace + "evaluacionList=" + JSON.stringify(listaFuncionMap) + "";
 	
-	if(listasCorrectas){
+	if(listasCorrectas && valContentPass){
 		$.ajax({
 			type : "POST",
 			url : publicarOfertaUrl,

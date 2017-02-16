@@ -159,6 +159,7 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			var count = (filas * pagina - filas);
 
 			$.each(data.lista, function(index, value) {
+				console.log("-----------------------------------");
 				count++;
 				html += '<tr>';
 
@@ -178,10 +179,14 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				html += '	<div class="btn-group">';
 				var fechaHoy = Date.now();
 				var dateParts =  value.strfechaLimite.split('/');
+				console.log(value.estado);
 				console.log(dateParts);
 				var fechaLimite = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
 				console.log(fechaLimite);
 
+				console.log("fechaHoy:"+fechaHoy);
+				console.log("fechaLimite:"+fechaLimite);
+				console.log((fechaHoy < fechaLimite));
 				if (fechaHoy < fechaLimite) {	
 					
 					if (value.estado == 51 || value.estado == 52 || value.estado == 68 ) {

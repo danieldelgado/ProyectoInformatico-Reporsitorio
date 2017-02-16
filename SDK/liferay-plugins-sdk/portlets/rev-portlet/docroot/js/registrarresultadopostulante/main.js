@@ -177,7 +177,7 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 function inicializarFormularioRegsitroAvancePostulante() {
 	 init() ;
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
-	onlyNumberClass("solonumeros");
+//	onlyNumberClass("solonumeros");
 	var registrarResultado = $("#" + inputFristnamespace + "registrarResultado");
 	var resultado1Id = inputFristnamespace + "resultado1Id";
 	var resultado2Id = inputFristnamespace + "resultado2Id";

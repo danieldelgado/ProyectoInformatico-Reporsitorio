@@ -239,6 +239,10 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 			long diferenciasTiempo = 0;
 			long faspostulacionIdCumplida = 0;
 
+			List<FasePostulacionPuestoEvaluacionBean> listaFasePostulacionPuestoEvaluacionBean = new ArrayList<>();
+			
+			
+			
 			if (Validator.isNotNull(u.getExpandoBridge())) {
 				Boolean colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
 				if (Validator.isNotNull(colaborador)) {
@@ -270,7 +274,24 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					fp1.setTipoFase(fp.getTipoFase());
 					fp1.setEstado(fp.getEstado());
 					solicitudPostulacionBean.setFasePostulacionEntrevistaGerenteArea(fp1);
-				}
+				}	
+				List<FasePostulacionPuestoEvaluacion> l = 
+				FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+						fp.getFasePostulacionId(),
+						fp.getSolicitudRequerimientoId());
+				
+				FasePostulacionPuestoEvaluacionBean a = null;
+				Evaluacion e = null;
+				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : l) {
+					a = new FasePostulacionPuestoEvaluacionBean();
+					a.setSolicitudFuncionId(fasePostulacionPuestoEvaluacion.getSolicitudFuncionId());
+					a.setFasePostulacionId(fasePostulacionPuestoEvaluacion.getFasePostulacionId());					
+					e = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());					
+					a.setEvaluacionId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+					a.setTipoEvaluacionId(e.getTipoEvaluacion());
+					a.setResultado(fasePostulacionPuestoEvaluacion.getResultado());
+					listaFasePostulacionPuestoEvaluacionBean.add(a);
+				}				
 			}
 			fp = FasePostulacionLocalServiceUtil
 					.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(), Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR);
@@ -291,6 +312,23 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					fp1.setEstado(fp.getEstado());
 					solicitudPostulacionBean.setFasePostulacionEntrevistaRRHH(fp1);
 				}
+				List<FasePostulacionPuestoEvaluacion> l = 
+						FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+								fp.getFasePostulacionId(),
+								fp.getSolicitudRequerimientoId());
+						
+				FasePostulacionPuestoEvaluacionBean a = null;
+				Evaluacion e = null;
+				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : l) {
+					a = new FasePostulacionPuestoEvaluacionBean();
+					a.setSolicitudFuncionId(fasePostulacionPuestoEvaluacion.getSolicitudFuncionId());
+					a.setFasePostulacionId(fasePostulacionPuestoEvaluacion.getFasePostulacionId());					
+					e = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());					
+					a.setEvaluacionId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+					a.setTipoEvaluacionId(e.getTipoEvaluacion());
+					a.setResultado(fasePostulacionPuestoEvaluacion.getResultado());
+					listaFasePostulacionPuestoEvaluacionBean.add(a);
+				}		
 			}
 			fp = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(), Constantes.PARAMETRO_FASE_TECNICA);
 			if (Validator.isNotNull(fp)) {
@@ -310,6 +348,25 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					fp1.setEstado(fp.getEstado());
 					solicitudPostulacionBean.setFasePostulacionTecnico(fp1);
 				}
+				
+				List<FasePostulacionPuestoEvaluacion> l = 
+						FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+								fp.getFasePostulacionId(),
+								fp.getSolicitudRequerimientoId());
+						
+				FasePostulacionPuestoEvaluacionBean a = null;
+				Evaluacion e = null;
+				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : l) {
+					a = new FasePostulacionPuestoEvaluacionBean();
+					a.setSolicitudFuncionId(fasePostulacionPuestoEvaluacion.getSolicitudFuncionId());
+					a.setFasePostulacionId(fasePostulacionPuestoEvaluacion.getFasePostulacionId());					
+					e = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());					
+					a.setEvaluacionId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+					a.setTipoEvaluacionId(e.getTipoEvaluacion());
+					a.setResultado(fasePostulacionPuestoEvaluacion.getResultado());
+					listaFasePostulacionPuestoEvaluacionBean.add(a);
+				}			
+				
 			}
 			fase = FasePostulacionLocalServiceUtil.getFasePostuacionByTipo(sr.getSolicitudRequerimientoId(), postulacion.getUsuarioId(), Constantes.PARAMETRO_FASE_PSICOLOGICA);
 			if (Validator.isNotNull(fase)) {
@@ -327,6 +384,25 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					fp1.setEstado(fase.getEstado());
 					solicitudPostulacionBean.setFasePostulacionPsicologico(fp1);
 				}
+			
+				List<FasePostulacionPuestoEvaluacion> l = 
+						FasePostulacionPuestoEvaluacionLocalServiceUtil.getFasePostulacionPuestoEvaluacionByFasePostulacionBySolicitud(
+								fase.getFasePostulacionId(),
+								fase.getSolicitudRequerimientoId());
+						
+				FasePostulacionPuestoEvaluacionBean a = null;
+				Evaluacion e = null;
+				for (FasePostulacionPuestoEvaluacion fasePostulacionPuestoEvaluacion : l) {
+					a = new FasePostulacionPuestoEvaluacionBean();
+					a.setSolicitudFuncionId(fasePostulacionPuestoEvaluacion.getSolicitudFuncionId());
+					a.setFasePostulacionId(fasePostulacionPuestoEvaluacion.getFasePostulacionId());					
+					e = EvaluacionLocalServiceUtil.getEvaluacion(fasePostulacionPuestoEvaluacion.getEvaluacionId());					
+					a.setEvaluacionId(fasePostulacionPuestoEvaluacion.getEvaluacionId());
+					a.setTipoEvaluacionId(e.getTipoEvaluacion());
+					a.setResultado(fasePostulacionPuestoEvaluacion.getResultado());
+					listaFasePostulacionPuestoEvaluacionBean.add(a);
+				}	
+				
 			}
 			if (Validator.isNotNull(fase)) {
 				faspostulacionIdCumplida = fase.getTipoFase();
@@ -366,6 +442,9 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 				p.setEvaluacionBean(eb);
 				a.add(p);
 			}
+						
+			solicitudPostulacionBean.setListaFasePostulacionPuestoEvaluacionBean(listaFasePostulacionPuestoEvaluacionBean);
+			
 			Boolean colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
 			if (Validator.isNotNull(colaborador)) {
 				solicitudPostulacionBean.setTipoPostulante(colaborador ? 1 : 0);

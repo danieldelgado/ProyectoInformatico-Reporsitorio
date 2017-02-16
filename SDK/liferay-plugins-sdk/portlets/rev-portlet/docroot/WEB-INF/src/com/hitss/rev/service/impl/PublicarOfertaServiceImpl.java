@@ -17,6 +17,7 @@ import com.hitss.layer.model.impl.PuestoEvaluacionImpl;
 import com.hitss.layer.service.EvaluacionLocalServiceUtil;
 import com.hitss.layer.service.PuestoEvaluacionLocalServiceUtil;
 import com.hitss.layer.service.SolicitudRequerimientoLocalServiceUtil;
+import com.hitss.layer.service.persistence.PuestoEvaluacionPK;
 import com.hitss.rev.bean.EvaluacionBean;
 import com.hitss.rev.bean.PuestoEvaluacionBean;
 import com.hitss.rev.bean.RequisitoEtiquetaBean;
@@ -55,13 +56,25 @@ public class PublicarOfertaServiceImpl extends RevServiceImpl implements Publica
 				sr.setEstado(Constantes.PARAMETRO_PUBLICADO);
 				result.put("mensaje", PropiedadMensaje.getMessage(PortletProps.get("publicar.oferta.mensaje.publicar"), String.valueOf(sr.getSolicitudRequerimientoId())));
 				PuestoEvaluacion pe = null;
+				PuestoEvaluacionPK puestoEvaluacionPK;
 				for (PuestoEvaluacionBean p : lista) {
-					pe = new PuestoEvaluacionImpl();
+					puestoEvaluacionPK = new PuestoEvaluacionPK(solicitudRequerimientoId, p.getEvaluacionId());
+					try {
+						pe = PuestoEvaluacionLocalServiceUtil.getPuestoEvaluacion(puestoEvaluacionPK);
+						pe.setNew(false);
+					} catch (Exception e) {
+						pe = new PuestoEvaluacionImpl();	
+						pe.setNew(true);
+					}				
 					pe.setSolicitudFuncionId(solicitudRequerimientoId);
 					pe.setEvaluacionId(p.getEvaluacionId());
 					pe.setRangoSuperior(p.getRangoSuperior());
 					pe.setRangoInferior(p.getRangoInferior());
-					PuestoEvaluacionLocalServiceUtil.addPuestoEvaluacion(pe);					
+					if(pe.isNew()){
+						PuestoEvaluacionLocalServiceUtil.addPuestoEvaluacion(pe);						
+					}	else{
+						PuestoEvaluacionLocalServiceUtil.updatePuestoEvaluacion(pe);
+					}					
 				}
 				sr.setCantidadAnnosRubro(cantidadAnnosRubro);
 			} else {
