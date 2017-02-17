@@ -19,6 +19,7 @@ import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import com.hitss.rev.bean.FasePostulacionBean;
+import com.hitss.rev.bean.PostulacionBean;
 import com.hitss.rev.bean.SolicitudRequerimientoBean;
 import com.hitss.rev.bean.UsuarioBean;
 import com.hitss.rev.service.ProgramarEntrevistaService;
@@ -85,15 +86,16 @@ public class ProgramaEntrevistaController extends RevController {
 
 	@RenderMapping(params = "action=irprogramarEntrevista")
 	public String irprogramarEntrevista(RenderRequest request, RenderResponse response, Model model) {
-		// ThemeDisplay td = (ThemeDisplay)
-		// request.getAttribute(WebKeys.THEME_DISPLAY);
+		 ThemeDisplay td = (ThemeDisplay)
+		 request.getAttribute(WebKeys.THEME_DISPLAY);
 		// User user = td.getUser();
 		Long solicitudId = ParamUtil.getLong(request, "solicitudId");
 		_log.info("solicitudId:" + solicitudId);
 		Long userId = ParamUtil.getLong(request, "userId");
 		_log.info("userId:" + userId);
 		try {
-			SolicitudRequerimientoBean s = programaEntrevistaService.getSolicitudRequerimiento(solicitudId);
+			SolicitudRequerimientoBean s = programaEntrevistaService.getSolicitudRequerimiento(solicitudId);			
+			
 			FasePostulacionBean fasePsicologia = programaEntrevistaService.getFasePsicologia(solicitudId, userId);
 			FasePostulacionBean faseTecnica = programaEntrevistaService.getFaseTecnica(solicitudId, userId);
 			FasePostulacionBean faseEntreCoordRRHH = programaEntrevistaService.getFaseEntreCoodRRHH(solicitudId, userId);
@@ -108,6 +110,15 @@ public class ProgramaEntrevistaController extends RevController {
 			model.addAttribute("faseEntreGerenteArea", faseEntreGerenteArea);
 			_log.info("faseEntreGerenteArea:" + faseEntreGerenteArea);
 
+			UsuarioBean usuarioBean = null;
+			List<UsuarioBean> listaUsuarios = programaEntrevistaService.getListaPostulantes(td.getCompanyId(), td.getCompanyGroupId(), solicitudId);
+			for (UsuarioBean ub : listaUsuarios) {
+				if(ub.getUserId() == userId){
+					usuarioBean = ub;
+				}
+			}
+			model.addAttribute("usuarioBean", usuarioBean);
+			
 			User u = UserLocalServiceUtil.getUser(userId);
 			Boolean colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
 			model.addAttribute("userId", userId);

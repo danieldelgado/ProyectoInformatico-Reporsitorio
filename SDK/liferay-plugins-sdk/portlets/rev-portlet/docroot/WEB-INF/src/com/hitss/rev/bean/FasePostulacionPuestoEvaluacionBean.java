@@ -4,6 +4,7 @@ public class FasePostulacionPuestoEvaluacionBean {
 
 	private Long fasePostulacionId;
 	private Long solicitudFuncionId;
+	private Long tipoEvaluacionId;
 	private Long evaluacionId;
 	
 	private Double resultado;
@@ -41,6 +42,14 @@ public class FasePostulacionPuestoEvaluacionBean {
 
 	public void setResultado(Double resultado) {
 		this.resultado = resultado;
+	}
+
+	public Long getTipoEvaluacionId() {
+		return tipoEvaluacionId;
+	}
+
+	public void setTipoEvaluacionId(Long tipoEvaluacionId) {
+		this.tipoEvaluacionId = tipoEvaluacionId;
 	}
 	
 	

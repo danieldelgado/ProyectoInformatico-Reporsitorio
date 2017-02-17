@@ -81,7 +81,14 @@
 							</div>
 							<div class="span6">
 								<div class="input-prepend">
-									<input id="<portlet:namespace/>cantidadAnnosRubro" name="<portlet:namespace/>rangoMinimo1" class="span8" type="text">
+									<select id="<portlet:namespace/>cantidadAnnosRubro" name="<portlet:namespace/>cantidadAnnosRubro" class="">											
+												<option value="0">0</option>								
+												<option value="1">1</option>								
+												<option value="2">2</option>								
+												<option value="3">3</option>								
+												<option value="4">4</option>								
+												<option value="5">5</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -114,13 +121,37 @@
 										<label> Rango Mínimo: </label>
 									</div>
 									<div class="span2">
-										<input id="<portlet:namespace/>rangoMinimo1" name="<portlet:namespace/>rangoMinimo1" class="span8" type="text">
+										<select id="<portlet:namespace/>rangoMinimo1" name="<portlet:namespace/>rangoMinimo1" class="span8 ">											
+												<option value="0.0">0.0</option>								
+												<option value="0.1">0.1</option>								
+												<option value="0.2">0.2</option>								
+												<option value="0.3">0.3</option>								
+												<option value="0.4">0.4</option>								
+												<option value="0.5">0.5</option>								
+												<option value="0.6">0.6</option>								
+												<option value="0.7">0.7</option>							
+												<option value="0.8">0.8</option>							
+												<option value="0.9">0.9</option>							
+												<option value="1.0">1.0</option>
+										</select>
 									</div>
 									<div class="span2">
 										<label> Rango Máximo: </label>
 									</div>
 									<div class="span2">
-										<input id="<portlet:namespace/>rangoMaximo1" name="<portlet:namespace/>rangoMaximo1" class="span8" type="text">
+										<select id="<portlet:namespace/>rangoMaximo1" name="<portlet:namespace/>rangoMaximo1" class="span8 ">											
+												<option value="0.0">0.0</option>								
+												<option value="0.1">0.1</option>								
+												<option value="0.2">0.2</option>								
+												<option value="0.3">0.3</option>								
+												<option value="0.4">0.4</option>								
+												<option value="0.5">0.5</option>								
+												<option value="0.6">0.6</option>								
+												<option value="0.7">0.7</option>							
+												<option value="0.8">0.8</option>							
+												<option value="0.9">0.9</option>							
+												<option value="1.0">1.0</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -134,13 +165,37 @@
 										<label> Rango Mínimo: </label>
 									</div>
 									<div class="span2">
-										<input id="<portlet:namespace/>rangoMinimo2" name="<portlet:namespace/>rangoMinimo2" class="span8" type="text">
+										<select id="<portlet:namespace/>rangoMinimo2" name="<portlet:namespace/>rangoMinimo2" class="span8 ">											
+												<option value="0.0">0.0</option>								
+												<option value="0.1">0.1</option>								
+												<option value="0.2">0.2</option>								
+												<option value="0.3">0.3</option>								
+												<option value="0.4">0.4</option>								
+												<option value="0.5">0.5</option>								
+												<option value="0.6">0.6</option>								
+												<option value="0.7">0.7</option>							
+												<option value="0.8">0.8</option>							
+												<option value="0.9">0.9</option>							
+												<option value="1.0">1.0</option>
+										</select>
 									</div>
 									<div class="span2">
 										<label> Rango Máximo: </label>
 									</div>
 									<div class="span2">
-										<input id="<portlet:namespace/>rangoMaximo2" name="<portlet:namespace/>rangoMaximo2" class="span8" type="text">
+										<select id="<portlet:namespace/>rangoMaximo2" name="<portlet:namespace/>rangoMaximo2" class="span8 ">											
+												<option value="0.0">0.0</option>								
+												<option value="0.1">0.1</option>								
+												<option value="0.2">0.2</option>								
+												<option value="0.3">0.3</option>								
+												<option value="0.4">0.4</option>								
+												<option value="0.5">0.5</option>								
+												<option value="0.6">0.6</option>								
+												<option value="0.7">0.7</option>							
+												<option value="0.8">0.8</option>							
+												<option value="0.9">0.9</option>							
+												<option value="1.0">1.0</option>
+										</select>
 									</div>
 
 								</div>
@@ -164,13 +219,37 @@
 										<label> Rango Mínimo: </label>
 									</div>
 									<div class="span2">
-										<input id="<portlet:namespace/>rangoMinimo" name="<portlet:namespace/>rangoMinimo" class="span8" type="text">
+										<select id="<portlet:namespace/>rangoMinimo" name="<portlet:namespace/>rangoMinimo" class="span8 ">											
+												<option value="0.0">0.0</option>								
+												<option value="0.1">0.1</option>								
+												<option value="0.2">0.2</option>								
+												<option value="0.3">0.3</option>								
+												<option value="0.4">0.4</option>								
+												<option value="0.5">0.5</option>								
+												<option value="0.6">0.6</option>								
+												<option value="0.7">0.7</option>							
+												<option value="0.8">0.8</option>							
+												<option value="0.9">0.9</option>							
+												<option value="1.0">1.0</option>
+										</select>
 									</div>
 									<div class="span1">
 										<label> Rango Máximo: </label>
 									</div>
 									<div class="span2">
-										<input id="<portlet:namespace/>rangoMaximo" name="<portlet:namespace/>rangoMaximo" class="span8" type="text">
+										<select id="<portlet:namespace/>rangoMaximo" name="<portlet:namespace/>rangoMaximo" class="span8 ">											
+												<option value="0.0">0.0</option>								
+												<option value="0.1">0.1</option>								
+												<option value="0.2">0.2</option>								
+												<option value="0.3">0.3</option>								
+												<option value="0.4">0.4</option>								
+												<option value="0.5">0.5</option>								
+												<option value="0.6">0.6</option>								
+												<option value="0.7">0.7</option>							
+												<option value="0.8">0.8</option>							
+												<option value="0.9">0.9</option>							
+												<option value="1.0">1.0</option>
+										</select>
 									</div>
 									<div class="span1">
 										<div class="input-prepend">

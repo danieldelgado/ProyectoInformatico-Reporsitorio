@@ -42,7 +42,6 @@
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
-					
 					<c:if test="${ bcol }">	
 						<div class="span12">
 							<button id="<portlet:namespace/>btnIngEval" class="btn btn-primary offset3" type="button">
@@ -53,7 +52,7 @@
 					
 						 	
 					<br>
-						 	
+						${usuarioBean.faseInansistencia} 	
 					<br>
 						 	
 					<br>
@@ -68,16 +67,33 @@
 										name="<portlet:namespace/>fasepostulacionPicologicaId"
 										type="hidden" value="${fasePsicologia.fasepostulacionId}" />
 	
+	
+	
 									<div class="input-prepend">
-										<span class="add-on"><i class="icon-calendar"></i></span> <input
+										<span class="add-on"><i class="icon-calendar"></i></span> 
+										<input
 											class="span7" value="${fasePsicologia.strfechaFase}"
 											id="<portlet:namespace/>fechaEvaluacionPsicologica"
 											name="<portlet:namespace/>fechaEvaluacionPsicologica"
 											type="text" placeholder="DD/MM/YYYY"
-											onKeyPress="return false;" /> <input
+											onKeyPress="return false;"
+											
+
+												<c:if test="${usuarioBean.faseInansistencia != fasePsicologia.tipoFase && usuarioBean.faseInansistencia > 0 }">
+													disabled="disabled"
+												</c:if>
+											
+											/> 
+											
+											
+											<input
 											id="<portlet:namespace/>fechaEvaluacionPsicologicaVal"
 											name="<portlet:namespace/>fechaEvaluacionPsicologicaVal"
-											type="hidden" value="${fasePsicologia.strfechaFase}" />
+											type="hidden" value="${fasePsicologia.strfechaFase}"
+											
+											
+											
+											 />
 									</div>
 								</div>
 							</div>
@@ -98,7 +114,10 @@
 											class="span7" value="${faseTecnica.strfechaFase}"
 											id="<portlet:namespace/>fechaEvaluacionTecnica"
 											name="<portlet:namespace/>fechaEvaluacionTecnica" type="text"
-											placeholder="DD/MM/YYYY" onKeyPress="return false;" /> <input
+											placeholder="DD/MM/YYYY" onKeyPress="return false;" 
+												<c:if test="${usuarioBean.faseInansistencia != faseTecnica.tipoFase && usuarioBean.faseInansistencia > 0  }">
+											disabled="disabled"
+										</c:if> /> <input
 											id="<portlet:namespace/>fechaEvaluacionTecnicaVal"
 											name="<portlet:namespace/>fechaEvaluacionTecnicaVal"
 											type="hidden" value="${faseTecnica.strfechaFase}" />
@@ -127,7 +146,10 @@
 										id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH"
 										name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH"
 										type="text" placeholder="DD/MM/YYYY"
-										onKeyPress="return false;" /> <input
+										onKeyPress="return false;" 
+											<c:if test="${usuarioBean.faseInansistencia != faseEntreCoordRRHH.tipoFase && usuarioBean.faseInansistencia > 0 }">
+										disabled="disabled"
+									</c:if> /> <input
 										id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal"
 										name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal"
 										type="hidden" value="${faseEntreCoordRRHH.strfechaFase}" />
@@ -153,7 +175,10 @@
 										id="<portlet:namespace/>fechaEvaluacionEntreGerenteArea"
 										name="<portlet:namespace/>fechaEvaluacionEntreGerenteArea"
 										type="text" placeholder="DD/MM/YYYY"
-										onKeyPress="return false;" /> <input
+										onKeyPress="return false;" 
+												<c:if test="${usuarioBean.faseInansistencia != faseEntreGerenteArea.tipoFase && usuarioBean.faseInansistencia > 0  }">
+													disabled="disabled"
+												</c:if> /> <input
 										id="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal"
 										name="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal"
 										type="hidden" value="${faseEntreGerenteArea.strfechaFase}" />
