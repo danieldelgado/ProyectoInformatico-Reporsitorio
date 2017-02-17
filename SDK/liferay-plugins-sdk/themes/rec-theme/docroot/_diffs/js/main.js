@@ -45,21 +45,20 @@ $(document).ready(function() {
 		}
 		return false;
 	}, "* Enddate should be greater than Startdate");
-	
+
 	$.validator.addMethod("rango_no_menor_date", function(value, element, params) {
 		try {
-			var fechaIncial = stringToDate(value,"dd/MM/yyyy","/");	
+			var fechaIncial = stringToDate(value, "dd/MM/yyyy", "/");
 			var fechaFin = stringToDate($("#" + params.input).val());
-			
-			if(fechaIncial != "" && fechaFin != ""){
-				if( (fechaIncial < fechaFin) ){
+
+			if (fechaIncial != "" && fechaFin != "") {
+				if ((fechaIncial < fechaFin)) {
 					return true;
 				} else {
 					return false;
 				}
 			}
-			
-		
+
 		} catch (e) {
 			console.error("catch");
 			console.error(e);
@@ -68,17 +67,16 @@ $(document).ready(function() {
 		return false;
 	}, "* Enddate should be greater than Startdate");
 
-	
 	$.validator.addMethod("rango_fecha_limite", function(value, element) {
 		try {
 
 			var hoydate = new Date();
-			var limitedate = new Date();	
+			var limitedate = new Date();
 			limitedate = limitedate.setDate(limitedate.getDate() + 30);
-			value = stringToDate(value,"dd/MM/yyyy","/");			
-			if( (hoydate < value) && (value < limitedate) ){
+			value = stringToDate(value, "dd/MM/yyyy", "/");
+			if ((hoydate < value) && (value < limitedate)) {
 				return true;
-			}			
+			}
 		} catch (e) {
 			console.error("catch");
 			console.error(e);
@@ -87,15 +85,59 @@ $(document).ready(function() {
 		return false;
 	}, "* Enddate should be greater than Startdate");
 
+});
 
-}); 
+function onlyNumber(idComponent) {
 
-function validarFecharSimple(element, elementComparate){
-	try {		
-		var fechaIncial = stringToDate($("#" + element).val(),"dd/MM/yyyy","/");			
-		var fechaFin = stringToDate($("#" + elementComparate).val(),"dd/MM/yyyy","/");		
-		if((fechaIncial != "" && fechaFin != "") || (fechaIncial != "NaN" && fechaFin != "NaN")|| (fechaIncial != "Invalid Date" && fechaFin != "Invalid Date") ){
-			if( (fechaIncial < fechaFin) ){
+	$('#'+idComponent).keyup(function () { 
+	    this.value = this.value.replace(/[^0-9\.]/g,'');
+	});
+
+}
+
+
+
+function onlyNumber2(idComponent) {
+
+	$('#'+idComponent).keyup(function () { 
+	    this.value = this.value.replace(/[^0-9]/g,'');
+	});
+
+}
+
+
+function onlyNumberComponent(idComponent) {
+
+	$(idComponent).keyup(function () { 
+	    this.value = this.value.replace(/[^0-9\.]/g,'');
+	});
+
+}
+
+
+function onlyNumberComponent2(idComponent) {
+
+	$(idComponent).keyup(function () { 
+	    this.value = this.value.replace(/[^0-9]/g,'');
+	});
+
+}
+
+function onlyNumberClass(classComponent) {
+
+	$('.'+classComponent).keyup(function () { 
+	    this.value = this.value.replace(/[^0-9\.]/g,'');
+	});
+
+}
+
+
+function validarFecharSimple(element, elementComparate) {
+	try {
+		var fechaIncial = stringToDate($("#" + element).val(), "dd/MM/yyyy", "/");
+		var fechaFin = stringToDate($("#" + elementComparate).val(), "dd/MM/yyyy", "/");
+		if ((fechaIncial != "" && fechaFin != "") || (fechaIncial != "NaN" && fechaFin != "NaN") || (fechaIncial != "Invalid Date" && fechaFin != "Invalid Date")) {
+			if ((fechaIncial < fechaFin)) {
 				return true;
 			} else {
 				return false;
@@ -107,43 +149,57 @@ function validarFecharSimple(element, elementComparate){
 	return false;
 }
 
-function mostrarAlerta(contenedor, titulo, mensaje, tipoclase, callbackFunction) {//alert-block -  alert-success - alert-error - alert-info
-	if(contenedor!=null){
-		var html = '<div class="alert '+tipoclase+'">';
-		html+='<button type="button" class="calert close" data-dismiss="alert">&times;</button>';
-		html+='<h4>'+titulo+'</h4>';
-		html+=mensaje;
-		html+='</div>';	
-		
+function mostrarAlerta(contenedor, titulo, mensaje, tipoclase, callbackFunction) {// alert-block
+																					// -
+																					// alert-success
+																					// -
+																					// alert-error
+																					// -
+																					// alert-info
+	if (contenedor != null) {
+		var html = '<div class="alert ' + tipoclase + '">';
+		html += '<button type="button" class="calert close" data-dismiss="alert">&times;</button>';
+		html += '<h4>' + titulo + '</h4>';
+		html += mensaje;
+		html += '</div>';
+
 		$(contenedor).html(html);
-		
-		$(".calert").click( function(){			
+
+		$(".calert").click(function() {
 			$(contenedor).html("");
-		} );
-		
-		if(callbackFunction!=null){
+		});
+
+		if (callbackFunction != null) {
 			callbackFunction();
 		}
-	}	
+	}
 }
 
 var validation = {
-	    isEmailAddress:function(str) {
-	        var pattern =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	        return pattern.test(str);  // returns a boolean
-	    },
-	    isNotEmpty:function (str) {
-	        var pattern =/\S+/;
-	        return pattern.test(str);  // returns a boolean
-	    },
-	    isNumber:function(str) {
-	        var pattern = /^\d+$/;
-	        return pattern.test(str);  // returns a boolean
-	    },
-	    isSame:function(str1,str2){
-	        return str1 === str2;
-	    }
-	};   
+	isEmailAddress : function(str) {
+		console.log(str);
+		var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		return pattern.test(str); // returns a boolean
+	},
+	isNotEmpty : function(str) {
+		console.log(str);
+		var pattern = /\S+/;
+		return pattern.test(str); // returns a boolean
+	},
+	isNumber : function(str) {
+		console.log(str);
+		console.log("isNumber");
+		console.log(str);
+		var pattern = /^\d+$/;
+		console.log(pattern.test(str));
+		return pattern.test(str); // returns a boolean
+	},
+	isSame : function(str1, str2) {
+		console.log(str1);
+		console.log(str2);
+		return str1 === str2;
+	}
+};
 
 function stringToDate(_date, _format, _delimiter) {
 	var formatLowerCase = _format.toLowerCase();
