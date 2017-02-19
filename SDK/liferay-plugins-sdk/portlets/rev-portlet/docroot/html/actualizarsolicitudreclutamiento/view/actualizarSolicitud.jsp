@@ -62,6 +62,7 @@
 	<div class="container">
 		<div class="contenedorAlerta"></div>
 		<div class="contenedorAlerta2"></div>
+		<div class="contenedorAlerta3"></div>
 		<div class="offset1 span10">
 			<form id="<portlet:namespace/>actualizarSolicitud" name="<portlet:namespace/>actualizarSolicitud" class="formulario">
 				<input id="<portlet:namespace/>solicitudRequerimientoId" name="<portlet:namespace/>solicitudRequerimientoId" type="hidden"
@@ -388,6 +389,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+
 		inicializarFormularioRegistro();
 		listarRequisitos('${requisitoEtiquetaBeans}',true);
 		listarFuncions('${funcionEtiquetaBeans}',true);

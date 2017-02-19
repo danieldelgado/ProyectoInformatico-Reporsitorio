@@ -248,7 +248,7 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 function inicializarFormularioRegistro() {
 	init();
-	
+
 	var formActualizarSolicitud = $("#" + inputFristnamespace + "actualizarSolicitud");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var inputpuesto = inputFristnamespace + "puestoId";
@@ -374,35 +374,28 @@ function inicializarFormularioRegistro() {
 		rules : rules,
 		messages : messages,
 		submitHandler : function(form) {
-			var contenedorAlerta = $(".contenedorAlerta");
-			console.log("listarequisitosMap:"+listarequisitosMap);
-			console.log("listaFuncionMap:"+listaFuncionMap);
-			if( listarequisitosMap.length == 0 ){
-				mostrarAlerta(contenedorAlerta, "Requisito", "Ingrese al menos un requisito", "alert-error", null);
-				listasCorrectas = false;
-			}			
-			var contenedorAlerta2 = $(".contenedorAlerta2");
-			if( listaFuncionMap.length == 0 ){
-				mostrarAlerta(contenedorAlerta2, "Función", "Ingrese al menos una función", "alert-error", null);
-				listasCorrectas = false;
-			}
-			return false;
+			
 		}
 	});
 
 	$(btnGuardar).click(function() {
 		var contenedorAlerta = $(".contenedorAlerta");
-		console.log("listarequisitosMap:"+listarequisitosMap);
-		console.log("listaFuncionMap:"+listaFuncionMap);
+		
 		listasCorrectas = true;
 		if( listarequisitosMap.length == 0 ){
 			mostrarAlerta(contenedorAlerta, "Requisito", "Ingrese al menos un requisito", "alert-error", null);
 			listasCorrectas = false;
+		} else {
+			$(".contenedorAlerta").empty();
+			listasCorrectas = true;
 		}			
 		var contenedorAlerta2 = $(".contenedorAlerta2");
 		if( listaFuncionMap.length == 0 ){
 			mostrarAlerta(contenedorAlerta2, "Función", "Ingrese al menos una función", "alert-error", null);
 			listasCorrectas = false;
+		} else {
+			$(".contenedorAlerta2").empty();
+			listasCorrectas = true;
 		}
 		if(listasCorrectas){
 			formvalid = $(formActualizarSolicitud).valid();
@@ -439,12 +432,51 @@ function agregarRequisitos() {
 	var exigile = $("#" + inputFristnamespace + "exigile").prop("checked");
 	var tipoRequisito = $("#" + inputFristnamespace + "tipoRequisito option:selected").val();	
 	var tipoRequisitotext = $("#" + inputFristnamespace + "tipoRequisito option:selected").text();
+	
+	
+	
+	var contenedorAlerta = $(".contenedorAlerta");
+	if( requisito == '' ){
+		mostrarAlerta(contenedorAlerta, "Nombre de requisito", "Ingrese el nombre del requisito", "alert-error", null);
+		listasCorrectas = false;
+	} else {
+		$(".contenedorAlerta").empty();
+		listasCorrectas = true;
+	}
+	
+	var contenedorAlerta2 = $(".contenedorAlerta2");
+	if( annos == '' ){
+		mostrarAlerta(contenedorAlerta2, "Años", "Seleccione el número de años", "alert-error", null);
+		listasCorrectas = false;
+	} else {
+		$(".contenedorAlerta2").empty();
+		listasCorrectas = true;
+	}
+	
+	var contenedorAlerta3 = $(".contenedorAlerta3");
+	if( tipoRequisito == '' ){
+		mostrarAlerta(contenedorAlerta3, "Tipo de requisito", "Seleccione tipo de requisito", "alert-error", null);
+		listasCorrectas = false;
+	} else {
+		$(".contenedorAlerta3").empty();
+		listasCorrectas = true;
+	}
+	
 	addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext,true);
 }
 
 function agregarFuncion() {
 	var funcion = $("#" + inputFristnamespace + "funcion").val();
 	var exigilefuncion = $("#" + inputFristnamespace + "exigilefuncion").prop("checked");
+	
+	var contenedorAlerta = $(".contenedorAlerta");
+	if( funcion == '' ){
+		mostrarAlerta(contenedorAlerta, "Función", "Ingrese el nombre de la función ", "alert-error", null);
+		listasCorrectas = false;
+	} else {
+		$(".contenedorAlerta").empty();
+		listasCorrectas = true;
+	}
 	addFuncionFila(funcion, exigilefuncion,true);
 }
 
@@ -468,13 +500,16 @@ function listarRequisitos(requisitoEtiquetaBeans,opciones) {
 
 function addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext,opciones) {
 	console.log("addRequisitoFila");
+
 	var exigileValue = exigile;
 	if (exigile == true) {
 		exigile = "Si";
 	} else {
 		exigile = "No";
 	}
-
+	
+	
+	
 	if( tipoRequisito !="" ){
 		
 
@@ -650,6 +685,7 @@ function removerFuncionItem(id, tr) {
 
 
 function registrarSolicitud() {
+
 	init();
 	var listasCorrectas = true;
 	var contenedorAlerta = $(".contenedorAlerta");
@@ -661,14 +697,15 @@ function registrarSolicitud() {
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
 
-//	console.log("registrarSolicitud");
-//	console.log(listarequisitosMap);
-//	console.log(listarequisitosMap.length);
-//	console.log($.map(listarequisitosMap, function() { return 1; }).length);
-//	console.log($.map(listaFuncionMap, function() { return 1; }).length);
-	
+	//console.log("registrarSolicitud");
+	//console.log(listarequisitosMap);
+	//console.log(listarequisitosMap.length);
+	//console.log($.map(listarequisitosMap, function() { return 1; }).length);
+	//console.log($.map(listaFuncionMap, function() { return 1; }).length);
+	//console.log(" listarequisitosMap " + listarequisitosMap.length);
 	
 	if( listarequisitosMap.length == 0 ){
+	
 		mostrarAlerta(contenedorAlerta, "Requisito", "Ingrese al menos un requisito", "alert-error", null);
 		listasCorrectas = false;
 		modalconfirmacion.hide();
