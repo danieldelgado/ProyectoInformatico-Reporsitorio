@@ -434,9 +434,31 @@ function inicializarFormularioPublicarOferta(){
 		if( listaFuncionMap.length == 0 ){
 			mostrarAlerta(contenedorAlerta, "Lista de Evaluaciones", "Ingrese al menos una evaluacion psicológica y/o técnica", "alert-error", null);
 			listasCorrectas = false;
-		}	
+		} else {
+			$(".contenedorAlerta").empty();
+			listasCorrectas = true;
+		}
 		console.log("listasCorrectas:"+listasCorrectas);
 		console.log("btnGuardar");
+		
+		var contenedorAlerta2 = $(".contenedorAlerta2");
+		if( rangoMinimo1 >= rangoMaximo1 ){
+			mostrarAlerta(contenedorAlerta2, "Rango de entrevista con  coordinador RRHH", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
+			listasCorrectas = false;
+		} else {
+			$(".contenedorAlerta2").empty();
+			listasCorrectas = true;
+		}
+		
+		var contenedorAlerta3 = $(".contenedorAlerta3");
+		if( rangoMinimo2 >= rangoMaximo2 ){
+			mostrarAlerta(contenedorAlerta3, "Rango de entrevista con gerente de área", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
+			listasCorrectas = false;
+		} else {
+			$(".contenedorAlerta3").empty();
+			listasCorrectas = true;
+		}
+		
 		formvalid = false;
 		
 		var editor_descripcion = window[inputFristnamespace + "extractCodeFromEditor"]("");
@@ -446,7 +468,7 @@ function inicializarFormularioPublicarOferta(){
 		if(editor_descripcion.length<5000){
 			valContentPass = true;
 		}else{
-			mostrarAlerta(contenedorAlerta, "Contenido", "Se exidio la cantidad de caracteres en el contenido", "alert-error", null);
+			mostrarAlerta(contenedorAlerta, "Contenido", "Se excedió la cantidad de caracteres en el contenido", "alert-error", null);
 			listasCorrectas = false;
 			modalconfirmacion.hide();		
 		}
@@ -472,7 +494,17 @@ function agregarEvaluacion(){
 	console.log("evaluacionText:"+evaluacionText);
 	var rangoMinimo = $("#" + inputFristnamespace + "rangoMinimo").val();
 	var rangoMaximo = $("#" + inputFristnamespace + "rangoMaximo").val();
-	addEvaluacionFila(evaluacion, evaluacionText , rangoMinimo,rangoMaximo);	
+	
+	var contenedorAlerta = $(".contenedorAlerta");
+	if( evaluacion == '' ){
+		mostrarAlerta(contenedorAlerta, "Evaluación", "Ingrese la evaluación", "alert-error", null);
+		listasCorrectas = false;
+	} else {
+		$(".contenedorAlerta").empty();
+		listasCorrectas = true;
+	}
+	
+	addEvaluacionFila(evaluacion, evaluacionText , rangoMinimo, rangoMaximo);	
 }
 
 function addEvaluacionFila(evaluacionId , evaluacionText , rangoInferior,rangoSuperior) {
@@ -485,29 +517,43 @@ function addEvaluacionFila(evaluacionId , evaluacionText , rangoInferior,rangoSu
 			funcionMap['evaluacionId'] = evaluacionId;
 			funcionMap['rangoSuperior'] = rangoSuperior;
 			funcionMap['rangoInferior'] = rangoInferior;
-			listaFuncionMap.push(funcionMap);
-
-			var listaFuncions = $("#" + inputFristnamespace + "listaEvaluaciones");
-			console.log("listaEvaluaciones");
-			console.log(listaFuncions);
-			var html = "";
-			html += "<tr>" + "<td>" + evaluacionText + "</td>" + "<td>" + rangoInferior + "</td>"+ "<td>" + rangoSuperior + "</td>" ;			
 			
-				html += "<td>" + "<a class='btn btn-primary eliminarFuncion' data='"
-				+ evaluacionId + "' href='javascript:void(0);'>Eliminar</a>"
-				+ "</td>";
+			var contenedorAlerta = $(".contenedorAlerta");
+			if( rangoInferior >= rangoSuperior ){
+				mostrarAlerta(contenedorAlerta, "Rangos", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
+				listasCorrectas = false;
+			} else {
+				$(".contenedorAlerta").empty();
+				listasCorrectas = true;
+			}
 			
-			html += "</tr>";
+			console.log("listasCorrectas " + listasCorrectas);
+			if(listasCorrectas){
+				listaFuncionMap.push(funcionMap);
 
-			console.log(html);
-			$(listaFuncions).append(html);
-			$(".eliminarFuncion").unbind("click");
-			$(".eliminarFuncion").click(function() {
-				var id = $(this).attr("data");
-				console.log(id);
-				var tr = $(this).parent().parent();
-				removerFuncionItem(id, tr);
-			});
+				var listaFuncions = $("#" + inputFristnamespace + "listaEvaluaciones");
+				console.log("listaEvaluaciones");
+				console.log(listaFuncions);
+				var html = "";
+				html += "<tr>" + "<td>" + evaluacionText + "</td>" + "<td>" + rangoInferior + "</td>"+ "<td>" + rangoSuperior + "</td>" ;			
+				
+					html += "<td>" + "<a class='btn btn-primary eliminarFuncion' data='"
+					+ evaluacionId + "' href='javascript:void(0);'>Eliminar</a>"
+					+ "</td>";
+				
+				html += "</tr>";
+
+				console.log(html);
+				$(listaFuncions).append(html);
+				$(".eliminarFuncion").unbind("click");
+				$(".eliminarFuncion").click(function() {
+					var id = $(this).attr("data");
+					console.log(id);
+					var tr = $(this).parent().parent();
+					removerFuncionItem(id, tr);
+				});
+			}
+			
 		}
 	}
 }
@@ -557,7 +603,7 @@ function publicarOfertaLaboral(){
 	if(editor_descripcion.length<5000){
 		valContentPass = true;
 	}else{
-		mostrarAlerta(contenedorAlerta, "Contenido", "Se exidio la cantidad de caracteres en el contenido", "alert-error", null);
+		mostrarAlerta(contenedorAlerta, "Contenido", "Se excedió la cantidad de caracteres en el contenido", "alert-error", null);
 		listasCorrectas = false;
 		modalconfirmacion.hide();		
 	}

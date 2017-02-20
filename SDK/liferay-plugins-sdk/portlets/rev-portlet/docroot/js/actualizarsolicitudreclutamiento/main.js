@@ -248,7 +248,7 @@ function barraPaginacion(pagina, filas, buscarSolicitud, listaSolicitudes, pagin
 
 function inicializarFormularioRegistro() {
 	init();
-
+	console.log("inicializarFormularioRegistro");
 	var formActualizarSolicitud = $("#" + inputFristnamespace + "actualizarSolicitud");
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
 	var inputpuesto = inputFristnamespace + "puestoId";
@@ -380,7 +380,8 @@ function inicializarFormularioRegistro() {
 
 	$(btnGuardar).click(function() {
 		var contenedorAlerta = $(".contenedorAlerta");
-		
+		console.log("listarequisitosMap:"+listarequisitosMap);
+		console.log("listaFuncionMap:"+listaFuncionMap);
 		listasCorrectas = true;
 		if( listarequisitosMap.length == 0 ){
 			mostrarAlerta(contenedorAlerta, "Requisito", "Ingrese al menos un requisito", "alert-error", null);
@@ -434,6 +435,9 @@ function agregarRequisitos() {
 	var tipoRequisitotext = $("#" + inputFristnamespace + "tipoRequisito option:selected").text();
 	
 	
+	console.log("requisito " + requisito);
+	console.log("AÑOS =" + annos);
+	console.log("Tipo de requisito =" + tipoRequisito);
 	
 	var contenedorAlerta = $(".contenedorAlerta");
 	if( requisito == '' ){
@@ -685,10 +689,11 @@ function removerFuncionItem(id, tr) {
 
 
 function registrarSolicitud() {
-
+	console.log("registrarSolicitud");
 	init();
 	var listasCorrectas = true;
 	var contenedorAlerta = $(".contenedorAlerta");
+	console.log(contenedorAlerta);
 	var formActualizarSolicitud = $("#" + inputFristnamespace + "actualizarSolicitud");
 	var actualizarUrl = $("#" + inputFristnamespace + "actualizarUrl").val();
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
@@ -697,12 +702,12 @@ function registrarSolicitud() {
 	var popupMensaje = $("#" + inputFristnamespace + "popupMensaje").val();
 	var msgError = $("#" + inputFristnamespace + "msgError").val();
 
-	//console.log("registrarSolicitud");
-	//console.log(listarequisitosMap);
-	//console.log(listarequisitosMap.length);
-	//console.log($.map(listarequisitosMap, function() { return 1; }).length);
-	//console.log($.map(listaFuncionMap, function() { return 1; }).length);
-	//console.log(" listarequisitosMap " + listarequisitosMap.length);
+	console.log("registrarSolicitud");
+	console.log(listarequisitosMap);
+	console.log(listarequisitosMap.length);
+	console.log($.map(listarequisitosMap, function() { return 1; }).length);
+	console.log($.map(listaFuncionMap, function() { return 1; }).length);
+	console.log(" listarequisitosMap " + listarequisitosMap.length);
 	
 	if( listarequisitosMap.length == 0 ){
 	

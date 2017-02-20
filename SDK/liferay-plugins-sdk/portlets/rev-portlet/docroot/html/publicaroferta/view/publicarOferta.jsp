@@ -46,6 +46,8 @@
 				</div>
 			</c:if>
 		</div>
+		<div class="contenedorAlerta2"></div>
+		<div class="contenedorAlerta3"></div>
 		<div class="offset1 span10">
 			<form id="<portlet:namespace/>publicaroferta" name="<portlet:namespace/>publicaroferta" class="formulario">
 				<input id="<portlet:namespace/>solicitudReclutamientoId" name="<portlet:namespace/>solicitudReclutamientoId" type="hidden" value="${solicitudReclutamiento.solicitudRequerimientoId}" />
