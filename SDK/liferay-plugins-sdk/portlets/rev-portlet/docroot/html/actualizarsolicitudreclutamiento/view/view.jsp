@@ -86,7 +86,7 @@
 								<label>Fecha emitida inicio:</label>
 							</div>
 							<div class="span6">
-								<input id="<portlet:namespace/>fechaRegistroInicio" name="<portlet:namespace/>fechaRegistroInicio" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;">
+								<input id="<portlet:namespace/>fechaRegistroInicio" name="<portlet:namespace/>fechaRegistroInicio" type="text" placeholder="DD/MM/YYYY" >
 								<aui:input id="fechaRegistroInicioVal" name="fechaRegistroInicioVal" type="hidden" />
 							</div>
 						</div>
@@ -95,7 +95,7 @@
 								<label>Fecha emitida fin:</label>
 							</div>
 							<div class="span6">
-								<input id="<portlet:namespace/>fechaRegistroFin" name="<portlet:namespace/>fechaRegistroFin" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;">
+								<input id="<portlet:namespace/>fechaRegistroFin" name="<portlet:namespace/>fechaRegistroFin" type="text" placeholder="DD/MM/YYYY" >
 								<aui:input id="fechaRegistroFinVal" name="fechaRegistroFinVal" type="hidden" />
 							</div>
 						</div>
