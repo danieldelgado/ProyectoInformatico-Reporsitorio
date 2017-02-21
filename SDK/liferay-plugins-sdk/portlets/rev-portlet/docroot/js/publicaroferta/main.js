@@ -428,8 +428,19 @@ function inicializarFormularioPublicarOferta(){
 	
 	
 	$(btnGuardar).click(function() {
+		
+		var rangoMinimo1 =  inputFristnamespace + "rangoMinimo1";
+		var rangoMaximo1 =  inputFristnamespace + "rangoMaximo1";
+		var rangoMinimo2 =  inputFristnamespace + "rangoMinimo2";
+		var rangoMaximo2 =  inputFristnamespace + "rangoMaximo2";
+		
+		var ranMin1 = $('#' + rangoMinimo1).val();
+		var ranMax1 = $('#' + rangoMaximo1).val();
+		var ranMin2 = $('#' + rangoMinimo2).val();
+		var ranMax2 = $('#' + rangoMaximo2).val();
+		
 		var contenedorAlerta = $(".contenedorAlerta");
-		console.log("listaFuncionMap:"+listaFuncionMap);
+
 		var listasCorrectas = true;
 		if( listaFuncionMap.length == 0 ){
 			mostrarAlerta(contenedorAlerta, "Lista de Evaluaciones", "Ingrese al menos una evaluacion psicológica y/o técnica", "alert-error", null);
@@ -438,12 +449,10 @@ function inicializarFormularioPublicarOferta(){
 			$(".contenedorAlerta").empty();
 			listasCorrectas = true;
 		}
-		console.log("listasCorrectas:"+listasCorrectas);
-		console.log("btnGuardar");
 		
 		var contenedorAlerta2 = $(".contenedorAlerta2");
-		if( rangoMinimo1 >= rangoMaximo1 ){
-			mostrarAlerta(contenedorAlerta2, "Rango de entrevista con  coordinador RRHH", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
+		if( ranMin1 >= ranMax1 ){
+			mostrarAlerta(contenedorAlerta2, "Rango de entrevista con coordinador RRHH", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
 			listasCorrectas = false;
 		} else {
 			$(".contenedorAlerta2").empty();
@@ -451,7 +460,7 @@ function inicializarFormularioPublicarOferta(){
 		}
 		
 		var contenedorAlerta3 = $(".contenedorAlerta3");
-		if( rangoMinimo2 >= rangoMaximo2 ){
+		if( ranMin2 >= ranMax2 ){
 			mostrarAlerta(contenedorAlerta3, "Rango de entrevista con gerente de área", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
 			listasCorrectas = false;
 		} else {
