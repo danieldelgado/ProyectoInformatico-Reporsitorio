@@ -428,7 +428,7 @@ function inicializarFormularioPublicarOferta(){
 	
 	
 	$(btnGuardar).click(function() {
-		
+		$(formPublicarOferta).valid();
 		var rangoMinimo1 =  inputFristnamespace + "rangoMinimo1";
 		var rangoMaximo1 =  inputFristnamespace + "rangoMaximo1";
 		var rangoMinimo2 =  inputFristnamespace + "rangoMinimo2";
@@ -440,7 +440,6 @@ function inicializarFormularioPublicarOferta(){
 		var ranMax2 = $('#' + rangoMaximo2).val();
 		
 		var contenedorAlerta = $(".contenedorAlerta");
-
 		var listasCorrectas = true;
 		if( listaFuncionMap.length == 0 ){
 			mostrarAlerta(contenedorAlerta, "Lista de Evaluaciones", "Ingrese al menos una evaluacion psicológica y/o técnica", "alert-error", null);
@@ -449,23 +448,25 @@ function inicializarFormularioPublicarOferta(){
 			$(".contenedorAlerta").empty();
 			listasCorrectas = true;
 		}
-		
+
 		var contenedorAlerta2 = $(".contenedorAlerta2");
+		var listasCorrectas2 = true;
 		if( ranMin1 >= ranMax1 ){
 			mostrarAlerta(contenedorAlerta2, "Rango de entrevista con coordinador RRHH", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
-			listasCorrectas = false;
+			listasCorrectas2 = false;
 		} else {
 			$(".contenedorAlerta2").empty();
-			listasCorrectas = true;
+			listasCorrectas2 = true;
 		}
 		
 		var contenedorAlerta3 = $(".contenedorAlerta3");
+		var listasCorrectas3 = true;
 		if( ranMin2 >= ranMax2 ){
 			mostrarAlerta(contenedorAlerta3, "Rango de entrevista con gerente de área", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
-			listasCorrectas = false;
+			contenedorAlerta3 = false;
 		} else {
 			$(".contenedorAlerta3").empty();
-			listasCorrectas = true;
+			contenedorAlerta3 = true;
 		}
 		
 		formvalid = false;
@@ -483,8 +484,8 @@ function inicializarFormularioPublicarOferta(){
 		}
 		
 		
-		$(formPublicarOferta).valid();
-		if(listasCorrectas && valContentPass){
+		
+		if(listasCorrectas && listasCorrectas2 && listasCorrectas3 && valContentPass){
 			formvalid = $(formPublicarOferta).valid();
 			console.log(formvalid);
 		}		
