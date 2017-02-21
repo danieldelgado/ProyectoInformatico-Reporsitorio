@@ -110,7 +110,7 @@
 
 					<div class="row">
 						<fieldset>
-							<legend> Lista de Evaluaciones </legend>
+							<legend> Entrevistas </legend>
 						</fieldset>
 						<div class="container-fluid">
 							<div>
@@ -202,6 +202,12 @@
 
 								</div>
 							</div>
+					</div>
+					<div class="row">
+						<fieldset>
+							<legend> Lista de Evaluaciones </legend>
+						</fieldset>
+						<div class="container-fluid">
 							<div>
 								<div class="span12">
 									<div class="span1">
@@ -277,6 +283,7 @@
 									</table>
 								</div>
 
+							</div>
 							</div>
 						</div>
 					</div>

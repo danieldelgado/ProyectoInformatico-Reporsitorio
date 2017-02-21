@@ -260,11 +260,14 @@ function inicializarFormularioRegistro() {
 	var inputtipoNegocio = inputFristnamespace + "tipoNegocio";
 	var inputcliente = inputFristnamespace + "cliente";
 	var inputproyecto = inputFristnamespace + "proyecto";
-	// var inputespecialidad = inputFristnamespace + "especialidad";
+	 var inputespecialidad = inputFristnamespace + "especialidad";
 
 	var btnAgregar = $("#" + inputFristnamespace + "btnAgregar");
 	var btnAgregarFuncion = $("#" + inputFristnamespace + "btnAgregarFuncion");
 
+	limiteText2(inputFristnamespace + "requisito",100);
+	limiteText2(inputFristnamespace + "funcion",100);
+	
 	$(btnAgregar).click(function() {
 		agregarRequisitos();
 	});
@@ -273,6 +276,9 @@ function inicializarFormularioRegistro() {
 	});
 
 	onlyNumber(inputcantidadRecursos);
+	limiteText2(inputcantidadRecursos,4);
+	limiteText2(inputproyecto,100);
+	limiteText2(inputespecialidad,100);
 	
 	var rules = {};
 	rules[inputpuesto] = {
@@ -436,52 +442,62 @@ function agregarRequisitos() {
 	
 	
 	console.log("requisito " + requisito);
-	console.log("A�OS =" + annos);
+	console.log("Annos =" + annos);
 	console.log("Tipo de requisito =" + tipoRequisito);
-	
+
+	var valRequisito = true;
 	var contenedorAlerta = $(".contenedorAlerta");
-	if( requisito == '' ){
+	if( requisito == '' && requisito.length() < 100  ){
 		mostrarAlerta(contenedorAlerta, "Nombre de requisito", "Ingrese el nombre del requisito", "alert-error", null);
-		listasCorrectas = false;
+		valRequisito = false;
 	} else {
 		$(".contenedorAlerta").empty();
-		listasCorrectas = true;
+		valRequisito = true;
 	}
-	
+
+	var valAnnos = true;
 	var contenedorAlerta2 = $(".contenedorAlerta2");
-	if( annos == '' ){
-		mostrarAlerta(contenedorAlerta2, "Años", "Seleccione el número de años", "alert-error", null);
-		listasCorrectas = false;
+	if( annos == '' && tipoRequisito == 66){
+		mostrarAlerta(contenedorAlerta2, "Años", "Seleccione el número de años para el requisito de tipo conocimiento", "alert-error", null);
+		valAnnos = false;
 	} else {
 		$(".contenedorAlerta2").empty();
-		listasCorrectas = true;
+		valAnnos = true;
 	}
-	
+
+	var valTipoRequisto = true;
 	var contenedorAlerta3 = $(".contenedorAlerta3");
 	if( tipoRequisito == '' ){
 		mostrarAlerta(contenedorAlerta3, "Tipo de requisito", "Seleccione tipo de requisito", "alert-error", null);
-		listasCorrectas = false;
+		valTipoRequisto = false;
 	} else {
 		$(".contenedorAlerta3").empty();
-		listasCorrectas = true;
+		valTipoRequisto = true;
 	}
 	
-	addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext,true);
+	if(valRequisito &&  valAnnos && valTipoRequisto){
+		addRequisitoFila(requisito, annos, annosText, exigile, tipoRequisito, tipoRequisitotext,true);
+	}
+	
 }
 
 function agregarFuncion() {
 	var funcion = $("#" + inputFristnamespace + "funcion").val();
 	var exigilefuncion = $("#" + inputFristnamespace + "exigilefuncion").prop("checked");
-	
+
+	var valFuncion = true;
 	var contenedorAlerta = $(".contenedorAlerta");
-	if( funcion == '' ){
+	if( funcion == '' && valFuncion.length() < 100){
 		mostrarAlerta(contenedorAlerta, "Función", "Ingrese el nombre de la función ", "alert-error", null);
-		listasCorrectas = false;
+		valFuncion = false;
 	} else {
 		$(".contenedorAlerta").empty();
-		listasCorrectas = true;
+		valFuncion = true;
 	}
-	addFuncionFila(funcion, exigilefuncion,true);
+	if( valFuncion ){
+		addFuncionFila(funcion, exigilefuncion,true);
+	}
+	
 }
 
 function listarRequisitos(requisitoEtiquetaBeans,opciones) {

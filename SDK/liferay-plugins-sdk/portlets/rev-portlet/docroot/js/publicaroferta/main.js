@@ -348,8 +348,8 @@ function inicializarFormularioPublicarOferta(){
 	var rules = {};
 	rules[cantidadAnnosRubro] = {
 			required : function() {
-				console.log($('#' + cantidadAnnosRubro).val());
-				console.log($('#' + cantidadAnnosRubro).val() > -1);
+//				console.log($('#' + cantidadAnnosRubro).val());
+//				console.log($('#' + cantidadAnnosRubro).val() > -1);
 				if (!$('#' + cantidadAnnosRubro).val() > -1) {
 					console.log("pasa val");
 					return true;
@@ -360,8 +360,8 @@ function inicializarFormularioPublicarOferta(){
 		};
 	rules[rangoMinimo1] = {
 			required : function() {
-				console.log($('#' + rangoMinimo1).val());
-				console.log($('#' + rangoMinimo1).val() <= 1 && $('#' + rangoMinimo1).val() >=0);
+//				console.log($('#' + rangoMinimo1).val());
+//				console.log($('#' + rangoMinimo1).val() <= 1 && $('#' + rangoMinimo1).val() >=0);
 				if (!$('#' + rangoMinimo1).val() <= 1 && $('#' + rangoMinimo1).val() >=0) {
 					return true;
 				} else {
@@ -371,8 +371,8 @@ function inicializarFormularioPublicarOferta(){
 		};
 	rules[rangoMaximo1] = {
 			required : function() {
-				console.log($('#' + rangoMaximo1).val());
-				console.log($('#' + rangoMaximo1).val() <= 1 && $('#' + rangoMaximo1).val() >=0);
+//				console.log($('#' + rangoMaximo1).val());
+//				console.log($('#' + rangoMaximo1).val() <= 1 && $('#' + rangoMaximo1).val() >=0);
 				if (!$('#' + rangoMaximo1).val() <= 1 && $('#' + rangoMaximo1).val() >=0) {
 					return true;
 				} else {
@@ -382,8 +382,8 @@ function inicializarFormularioPublicarOferta(){
 		};
 	rules[rangoMinimo2] = {
 			required : function() {
-				console.log($('#' + rangoMinimo2).val());
-				console.log($('#' + rangoMinimo2).val() <= 1 && $('#' + rangoMinimo2).val() >=0);
+//				console.log($('#' + rangoMinimo2).val());
+//				console.log($('#' + rangoMinimo2).val() <= 1 && $('#' + rangoMinimo2).val() >=0);
 				if (!$('#' + rangoMinimo2).val() <= 1 && $('#' + rangoMinimo2).val() >=0) {
 					return true;
 				} else {
@@ -393,8 +393,8 @@ function inicializarFormularioPublicarOferta(){
 		};
 	rules[rangoMaximo2] = {
 			required : function() {
-				console.log($('#' + rangoMaximo2).val());
-				console.log($('#' + rangoMaximo2).val() <= 1 && $('#' + rangoMaximo2).val() >=0);
+//				console.log($('#' + rangoMaximo2).val());
+//				console.log($('#' + rangoMaximo2).val() <= 1 && $('#' + rangoMaximo2).val() >=0);
 				if (!$('#' + rangoMaximo2).val() <= 1 && $('#' + rangoMaximo2).val() >=0) {
 					console.log("rangoMaximo2 return true");
 					return true;
@@ -428,7 +428,9 @@ function inicializarFormularioPublicarOferta(){
 	
 	
 	$(btnGuardar).click(function() {
+		
 		$(formPublicarOferta).valid();
+		
 		var rangoMinimo1 =  inputFristnamespace + "rangoMinimo1";
 		var rangoMaximo1 =  inputFristnamespace + "rangoMaximo1";
 		var rangoMinimo2 =  inputFristnamespace + "rangoMinimo2";
@@ -438,6 +440,11 @@ function inicializarFormularioPublicarOferta(){
 		var ranMax1 = $('#' + rangoMaximo1).val();
 		var ranMin2 = $('#' + rangoMinimo2).val();
 		var ranMax2 = $('#' + rangoMaximo2).val();
+
+		console.log("ranMin1:"+ranMin1);
+		console.log("ranMax1:"+ranMax1);
+		console.log("ranMin2:"+ranMin2);
+		console.log("ranMax2:"+ranMax2);
 		
 		var contenedorAlerta = $(".contenedorAlerta");
 		var listasCorrectas = true;
@@ -451,8 +458,11 @@ function inicializarFormularioPublicarOferta(){
 
 		var contenedorAlerta2 = $(".contenedorAlerta2");
 		var listasCorrectas2 = true;
-		if( ranMin1 >= ranMax1 ){
-			mostrarAlerta(contenedorAlerta2, "Rango de entrevista con coordinador RRHH", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
+		console.log("1:"+(( ranMin1 > ranMax1 )));
+		console.log("1:"+(( ranMax1 == 0)));
+		console.log("1:"+(( ranMin1 > ranMax1 || ranMax1 == 0)));
+		if( ranMin1 > ranMax1 || ranMax1 == 0){
+			mostrarAlerta(contenedorAlerta2, "Rango de entrevista con coordinador RRHH", "El rango máximo debe ser mayor o igual al rango mínimo y el rango máximo debe ser mayor a 0", "alert-error", null);
 			listasCorrectas2 = false;
 		} else {
 			$(".contenedorAlerta2").empty();
@@ -461,8 +471,11 @@ function inicializarFormularioPublicarOferta(){
 		
 		var contenedorAlerta3 = $(".contenedorAlerta3");
 		var listasCorrectas3 = true;
-		if( ranMin2 >= ranMax2 ){
-			mostrarAlerta(contenedorAlerta3, "Rango de entrevista con gerente de área", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
+		console.log("2:"+( ranMin2 > ranMax2 ));
+		console.log("2:"+( ranMax2 == 0));
+		console.log("2:"+( ranMin2 > ranMax2 || ranMax2 == 0));
+		if( ranMin2 > ranMax2 || ranMax2 == 0){
+			mostrarAlerta(contenedorAlerta3, "Rango de entrevista con gerente de área", "El rango máximo debe ser mayor al rango mínimo y el rango máximo debe ser mayor a 0", "alert-error", null);
 			contenedorAlerta3 = false;
 		} else {
 			$(".contenedorAlerta3").empty();
@@ -507,7 +520,7 @@ function agregarEvaluacion(){
 	
 	var contenedorAlerta = $(".contenedorAlerta");
 	if( evaluacion == '' ){
-		mostrarAlerta(contenedorAlerta, "Evaluación", "Ingrese la evaluación", "alert-error", null);
+		mostrarAlerta(contenedorAlerta, "Evaluación", "Seleccione una evaluación", "alert-error", null);
 		listasCorrectas = false;
 	} else {
 		$(".contenedorAlerta").empty();
@@ -529,8 +542,8 @@ function addEvaluacionFila(evaluacionId , evaluacionText , rangoInferior,rangoSu
 			funcionMap['rangoInferior'] = rangoInferior;
 			
 			var contenedorAlerta = $(".contenedorAlerta");
-			if( rangoInferior >= rangoSuperior ){
-				mostrarAlerta(contenedorAlerta, "Rangos", "El rango superior debe ser mayor al rango inferior", "alert-error", null);
+			if( rangoInferior > rangoSuperior || rangoSuperior == 0 ){
+				mostrarAlerta(contenedorAlerta, "Rangos", "El rango máximo debe ser mayor al rango mínimo y el rango máximo debe ser mayor a 0", "alert-error", null);
 				listasCorrectas = false;
 			} else {
 				$(".contenedorAlerta").empty();

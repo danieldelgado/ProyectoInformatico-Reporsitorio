@@ -123,6 +123,7 @@ function onlyNumberComponent2(idComponent) {
 
 }
 
+
 function onlyNumberClass(classComponent) {
 
 	$('.'+classComponent).keyup(function () { 
@@ -131,6 +132,25 @@ function onlyNumberClass(classComponent) {
 
 }
 
+
+
+function limiteText(idComponent , cantidad) {
+	$(idComponent).keyup(function () { 
+		var l = this.value.length ;
+		if(l > cantidad){
+			this.value = this.value.substring(0, cantidad);
+		}		
+	});
+}
+
+function limiteText2(idComponent , cantidad) {
+	$("#"+idComponent).keyup(function () { 
+		var l = this.value.length ;
+		if(l > cantidad){
+			this.value = this.value.substring(0, cantidad);
+		}		
+	});
+}
 
 function validarFecharSimple(element, elementComparate) {
 	try {

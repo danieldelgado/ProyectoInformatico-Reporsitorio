@@ -180,7 +180,7 @@ function getDialogAprobar() {
 	html += '<div class="offset1 span10">';
 	html += '<div class="span5"><label>Presupuesto Minimo:</label></div>';
 	html += '<div class="span5">';
-	html += '<input id="" name="" class="presupuestoMinimo"  type="text" />';
+	html += '<input id="presupuestoMinimo" name="presupuestoMinimo" class="presupuestoMinimo" onkeyup="numericoLimitado(this);" type="text"  />';
 	html += '</div>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
@@ -189,7 +189,7 @@ function getDialogAprobar() {
 	html += '<div class="offset1 span10">';
 	html += '<div class="span5"><label>Presupuesto Maximo:</label></div>';
 	html += '<div class="span5">';
-	html += '<input id="" name="" type="text" class="presupuestoMaximo" />';
+	html += '<input id="presupuestoMaximo" name="presupuestoMaximo" type="text" class="presupuestoMaximo"  onkeyup="numericoLimitado(this);"  />';
 	html += '</div>';
 	html += '</div>';
 	html += '<div class="offset1 span10">';
@@ -208,7 +208,7 @@ function getDialogRechazar() {
 	html += '<div class="offset1 span10">';
 	html += '<div class="span5"><label>Motivo:</label></div>';
 	html += '<div class="span5">';
-	html += '<textarea id="" name="" class="motivo"  > </textarea>';
+	html += '<textarea id="" name="" class="motivo" onkeyup="limitadoObservacion(this);"  > </textarea>';
 	html += '</div>';
 	html += '</div>';
 
@@ -218,6 +218,20 @@ function getDialogRechazar() {
 	html += '</from></div>';
 	html += '</div>';
 	return html;
+}
+
+function numericoLimitado(elemento){
+	elemento.value = elemento.value.replace(/[^0-9]/g,'');
+    var l = elemento.value.length ;
+	if(l > 5){
+		elemento.value = elemento.value.substring(0, 5);
+	}	
+}
+function limitadoObservacion(elemento){
+    var l = elemento.value.length ;
+	if(l > 200){
+		elemento.value = elemento.value.substring(0, 200);
+	}	
 }
 
 function cargarModals() {
@@ -235,11 +249,9 @@ function cargarModals() {
 				resizable : false,
 				visible : false,
 				destroyOnClose : true,
-
-				// /render: '#' + inputFristnamespace + 'modalAaprobar',
 				width : 450
 			}).render();
-
+			
 			modalAaprobar.addToolbar([ 
 
 			              			{
@@ -255,7 +267,10 @@ function cargarModals() {
 			              						var pminval = $(presupuestoMinimo).val();
 			              				
 			              						var pmaxval = $(presupuestoMaximo).val();
-			              					
+
+		              							console.log("pminval:"+pminval);
+		              							console.log("pmaxval:"+pmaxval);
+		              							
 			              						msgpresupuestominimo.hide();
 			              						msgpresupuestomaximo.hide();
 			              						var valido = true;
@@ -299,13 +314,13 @@ function cargarModals() {
 			              						}
 			              						
 			              						
-			              						if (pmaxval < pminval) {
+			              						if (pmaxval <= pminval) {
 			              							msgpresupuestomaximo.show();
 			              							valido = false;
 			              						}
 
-		              							console.log((pmaxval>=30000 || pminval >=30000 ));
-			              						if(pmaxval>=30000 || pminval >=30000 ){
+		              							console.log("(pmaxval>30000 || pminval >=30000 ):"+(pmaxval>30000 || pminval >=30000 ));
+			              						if(pmaxval>30000 || pminval >=30000 ){
 		              								msgpresupuestominimo.show();
 			              							msgpresupuestomaximo.show();
 			              							valido = false;
@@ -364,6 +379,7 @@ function cargarModals() {
 			]);
 		}
 		
+				
 		if (A.one('#' + inputFristnamespace + 'modalRechazar') != null) {
 			var btnBuscar = $("#" + inputFristnamespace + "btnBuscar");
 			modalRechazar = new A.Modal({
@@ -522,12 +538,20 @@ function cargarModals() {
 }
 
 function addEventoClick() {
+	onlyNumber2("presupuestoMinimo");
+	onlyNumber2("presupuestoMaximo");
+	limiteText("presupuestoMinimo",5);
+	limiteText("presupuestoMaximo",5);
 	$(".btnAprobar").unbind("click");
 	$(".btnAprobar").click(function() {
 		var url = $(this).attr("data");
 		urlevaluar = url;
 		cargarModals();
 		modalAaprobar.show();
+		onlyNumber2("presupuestoMinimo");
+		onlyNumber2("presupuestoMaximo");
+		limiteText("presupuestoMinimo",5);
+		limiteText("presupuestoMaximo",5);
 	});
 	$(".btnRechazar").unbind("click");
 	$(".btnRechazar").click(function() {
