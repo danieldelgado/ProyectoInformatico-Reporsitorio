@@ -227,10 +227,11 @@ function numericoLimitado(elemento){
 		elemento.value = elemento.value.substring(0, 5);
 	}	
 }
+
 function limitadoObservacion(elemento){
     var l = elemento.value.length ;
-	if(l > 200){
-		elemento.value = elemento.value.substring(0, 200);
+	if(l > 500){
+		elemento.value = elemento.value.substring(0, 500);
 	}	
 }
 

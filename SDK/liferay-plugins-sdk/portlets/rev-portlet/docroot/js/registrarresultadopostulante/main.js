@@ -409,10 +409,48 @@ function inicializarFormularioRegsitroNoAsistencia() {
 	init();
 
 	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	var formnoAsistio = $("#" + inputFristnamespace + "noAsistio");
 
+	var fasePostulacion = inputFristnamespace + "fasePostulacion";
+	var observacion = inputFristnamespace + "observacion";
+
+	limiteText2(observacion,300);
+	
+	var rules = {};
+	rules[fasePostulacion] = {
+			required : function() {
+				if ($('#' + fasePostulacion+ " option:selected").val() != '-1') {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	
+	rules[observacion] = {
+			required : true
+		};
+	
+	var messages = {};
+	messages[fasePostulacion] = "Seleccione una fase de postulación";
+	messages[observacion] = "Ingrese la observación";
+	
+	$(formnoAsistio).validate({
+		ignore : [],
+		debug : true,
+		errorElement : "div",
+		errorClass : "text-error",
+		rules : rules,
+		messages : messages,
+		submitHandler : function(form) {
+			return false;
+		}
+	});
+	
 	$(btnGuardar).click(function() {
 		console.log(btnGuardar);
-		formvalid = true;
+		formvalid = $(formnoAsistio).valid();
+//		formvalid = true;
 		if (formvalid) {
 			console.log("show");
 			modalconfirmacion.show();
