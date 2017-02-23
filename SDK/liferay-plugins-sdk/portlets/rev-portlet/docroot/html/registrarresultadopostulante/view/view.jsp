@@ -84,7 +84,7 @@
 						</div>
 						<div>
 							<div class="span5">
-								<label>Fecha Emicion inicio:</label>
+								<label>Fecha Emisión inicio:</label>
 							</div>
 							<div class="span6">
 								<input id="<portlet:namespace/>fechaRegistroInicio" name="<portlet:namespace/>fechaRegistroInicio" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;">
@@ -93,7 +93,7 @@
 						</div>
 						<div>
 							<div class="span5">
-								<label>Fecha Emicion fin:</label>
+								<label>Fecha Emisión fin:</label>
 							</div>
 							<div class="span6">
 								<input id="<portlet:namespace/>fechaRegistroFin" name="<portlet:namespace/>fechaRegistroFin" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;">

@@ -503,13 +503,51 @@ function inicializarFormularioProgramacionEntrevista() {
 	
 	$(btnGuardar).click(function() {
 		console.log(btnGuardar);
+		var listasCorrectas = true;
 		formvalid = true;
-//		formvalid = $(formActualizarSolicitud).valid();
-		if(formvalid){
-			console.log("show");
-			modalconfirmacion.show();
-		}
+		console.log("bcol=" + $("#bcol"));
 		
+		if($('#' + inputFristnamespace + 'fechaEvaluacionEntreCoordRRHH').val()== ''){
+			var contenedorAlerta = $(".contenedorAlerta");
+			mostrarAlerta(contenedorAlerta, "Evaluación Coordinador RRHH ", "Ingrese fecha para la evaluación con el coordinador RRHH", "alert-error", null);
+			listasCorrectas = false;
+		} else {
+			$(".contenedorAlerta").empty();
+		}	
+		if($('#' + inputFristnamespace + 'fechaEvaluacionEntreGerenteArea').val()== ''){
+			var contenedorAlerta2 = $(".contenedorAlerta2");
+			mostrarAlerta(contenedorAlerta2, "Evaluación Gerente de area ", "Ingrese fecha para la evaluación con el gerente de area", "alert-error", null);
+			listasCorrectas = false;
+		} else {
+			$(".contenedorAlerta2").empty();
+		}	
+			
+		if($("#bcol").val()=='false'){
+			console.log("fechaEvaluacionPsicologicaVal "+ $('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').val());
+			if($('#' + inputFristnamespace + 'fechaEvaluacionPsicologica').val()== ''){
+				var contenedorAlerta3 = $(".contenedorAlerta3");
+				mostrarAlerta(contenedorAlerta3, "Evaluación psicológica", "Ingrese fecha para la evaluación psicológica", "alert-error", null);
+				listasCorrectas = false;
+			} else {
+				$(".contenedorAlerta3").empty();
+			}
+			if($('#' + inputFristnamespace + 'fechaEvaluacionTecnica').val()== ''){
+				var contenedorAlerta4 = $(".contenedorAlerta4");
+				mostrarAlerta(contenedorAlerta4, "Evaluación técnica ", "Ingrese fecha para la evaluación técnica", "alert-error", null);
+				listasCorrectas = false;
+			} else {
+				$(".contenedorAlerta4").empty();
+			}
+		}
+
+		//		formvalid = $(formActualizarSolicitud).valid();
+		console.log("listasCorrectas = " + listasCorrectas);
+		if(listasCorrectas){
+			if(formvalid){
+				console.log("show");
+				modalconfirmacion.show();
+			}
+		}
 	});
 
 	var btnIngEval = $("#" + inputFristnamespace + "btnIngEval");

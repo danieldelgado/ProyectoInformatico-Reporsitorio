@@ -31,6 +31,9 @@
 	<legend>Programar Entevista para Postulante ${colaborador}</legend>
 	<div class="container">
 		<div class="contenedorAlerta"></div>
+		<div class="contenedorAlerta2"></div>
+		<div class="contenedorAlerta3"></div>
+		<div class="contenedorAlerta4"></div>
 		<div class="offset1 span10">
 			<form id="<portlet:namespace/>programarEntrevista"
 				name="<portlet:namespace/>programarEntrevista" class="formulario">
@@ -42,6 +45,7 @@
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
+					<div><input type="hidden" id="bcol" value="${bcol}">  </div>
 					<c:if test="${ bcol }">	
 						<div class="span12">
 							<button id="<portlet:namespace/>btnIngEval" class="btn btn-primary offset3" type="button">
