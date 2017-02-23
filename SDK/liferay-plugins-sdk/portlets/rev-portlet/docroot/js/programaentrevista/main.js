@@ -157,7 +157,12 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			html += '</thead>';
 			html += '<tbody>';
 			var count = (filas * pagina - filas);
-
+			console.log("$(data.lista).size():" + $(data.lista).size());
+			if ($(data.lista).size() == 0) {
+				console.log("entraa size == 0");
+				var contenedorAlerta = $(".contenedorAlerta");
+				mostrarAlerta(contenedorAlerta, "Datos no encontrados", "No se encontraron datos", "alert-error", null);
+			}
 			$.each(data.lista, function(index, value) {
 				console.log("-----------------------------------");
 				count++;
@@ -505,7 +510,7 @@ function inicializarFormularioProgramacionEntrevista() {
 		console.log(btnGuardar);
 		var listasCorrectas = true;
 		formvalid = true;
-		console.log("bcol=" + $("#bcol"));
+		console.log("bcol=" + $("#bcol").val());
 		
 		if($('#' + inputFristnamespace + 'fechaEvaluacionEntreCoordRRHH').val()== ''){
 			var contenedorAlerta = $(".contenedorAlerta");
@@ -558,11 +563,18 @@ function inicializarFormularioProgramacionEntrevista() {
 		if(!activoInternoEvals){
 			activoInternoEvals = true;
 			$(pnlEvalPsicologicos).show();
-			$(pnlEvalTecnicas).show();		
+			$(pnlEvalTecnicas).show();	
+			
+			$("#bcol").val(false);			
+			
+			
 		}else{
 			activoInternoEvals = false;
 			$(pnlEvalPsicologicos).hide();
-			$(pnlEvalTecnicas).hide();				
+			$(pnlEvalTecnicas).hide();	
+			
+			$("#bcol").val(true);	
+			
 		}	
 	});
 	

@@ -88,7 +88,12 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 			html += '</thead>';
 			html += '<tbody>';
 			var count = (filas * pagina - filas);
-
+			console.log("$(data.lista).size():" + $(data.lista).size());
+			if ($(data.lista).size() == 0) {
+				console.log("entraa size == 0");
+				var contenedorAlerta = $(".contenedorAlerta");
+				mostrarAlerta(contenedorAlerta, "Datos no encontrados", "No se encontraron datos", "alert-error", null);
+			}
 			$.each(data.lista, function(index, value) {
 				count++;
 				

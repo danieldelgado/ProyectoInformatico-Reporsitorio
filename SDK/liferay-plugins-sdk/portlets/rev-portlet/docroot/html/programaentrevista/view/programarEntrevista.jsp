@@ -35,128 +35,98 @@
 		<div class="contenedorAlerta3"></div>
 		<div class="contenedorAlerta4"></div>
 		<div class="offset1 span10">
-			<form id="<portlet:namespace/>programarEntrevista"
-				name="<portlet:namespace/>programarEntrevista" class="formulario">
-				<input id="<portlet:namespace/>solicitudId"
-					name="<portlet:namespace/>solicitudId" type="hidden"
-					value="${solicitudReclutamiento.solicitudRequerimientoId}" /> <input
-					id="<portlet:namespace/>userId" name="<portlet:namespace/>userId"
-					type="hidden" value="${userId}" />
+			<form id="<portlet:namespace/>programarEntrevista" name="<portlet:namespace/>programarEntrevista" class="formulario">
+				<input id="<portlet:namespace/>solicitudId" name="<portlet:namespace/>solicitudId" type="hidden" value="${solicitudReclutamiento.solicitudRequerimientoId}" /> <input
+					id="<portlet:namespace/>userId" name="<portlet:namespace/>userId" type="hidden" value="${userId}" />
 				<div class="row-fluid"></div>
 				<div class="row-fluid">
 					<div class="span12"></div>
-					<div><input type="hidden" id="bcol" value="${bcol}">  </div>
-					<c:if test="${ bcol }">	
+					<div>
+						<input type="hidden" id="bcol" value="${bcol}">
+					</div>
+					<c:if test="${ bcol }">
 						<div class="span12">
-							<button id="<portlet:namespace/>btnIngEval" class="btn btn-primary offset3" type="button">
-											Ingresar evaluaciones adicionales
-							</button>
+							<button id="<portlet:namespace/>btnIngEval" class="btn btn-primary offset3" type="button">Ingresar evaluaciones adicionales</button>
 						</div>
-					</c:if>				
-					
-						 	
-					<br>
-						${usuarioBean.faseInansistencia} 	
-					<br>
-						 	
-					<br>
-						
-						<div id="<portlet:namespace/>pnlEvalPsicologicos" class="span12" style=' <c:if test="${ bcol }"> display: none; </c:if>'>
-							<div>
-								<div class="span5">
-									<label> Fecha evaluación Piscólogica: </label>
-								</div>
-								<div class="span6">
-									<input id="<portlet:namespace/>fasepostulacionPicologicaId"
-										name="<portlet:namespace/>fasepostulacionPicologicaId"
-										type="hidden" value="${fasePsicologia.fasepostulacionId}" />
-	
-	
-	
-									<div class="input-prepend">
-										<span class="add-on"><i class="icon-calendar"></i></span> 
-										<input
-											class="span7" value="${fasePsicologia.strfechaFase}"
-											id="<portlet:namespace/>fechaEvaluacionPsicologica"
-											name="<portlet:namespace/>fechaEvaluacionPsicologica"
-											type="text" placeholder="DD/MM/YYYY"
-											onKeyPress="return false;"
-											
+					</c:if>
 
-												<c:if test="${usuarioBean.faseInansistencia != fasePsicologia.tipoFase && usuarioBean.faseInansistencia > 0 }">
+
+					<br> 
+					<div class="span12">
+					</div>
+					<input id="<portlet:namespace/>faseInansistencia" name="<portlet:namespace/>faseInansistencia" type="hidden" value="${usuarioBean.faseInansistencia}" /> <br>
+
+					<br>
+
+					<div id="<portlet:namespace/>pnlEvalPsicologicos" class="span12" style=' <c:if test="${ bcol }"> display: none; </c:if>'>
+						<div>
+							<div class="span5">
+								<label> Fecha evaluación Piscólogica: </label>
+							</div>
+							<div class="span6">
+								<input id="<portlet:namespace/>fasepostulacionPicologicaId" name="<portlet:namespace/>fasepostulacionPicologicaId" type="hidden"
+									value="${fasePsicologia.fasepostulacionId}" />
+
+
+
+								<div class="input-prepend">
+									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${fasePsicologia.strfechaFase}"
+										id="<portlet:namespace/>fechaEvaluacionPsicologica" name="<portlet:namespace/>fechaEvaluacionPsicologica" type="text" placeholder="DD/MM/YYYY"
+										onKeyPress="return false;"
+										<c:if test="${usuarioBean.faseInansistencia != fasePsicologia.tipoFase && usuarioBean.faseInansistencia > 0 }">
 													disabled="disabled"
-												</c:if>
-											
-											/> 
-											
-											
-											<input
-											id="<portlet:namespace/>fechaEvaluacionPsicologicaVal"
-											name="<portlet:namespace/>fechaEvaluacionPsicologicaVal"
-											type="hidden" value="${fasePsicologia.strfechaFase}"
-											
-											
-											
-											 />
-									</div>
+												</c:if> />
+
+
+									<input id="<portlet:namespace/>fechaEvaluacionPsicologicaVal" name="<portlet:namespace/>fechaEvaluacionPsicologicaVal" type="hidden"
+										value="${fasePsicologia.strfechaFase}" />
 								</div>
 							</div>
-	
 						</div>
-						<div id="<portlet:namespace/>pnlEvalTecnicas" class="span12"  style=' <c:if test="${ bcol }"> display: none; </c:if>'>
-							<div>
-								<div class="span5">
-									<label> Fecha evaluación Técnica: </label>
-								</div>
-								<div class="span6">
-									<input id="<portlet:namespace/>fasepostulacionTecnicaId"
-										name="<portlet:namespace/>fasepostulacionTecnicaId"
-										type="hidden" value="${faseTecnica.fasepostulacionId}" />
-	
-									<div class="input-prepend">
-										<span class="add-on"><i class="icon-calendar"></i></span> <input
-											class="span7" value="${faseTecnica.strfechaFase}"
-											id="<portlet:namespace/>fechaEvaluacionTecnica"
-											name="<portlet:namespace/>fechaEvaluacionTecnica" type="text"
-											placeholder="DD/MM/YYYY" onKeyPress="return false;" 
-												<c:if test="${usuarioBean.faseInansistencia != faseTecnica.tipoFase && usuarioBean.faseInansistencia > 0  }">
+
+					</div>
+					<div id="<portlet:namespace/>pnlEvalTecnicas" class="span12" style=' <c:if test="${ bcol }"> display: none; </c:if>'>
+						<div>
+							<div class="span5">
+								<label> Fecha evaluación Técnica: </label>
+							</div>
+							<div class="span6">
+								<input id="<portlet:namespace/>fasepostulacionTecnicaId" name="<portlet:namespace/>fasepostulacionTecnicaId" type="hidden" value="${faseTecnica.fasepostulacionId}" />
+
+								<div class="input-prepend">
+									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${faseTecnica.strfechaFase}" id="<portlet:namespace/>fechaEvaluacionTecnica"
+										name="<portlet:namespace/>fechaEvaluacionTecnica" type="text" placeholder="DD/MM/YYYY" onKeyPress="return false;"
+										<c:if test="${usuarioBean.faseInansistencia != faseTecnica.tipoFase && usuarioBean.faseInansistencia > 0  }">
 											disabled="disabled"
-										</c:if> /> <input
-											id="<portlet:namespace/>fechaEvaluacionTecnicaVal"
-											name="<portlet:namespace/>fechaEvaluacionTecnicaVal"
-											type="hidden" value="${faseTecnica.strfechaFase}" />
-									</div>
+										</c:if> />
+									<input id="<portlet:namespace/>fechaEvaluacionTecnicaVal" name="<portlet:namespace/>fechaEvaluacionTecnicaVal" type="hidden" value="${faseTecnica.strfechaFase}" />
 								</div>
 							</div>
-	
 						</div>
-				
-					
-					
-					
+
+					</div>
+
+
+
+
 					<div class="span12">
 						<div>
 							<div class="span5">
 								<label> Fecha Entrevista con RRHH: </label>
 							</div>
 							<div class="span6">
-								<input id="<portlet:namespace/>fasepostulacionEntreCoordRRHHId"
-									name="<portlet:namespace/>fasepostulacionEntreCoordRRHHId"
-									type="hidden" value="${faseEntreCoordRRHH.fasepostulacionId}" />
+								<input id="<portlet:namespace/>fasepostulacionEntreCoordRRHHId" name="<portlet:namespace/>fasepostulacionEntreCoordRRHHId" type="hidden"
+									value="${faseEntreCoordRRHH.fasepostulacionId}" />
 
 								<div class="input-prepend">
-									<span class="add-on"><i class="icon-calendar"></i></span> <input
-										class="span7" value="${faseEntreCoordRRHH.strfechaFase}"
-										id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH"
-										name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH"
-										type="text" placeholder="DD/MM/YYYY"
-										onKeyPress="return false;" 
-											<c:if test="${usuarioBean.faseInansistencia != faseEntreCoordRRHH.tipoFase && usuarioBean.faseInansistencia > 0 }">
+									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${faseEntreCoordRRHH.strfechaFase}"
+										id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH" name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHH" type="text" placeholder="DD/MM/YYYY"
+										onKeyPress="return false;"
+										<c:if test="${usuarioBean.faseInansistencia != faseEntreCoordRRHH.tipoFase && usuarioBean.faseInansistencia > 0 }">
 										disabled="disabled"
-									</c:if> /> <input
-										id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal"
-										name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal"
-										type="hidden" value="${faseEntreCoordRRHH.strfechaFase}" />
+									</c:if> />
+									<input id="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal" name="<portlet:namespace/>fechaEvaluacionEntreCoordRRHHVal" type="hidden"
+										value="${faseEntreCoordRRHH.strfechaFase}" />
 								</div>
 							</div>
 						</div>
@@ -168,24 +138,18 @@
 								<label> Fecha Entrevista con Gerente de Área: </label>
 							</div>
 							<div class="span6">
-								<input
-									id="<portlet:namespace/>fasepostulacionEntreGerenteAreaId"
-									name="<portlet:namespace/>fasepostulacionEntreGerenteAreaId"
-									type="hidden" value="${faseEntreGerenteArea.fasepostulacionId}" />
+								<input id="<portlet:namespace/>fasepostulacionEntreGerenteAreaId" name="<portlet:namespace/>fasepostulacionEntreGerenteAreaId" type="hidden"
+									value="${faseEntreGerenteArea.fasepostulacionId}" />
 
 								<div class="input-prepend">
-									<span class="add-on"><i class="icon-calendar"></i></span> <input
-										class="span7" value="${faseEntreGerenteArea.strfechaFase}"
-										id="<portlet:namespace/>fechaEvaluacionEntreGerenteArea"
-										name="<portlet:namespace/>fechaEvaluacionEntreGerenteArea"
-										type="text" placeholder="DD/MM/YYYY"
-										onKeyPress="return false;" 
-												<c:if test="${usuarioBean.faseInansistencia != faseEntreGerenteArea.tipoFase && usuarioBean.faseInansistencia > 0  }">
+									<span class="add-on"><i class="icon-calendar"></i></span> <input class="span7" value="${faseEntreGerenteArea.strfechaFase}"
+										id="<portlet:namespace/>fechaEvaluacionEntreGerenteArea" name="<portlet:namespace/>fechaEvaluacionEntreGerenteArea" type="text" placeholder="DD/MM/YYYY"
+										onKeyPress="return false;"
+										<c:if test="${usuarioBean.faseInansistencia != faseEntreGerenteArea.tipoFase && usuarioBean.faseInansistencia > 0  }">
 													disabled="disabled"
-												</c:if> /> <input
-										id="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal"
-										name="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal"
-										type="hidden" value="${faseEntreGerenteArea.strfechaFase}" />
+												</c:if> />
+									<input id="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal" name="<portlet:namespace/>fechaEvaluacionEntreGerenteAreaVal" type="hidden"
+										value="${faseEntreGerenteArea.strfechaFase}" />
 								</div>
 							</div>
 						</div>
@@ -200,8 +164,7 @@
 				<div class="row">
 					<div class="offset4 span4">
 						<aui:button-row>
-							<button id="<portlet:namespace/>btnGuardar"
-								class="btn btn-primary" type="button">
+							<button id="<portlet:namespace/>btnGuardar" class="btn btn-primary" type="button">
 								<liferay-ui:message key="general.form.opciones.guardar" />
 							</button>
 							<portlet:renderURL var="listarPostulantes">
@@ -211,13 +174,9 @@
 
 
 
-							<input id="<portlet:namespace/>listarPostulantesUrl"
-								name="<portlet:namespace/>listarPostulantesUrl" type="hidden"
-								value="${listarPostulantes}" />
+							<input id="<portlet:namespace/>listarPostulantesUrl" name="<portlet:namespace/>listarPostulantesUrl" type="hidden" value="${listarPostulantes}" />
 
-							<a class="btn btn-primary"
-								href="${listarPostulantes}">
-								Cancelar </a>
+							<a class="btn btn-primary" href="${listarPostulantes}"> Cancelar </a>
 						</aui:button-row>
 					</div>
 				</div>
