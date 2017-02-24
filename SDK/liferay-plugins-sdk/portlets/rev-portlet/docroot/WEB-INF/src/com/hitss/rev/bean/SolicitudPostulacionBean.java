@@ -46,6 +46,8 @@ public class SolicitudPostulacionBean implements Serializable {
 	
 	private List<PuestoEvaluacionBean> listaEvaluacionesPuestoEnfoque;
 	private List<FasePostulacionPuestoEvaluacionBean> listaFasePostulacionPuestoEvaluacionBean;
+
+	private boolean seleccionado;
 	
 	public SolicitudPostulacionBean() {
 		strFasePostulacion = "";
@@ -303,6 +305,14 @@ public class SolicitudPostulacionBean implements Serializable {
 
 	public void setAsistio(boolean asistio) {
 		this.asistio = asistio;
+	}
+
+	public boolean isSeleccionado() {
+		return seleccionado;
+	}
+
+	public void setSeleccionado(boolean seleccionado) {
+		this.seleccionado = seleccionado;
 	}
 
 }

@@ -130,7 +130,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 								usuarioBean.setFaseEvalEntrervistaRRHHRegitrada(true);	
 								if(fp.isAsistio()){
 									asistio = fp.isAsistio();		
-									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR;
+									estado_parametro_id = 71;
 									fase = fp;	
 								}
 							}
@@ -141,7 +141,7 @@ public class ProgramarEntrevistaServiceImpl extends RevServiceImpl implements Pr
 								usuarioBean.setFaseEvalEntrervistaGerenteRegitrada(true);
 								if(fp.isAsistio()){
 									asistio = fp.isAsistio();	
-									estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+									estado_parametro_id = 71;
 									fase = fp;									
 								}
 							}

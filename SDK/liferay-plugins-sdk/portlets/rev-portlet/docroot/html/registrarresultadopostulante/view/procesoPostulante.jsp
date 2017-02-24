@@ -82,7 +82,8 @@
 											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 										</div>
 										<div class="span6">										
-										<select id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 ">
+										<select id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 valform">
+											<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 											<c:set var="startIndex" scope="page" value="0"/>
 											<c:set var="endIndex" scope="page" value="35"/>
 	    									<c:forEach begin="${startIndex}" end="${endIndex}" step="1" var="index">
@@ -134,7 +135,8 @@
 											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 										</div>
 										<div class="span6">
-											<select id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 ">
+											<select id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 valform">
+												<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 												<c:set var="startIndex" scope="page" value="0"/>
 												<c:set var="endIndex" scope="page" value="35"/>
 		    									<c:forEach begin="${startIndex}" end="${endIndex}" step="1" var="index">
@@ -183,7 +185,8 @@
 							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 						</div>
 						<div class="span6">
-							<select id="<portlet:namespace/>resultado1Id" name="<portlet:namespace/>resultado1Id" class="span8 ">
+							<select id="<portlet:namespace/>resultado1Id" name="<portlet:namespace/>resultado1Id" class="span8 valform">
+								<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 								<c:set var="startIndex" scope="page" value="0"/>
 								<c:set var="endIndex" scope="page" value="35"/>
   									<c:forEach begin="${startIndex}" end="${endIndex}" step="1" var="index">
@@ -217,13 +220,14 @@
 							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 						</div>
 						<div class="span6">
-							<select id="<portlet:namespace/>resultado2Id" name="<portlet:namespace/>resultado2Id" class="span8 ">
+							<select id="<portlet:namespace/>resultado2Id" name="<portlet:namespace/>resultado2Id" class="span8 valform">
+								<option label="" value=""><liferay-ui:message key="general.form.seleccione" /></option>
 								<c:set var="startIndex" scope="page" value="0"/>
 								<c:set var="endIndex" scope="page" value="35"/>
   									<c:forEach begin="${startIndex}" end="${endIndex}" step="1" var="index">
 									<option value="${index}"								
 								 		<c:forEach items="${ solicitudPostulacionBean.listaFasePostulacionPuestoEvaluacionBean}" var="ppe">
-		    									<c:if test="${ ppe.evaluacionId == 1  }">		    										
+		    									<c:if test="${ ppe.evaluacionId == 2  }">		    										
 		    										<c:if test="${ ppe.resultado == index  }">		    										
 		    										selected="selected"
 		    										</c:if>

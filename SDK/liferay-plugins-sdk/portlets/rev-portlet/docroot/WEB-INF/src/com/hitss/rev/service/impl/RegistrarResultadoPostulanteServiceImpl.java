@@ -110,6 +110,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					u = UserLocalServiceUtil.getUser(postulacion.getUsuarioId());
 					solicitudPostulacionBean.setUserId(postulacion.getUsuarioId());
 					solicitudPostulacionBean.setPostulante(u.getFullName());
+					solicitudPostulacionBean.setSeleccionado(postulacion.getSeleccionado());
 					solicitudPostulacionBean.setStrpuesto(liferayContentService.getCategoria(sr.getCategoriaPuestoId()).getValue());
 					if (Validator.isNotNull(u.getExpandoBridge())) {
 						colaborador = (Boolean) u.getExpandoBridge().getAttribute("Colaborador");
@@ -158,7 +159,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 						solicitudPostulacionBean.setStrfechaRRHH(Util.getStrFecha(fp.getFechaFase()));
 						diferenciasTiempo = fp.getFechamodifica().getTime() - fp.getFechacrea().getTime();
 						if (fp.isAsistio()) {
-							estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_COORDINADOR;
+							estado_parametro_id = 71;
 							if(!asistio){
 								asistio = fp.isAsistio();
 							}
@@ -172,7 +173,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 						solicitudPostulacionBean.setStrfechaGerenteArea(Util.getStrFecha(fp.getFechaFase()));
 						diferenciasTiempo = fp.getFechamodifica().getTime() - fp.getFechacrea().getTime();
 						if (fp.isAsistio()) {
-							estado_parametro_id = Constantes.PARAMETRO_FASE_ENTREV_GERENTE_AREA;
+							estado_parametro_id = 71;
 							if(!asistio){
 								asistio = fp.isAsistio();
 							}
@@ -191,7 +192,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 					if (faspostulacionIdCumplida > 0) {
 						solicitudPostulacionBean.setStrEstado(StringPool.BLANK);
 						if (Validator.isNotNull(fase)) {
-							solicitudPostulacionBean.setEstado(fase.getEstado());
+							solicitudPostulacionBean.setEstado(estado_parametro_id);
 							solicitudPostulacionBean.setStrEstado(parametroService.getParametro(fase.getEstado()).getValor());
 						}
 					} else {

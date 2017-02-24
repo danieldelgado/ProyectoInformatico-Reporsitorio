@@ -274,12 +274,13 @@ function addPostulanteFila(object) {
 	var detallePostulanteUrl = $("#" + inputFristnamespace + "detallePostulanteUrl").val();
 
 	var listaRequisitos = $("#" + inputFristnamespace + "listaPostulantes");
-	
-	console.log(object['asistio']);
-	console.log(object['fasePostulacion']);
-	console.log(object['faseInansistencia']);
-	
-	
+
+	console.log(object);
+	console.log("asistio:"+object['asistio']);
+	console.log("fasePostulacion:"+object['fasePostulacion']);
+	console.log("faseInansistencia:"+object['faseInansistencia']);
+	console.log("seleccionado:"+object['seleccionado']);
+		
 	var html = "";
 	html += "<tr>" + 
 	"<td>" + object['fullname'] + "</td>" + 
@@ -293,9 +294,10 @@ function addPostulanteFila(object) {
 	html += '	<div class="btn-group">';		
 	console.log("asistio:"+object['asistio']);
 //	if(!object['asistio']){
-		
-		html += '		<a class="btn btn-primary" href="' + programarEntrevistaUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '">Programar Entrevista </a>';
 
+	if( object['seleccionado'] == false ){
+		html += '		<a class="btn btn-primary" href="' + programarEntrevistaUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '">Programar Entrevista </a>';
+	}
 //	}
 	
 	html += '		<a class="btn btn-primary" href="' + detallePostulanteUrl + '&' + inputFristnamespace + 'solicitudId=' + object['solicitudId'] + '&' + inputFristnamespace + 'userId=' + object['userId'] + '"> Ver detalle </a>';
