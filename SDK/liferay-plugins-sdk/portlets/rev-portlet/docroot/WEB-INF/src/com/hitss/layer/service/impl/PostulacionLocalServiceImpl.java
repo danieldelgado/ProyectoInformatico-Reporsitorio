@@ -114,7 +114,7 @@ public class PostulacionLocalServiceImpl extends PostulacionLocalServiceBaseImpl
 			}
 			
 			if (Validator.isNotNull(solicitudRequerimiento.getResponsableRRHH())) {
-				subQuery.add(PropertyFactoryUtil.forName("child.child.responsableRRHH").eq(solicitudRequerimiento.getResponsableRRHH()));
+				subQuery.add(PropertyFactoryUtil.forName("child.responsableRRHH").eq(solicitudRequerimiento.getResponsableRRHH()));
 			}
 			
 			if (Validator.isNotNull(solicitudRequerimiento.getTiempoContrato())) {
