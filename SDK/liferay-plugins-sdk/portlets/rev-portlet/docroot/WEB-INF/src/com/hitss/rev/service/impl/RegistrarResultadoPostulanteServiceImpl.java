@@ -560,7 +560,7 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 			FasePostulacionPuestoEvaluacionPK fasePostulacionPuestoEvaluacionPK = null;
 
 			for (FasePostulacionPuestoEvaluacionBean fasePostulacionPuestoEvaluacionBean : listaFasePostulacionPuestoEvaluacionBean) {
-				if(fasePostulacionPuestoEvaluacionBean.getResultado()>0){
+				if(fasePostulacionPuestoEvaluacionBean.getResultado()>=0){
 					try {
 						fasePostulacionPuestoEvaluacionPK = new FasePostulacionPuestoEvaluacionPK(fasePostulacionPuestoEvaluacionBean.getFasePostulacionId(),
 								fasePostulacionPuestoEvaluacionBean.getSolicitudFuncionId(), fasePostulacionPuestoEvaluacionBean.getEvaluacionId());
@@ -576,10 +576,10 @@ public class RegistrarResultadoPostulanteServiceImpl extends RevServiceImpl impl
 						a.setEvaluacionId(fasePostulacionPuestoEvaluacionBean.getEvaluacionId());
 						a.setFasePostulacionId(fasePostulacionPuestoEvaluacionBean.getFasePostulacionId());
 						a.setResultado(fasePostulacionPuestoEvaluacionBean.getResultado());
-						if( fasePostulacionPuestoEvaluacionBean.getSolicitudFuncionId()>0 &&
-								fasePostulacionPuestoEvaluacionBean.getEvaluacionId()>0 &&
-								fasePostulacionPuestoEvaluacionBean.getFasePostulacionId()>0 &&
-								fasePostulacionPuestoEvaluacionBean.getResultado()>0 ){
+						if( fasePostulacionPuestoEvaluacionBean.getSolicitudFuncionId()>=0 &&
+								fasePostulacionPuestoEvaluacionBean.getEvaluacionId()>=0 &&
+								fasePostulacionPuestoEvaluacionBean.getFasePostulacionId()>=0 &&
+								fasePostulacionPuestoEvaluacionBean.getResultado()>=0 ){
 
 							
 							FasePostulacionPuestoEvaluacionLocalServiceUtil.addFasePostulacionPuestoEvaluacion(a);

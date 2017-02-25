@@ -32,7 +32,7 @@
 
 <input id="<portlet:namespace/>listapuesto" type="hidden" value="<liferay-ui:message key="listasolicitudreclutamiento.lista.puesto" />" />
 <input id="<portlet:namespace/>listadisponibilidad" type="hidden" value="Disponiilidad" />
-<input id="<portlet:namespace/>listatipopostulante" type="hidden" value="Tipo Postulante" />
+<input id="<portlet:namespace/>listatipopostulante" type="hidden" value="Interno" />
 <input id="<portlet:namespace/>listapostulante" type="hidden" value="Postulante" />
 <input id="<portlet:namespace/>listafasepostulante" type="hidden" value="Fase Postulante" />
 <input id="<portlet:namespace/>listafechapostulacion" type="hidden" value="Fecha Postulación" />
