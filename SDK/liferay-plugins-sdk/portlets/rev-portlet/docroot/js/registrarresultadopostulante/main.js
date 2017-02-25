@@ -119,9 +119,10 @@ function listaPaginada(pagina, filas, buscarSolicitud, listaSolicitudes, paginac
 				console.log("value.estado :" + value.estado);
 				console.log("value.seleccionado :" + value['seleccionado']);
 				if (value.estadoSolicitud == 51 || value.estadoSolicitud == 52) {
-					if (value.estado == 70 || value.estado == 71 || value.estado == 72 || value.estado == 73) {
+					if (value.estado == 70 || value.estado == 71 || value.estado == 72 || value.estado == 73 || value.estado == 78|| value.estado == 79|| value.estado == 80|| value.estado == 81) {
+						console.log("if:"+(value['seleccionado'] == false));
 
-						if( value['seleccionado'] == false ){
+						if( value['seleccionado'] == false || value['seleccionado'] == 'false'  ){
 							
 							html += '		<a class="btn btn-primary" href="' + urls["registrarProcesoUrl"] + '&' + inputFristnamespace + 'solicitudId=' + value.solicitudId + '&'
 							+ inputFristnamespace + 'userId=' + value.userId + '">' + listaOpcionRegistrarProceso + ' </a>';

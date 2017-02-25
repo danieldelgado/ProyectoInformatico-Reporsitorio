@@ -569,25 +569,29 @@ function cargarValidacionesFormulario(){
 	var rules = {};	
 	console.log(" Cargando validacion para fechaEvaluacionEntreCoordRRHHVal y fechaEvaluacionEntreGerenteAreaVal");	
 	rules[inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal"] =  {required : function() {
-	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val());		
-	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val() == "" ){
-	    	return true;
+		var b = false;
+		console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val());
+	    console.log(" noseLabora:"+noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val()) );
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val() == "" || noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val())  ){
+	    	$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val("");
+	    	b = true;
 	    }
-	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
-	    	return true;
-	    }
-		return false;
+	    console.log(" b:  "+b );	
+		return b;		
+		
 	}};
 	rules[inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal"] =  {required : function() {
-	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val());		
-	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val() == "" ){
-	    	return true;
+		var b = false;
+		console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val());
+	    console.log(" noseLabora:"+noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val()) );
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val() == "" || noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val())  ){
+	    	$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val("");
+	    	b = true;
 	    }
-	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
-	    	return true;
-	    }
-		return false;
-	}};	
+	    console.log(" b:  "+b );	
+		return b;	
+		
+	}};
 	var messages = {};	
 	console.log(" Cargando mensajes para fechaEvaluacionEntreCoordRRHHVal y fechaEvaluacionEntreGerenteAreaVal");		
 	messages[inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal"] = "Ingrese fecha para la evaluación con el coordinador RRHH";
@@ -617,46 +621,51 @@ function cargarValidacionesFormulario2(){
 	console.log("val:"+$("#bcol").val()==false);
 	console.log(" Cargando validacion para fechaEvaluacionPsicologicaVal y fechaEvaluacionTecnicaVal");	
 	rules[inputFristnamespace+"fechaEvaluacionPsicologicaVal"] = {required : function() {
-		    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val());
-		    if($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val() == "" ){
-		    	return true;
+		    var b = false;
+			console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val());
+		    console.log(" noseLabora:"+noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val()) );
+		    if($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val() == "" || noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
+		    	$("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val("");
+		    	b = true;
 		    }
-		    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
-		    	return true;
-		    }
-		    
-			return false;		
+		    console.log(" b:  "+b );	
+			return b;		
 	}};
 	rules[inputFristnamespace+"fechaEvaluacionTecnicaVal"] = {required : function() {
-	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val());		
-	    if($("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val() == "" ){
-	    	return true;
+		var b = false;
+		console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val());
+	    console.log(" noseLabora:"+noseLabora($("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val()) );
+	    if($("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val() == "" || noseLabora($("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val())  ){
+	    	$("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val("");
+	    	b = true;
 	    }
-	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
-	    	return true;
-	    }
-		return false;
+	    console.log(" b:  "+b );	
+		return b;			
 	}};	
 	console.log(" Cargando validacion para fechaEvaluacionEntreCoordRRHHVal y fechaEvaluacionEntreGerenteAreaVal");			
 	rules[inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal"] =  {required : function() {
-	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val());		
-	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val() == "" ){
-	    	return true;
+		var b = false;
+		console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val());
+	    console.log(" noseLabora:"+noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val()) );
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val() == "" || noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val())  ){
+	    	$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val("");
+	    	b = true;
 	    }
-	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
-	    	return true;
-	    }
-		return false;
+	    console.log(" b:  "+b );	
+		return b;		
+		
 	}};
 	rules[inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal"] =  {required : function() {
-	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val());		
-	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val() == "" ){
-	    	return true;
+		var b = false;
+		console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val());
+	    console.log(" noseLabora:"+noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val()) );
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val() == "" || noseLabora($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val())  ){
+	    	$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val("");
+	    	b = true;
 	    }
-	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
-	    	return true;
-	    }
-		return false;
+	    console.log(" b:  "+b );	
+		return b;	
+		
 	}};
 	
 	var messages = {};
@@ -684,7 +693,7 @@ function getDay(dateString) {
 	var parts =dateString.split('/');
 	var mydate = new Date(parts[2],parts[1]-1,parts[0]); 
 //	console.log(mydate.toDateString());
-	console.log(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][mydate.getDay()]);
+//	console.log(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][mydate.getDay()]);
 //	console.log(mydate.getDay());
 	return mydate.getDay();
 }
@@ -692,9 +701,11 @@ function getDay(dateString) {
 
 function noseLabora(dateString) {
 	if(getDay(dateString) == 0 || getDay(dateString) == 6){
-		return false;
+//		console.log("no se labora");
+		return true;
 	}
-	return true;
+//	console.log("si se labora");
+	return false;
 }
 
 /*
