@@ -508,52 +508,32 @@ function inicializarFormularioProgramacionEntrevista() {
 				
 	});
 	
+
+
+	var programarEntrevista = $("#" + inputFristnamespace + "programarEntrevista");
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
+	
+	console.log("init bcol=" + $("#bcol").val());
+	
+	if($("#bcol").val()=='false'){
+		cargarValidacionesFormulario2();
+	}else{
+		cargarValidacionesFormulario();		
+	}
+	
+	
+	
 	$(btnGuardar).click(function() {
 		console.log(btnGuardar);
 		var listasCorrectas = true;
 		formvalid = true;
-		console.log("bcol=" + $("#bcol").val());
-		
-		if($('#' + inputFristnamespace + 'fechaEvaluacionEntreCoordRRHH').val()== ''){
-			var contenedorAlerta = $(".contenedorAlerta");
-			mostrarAlerta(contenedorAlerta, "Evaluación Coordinador RRHH ", "Ingrese fecha para la evaluación con el coordinador RRHH", "alert-error", null);
-			listasCorrectas = false;
-		} else {
-			$(".contenedorAlerta").empty();
-		}	
-		if($('#' + inputFristnamespace + 'fechaEvaluacionEntreGerenteArea').val()== ''){
-			var contenedorAlerta2 = $(".contenedorAlerta2");
-			mostrarAlerta(contenedorAlerta2, "Evaluación Gerente de area ", "Ingrese fecha para la evaluación con el gerente de area", "alert-error", null);
-			listasCorrectas = false;
-		} else {
-			$(".contenedorAlerta2").empty();
-		}	
-			
-		if($("#bcol").val()=='false'){
-			console.log("fechaEvaluacionPsicologicaVal "+ $('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').val());
-			if($('#' + inputFristnamespace + 'fechaEvaluacionPsicologica').val()== ''){
-				var contenedorAlerta3 = $(".contenedorAlerta3");
-				mostrarAlerta(contenedorAlerta3, "Evaluación psicológica", "Ingrese fecha para la evaluación psicológica", "alert-error", null);
-				listasCorrectas = false;
-			} else {
-				$(".contenedorAlerta3").empty();
-			}
-			if($('#' + inputFristnamespace + 'fechaEvaluacionTecnica').val()== ''){
-				var contenedorAlerta4 = $(".contenedorAlerta4");
-				mostrarAlerta(contenedorAlerta4, "Evaluación técnica ", "Ingrese fecha para la evaluación técnica", "alert-error", null);
-				listasCorrectas = false;
-			} else {
-				$(".contenedorAlerta4").empty();
-			}
-		}
-
-		//		formvalid = $(formActualizarSolicitud).valid();
-		console.log("listasCorrectas = " + listasCorrectas);
-		if(listasCorrectas){
-			if(formvalid){
-				console.log("show");
-				modalconfirmacion.show();
-			}
+		console.log("bcol=" + $("#bcol").val());	
+		console.log("validate");
+		formvalid = $(programarEntrevista).valid();
+		console.log("formvalid:"+formvalid);
+		if(formvalid){
+			console.log("show");
+			modalconfirmacion.show();
 		}
 	});
 
@@ -562,25 +542,197 @@ function inicializarFormularioProgramacionEntrevista() {
 		var pnlEvalPsicologicos = $("#" + inputFristnamespace + "pnlEvalPsicologicos");
 		var pnlEvalTecnicas = $("#" + inputFristnamespace + "pnlEvalTecnicas");
 		console.log("Activar evaluciones psicologicas y tecnicas");		
-		if(!activoInternoEvals){
+		if(!activoInternoEvals){  
+//			$("#bcol").val()=='false'
 			activoInternoEvals = true;
 			$(pnlEvalPsicologicos).show();
 			$(pnlEvalTecnicas).show();	
-			
-			$("#bcol").val(false);			
-			
-			
+			$("#bcol").val(false);	
+			cargarValidacionesFormulario2();			
 		}else{
 			activoInternoEvals = false;
 			$(pnlEvalPsicologicos).hide();
-			$(pnlEvalTecnicas).hide();	
-			
+			$(pnlEvalTecnicas).hide();			
 			$("#bcol").val(true);	
-			
+			cargarValidacionesFormulario();		
 		}	
 	});
 	
 }
+
+function cargarValidacionesFormulario(){
+	var programarEntrevista = $("#" + inputFristnamespace + "programarEntrevista");
+	$(programarEntrevista).removeData('validator');
+	$(programarEntrevista).removeData('rule-required');
+	console.log("cargarValidacionesFormulario");
+	console.log("bcol=" + $("#bcol").val());	
+	var rules = {};	
+	console.log(" Cargando validacion para fechaEvaluacionEntreCoordRRHHVal y fechaEvaluacionEntreGerenteAreaVal");	
+	rules[inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal"] =  {required : function() {
+	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val());		
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val() == "" ){
+	    	return true;
+	    }
+	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
+	    	return true;
+	    }
+		return false;
+	}};
+	rules[inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal"] =  {required : function() {
+	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val());		
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val() == "" ){
+	    	return true;
+	    }
+	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
+	    	return true;
+	    }
+		return false;
+	}};	
+	var messages = {};	
+	console.log(" Cargando mensajes para fechaEvaluacionEntreCoordRRHHVal y fechaEvaluacionEntreGerenteAreaVal");		
+	messages[inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal"] = "Ingrese fecha para la evaluación con el coordinador RRHH";
+	messages[inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal"] = "Ingrese fecha para la evaluación con el gerente de área";
+
+	console.log("Configuracion terminada");
+	$(programarEntrevista).validate({
+		ignore : [],
+		debug : true,
+		rules : rules,
+		messages : messages,
+		errorElement : "div",
+		errorClass : "text-error",
+		submitHandler : function(form) {
+			return false;
+		}
+	});	
+}
+
+function cargarValidacionesFormulario2(){
+	var programarEntrevista = $("#" + inputFristnamespace + "programarEntrevista");
+	$(programarEntrevista).removeData('validator');
+	$(programarEntrevista).removeData('rule-required');
+	console.log("cargarValidacionesFormulario2");
+	console.log("bcol=" + $("#bcol").val());	
+	var rules = {};
+	console.log("val:"+$("#bcol").val()==false);
+	console.log(" Cargando validacion para fechaEvaluacionPsicologicaVal y fechaEvaluacionTecnicaVal");	
+	rules[inputFristnamespace+"fechaEvaluacionPsicologicaVal"] = {required : function() {
+		    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val());
+		    if($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val() == "" ){
+		    	return true;
+		    }
+		    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
+		    	return true;
+		    }
+		    
+			return false;		
+	}};
+	rules[inputFristnamespace+"fechaEvaluacionTecnicaVal"] = {required : function() {
+	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val());		
+	    if($("#"+inputFristnamespace+"fechaEvaluacionTecnicaVal").val() == "" ){
+	    	return true;
+	    }
+	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
+	    	return true;
+	    }
+		return false;
+	}};	
+	console.log(" Cargando validacion para fechaEvaluacionEntreCoordRRHHVal y fechaEvaluacionEntreGerenteAreaVal");			
+	rules[inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal"] =  {required : function() {
+	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val());		
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal").val() == "" ){
+	    	return true;
+	    }
+	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
+	    	return true;
+	    }
+		return false;
+	}};
+	rules[inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal"] =  {required : function() {
+	    console.log(" comp:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").attr("id") + " | val:"+$("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val());		
+	    if($("#"+inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal").val() == "" ){
+	    	return true;
+	    }
+	    if( noseLabora($("#"+inputFristnamespace+"fechaEvaluacionPsicologicaVal").val())  ){
+	    	return true;
+	    }
+		return false;
+	}};
+	
+	var messages = {};
+	console.log(" Cargando mensajes para fechaEvaluacionPsicologicaVal y fechaEvaluacionTecnicaVal");	
+	messages[inputFristnamespace+"fechaEvaluacionPsicologicaVal"] = "Ingrese fecha para la evaluación psicológica";
+	messages[inputFristnamespace+"fechaEvaluacionTecnicaVal"] = "Ingrese fecha para la evaluación técnica";		
+	messages[inputFristnamespace+"fechaEvaluacionEntreCoordRRHHVal"] = "Ingrese fecha para la evaluación con el coordinador RRHH";
+	messages[inputFristnamespace+"fechaEvaluacionEntreGerenteAreaVal"] = "Ingrese fecha para la evaluación con el gerente de área";
+
+	console.log("Configuracion terminada");
+	$(programarEntrevista).validate({
+		ignore : [],
+		debug : true,
+		rules : rules,
+		messages : messages,
+		errorElement : "div",
+		errorClass : "text-error",
+		submitHandler : function(form) {
+			return false;
+		}
+	});	
+}
+
+function getDay(dateString) {
+	var parts =dateString.split('/');
+	var mydate = new Date(parts[2],parts[1]-1,parts[0]); 
+//	console.log(mydate.toDateString());
+	console.log(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][mydate.getDay()]);
+//	console.log(mydate.getDay());
+	return mydate.getDay();
+}
+
+
+function noseLabora(dateString) {
+	if(getDay(dateString) == 0 || getDay(dateString) == 6){
+		return false;
+	}
+	return true;
+}
+
+/*
+if($('#' + inputFristnamespace + 'fechaEvaluacionEntreCoordRRHH').val()== ''){
+	var contenedorAlerta = $(".contenedorAlerta");
+	mostrarAlerta(contenedorAlerta, "Evaluación Coordinador RRHH ", "Ingrese fecha para la evaluación con el coordinador RRHH", "alert-error", null);
+	listasCorrectas = false;
+} else {
+	$(".contenedorAlerta").empty();
+}	
+if($('#' + inputFristnamespace + 'fechaEvaluacionEntreGerenteArea').val()== ''){
+	var contenedorAlerta2 = $(".contenedorAlerta2");
+	mostrarAlerta(contenedorAlerta2, "Evaluación Gerente de area ", "Ingrese fecha para la evaluación con el gerente de area", "alert-error", null);
+	listasCorrectas = false;
+} else {
+	$(".contenedorAlerta2").empty();
+}	
+	
+if($("#bcol").val()=='false'){
+	console.log("fechaEvaluacionPsicologicaVal "+ $('#' + inputFristnamespace + 'fechaEvaluacionPsicologicaVal').val());
+	if($('#' + inputFristnamespace + 'fechaEvaluacionPsicologica').val()== ''){
+		var contenedorAlerta3 = $(".contenedorAlerta3");
+		mostrarAlerta(contenedorAlerta3, "Evaluación psicológica", "Ingrese fecha para la evaluación psicológica", "alert-error", null);
+		listasCorrectas = false;
+	} else {
+		$(".contenedorAlerta3").empty();
+	}
+	if($('#' + inputFristnamespace + 'fechaEvaluacionTecnica').val()== ''){
+		var contenedorAlerta4 = $(".contenedorAlerta4");
+		mostrarAlerta(contenedorAlerta4, "Evaluación técnica ", "Ingrese fecha para la evaluación técnica", "alert-error", null);
+		listasCorrectas = false;
+	} else {
+		$(".contenedorAlerta4").empty();
+	}
+}
+
+//		formvalid = $(formActualizarSolicitud).valid();
+*/
 
 
 function registrarProgramacion(){

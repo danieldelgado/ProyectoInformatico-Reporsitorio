@@ -262,12 +262,12 @@
 		var cantidadRequerida = ${solicitudReclutamiento.cantidadRecursos};
 		//console.log("cantidadRequerida:" + cantidadRequerida + "  | cantidadPostulantes:" + cantidadPostulantes);
 		if (cantidadRequerida > cantidadPostulantes) {
-			mostrarAlerta(contenedorAlerta, "Cantidad de recursos", "Se realizo el análisis, pero la cantidad de postulantes aptos no supera la necesaria (solo se cuenta con "
+			mostrarAlerta(contenedorAlerta, "Cantidad Recursos", "Se realizo en análisis, pero la cantidad de postulantes aptos no supera la necesaria (solo se cuenta con "
 					+ cantidadPostulantes + " de " + cantidadRequerida + ") ", "alert-error", function() {
 
 			});
 		} else {
-			mostrarAlerta(contenedorAlerta, "Cantidad de recursos", "Se realizo el análisis, se cuenta con la cantidad necesaria.", "alert-success", function() {
+			mostrarAlerta(contenedorAlerta, "Cantidad Recursos", "Se realizo en análisis, se cuenta con la cantidad necesaria.", "alert-success", function() {
 
 			});
 		}
@@ -284,7 +284,7 @@
 		console.log(fechaLimite);
 
 		if (fechaHoy >= fechaLimite) {			
-			mostrarAlerta(contenedorAlerta, "Fecha Limite", "Se ha superado la fecha limite ", "alert-error", function() {
+			mostrarAlerta(contenedorAlerta, "Fecha Limite", "Se a superado la fecha limite ", "alert-error", function() {
 				var inputFristnamespace = $("input[type=hidden]").first().val();
 				var contenedorAlerta = $("#"+ inputFristnamespace + "pnlFechaLimite");
 				var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");

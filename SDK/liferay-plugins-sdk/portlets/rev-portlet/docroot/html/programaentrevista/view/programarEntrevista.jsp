@@ -42,7 +42,7 @@
 				<div class="row-fluid">
 					<div class="span12"></div>
 					<div>
-						<input type="hidden" id="bcol" value="${bcol}">
+						<input type="hidden" id="bcol" name="bcol" value="${bcol}">
 					</div>
 					<c:if test="${ bcol }">
 						<div class="span12">
