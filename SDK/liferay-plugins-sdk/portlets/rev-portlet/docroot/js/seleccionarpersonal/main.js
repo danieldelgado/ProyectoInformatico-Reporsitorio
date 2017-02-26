@@ -344,10 +344,23 @@ function inicializarListaPotulantes( listaPostulantes , cantidadRecursos ) {
 	
 	$(btnGuardar).click(function() {
 		console.log(btnGuardar);
-		formvalid = true;
-		if(formvalid){
-			console.log("show");
-			modalconfirmacion.show();
+	
+		var fechaIngresada = $("#" + inputFristnamespace + "fechaLimite2").val();
+		if(fechaIngresada!=null){
+			var parts = fechaIngresada.split('/');
+			var mydate = new Date(parts[2],parts[1]-1,parts[0]);
+			var hoy = new Date();
+			var quinceD = sumarDiasLaborables(hoy, 30);
+			if(mydate>hoy && mydate <=quinceD){
+				formvalid = true;
+				if(formvalid){
+					console.log("show");
+					modalconfirmacion.show();
+				}
+			} else {
+				var contenedorAlerta = $(".contenedorAlerta");
+				mostrarAlerta(contenedorAlerta, "Fecha extendida", "Ingresar una fecha posterior a la actual y menor a 30 dÃ­as", "alert-error", null);
+			}
 		}
 		
 	});
@@ -559,4 +572,14 @@ function seleccionarPersonal() {
 }
 
 
+
+function sumarDiasLaborables(fecha, n){
+	for(var i=0; i<n; i++) {
+		fecha.setTime( fecha.getTime()+24*60*60*1000 ); 
+        if( (fecha.getDay()==6) || (fecha.getDay()==0) )    // sábado o domingo 
+            i--;            // hacemos el bucle una unidad mas larga. 
+    } 
+    return fecha; 
+	
+}
 	
