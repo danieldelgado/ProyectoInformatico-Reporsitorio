@@ -267,12 +267,12 @@ function inicializarListaPotulantes( listaPostulantes , cantidadRecursos ) {
 		
 	}	
 	
-	var contenedorAlerta = $("#"+ inputFristnamespace + "pnlFechaLimite");
-	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
-	$(contenedorAlerta).hide();
+	var pnlFechaLimite = $("#"+ inputFristnamespace + "pnlFechaLimite")[0];
+	var btnGuardar = $("#" + inputFristnamespace + "btnGuardar")[0];
+	$(pnlFechaLimite).hide();
 	$(btnGuardar).hide();
 
-	console.log(contenedorAlerta);
+	console.log(pnlFechaLimite);
 	console.log(btnGuardar);
 
 	AUI().use('autocomplete-list', 'aui-base', 'node', 'aui-datepicker', 'aui-io-request', 'autocomplete-filters', 'autocomplete-highlighters', 'aui-form-validator', 'aui-overlay-context-panel', 'aui-modal', 'aui-alert', function(A) {

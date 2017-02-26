@@ -284,12 +284,23 @@
 		console.log(fechaLimite);
 
 		if (fechaHoy >= fechaLimite) {			
-			mostrarAlerta(contenedorAlerta, "Fecha Limite", "Se a superado la fecha limite ", "alert-error", function() {
-				var inputFristnamespace = $("input[type=hidden]").first().val();
-				var contenedorAlerta = $("#"+ inputFristnamespace + "pnlFechaLimite");
-				var btnGuardar = $("#" + inputFristnamespace + "btnGuardar");
-				$(contenedorAlerta).show();
-				$(btnGuardar).show();
+			mostrarAlerta(contenedorAlerta, "Fecha Limite", "Se ha superado la fecha límite ", "alert-error", function() {
+				
+				setTimeout(function() {
+					var inputFristnamespace = $("input[type=hidden]").first().val();
+					console.log("paso fecha limite");
+					var pnlFechaLimite = $("#"+ inputFristnamespace + "pnlFechaLimite")[0];
+					console.log(pnlFechaLimite);
+					console.log("1");
+					var btnGuardar = $("#" + inputFristnamespace + "btnGuardar")[0];
+					console.log(btnGuardar);
+					console.log("2");
+					$(pnlFechaLimite).show();
+					$(btnGuardar).show();
+					console.log("3");
+				}, 500);
+				
+				
 			});
 		}
 	}

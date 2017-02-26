@@ -79,7 +79,7 @@
 									<div class="span12">
 										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden" value="${evaluaciones.evaluacionBean.evaluacionId}" />
 										<div class="span5">
-											<label> ${ evaluaciones.evaluacionBean.descripcion } Resultado: </label>
+											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 										</div>
 										<div class="span6">										
 										<select id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 valform">
@@ -132,7 +132,7 @@
 									<div class="span12">
 										<input name="<portlet:namespace/>evaluacionSelect${evaluaciones.evaluacionBean.evaluacionId}Id" type="hidden" value="${evaluaciones.evaluacionBean.evaluacionId}" />
 										<div class="span5">
-											<label> ${ evaluaciones.evaluacionBean.descripcion } Resultado: </label>
+											<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 										</div>
 										<div class="span6">
 											<select id="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" name="<portlet:namespace/>resultado${evaluaciones.evaluacionBean.evaluacionId}Id" class="span8 valform">
@@ -182,7 +182,7 @@
 					<div class="span12">
 						<input name="<portlet:namespace/>evaluacionSelect1Id" type="hidden" value="1" />
 						<div class="span5">
-							<label> ${ evaluaciones.evaluacionBean.descripcion } Resultado: </label>
+							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 						</div>
 						<div class="span6">
 							<select id="<portlet:namespace/>resultado1Id" name="<portlet:namespace/>resultado1Id" class="span8 valform">
@@ -217,7 +217,7 @@
 					<div class="span12">
 						<input name="<portlet:namespace/>evaluacionSelect2Id" type="hidden" value="2" />
 						<div class="span5">
-							<label> ${ evaluaciones.evaluacionBean.descripcion } Resultado: </label>
+							<label> ${ evaluaciones.evaluacionBean.descripcion } resultado: </label>
 						</div>
 						<div class="span6">
 							<select id="<portlet:namespace/>resultado2Id" name="<portlet:namespace/>resultado2Id" class="span8 valform">
